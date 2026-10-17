@@ -287,14 +287,15 @@ void example_05() {
     int sum_5 = 0;
     int a_size_5 = 100;
     std::vector<int> a_5(a_size_5);
-    for (int i = 0; i < a_size_5; i++) a_5[i] = i;
+    int i;
+    for (i = 0; i < a_size_5; i++) a_5[i] = i;
 
     // Часть 1: Раздельные директивы
 #pragma omp parallel reduction(+:sum_5)
     {
         int id_5 = omp_get_thread_num();
 #pragma omp for
-        for (int i = 0; i < 100; i++) {
+        for (i = 0; i < 100; i++) {
             sum_5 += a_5[i];
         }
         // Примечание: вывод partial sum здесь будет показывать промежуточное состояние reduction
@@ -305,7 +306,7 @@ void example_05() {
     // Часть 2: Объединенная директива
     sum_5 = 0;
 #pragma omp parallel for reduction(+:sum_5)
-    for (int i = 0; i < a_size_5; i++) {
+    for (i = 0; i < a_size_5; i++) {
         sum_5 += a_5[i];
     }
     std::cout << "#1 Final sum = " << sum_5 << std::endl;
