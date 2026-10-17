@@ -80,7 +80,7 @@ double add3(const double *a, const double *b, double fact) {
  * @param n Размер массивов.
  */
 void work(double *a, double *b, int n) {
-#pragma omp simd private(tmp)
+#pragma omp simd
     for (int i = 0; i < n; i++)
     {
         double tmp = add1(a[i], b[i], 1.0);
@@ -133,14 +133,15 @@ void example_01() {
 void example_02() {
     std::cout << "\n--- Пример 2: Редукция (reduction) ---\n";
     int sum = 0;
+    int id, size;
     const int a_size = 100;
     std::vector<int> a(a_size);
     for (int i = 0; i < a_size; i++) a[i] = i;
 
-#pragma omp parallel reduction(+:sum)
+#pragma omp parallel private(id, size) reduction(+:sum)
     {
-        int id = omp_get_thread_num();
-        int size = omp_get_num_threads();
+        id = omp_get_thread_num();
+        size = omp_get_num_threads();
         int integer_part = a_size / size;
         int remainder = a_size % size;
         int a_local_size = integer_part + ((id < remainder) ? 1 : 0);
@@ -172,10 +173,34 @@ void example_03() {
             std::cout << "Number of threads in this region = " << size_3 << std::endl;
         }
     }
+    int i, sum_3 = 0, npoints = 10000000;
+    // В следующей части кода происходит приближенное вычисление
+// числа Пи. В квадрате со стороной равной 2 выбрасывается
+// npoints случайных точек, затем число Пи оценивается на
+// основе соотношения числа точек, попавших во вписанный
+// круг радиуса 1, к npoints.
+// Показано, как разделить декларацию параллельной области
+// на 2 строки с помощью обратного слэша.
+// В этой области в команде будет 4 потока.
+#pragma omp parallel private (i) shared (npoints) reduction (+: sum_3)
+    {
+        std::uniform_real_distribution<double> unif(-1.0, 1.0);
+        std::random_device rd;
+        std::default_random_engine re(rd());
+        int numthreads = omp_get_num_threads();
+        for (i = 0; i < npoints / numthreads; i++) {
+            double randx = unif(re);
+            double randy = unif(re);
+            if (sqrt(randx * randx + randy * randy) <= 1.0)
+                sum_3++;
+        }
+    }
+    double pi = 4.0 * (double(sum_3) / npoints);
+    std::cout << "pi (approximately) = " << pi << std::endl;
 }
 
 /**
- * @brief Пример 4: Синхронизация потоков с помощью барьера (barrier).
+ * @brief Пример 4: Синхронизация вывода потоков с помощью директивы барьера (barrier).
  */
 void example_04() {
     std::cout << "\n--- Пример 4: Барьер (barrier) ---\n";
@@ -196,7 +221,7 @@ void example_04() {
 }
 
 /**
- * @brief Пример 5: Распараллеливание циклов (parallel for).
+ * @brief Пример 5: Директивы распараллеливания циклов (parallel for).
  * @note Исправлена ошибка оригинала: reduction применялся к sum, а не sum_5.
  */
 void example_05() {
@@ -215,6 +240,7 @@ void example_05() {
             sum_5 += a_5[i];
         }
         // Примечание: вывод partial sum здесь будет показывать промежуточное состояние reduction
+        std::cout << "Thread " << id_5 << ", partial sum = " << sum_5 << std::endl;
     }
     std::cout << "#0 Final sum = " << sum_5 << std::endl;
 
@@ -228,7 +254,7 @@ void example_05() {
 }
 
 /**
- * @brief Пример 6: Недетерминированное поведение в секциях (sections).
+ * @brief Пример 6: Недетерминированное поведение в параллельных секциях (sections).
  */
 void example_06() {
     std::cout << "\n--- Пример 6: Секции (sections) ---\n";
@@ -252,19 +278,20 @@ void example_06() {
 }
 
 /**
- * @brief Пример 7: Суммирование с помощью рекурсивных задач (tasks).
+ * @brief Пример 7: Суммирование элементов массива с помощью рекурсивных задач (tasks).
  */
 void example_07() {
     std::cout << "\n--- Пример 7: Задачи (tasks) для суммирования ---\n";
     const int a_size_7 = 1000;
-    double* a_7 = new double[a_size_7];
+    auto* a_7 = new double[a_size_7];
 
 #pragma omp parallel for
     for (int i = 0; i < a_size_7; i++) a_7[i] = i;
 
     double res = 0;
 #pragma omp parallel
-#pragma omp single
+    // Один из потоков команды порождает задачу
+#pragma omp single nowait
     res = sum_7(a_7, a_size_7);
 
     std::cout << "Res = " << res << std::endl;
@@ -299,6 +326,7 @@ void example_09() {
 
 #pragma omp parallel
     {
+        // Задача 1
 #pragma omp task
         {
 #pragma omp critical
@@ -309,6 +337,7 @@ void example_09() {
 #pragma omp critical
         {
             std::cerr << "Главный поток вошел в критическую секцию" << std::endl;
+// Задача 2
 #pragma omp task
             std::cerr << "Задача 2 создана внутри критической секции" << std::endl;
         }
@@ -322,7 +351,7 @@ void example_10() {
     std::cout << "\n--- Пример 10: Векторизация (simd collapse) ---\n";
     float a_10[80], b_10[80], sum_10 = 0;
     for (int i = 0; i < 80; i++) a_10[i] = b_10[i] = i;
-
+// Векторизация гнезда циклов
 #pragma omp simd collapse(2) reduction(+:sum_10)
     for (int i = 0; i < 40; i++) {
         for (int j = 0; j < 2; j++) {
@@ -346,9 +375,9 @@ void example_11() {
     }
     work(a_11.data(), b_11.data(), N);
 
-    std::cout << "First 5 results: ";
-    for (int i = 0; i < 5; i++) {
-        std::cout << a_11[i] << " ";
+    std::cout << "First N results: ";
+    for (int i = 0; i < N; i++) {
+        std::cout << i << " " << a_11[i] << " ";
     }
     std::cout << "...\n";
 }
@@ -359,8 +388,8 @@ void example_11() {
  */
 void example_12() {
     std::cout << "\n--- Пример 12: Гонка данных при суммировании ---\n";
-    const int size_12 = 1000;
-    std::vector<int> a_12(size_12);
+    const int size_12 = (argc > 1 ? atoi(argv[1]) : 1000);
+    int *a_12 = new int[size_12];
 
 #pragma omp parallel for
     for (int i = 0; i < size_12; i++) a_12[i] = i;
@@ -371,6 +400,7 @@ void example_12() {
         sum_12 += a_12[i]; // ОШИБКА: гонка данных!
     }
     std::cout << "Incorrect Sum (due to race condition) = " << sum_12 << " (Expected: " << (size_12 * (size_12 - 1)) / 2 << ")\n";
+    delete[] a_12;
 }
 
 /**
@@ -381,13 +411,13 @@ void example_13() {
     std::cout << "\n--- Пример 13: Deadlock с явными блокировками ---\n";
     std::cout << "ВНИМАНИЕ: Этот пример может зависнуть.\n";
 
-    const int size_13 = 10;
+    const int size_13 = (argc > 1 ? atoi(argv[1]) : 10);
     omp_lock_t queue_lock, io_lock;
     omp_init_lock(&queue_lock);
     omp_init_lock(&io_lock);
     std::queue<int> queue;
 
-#pragma omp parallel sections
+#pragma omp parallel sections shared(size_13, queue)
     {
 #pragma omp section
         {
@@ -428,18 +458,24 @@ void example_13() {
  */
 void example_14() {
     std::cout << "\n--- Пример 14: Исправление гонки данных (reduction) ---\n";
-    const int size_14 = 1000;
-    std::vector<int> a_14(size_14);
+    const int size_14 = (argc > 1 ? atoi(argv[1]) : 1000);
+    int *a_14 = new int[size_14];
 
 #pragma omp parallel for
     for (int i = 0; i < size_14; i++) a_14[i] = i;
 
     int sum_14 = 0;
+    //#pragma omp parallel for
+//    for(int i = 0; i < size_14; i++) {
+//#pragma omp critical
+//        sum_14 += a_14[i];
+//    }
 #pragma omp parallel for reduction(+:sum_14)
     for (int i = 0; i < size_14; i++) {
         sum_14 += a_14[i];
     }
     std::cout << "Correct Sum = " << sum_14 << std::endl;
+    delete[] a_14;
 }
 
 /**
@@ -448,19 +484,22 @@ void example_14() {
  */
 void example_15() {
     std::cout << "\n--- Пример 15: Уравнение Пуассона (Якоби, базовый) ---\n";
-    const int N_15 = 200;
-    const double eps = 1e-6;
-    const int max_iter = 1000;
+    const int N_15 = (argc > 1 ? atoi(argv[1]) : 1000);
+    const double eps = (argc > 2 ? atof(argv[2]) : 1e-8);
+    const int max_iter = (argc > 3 ? atoi(argv[3]) : 1000);
     const double h = 1.0 / N_15;
 
     Vector A(N_15 * N_15, 0.0), A_next(N_15 * N_15, 0.0), f(N_15 * N_15, 0.0);
 
-    for(int j = 0; j < N_15; j++) {
-        for(int i = 0; i < N_15; i++) {
-            if(i == 0 || j == 0 || i == N_15-1 || j == N_15-1) {
-                A[i*N_15 + j] = func(i*h, j*h);
+    for (int j = 0; j < N_15; j++) {
+        for (int i = 0; i < N_15; i++) {
+            if (i == 0 || j == 0 || i == N_15 - 1 || j == N_15 - 1) {
+                A[i * N_15 + j] = func(i * h, j * h);
+            } else {
+                A[i * N_15 + j] = 0.0;
             }
-            f[i*N_15 + j] = right(i*h, j*h);
+
+            f[i * N_15 + j] = right(i * h, j * h);
         }
     }
 
@@ -471,9 +510,9 @@ void example_15() {
 #pragma omp parallel for reduction(max:norm)
         for (int j = 1; j < N_15 - 1; j++) {
             for (int i = 1; i < N_15 - 1; i++) {
-                A_next[i*N_15 + j] = (A[(i - 1)*N_15 + j] + A[(i + 1)*N_15 + j] +
-                                      A[i*N_15 + j - 1] + A[i*N_15 + j + 1] - h*h*f[i*N_15 + j]) / 4.0;
-                norm = std::fmax(norm, std::fabs(A_next[i*N_15 + j] - A[i*N_15 + j]));
+                A_next[i * N_15 + j] = (A[(i - 1) * N_15 + j] + A[(i + 1) * N_15 + j] +
+                                      A[i * N_15 + j - 1] + A[i * N_15 + j + 1] - h * h * f[i * N_15 + j]) / 4.0;
+                norm = std::fmax(norm, std::fabs(A_next[i * N_15 + j] - A[i * N_15 + j]));
             }
         }
         A = A_next;
@@ -488,17 +527,21 @@ void example_15() {
  */
 void example_16() {
     std::cout << "\n--- Пример 16: Уравнение Пуассона (перестановка циклов) ---\n";
-    const int N_16 = 200;
-    const double eps_16 = 1e-6;
-    const int max_iter_16 = 1000;
+    const int N_16 = (argc > 1 ? atoi(argv[1]) : 1000);
+    const double eps_16 = (argc > 2 ? atof(argv[2]) : 1e-8);
+    const int max_iter_16 = (argc > 3 ? atoi(argv[3]) : 1000);
     const double h_16 = 1.0 / N_16;
 
     Vector A_16(N_16 * N_16, 0.0), A_next_16(N_16 * N_16, 0.0), f_16(N_16 * N_16, 0.0);
 
-    for(int i = 0; i < N_16; i++) {
-        for(int j = 0; j < N_16; j++) {
-            if(i == 0 || j == 0 || i == N_16-1 || j == N_16-1) A_16[i*N_16 + j] = func(i*h_16, j*h_16);
-            f_16[i*N_16 + j] = right(i*h_16, j*h_16);
+    for (int i = 0; i < N_16; i++) {
+        for (int j = 0; j < N_16; j++) {
+            if (i == 0 || j == 0 || i == N_16 - 1 || j == N_16 - 1) {
+                A_16[i * N_16 + j] = func(i * h_16, j * h_16);
+            } else {
+                A_16[i * N_16 + j] = 0.0;
+            }
+            f_16[i * N_16 + j] = right(i * h_16, j * h_16);
         }
     }
 
@@ -509,9 +552,9 @@ void example_16() {
 #pragma omp parallel for reduction(max:norm_16)
         for (int i = 1; i < N_16 - 1; i++) {
             for (int j = 1; j < N_16 - 1; j++) {
-                A_next_16[i*N_16 + j] = (A_16[(i - 1)*N_16 + j] + A_16[(i + 1)*N_16 + j] +
-                                         A_16[i*N_16 + j - 1] + A_16[i*N_16 + j + 1] - h_16*h_16*f_16[i*N_16 + j]) / 4.0;
-                norm_16 = std::fmax(norm_16, std::fabs(A_next_16[i*N_16 + j] - A_16[i*N_16 + j]));
+                A_next_16[i * N_16 + j] = (A_16[(i - 1) * N_16 + j] + A_16[(i + 1) * N_16 + j] +
+                                         A_16[i * N_16 + j - 1] + A_16[i * N_16 + j + 1] - h_16 * h_16 * f_16[i * N_16 + j]) / 4.0;
+                norm_16 = std::fmax(norm_16, std::fabs(A_next_16[i * N_16 + j] - A_16[i * N_16 + j]));
             }
         }
         A_16 = A_next_16;
@@ -526,18 +569,22 @@ void example_16() {
  */
 void example_17() {
     std::cout << "\n--- Пример 17: Уравнение Пуассона (параллельное копирование) ---\n";
-    const int N_17 = 200;
-    const double eps_17 = 1e-6;
-    const int max_iter_17 = 1000;
+    const int N_17 = (argc > 1 ? atoi(argv[1]) : 1000);
+    const double eps_17 = (argc > 2 ? atof(argv[2]) : 1e-8);
+    const int max_iter_17 = (argc > 3 ? atoi(argv[3]) : 1000);
     const double h_17 = 1.0 / N_17;
 
     Vector A_17(N_17 * N_17, 0.0), A_next_17(N_17 * N_17, 0.0), f_17(N_17 * N_17, 0.0);
 
 #pragma omp parallel for collapse(2)
-    for(int i = 0; i < N_17; i++) {
-        for(int j = 0; j < N_17; j++) {
-            if(i == 0 || j == 0 || i == N_17-1 || j == N_17-1) A_17[i*N_17 + j] = func(i*h_17, j*h_17);
-            f_17[i*N_17 + j] = right(i*h_17, j*h_17);
+    for (int i = 0; i < N_17; i++) {
+        for (int j = 0; j < N_17; j++) {
+            if (i == 0 || j == 0 || i == N_17 - 1 || j == N_17 - 1) {
+                A_17[i * N_17 + j] = func(i * h_17, j * h_17);
+            }  else {
+                A_17[i * N_17 + j] = 0.0;
+            }
+            f_17[i * N_17 + j] = right(i * h_17, j * h_17);
         }
     }
 
@@ -548,15 +595,15 @@ void example_17() {
 #pragma omp parallel for reduction(max:norm_17)
         for (int i = 1; i < N_17 - 1; i++) {
             for (int j = 1; j < N_17 - 1; j++) {
-                A_next_17[i*N_17 + j] = (A_17[(i - 1)*N_17 + j] + A_17[(i + 1)*N_17 + j] +
-                                         A_17[i*N_17 + j - 1] + A_17[i*N_17 + j + 1] - h_17*h_17*f_17[i*N_17 + j]) / 4.0;
-                norm_17 = std::fmax(norm_17, std::fabs(A_next_17[i*N_17 + j] - A_17[i*N_17 + j]));
+                A_next_17[i * N_17 + j] = (A_17[(i - 1) * N_17 + j] + A_17[(i + 1) * N_17 + j] +
+                                         A_17[i * N_17 + j - 1] + A_17[i * N_17 + j + 1] - h_17 * h_17*f_17[i * N_17 + j]) / 4.0;
+                norm_17 = std::fmax(norm_17, std::fabs(A_next_17[i * N_17 + j] - A_17[i * N_17 + j]));
             }
         }
 #pragma omp parallel for collapse(2)
-        for(int i = 0; i < N_17; i++) {
-            for(int j = 0; j < N_17; j++) {
-                A_17[i*N_17 + j] = A_next_17[i*N_17 + j];
+        for (int i = 0; i < N_17; i++) {
+            for (int j = 0; j < N_17; j++) {
+                A_17[i * N_17 + j] = A_next_17[i * N_17 + j];
             }
         }
         iter_17++;
@@ -570,18 +617,22 @@ void example_17() {
  */
 void example_18() {
     std::cout << "\n--- Пример 18: Уравнение Пуассона (dynamic schedule) ---\n";
-    const int N_18 = 200;
-    const double eps_18 = 1e-6;
-    const int max_iter_18 = 1000;
+    const int N_18 = (argc > 1 ? atoi(argv[1]) : 1000);
+    const double eps_18 = (argc > 2 ? atof(argv[2]) : 1e-8);
+    const int max_iter_18 = (argc > 3 ? atoi(argv[3]) : 1000);
     const double h_18 = 1.0 / N_18;
 
     Vector A_18(N_18 * N_18, 0.0), A_next_18(N_18 * N_18, 0.0), f_18(N_18 * N_18, 0.0);
 
 #pragma omp parallel for collapse(2)
-    for(int i = 0; i < N_18; i++) {
-        for(int j = 0; j < N_18; j++) {
-            if(i == 0 || j == 0 || i == N_18-1 || j == N_18-1) A_18[i*N_18 + j] = func(i*h_18, j*h_18);
-            f_18[i*N_18 + j] = right(i*h_18, j*h_18);
+    for (int i = 0; i < N_18; i++) {
+        for (int j = 0; j < N_18; j++) {
+            if (i == 0 || j == 0 || i == N_18 - 1 || j == N_18 - 1) {
+                A_18[i * N_18 + j] = func(i * h_18, j * h_18);
+            } else {
+                A_18[i * N_18 + j] = 0.0;
+            }
+            f_18[i * N_18 + j] = right(i * h_18, j * h_18);
         }
     }
 
@@ -589,18 +640,18 @@ void example_18() {
     int iter_18 = 0;
     do {
         norm_18 = 0.0;
-#pragma omp parallel for reduction(max:norm_18) schedule(dynamic, 10)
+#pragma omp parallel for reduction(max:norm_18) schedule(dynamic, 100)
         for (int i = 1; i < N_18 - 1; i++) {
             for (int j = 1; j < N_18 - 1; j++) {
-                A_next_18[i*N_18 + j] = (A_18[(i - 1)*N_18 + j] + A_18[(i + 1)*N_18 + j] +
-                                         A_18[i*N_18 + j - 1] + A_18[i*N_18 + j + 1] - h_18*h_18*f_18[i*N_18 + j]) / 4.0;
-                norm_18 = std::fmax(norm_18, std::fabs(A_next_18[i*N_18 + j] - A_18[i*N_18 + j]));
+                A_next_18[i * N_18 + j] = (A_18[(i - 1) * N_18 + j] + A_18[(i + 1) * N_18 + j] +
+                                         A_18[i * N_18 + j - 1] + A_18[i * N_18 + j + 1] - h_18 * h_18 * f_18[i * N_18 + j]) / 4.0;
+                norm_18 = std::fmax(norm_18, std::fabs(A_next_18[i * N_18 + j] - A_18[i * N_18 + j]));
             }
         }
-#pragma omp parallel for collapse(2) schedule(dynamic, 10)
-        for(int i = 0; i < N_18; i++) {
-            for(int j = 0; j < N_18; j++) {
-                A_18[i*N_18 + j] = A_next_18[i*N_18 + j];
+#pragma omp parallel for collapse(2) schedule(dynamic, 100)
+        for (int i = 0; i < N_18; i++) {
+            for (int j = 0; j < N_18; j++) {
+                A_18[i * N_18 + j] = A_next_18[i * N_18 + j];
             }
         }
         iter_18++;
@@ -616,10 +667,10 @@ void example_19() {
     std::cout << "\n--- Пример 19: Параллельные циклы с зависимостями ---\n";
     std::vector<int> a_19(100), b_19(100);
 
-    for(int i = 0; i < 100; i++) b_19[i] = i;
+    for (int i = 0; i < 100; i++) b_19[i] = i;
 
 #pragma omp parallel for
-    for(int i = 0; i < 100; i++) {
+    for (int i = 0; i < 100; i++) {
         a_19[i] = b_19[i];
         b_19[i] = 2 * a_19[i];
     }
