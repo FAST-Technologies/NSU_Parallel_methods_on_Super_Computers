@@ -4,26 +4,75 @@
  * @details Программа представляет собой интерактивное меню для запуска 19 различных
  *          примеров, демонстрирующих различные директивы и концепции OpenMP
  *          (редукция, задачи, векторизация, синхронизация и типичные ошибки).
- * @author Refactored for educational purposes
+ *          Поддерживает передачу параметров через командную строку (argc, argv).
+ * @author F.A.S.T. DEVELOPMENT Refactored for educational purposes
  * @version 2.0
  */
+
+#ifndef NOMINMAX
+#define NOMINMAX
+#endif
 
 #include <iostream>
 #include <vector>
 #include <cmath>
 #include <string>
 #include <queue>
-#include <cstdlib>
 #include <random>
 #include <algorithm>
 #include <windows.h>
 #include <omp.h>
+#include <limits>
+#include <chrono>
+#include <stdexcept>
 
 #define NT 4
 
 // ============================================================================
 // Вспомогательные функции и функции для примеров
 // ============================================================================
+
+/**
+ * @brief Безопасное получение целочисленного аргумента из командной строки.
+ * @param argc Количество аргументов.
+ * @param argv Массив аргументов.
+ * @param arg_index Индекс требуемого аргумента (начиная с 1).
+ * @param default_value Значение по умолчанию, если аргумент отсутствует или некорректен.
+ * @return Преобразованное целое число или default_value.
+ */
+int get_int_arg(int argc, char** argv, int arg_index, int default_value) {
+    if (argc > arg_index) {
+        try {
+            return std::stoi(argv[arg_index]);
+        } catch (const std::invalid_argument&) {
+            std::cerr << "[WARNING] Аргумент '" << argv[arg_index] << "' не является числом. Используется значение по умолчанию: " << default_value << "\n";
+        } catch (const std::out_of_range&) {
+            std::cerr << "[WARNING] Аргумент '" << argv[arg_index] << "' выходит за пределы диапазона int. Используется значение по умолчанию: " << default_value << "\n";
+        }
+    }
+    return default_value;
+}
+
+/**
+ * @brief Безопасное получение числа с плавающей точкой из командной строки.
+ * @param argc Количество аргументов.
+ * @param argv Массив аргументов.
+ * @param arg_index Индекс требуемого аргумента (начиная с 1).
+ * @param default_value Значение по умолчанию, если аргумент отсутствует или некорректен.
+ * @return Преобразованное число double или default_value.
+ */
+double get_double_arg(int argc, char** argv, int arg_index, double default_value) {
+    if (argc > arg_index) {
+        try {
+            return std::stod(argv[arg_index]);
+        } catch (const std::invalid_argument&) {
+            std::cerr << "[WARNING] Аргумент '" << argv[arg_index] << "' не является числом. Используется значение по умолчанию: " << default_value << "\n";
+        } catch (const std::out_of_range&) {
+            std::cerr << "[WARNING] Аргумент '" << argv[arg_index] << "' выходит за пределы диапазона double. Используется значение по умолчанию: " << default_value << "\n";
+        }
+    }
+    return default_value;
+}
 
 /**
  * @brief Рекурсивное суммирование массива с использованием задач OpenMP.
@@ -38,7 +87,7 @@ double sum_7(double* a, int count) {
 
     double res = 0;
     double s1 = 0, s2 = 0;
-    int d = count/2;
+    int d = count / 2;
 
 #pragma omp task shared(s1)
     s1 = sum_7(a, d);
@@ -52,7 +101,9 @@ double sum_7(double* a, int count) {
 /**
  * @brief Векторизуемая функция сложения с унифицированным параметром.
  */
+#ifndef _MSC_VER
 #pragma omp declare simd uniform(fact)
+#endif
 double add1(double a, double b, double fact) {
     return a + b + fact;
 }
@@ -60,7 +111,9 @@ double add1(double a, double b, double fact) {
 /**
  * @brief Векторизуемая функция с линейно изменяющимся индексом.
  */
+#ifndef _MSC_VER
 #pragma omp declare simd uniform(a,b,fact) linear(i:1)
+#endif
 double add2(const double *a, const double *b, int i, double fact) {
     return a[i] + b[i] + fact;
 }
@@ -68,7 +121,9 @@ double add2(const double *a, const double *b, int i, double fact) {
 /**
  * @brief Векторизуемая функция с линейно изменяющимися указателями.
  */
+#ifndef _MSC_VER
 #pragma omp declare simd uniform(fact) linear(a,b:1)
+#endif
 double add3(const double *a, const double *b, double fact) {
     return *a + *b + fact;
 }
@@ -80,10 +135,13 @@ double add3(const double *a, const double *b, double fact) {
  * @param n Размер массивов.
  */
 void work(double *a, double *b, int n) {
-#pragma omp simd
+    double tmp;
+#ifndef _MSC_VER
+#pragma omp simd private(tmp)
+#endif
     for (int i = 0; i < n; i++)
     {
-        double tmp = add1(a[i], b[i], 1.0);
+        tmp = add1(a[i], b[i], 1.0);
         a[i] = add2(a, b, i, 1.0) + tmp;
         a[i] = add3(&a[i], &b[i], 1.0);
     }
@@ -227,7 +285,7 @@ void example_04() {
 void example_05() {
     std::cout << "\n--- Пример 5: Директива parallel for ---\n";
     int sum_5 = 0;
-    const int a_size_5 = 100;
+    int a_size_5 = 100;
     std::vector<int> a_5(a_size_5);
     for (int i = 0; i < a_size_5; i++) a_5[i] = i;
 
@@ -236,7 +294,7 @@ void example_05() {
     {
         int id_5 = omp_get_thread_num();
 #pragma omp for
-        for (int i = 0; i < a_size_5; i++) {
+        for (int i = 0; i < 100; i++) {
             sum_5 += a_5[i];
         }
         // Примечание: вывод partial sum здесь будет показывать промежуточное состояние reduction
@@ -350,9 +408,11 @@ void example_09() {
 void example_10() {
     std::cout << "\n--- Пример 10: Векторизация (simd collapse) ---\n";
     float a_10[80], b_10[80], sum_10 = 0;
-    for (int i = 0; i < 80; i++) a_10[i] = b_10[i] = i;
+    for (int i = 0; i < 80; i++) a_10[i] = b_10[i] = static_cast<float>(i);
 // Векторизация гнезда циклов
+#ifndef _MSC_VER
 #pragma omp simd collapse(2) reduction(+:sum_10)
+#endif
     for (int i = 0; i < 40; i++) {
         for (int j = 0; j < 2; j++) {
             sum_10 += a_10[i * 2 + j] + b_10[i * 2 + j];
@@ -384,11 +444,13 @@ void example_11() {
 
 /**
  * @brief Пример 12: Гонка данных при суммировании без редукции.
+ * @param argc Количество аргументов командной строки.
+ * @param argv Массив аргументов командной строки.
  * @warning Намеренная ошибка для демонстрации некорректного суммирования.
  */
-void example_12() {
+void example_12(int argc, char** argv) {
     std::cout << "\n--- Пример 12: Гонка данных при суммировании ---\n";
-    const int size_12 = (argc > 1 ? atoi(argv[1]) : 1000);
+    const int size_12 = get_int_arg(argc, argv, 1, 1000);
     int *a_12 = new int[size_12];
 
 #pragma omp parallel for
@@ -405,13 +467,15 @@ void example_12() {
 
 /**
  * @brief Пример 13: Deadlock при использовании явных блокировок (locks).
+ * @param argc Количество аргументов командной строки.
+ * @param argv Массив аргументов командной строки.
  * @warning Намеренная ошибка. Программа может зависнуть.
  */
-void example_13() {
+void example_13(int argc, char** argv) {
     std::cout << "\n--- Пример 13: Deadlock с явными блокировками ---\n";
     std::cout << "ВНИМАНИЕ: Этот пример может зависнуть.\n";
 
-    const int size_13 = (argc > 1 ? atoi(argv[1]) : 10);
+    const int size_13 = get_int_arg(argc, argv, 1, 10);
     omp_lock_t queue_lock, io_lock;
     omp_init_lock(&queue_lock);
     omp_init_lock(&io_lock);
@@ -455,10 +519,12 @@ void example_13() {
 
 /**
  * @brief Пример 14: Исправление Примера 12 с помощью редукции.
+ * @param argc Количество аргументов командной строки.
+ * @param argv Массив аргументов командной строки.
  */
-void example_14() {
+void example_14(int argc, char** argv) {
     std::cout << "\n--- Пример 14: Исправление гонки данных (reduction) ---\n";
-    const int size_14 = (argc > 1 ? atoi(argv[1]) : 1000);
+    const int size_14 = get_int_arg(argc, argv, 1, 1000);
     int *a_14 = new int[size_14];
 
 #pragma omp parallel for
@@ -480,17 +546,24 @@ void example_14() {
 
 /**
  * @brief Пример 15: Решение уравнения Пуассона методом Якоби (базовый).
- * @note Размер сетки уменьшен до 200 для быстрого выполнения в рамках меню.
+ * @details Базовая реализация без специальных оптимизаций.
+ *          Внешний цикл по j, внутренний по i. Копирование A = A_next выполняется последовательно.
+ * @param argc Количество аргументов командной строки.
+ * @param argv Массив аргументов командной строки.
+ * @note Ожидаемые аргументы: [N] [eps] [max_iter]. По умолчанию: 1000, 1e-8, 1000.
  */
-void example_15() {
+void example_15(int argc, char** argv) {
     std::cout << "\n--- Пример 15: Уравнение Пуассона (Якоби, базовый) ---\n";
-    const int N_15 = (argc > 1 ? atoi(argv[1]) : 1000);
-    const double eps = (argc > 2 ? atof(argv[2]) : 1e-8);
-    const int max_iter = (argc > 3 ? atoi(argv[3]) : 1000);
+    const int N_15 = get_int_arg(argc, argv, 1, 1000);
+    const double eps = get_double_arg(argc, argv, 2, 1e-8);
+    const int max_iter = get_int_arg(argc, argv, 3, 1000);
     const double h = 1.0 / N_15;
+
+    auto start_total = std::chrono::high_resolution_clock::now();
 
     Vector A(N_15 * N_15, 0.0), A_next(N_15 * N_15, 0.0), f(N_15 * N_15, 0.0);
 
+    auto start_init = std::chrono::high_resolution_clock::now();
     for (int j = 0; j < N_15; j++) {
         for (int i = 0; i < N_15; i++) {
             if (i == 0 || j == 0 || i == N_15 - 1 || j == N_15 - 1) {
@@ -502,9 +575,11 @@ void example_15() {
             f[i * N_15 + j] = right(i * h, j * h);
         }
     }
+    auto end_init = std::chrono::high_resolution_clock::now();
 
     double norm = 0.0;
     int iter = 0;
+    auto start_solve = std::chrono::high_resolution_clock::now();
     do {
         norm = 0.0;
 #pragma omp parallel for reduction(max:norm)
@@ -519,21 +594,38 @@ void example_15() {
         iter++;
     } while ((norm > eps) && (iter < max_iter));
 
-    std::cout << "Norm = " << norm << ", iter = " << iter << std::endl;
+    auto end_solve = std::chrono::high_resolution_clock::now();
+
+    double init_time = std::chrono::duration<double, std::milli>(end_init - start_init).count();
+    double solve_time = std::chrono::duration<double, std::milli>(end_solve - start_solve).count();
+    double total_time = std::chrono::duration<double, std::milli>(end_solve - start_total).count();
+
+    std::cout << "Результат: Norm = " << norm << ", iter = " << iter << "\n";
+    std::cout << "Время: Инициализация = " << init_time << " мс, Решатель = " << solve_time
+              << " мс, Всего = " << total_time << " мс\n";
 }
 
 /**
  * @brief Пример 16: Уравнение Пуассона с перестановкой циклов (i и j).
+ * @details Внутренний цикл теперь по j, внешний по i. Это обеспечивает
+ *          последовательный доступ к памяти (spatial locality), так как C++
+ *          хранит многомерные массивы в порядке строк (row-major order),
+ *          что значительно улучшает использование кэш-процессора (L1/L2).
+ * @param argc Количество аргументов командной строки.
+ * @param argv Массив аргументов командной строки.
  */
-void example_16() {
+void example_16(int argc, char** argv) {
     std::cout << "\n--- Пример 16: Уравнение Пуассона (перестановка циклов) ---\n";
-    const int N_16 = (argc > 1 ? atoi(argv[1]) : 1000);
-    const double eps_16 = (argc > 2 ? atof(argv[2]) : 1e-8);
-    const int max_iter_16 = (argc > 3 ? atoi(argv[3]) : 1000);
+    const int N_16 = get_int_arg(argc, argv, 1, 1000);
+    const double eps_16 = get_double_arg(argc, argv, 2, 1e-8);
+    const int max_iter_16 = get_int_arg(argc, argv, 3, 1000);
     const double h_16 = 1.0 / N_16;
+
+    auto start_total = std::chrono::high_resolution_clock::now();
 
     Vector A_16(N_16 * N_16, 0.0), A_next_16(N_16 * N_16, 0.0), f_16(N_16 * N_16, 0.0);
 
+    auto start_init = std::chrono::high_resolution_clock::now();
     for (int i = 0; i < N_16; i++) {
         for (int j = 0; j < N_16; j++) {
             if (i == 0 || j == 0 || i == N_16 - 1 || j == N_16 - 1) {
@@ -544,9 +636,11 @@ void example_16() {
             f_16[i * N_16 + j] = right(i * h_16, j * h_16);
         }
     }
+    auto end_init = std::chrono::high_resolution_clock::now();
 
     double norm_16 = 0.0;
     int iter_16 = 0;
+    auto start_solve = std::chrono::high_resolution_clock::now();
     do {
         norm_16 = 0.0;
 #pragma omp parallel for reduction(max:norm_16)
@@ -561,21 +655,37 @@ void example_16() {
         iter_16++;
     } while ((norm_16 > eps_16) && (iter_16 < max_iter_16));
 
-    std::cout << "Norm = " << norm_16 << ", iter = " << iter_16 << std::endl;
+    auto end_solve = std::chrono::high_resolution_clock::now();
+
+    double init_time = std::chrono::duration<double, std::milli>(end_init - start_init).count();
+    double solve_time = std::chrono::duration<double, std::milli>(end_solve - start_solve).count();
+    double total_time = std::chrono::duration<double, std::milli>(end_solve - start_total).count();
+
+    std::cout << "Результат: Norm = " << norm_16 << ", iter = " << iter_16 << "\n";
+    std::cout << "Время: Инициализация = " << init_time << " мс, Решатель = " << solve_time
+              << " мс, Всего = " << total_time << " мс\n";
 }
 
 /**
  * @brief Пример 17: Уравнение Пуассона с распараллеливанием копирования массива.
+ * @details Помимо перестановки циклов для кэша, операция копирования A = A_next
+ *          теперь распараллелена с использованием collapse(2), что устраняет
+ *          последовательное "узкое место" на больших размерах сетки.
+ * @param argc Количество аргументов командной строки.
+ * @param argv Массив аргументов командной строки.
  */
-void example_17() {
+void example_17(int argc, char** argv) {
     std::cout << "\n--- Пример 17: Уравнение Пуассона (параллельное копирование) ---\n";
-    const int N_17 = (argc > 1 ? atoi(argv[1]) : 1000);
-    const double eps_17 = (argc > 2 ? atof(argv[2]) : 1e-8);
-    const int max_iter_17 = (argc > 3 ? atoi(argv[3]) : 1000);
+    const int N_17 = get_int_arg(argc, argv, 1, 1000);
+    const double eps_17 = get_double_arg(argc, argv, 2, 1e-8);
+    const int max_iter_17 = get_int_arg(argc, argv, 3, 1000);
     const double h_17 = 1.0 / N_17;
+
+    auto start_total = std::chrono::high_resolution_clock::now();
 
     Vector A_17(N_17 * N_17, 0.0), A_next_17(N_17 * N_17, 0.0), f_17(N_17 * N_17, 0.0);
 
+    auto start_init = std::chrono::high_resolution_clock::now();
 #pragma omp parallel for collapse(2)
     for (int i = 0; i < N_17; i++) {
         for (int j = 0; j < N_17; j++) {
@@ -587,9 +697,11 @@ void example_17() {
             f_17[i * N_17 + j] = right(i * h_17, j * h_17);
         }
     }
+    auto end_init = std::chrono::high_resolution_clock::now();
 
     double norm_17 = 0.0;
     int iter_17 = 0;
+    auto start_solve = std::chrono::high_resolution_clock::now();
     do {
         norm_17 = 0.0;
 #pragma omp parallel for reduction(max:norm_17)
@@ -609,21 +721,37 @@ void example_17() {
         iter_17++;
     } while ((norm_17 > eps_17) && (iter_17 < max_iter_17));
 
-    std::cout << "Norm = " << norm_17 << ", iter = " << iter_17 << std::endl;
+    auto end_solve = std::chrono::high_resolution_clock::now();
+
+    double init_time = std::chrono::duration<double, std::milli>(end_init - start_init).count();
+    double solve_time = std::chrono::duration<double, std::milli>(end_solve - start_solve).count();
+    double total_time = std::chrono::duration<double, std::milli>(end_solve - start_total).count();
+
+    std::cout << "Результат: Norm = " << norm_17 << ", iter = " << iter_17 << "\n";
+    std::cout << "Время: Инициализация = " << init_time << " мс, Решатель = " << solve_time
+              << " мс, Всего = " << total_time << " мс\n";
 }
 
 /**
  * @brief Пример 18: Уравнение Пуассона с динамическим планированием (schedule dynamic).
+ * @details Добавлена директива schedule(dynamic, 100) к циклам. Хотя метод Якоби
+ *          обычно имеет равномерную нагрузку, эта директива демонстрирует, как
+ *          бороться с дисбалансом нагрузки, если вычисления в разных точках сетки
+ *          занимают разное время (например, при добавлении сложных условий).
+ * @param argc Количество аргументов командной строки.
+ * @param argv Массив аргументов командной строки.
  */
-void example_18() {
+void example_18(int argc, char** argv) {
     std::cout << "\n--- Пример 18: Уравнение Пуассона (dynamic schedule) ---\n";
-    const int N_18 = (argc > 1 ? atoi(argv[1]) : 1000);
-    const double eps_18 = (argc > 2 ? atof(argv[2]) : 1e-8);
-    const int max_iter_18 = (argc > 3 ? atoi(argv[3]) : 1000);
+    const int N_18 = get_int_arg(argc, argv, 1, 1000);
+    const double eps_18 = get_double_arg(argc, argv, 2, 1e-8);
+    const int max_iter_18 = get_int_arg(argc, argv, 3, 1000);
     const double h_18 = 1.0 / N_18;
 
-    Vector A_18(N_18 * N_18, 0.0), A_next_18(N_18 * N_18, 0.0), f_18(N_18 * N_18, 0.0);
+    auto start_total = std::chrono::high_resolution_clock::now();
 
+    Vector A_18(N_18 * N_18, 0.0), A_next_18(N_18 * N_18, 0.0), f_18(N_18 * N_18, 0.0);
+    auto start_init = std::chrono::high_resolution_clock::now();
 #pragma omp parallel for collapse(2)
     for (int i = 0; i < N_18; i++) {
         for (int j = 0; j < N_18; j++) {
@@ -635,9 +763,11 @@ void example_18() {
             f_18[i * N_18 + j] = right(i * h_18, j * h_18);
         }
     }
+    auto end_init = std::chrono::high_resolution_clock::now();
 
     double norm_18 = 0.0;
     int iter_18 = 0;
+    auto start_solve = std::chrono::high_resolution_clock::now();
     do {
         norm_18 = 0.0;
 #pragma omp parallel for reduction(max:norm_18) schedule(dynamic, 100)
@@ -657,7 +787,15 @@ void example_18() {
         iter_18++;
     } while ((norm_18 > eps_18) && (iter_18 < max_iter_18));
 
-    std::cout << "Norm = " << norm_18 << ", iter = " << iter_18 << std::endl;
+    auto end_solve = std::chrono::high_resolution_clock::now();
+
+    double init_time = std::chrono::duration<double, std::milli>(end_init - start_init).count();
+    double solve_time = std::chrono::duration<double, std::milli>(end_solve - start_solve).count();
+    double total_time = std::chrono::duration<double, std::milli>(end_solve - start_total).count();
+
+    std::cout << "Результат: Norm = " << norm_18 << ", iter = " << iter_18 << "\n";
+    std::cout << "Время: Инициализация = " << init_time << " мс, Решатель = " << solve_time
+              << " мс, Всего = " << total_time << " мс\n";
 }
 
 /**
@@ -715,7 +853,7 @@ void print_menu() {
     std::cout << "19. Параллельные циклы с зависимостями\n";
     std::cout << " 0. Выход из программы\n";
     std::cout << "=======================================================\n";
-    std::cout << "Выберите пункт меню (0-19): ";
+    std::cout << "Выберите пункт меню (0-19): \n";
 }
 
 int main(int argc, char **argv) {
@@ -733,10 +871,12 @@ int main(int argc, char **argv) {
         // Проверка ввода: защита от нечисловых символов
         if (!(std::cin >> choice)) {
             std::cin.clear(); // Очистка флага ошибки
-            std::cin.ignore(32767, '\n'); // Очистка буфера ввода
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Очистка буфера ввода
             std::cout << "\n[ОШИБКА] Неверный ввод. Пожалуйста, введите число от 0 до 19.\n";
             continue;
         }
+
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
         switch (choice) {
             case 0:
@@ -754,13 +894,13 @@ int main(int argc, char **argv) {
             case 9: example_09(); break;
             case 10: example_10(); break;
             case 11: example_11(); break;
-            case 12: example_12(); break;
-            case 13: example_13(); break;
-            case 14: example_14(); break;
-            case 15: example_15(); break;
-            case 16: example_16(); break;
-            case 17: example_17(); break;
-            case 18: example_18(); break;
+            case 12: example_12(argc, argv); break;
+            case 13: example_13(argc, argv); break;
+            case 14: example_14(argc, argv); break;
+            case 15: example_15(argc, argv); break;
+            case 16: example_16(argc, argv); break;
+            case 17: example_17(argc, argv); break;
+            case 18: example_18(argc, argv); break;
             case 19: example_19(); break;
             default:
                 std::cout << "\n[ОШИБКА] Пункт '" << choice << "' не существует. Попробуйте снова.\n";
@@ -769,8 +909,8 @@ int main(int argc, char **argv) {
 
         if (!exit_program) {
             std::cout << "\nНажмите Enter для продолжения...";
-            std::cin.ignore(32767, '\n');
-            std::cin.get();
+            std::string dummy;
+            std::getline(std::cin, dummy);
         }
     }
     return 0;
