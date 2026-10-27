@@ -19,21 +19,29 @@ endif()
 find_package(MPI REQUIRED)
 find_package(OpenMP REQUIRED)
 
-set(SOURCE_FILES main.cpp
-        poisson_solver.hpp
-        poisson_solver.hpp)
+# 1. Основная версия (с внутренним профилированием через MPI_Wtime)
+set(SOURCE_FILES main.cpp poisson_solver.hpp)
 add_executable(Lab_02 ${SOURCE_FILES})
+target_link_libraries(Lab_02 PRIVATE MPI::MPI_CXX OpenMP::OpenMP_CXX)
+
+# 2. Версия для MPE профилирования (автоматически добавляется, если файл существует)
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/main_mpe_jumpshot.cpp")
+    set(SOURCE_MPE_FILES main_mpe_jumpshot.cpp poisson_solver.hpp)
+    add_executable(Lab_02_mpe ${SOURCE_MPE_FILES})
+    target_compile_definitions(Lab_02_mpe PRIVATE USE_MPE)
+    target_link_libraries(Lab_02_mpe PRIVATE MPI::MPI_CXX OpenMP::OpenMP_CXX mpe)
+    target_include_directories(Lab_02_mpe PRIVATE /usr/local/include)
+    target_link_directories(Lab_02_mpe PRIVATE /usr/local/lib)
+    message(STATUS "✓ Found main_mpe_jumpshot.cpp: Target 'Lab_02_mpe' will be built with MPE support.")
+endif()
 
 if(MSVC)
     target_compile_options(Lab_02 PRIVATE /openmp:llvm)
 endif()
-target_link_libraries(Lab_02 PRIVATE MPI::MPI_CXX OpenMP::OpenMP_CXX)
 
 message(STATUS "MPI Found: ${MPI_CXX_COMPILER}")
 message(STATUS "MPI Include: ${MPI_CXX_INCLUDE_DIRS}")
 message(STATUS "MPI Libraries: ${MPI_CXX_LIBRARIES}")
-message(STATUS "OpenMP Found: ${OpenMP_CXX_FLAGS}")
-
 message(STATUS "OpenMP Found: ${OpenMP_CXX_FLAGS}")
 
 option(BUILD_DOC "Build Doxygen documentation" ON)
