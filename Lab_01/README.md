@@ -136,7 +136,7 @@ NSU_Parallel_methods_on_Super_Computers/
     ├── requirements.txt                           # Python-зависимости для скриптов с графиками
     ├── Report_on_Assignment_01_Yamshchikov.docx   # Отчёт с таблицами, графиками и анализом
     ├── *.png                                      # Строящиеся графики для отчёта
-    ├── CMakeLists.txt                             # Makefile для сборки проекта
+    ├── CMakeLists.txt                             # Makefile для сборки проектаF
     └── README.md                                  # Этот файл
 ```
 

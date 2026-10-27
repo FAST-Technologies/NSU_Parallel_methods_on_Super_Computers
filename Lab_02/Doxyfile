@@ -1,0 +1,67 @@
+# ==============================================================================
+# Doxyfile для проекта Lab_02 (MPI + OpenMP)
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# Основные настройки проекта
+# ------------------------------------------------------------------------------
+PROJECT_NAME           = "Lab_02: MPI + OpenMP Parallel Programming"
+PROJECT_NUMBER         = "2.1"
+PROJECT_BRIEF          = "Решение 3D уравнения Пуассона методом Якоби с двумерной декомпозицией"
+OUTPUT_DIRECTORY       = @CMAKE_CURRENT_BINARY_DIR@/docs
+OUTPUT_LANGUAGE        = Russian
+
+# ------------------------------------------------------------------------------
+# Входные файлы
+# ------------------------------------------------------------------------------
+INPUT                  = @CMAKE_CURRENT_SOURCE_DIR@/main.cpp
+RECURSIVE              = NO
+FILE_PATTERNS          = *.cpp *.h *.hpp
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
+
+# ------------------------------------------------------------------------------
+# Формат вывода
+# ------------------------------------------------------------------------------
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO
+GENERATE_XML           = NO
+HTML_OUTPUT            = html
+HTML_COLORSTYLE        = AUTO_LIGHT
+
+# ------------------------------------------------------------------------------
+# Графы и диаграммы (требуют установленный Graphviz)
+# ------------------------------------------------------------------------------
+HAVE_DOT               = NO
+# Если у вас установлен Graphviz, раскомментируйте следующие строки:
+# HAVE_DOT             = YES
+# CALL_GRAPH           = YES
+# CALLER_GRAPH         = YES
+# UML_LOOK             = YES
+
+# ------------------------------------------------------------------------------
+# Исходный код в документации
+# ------------------------------------------------------------------------------
+SOURCE_BROWSER         = YES
+INLINE_SOURCES         = NO
+REFERENCED_BY_RELATION = YES
+REFERENCES_RELATION    = YES
+
+# ------------------------------------------------------------------------------
+# Прочее
+# ------------------------------------------------------------------------------
+QUIET                  = NO
+WARNINGS               = YES
+WARN_IF_UNDOCUMENTED   = YES
+WARN_IF_DOC_ERROR      = YES
+ALWAYS_DETAILED_SEC    = YES
+INLINE_INHERITED_MEMB  = NO
+FULL_PATH_NAMES        = NO
+OPTIMIZE_OUTPUT_FOR_C  = NO
+OPTIMIZE_OUTPUT_JAVA   = NO
+BUILTIN_STL_SUPPORT    = YES
+CPP_CLI_SUPPORT        = NO
+DISTRIBUTE_GROUP_DOC   = YES
+TAB_SIZE               = 4
+ALIASES                = "sideeffect=\xrefitem sideeffects \"Side Effects\" \"Side Effects\""
