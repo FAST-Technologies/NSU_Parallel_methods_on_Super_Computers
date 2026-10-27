@@ -13,6 +13,14 @@
 #include <algorithm>
 #include <chrono>
 
+//#include <mpe.h> // Подключаем заголовок MPE
+
+// Глобальные ID для фаз профилирования
+int evt_begin_halo, evt_end_halo;
+int evt_begin_comp_int, evt_end_comp_int;
+int evt_begin_wait, evt_end_wait;
+int evt_begin_comp_bnd, evt_end_comp_bnd;
+
 double exact_solution(double x, double y, double z) {
     return x * x + y * y + z * z;
 }
@@ -36,6 +44,7 @@ int get_int_arg(int argc, char** argv, int arg_index, int default_value) {
 
 void initialize_grid(
     std::vector<double>& phi,
+    std::vector<double>& phi_new,
     const DomainInfo& info,
     int Nx,
     int Ny,
@@ -62,9 +71,12 @@ void initialize_grid(
 
                 // Граничные условия 1-го рода (Дирихле)
                 if (gi == 0 || gi == Nx || gj == 0 || gj == Ny || gk == 0 || gk == Nz) {
-                    phi[idx] = exact_solution(x, y, z);
+                    double exact_val = exact_solution(x, y, z);
+                    phi[idx] = exact_val;
+                    phi_new[idx] = exact_val;
                 } else {
-                    phi[idx] = 0.0; // Начальное приближение во внутренней области
+                    phi[idx] = 0.0;
+                    phi_new[idx] = 0.0;
                 }
             }
         }
@@ -98,6 +110,9 @@ void jacobi_step(
     int req_count = 0;
     max_diff = 0.0;
 
+    // ЭТАП 1: Упаковка и запуск обменов
+//    MPE_Log_event(evt_begin_halo, 0, "start");
+
     // ------------------------------------------------------------------------
     // ЭТАП 1: Упаковка данных и запуск асинхронных обменов (Non-blocking)
     // ------------------------------------------------------------------------
@@ -124,11 +139,13 @@ void jacobi_step(
     MPI_Irecv(recv_top.data(), info.local_nx * info.local_nz, MPI_DOUBLE, info.top, 3, info.cart_comm, &requests[req_count++]);
     MPI_Isend(send_bottom.data(), info.local_nx * info.local_nz, MPI_DOUBLE, info.bottom, 3, info.cart_comm, &requests[req_count++]);
     MPI_Isend(send_top.data(), info.local_nx * info.local_nz, MPI_DOUBLE, info.top, 2, info.cart_comm, &requests[req_count++]);
-
+//    MPE_Log_event(evt_end_halo, 0, "end");
     // ------------------------------------------------------------------------
     // ЭТАП 2: Вычисление ВНУТРЕННИХ точек (Перекрытие с коммуникациями!)
     // ------------------------------------------------------------------------
     // Эти точки не зависят от ghost-слоев, поэтому их можно считать, пока данные летят по сети.
+    // ЭТАП 2: Вычисление ВНУТРЕННИХ точек
+//    MPE_Log_event(evt_begin_comp_int, 0, "start");
 #pragma omp parallel for collapse(3) reduction(max:max_diff)
     for (int i = 2; i < info.local_nx; ++i) {
         for (int j = 2; j < info.local_ny; ++j) {
@@ -143,9 +160,9 @@ void jacobi_step(
                 double z = Z0 + gk * info.hz;
                 double rho = rhs_function(x, y, z);
 
-                double phi_x = (phi[(i-1)*stride_x + j*stride_y + k] + phi[(i+1)*stride_x + j*stride_y + k]) / (info.hx * info.hx);
-                double phi_y = (phi[i*stride_x + (j-1)*stride_y + k] + phi[i*stride_x + (j+1)*stride_y + k]) / (info.hy * info.hy);
-                double phi_z = (phi[i*stride_x + j*stride_y + (k-1)] + phi[i*stride_x + j*stride_y + (k+1)]) / (info.hz * info.hz);
+                double phi_x = (phi[(i - 1) * stride_x + j * stride_y + k] + phi[(i + 1) * stride_x + j * stride_y + k]) / (info.hx * info.hx);
+                double phi_y = (phi[i * stride_x + (j - 1) * stride_y + k] + phi[i * stride_x + (j + 1) * stride_y + k]) / (info.hy * info.hy);
+                double phi_z = (phi[i * stride_x + j * stride_y + (k - 1)] + phi[i * stride_x + j * stride_y + (k + 1)]) / (info.hz * info.hz);
 
                 phi_new[idx] = (phi_x + phi_y + phi_z - rho) / info.denom;
 
@@ -154,12 +171,17 @@ void jacobi_step(
             }
         }
     }
-
+//    MPE_Log_event(evt_end_comp_int, 0, "end");
     // ------------------------------------------------------------------------
     // ЭТАП 3: Ожидание завершения всех обменов
     // ------------------------------------------------------------------------
+    // ЭТАП 3: Ожидание
+//    MPE_Log_event(evt_begin_wait, 0, "start");
     MPI_Waitall(req_count, requests.data(), MPI_STATUSES_IGNORE);
+//    MPE_Log_event(evt_end_wait, 0, "end");
 
+    // ЭТАП 4 и 5: Распаковка и ГРАНИЧНЫЕ точки
+//    MPE_Log_event(evt_begin_comp_bnd, 0, "start");
     // ------------------------------------------------------------------------
     // ЭТАП 4: Распаковка полученных данных в ghost-слои
     // ------------------------------------------------------------------------
@@ -213,6 +235,7 @@ void jacobi_step(
             }
         }
     }
+//    MPE_Log_event(evt_end_comp_bnd, 0, "end");
 }
 
 // ============================================================================
@@ -244,7 +267,7 @@ int main(int argc, char** argv) {
 
     // Создание 2D декартовой топологии
     int dims[2] = {0, 0};
-    int periods[2] = {1, 1};
+    int periods[2] = {0, 0}; // <-- ИСПРАВЛЕНО: 0 означает непериодические границы (Дирихле)
     MPI_Dims_create(size, 2, dims);
 
     if (dims[0] <= 0 || dims[1] <= 0) {
@@ -258,6 +281,25 @@ int main(int argc, char** argv) {
 
     DomainInfo info{};
     MPI_Cart_create(MPI_COMM_WORLD, 2, dims, periods, 1, &info.cart_comm);
+
+	// Инициализация лога MPE
+//	MPE_Init_log();
+
+	// Получаем уникальные ID для наших фаз (вызывается на всех процессах синхронно)
+//	evt_begin_halo = MPE_Log_get_event_number();
+//	evt_end_halo = MPE_Log_get_event_number();
+//	evt_begin_comp_int = MPE_Log_get_event_number();
+//	evt_end_comp_int = MPE_Log_get_event_number();
+//	evt_begin_wait = MPE_Log_get_event_number();
+//	evt_end_wait = MPE_Log_get_event_number();
+//	evt_begin_comp_bnd = MPE_Log_get_event_number();
+//	evt_end_comp_bnd = MPE_Log_get_event_number();
+
+	// Описываем состояния (название и цвет для Jumpshot)
+//	MPE_Describe_state(evt_begin_halo, evt_end_halo, "1_Halo_Exchange", "red");
+//	MPE_Describe_state(evt_begin_comp_int, evt_end_comp_int, "2_Compute_Internal", "green");
+//	MPE_Describe_state(evt_begin_wait, evt_end_wait, "3_Waitall", "blue");
+//	MPE_Describe_state(evt_begin_comp_bnd, evt_end_comp_bnd, "4_Compute_Boundary", "yellow");
 
     int cart_rank;
     MPI_Comm_rank(info.cart_comm, &cart_rank);
@@ -306,7 +348,7 @@ int main(int argc, char** argv) {
         std::cout << "Запуск расчета: сетка " << Nx << "x" << Ny << "x" << Nz
                   << " на " << size << " MPI процессах." << std::endl;
     }
-    initialize_grid(phi, info, Nx, Ny, Nz);
+    initialize_grid(phi, phi_new, info, Nx, Ny, Nz);
 
     // Итерационный процесс
     auto start_chrono_time = std::chrono::high_resolution_clock::now();
@@ -341,16 +383,50 @@ int main(int argc, char** argv) {
     double elapsed_mpi_time = end_mpi_time - start_mpi_time;
 
     double tick = omp_get_wtick();
-    std::cout << "Точность таймера: " << tick << " секунд\n";
+
+    // Вычисление точности решения (максимальное отклонение от точного решения)
+    double max_error = 0.0;
+
+#pragma omp parallel for collapse(3) reduction(max:max_error)
+    for (int i = 1; i <= info.local_nx; ++i) {
+        for (int j = 1; j <= info.local_ny; ++j) {
+            for (int k = 1; k <= info.local_nz; ++k) {
+                int idx = i * stride_x + j * stride_y + k;
+
+                // Глобальные координаты
+                int gi = info.coords[0] * info.local_nx + (i - 1);
+                int gj = info.coords[1] * info.local_ny + (j - 1);
+                int gk = k - 1;
+
+                double x = X0 + gi * info.hx;
+                double y = Y0 + gj * info.hy;
+                double z = Z0 + gk * info.hz;
+
+                // Точное решение
+                double phi_exact = exact_solution(x, y, z);
+
+                // Отклонение
+                double error = std::abs(phi[idx] - phi_exact);
+                if (error > max_error) max_error = error;
+            }
+        }
+    }
+
+    // Глобальный сбор максимальной ошибки
+    double global_max_error;
+    MPI_Allreduce(&max_error, &global_max_error, 1, MPI_DOUBLE, MPI_MAX, MPI_COMM_WORLD);
 
     if (rank == 0) {
         std::cout << "Конвергенция достигнута за " << iter << " итераций." << std::endl;
         std::cout << "Максимальная невязка: " << max_diff << std::endl;
+        std::cout << "Максимальное отклонение от точного решения (Δ): " << global_max_error << "\n";
         std::cout << "Общее время счета (MPI TIME): " << elapsed_mpi_time << " sec." << std::endl;
-        std::cout << "Общее время счета (Chrono TIME): " << chrono_elapsed_time.count() << " sec." << std::endl;
+        std::cout << "Общее время счета (Chrono TIME): " << chrono_elapsed_time.count() / 1000 << " sec." << std::endl;
         std::cout << "Общее время счета (OpenMP TIME) " << omp_elapsed_time << " sec." << std::endl;
+        std::cout << "Точность таймера: " << tick << " секунд" << std::endl;;
     }
 
+//    MPE_Finish_log("jacobi_profile.clog2");
     MPI_Comm_free(&info.cart_comm);
     MPI_Finalize();
     return 0;
