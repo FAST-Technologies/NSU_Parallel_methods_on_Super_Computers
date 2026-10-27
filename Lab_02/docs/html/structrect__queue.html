@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lab_02: MPI + OpenMP Parallel Programming: Структура rect_queue</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Lab_02: MPI + OpenMP Parallel Programming<span id="projectnumber">&#160;2.1</span>
+   </div>
+   <div id="projectbrief">Решение 3D уравнения Пуассона методом Якоби с двумерной декомпозицией</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-attribs">Открытые атрибуты</a> &#124;
+<a href="structrect__queue-members.html">Полный список членов класса</a>  </div>
+  <div class="headertitle"><div class="title">Структура rect_queue</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="pmandel_8h_source.html">pmandel.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Открытые атрибуты</h2></td></tr>
+<tr class="memitem:a2e8d4da87f6c6e435eeba83fae66717c" id="r_a2e8d4da87f6c6e435eeba83fae66717c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrect__queue.html#a2e8d4da87f6c6e435eeba83fae66717c">head</a></td></tr>
+<tr class="separator:a2e8d4da87f6c6e435eeba83fae66717c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a729b7c98abbd105e40b13f89e17ba788" id="r_a729b7c98abbd105e40b13f89e17ba788"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrect__queue.html#a729b7c98abbd105e40b13f89e17ba788">tail</a></td></tr>
+<tr class="separator:a729b7c98abbd105e40b13f89e17ba788"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8a2f42e582e266607a4e167c0990c97" id="r_aa8a2f42e582e266607a4e167c0990c97"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrect__queue.html#aa8a2f42e582e266607a4e167c0990c97">size</a></td></tr>
+<tr class="separator:aa8a2f42e582e266607a4e167c0990c97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af68a9fe5cbe6aca659c11671acfd0cd6" id="r_af68a9fe5cbe6aca659c11671acfd0cd6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrect__queue.html#af68a9fe5cbe6aca659c11671acfd0cd6">randomPt</a></td></tr>
+<tr class="separator:af68a9fe5cbe6aca659c11671acfd0cd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a6f8bbe0581a1279c0c980157412e2d" id="r_a1a6f8bbe0581a1279c0c980157412e2d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrect__queue.html#a1a6f8bbe0581a1279c0c980157412e2d">randomize</a></td></tr>
+<tr class="separator:a1a6f8bbe0581a1279c0c980157412e2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29a8b78e0cca21c402061c02d990a824" id="r_a29a8b78e0cca21c402061c02d990a824"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structrect.html">rect</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrect__queue.html#a29a8b78e0cca21c402061c02d990a824">r</a></td></tr>
+<tr class="separator:a29a8b78e0cca21c402061c02d990a824"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock">
+<p class="definition">См. определение в файле <a class="el" href="pmandel_8h_source.html">pmandel.h</a> строка <a class="el" href="pmandel_8h_source.html#l00128">128</a></p>
+</div><h2 class="groupheader">Данные класса</h2>
+<a id="a2e8d4da87f6c6e435eeba83fae66717c" name="a2e8d4da87f6c6e435eeba83fae66717c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e8d4da87f6c6e435eeba83fae66717c">&#9670;&#160;</a></span>head</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> rect_queue::head</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="pmandel_8h_source.html">pmandel.h</a> строка <a class="el" href="pmandel_8h_source.html#l00129">129</a></p>
+
+</div>
+</div>
+<a id="a29a8b78e0cca21c402061c02d990a824" name="a29a8b78e0cca21c402061c02d990a824"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29a8b78e0cca21c402061c02d990a824">&#9670;&#160;</a></span>r</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structrect.html">rect</a>* rect_queue::r</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="pmandel_8h_source.html">pmandel.h</a> строка <a class="el" href="pmandel_8h_source.html#l00130">130</a></p>
+
+</div>
+</div>
+<a id="a1a6f8bbe0581a1279c0c980157412e2d" name="a1a6f8bbe0581a1279c0c980157412e2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a6f8bbe0581a1279c0c980157412e2d">&#9670;&#160;</a></span>randomize</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> rect_queue::randomize</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="pmandel_8h_source.html">pmandel.h</a> строка <a class="el" href="pmandel_8h_source.html#l00129">129</a></p>
+
+</div>
+</div>
+<a id="af68a9fe5cbe6aca659c11671acfd0cd6" name="af68a9fe5cbe6aca659c11671acfd0cd6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af68a9fe5cbe6aca659c11671acfd0cd6">&#9670;&#160;</a></span>randomPt</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> rect_queue::randomPt</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="pmandel_8h_source.html">pmandel.h</a> строка <a class="el" href="pmandel_8h_source.html#l00129">129</a></p>
+
+</div>
+</div>
+<a id="aa8a2f42e582e266607a4e167c0990c97" name="aa8a2f42e582e266607a4e167c0990c97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8a2f42e582e266607a4e167c0990c97">&#9670;&#160;</a></span>size</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> rect_queue::size</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="pmandel_8h_source.html">pmandel.h</a> строка <a class="el" href="pmandel_8h_source.html#l00129">129</a></p>
+
+</div>
+</div>
+<a id="a729b7c98abbd105e40b13f89e17ba788" name="a729b7c98abbd105e40b13f89e17ba788"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a729b7c98abbd105e40b13f89e17ba788">&#9670;&#160;</a></span>tail</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> rect_queue::tail</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="pmandel_8h_source.html">pmandel.h</a> строка <a class="el" href="pmandel_8h_source.html#l00129">129</a></p>
+
+</div>
+</div>
+<hr/>Объявления и описания членов структуры находятся в файле:<ul>
+<li><a class="el" href="pmandel_8h_source.html">pmandel.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

@@ -1,0 +1,313 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lab_02: MPI + OpenMP Parallel Programming: Исходный файл clog_buffer.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Lab_02: MPI + OpenMP Parallel Programming<span id="projectnumber">&#160;2.1</span>
+   </div>
+   <div id="projectbrief">Решение 3D уравнения Пуассона методом Якоби с двумерной декомпозицией</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_1f646cbbb0f6227d25dd06f792d51aba.html">mpe2-1.3.0</a></li><li class="navelem"><a class="el" href="dir_493399512d45eb30627376023737183a.html">src</a></li><li class="navelem"><a class="el" href="dir_4dd21a1309df0d73c93832f59c814642.html">logging</a></li><li class="navelem"><a class="el" href="dir_d1e3342e2909ab46223a280715173519.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">clog_buffer.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="clog__buffer_8h.html">См. документацию.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">   (C) 2001 by Argonne National Laboratory.</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">       See COPYRIGHT in top-level directory.</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">*/</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#if !defined( _CLOG_BUFFER )</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#define _CLOG_BUFFER</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="clog__preamble_8h.html">clog_preamble.h</a>&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="clog__block_8h.html">clog_block.h</a>&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="src_2logging_2include_2clog__commset_8h.html">clog_commset.h</a>&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">   CLOG_DEFAULT_BLOCK_SIZE * CLOG_DEFAULT_BUFFERED_BLOCKS = 16 MB,</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">   It is total memory buffer size,</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">   i.e. data size written to disk per flush.</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">                                                                                </span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">   The values defined here will be used by default</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment">   if the corresponding variables are not used.</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="comment">#define CLOG_DEFAULT_BLOCK_SIZE       131072</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="comment">#define CLOG_DEFAULT_BUFFERED_BLOCKS     128</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="comment">*/</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="clog__buffer_8h.html#a9732a3cbed113742caded9272e732530">   22</a></span><span class="preprocessor">#define CLOG_DEFAULT_BLOCK_SIZE        65536</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="clog__buffer_8h.html#acc38a9155f79bb053aed3a533de9ad06">   23</a></span><span class="preprocessor">#define CLOG_DEFAULT_BUFFERED_BLOCKS     128</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="comment">/* </span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="comment">   for testing CLOG_status, one bit for initialized and one for on/off</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="comment">   0 - data structures are initialized and logging is ON</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="comment">   1 - data structures are initialized and logging is OFF</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="comment">   2 - data structures are not initialized, logging ON or OFF; error</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="comment">*/</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="clog__buffer_8h.html#a131564e278e0564a22b1245390fb7939">   32</a></span><span class="preprocessor">#define CLOG_INIT_AND_ON                   0</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="clog__buffer_8h.html#ab1380272261a49e0c8c22589e3fe3d8f">   33</a></span><span class="preprocessor">#define CLOG_INIT_AND_OFF                  1</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="clog__buffer_8h.html#a14d62d9eade0d83efacb517ab02baeac">   34</a></span><span class="preprocessor">#define CLOG_UNINIT                        2</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="foldopen" id="foldopen00036" data-start="{" data-end="};">
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="structCLOG__Buffer__t.html">   36</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="structCLOG__Buffer__t.html#a7ab97459964fd981fe2215126ad6ae33">   37</a></span>    <a class="code hl_struct" href="structCLOG__Preamble__t.html">CLOG_Preamble_t</a>  *<a class="code hl_variable" href="structCLOG__Buffer__t.html#a7ab97459964fd981fe2215126ad6ae33">preamble</a>;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="structCLOG__Buffer__t.html#a651d5da134af0c9ccf0b1a7ddeeb4d5d">   38</a></span>    <a class="code hl_struct" href="struct__CLOG__Block__t.html">CLOG_Block_t</a>     *<a class="code hl_variable" href="structCLOG__Buffer__t.html#a651d5da134af0c9ccf0b1a7ddeeb4d5d">head_block</a>;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="structCLOG__Buffer__t.html#afb4cdc362d19a6353aeb20b1b421d067">   39</a></span>    <a class="code hl_struct" href="struct__CLOG__Block__t.html">CLOG_Block_t</a>     *<a class="code hl_variable" href="structCLOG__Buffer__t.html#afb4cdc362d19a6353aeb20b1b421d067">curr_block</a>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="structCLOG__Buffer__t.html#afa3eee20234aadde204d0c0432332546">   40</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>      <a class="code hl_variable" href="structCLOG__Buffer__t.html#afa3eee20234aadde204d0c0432332546">block_size</a>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="structCLOG__Buffer__t.html#aef53e9dfac5d0404110b6e2b5195d463">   41</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>      <a class="code hl_variable" href="structCLOG__Buffer__t.html#aef53e9dfac5d0404110b6e2b5195d463">num_blocks</a>;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="structCLOG__Buffer__t.html#a126d18997a6379d56596cd35aa766ac8">   42</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>      <a class="code hl_variable" href="structCLOG__Buffer__t.html#a126d18997a6379d56596cd35aa766ac8">num_used_blocks</a>;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="structCLOG__Buffer__t.html#a5624f8d6c0215fa50ee0d2d8cd89d802">   44</a></span>    <a class="code hl_struct" href="structCLOG__CommSet__t.html">CLOG_CommSet_t</a>   *<a class="code hl_variable" href="structCLOG__Buffer__t.html#a5624f8d6c0215fa50ee0d2d8cd89d802">commset</a>;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="structCLOG__Buffer__t.html#a8cadb212d17cabef6282e63f794284fe">   45</a></span>    <span class="keywordtype">int</span>               <a class="code hl_variable" href="structCLOG__Buffer__t.html#a8cadb212d17cabef6282e63f794284fe">world_size</a>;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="structCLOG__Buffer__t.html#a129a029aa5a3bcce92361673e4f3e367">   46</a></span>    <span class="keywordtype">int</span>               <a class="code hl_variable" href="structCLOG__Buffer__t.html#a129a029aa5a3bcce92361673e4f3e367">world_rank</a>;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="structCLOG__Buffer__t.html#a762fc0ff3da5ece22ebe25c477d78ba3">   48</a></span>    <span class="keywordtype">int</span>               <a class="code hl_variable" href="structCLOG__Buffer__t.html#a762fc0ff3da5ece22ebe25c477d78ba3">local_fd</a>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="structCLOG__Buffer__t.html#af879a909a19345cb673e185d06086a28">   49</a></span>    <span class="keywordtype">char</span>              local_filename[ <a class="code hl_define" href="include_2clog__const_8h.html#ab6501f5486fd7479fcf0efd9c6638c54">CLOG_PATH_STRLEN</a> ];</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="structCLOG__Buffer__t.html#a2409ce0f1f2c0044bff5c1f4f09c920a">   50</a></span>    <a class="code hl_struct" href="structvector.html">off_t</a>             <a class="code hl_variable" href="structCLOG__Buffer__t.html#a2409ce0f1f2c0044bff5c1f4f09c920a">timeshift_fptr</a>;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="structCLOG__Buffer__t.html#ab92ce6c55b105043573121fee06e50bb">   51</a></span>    <span class="keywordtype">int</span>               <a class="code hl_variable" href="structCLOG__Buffer__t.html#ab92ce6c55b105043573121fee06e50bb">delete_localfile</a>;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="structCLOG__Buffer__t.html#a609e433612fef9a5839d66261e0a9fec">   52</a></span>    <span class="keywordtype">int</span>               <a class="code hl_variable" href="structCLOG__Buffer__t.html#a609e433612fef9a5839d66261e0a9fec">log_overhead</a>;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="structCLOG__Buffer__t.html#a5f8c50566860626d3876cc11d52eaecb">   54</a></span>    <span class="keywordtype">int</span>               <a class="code hl_variable" href="structCLOG__Buffer__t.html#a5f8c50566860626d3876cc11d52eaecb">status</a>;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>} <a class="code hl_struct" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a>;</div>
+</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="clog__buffer_8h.html#af5a79471e5987131ea3b4f5480c46b04">   57</a></span><a class="code hl_struct" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a>* <a class="code hl_function" href="clog__buffer_8h.html#af5a79471e5987131ea3b4f5480c46b04">CLOG_Buffer_create</a>( <span class="keywordtype">void</span> );</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="clog__buffer_8h.html#a639b18f47b33765fb73ffdca62cf8ee2">   59</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="clog__buffer_8h.html#a639b18f47b33765fb73ffdca62cf8ee2">CLOG_Buffer_free</a>( <a class="code hl_struct" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> **<a class="code hl_struct" href="structvector.html">buffer_handle</a> );</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="clog__buffer_8h.html#a3657c442f8e71b6dd2de7b327a5b7f10">   61</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="clog__buffer_8h.html#a3657c442f8e71b6dd2de7b327a5b7f10">CLOG_Buffer_env_init</a>( <a class="code hl_struct" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer );</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="clog__buffer_8h.html#ae7ae0cb153ee5aef30252f8e42667e58">   63</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="clog__buffer_8h.html#ae7ae0cb153ee5aef30252f8e42667e58">CLOG_Buffer_init4write</a>( <a class="code hl_struct" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer,</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>                             <span class="keyword">const</span> <span class="keywordtype">char</span>    *<a class="code hl_struct" href="structvector.html">local_tmpfile_name</a> );</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="clog__buffer_8h.html#aa9ccd5c356877e7cb679fddf537e965a">   66</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="clog__buffer_8h.html#aa9ccd5c356877e7cb679fddf537e965a">CLOG_Buffer_localIO_init4write</a>( <a class="code hl_struct" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer );</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="clog__buffer_8h.html#a4dbbe795c09654cbfacdb7beb8ba83e8">   68</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="clog__buffer_8h.html#a4dbbe795c09654cbfacdb7beb8ba83e8">CLOG_Buffer_localIO_write</a>( <a class="code hl_struct" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer );</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="clog__buffer_8h.html#ae539ce2c3dbcf97aa535ef6c4dffd7ef">   70</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="clog__buffer_8h.html#ae539ce2c3dbcf97aa535ef6c4dffd7ef">CLOG_Buffer_advance_block</a>( <a class="code hl_struct" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer );</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="clog__buffer_8h.html#acf98bd51225f84de520a6e213eeb4e36">   72</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="clog__buffer_8h.html#acf98bd51225f84de520a6e213eeb4e36">CLOG_Buffer_localIO_flush</a>( <a class="code hl_struct" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer );</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="clog__buffer_8h.html#a946c3543446c1cb9ef380c76c3d09afb">   74</a></span><a class="code hl_struct" href="structvector.html">off_t</a> <a class="code hl_function" href="clog__buffer_8h.html#a946c3543446c1cb9ef380c76c3d09afb">CLOG_Buffer_localIO_ftell</a>( <a class="code hl_struct" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer );</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="clog__buffer_8h.html#a8735b1faeca61eb73a33dd455a345b92">   76</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="clog__buffer_8h.html#a8735b1faeca61eb73a33dd455a345b92">CLOG_Buffer_init_timeshift</a>( <a class="code hl_struct" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer );</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="clog__buffer_8h.html#ae58e40be47deb80cdd874ef46e8bb1bc">   78</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="clog__buffer_8h.html#ae58e40be47deb80cdd874ef46e8bb1bc">CLOG_Buffer_set_timeshift</a>( <a class="code hl_struct" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer,</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>                                <a class="code hl_define" href="clog__timer_8h.html#abf0f7e46df13fdbacdb7a819cf12267d">CLOG_Time_t</a>    <a class="code hl_struct" href="structvector.html">new_timediff</a>,</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>                                <span class="keywordtype">int</span>            <a class="code hl_struct" href="structvector.html">init_next_timeshift</a> );</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="clog__buffer_8h.html#ae4f94a3e291ad8f30f77b45ec80058fb">   82</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="clog__buffer_8h.html#ae4f94a3e291ad8f30f77b45ec80058fb">CLOG_Buffer_localIO_reinit4read</a>( <a class="code hl_struct" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer );</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="clog__buffer_8h.html#a076ad6b0f794d6d77279625f2ddb9dab">   84</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="clog__buffer_8h.html#a076ad6b0f794d6d77279625f2ddb9dab">CLOG_Buffer_localIO_read</a>( <a class="code hl_struct" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer );</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="clog__buffer_8h.html#a6f9b0c254526af02038bc2d4a85789d1">   86</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="clog__buffer_8h.html#a6f9b0c254526af02038bc2d4a85789d1">CLOG_Buffer_localIO_finalize</a>( <a class="code hl_struct" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer );</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="clog__buffer_8h.html#acfdb4728f3b7698be7291918f2c81ee0">   90</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="clog__buffer_8h.html#acfdb4728f3b7698be7291918f2c81ee0">CLOG_Buffer_save_endlog</a>( <a class="code hl_struct" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer );</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="clog__buffer_8h.html#a0841e7dee22486a380219386b5380fef">   92</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="clog__buffer_8h.html#a0841e7dee22486a380219386b5380fef">CLOG_Buffer_save_endblock</a>( <a class="code hl_struct" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer );</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="clog__buffer_8h.html#ac23cefae25afda01a2b2250054f30e55">   94</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="clog__buffer_8h.html#ac23cefae25afda01a2b2250054f30e55">CLOG_Buffer_save_header_0chk</a>( <a class="code hl_struct" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer,</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>                                   <span class="keyword">const</span> <a class="code hl_struct" href="structCLOG__CommIDs__t__.html">CLOG_CommIDs_t</a> *commIDs,</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>                                   <a class="code hl_define" href="include_2clog__commset_8h.html#ab1730371cde7a7a9acb878e705d70bc1">CLOG_ThreadLID_t</a> <a class="code hl_struct" href="structvector.html">thd</a>,</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>                                   <span class="keywordtype">int</span> rectype );</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="clog__buffer_8h.html#a0af7f971b8292e07653b90ba2da1b4d4">   99</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="clog__buffer_8h.html#a0af7f971b8292e07653b90ba2da1b4d4">CLOG_Buffer_save_header</a>( <a class="code hl_struct" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer,</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>                              <span class="keyword">const</span> <a class="code hl_struct" href="structCLOG__CommIDs__t__.html">CLOG_CommIDs_t</a> *commIDs,</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>                              <a class="code hl_define" href="include_2clog__commset_8h.html#ab1730371cde7a7a9acb878e705d70bc1">CLOG_ThreadLID_t</a> <a class="code hl_struct" href="structvector.html">thd</a>,</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>                              <span class="keywordtype">int</span> rectype );</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="clog__buffer_8h.html#ace6c26fa665c5540e450310070dbb56a">  104</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="clog__buffer_8h.html#ace6c26fa665c5540e450310070dbb56a">CLOG_Buffer_save_statedef</a>( <a class="code hl_struct" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer,</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>                                <span class="keyword">const</span> <a class="code hl_struct" href="structCLOG__CommIDs__t__.html">CLOG_CommIDs_t</a> *commIDs,</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>                                <a class="code hl_define" href="include_2clog__commset_8h.html#ab1730371cde7a7a9acb878e705d70bc1">CLOG_ThreadLID_t</a> <a class="code hl_struct" href="structvector.html">thd</a>,</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>                                <span class="keywordtype">int</span> stateID, <span class="keywordtype">int</span> startetype, <span class="keywordtype">int</span> finaletype,</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>                                <span class="keyword">const</span> <span class="keywordtype">char</span> *color, <span class="keyword">const</span> <span class="keywordtype">char</span> *name,</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>                                <span class="keyword">const</span> <span class="keywordtype">char</span> *format );</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno"><a class="line" href="clog__buffer_8h.html#a8bec4f8fa8e4c4e2de75e24eda0a0ea6">  111</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="clog__buffer_8h.html#a8bec4f8fa8e4c4e2de75e24eda0a0ea6">CLOG_Buffer_save_eventdef</a>( <a class="code hl_struct" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer,</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>                                <span class="keyword">const</span> <a class="code hl_struct" href="structCLOG__CommIDs__t__.html">CLOG_CommIDs_t</a> *commIDs,</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>                                <a class="code hl_define" href="include_2clog__commset_8h.html#ab1730371cde7a7a9acb878e705d70bc1">CLOG_ThreadLID_t</a> <a class="code hl_struct" href="structvector.html">thd</a>,</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>                                <span class="keywordtype">int</span> etype, <span class="keyword">const</span> <span class="keywordtype">char</span> *color,</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>                                <span class="keyword">const</span> <span class="keywordtype">char</span> *name, <span class="keyword">const</span> <span class="keywordtype">char</span> *format );</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno"><a class="line" href="clog__buffer_8h.html#a9ab7059d1746deaf07b546ee064ed81a">  117</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="clog__buffer_8h.html#a9ab7059d1746deaf07b546ee064ed81a">CLOG_Buffer_save_constdef</a>( <a class="code hl_struct" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer,</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>                                <span class="keyword">const</span> <a class="code hl_struct" href="structCLOG__CommIDs__t__.html">CLOG_CommIDs_t</a> *commIDs,</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>                                <a class="code hl_define" href="include_2clog__commset_8h.html#ab1730371cde7a7a9acb878e705d70bc1">CLOG_ThreadLID_t</a> <a class="code hl_struct" href="structvector.html">thd</a>,</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>                                <span class="keywordtype">int</span> etype, <span class="keywordtype">int</span> value, <span class="keyword">const</span> <span class="keywordtype">char</span> *name );</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno"><a class="line" href="clog__buffer_8h.html#aced4992ee74ab5fe9578ea9d7a9b654a">  122</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="clog__buffer_8h.html#aced4992ee74ab5fe9578ea9d7a9b654a">CLOG_Buffer_save_bareevt_0chk</a>( <a class="code hl_struct" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer,</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>                                    <span class="keyword">const</span> <a class="code hl_struct" href="structCLOG__CommIDs__t__.html">CLOG_CommIDs_t</a> *commIDs,</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>                                    <a class="code hl_define" href="include_2clog__commset_8h.html#ab1730371cde7a7a9acb878e705d70bc1">CLOG_ThreadLID_t</a> <a class="code hl_struct" href="structvector.html">thd</a>,</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>                                    <span class="keywordtype">int</span> etype );</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno"><a class="line" href="clog__buffer_8h.html#a0c8633ea80d9ab4a7043e210bc292336">  127</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="clog__buffer_8h.html#a0c8633ea80d9ab4a7043e210bc292336">CLOG_Buffer_save_bareevt</a>( <a class="code hl_struct" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer,</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>                               <span class="keyword">const</span> <a class="code hl_struct" href="structCLOG__CommIDs__t__.html">CLOG_CommIDs_t</a> *commIDs,</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>                               <a class="code hl_define" href="include_2clog__commset_8h.html#ab1730371cde7a7a9acb878e705d70bc1">CLOG_ThreadLID_t</a> <a class="code hl_struct" href="structvector.html">thd</a>,</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>                               <span class="keywordtype">int</span> etype );</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno"><a class="line" href="clog__buffer_8h.html#a6105ac9fb55dd8abc720f76f66019511">  132</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="clog__buffer_8h.html#a6105ac9fb55dd8abc720f76f66019511">CLOG_Buffer_save_cargoevt</a>( <a class="code hl_struct" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer,</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>                                <span class="keyword">const</span> <a class="code hl_struct" href="structCLOG__CommIDs__t__.html">CLOG_CommIDs_t</a> *commIDs,</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>                                <a class="code hl_define" href="include_2clog__commset_8h.html#ab1730371cde7a7a9acb878e705d70bc1">CLOG_ThreadLID_t</a> <a class="code hl_struct" href="structvector.html">thd</a>,</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>                                <span class="keywordtype">int</span> etype, <span class="keyword">const</span> <span class="keywordtype">char</span> *bytes );</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span> </div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno"><a class="line" href="clog__buffer_8h.html#afd7c571321f484e56e9b6b5501be0809">  137</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="clog__buffer_8h.html#afd7c571321f484e56e9b6b5501be0809">CLOG_Buffer_save_msgevt</a>( <a class="code hl_struct" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer,</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>                              <span class="keyword">const</span> <a class="code hl_struct" href="structCLOG__CommIDs__t__.html">CLOG_CommIDs_t</a> *commIDs,</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>                              <a class="code hl_define" href="include_2clog__commset_8h.html#ab1730371cde7a7a9acb878e705d70bc1">CLOG_ThreadLID_t</a> <a class="code hl_struct" href="structvector.html">thd</a>,</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>                              <span class="keywordtype">int</span> etype, <span class="keywordtype">int</span> tag, <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">remote_rank</a>, <span class="keywordtype">int</span> size );</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span> </div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno"><a class="line" href="clog__buffer_8h.html#a6094cd62c81c417b77fb50d84f854d8a">  142</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="clog__buffer_8h.html#a6094cd62c81c417b77fb50d84f854d8a">CLOG_Buffer_save_collevt</a>( <a class="code hl_struct" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer,</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>                               <span class="keyword">const</span> <a class="code hl_struct" href="structCLOG__CommIDs__t__.html">CLOG_CommIDs_t</a> *commIDs,</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>                               <a class="code hl_define" href="include_2clog__commset_8h.html#ab1730371cde7a7a9acb878e705d70bc1">CLOG_ThreadLID_t</a> <a class="code hl_struct" href="structvector.html">thd</a>,</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>                               <span class="keywordtype">int</span> etype, <span class="keywordtype">int</span> root, <span class="keywordtype">int</span> size );</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span> </div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno"><a class="line" href="clog__buffer_8h.html#a9b5dc036d4ab9dca7be2edf7f64026e2">  147</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="clog__buffer_8h.html#a9b5dc036d4ab9dca7be2edf7f64026e2">CLOG_Buffer_save_commevt</a>( <a class="code hl_struct" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer,</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>                               <span class="keyword">const</span> <a class="code hl_struct" href="structCLOG__CommIDs__t__.html">CLOG_CommIDs_t</a> *commIDs,</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>                               <a class="code hl_define" href="include_2clog__commset_8h.html#ab1730371cde7a7a9acb878e705d70bc1">CLOG_ThreadLID_t</a> <a class="code hl_struct" href="structvector.html">thd</a>,</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>                               <span class="keywordtype">int</span> etype, <span class="keyword">const</span> <a class="code hl_define" href="include_2clog__commset_8h.html#ad1982864dbfbcf1448e9c9bbf60ab255">CLOG_CommGID_t</a> <a class="code hl_struct" href="structvector.html">guid</a>,</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>                               <a class="code hl_define" href="include_2clog__commset_8h.html#a14c3881e39ec388db26c63a1bb97b056">CLOG_CommLID_t</a> icomm, <span class="keywordtype">int</span> comm_rank,</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>                               <span class="keywordtype">int</span> world_rank );</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span> </div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno"><a class="line" href="clog__buffer_8h.html#a70816ff1273ae624280f78a71a4620a3">  154</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="clog__buffer_8h.html#a70816ff1273ae624280f78a71a4620a3">CLOG_Buffer_save_srcloc</a>( <a class="code hl_struct" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer,</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>                              <span class="keyword">const</span> <a class="code hl_struct" href="structCLOG__CommIDs__t__.html">CLOG_CommIDs_t</a> *commIDs,</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>                              <a class="code hl_define" href="include_2clog__commset_8h.html#ab1730371cde7a7a9acb878e705d70bc1">CLOG_ThreadLID_t</a> <a class="code hl_struct" href="structvector.html">thd</a>,</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>                              <span class="keywordtype">int</span> srcloc, <span class="keywordtype">int</span> lineno, <span class="keyword">const</span> <span class="keywordtype">char</span> *filename );</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span> </div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno"><a class="line" href="clog__buffer_8h.html#ad91c9e1b50ed13f1e2c9429dc7cc976f">  159</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="clog__buffer_8h.html#ad91c9e1b50ed13f1e2c9429dc7cc976f">CLOG_Buffer_save_timeshift</a>( <a class="code hl_struct" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer,</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>                                 <span class="keyword">const</span> <a class="code hl_struct" href="structCLOG__CommIDs__t__.html">CLOG_CommIDs_t</a> *commIDs,</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>                                 <a class="code hl_define" href="include_2clog__commset_8h.html#ab1730371cde7a7a9acb878e705d70bc1">CLOG_ThreadLID_t</a> <a class="code hl_struct" href="structvector.html">thd</a>,</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>                                 <a class="code hl_define" href="clog__timer_8h.html#abf0f7e46df13fdbacdb7a819cf12267d">CLOG_Time_t</a>    timeshift );</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span><span class="preprocessor">#endif </span><span class="comment">/* of _CLOG_BUFFER */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="aclog__block_8h_html"><div class="ttname"><a href="clog__block_8h.html">clog_block.h</a></div></div>
+<div class="ttc" id="aclog__buffer_8h_html_a076ad6b0f794d6d77279625f2ddb9dab"><div class="ttname"><a href="clog__buffer_8h.html#a076ad6b0f794d6d77279625f2ddb9dab">CLOG_Buffer_localIO_read</a></div><div class="ttdeci">void CLOG_Buffer_localIO_read(CLOG_Buffer_t *buffer)</div></div>
+<div class="ttc" id="aclog__buffer_8h_html_a0841e7dee22486a380219386b5380fef"><div class="ttname"><a href="clog__buffer_8h.html#a0841e7dee22486a380219386b5380fef">CLOG_Buffer_save_endblock</a></div><div class="ttdeci">void CLOG_Buffer_save_endblock(CLOG_Buffer_t *buffer)</div></div>
+<div class="ttc" id="aclog__buffer_8h_html_a0af7f971b8292e07653b90ba2da1b4d4"><div class="ttname"><a href="clog__buffer_8h.html#a0af7f971b8292e07653b90ba2da1b4d4">CLOG_Buffer_save_header</a></div><div class="ttdeci">void CLOG_Buffer_save_header(CLOG_Buffer_t *buffer, const CLOG_CommIDs_t *commIDs, CLOG_ThreadLID_t thd, int rectype)</div></div>
+<div class="ttc" id="aclog__buffer_8h_html_a0c8633ea80d9ab4a7043e210bc292336"><div class="ttname"><a href="clog__buffer_8h.html#a0c8633ea80d9ab4a7043e210bc292336">CLOG_Buffer_save_bareevt</a></div><div class="ttdeci">void CLOG_Buffer_save_bareevt(CLOG_Buffer_t *buffer, const CLOG_CommIDs_t *commIDs, CLOG_ThreadLID_t thd, int etype)</div></div>
+<div class="ttc" id="aclog__buffer_8h_html_a3657c442f8e71b6dd2de7b327a5b7f10"><div class="ttname"><a href="clog__buffer_8h.html#a3657c442f8e71b6dd2de7b327a5b7f10">CLOG_Buffer_env_init</a></div><div class="ttdeci">void CLOG_Buffer_env_init(CLOG_Buffer_t *buffer)</div></div>
+<div class="ttc" id="aclog__buffer_8h_html_a4dbbe795c09654cbfacdb7beb8ba83e8"><div class="ttname"><a href="clog__buffer_8h.html#a4dbbe795c09654cbfacdb7beb8ba83e8">CLOG_Buffer_localIO_write</a></div><div class="ttdeci">void CLOG_Buffer_localIO_write(CLOG_Buffer_t *buffer)</div></div>
+<div class="ttc" id="aclog__buffer_8h_html_a6094cd62c81c417b77fb50d84f854d8a"><div class="ttname"><a href="clog__buffer_8h.html#a6094cd62c81c417b77fb50d84f854d8a">CLOG_Buffer_save_collevt</a></div><div class="ttdeci">void CLOG_Buffer_save_collevt(CLOG_Buffer_t *buffer, const CLOG_CommIDs_t *commIDs, CLOG_ThreadLID_t thd, int etype, int root, int size)</div></div>
+<div class="ttc" id="aclog__buffer_8h_html_a6105ac9fb55dd8abc720f76f66019511"><div class="ttname"><a href="clog__buffer_8h.html#a6105ac9fb55dd8abc720f76f66019511">CLOG_Buffer_save_cargoevt</a></div><div class="ttdeci">void CLOG_Buffer_save_cargoevt(CLOG_Buffer_t *buffer, const CLOG_CommIDs_t *commIDs, CLOG_ThreadLID_t thd, int etype, const char *bytes)</div></div>
+<div class="ttc" id="aclog__buffer_8h_html_a639b18f47b33765fb73ffdca62cf8ee2"><div class="ttname"><a href="clog__buffer_8h.html#a639b18f47b33765fb73ffdca62cf8ee2">CLOG_Buffer_free</a></div><div class="ttdeci">void CLOG_Buffer_free(CLOG_Buffer_t **buffer_handle)</div></div>
+<div class="ttc" id="aclog__buffer_8h_html_a6f9b0c254526af02038bc2d4a85789d1"><div class="ttname"><a href="clog__buffer_8h.html#a6f9b0c254526af02038bc2d4a85789d1">CLOG_Buffer_localIO_finalize</a></div><div class="ttdeci">void CLOG_Buffer_localIO_finalize(CLOG_Buffer_t *buffer)</div></div>
+<div class="ttc" id="aclog__buffer_8h_html_a70816ff1273ae624280f78a71a4620a3"><div class="ttname"><a href="clog__buffer_8h.html#a70816ff1273ae624280f78a71a4620a3">CLOG_Buffer_save_srcloc</a></div><div class="ttdeci">void CLOG_Buffer_save_srcloc(CLOG_Buffer_t *buffer, const CLOG_CommIDs_t *commIDs, CLOG_ThreadLID_t thd, int srcloc, int lineno, const char *filename)</div></div>
+<div class="ttc" id="aclog__buffer_8h_html_a8735b1faeca61eb73a33dd455a345b92"><div class="ttname"><a href="clog__buffer_8h.html#a8735b1faeca61eb73a33dd455a345b92">CLOG_Buffer_init_timeshift</a></div><div class="ttdeci">void CLOG_Buffer_init_timeshift(CLOG_Buffer_t *buffer)</div></div>
+<div class="ttc" id="aclog__buffer_8h_html_a8bec4f8fa8e4c4e2de75e24eda0a0ea6"><div class="ttname"><a href="clog__buffer_8h.html#a8bec4f8fa8e4c4e2de75e24eda0a0ea6">CLOG_Buffer_save_eventdef</a></div><div class="ttdeci">void CLOG_Buffer_save_eventdef(CLOG_Buffer_t *buffer, const CLOG_CommIDs_t *commIDs, CLOG_ThreadLID_t thd, int etype, const char *color, const char *name, const char *format)</div></div>
+<div class="ttc" id="aclog__buffer_8h_html_a946c3543446c1cb9ef380c76c3d09afb"><div class="ttname"><a href="clog__buffer_8h.html#a946c3543446c1cb9ef380c76c3d09afb">CLOG_Buffer_localIO_ftell</a></div><div class="ttdeci">off_t CLOG_Buffer_localIO_ftell(CLOG_Buffer_t *buffer)</div></div>
+<div class="ttc" id="aclog__buffer_8h_html_a9ab7059d1746deaf07b546ee064ed81a"><div class="ttname"><a href="clog__buffer_8h.html#a9ab7059d1746deaf07b546ee064ed81a">CLOG_Buffer_save_constdef</a></div><div class="ttdeci">void CLOG_Buffer_save_constdef(CLOG_Buffer_t *buffer, const CLOG_CommIDs_t *commIDs, CLOG_ThreadLID_t thd, int etype, int value, const char *name)</div></div>
+<div class="ttc" id="aclog__buffer_8h_html_a9b5dc036d4ab9dca7be2edf7f64026e2"><div class="ttname"><a href="clog__buffer_8h.html#a9b5dc036d4ab9dca7be2edf7f64026e2">CLOG_Buffer_save_commevt</a></div><div class="ttdeci">void CLOG_Buffer_save_commevt(CLOG_Buffer_t *buffer, const CLOG_CommIDs_t *commIDs, CLOG_ThreadLID_t thd, int etype, const CLOG_CommGID_t guid, CLOG_CommLID_t icomm, int comm_rank, int world_rank)</div></div>
+<div class="ttc" id="aclog__buffer_8h_html_aa9ccd5c356877e7cb679fddf537e965a"><div class="ttname"><a href="clog__buffer_8h.html#aa9ccd5c356877e7cb679fddf537e965a">CLOG_Buffer_localIO_init4write</a></div><div class="ttdeci">void CLOG_Buffer_localIO_init4write(CLOG_Buffer_t *buffer)</div></div>
+<div class="ttc" id="aclog__buffer_8h_html_ac23cefae25afda01a2b2250054f30e55"><div class="ttname"><a href="clog__buffer_8h.html#ac23cefae25afda01a2b2250054f30e55">CLOG_Buffer_save_header_0chk</a></div><div class="ttdeci">void CLOG_Buffer_save_header_0chk(CLOG_Buffer_t *buffer, const CLOG_CommIDs_t *commIDs, CLOG_ThreadLID_t thd, int rectype)</div></div>
+<div class="ttc" id="aclog__buffer_8h_html_ace6c26fa665c5540e450310070dbb56a"><div class="ttname"><a href="clog__buffer_8h.html#ace6c26fa665c5540e450310070dbb56a">CLOG_Buffer_save_statedef</a></div><div class="ttdeci">void CLOG_Buffer_save_statedef(CLOG_Buffer_t *buffer, const CLOG_CommIDs_t *commIDs, CLOG_ThreadLID_t thd, int stateID, int startetype, int finaletype, const char *color, const char *name, const char *format)</div></div>
+<div class="ttc" id="aclog__buffer_8h_html_aced4992ee74ab5fe9578ea9d7a9b654a"><div class="ttname"><a href="clog__buffer_8h.html#aced4992ee74ab5fe9578ea9d7a9b654a">CLOG_Buffer_save_bareevt_0chk</a></div><div class="ttdeci">void CLOG_Buffer_save_bareevt_0chk(CLOG_Buffer_t *buffer, const CLOG_CommIDs_t *commIDs, CLOG_ThreadLID_t thd, int etype)</div></div>
+<div class="ttc" id="aclog__buffer_8h_html_acf98bd51225f84de520a6e213eeb4e36"><div class="ttname"><a href="clog__buffer_8h.html#acf98bd51225f84de520a6e213eeb4e36">CLOG_Buffer_localIO_flush</a></div><div class="ttdeci">void CLOG_Buffer_localIO_flush(CLOG_Buffer_t *buffer)</div></div>
+<div class="ttc" id="aclog__buffer_8h_html_acfdb4728f3b7698be7291918f2c81ee0"><div class="ttname"><a href="clog__buffer_8h.html#acfdb4728f3b7698be7291918f2c81ee0">CLOG_Buffer_save_endlog</a></div><div class="ttdeci">void CLOG_Buffer_save_endlog(CLOG_Buffer_t *buffer)</div></div>
+<div class="ttc" id="aclog__buffer_8h_html_ad91c9e1b50ed13f1e2c9429dc7cc976f"><div class="ttname"><a href="clog__buffer_8h.html#ad91c9e1b50ed13f1e2c9429dc7cc976f">CLOG_Buffer_save_timeshift</a></div><div class="ttdeci">void CLOG_Buffer_save_timeshift(CLOG_Buffer_t *buffer, const CLOG_CommIDs_t *commIDs, CLOG_ThreadLID_t thd, CLOG_Time_t timeshift)</div></div>
+<div class="ttc" id="aclog__buffer_8h_html_ae4f94a3e291ad8f30f77b45ec80058fb"><div class="ttname"><a href="clog__buffer_8h.html#ae4f94a3e291ad8f30f77b45ec80058fb">CLOG_Buffer_localIO_reinit4read</a></div><div class="ttdeci">void CLOG_Buffer_localIO_reinit4read(CLOG_Buffer_t *buffer)</div></div>
+<div class="ttc" id="aclog__buffer_8h_html_ae539ce2c3dbcf97aa535ef6c4dffd7ef"><div class="ttname"><a href="clog__buffer_8h.html#ae539ce2c3dbcf97aa535ef6c4dffd7ef">CLOG_Buffer_advance_block</a></div><div class="ttdeci">void CLOG_Buffer_advance_block(CLOG_Buffer_t *buffer)</div></div>
+<div class="ttc" id="aclog__buffer_8h_html_ae58e40be47deb80cdd874ef46e8bb1bc"><div class="ttname"><a href="clog__buffer_8h.html#ae58e40be47deb80cdd874ef46e8bb1bc">CLOG_Buffer_set_timeshift</a></div><div class="ttdeci">void CLOG_Buffer_set_timeshift(CLOG_Buffer_t *buffer, CLOG_Time_t new_timediff, int init_next_timeshift)</div></div>
+<div class="ttc" id="aclog__buffer_8h_html_ae7ae0cb153ee5aef30252f8e42667e58"><div class="ttname"><a href="clog__buffer_8h.html#ae7ae0cb153ee5aef30252f8e42667e58">CLOG_Buffer_init4write</a></div><div class="ttdeci">void CLOG_Buffer_init4write(CLOG_Buffer_t *buffer, const char *local_tmpfile_name)</div></div>
+<div class="ttc" id="aclog__buffer_8h_html_af5a79471e5987131ea3b4f5480c46b04"><div class="ttname"><a href="clog__buffer_8h.html#af5a79471e5987131ea3b4f5480c46b04">CLOG_Buffer_create</a></div><div class="ttdeci">CLOG_Buffer_t * CLOG_Buffer_create(void)</div></div>
+<div class="ttc" id="aclog__buffer_8h_html_afd7c571321f484e56e9b6b5501be0809"><div class="ttname"><a href="clog__buffer_8h.html#afd7c571321f484e56e9b6b5501be0809">CLOG_Buffer_save_msgevt</a></div><div class="ttdeci">void CLOG_Buffer_save_msgevt(CLOG_Buffer_t *buffer, const CLOG_CommIDs_t *commIDs, CLOG_ThreadLID_t thd, int etype, int tag, int remote_rank, int size)</div></div>
+<div class="ttc" id="aclog__preamble_8h_html"><div class="ttname"><a href="clog__preamble_8h.html">clog_preamble.h</a></div></div>
+<div class="ttc" id="aclog__timer_8h_html_abf0f7e46df13fdbacdb7a819cf12267d"><div class="ttname"><a href="clog__timer_8h.html#abf0f7e46df13fdbacdb7a819cf12267d">CLOG_Time_t</a></div><div class="ttdeci">#define CLOG_Time_t</div><div class="ttdef"><b>Definition</b> <a href="clog__timer_8h_source.html#l00008">clog_timer.h:8</a></div></div>
+<div class="ttc" id="ainclude_2clog__commset_8h_html_a14c3881e39ec388db26c63a1bb97b056"><div class="ttname"><a href="include_2clog__commset_8h.html#a14c3881e39ec388db26c63a1bb97b056">CLOG_CommLID_t</a></div><div class="ttdeci">#define CLOG_CommLID_t</div><div class="ttdef"><b>Definition</b> <a href="include_2clog__commset_8h_source.html#l00013">include/clog_commset.h:13</a></div></div>
+<div class="ttc" id="ainclude_2clog__commset_8h_html_ab1730371cde7a7a9acb878e705d70bc1"><div class="ttname"><a href="include_2clog__commset_8h.html#ab1730371cde7a7a9acb878e705d70bc1">CLOG_ThreadLID_t</a></div><div class="ttdeci">#define CLOG_ThreadLID_t</div><div class="ttdef"><b>Definition</b> <a href="include_2clog__commset_8h_source.html#l00014">include/clog_commset.h:14</a></div></div>
+<div class="ttc" id="ainclude_2clog__commset_8h_html_ad1982864dbfbcf1448e9c9bbf60ab255"><div class="ttname"><a href="include_2clog__commset_8h.html#ad1982864dbfbcf1448e9c9bbf60ab255">CLOG_CommGID_t</a></div><div class="ttdeci">#define CLOG_CommGID_t</div><div class="ttdef"><b>Definition</b> <a href="include_2clog__commset_8h_source.html#l00012">include/clog_commset.h:12</a></div></div>
+<div class="ttc" id="ainclude_2clog__const_8h_html_ab6501f5486fd7479fcf0efd9c6638c54"><div class="ttname"><a href="include_2clog__const_8h.html#ab6501f5486fd7479fcf0efd9c6638c54">CLOG_PATH_STRLEN</a></div><div class="ttdeci">#define CLOG_PATH_STRLEN</div><div class="ttdef"><b>Definition</b> <a href="include_2clog__const_8h_source.html#l00019">include/clog_const.h:19</a></div></div>
+<div class="ttc" id="asrc_2logging_2include_2clog__commset_8h_html"><div class="ttname"><a href="src_2logging_2include_2clog__commset_8h.html">clog_commset.h</a></div></div>
+<div class="ttc" id="astructCLOG__Buffer__t_html"><div class="ttname"><a href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a></div><div class="ttdef"><b>Definition</b> <a href="clog__buffer_8h_source.html#l00036">clog_buffer.h:36</a></div></div>
+<div class="ttc" id="astructCLOG__Buffer__t_html_a126d18997a6379d56596cd35aa766ac8"><div class="ttname"><a href="structCLOG__Buffer__t.html#a126d18997a6379d56596cd35aa766ac8">CLOG_Buffer_t::num_used_blocks</a></div><div class="ttdeci">unsigned int num_used_blocks</div><div class="ttdef"><b>Definition</b> <a href="clog__buffer_8h_source.html#l00042">clog_buffer.h:42</a></div></div>
+<div class="ttc" id="astructCLOG__Buffer__t_html_a129a029aa5a3bcce92361673e4f3e367"><div class="ttname"><a href="structCLOG__Buffer__t.html#a129a029aa5a3bcce92361673e4f3e367">CLOG_Buffer_t::world_rank</a></div><div class="ttdeci">int world_rank</div><div class="ttdef"><b>Definition</b> <a href="clog__buffer_8h_source.html#l00046">clog_buffer.h:46</a></div></div>
+<div class="ttc" id="astructCLOG__Buffer__t_html_a2409ce0f1f2c0044bff5c1f4f09c920a"><div class="ttname"><a href="structCLOG__Buffer__t.html#a2409ce0f1f2c0044bff5c1f4f09c920a">CLOG_Buffer_t::timeshift_fptr</a></div><div class="ttdeci">off_t timeshift_fptr</div><div class="ttdef"><b>Definition</b> <a href="clog__buffer_8h_source.html#l00050">clog_buffer.h:50</a></div></div>
+<div class="ttc" id="astructCLOG__Buffer__t_html_a5624f8d6c0215fa50ee0d2d8cd89d802"><div class="ttname"><a href="structCLOG__Buffer__t.html#a5624f8d6c0215fa50ee0d2d8cd89d802">CLOG_Buffer_t::commset</a></div><div class="ttdeci">CLOG_CommSet_t * commset</div><div class="ttdef"><b>Definition</b> <a href="clog__buffer_8h_source.html#l00044">clog_buffer.h:44</a></div></div>
+<div class="ttc" id="astructCLOG__Buffer__t_html_a5f8c50566860626d3876cc11d52eaecb"><div class="ttname"><a href="structCLOG__Buffer__t.html#a5f8c50566860626d3876cc11d52eaecb">CLOG_Buffer_t::status</a></div><div class="ttdeci">int status</div><div class="ttdef"><b>Definition</b> <a href="clog__buffer_8h_source.html#l00054">clog_buffer.h:54</a></div></div>
+<div class="ttc" id="astructCLOG__Buffer__t_html_a609e433612fef9a5839d66261e0a9fec"><div class="ttname"><a href="structCLOG__Buffer__t.html#a609e433612fef9a5839d66261e0a9fec">CLOG_Buffer_t::log_overhead</a></div><div class="ttdeci">int log_overhead</div><div class="ttdef"><b>Definition</b> <a href="clog__buffer_8h_source.html#l00052">clog_buffer.h:52</a></div></div>
+<div class="ttc" id="astructCLOG__Buffer__t_html_a651d5da134af0c9ccf0b1a7ddeeb4d5d"><div class="ttname"><a href="structCLOG__Buffer__t.html#a651d5da134af0c9ccf0b1a7ddeeb4d5d">CLOG_Buffer_t::head_block</a></div><div class="ttdeci">CLOG_Block_t * head_block</div><div class="ttdef"><b>Definition</b> <a href="clog__buffer_8h_source.html#l00038">clog_buffer.h:38</a></div></div>
+<div class="ttc" id="astructCLOG__Buffer__t_html_a762fc0ff3da5ece22ebe25c477d78ba3"><div class="ttname"><a href="structCLOG__Buffer__t.html#a762fc0ff3da5ece22ebe25c477d78ba3">CLOG_Buffer_t::local_fd</a></div><div class="ttdeci">int local_fd</div><div class="ttdef"><b>Definition</b> <a href="clog__buffer_8h_source.html#l00048">clog_buffer.h:48</a></div></div>
+<div class="ttc" id="astructCLOG__Buffer__t_html_a7ab97459964fd981fe2215126ad6ae33"><div class="ttname"><a href="structCLOG__Buffer__t.html#a7ab97459964fd981fe2215126ad6ae33">CLOG_Buffer_t::preamble</a></div><div class="ttdeci">CLOG_Preamble_t * preamble</div><div class="ttdef"><b>Definition</b> <a href="clog__buffer_8h_source.html#l00037">clog_buffer.h:37</a></div></div>
+<div class="ttc" id="astructCLOG__Buffer__t_html_a8cadb212d17cabef6282e63f794284fe"><div class="ttname"><a href="structCLOG__Buffer__t.html#a8cadb212d17cabef6282e63f794284fe">CLOG_Buffer_t::world_size</a></div><div class="ttdeci">int world_size</div><div class="ttdef"><b>Definition</b> <a href="clog__buffer_8h_source.html#l00045">clog_buffer.h:45</a></div></div>
+<div class="ttc" id="astructCLOG__Buffer__t_html_ab92ce6c55b105043573121fee06e50bb"><div class="ttname"><a href="structCLOG__Buffer__t.html#ab92ce6c55b105043573121fee06e50bb">CLOG_Buffer_t::delete_localfile</a></div><div class="ttdeci">int delete_localfile</div><div class="ttdef"><b>Definition</b> <a href="clog__buffer_8h_source.html#l00051">clog_buffer.h:51</a></div></div>
+<div class="ttc" id="astructCLOG__Buffer__t_html_aef53e9dfac5d0404110b6e2b5195d463"><div class="ttname"><a href="structCLOG__Buffer__t.html#aef53e9dfac5d0404110b6e2b5195d463">CLOG_Buffer_t::num_blocks</a></div><div class="ttdeci">unsigned int num_blocks</div><div class="ttdef"><b>Definition</b> <a href="clog__buffer_8h_source.html#l00041">clog_buffer.h:41</a></div></div>
+<div class="ttc" id="astructCLOG__Buffer__t_html_afa3eee20234aadde204d0c0432332546"><div class="ttname"><a href="structCLOG__Buffer__t.html#afa3eee20234aadde204d0c0432332546">CLOG_Buffer_t::block_size</a></div><div class="ttdeci">unsigned int block_size</div><div class="ttdef"><b>Definition</b> <a href="clog__buffer_8h_source.html#l00040">clog_buffer.h:40</a></div></div>
+<div class="ttc" id="astructCLOG__Buffer__t_html_afb4cdc362d19a6353aeb20b1b421d067"><div class="ttname"><a href="structCLOG__Buffer__t.html#afb4cdc362d19a6353aeb20b1b421d067">CLOG_Buffer_t::curr_block</a></div><div class="ttdeci">CLOG_Block_t * curr_block</div><div class="ttdef"><b>Definition</b> <a href="clog__buffer_8h_source.html#l00039">clog_buffer.h:39</a></div></div>
+<div class="ttc" id="astructCLOG__CommIDs__t___html"><div class="ttname"><a href="structCLOG__CommIDs__t__.html">CLOG_CommIDs_t_</a></div><div class="ttdef"><b>Definition</b> <a href="include_2clog__commset_8h_source.html#l00060">include/clog_commset.h:60</a></div></div>
+<div class="ttc" id="astructCLOG__CommSet__t_html"><div class="ttname"><a href="structCLOG__CommSet__t.html">CLOG_CommSet_t</a></div><div class="ttdef"><b>Definition</b> <a href="include_2clog__commset_8h_source.html#l00071">include/clog_commset.h:71</a></div></div>
+<div class="ttc" id="astructCLOG__Preamble__t_html"><div class="ttname"><a href="structCLOG__Preamble__t.html">CLOG_Preamble_t</a></div><div class="ttdef"><b>Definition</b> <a href="clog__preamble_8h_source.html#l00018">clog_preamble.h:18</a></div></div>
+<div class="ttc" id="astruct__CLOG__Block__t_html"><div class="ttname"><a href="struct__CLOG__Block__t.html">_CLOG_Block_t</a></div><div class="ttdef"><b>Definition</b> <a href="clog__block_8h_source.html#l00048">clog_block.h:48</a></div></div>
+<div class="ttc" id="astructvector_html"><div class="ttname"><a href="structvector.html">vector</a></div><div class="ttdef"><b>Definition</b> <a href="point_8h_source.html#l00012">point.h:12</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

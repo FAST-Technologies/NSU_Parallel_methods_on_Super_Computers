@@ -1,0 +1,527 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lab_02: MPI + OpenMP Parallel Programming: Файл baseclr.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Lab_02: MPI + OpenMP Parallel Programming<span id="projectnumber">&#160;2.1</span>
+   </div>
+   <div id="projectbrief">Решение 3D уравнения Пуассона методом Якоби с двумерной декомпозицией</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_1f646cbbb0f6227d25dd06f792d51aba.html">mpe2-1.3.0</a></li><li class="navelem"><a class="el" href="dir_493399512d45eb30627376023737183a.html">src</a></li><li class="navelem"><a class="el" href="dir_532b6e0bbac9f63fe589b390252576da.html">graphics</a></li><li class="navelem"><a class="el" href="dir_f8939cd86ff433d97cf6067dc1b8028e.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#define-members">Макросы</a> &#124;
+<a href="#func-members">Функции</a> &#124;
+<a href="#var-members">Переменные</a>  </div>
+  <div class="headertitle"><div class="title">Файл baseclr.h</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><a href="baseclr_8h_source.html">См. исходные тексты.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Макросы</h2></td></tr>
+<tr class="memitem:a8d23feea868a983c8c2b661e1e16972f" id="r_a8d23feea868a983c8c2b661e1e16972f"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="baseclr_8h.html#a8d23feea868a983c8c2b661e1e16972f">RED</a>&#160;&#160;&#160;2</td></tr>
+<tr class="separator:a8d23feea868a983c8c2b661e1e16972f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf681265909adf3d3e8116c93c0ba179" id="r_abf681265909adf3d3e8116c93c0ba179"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="baseclr_8h.html#abf681265909adf3d3e8116c93c0ba179">YELLOW</a>&#160;&#160;&#160;3</td></tr>
+<tr class="separator:abf681265909adf3d3e8116c93c0ba179"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfbc006ea433ad708fdee3e82996e721" id="r_acfbc006ea433ad708fdee3e82996e721"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="baseclr_8h.html#acfbc006ea433ad708fdee3e82996e721">GREEN</a>&#160;&#160;&#160;4</td></tr>
+<tr class="separator:acfbc006ea433ad708fdee3e82996e721"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad243f93c16bc4c1d3e0a13b84421d760" id="r_ad243f93c16bc4c1d3e0a13b84421d760"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="baseclr_8h.html#ad243f93c16bc4c1d3e0a13b84421d760">CYAN</a>&#160;&#160;&#160;5</td></tr>
+<tr class="separator:ad243f93c16bc4c1d3e0a13b84421d760"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79d10e672abb49ad63eeaa8aaef57c38" id="r_a79d10e672abb49ad63eeaa8aaef57c38"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="baseclr_8h.html#a79d10e672abb49ad63eeaa8aaef57c38">BLUE</a>&#160;&#160;&#160;6</td></tr>
+<tr class="separator:a79d10e672abb49ad63eeaa8aaef57c38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f699060902f800f12aaae150f3a708e" id="r_a6f699060902f800f12aaae150f3a708e"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="baseclr_8h.html#a6f699060902f800f12aaae150f3a708e">MAGENTA</a>&#160;&#160;&#160;7</td></tr>
+<tr class="separator:a6f699060902f800f12aaae150f3a708e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87b537f5fa5c109d3c05c13d6b18f382" id="r_a87b537f5fa5c109d3c05c13d6b18f382"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="baseclr_8h.html#a87b537f5fa5c109d3c05c13d6b18f382">WHITE</a>&#160;&#160;&#160;0</td></tr>
+<tr class="separator:a87b537f5fa5c109d3c05c13d6b18f382"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a135eff048f5a270f0eb1b06992983eac" id="r_a135eff048f5a270f0eb1b06992983eac"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="baseclr_8h.html#a135eff048f5a270f0eb1b06992983eac">AQUAMARINE</a>&#160;&#160;&#160;8</td></tr>
+<tr class="separator:a135eff048f5a270f0eb1b06992983eac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a840e76c5a11faac0783d435a119aec73" id="r_a840e76c5a11faac0783d435a119aec73"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="baseclr_8h.html#a840e76c5a11faac0783d435a119aec73">FORESTGREEN</a>&#160;&#160;&#160;9</td></tr>
+<tr class="separator:a840e76c5a11faac0783d435a119aec73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5b6e19bf06822021f35602c59658de3" id="r_ac5b6e19bf06822021f35602c59658de3"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="baseclr_8h.html#ac5b6e19bf06822021f35602c59658de3">ORANGE</a>&#160;&#160;&#160;10</td></tr>
+<tr class="separator:ac5b6e19bf06822021f35602c59658de3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a928ad872921809adddfdd7f5d260fac0" id="r_a928ad872921809adddfdd7f5d260fac0"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="baseclr_8h.html#a928ad872921809adddfdd7f5d260fac0">VIOLET</a>&#160;&#160;&#160;11</td></tr>
+<tr class="separator:a928ad872921809adddfdd7f5d260fac0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2baea56ece91306020afd6d77fd19f9" id="r_ab2baea56ece91306020afd6d77fd19f9"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="baseclr_8h.html#ab2baea56ece91306020afd6d77fd19f9">BROWN</a>&#160;&#160;&#160;12</td></tr>
+<tr class="separator:ab2baea56ece91306020afd6d77fd19f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada419fe3b48fcf19daed7cc57ccf1174" id="r_ada419fe3b48fcf19daed7cc57ccf1174"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="baseclr_8h.html#ada419fe3b48fcf19daed7cc57ccf1174">PINK</a>&#160;&#160;&#160;13</td></tr>
+<tr class="separator:ada419fe3b48fcf19daed7cc57ccf1174"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e1791735cb7832943c0d3c58936da44" id="r_a1e1791735cb7832943c0d3c58936da44"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="baseclr_8h.html#a1e1791735cb7832943c0d3c58936da44">CORAL</a>&#160;&#160;&#160;14</td></tr>
+<tr class="separator:a1e1791735cb7832943c0d3c58936da44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5f70677050eecd8909e0248e07b9e73" id="r_ae5f70677050eecd8909e0248e07b9e73"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="baseclr_8h.html#ae5f70677050eecd8909e0248e07b9e73">GRAY</a>&#160;&#160;&#160;15</td></tr>
+<tr class="separator:ae5f70677050eecd8909e0248e07b9e73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe3d132ecd6325af930f6fe3d8ae53f2" id="r_abe3d132ecd6325af930f6fe3d8ae53f2"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="baseclr_8h.html#abe3d132ecd6325af930f6fe3d8ae53f2">XBPixFromInteger</a>(win,  color)&#160;&#160;&#160;(win)-&gt;cmapping[color]</td></tr>
+<tr class="separator:abe3d132ecd6325af930f6fe3d8ae53f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Функции</h2></td></tr>
+<tr class="memitem:ae24febbccf850e7b86efb25a5e60e146" id="r_ae24febbccf850e7b86efb25a5e60e146"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">Colormap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="baseclr_8h.html#ae24febbccf850e7b86efb25a5e60e146">XBCreateColormap</a> (<a class="el" href="structvector.html">Display</a> *, <a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">Visual</a> *)</td></tr>
+<tr class="separator:ae24febbccf850e7b86efb25a5e60e146"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c81bc43cab47597bcddf57d1f00b506" id="r_a1c81bc43cab47597bcddf57d1f00b506"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="baseclr_8h.html#a1c81bc43cab47597bcddf57d1f00b506">XBHlsToRgb</a> (<a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">unsigned</a> <a class="el" href="structvector.html">char</a> *, <a class="el" href="structvector.html">unsigned</a> <a class="el" href="structvector.html">char</a> *, <a class="el" href="structvector.html">unsigned</a> <a class="el" href="structvector.html">char</a> *)</td></tr>
+<tr class="separator:a1c81bc43cab47597bcddf57d1f00b506"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Переменные</h2></td></tr>
+<tr class="memitem:a777186314e0f8f5098e252808dec300d" id="r_a777186314e0f8f5098e252808dec300d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">static</a> <a class="el" href="structvector.html">char</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="baseclr_8h.html#a777186314e0f8f5098e252808dec300d">colornames</a> []</td></tr>
+<tr class="separator:a777186314e0f8f5098e252808dec300d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Макросы</h2>
+<a id="a135eff048f5a270f0eb1b06992983eac" name="a135eff048f5a270f0eb1b06992983eac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a135eff048f5a270f0eb1b06992983eac">&#9670;&#160;</a></span>AQUAMARINE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> AQUAMARINE&#160;&#160;&#160;8</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="baseclr_8h_source.html">baseclr.h</a> строка <a class="el" href="baseclr_8h_source.html#l00017">17</a></p>
+
+</div>
+</div>
+<a id="a79d10e672abb49ad63eeaa8aaef57c38" name="a79d10e672abb49ad63eeaa8aaef57c38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79d10e672abb49ad63eeaa8aaef57c38">&#9670;&#160;</a></span>BLUE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> BLUE&#160;&#160;&#160;6</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="baseclr_8h_source.html">baseclr.h</a> строка <a class="el" href="baseclr_8h_source.html#l00012">12</a></p>
+
+</div>
+</div>
+<a id="ab2baea56ece91306020afd6d77fd19f9" name="ab2baea56ece91306020afd6d77fd19f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2baea56ece91306020afd6d77fd19f9">&#9670;&#160;</a></span>BROWN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> BROWN&#160;&#160;&#160;12</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="baseclr_8h_source.html">baseclr.h</a> строка <a class="el" href="baseclr_8h_source.html#l00021">21</a></p>
+
+</div>
+</div>
+<a id="a1e1791735cb7832943c0d3c58936da44" name="a1e1791735cb7832943c0d3c58936da44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e1791735cb7832943c0d3c58936da44">&#9670;&#160;</a></span>CORAL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> CORAL&#160;&#160;&#160;14</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="baseclr_8h_source.html">baseclr.h</a> строка <a class="el" href="baseclr_8h_source.html#l00023">23</a></p>
+
+</div>
+</div>
+<a id="ad243f93c16bc4c1d3e0a13b84421d760" name="ad243f93c16bc4c1d3e0a13b84421d760"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad243f93c16bc4c1d3e0a13b84421d760">&#9670;&#160;</a></span>CYAN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> CYAN&#160;&#160;&#160;5</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="baseclr_8h_source.html">baseclr.h</a> строка <a class="el" href="baseclr_8h_source.html#l00011">11</a></p>
+
+</div>
+</div>
+<a id="a840e76c5a11faac0783d435a119aec73" name="a840e76c5a11faac0783d435a119aec73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a840e76c5a11faac0783d435a119aec73">&#9670;&#160;</a></span>FORESTGREEN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> FORESTGREEN&#160;&#160;&#160;9</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="baseclr_8h_source.html">baseclr.h</a> строка <a class="el" href="baseclr_8h_source.html#l00018">18</a></p>
+
+</div>
+</div>
+<a id="ae5f70677050eecd8909e0248e07b9e73" name="ae5f70677050eecd8909e0248e07b9e73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5f70677050eecd8909e0248e07b9e73">&#9670;&#160;</a></span>GRAY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> GRAY&#160;&#160;&#160;15</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="baseclr_8h_source.html">baseclr.h</a> строка <a class="el" href="baseclr_8h_source.html#l00024">24</a></p>
+
+</div>
+</div>
+<a id="acfbc006ea433ad708fdee3e82996e721" name="acfbc006ea433ad708fdee3e82996e721"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acfbc006ea433ad708fdee3e82996e721">&#9670;&#160;</a></span>GREEN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> GREEN&#160;&#160;&#160;4</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="baseclr_8h_source.html">baseclr.h</a> строка <a class="el" href="baseclr_8h_source.html#l00010">10</a></p>
+
+</div>
+</div>
+<a id="a6f699060902f800f12aaae150f3a708e" name="a6f699060902f800f12aaae150f3a708e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f699060902f800f12aaae150f3a708e">&#9670;&#160;</a></span>MAGENTA</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MAGENTA&#160;&#160;&#160;7</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="baseclr_8h_source.html">baseclr.h</a> строка <a class="el" href="baseclr_8h_source.html#l00013">13</a></p>
+
+</div>
+</div>
+<a id="ac5b6e19bf06822021f35602c59658de3" name="ac5b6e19bf06822021f35602c59658de3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5b6e19bf06822021f35602c59658de3">&#9670;&#160;</a></span>ORANGE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> ORANGE&#160;&#160;&#160;10</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="baseclr_8h_source.html">baseclr.h</a> строка <a class="el" href="baseclr_8h_source.html#l00019">19</a></p>
+
+</div>
+</div>
+<a id="ada419fe3b48fcf19daed7cc57ccf1174" name="ada419fe3b48fcf19daed7cc57ccf1174"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada419fe3b48fcf19daed7cc57ccf1174">&#9670;&#160;</a></span>PINK</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> PINK&#160;&#160;&#160;13</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="baseclr_8h_source.html">baseclr.h</a> строка <a class="el" href="baseclr_8h_source.html#l00022">22</a></p>
+
+</div>
+</div>
+<a id="a8d23feea868a983c8c2b661e1e16972f" name="a8d23feea868a983c8c2b661e1e16972f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d23feea868a983c8c2b661e1e16972f">&#9670;&#160;</a></span>RED</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> RED&#160;&#160;&#160;2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="baseclr_8h_source.html">baseclr.h</a> строка <a class="el" href="baseclr_8h_source.html#l00008">8</a></p>
+
+</div>
+</div>
+<a id="a928ad872921809adddfdd7f5d260fac0" name="a928ad872921809adddfdd7f5d260fac0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a928ad872921809adddfdd7f5d260fac0">&#9670;&#160;</a></span>VIOLET</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> VIOLET&#160;&#160;&#160;11</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="baseclr_8h_source.html">baseclr.h</a> строка <a class="el" href="baseclr_8h_source.html#l00020">20</a></p>
+
+</div>
+</div>
+<a id="a87b537f5fa5c109d3c05c13d6b18f382" name="a87b537f5fa5c109d3c05c13d6b18f382"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87b537f5fa5c109d3c05c13d6b18f382">&#9670;&#160;</a></span>WHITE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> WHITE&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="baseclr_8h_source.html">baseclr.h</a> строка <a class="el" href="baseclr_8h_source.html#l00014">14</a></p>
+
+</div>
+</div>
+<a id="abe3d132ecd6325af930f6fe3d8ae53f2" name="abe3d132ecd6325af930f6fe3d8ae53f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe3d132ecd6325af930f6fe3d8ae53f2">&#9670;&#160;</a></span>XBPixFromInteger</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> XBPixFromInteger</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">win, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">color&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;(win)-&gt;cmapping[color]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="baseclr_8h_source.html">baseclr.h</a> строка <a class="el" href="baseclr_8h_source.html#l00046">46</a></p>
+
+</div>
+</div>
+<a id="abf681265909adf3d3e8116c93c0ba179" name="abf681265909adf3d3e8116c93c0ba179"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf681265909adf3d3e8116c93c0ba179">&#9670;&#160;</a></span>YELLOW</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> YELLOW&#160;&#160;&#160;3</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="baseclr_8h_source.html">baseclr.h</a> строка <a class="el" href="baseclr_8h_source.html#l00009">9</a></p>
+
+</div>
+</div>
+<h2 class="groupheader">Функции</h2>
+<a id="ae24febbccf850e7b86efb25a5e60e146" name="ae24febbccf850e7b86efb25a5e60e146"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae24febbccf850e7b86efb25a5e60e146">&#9670;&#160;</a></span>XBCreateColormap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">Colormap</a> XBCreateColormap </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">Display</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">Visual</a> *&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1c81bc43cab47597bcddf57d1f00b506" name="a1c81bc43cab47597bcddf57d1f00b506"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c81bc43cab47597bcddf57d1f00b506">&#9670;&#160;</a></span>XBHlsToRgb()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> XBHlsToRgb </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">unsigned</a> <a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">unsigned</a> <a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">unsigned</a> <a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Переменные</h2>
+<a id="a777186314e0f8f5098e252808dec300d" name="a777186314e0f8f5098e252808dec300d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a777186314e0f8f5098e252808dec300d">&#9670;&#160;</a></span>colornames</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">char</a>* colornames[]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Инициализатор</b><div class="fragment"><div class="line">= { <span class="stringliteral">&quot;white&quot;</span>, <span class="stringliteral">&quot;black&quot;</span>, <span class="stringliteral">&quot;red&quot;</span>, <span class="stringliteral">&quot;yellow&quot;</span>, <span class="stringliteral">&quot;green&quot;</span>, </div>
+<div class="line">                  <span class="stringliteral">&quot;cyan&quot;</span>, <span class="stringliteral">&quot;blue&quot;</span>, <span class="stringliteral">&quot;magenta&quot;</span>, <span class="stringliteral">&quot;aquamarine&quot;</span>,</div>
+<div class="line">                  <span class="stringliteral">&quot;forestgreen&quot;</span>, <span class="stringliteral">&quot;orange&quot;</span>, <span class="stringliteral">&quot;marroon&quot;</span>, <span class="stringliteral">&quot;brown&quot;</span>,</div>
+<div class="line">                  <span class="stringliteral">&quot;pink&quot;</span>, <span class="stringliteral">&quot;coral&quot;</span>, <span class="stringliteral">&quot;gray&quot;</span> }</div>
+</div><!-- fragment -->
+<p class="definition">См. определение в файле <a class="el" href="baseclr_8h_source.html">baseclr.h</a> строка <a class="el" href="baseclr_8h_source.html#l00028">28</a></p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

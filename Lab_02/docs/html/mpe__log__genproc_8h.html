@@ -1,0 +1,1212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lab_02: MPI + OpenMP Parallel Programming: Файл mpe_log_genproc.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Lab_02: MPI + OpenMP Parallel Programming<span id="projectnumber">&#160;2.1</span>
+   </div>
+   <div id="projectbrief">Решение 3D уравнения Пуассона методом Якоби с двумерной декомпозицией</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_1f646cbbb0f6227d25dd06f792d51aba.html">mpe2-1.3.0</a></li><li class="navelem"><a class="el" href="dir_493399512d45eb30627376023737183a.html">src</a></li><li class="navelem"><a class="el" href="dir_67305665d0d0fb6a8ea1e892f770249b.html">unused</a></li><li class="navelem"><a class="el" href="dir_d96eb50103a65c62d73b02690afaaa54.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Классы</a> &#124;
+<a href="#define-members">Макросы</a> &#124;
+<a href="#typedef-members">Определения типов</a> &#124;
+<a href="#func-members">Функции</a>  </div>
+  <div class="headertitle"><div class="title">Файл mpe_log_genproc.h</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><a href="mpe__log__genproc_8h_source.html">См. исходные тексты.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Классы</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__MPE__Log__BLOCK.html">_MPE_Log_BLOCK</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMPE__Log__VFIELD.html">MPE_Log_VFIELD</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMPE__Log__HEADER.html">MPE_Log_HEADER</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__MPE__Log__MBuf.html">_MPE_Log_MBuf</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Макросы</h2></td></tr>
+<tr class="memitem:a332a108cc146d62f929217aac810474e" id="r_a332a108cc146d62f929217aac810474e"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__log__genproc_8h.html#a332a108cc146d62f929217aac810474e">MPE_Log_BUF_SIZE</a>&#160;&#160;&#160;500</td></tr>
+<tr class="separator:a332a108cc146d62f929217aac810474e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43bfe59a36fc46ff1c95723b4dc66ed9" id="r_a43bfe59a36fc46ff1c95723b4dc66ed9"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__log__genproc_8h.html#a43bfe59a36fc46ff1c95723b4dc66ed9">MPE_Log_EVENT_SYNC</a>&#160;&#160;&#160;-100</td></tr>
+<tr class="separator:a43bfe59a36fc46ff1c95723b4dc66ed9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1df08b28e2d40da29ca1231a58dee23b" id="r_a1df08b28e2d40da29ca1231a58dee23b"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__log__genproc_8h.html#a1df08b28e2d40da29ca1231a58dee23b">MAX_HEADER_EVT</a>&#160;&#160;&#160;-1</td></tr>
+<tr class="separator:a1df08b28e2d40da29ca1231a58dee23b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2c060095466d4a1afdde54446d15394" id="r_ab2c060095466d4a1afdde54446d15394"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__log__genproc_8h.html#ab2c060095466d4a1afdde54446d15394">MIN_HEADER_EVT</a>&#160;&#160;&#160;-100</td></tr>
+<tr class="separator:ab2c060095466d4a1afdde54446d15394"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea0ba6ebc2fe6e0d8f3f8da7338f3c76" id="r_aea0ba6ebc2fe6e0d8f3f8da7338f3c76"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__log__genproc_8h.html#aea0ba6ebc2fe6e0d8f3f8da7338f3c76">LOG_STATE_DEF</a>&#160;&#160;&#160;-13</td></tr>
+<tr class="separator:aea0ba6ebc2fe6e0d8f3f8da7338f3c76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a081b449dced51994cafd04d752b79782" id="r_a081b449dced51994cafd04d752b79782"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__log__genproc_8h.html#a081b449dced51994cafd04d752b79782">LOG_MESG_SEND</a>&#160;&#160;&#160;-101</td></tr>
+<tr class="separator:a081b449dced51994cafd04d752b79782"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4cd2ea6624107c92282960a047e1bd41" id="r_a4cd2ea6624107c92282960a047e1bd41"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__log__genproc_8h.html#a4cd2ea6624107c92282960a047e1bd41">LOG_MESG_RECV</a>&#160;&#160;&#160;-102</td></tr>
+<tr class="separator:a4cd2ea6624107c92282960a047e1bd41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a192ee9644c488382164fe1973ff205a4" id="r_a192ee9644c488382164fe1973ff205a4"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__log__genproc_8h.html#a192ee9644c488382164fe1973ff205a4">MPE_Log_INT</a>&#160;&#160;&#160;0</td></tr>
+<tr class="separator:a192ee9644c488382164fe1973ff205a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabc846a1634f4ef2eebb0292a377a418" id="r_aabc846a1634f4ef2eebb0292a377a418"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__log__genproc_8h.html#aabc846a1634f4ef2eebb0292a377a418">MPE_Log_CHAR</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:aabc846a1634f4ef2eebb0292a377a418"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8546b27841584cc774e9a5a1050e899" id="r_aa8546b27841584cc774e9a5a1050e899"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__log__genproc_8h.html#aa8546b27841584cc774e9a5a1050e899">MPE_Log_DOUBLE</a>&#160;&#160;&#160;2</td></tr>
+<tr class="separator:aa8546b27841584cc774e9a5a1050e899"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69244091e032fbf3f5ef5152e3b5f24c" id="r_a69244091e032fbf3f5ef5152e3b5f24c"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__log__genproc_8h.html#a69244091e032fbf3f5ef5152e3b5f24c">MPE_Log_HEADERSIZE</a>&#160;&#160;&#160;(<a class="el" href="structvector.html">sizeof</a>(<a class="el" href="structMPE__Log__HEADER.html">MPE_Log_HEADER</a>)/<a class="el" href="structvector.html">sizeof</a>(<a class="el" href="structvector.html">int</a>))</td></tr>
+<tr class="separator:a69244091e032fbf3f5ef5152e3b5f24c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04b32cb0845f3fcc19b79bc7362f0ab8" id="r_a04b32cb0845f3fcc19b79bc7362f0ab8"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__log__genproc_8h.html#a04b32cb0845f3fcc19b79bc7362f0ab8">MPE_Log_VFIELDSIZE</a>(<a class="el" href="structvector.html">n</a>)&#160;&#160;&#160;((<a class="el" href="structvector.html">sizeof</a>(<a class="el" href="structMPE__Log__VFIELD.html">MPE_Log_VFIELD</a>)/<a class="el" href="structvector.html">sizeof</a>(<a class="el" href="structvector.html">int</a>))+(<a class="el" href="structvector.html">n</a>-1))</td></tr>
+<tr class="separator:a04b32cb0845f3fcc19b79bc7362f0ab8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b4e8b070855804e62bc72b7820ec08a" id="r_a7b4e8b070855804e62bc72b7820ec08a"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__log__genproc_8h.html#a7b4e8b070855804e62bc72b7820ec08a">MPE_Log_ADDHEADER</a>(b,  <a class="el" href="structvector.html">ev</a>)</td></tr>
+<tr class="separator:a7b4e8b070855804e62bc72b7820ec08a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3cc6813522796cbc783155adf8cc77cc" id="r_a3cc6813522796cbc783155adf8cc77cc"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__log__genproc_8h.html#a3cc6813522796cbc783155adf8cc77cc">MPE_Log_ADDINTS</a>(b,  <a class="el" href="structvector.html">v</a>,  <a class="el" href="structvector.html">n</a>,  i)</td></tr>
+<tr class="separator:a3cc6813522796cbc783155adf8cc77cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9611b20caf71ed32f66eff5b237aa5a" id="r_ab9611b20caf71ed32f66eff5b237aa5a"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__log__genproc_8h.html#ab9611b20caf71ed32f66eff5b237aa5a">MPE_Log_ADDSTRING</a>(b,  <a class="el" href="structvector.html">v</a>,  <a class="el" href="structvector.html">str</a>)</td></tr>
+<tr class="separator:ab9611b20caf71ed32f66eff5b237aa5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4631cb16d85a7bb601f6f609f410cdf" id="r_ab4631cb16d85a7bb601f6f609f410cdf"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__log__genproc_8h.html#ab4631cb16d85a7bb601f6f609f410cdf">MPE_Log_ZEROTIME</a>(b)&#160;&#160;&#160;{ <a class="el" href="structvector.html">double</a> x=0; <a class="el" href="structvector.html">MOVEDBL</a>( &amp;b-&gt;<a class="el" href="protofix_8h.html#aae026724f73c36340024c657f4f44dab">time</a>, &amp;x); }</td></tr>
+<tr class="separator:ab4631cb16d85a7bb601f6f609f410cdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac337d18fbc50e9c2f5f3c6bde929a7c7" id="r_ac337d18fbc50e9c2f5f3c6bde929a7c7"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__log__genproc_8h.html#ac337d18fbc50e9c2f5f3c6bde929a7c7">MPE_Log_ADDRECORD</a></td></tr>
+<tr class="separator:ac337d18fbc50e9c2f5f3c6bde929a7c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4df9bcf83673b9a3f7d3b0c81064d74" id="r_ae4df9bcf83673b9a3f7d3b0c81064d74"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__log__genproc_8h.html#ae4df9bcf83673b9a3f7d3b0c81064d74">MPE_Log_TRAVERSE_LOG</a>(<a class="el" href="structvector.html">condition</a>)</td></tr>
+<tr class="separator:ae4df9bcf83673b9a3f7d3b0c81064d74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc02e08100b18d3c8e2d9bcd31ad5fd2" id="r_abc02e08100b18d3c8e2d9bcd31ad5fd2"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__log__genproc_8h.html#abc02e08100b18d3c8e2d9bcd31ad5fd2">MPE_Log_MBUF_SIZE</a>&#160;&#160;&#160;<a class="el" href="mpe__log__genproc_8h.html#a332a108cc146d62f929217aac810474e">MPE_Log_BUF_SIZE</a>*2</td></tr>
+<tr class="separator:abc02e08100b18d3c8e2d9bcd31ad5fd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Определения типов</h2></td></tr>
+<tr class="memitem:aadb9de970fd4b9752968785de18f98b6" id="r_aadb9de970fd4b9752968785de18f98b6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">typedef</a> <a class="el" href="structvector.html">struct</a> <a class="el" href="struct__MPE__Log__BLOCK.html">_MPE_Log_BLOCK</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__log__genproc_8h.html#aadb9de970fd4b9752968785de18f98b6">MPE_Log_BLOCK</a></td></tr>
+<tr class="separator:aadb9de970fd4b9752968785de18f98b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9f9a5b327da918f2b7c5642a2680471" id="r_ad9f9a5b327da918f2b7c5642a2680471"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">typedef</a> <a class="el" href="structvector.html">struct</a> <a class="el" href="struct__MPE__Log__MBuf.html">_MPE_Log_MBuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__log__genproc_8h.html#ad9f9a5b327da918f2b7c5642a2680471">MPE_Log_MBuf</a></td></tr>
+<tr class="separator:ad9f9a5b327da918f2b7c5642a2680471"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Функции</h2></td></tr>
+<tr class="memitem:a91e845f8f2a152d2aabdcdaa457d3097" id="r_a91e845f8f2a152d2aabdcdaa457d3097"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">static</a> <a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__log__genproc_8h.html#a91e845f8f2a152d2aabdcdaa457d3097">MPE_Log_GenerateHeader</a> (<a class="el" href="structvector.html">FILE</a> *<a class="el" href="structvector.html">fp</a>)</td></tr>
+<tr class="separator:a91e845f8f2a152d2aabdcdaa457d3097"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7db680344dbef37fa8ff88b534aef0a" id="r_aa7db680344dbef37fa8ff88b534aef0a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">static</a> <a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__log__genproc_8h.html#aa7db680344dbef37fa8ff88b534aef0a">MPE_Log_Output</a> (<a class="el" href="mpe__log__genproc_8h.html#ad9f9a5b327da918f2b7c5642a2680471">MPE_Log_MBuf</a> *<a class="el" href="structvector.html">inBuffer</a>, <a class="el" href="mpe__log__genproc_8h.html#ad9f9a5b327da918f2b7c5642a2680471">MPE_Log_MBuf</a> *<a class="el" href="structvector.html">outBuffer</a>, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">mesgtag</a>, <a class="el" href="structvector.html">int</a> *<a class="el" href="structvector.html">srcs</a>, <a class="el" href="structvector.html">FILE</a> *<a class="el" href="structvector.html">fp</a>, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">parent</a>)</td></tr>
+<tr class="separator:aa7db680344dbef37fa8ff88b534aef0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46d5fa0c9287f6db0389c704035ca0c2" id="r_a46d5fa0c9287f6db0389c704035ca0c2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">static</a> <a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__log__genproc_8h.html#a46d5fa0c9287f6db0389c704035ca0c2">MPE_Log_FormatRecord</a> (<a class="el" href="structvector.html">FILE</a> *<a class="el" href="structvector.html">fp</a>, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">procid</a>, <a class="el" href="structvector.html">int</a> *<a class="el" href="structvector.html">rec</a>)</td></tr>
+<tr class="separator:a46d5fa0c9287f6db0389c704035ca0c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6411893f88dc7fa102a375ce190c169c" id="r_a6411893f88dc7fa102a375ce190c169c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">static</a> <a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__log__genproc_8h.html#a6411893f88dc7fa102a375ce190c169c">MPE_Log_ReloadFromData</a> (<a class="el" href="mpe__log__genproc_8h.html#ad9f9a5b327da918f2b7c5642a2680471">MPE_Log_MBuf</a> *<a class="el" href="structvector.html">destBuffer</a>, <a class="el" href="structvector.html">int</a> *<a class="el" href="structvector.html">srcs</a>)</td></tr>
+<tr class="separator:a6411893f88dc7fa102a375ce190c169c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe5ceb1b29121356a8880f247488428d" id="r_afe5ceb1b29121356a8880f247488428d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">static</a> <a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__log__genproc_8h.html#afe5ceb1b29121356a8880f247488428d">MPE_Log_ReloadFromChild</a> (<a class="el" href="mpe__log__genproc_8h.html#ad9f9a5b327da918f2b7c5642a2680471">MPE_Log_MBuf</a> *<a class="el" href="structvector.html">destBuffer</a>, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">msgtype</a>, <a class="el" href="structvector.html">int</a> *<a class="el" href="structvector.html">srcs</a>)</td></tr>
+<tr class="separator:afe5ceb1b29121356a8880f247488428d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86a950583c01592c380fd411d6aed7b2" id="r_a86a950583c01592c380fd411d6aed7b2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">static</a> <a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__log__genproc_8h.html#a86a950583c01592c380fd411d6aed7b2">MPE_Log_ReloadFromChildL</a> (<a class="el" href="mpe__log__genproc_8h.html#ad9f9a5b327da918f2b7c5642a2680471">MPE_Log_MBuf</a> *b, <a class="el" href="structvector.html">int</a> *<a class="el" href="structvector.html">srcs</a>)</td></tr>
+<tr class="separator:a86a950583c01592c380fd411d6aed7b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04228e0e085b4af4e3afd7d6f8c1d9fb" id="r_a04228e0e085b4af4e3afd7d6f8c1d9fb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">static</a> <a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__log__genproc_8h.html#a04228e0e085b4af4e3afd7d6f8c1d9fb">MPE_Log_ReloadFromChildR</a> (<a class="el" href="mpe__log__genproc_8h.html#ad9f9a5b327da918f2b7c5642a2680471">MPE_Log_MBuf</a> *b, <a class="el" href="structvector.html">int</a> *<a class="el" href="structvector.html">srcs</a>))</td></tr>
+<tr class="separator:a04228e0e085b4af4e3afd7d6f8c1d9fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb4ec2f408a1b6fceb3f6002abf30a61" id="r_aeb4ec2f408a1b6fceb3f6002abf30a61"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">static</a> <a class="el" href="mpe__log__genproc_8h.html#aadb9de970fd4b9752968785de18f98b6">MPE_Log_BLOCK</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__log__genproc_8h.html#aeb4ec2f408a1b6fceb3f6002abf30a61">MPE_Log_Sort</a> (<a class="el" href="mpe__log__genproc_8h.html#aadb9de970fd4b9752968785de18f98b6">MPE_Log_BLOCK</a> *<a class="el" href="structvector.html">readBlock</a>)</td></tr>
+<tr class="separator:aeb4ec2f408a1b6fceb3f6002abf30a61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b93676ab49a5a4358d52bf4d6e98028" id="r_a8b93676ab49a5a4358d52bf4d6e98028"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">static</a> <a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__log__genproc_8h.html#a8b93676ab49a5a4358d52bf4d6e98028">MPE_Log_SetTreeNodes</a> (<a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">procid</a>, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">np</a>, <a class="el" href="structvector.html">int</a> *<a class="el" href="structvector.html">lchild</a>, <a class="el" href="structvector.html">int</a> *<a class="el" href="structvector.html">rchild</a>, <a class="el" href="structvector.html">int</a> *<a class="el" href="structvector.html">parent</a>, <a class="el" href="structvector.html">int</a> *<a class="el" href="structvector.html">am_left</a>)</td></tr>
+<tr class="separator:a8b93676ab49a5a4358d52bf4d6e98028"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84ddf224a17296fe9e3eea326c6bb09c" id="r_a84ddf224a17296fe9e3eea326c6bb09c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">static</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__log__genproc_8h.html#a84ddf224a17296fe9e3eea326c6bb09c">MPE_Log_ParallelMerge</a> (<a class="el" href="structvector.html">char</a> *filename)</td></tr>
+<tr class="separator:a84ddf224a17296fe9e3eea326c6bb09c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ad61fb0ba09c7dca16dbb3c0f1557d2" id="r_a6ad61fb0ba09c7dca16dbb3c0f1557d2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">static</a> <a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__log__genproc_8h.html#a6ad61fb0ba09c7dca16dbb3c0f1557d2">MPE_Log_GetStatistics</a> (<a class="el" href="structvector.html">int</a> *<a class="el" href="structvector.html">nevents</a>, <a class="el" href="structvector.html">int</a> *<a class="el" href="structvector.html">ne_types</a>, <a class="el" href="structvector.html">double</a> *<a class="el" href="structvector.html">startTime</a>, <a class="el" href="structvector.html">double</a> *<a class="el" href="structvector.html">endTime</a>)</td></tr>
+<tr class="separator:a6ad61fb0ba09c7dca16dbb3c0f1557d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6acf0d013a4241052bd6873d6abff601" id="r_a6acf0d013a4241052bd6873d6abff601"><td class="memItemLeft" align="right" valign="top"><a class="el" href="mpe__log__genproc_8h.html#aadb9de970fd4b9752968785de18f98b6">MPE_Log_BLOCK</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__log__genproc_8h.html#a6acf0d013a4241052bd6873d6abff601">MPE_Log_GetBuf</a> (<a class="el" href="structvector.html">void</a>)</td></tr>
+<tr class="separator:a6acf0d013a4241052bd6873d6abff601"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade664d01ed4057b1b80e5187039659be" id="r_ade664d01ed4057b1b80e5187039659be"><td class="memItemLeft" align="right" valign="top"><a class="el" href="mpe__log__genproc_8h.html#aadb9de970fd4b9752968785de18f98b6">MPE_Log_BLOCK</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__log__genproc_8h.html#ade664d01ed4057b1b80e5187039659be">MPE_Log_Flush</a> (<a class="el" href="structvector.html">void</a>)</td></tr>
+<tr class="separator:ade664d01ed4057b1b80e5187039659be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8dc6a23c73451e9a1aae1f245e5cc329" id="r_a8dc6a23c73451e9a1aae1f245e5cc329"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__log__genproc_8h.html#a8dc6a23c73451e9a1aae1f245e5cc329">MPE_Log_FreeLogMem</a> (<a class="el" href="mpe__log__genproc_8h.html#aadb9de970fd4b9752968785de18f98b6">MPE_Log_BLOCK</a> *)</td></tr>
+<tr class="separator:a8dc6a23c73451e9a1aae1f245e5cc329"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2502899024be05661b41adbe4406519e" id="r_a2502899024be05661b41adbe4406519e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__log__genproc_8h.html#a2502899024be05661b41adbe4406519e">MPE_Log_init_clock</a> (<a class="el" href="structvector.html">void</a>)</td></tr>
+<tr class="separator:a2502899024be05661b41adbe4406519e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0fa859340ac509e3c1841381014b2217" id="r_a0fa859340ac509e3c1841381014b2217"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__log__genproc_8h.html#a0fa859340ac509e3c1841381014b2217">MPE_Log_def</a> (<a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">char</a> *)</td></tr>
+<tr class="separator:a0fa859340ac509e3c1841381014b2217"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Макросы</h2>
+<a id="a4cd2ea6624107c92282960a047e1bd41" name="a4cd2ea6624107c92282960a047e1bd41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4cd2ea6624107c92282960a047e1bd41">&#9670;&#160;</a></span>LOG_MESG_RECV</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> LOG_MESG_RECV&#160;&#160;&#160;-102</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__log__genproc_8h_source.html">mpe_log_genproc.h</a> строка <a class="el" href="mpe__log__genproc_8h_source.html#l00024">24</a></p>
+
+</div>
+</div>
+<a id="a081b449dced51994cafd04d752b79782" name="a081b449dced51994cafd04d752b79782"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a081b449dced51994cafd04d752b79782">&#9670;&#160;</a></span>LOG_MESG_SEND</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> LOG_MESG_SEND&#160;&#160;&#160;-101</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__log__genproc_8h_source.html">mpe_log_genproc.h</a> строка <a class="el" href="mpe__log__genproc_8h_source.html#l00023">23</a></p>
+
+</div>
+</div>
+<a id="aea0ba6ebc2fe6e0d8f3f8da7338f3c76" name="aea0ba6ebc2fe6e0d8f3f8da7338f3c76"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea0ba6ebc2fe6e0d8f3f8da7338f3c76">&#9670;&#160;</a></span>LOG_STATE_DEF</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> LOG_STATE_DEF&#160;&#160;&#160;-13</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__log__genproc_8h_source.html">mpe_log_genproc.h</a> строка <a class="el" href="mpe__log__genproc_8h_source.html#l00022">22</a></p>
+
+</div>
+</div>
+<a id="a1df08b28e2d40da29ca1231a58dee23b" name="a1df08b28e2d40da29ca1231a58dee23b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1df08b28e2d40da29ca1231a58dee23b">&#9670;&#160;</a></span>MAX_HEADER_EVT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MAX_HEADER_EVT&#160;&#160;&#160;-1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__log__genproc_8h_source.html">mpe_log_genproc.h</a> строка <a class="el" href="mpe__log__genproc_8h_source.html#l00019">19</a></p>
+
+</div>
+</div>
+<a id="ab2c060095466d4a1afdde54446d15394" name="ab2c060095466d4a1afdde54446d15394"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2c060095466d4a1afdde54446d15394">&#9670;&#160;</a></span>MIN_HEADER_EVT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MIN_HEADER_EVT&#160;&#160;&#160;-100</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__log__genproc_8h_source.html">mpe_log_genproc.h</a> строка <a class="el" href="mpe__log__genproc_8h_source.html#l00020">20</a></p>
+
+</div>
+</div>
+<a id="a7b4e8b070855804e62bc72b7820ec08a" name="a7b4e8b070855804e62bc72b7820ec08a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b4e8b070855804e62bc72b7820ec08a">&#9670;&#160;</a></span>MPE_Log_ADDHEADER</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_Log_ADDHEADER</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">b, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><a class="el" href="structvector.html">ev</a>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Макроопределение:</b><div class="fragment"><div class="line">  { \</div>
+<div class="line">  <span class="keywordtype">double</span> <a class="code hl_struct" href="structvector.html">temp_time</a>; \</div>
+<div class="line">  b           = (<a class="code hl_struct" href="structMPE__Log__HEADER.html">MPE_Log_HEADER</a> *)((<span class="keywordtype">int</span> *)(<a class="code hl_struct" href="structvector.html">MPE_Log_thisBlock</a>+1) + <a class="code hl_struct" href="structvector.html">MPE_Log_i</a>); \</div>
+<div class="line">  b-&gt;len      = (<span class="keyword">sizeof</span>(<a class="code hl_struct" href="structMPE__Log__HEADER.html">MPE_Log_HEADER</a>)/<span class="keyword">sizeof</span>(<span class="keywordtype">int</span>)); \</div>
+<div class="line">  b-&gt;event    = <a class="code hl_struct" href="structvector.html">ev</a>; \</div>
+<div class="line">  <a class="code hl_struct" href="structvector.html">temp_time</a> = <a class="code hl_struct" href="structvector.html">MPI_Wtime</a>(); <a class="code hl_struct" href="structvector.html">\</a></div>
+<div class="line"><a class="code hl_struct" href="structvector.html">  MOVEDBL</a>( &amp;b-&gt;time, &amp;<a class="code hl_struct" href="structvector.html">temp_time</a> ); \</div>
+<div class="line">  <a class="code hl_struct" href="structvector.html">MPE_Log_i</a>   += b-&gt;len; }</div>
+<div class="ttc" id="astructMPE__Log__HEADER_html"><div class="ttname"><a href="structMPE__Log__HEADER.html">MPE_Log_HEADER</a></div><div class="ttdef"><b>Definition</b> <a href="mpe__log__genproc_8h_source.html#l00044">mpe_log_genproc.h:44</a></div></div>
+<div class="ttc" id="astructvector_html"><div class="ttname"><a href="structvector.html">vector</a></div><div class="ttdef"><b>Definition</b> <a href="point_8h_source.html#l00012">point.h:12</a></div></div>
+</div><!-- fragment -->
+<p class="definition">См. определение в файле <a class="el" href="mpe__log__genproc_8h_source.html">mpe_log_genproc.h</a> строка <a class="el" href="mpe__log__genproc_8h_source.html#l00082">82</a></p>
+
+</div>
+</div>
+<a id="a3cc6813522796cbc783155adf8cc77cc" name="a3cc6813522796cbc783155adf8cc77cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3cc6813522796cbc783155adf8cc77cc">&#9670;&#160;</a></span>MPE_Log_ADDINTS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_Log_ADDINTS</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">b, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><a class="el" href="structvector.html">v</a>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><a class="el" href="structvector.html">n</a>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">i&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Макроопределение:</b><div class="fragment"><div class="line">{    <a class="code hl_struct" href="structvector.html">v</a>           = (<a class="code hl_struct" href="structMPE__Log__VFIELD.html">MPE_Log_VFIELD</a> *)((<span class="keywordtype">int</span> *)(<a class="code hl_struct" href="structvector.html">MPE_Log_thisBlock</a>+1) + \</div>
+<div class="line">                      <a class="code hl_struct" href="structvector.html">MPE_Log_i</a>);\</div>
+<div class="line">    <a class="code hl_struct" href="structvector.html">v</a>-&gt;len      = (<span class="keyword">sizeof</span>(<a class="code hl_struct" href="structMPE__Log__VFIELD.html">MPE_Log_VFIELD</a>) / <span class="keyword">sizeof</span>(<span class="keywordtype">int</span>)) + (<a class="code hl_struct" href="structvector.html">n</a>-1);\</div>
+<div class="line">    b-&gt;len      += <a class="code hl_struct" href="structvector.html">v</a>-&gt;len;\</div>
+<div class="line">    <a class="code hl_struct" href="structvector.html">v</a>-&gt;dtype    = <a class="code hl_define" href="mpe__log__genproc_8h.html#a192ee9644c488382164fe1973ff205a4">MPE_Log_INT</a>;<a class="code hl_struct" href="structvector.html">\</a></div>
+<div class="line"><a class="code hl_struct" href="structvector.html">    memcpy</a>(<a class="code hl_struct" href="structvector.html">v</a>-&gt;other,i,<a class="code hl_struct" href="structvector.html">n</a>*<span class="keyword">sizeof</span>(<span class="keywordtype">int</span>) ); \</div>
+<div class="line">    <a class="code hl_struct" href="structvector.html">MPE_Log_i</a>   += <a class="code hl_struct" href="structvector.html">v</a>-&gt;len;  }</div>
+<div class="ttc" id="ampe__log__genproc_8h_html_a192ee9644c488382164fe1973ff205a4"><div class="ttname"><a href="mpe__log__genproc_8h.html#a192ee9644c488382164fe1973ff205a4">MPE_Log_INT</a></div><div class="ttdeci">#define MPE_Log_INT</div><div class="ttdef"><b>Definition</b> <a href="mpe__log__genproc_8h_source.html#l00065">mpe_log_genproc.h:65</a></div></div>
+<div class="ttc" id="astructMPE__Log__VFIELD_html"><div class="ttname"><a href="structMPE__Log__VFIELD.html">MPE_Log_VFIELD</a></div><div class="ttdef"><b>Definition</b> <a href="mpe__log__genproc_8h_source.html#l00038">mpe_log_genproc.h:38</a></div></div>
+</div><!-- fragment -->
+<p class="definition">См. определение в файле <a class="el" href="mpe__log__genproc_8h_source.html">mpe_log_genproc.h</a> строка <a class="el" href="mpe__log__genproc_8h_source.html#l00091">91</a></p>
+
+</div>
+</div>
+<a id="ac337d18fbc50e9c2f5f3c6bde929a7c7" name="ac337d18fbc50e9c2f5f3c6bde929a7c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac337d18fbc50e9c2f5f3c6bde929a7c7">&#9670;&#160;</a></span>MPE_Log_ADDRECORD</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_Log_ADDRECORD</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Макроопределение:</b><div class="fragment"><div class="line">{ <span class="keywordflow">if</span> (!<a class="code hl_struct" href="structvector.html">newLogBlk</a> ||     <span class="comment">/* if this is the first block, */</span> \</div>
+<div class="line">      (<a class="code hl_struct" href="structvector.html">newLogBlk</a>-&gt;size+<a class="code hl_struct" href="structvector.html">readRecHdr</a>-&gt;len &gt; <a class="code hl_struct" href="structvector.html">MPE_Log_size</a>)) { \</div>
+<div class="line">                    <span class="comment">/* or if this block is full, */</span> <a class="code hl_struct" href="structvector.html">\</a></div>
+<div class="line"><a class="code hl_struct" href="structvector.html">    if</a> (<a class="code hl_struct" href="structvector.html">newLogHeadBlk</a>) {    <span class="comment">/* tack the new one on the end */</span> \</div>
+<div class="line">      <a class="code hl_struct" href="structvector.html">newLogBlk</a>-&gt;next = <a class="code hl_function" href="mpe__log__genproc_8h.html#a6acf0d013a4241052bd6873d6abff601">MPE_Log_GetBuf</a>(); \</div>
+<div class="line">      <a class="code hl_struct" href="structvector.html">newLogBlk</a> = <a class="code hl_struct" href="structvector.html">newLogBlk</a>-&gt;next; \</div>
+<div class="line">    } <span class="keywordflow">else</span> {            <span class="comment">/* if this is first block in the chain */</span> \</div>
+<div class="line">      <a class="code hl_struct" href="structvector.html">newLogHeadBlk</a> = <a class="code hl_struct" href="structvector.html">newLogBlk</a> = <a class="code hl_function" href="mpe__log__genproc_8h.html#a6acf0d013a4241052bd6873d6abff601">MPE_Log_GetBuf</a>(); \</div>
+<div class="line">                <span class="comment">/* set the head pointer */</span> \</div>
+<div class="line">    } \</div>
+<div class="line">    <a class="code hl_struct" href="structvector.html">newRecHdr</a>=(<a class="code hl_struct" href="structMPE__Log__HEADER.html">MPE_Log_HEADER</a> *)(<a class="code hl_struct" href="structvector.html">newLogBlk</a>+1); \</div>
+<div class="line">                <span class="comment">/* go to after the block header */</span> \</div>
+<div class="line">  } <a class="code hl_struct" href="structvector.html">\</a></div>
+<div class="line"><a class="code hl_struct" href="structvector.html">  memcpy</a> (<a class="code hl_struct" href="structvector.html">newRecHdr</a>, <a class="code hl_struct" href="structvector.html">readRecHdr</a>, <a class="code hl_struct" href="structvector.html">readRecHdr</a>-&gt;len*<span class="keyword">sizeof</span>(<span class="keywordtype">int</span>)); \</div>
+<div class="line">                <span class="comment">/* copy record */</span> \</div>
+<div class="line">  <a class="code hl_struct" href="structvector.html">newLogBlk</a>-&gt;size += <a class="code hl_struct" href="structvector.html">readRecHdr</a>-&gt;len; <span class="comment">/* update block length */</span> \</div>
+<div class="line">  <a class="code hl_struct" href="structvector.html">newRecHdr</a> = (<a class="code hl_struct" href="structMPE__Log__HEADER.html">MPE_Log_HEADER</a>*)((<span class="keywordtype">int</span>*)<a class="code hl_struct" href="structvector.html">newRecHdr</a>+<a class="code hl_struct" href="structvector.html">readRecHdr</a>-&gt;len); \</div>
+<div class="line">                <span class="comment">/* set position for next record write */</span> \</div>
+<div class="line">}</div>
+<div class="ttc" id="ampe__log__genproc_8h_html_a6acf0d013a4241052bd6873d6abff601"><div class="ttname"><a href="mpe__log__genproc_8h.html#a6acf0d013a4241052bd6873d6abff601">MPE_Log_GetBuf</a></div><div class="ttdeci">MPE_Log_BLOCK * MPE_Log_GetBuf(void)</div></div>
+</div><!-- fragment -->
+<p class="definition">См. определение в файле <a class="el" href="mpe__log__genproc_8h_source.html">mpe_log_genproc.h</a> строка <a class="el" href="mpe__log__genproc_8h_source.html#l00115">115</a></p>
+
+</div>
+</div>
+<a id="ab9611b20caf71ed32f66eff5b237aa5a" name="ab9611b20caf71ed32f66eff5b237aa5a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9611b20caf71ed32f66eff5b237aa5a">&#9670;&#160;</a></span>MPE_Log_ADDSTRING</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_Log_ADDSTRING</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">b, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><a class="el" href="structvector.html">v</a>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><a class="el" href="structvector.html">str</a>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Макроопределение:</b><div class="fragment"><div class="line">{   <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">ln</a>, <a class="code hl_struct" href="structvector.html">ln4</a>;\</div>
+<div class="line">    <a class="code hl_struct" href="structvector.html">ln</a>          = <a class="code hl_struct" href="structvector.html">strlen</a>(<a class="code hl_struct" href="structvector.html">str</a>) + 1;\</div>
+<div class="line">    <a class="code hl_struct" href="structvector.html">ln4</a>         = (<a class="code hl_struct" href="structvector.html">ln</a> + <span class="keyword">sizeof</span>(<a class="code hl_struct" href="structvector.html">int</a>) - 1) / <span class="keyword">sizeof</span>(<a class="code hl_struct" href="structvector.html">int</a>);\</div>
+<div class="line">    <a class="code hl_struct" href="structvector.html">v</a>           = (<a class="code hl_struct" href="structMPE__Log__VFIELD.html">MPE_Log_VFIELD</a> *)((<span class="keywordtype">int</span> *)(<a class="code hl_struct" href="structvector.html">MPE_Log_thisBlock</a>+1) + <a class="code hl_struct" href="structvector.html">MPE_Log_i</a>);\</div>
+<div class="line">    <a class="code hl_struct" href="structvector.html">v</a>-&gt;len      = (<span class="keyword">sizeof</span>(<a class="code hl_struct" href="structMPE__Log__VFIELD.html">MPE_Log_VFIELD</a>) / <span class="keyword">sizeof</span>(<span class="keywordtype">int</span>)) + <a class="code hl_struct" href="structvector.html">ln4</a> - 1;\</div>
+<div class="line">    b-&gt;len      += <a class="code hl_struct" href="structvector.html">v</a>-&gt;len;\</div>
+<div class="line">    <a class="code hl_struct" href="structvector.html">v</a>-&gt;dtype    = <a class="code hl_define" href="mpe__log__genproc_8h.html#aabc846a1634f4ef2eebb0292a377a418">MPE_Log_CHAR</a>;<a class="code hl_struct" href="structvector.html">\</a></div>
+<div class="line"><a class="code hl_struct" href="structvector.html">    memcpy</a>( <a class="code hl_struct" href="structvector.html">v</a>-&gt;other, <a class="code hl_struct" href="structvector.html">str</a>, <a class="code hl_struct" href="structvector.html">ln</a> );\</div>
+<div class="line">    <a class="code hl_struct" href="structvector.html">MPE_Log_i</a>   += <a class="code hl_struct" href="structvector.html">v</a>-&gt;len;}</div>
+<div class="ttc" id="ampe__log__genproc_8h_html_aabc846a1634f4ef2eebb0292a377a418"><div class="ttname"><a href="mpe__log__genproc_8h.html#aabc846a1634f4ef2eebb0292a377a418">MPE_Log_CHAR</a></div><div class="ttdeci">#define MPE_Log_CHAR</div><div class="ttdef"><b>Definition</b> <a href="mpe__log__genproc_8h_source.html#l00066">mpe_log_genproc.h:66</a></div></div>
+</div><!-- fragment -->
+<p class="definition">См. определение в файле <a class="el" href="mpe__log__genproc_8h_source.html">mpe_log_genproc.h</a> строка <a class="el" href="mpe__log__genproc_8h_source.html#l00100">100</a></p>
+
+</div>
+</div>
+<a id="a332a108cc146d62f929217aac810474e" name="a332a108cc146d62f929217aac810474e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a332a108cc146d62f929217aac810474e">&#9670;&#160;</a></span>MPE_Log_BUF_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_Log_BUF_SIZE&#160;&#160;&#160;500</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>\ &ndash;MPE_Log&ndash;</p><ul>
+<li><a class="el" href="mpe__log__genproc_8h.html">mpe_log_genproc.h</a> - typedefs, structures, #defines, macros, and</li>
+<li>your usual assortement of header file type stuff</li>
+<li></li>
+<li>MPE_Log currently represents some code written by Dr. William</li>
+<li>Gropp, stolen from Chameleon's 'blog' logging package and</li>
+<li>modified by Ed Karrels, as well as some fresh code written</li>
+<li>by Ed Karrels.</li>
+<li></li>
+<li>All work funded by Argonne National Laboratory \ </li>
+</ul>
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__log__genproc_8h_source.html">mpe_log_genproc.h</a> строка <a class="el" href="mpe__log__genproc_8h_source.html#l00017">17</a></p>
+
+</div>
+</div>
+<a id="aabc846a1634f4ef2eebb0292a377a418" name="aabc846a1634f4ef2eebb0292a377a418"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aabc846a1634f4ef2eebb0292a377a418">&#9670;&#160;</a></span>MPE_Log_CHAR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_Log_CHAR&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__log__genproc_8h_source.html">mpe_log_genproc.h</a> строка <a class="el" href="mpe__log__genproc_8h_source.html#l00066">66</a></p>
+
+</div>
+</div>
+<a id="aa8546b27841584cc774e9a5a1050e899" name="aa8546b27841584cc774e9a5a1050e899"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8546b27841584cc774e9a5a1050e899">&#9670;&#160;</a></span>MPE_Log_DOUBLE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_Log_DOUBLE&#160;&#160;&#160;2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__log__genproc_8h_source.html">mpe_log_genproc.h</a> строка <a class="el" href="mpe__log__genproc_8h_source.html#l00067">67</a></p>
+
+</div>
+</div>
+<a id="a43bfe59a36fc46ff1c95723b4dc66ed9" name="a43bfe59a36fc46ff1c95723b4dc66ed9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43bfe59a36fc46ff1c95723b4dc66ed9">&#9670;&#160;</a></span>MPE_Log_EVENT_SYNC</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_Log_EVENT_SYNC&#160;&#160;&#160;-100</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__log__genproc_8h_source.html">mpe_log_genproc.h</a> строка <a class="el" href="mpe__log__genproc_8h_source.html#l00018">18</a></p>
+
+</div>
+</div>
+<a id="a69244091e032fbf3f5ef5152e3b5f24c" name="a69244091e032fbf3f5ef5152e3b5f24c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69244091e032fbf3f5ef5152e3b5f24c">&#9670;&#160;</a></span>MPE_Log_HEADERSIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_Log_HEADERSIZE&#160;&#160;&#160;(<a class="el" href="structvector.html">sizeof</a>(<a class="el" href="structMPE__Log__HEADER.html">MPE_Log_HEADER</a>)/<a class="el" href="structvector.html">sizeof</a>(<a class="el" href="structvector.html">int</a>))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__log__genproc_8h_source.html">mpe_log_genproc.h</a> строка <a class="el" href="mpe__log__genproc_8h_source.html#l00079">79</a></p>
+
+</div>
+</div>
+<a id="a192ee9644c488382164fe1973ff205a4" name="a192ee9644c488382164fe1973ff205a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a192ee9644c488382164fe1973ff205a4">&#9670;&#160;</a></span>MPE_Log_INT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_Log_INT&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__log__genproc_8h_source.html">mpe_log_genproc.h</a> строка <a class="el" href="mpe__log__genproc_8h_source.html#l00065">65</a></p>
+
+</div>
+</div>
+<a id="abc02e08100b18d3c8e2d9bcd31ad5fd2" name="abc02e08100b18d3c8e2d9bcd31ad5fd2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc02e08100b18d3c8e2d9bcd31ad5fd2">&#9670;&#160;</a></span>MPE_Log_MBUF_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_Log_MBUF_SIZE&#160;&#160;&#160;<a class="el" href="mpe__log__genproc_8h.html#a332a108cc146d62f929217aac810474e">MPE_Log_BUF_SIZE</a>*2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__log__genproc_8h_source.html">mpe_log_genproc.h</a> строка <a class="el" href="mpe__log__genproc_8h_source.html#l00154">154</a></p>
+
+</div>
+</div>
+<a id="ae4df9bcf83673b9a3f7d3b0c81064d74" name="ae4df9bcf83673b9a3f7d3b0c81064d74"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4df9bcf83673b9a3f7d3b0c81064d74">&#9670;&#160;</a></span>MPE_Log_TRAVERSE_LOG</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_Log_TRAVERSE_LOG</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><a class="el" href="structvector.html">condition</a></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Макроопределение:</b><div class="fragment"><div class="line">{ <a class="code hl_struct" href="structvector.html">\</a></div>
+<div class="line"><a class="code hl_struct" href="structvector.html">while</a> (<a class="code hl_struct" href="structvector.html">readBlk</a>) {       <span class="comment">/* loop through the linked list of blocks */</span> \</div>
+<div class="line">     <a class="code hl_struct" href="structvector.html">n</a> = <a class="code hl_struct" href="structvector.html">readBlk</a>-&gt;size;     <span class="comment">/* get # of ints in this block */</span> \</div>
+<div class="line">     <a class="code hl_struct" href="structvector.html">readRecHdr</a> = (<a class="code hl_struct" href="structMPE__Log__HEADER.html">MPE_Log_HEADER</a> *)(<a class="code hl_struct" href="structvector.html">readBlk</a> + 1); \</div>
+<div class="line">                <span class="comment">/* goto first record in this block */</span> \</div>
+<div class="line">     i = 0; <a class="code hl_struct" href="structvector.html">\</a></div>
+<div class="line"><a class="code hl_struct" href="structvector.html">     while</a> (i &lt; <a class="code hl_struct" href="structvector.html">n</a>) {        <span class="comment">/* loop through until all ints used up */</span> <a class="code hl_struct" href="structvector.html">\</a></div>
+<div class="line"><a class="code hl_struct" href="structvector.html">       if</a> (<a class="code hl_struct" href="structvector.html">condition</a>) {     <span class="comment">/* if this is the correct pass, */</span> \</div>
+<div class="line">     <a class="code hl_define" href="mpe__log__genproc_8h.html#ac337d18fbc50e9c2f5f3c6bde929a7c7">MPE_Log_ADDRECORD</a>; <span class="comment">/* copy this record */</span> \</div>
+<div class="line">       } \</div>
+<div class="line">       i += <a class="code hl_struct" href="structvector.html">readRecHdr</a>-&gt;len;    <span class="comment">/* update used int count */</span> \</div>
+<div class="line">       <a class="code hl_struct" href="structvector.html">readRecHdr</a> = (<a class="code hl_struct" href="structMPE__Log__HEADER.html">MPE_Log_HEADER</a>*)((<span class="keywordtype">int</span>*)<a class="code hl_struct" href="structvector.html">readRecHdr</a> + \</div>
+<div class="line">                    <a class="code hl_struct" href="structvector.html">readRecHdr</a>-&gt;len); <span class="comment">/* goto next record */</span> \</div>
+<div class="line">     } \</div>
+<div class="line">     <a class="code hl_struct" href="structvector.html">readBlk</a> = (<a class="code hl_struct" href="struct__MPE__Log__BLOCK.html">MPE_Log_BLOCK</a> *)(<a class="code hl_struct" href="structvector.html">readBlk</a>-&gt;next); <span class="comment">/* goto next block */</span> \</div>
+<div class="line">  } \</div>
+<div class="line">}</div>
+<div class="ttc" id="ampe__log__genproc_8h_html_ac337d18fbc50e9c2f5f3c6bde929a7c7"><div class="ttname"><a href="mpe__log__genproc_8h.html#ac337d18fbc50e9c2f5f3c6bde929a7c7">MPE_Log_ADDRECORD</a></div><div class="ttdeci">#define MPE_Log_ADDRECORD</div><div class="ttdef"><b>Definition</b> <a href="mpe__log__genproc_8h_source.html#l00115">mpe_log_genproc.h:115</a></div></div>
+<div class="ttc" id="astruct__MPE__Log__BLOCK_html"><div class="ttname"><a href="struct__MPE__Log__BLOCK.html">_MPE_Log_BLOCK</a></div><div class="ttdef"><b>Definition</b> <a href="mpe__log__genproc_8h_source.html#l00026">mpe_log_genproc.h:26</a></div></div>
+</div><!-- fragment -->
+<p class="definition">См. определение в файле <a class="el" href="mpe__log__genproc_8h_source.html">mpe_log_genproc.h</a> строка <a class="el" href="mpe__log__genproc_8h_source.html#l00136">136</a></p>
+
+</div>
+</div>
+<a id="a04b32cb0845f3fcc19b79bc7362f0ab8" name="a04b32cb0845f3fcc19b79bc7362f0ab8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04b32cb0845f3fcc19b79bc7362f0ab8">&#9670;&#160;</a></span>MPE_Log_VFIELDSIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_Log_VFIELDSIZE</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><a class="el" href="structvector.html">n</a></td><td>)</td>
+          <td>&#160;&#160;&#160;((<a class="el" href="structvector.html">sizeof</a>(<a class="el" href="structMPE__Log__VFIELD.html">MPE_Log_VFIELD</a>)/<a class="el" href="structvector.html">sizeof</a>(<a class="el" href="structvector.html">int</a>))+(<a class="el" href="structvector.html">n</a>-1))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__log__genproc_8h_source.html">mpe_log_genproc.h</a> строка <a class="el" href="mpe__log__genproc_8h_source.html#l00080">80</a></p>
+
+</div>
+</div>
+<a id="ab4631cb16d85a7bb601f6f609f410cdf" name="ab4631cb16d85a7bb601f6f609f410cdf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4631cb16d85a7bb601f6f609f410cdf">&#9670;&#160;</a></span>MPE_Log_ZEROTIME</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_Log_ZEROTIME</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">b</td><td>)</td>
+          <td>&#160;&#160;&#160;{ <a class="el" href="structvector.html">double</a> x=0; <a class="el" href="structvector.html">MOVEDBL</a>( &amp;b-&gt;<a class="el" href="protofix_8h.html#aae026724f73c36340024c657f4f44dab">time</a>, &amp;x); }</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__log__genproc_8h_source.html">mpe_log_genproc.h</a> строка <a class="el" href="mpe__log__genproc_8h_source.html#l00111">111</a></p>
+
+</div>
+</div>
+<h2 class="groupheader">Типы</h2>
+<a id="aadb9de970fd4b9752968785de18f98b6" name="aadb9de970fd4b9752968785de18f98b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aadb9de970fd4b9752968785de18f98b6">&#9670;&#160;</a></span>MPE_Log_BLOCK</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">typedef</a> <a class="el" href="structvector.html">struct</a> <a class="el" href="struct__MPE__Log__BLOCK.html">_MPE_Log_BLOCK</a> <a class="el" href="mpe__log__genproc_8h.html#aadb9de970fd4b9752968785de18f98b6">MPE_Log_BLOCK</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad9f9a5b327da918f2b7c5642a2680471" name="ad9f9a5b327da918f2b7c5642a2680471"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9f9a5b327da918f2b7c5642a2680471">&#9670;&#160;</a></span>MPE_Log_MBuf</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">typedef</a> <a class="el" href="structvector.html">struct</a> <a class="el" href="struct__MPE__Log__MBuf.html">_MPE_Log_MBuf</a> <a class="el" href="mpe__log__genproc_8h.html#ad9f9a5b327da918f2b7c5642a2680471">MPE_Log_MBuf</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Функции</h2>
+<a id="a0fa859340ac509e3c1841381014b2217" name="a0fa859340ac509e3c1841381014b2217"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0fa859340ac509e3c1841381014b2217">&#9670;&#160;</a></span>MPE_Log_def()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> MPE_Log_def </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ade664d01ed4057b1b80e5187039659be" name="ade664d01ed4057b1b80e5187039659be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade664d01ed4057b1b80e5187039659be">&#9670;&#160;</a></span>MPE_Log_Flush()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="mpe__log__genproc_8h.html#aadb9de970fd4b9752968785de18f98b6">MPE_Log_BLOCK</a> * MPE_Log_Flush </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a46d5fa0c9287f6db0389c704035ca0c2" name="a46d5fa0c9287f6db0389c704035ca0c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46d5fa0c9287f6db0389c704035ca0c2">&#9670;&#160;</a></span>MPE_Log_FormatRecord()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">static</a> <a class="el" href="structvector.html">void</a> MPE_Log_FormatRecord </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">FILE</a> *&#160;</td>
+          <td class="paramname"><em>fp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>procid</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname"><em>rec</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8dc6a23c73451e9a1aae1f245e5cc329" name="a8dc6a23c73451e9a1aae1f245e5cc329"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8dc6a23c73451e9a1aae1f245e5cc329">&#9670;&#160;</a></span>MPE_Log_FreeLogMem()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Log_FreeLogMem </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="mpe__log__genproc_8h.html#aadb9de970fd4b9752968785de18f98b6">MPE_Log_BLOCK</a> *&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a91e845f8f2a152d2aabdcdaa457d3097" name="a91e845f8f2a152d2aabdcdaa457d3097"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a91e845f8f2a152d2aabdcdaa457d3097">&#9670;&#160;</a></span>MPE_Log_GenerateHeader()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">static</a> <a class="el" href="structvector.html">void</a> MPE_Log_GenerateHeader </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">FILE</a> *&#160;</td>
+          <td class="paramname"><em>fp</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6acf0d013a4241052bd6873d6abff601" name="a6acf0d013a4241052bd6873d6abff601"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6acf0d013a4241052bd6873d6abff601">&#9670;&#160;</a></span>MPE_Log_GetBuf()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="mpe__log__genproc_8h.html#aadb9de970fd4b9752968785de18f98b6">MPE_Log_BLOCK</a> * MPE_Log_GetBuf </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6ad61fb0ba09c7dca16dbb3c0f1557d2" name="a6ad61fb0ba09c7dca16dbb3c0f1557d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ad61fb0ba09c7dca16dbb3c0f1557d2">&#9670;&#160;</a></span>MPE_Log_GetStatistics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">static</a> <a class="el" href="structvector.html">void</a> MPE_Log_GetStatistics </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname"><em>nevents</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname"><em>ne_types</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">double</a> *&#160;</td>
+          <td class="paramname"><em>startTime</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">double</a> *&#160;</td>
+          <td class="paramname"><em>endTime</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2502899024be05661b41adbe4406519e" name="a2502899024be05661b41adbe4406519e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2502899024be05661b41adbe4406519e">&#9670;&#160;</a></span>MPE_Log_init_clock()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Log_init_clock </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa7db680344dbef37fa8ff88b534aef0a" name="aa7db680344dbef37fa8ff88b534aef0a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa7db680344dbef37fa8ff88b534aef0a">&#9670;&#160;</a></span>MPE_Log_Output()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">static</a> <a class="el" href="structvector.html">void</a> MPE_Log_Output </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="mpe__log__genproc_8h.html#ad9f9a5b327da918f2b7c5642a2680471">MPE_Log_MBuf</a> *&#160;</td>
+          <td class="paramname"><em>inBuffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="mpe__log__genproc_8h.html#ad9f9a5b327da918f2b7c5642a2680471">MPE_Log_MBuf</a> *&#160;</td>
+          <td class="paramname"><em>outBuffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>mesgtag</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname"><em>srcs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">FILE</a> *&#160;</td>
+          <td class="paramname"><em>fp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>parent</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a84ddf224a17296fe9e3eea326c6bb09c" name="a84ddf224a17296fe9e3eea326c6bb09c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a84ddf224a17296fe9e3eea326c6bb09c">&#9670;&#160;</a></span>MPE_Log_ParallelMerge()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">static</a> MPE_Log_ParallelMerge </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>filename</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afe5ceb1b29121356a8880f247488428d" name="afe5ceb1b29121356a8880f247488428d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe5ceb1b29121356a8880f247488428d">&#9670;&#160;</a></span>MPE_Log_ReloadFromChild()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">static</a> <a class="el" href="structvector.html">int</a> MPE_Log_ReloadFromChild </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="mpe__log__genproc_8h.html#ad9f9a5b327da918f2b7c5642a2680471">MPE_Log_MBuf</a> *&#160;</td>
+          <td class="paramname"><em>destBuffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>msgtype</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname"><em>srcs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a86a950583c01592c380fd411d6aed7b2" name="a86a950583c01592c380fd411d6aed7b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86a950583c01592c380fd411d6aed7b2">&#9670;&#160;</a></span>MPE_Log_ReloadFromChildL()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">static</a> <a class="el" href="structvector.html">int</a> MPE_Log_ReloadFromChildL </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="mpe__log__genproc_8h.html#ad9f9a5b327da918f2b7c5642a2680471">MPE_Log_MBuf</a> *&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname"><em>srcs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a04228e0e085b4af4e3afd7d6f8c1d9fb" name="a04228e0e085b4af4e3afd7d6f8c1d9fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04228e0e085b4af4e3afd7d6f8c1d9fb">&#9670;&#160;</a></span>MPE_Log_ReloadFromChildR()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">static</a> <a class="el" href="structvector.html">int</a> MPE_Log_ReloadFromChildR </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="mpe__log__genproc_8h.html#ad9f9a5b327da918f2b7c5642a2680471">MPE_Log_MBuf</a> *&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname"><em>srcs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6411893f88dc7fa102a375ce190c169c" name="a6411893f88dc7fa102a375ce190c169c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6411893f88dc7fa102a375ce190c169c">&#9670;&#160;</a></span>MPE_Log_ReloadFromData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">static</a> <a class="el" href="structvector.html">int</a> MPE_Log_ReloadFromData </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="mpe__log__genproc_8h.html#ad9f9a5b327da918f2b7c5642a2680471">MPE_Log_MBuf</a> *&#160;</td>
+          <td class="paramname"><em>destBuffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname"><em>srcs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8b93676ab49a5a4358d52bf4d6e98028" name="a8b93676ab49a5a4358d52bf4d6e98028"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b93676ab49a5a4358d52bf4d6e98028">&#9670;&#160;</a></span>MPE_Log_SetTreeNodes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">static</a> <a class="el" href="structvector.html">void</a> MPE_Log_SetTreeNodes </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>procid</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>np</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname"><em>lchild</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname"><em>rchild</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname"><em>parent</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname"><em>am_left</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aeb4ec2f408a1b6fceb3f6002abf30a61" name="aeb4ec2f408a1b6fceb3f6002abf30a61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb4ec2f408a1b6fceb3f6002abf30a61">&#9670;&#160;</a></span>MPE_Log_Sort()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">static</a> <a class="el" href="mpe__log__genproc_8h.html#aadb9de970fd4b9752968785de18f98b6">MPE_Log_BLOCK</a> * MPE_Log_Sort </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="mpe__log__genproc_8h.html#aadb9de970fd4b9752968785de18f98b6">MPE_Log_BLOCK</a> *&#160;</td>
+          <td class="paramname"><em>readBlock</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

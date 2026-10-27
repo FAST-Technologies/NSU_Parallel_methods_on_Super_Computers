@@ -1,0 +1,1223 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lab_02: MPI + OpenMP Parallel Programming: Файл clog_buffer.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Lab_02: MPI + OpenMP Parallel Programming<span id="projectnumber">&#160;2.1</span>
+   </div>
+   <div id="projectbrief">Решение 3D уравнения Пуассона методом Якоби с двумерной декомпозицией</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_1f646cbbb0f6227d25dd06f792d51aba.html">mpe2-1.3.0</a></li><li class="navelem"><a class="el" href="dir_493399512d45eb30627376023737183a.html">src</a></li><li class="navelem"><a class="el" href="dir_4dd21a1309df0d73c93832f59c814642.html">logging</a></li><li class="navelem"><a class="el" href="dir_d1e3342e2909ab46223a280715173519.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Классы</a> &#124;
+<a href="#define-members">Макросы</a> &#124;
+<a href="#func-members">Функции</a>  </div>
+  <div class="headertitle"><div class="title">Файл clog_buffer.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="clog__preamble_8h_source.html">clog_preamble.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="clog__block_8h_source.html">clog_block.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="src_2logging_2include_2clog__commset_8h_source.html">clog_commset.h</a>&quot;</code><br />
+</div>
+<p><a href="clog__buffer_8h_source.html">См. исходные тексты.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Классы</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Макросы</h2></td></tr>
+<tr class="memitem:a9732a3cbed113742caded9272e732530" id="r_a9732a3cbed113742caded9272e732530"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__buffer_8h.html#a9732a3cbed113742caded9272e732530">CLOG_DEFAULT_BLOCK_SIZE</a>&#160;&#160;&#160;65536</td></tr>
+<tr class="separator:a9732a3cbed113742caded9272e732530"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc38a9155f79bb053aed3a533de9ad06" id="r_acc38a9155f79bb053aed3a533de9ad06"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__buffer_8h.html#acc38a9155f79bb053aed3a533de9ad06">CLOG_DEFAULT_BUFFERED_BLOCKS</a>&#160;&#160;&#160;128</td></tr>
+<tr class="separator:acc38a9155f79bb053aed3a533de9ad06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a131564e278e0564a22b1245390fb7939" id="r_a131564e278e0564a22b1245390fb7939"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__buffer_8h.html#a131564e278e0564a22b1245390fb7939">CLOG_INIT_AND_ON</a>&#160;&#160;&#160;0</td></tr>
+<tr class="separator:a131564e278e0564a22b1245390fb7939"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1380272261a49e0c8c22589e3fe3d8f" id="r_ab1380272261a49e0c8c22589e3fe3d8f"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__buffer_8h.html#ab1380272261a49e0c8c22589e3fe3d8f">CLOG_INIT_AND_OFF</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:ab1380272261a49e0c8c22589e3fe3d8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14d62d9eade0d83efacb517ab02baeac" id="r_a14d62d9eade0d83efacb517ab02baeac"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__buffer_8h.html#a14d62d9eade0d83efacb517ab02baeac">CLOG_UNINIT</a>&#160;&#160;&#160;2</td></tr>
+<tr class="separator:a14d62d9eade0d83efacb517ab02baeac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Функции</h2></td></tr>
+<tr class="memitem:af5a79471e5987131ea3b4f5480c46b04" id="r_af5a79471e5987131ea3b4f5480c46b04"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__buffer_8h.html#af5a79471e5987131ea3b4f5480c46b04">CLOG_Buffer_create</a> (<a class="el" href="structvector.html">void</a>)</td></tr>
+<tr class="separator:af5a79471e5987131ea3b4f5480c46b04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a639b18f47b33765fb73ffdca62cf8ee2" id="r_a639b18f47b33765fb73ffdca62cf8ee2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__buffer_8h.html#a639b18f47b33765fb73ffdca62cf8ee2">CLOG_Buffer_free</a> (<a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> **<a class="el" href="structvector.html">buffer_handle</a>)</td></tr>
+<tr class="separator:a639b18f47b33765fb73ffdca62cf8ee2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3657c442f8e71b6dd2de7b327a5b7f10" id="r_a3657c442f8e71b6dd2de7b327a5b7f10"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__buffer_8h.html#a3657c442f8e71b6dd2de7b327a5b7f10">CLOG_Buffer_env_init</a> (<a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer)</td></tr>
+<tr class="separator:a3657c442f8e71b6dd2de7b327a5b7f10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7ae0cb153ee5aef30252f8e42667e58" id="r_ae7ae0cb153ee5aef30252f8e42667e58"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__buffer_8h.html#ae7ae0cb153ee5aef30252f8e42667e58">CLOG_Buffer_init4write</a> (<a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer, <a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *<a class="el" href="structvector.html">local_tmpfile_name</a>)</td></tr>
+<tr class="separator:ae7ae0cb153ee5aef30252f8e42667e58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9ccd5c356877e7cb679fddf537e965a" id="r_aa9ccd5c356877e7cb679fddf537e965a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__buffer_8h.html#aa9ccd5c356877e7cb679fddf537e965a">CLOG_Buffer_localIO_init4write</a> (<a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer)</td></tr>
+<tr class="separator:aa9ccd5c356877e7cb679fddf537e965a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4dbbe795c09654cbfacdb7beb8ba83e8" id="r_a4dbbe795c09654cbfacdb7beb8ba83e8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__buffer_8h.html#a4dbbe795c09654cbfacdb7beb8ba83e8">CLOG_Buffer_localIO_write</a> (<a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer)</td></tr>
+<tr class="separator:a4dbbe795c09654cbfacdb7beb8ba83e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae539ce2c3dbcf97aa535ef6c4dffd7ef" id="r_ae539ce2c3dbcf97aa535ef6c4dffd7ef"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__buffer_8h.html#ae539ce2c3dbcf97aa535ef6c4dffd7ef">CLOG_Buffer_advance_block</a> (<a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer)</td></tr>
+<tr class="separator:ae539ce2c3dbcf97aa535ef6c4dffd7ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf98bd51225f84de520a6e213eeb4e36" id="r_acf98bd51225f84de520a6e213eeb4e36"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__buffer_8h.html#acf98bd51225f84de520a6e213eeb4e36">CLOG_Buffer_localIO_flush</a> (<a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer)</td></tr>
+<tr class="separator:acf98bd51225f84de520a6e213eeb4e36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a946c3543446c1cb9ef380c76c3d09afb" id="r_a946c3543446c1cb9ef380c76c3d09afb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">off_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__buffer_8h.html#a946c3543446c1cb9ef380c76c3d09afb">CLOG_Buffer_localIO_ftell</a> (<a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer)</td></tr>
+<tr class="separator:a946c3543446c1cb9ef380c76c3d09afb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8735b1faeca61eb73a33dd455a345b92" id="r_a8735b1faeca61eb73a33dd455a345b92"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__buffer_8h.html#a8735b1faeca61eb73a33dd455a345b92">CLOG_Buffer_init_timeshift</a> (<a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer)</td></tr>
+<tr class="separator:a8735b1faeca61eb73a33dd455a345b92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae58e40be47deb80cdd874ef46e8bb1bc" id="r_ae58e40be47deb80cdd874ef46e8bb1bc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__buffer_8h.html#ae58e40be47deb80cdd874ef46e8bb1bc">CLOG_Buffer_set_timeshift</a> (<a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer, <a class="el" href="clog__timer_8h.html#abf0f7e46df13fdbacdb7a819cf12267d">CLOG_Time_t</a> <a class="el" href="structvector.html">new_timediff</a>, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">init_next_timeshift</a>)</td></tr>
+<tr class="separator:ae58e40be47deb80cdd874ef46e8bb1bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4f94a3e291ad8f30f77b45ec80058fb" id="r_ae4f94a3e291ad8f30f77b45ec80058fb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__buffer_8h.html#ae4f94a3e291ad8f30f77b45ec80058fb">CLOG_Buffer_localIO_reinit4read</a> (<a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer)</td></tr>
+<tr class="separator:ae4f94a3e291ad8f30f77b45ec80058fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a076ad6b0f794d6d77279625f2ddb9dab" id="r_a076ad6b0f794d6d77279625f2ddb9dab"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__buffer_8h.html#a076ad6b0f794d6d77279625f2ddb9dab">CLOG_Buffer_localIO_read</a> (<a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer)</td></tr>
+<tr class="separator:a076ad6b0f794d6d77279625f2ddb9dab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f9b0c254526af02038bc2d4a85789d1" id="r_a6f9b0c254526af02038bc2d4a85789d1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__buffer_8h.html#a6f9b0c254526af02038bc2d4a85789d1">CLOG_Buffer_localIO_finalize</a> (<a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer)</td></tr>
+<tr class="separator:a6f9b0c254526af02038bc2d4a85789d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfdb4728f3b7698be7291918f2c81ee0" id="r_acfdb4728f3b7698be7291918f2c81ee0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__buffer_8h.html#acfdb4728f3b7698be7291918f2c81ee0">CLOG_Buffer_save_endlog</a> (<a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer)</td></tr>
+<tr class="separator:acfdb4728f3b7698be7291918f2c81ee0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0841e7dee22486a380219386b5380fef" id="r_a0841e7dee22486a380219386b5380fef"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__buffer_8h.html#a0841e7dee22486a380219386b5380fef">CLOG_Buffer_save_endblock</a> (<a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer)</td></tr>
+<tr class="separator:a0841e7dee22486a380219386b5380fef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac23cefae25afda01a2b2250054f30e55" id="r_ac23cefae25afda01a2b2250054f30e55"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__buffer_8h.html#ac23cefae25afda01a2b2250054f30e55">CLOG_Buffer_save_header_0chk</a> (<a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer, <a class="el" href="structvector.html">const</a> <a class="el" href="include_2clog__commset_8h.html#a2a72179bb68215dd33f4147550bcaf71">CLOG_CommIDs_t</a> *commIDs, <a class="el" href="include_2clog__commset_8h.html#ab1730371cde7a7a9acb878e705d70bc1">CLOG_ThreadLID_t</a> <a class="el" href="structvector.html">thd</a>, <a class="el" href="structvector.html">int</a> rectype)</td></tr>
+<tr class="separator:ac23cefae25afda01a2b2250054f30e55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0af7f971b8292e07653b90ba2da1b4d4" id="r_a0af7f971b8292e07653b90ba2da1b4d4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__buffer_8h.html#a0af7f971b8292e07653b90ba2da1b4d4">CLOG_Buffer_save_header</a> (<a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer, <a class="el" href="structvector.html">const</a> <a class="el" href="include_2clog__commset_8h.html#a2a72179bb68215dd33f4147550bcaf71">CLOG_CommIDs_t</a> *commIDs, <a class="el" href="include_2clog__commset_8h.html#ab1730371cde7a7a9acb878e705d70bc1">CLOG_ThreadLID_t</a> <a class="el" href="structvector.html">thd</a>, <a class="el" href="structvector.html">int</a> rectype)</td></tr>
+<tr class="separator:a0af7f971b8292e07653b90ba2da1b4d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace6c26fa665c5540e450310070dbb56a" id="r_ace6c26fa665c5540e450310070dbb56a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__buffer_8h.html#ace6c26fa665c5540e450310070dbb56a">CLOG_Buffer_save_statedef</a> (<a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer, <a class="el" href="structvector.html">const</a> <a class="el" href="include_2clog__commset_8h.html#a2a72179bb68215dd33f4147550bcaf71">CLOG_CommIDs_t</a> *commIDs, <a class="el" href="include_2clog__commset_8h.html#ab1730371cde7a7a9acb878e705d70bc1">CLOG_ThreadLID_t</a> <a class="el" href="structvector.html">thd</a>, <a class="el" href="structvector.html">int</a> stateID, <a class="el" href="structvector.html">int</a> startetype, <a class="el" href="structvector.html">int</a> finaletype, <a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *color, <a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *name, <a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *format)</td></tr>
+<tr class="separator:ace6c26fa665c5540e450310070dbb56a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8bec4f8fa8e4c4e2de75e24eda0a0ea6" id="r_a8bec4f8fa8e4c4e2de75e24eda0a0ea6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__buffer_8h.html#a8bec4f8fa8e4c4e2de75e24eda0a0ea6">CLOG_Buffer_save_eventdef</a> (<a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer, <a class="el" href="structvector.html">const</a> <a class="el" href="include_2clog__commset_8h.html#a2a72179bb68215dd33f4147550bcaf71">CLOG_CommIDs_t</a> *commIDs, <a class="el" href="include_2clog__commset_8h.html#ab1730371cde7a7a9acb878e705d70bc1">CLOG_ThreadLID_t</a> <a class="el" href="structvector.html">thd</a>, <a class="el" href="structvector.html">int</a> etype, <a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *color, <a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *name, <a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *format)</td></tr>
+<tr class="separator:a8bec4f8fa8e4c4e2de75e24eda0a0ea6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ab7059d1746deaf07b546ee064ed81a" id="r_a9ab7059d1746deaf07b546ee064ed81a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__buffer_8h.html#a9ab7059d1746deaf07b546ee064ed81a">CLOG_Buffer_save_constdef</a> (<a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer, <a class="el" href="structvector.html">const</a> <a class="el" href="include_2clog__commset_8h.html#a2a72179bb68215dd33f4147550bcaf71">CLOG_CommIDs_t</a> *commIDs, <a class="el" href="include_2clog__commset_8h.html#ab1730371cde7a7a9acb878e705d70bc1">CLOG_ThreadLID_t</a> <a class="el" href="structvector.html">thd</a>, <a class="el" href="structvector.html">int</a> etype, <a class="el" href="structvector.html">int</a> value, <a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *name)</td></tr>
+<tr class="separator:a9ab7059d1746deaf07b546ee064ed81a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aced4992ee74ab5fe9578ea9d7a9b654a" id="r_aced4992ee74ab5fe9578ea9d7a9b654a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__buffer_8h.html#aced4992ee74ab5fe9578ea9d7a9b654a">CLOG_Buffer_save_bareevt_0chk</a> (<a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer, <a class="el" href="structvector.html">const</a> <a class="el" href="include_2clog__commset_8h.html#a2a72179bb68215dd33f4147550bcaf71">CLOG_CommIDs_t</a> *commIDs, <a class="el" href="include_2clog__commset_8h.html#ab1730371cde7a7a9acb878e705d70bc1">CLOG_ThreadLID_t</a> <a class="el" href="structvector.html">thd</a>, <a class="el" href="structvector.html">int</a> etype)</td></tr>
+<tr class="separator:aced4992ee74ab5fe9578ea9d7a9b654a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c8633ea80d9ab4a7043e210bc292336" id="r_a0c8633ea80d9ab4a7043e210bc292336"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__buffer_8h.html#a0c8633ea80d9ab4a7043e210bc292336">CLOG_Buffer_save_bareevt</a> (<a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer, <a class="el" href="structvector.html">const</a> <a class="el" href="include_2clog__commset_8h.html#a2a72179bb68215dd33f4147550bcaf71">CLOG_CommIDs_t</a> *commIDs, <a class="el" href="include_2clog__commset_8h.html#ab1730371cde7a7a9acb878e705d70bc1">CLOG_ThreadLID_t</a> <a class="el" href="structvector.html">thd</a>, <a class="el" href="structvector.html">int</a> etype)</td></tr>
+<tr class="separator:a0c8633ea80d9ab4a7043e210bc292336"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6105ac9fb55dd8abc720f76f66019511" id="r_a6105ac9fb55dd8abc720f76f66019511"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__buffer_8h.html#a6105ac9fb55dd8abc720f76f66019511">CLOG_Buffer_save_cargoevt</a> (<a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer, <a class="el" href="structvector.html">const</a> <a class="el" href="include_2clog__commset_8h.html#a2a72179bb68215dd33f4147550bcaf71">CLOG_CommIDs_t</a> *commIDs, <a class="el" href="include_2clog__commset_8h.html#ab1730371cde7a7a9acb878e705d70bc1">CLOG_ThreadLID_t</a> <a class="el" href="structvector.html">thd</a>, <a class="el" href="structvector.html">int</a> etype, <a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *bytes)</td></tr>
+<tr class="separator:a6105ac9fb55dd8abc720f76f66019511"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd7c571321f484e56e9b6b5501be0809" id="r_afd7c571321f484e56e9b6b5501be0809"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__buffer_8h.html#afd7c571321f484e56e9b6b5501be0809">CLOG_Buffer_save_msgevt</a> (<a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer, <a class="el" href="structvector.html">const</a> <a class="el" href="include_2clog__commset_8h.html#a2a72179bb68215dd33f4147550bcaf71">CLOG_CommIDs_t</a> *commIDs, <a class="el" href="include_2clog__commset_8h.html#ab1730371cde7a7a9acb878e705d70bc1">CLOG_ThreadLID_t</a> <a class="el" href="structvector.html">thd</a>, <a class="el" href="structvector.html">int</a> etype, <a class="el" href="structvector.html">int</a> tag, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">remote_rank</a>, <a class="el" href="structvector.html">int</a> size)</td></tr>
+<tr class="separator:afd7c571321f484e56e9b6b5501be0809"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6094cd62c81c417b77fb50d84f854d8a" id="r_a6094cd62c81c417b77fb50d84f854d8a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__buffer_8h.html#a6094cd62c81c417b77fb50d84f854d8a">CLOG_Buffer_save_collevt</a> (<a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer, <a class="el" href="structvector.html">const</a> <a class="el" href="include_2clog__commset_8h.html#a2a72179bb68215dd33f4147550bcaf71">CLOG_CommIDs_t</a> *commIDs, <a class="el" href="include_2clog__commset_8h.html#ab1730371cde7a7a9acb878e705d70bc1">CLOG_ThreadLID_t</a> <a class="el" href="structvector.html">thd</a>, <a class="el" href="structvector.html">int</a> etype, <a class="el" href="structvector.html">int</a> root, <a class="el" href="structvector.html">int</a> size)</td></tr>
+<tr class="separator:a6094cd62c81c417b77fb50d84f854d8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b5dc036d4ab9dca7be2edf7f64026e2" id="r_a9b5dc036d4ab9dca7be2edf7f64026e2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__buffer_8h.html#a9b5dc036d4ab9dca7be2edf7f64026e2">CLOG_Buffer_save_commevt</a> (<a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer, <a class="el" href="structvector.html">const</a> <a class="el" href="include_2clog__commset_8h.html#a2a72179bb68215dd33f4147550bcaf71">CLOG_CommIDs_t</a> *commIDs, <a class="el" href="include_2clog__commset_8h.html#ab1730371cde7a7a9acb878e705d70bc1">CLOG_ThreadLID_t</a> <a class="el" href="structvector.html">thd</a>, <a class="el" href="structvector.html">int</a> etype, <a class="el" href="structvector.html">const</a> <a class="el" href="include_2clog__commset_8h.html#ad1982864dbfbcf1448e9c9bbf60ab255">CLOG_CommGID_t</a> <a class="el" href="structvector.html">guid</a>, <a class="el" href="include_2clog__commset_8h.html#a14c3881e39ec388db26c63a1bb97b056">CLOG_CommLID_t</a> icomm, <a class="el" href="structvector.html">int</a> comm_rank, <a class="el" href="structvector.html">int</a> world_rank)</td></tr>
+<tr class="separator:a9b5dc036d4ab9dca7be2edf7f64026e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70816ff1273ae624280f78a71a4620a3" id="r_a70816ff1273ae624280f78a71a4620a3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__buffer_8h.html#a70816ff1273ae624280f78a71a4620a3">CLOG_Buffer_save_srcloc</a> (<a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer, <a class="el" href="structvector.html">const</a> <a class="el" href="include_2clog__commset_8h.html#a2a72179bb68215dd33f4147550bcaf71">CLOG_CommIDs_t</a> *commIDs, <a class="el" href="include_2clog__commset_8h.html#ab1730371cde7a7a9acb878e705d70bc1">CLOG_ThreadLID_t</a> <a class="el" href="structvector.html">thd</a>, <a class="el" href="structvector.html">int</a> srcloc, <a class="el" href="structvector.html">int</a> lineno, <a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *filename)</td></tr>
+<tr class="separator:a70816ff1273ae624280f78a71a4620a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad91c9e1b50ed13f1e2c9429dc7cc976f" id="r_ad91c9e1b50ed13f1e2c9429dc7cc976f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__buffer_8h.html#ad91c9e1b50ed13f1e2c9429dc7cc976f">CLOG_Buffer_save_timeshift</a> (<a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer, <a class="el" href="structvector.html">const</a> <a class="el" href="include_2clog__commset_8h.html#a2a72179bb68215dd33f4147550bcaf71">CLOG_CommIDs_t</a> *commIDs, <a class="el" href="include_2clog__commset_8h.html#ab1730371cde7a7a9acb878e705d70bc1">CLOG_ThreadLID_t</a> <a class="el" href="structvector.html">thd</a>, <a class="el" href="clog__timer_8h.html#abf0f7e46df13fdbacdb7a819cf12267d">CLOG_Time_t</a> timeshift)</td></tr>
+<tr class="separator:ad91c9e1b50ed13f1e2c9429dc7cc976f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Макросы</h2>
+<a id="a9732a3cbed113742caded9272e732530" name="a9732a3cbed113742caded9272e732530"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9732a3cbed113742caded9272e732530">&#9670;&#160;</a></span>CLOG_DEFAULT_BLOCK_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> CLOG_DEFAULT_BLOCK_SIZE&#160;&#160;&#160;65536</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="clog__buffer_8h_source.html">clog_buffer.h</a> строка <a class="el" href="clog__buffer_8h_source.html#l00022">22</a></p>
+
+</div>
+</div>
+<a id="acc38a9155f79bb053aed3a533de9ad06" name="acc38a9155f79bb053aed3a533de9ad06"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc38a9155f79bb053aed3a533de9ad06">&#9670;&#160;</a></span>CLOG_DEFAULT_BUFFERED_BLOCKS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> CLOG_DEFAULT_BUFFERED_BLOCKS&#160;&#160;&#160;128</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="clog__buffer_8h_source.html">clog_buffer.h</a> строка <a class="el" href="clog__buffer_8h_source.html#l00023">23</a></p>
+
+</div>
+</div>
+<a id="ab1380272261a49e0c8c22589e3fe3d8f" name="ab1380272261a49e0c8c22589e3fe3d8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1380272261a49e0c8c22589e3fe3d8f">&#9670;&#160;</a></span>CLOG_INIT_AND_OFF</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> CLOG_INIT_AND_OFF&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="clog__buffer_8h_source.html">clog_buffer.h</a> строка <a class="el" href="clog__buffer_8h_source.html#l00033">33</a></p>
+
+</div>
+</div>
+<a id="a131564e278e0564a22b1245390fb7939" name="a131564e278e0564a22b1245390fb7939"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a131564e278e0564a22b1245390fb7939">&#9670;&#160;</a></span>CLOG_INIT_AND_ON</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> CLOG_INIT_AND_ON&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="clog__buffer_8h_source.html">clog_buffer.h</a> строка <a class="el" href="clog__buffer_8h_source.html#l00032">32</a></p>
+
+</div>
+</div>
+<a id="a14d62d9eade0d83efacb517ab02baeac" name="a14d62d9eade0d83efacb517ab02baeac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a14d62d9eade0d83efacb517ab02baeac">&#9670;&#160;</a></span>CLOG_UNINIT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> CLOG_UNINIT&#160;&#160;&#160;2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="clog__buffer_8h_source.html">clog_buffer.h</a> строка <a class="el" href="clog__buffer_8h_source.html#l00034">34</a></p>
+
+</div>
+</div>
+<h2 class="groupheader">Функции</h2>
+<a id="ae539ce2c3dbcf97aa535ef6c4dffd7ef" name="ae539ce2c3dbcf97aa535ef6c4dffd7ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae539ce2c3dbcf97aa535ef6c4dffd7ef">&#9670;&#160;</a></span>CLOG_Buffer_advance_block()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Buffer_advance_block </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *&#160;</td>
+          <td class="paramname"><em>buffer</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af5a79471e5987131ea3b4f5480c46b04" name="af5a79471e5987131ea3b4f5480c46b04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5a79471e5987131ea3b4f5480c46b04">&#9670;&#160;</a></span>CLOG_Buffer_create()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> * CLOG_Buffer_create </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3657c442f8e71b6dd2de7b327a5b7f10" name="a3657c442f8e71b6dd2de7b327a5b7f10"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3657c442f8e71b6dd2de7b327a5b7f10">&#9670;&#160;</a></span>CLOG_Buffer_env_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Buffer_env_init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *&#160;</td>
+          <td class="paramname"><em>buffer</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a639b18f47b33765fb73ffdca62cf8ee2" name="a639b18f47b33765fb73ffdca62cf8ee2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a639b18f47b33765fb73ffdca62cf8ee2">&#9670;&#160;</a></span>CLOG_Buffer_free()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Buffer_free </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> **&#160;</td>
+          <td class="paramname"><em>buffer_handle</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae7ae0cb153ee5aef30252f8e42667e58" name="ae7ae0cb153ee5aef30252f8e42667e58"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7ae0cb153ee5aef30252f8e42667e58">&#9670;&#160;</a></span>CLOG_Buffer_init4write()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Buffer_init4write </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>local_tmpfile_name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8735b1faeca61eb73a33dd455a345b92" name="a8735b1faeca61eb73a33dd455a345b92"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8735b1faeca61eb73a33dd455a345b92">&#9670;&#160;</a></span>CLOG_Buffer_init_timeshift()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Buffer_init_timeshift </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *&#160;</td>
+          <td class="paramname"><em>buffer</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6f9b0c254526af02038bc2d4a85789d1" name="a6f9b0c254526af02038bc2d4a85789d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f9b0c254526af02038bc2d4a85789d1">&#9670;&#160;</a></span>CLOG_Buffer_localIO_finalize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Buffer_localIO_finalize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *&#160;</td>
+          <td class="paramname"><em>buffer</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acf98bd51225f84de520a6e213eeb4e36" name="acf98bd51225f84de520a6e213eeb4e36"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf98bd51225f84de520a6e213eeb4e36">&#9670;&#160;</a></span>CLOG_Buffer_localIO_flush()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Buffer_localIO_flush </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *&#160;</td>
+          <td class="paramname"><em>buffer</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a946c3543446c1cb9ef380c76c3d09afb" name="a946c3543446c1cb9ef380c76c3d09afb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a946c3543446c1cb9ef380c76c3d09afb">&#9670;&#160;</a></span>CLOG_Buffer_localIO_ftell()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">off_t</a> CLOG_Buffer_localIO_ftell </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *&#160;</td>
+          <td class="paramname"><em>buffer</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa9ccd5c356877e7cb679fddf537e965a" name="aa9ccd5c356877e7cb679fddf537e965a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9ccd5c356877e7cb679fddf537e965a">&#9670;&#160;</a></span>CLOG_Buffer_localIO_init4write()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Buffer_localIO_init4write </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *&#160;</td>
+          <td class="paramname"><em>buffer</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a076ad6b0f794d6d77279625f2ddb9dab" name="a076ad6b0f794d6d77279625f2ddb9dab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a076ad6b0f794d6d77279625f2ddb9dab">&#9670;&#160;</a></span>CLOG_Buffer_localIO_read()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Buffer_localIO_read </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *&#160;</td>
+          <td class="paramname"><em>buffer</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae4f94a3e291ad8f30f77b45ec80058fb" name="ae4f94a3e291ad8f30f77b45ec80058fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4f94a3e291ad8f30f77b45ec80058fb">&#9670;&#160;</a></span>CLOG_Buffer_localIO_reinit4read()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Buffer_localIO_reinit4read </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *&#160;</td>
+          <td class="paramname"><em>buffer</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4dbbe795c09654cbfacdb7beb8ba83e8" name="a4dbbe795c09654cbfacdb7beb8ba83e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4dbbe795c09654cbfacdb7beb8ba83e8">&#9670;&#160;</a></span>CLOG_Buffer_localIO_write()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Buffer_localIO_write </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *&#160;</td>
+          <td class="paramname"><em>buffer</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0c8633ea80d9ab4a7043e210bc292336" name="a0c8633ea80d9ab4a7043e210bc292336"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c8633ea80d9ab4a7043e210bc292336">&#9670;&#160;</a></span>CLOG_Buffer_save_bareevt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Buffer_save_bareevt </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="include_2clog__commset_8h.html#a2a72179bb68215dd33f4147550bcaf71">CLOG_CommIDs_t</a> *&#160;</td>
+          <td class="paramname"><em>commIDs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="include_2clog__commset_8h.html#ab1730371cde7a7a9acb878e705d70bc1">CLOG_ThreadLID_t</a>&#160;</td>
+          <td class="paramname"><em>thd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>etype</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aced4992ee74ab5fe9578ea9d7a9b654a" name="aced4992ee74ab5fe9578ea9d7a9b654a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aced4992ee74ab5fe9578ea9d7a9b654a">&#9670;&#160;</a></span>CLOG_Buffer_save_bareevt_0chk()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Buffer_save_bareevt_0chk </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="include_2clog__commset_8h.html#a2a72179bb68215dd33f4147550bcaf71">CLOG_CommIDs_t</a> *&#160;</td>
+          <td class="paramname"><em>commIDs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="include_2clog__commset_8h.html#ab1730371cde7a7a9acb878e705d70bc1">CLOG_ThreadLID_t</a>&#160;</td>
+          <td class="paramname"><em>thd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>etype</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6105ac9fb55dd8abc720f76f66019511" name="a6105ac9fb55dd8abc720f76f66019511"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6105ac9fb55dd8abc720f76f66019511">&#9670;&#160;</a></span>CLOG_Buffer_save_cargoevt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Buffer_save_cargoevt </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="include_2clog__commset_8h.html#a2a72179bb68215dd33f4147550bcaf71">CLOG_CommIDs_t</a> *&#160;</td>
+          <td class="paramname"><em>commIDs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="include_2clog__commset_8h.html#ab1730371cde7a7a9acb878e705d70bc1">CLOG_ThreadLID_t</a>&#160;</td>
+          <td class="paramname"><em>thd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>etype</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>bytes</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6094cd62c81c417b77fb50d84f854d8a" name="a6094cd62c81c417b77fb50d84f854d8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6094cd62c81c417b77fb50d84f854d8a">&#9670;&#160;</a></span>CLOG_Buffer_save_collevt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Buffer_save_collevt </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="include_2clog__commset_8h.html#a2a72179bb68215dd33f4147550bcaf71">CLOG_CommIDs_t</a> *&#160;</td>
+          <td class="paramname"><em>commIDs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="include_2clog__commset_8h.html#ab1730371cde7a7a9acb878e705d70bc1">CLOG_ThreadLID_t</a>&#160;</td>
+          <td class="paramname"><em>thd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>etype</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>root</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9b5dc036d4ab9dca7be2edf7f64026e2" name="a9b5dc036d4ab9dca7be2edf7f64026e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b5dc036d4ab9dca7be2edf7f64026e2">&#9670;&#160;</a></span>CLOG_Buffer_save_commevt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Buffer_save_commevt </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="include_2clog__commset_8h.html#a2a72179bb68215dd33f4147550bcaf71">CLOG_CommIDs_t</a> *&#160;</td>
+          <td class="paramname"><em>commIDs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="include_2clog__commset_8h.html#ab1730371cde7a7a9acb878e705d70bc1">CLOG_ThreadLID_t</a>&#160;</td>
+          <td class="paramname"><em>thd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>etype</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="include_2clog__commset_8h.html#ad1982864dbfbcf1448e9c9bbf60ab255">CLOG_CommGID_t</a>&#160;</td>
+          <td class="paramname"><em>guid</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="include_2clog__commset_8h.html#a14c3881e39ec388db26c63a1bb97b056">CLOG_CommLID_t</a>&#160;</td>
+          <td class="paramname"><em>icomm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>comm_rank</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>world_rank</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9ab7059d1746deaf07b546ee064ed81a" name="a9ab7059d1746deaf07b546ee064ed81a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ab7059d1746deaf07b546ee064ed81a">&#9670;&#160;</a></span>CLOG_Buffer_save_constdef()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Buffer_save_constdef </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="include_2clog__commset_8h.html#a2a72179bb68215dd33f4147550bcaf71">CLOG_CommIDs_t</a> *&#160;</td>
+          <td class="paramname"><em>commIDs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="include_2clog__commset_8h.html#ab1730371cde7a7a9acb878e705d70bc1">CLOG_ThreadLID_t</a>&#160;</td>
+          <td class="paramname"><em>thd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>etype</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0841e7dee22486a380219386b5380fef" name="a0841e7dee22486a380219386b5380fef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0841e7dee22486a380219386b5380fef">&#9670;&#160;</a></span>CLOG_Buffer_save_endblock()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Buffer_save_endblock </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *&#160;</td>
+          <td class="paramname"><em>buffer</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acfdb4728f3b7698be7291918f2c81ee0" name="acfdb4728f3b7698be7291918f2c81ee0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acfdb4728f3b7698be7291918f2c81ee0">&#9670;&#160;</a></span>CLOG_Buffer_save_endlog()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Buffer_save_endlog </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *&#160;</td>
+          <td class="paramname"><em>buffer</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8bec4f8fa8e4c4e2de75e24eda0a0ea6" name="a8bec4f8fa8e4c4e2de75e24eda0a0ea6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8bec4f8fa8e4c4e2de75e24eda0a0ea6">&#9670;&#160;</a></span>CLOG_Buffer_save_eventdef()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Buffer_save_eventdef </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="include_2clog__commset_8h.html#a2a72179bb68215dd33f4147550bcaf71">CLOG_CommIDs_t</a> *&#160;</td>
+          <td class="paramname"><em>commIDs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="include_2clog__commset_8h.html#ab1730371cde7a7a9acb878e705d70bc1">CLOG_ThreadLID_t</a>&#160;</td>
+          <td class="paramname"><em>thd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>etype</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>color</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>format</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0af7f971b8292e07653b90ba2da1b4d4" name="a0af7f971b8292e07653b90ba2da1b4d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0af7f971b8292e07653b90ba2da1b4d4">&#9670;&#160;</a></span>CLOG_Buffer_save_header()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Buffer_save_header </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="include_2clog__commset_8h.html#a2a72179bb68215dd33f4147550bcaf71">CLOG_CommIDs_t</a> *&#160;</td>
+          <td class="paramname"><em>commIDs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="include_2clog__commset_8h.html#ab1730371cde7a7a9acb878e705d70bc1">CLOG_ThreadLID_t</a>&#160;</td>
+          <td class="paramname"><em>thd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>rectype</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac23cefae25afda01a2b2250054f30e55" name="ac23cefae25afda01a2b2250054f30e55"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac23cefae25afda01a2b2250054f30e55">&#9670;&#160;</a></span>CLOG_Buffer_save_header_0chk()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Buffer_save_header_0chk </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="include_2clog__commset_8h.html#a2a72179bb68215dd33f4147550bcaf71">CLOG_CommIDs_t</a> *&#160;</td>
+          <td class="paramname"><em>commIDs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="include_2clog__commset_8h.html#ab1730371cde7a7a9acb878e705d70bc1">CLOG_ThreadLID_t</a>&#160;</td>
+          <td class="paramname"><em>thd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>rectype</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afd7c571321f484e56e9b6b5501be0809" name="afd7c571321f484e56e9b6b5501be0809"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd7c571321f484e56e9b6b5501be0809">&#9670;&#160;</a></span>CLOG_Buffer_save_msgevt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Buffer_save_msgevt </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="include_2clog__commset_8h.html#a2a72179bb68215dd33f4147550bcaf71">CLOG_CommIDs_t</a> *&#160;</td>
+          <td class="paramname"><em>commIDs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="include_2clog__commset_8h.html#ab1730371cde7a7a9acb878e705d70bc1">CLOG_ThreadLID_t</a>&#160;</td>
+          <td class="paramname"><em>thd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>etype</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>tag</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>remote_rank</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a70816ff1273ae624280f78a71a4620a3" name="a70816ff1273ae624280f78a71a4620a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70816ff1273ae624280f78a71a4620a3">&#9670;&#160;</a></span>CLOG_Buffer_save_srcloc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Buffer_save_srcloc </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="include_2clog__commset_8h.html#a2a72179bb68215dd33f4147550bcaf71">CLOG_CommIDs_t</a> *&#160;</td>
+          <td class="paramname"><em>commIDs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="include_2clog__commset_8h.html#ab1730371cde7a7a9acb878e705d70bc1">CLOG_ThreadLID_t</a>&#160;</td>
+          <td class="paramname"><em>thd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>srcloc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>lineno</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>filename</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ace6c26fa665c5540e450310070dbb56a" name="ace6c26fa665c5540e450310070dbb56a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace6c26fa665c5540e450310070dbb56a">&#9670;&#160;</a></span>CLOG_Buffer_save_statedef()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Buffer_save_statedef </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="include_2clog__commset_8h.html#a2a72179bb68215dd33f4147550bcaf71">CLOG_CommIDs_t</a> *&#160;</td>
+          <td class="paramname"><em>commIDs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="include_2clog__commset_8h.html#ab1730371cde7a7a9acb878e705d70bc1">CLOG_ThreadLID_t</a>&#160;</td>
+          <td class="paramname"><em>thd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>stateID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>startetype</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>finaletype</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>color</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>format</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad91c9e1b50ed13f1e2c9429dc7cc976f" name="ad91c9e1b50ed13f1e2c9429dc7cc976f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad91c9e1b50ed13f1e2c9429dc7cc976f">&#9670;&#160;</a></span>CLOG_Buffer_save_timeshift()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Buffer_save_timeshift </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="include_2clog__commset_8h.html#a2a72179bb68215dd33f4147550bcaf71">CLOG_CommIDs_t</a> *&#160;</td>
+          <td class="paramname"><em>commIDs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="include_2clog__commset_8h.html#ab1730371cde7a7a9acb878e705d70bc1">CLOG_ThreadLID_t</a>&#160;</td>
+          <td class="paramname"><em>thd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="clog__timer_8h.html#abf0f7e46df13fdbacdb7a819cf12267d">CLOG_Time_t</a>&#160;</td>
+          <td class="paramname"><em>timeshift</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae58e40be47deb80cdd874ef46e8bb1bc" name="ae58e40be47deb80cdd874ef46e8bb1bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae58e40be47deb80cdd874ef46e8bb1bc">&#9670;&#160;</a></span>CLOG_Buffer_set_timeshift()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Buffer_set_timeshift </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="clog__timer_8h.html#abf0f7e46df13fdbacdb7a819cf12267d">CLOG_Time_t</a>&#160;</td>
+          <td class="paramname"><em>new_timediff</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>init_next_timeshift</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

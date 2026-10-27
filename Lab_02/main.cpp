@@ -83,20 +83,38 @@ void initialize_grid(
     }
 }
 
+// ============================================================================
+// Добавьте эти переменные ПЕРЕД main() (глобально или в main)
+// ============================================================================
+
+// Переменные для профилирования
+double total_loop_time = 0.0;
+double total_compute_internal_time = 0.0;
+double total_wait_time = 0.0;
+double loop_start, loop_end;
+double compute_start, compute_end;
+double wait_start, wait_end;
+
+// ============================================================================
+// В ФУНКЦИИ jacobi_step добавьте параметры для возврата времени
+// ============================================================================
+
 void jacobi_step(
-    std::vector<double>& phi,
-    std::vector<double>& phi_new,
-    const DomainInfo& info,
-    int Nx,
-    int Ny,
-    int Nz,
-    double& max_diff
+        std::vector<double>& phi,
+        std::vector<double>& phi_new,
+        const DomainInfo& info,
+        int Nx,
+        int Ny,
+        int Nz,
+        double& max_diff,
+        double& compute_time,    // НОВЫЙ параметр
+        double& wait_time        // НОВЫЙ параметр
 )
 {
     int stride_y = info.local_nz + 2;
     int stride_x = (info.local_ny + 2) * stride_y;
 
-    // Буферы для обмена (размеры соответствуют граням без ghost-слоев)
+    // Буферы для обмена...
     std::vector<double> send_left(info.local_ny * info.local_nz);
     std::vector<double> recv_left(info.local_ny * info.local_nz);
     std::vector<double> send_right(info.local_ny * info.local_nz);
@@ -110,11 +128,12 @@ void jacobi_step(
     int req_count = 0;
     max_diff = 0.0;
 
-    // ЭТАП 1: Упаковка и запуск обменов
-//    MPE_Log_event(evt_begin_halo, 0, "start");
+//    double phase_start, phase_end;
+    double local_compute_time = 0.0;
+    double local_wait_time = 0.0;
 
     // ------------------------------------------------------------------------
-    // ЭТАП 1: Упаковка данных и запуск асинхронных обменов (Non-blocking)
+    // ЭТАП 1: Упаковка данных и запуск асинхронных обменов
     // ------------------------------------------------------------------------
 #pragma omp parallel for collapse(2)
     for (int j = 0; j < info.local_ny; ++j) {
@@ -139,13 +158,12 @@ void jacobi_step(
     MPI_Irecv(recv_top.data(), info.local_nx * info.local_nz, MPI_DOUBLE, info.top, 3, info.cart_comm, &requests[req_count++]);
     MPI_Isend(send_bottom.data(), info.local_nx * info.local_nz, MPI_DOUBLE, info.bottom, 3, info.cart_comm, &requests[req_count++]);
     MPI_Isend(send_top.data(), info.local_nx * info.local_nz, MPI_DOUBLE, info.top, 2, info.cart_comm, &requests[req_count++]);
-//    MPE_Log_event(evt_end_halo, 0, "end");
+
     // ------------------------------------------------------------------------
-    // ЭТАП 2: Вычисление ВНУТРЕННИХ точек (Перекрытие с коммуникациями!)
+    // ЭТАП 2: Вычисление ВНУТРЕННИХ точек (ЗАМЕР ВРЕМЕНИ)
     // ------------------------------------------------------------------------
-    // Эти точки не зависят от ghost-слоев, поэтому их можно считать, пока данные летят по сети.
-    // ЭТАП 2: Вычисление ВНУТРЕННИХ точек
-//    MPE_Log_event(evt_begin_comp_int, 0, "start");
+    compute_start = MPI_Wtime();
+
 #pragma omp parallel for collapse(3) reduction(max:max_diff)
     for (int i = 2; i < info.local_nx; ++i) {
         for (int j = 2; j < info.local_ny; ++j) {
@@ -171,17 +189,20 @@ void jacobi_step(
             }
         }
     }
-//    MPE_Log_event(evt_end_comp_int, 0, "end");
-    // ------------------------------------------------------------------------
-    // ЭТАП 3: Ожидание завершения всех обменов
-    // ------------------------------------------------------------------------
-    // ЭТАП 3: Ожидание
-//    MPE_Log_event(evt_begin_wait, 0, "start");
-    MPI_Waitall(req_count, requests.data(), MPI_STATUSES_IGNORE);
-//    MPE_Log_event(evt_end_wait, 0, "end");
 
-    // ЭТАП 4 и 5: Распаковка и ГРАНИЧНЫЕ точки
-//    MPE_Log_event(evt_begin_comp_bnd, 0, "start");
+    compute_end = MPI_Wtime();
+    local_compute_time = compute_end - compute_start;
+
+    // ------------------------------------------------------------------------
+    // ЭТАП 3: Ожидание завершения всех обменов (ЗАМЕР ВРЕМЕНИ)
+    // ------------------------------------------------------------------------
+    wait_start = MPI_Wtime();
+
+    MPI_Waitall(req_count, requests.data(), MPI_STATUSES_IGNORE);
+
+    wait_end = MPI_Wtime();
+    local_wait_time = wait_end - wait_start;
+
     // ------------------------------------------------------------------------
     // ЭТАП 4: Распаковка полученных данных в ghost-слои
     // ------------------------------------------------------------------------
@@ -203,12 +224,10 @@ void jacobi_step(
     // ------------------------------------------------------------------------
     // ЭТАП 5: Вычисление ГРАНИЧНЫХ точек локальной подобласти
     // ------------------------------------------------------------------------
-    // Теперь, когда ghost-слои обновлены, можно посчитать точки на границе локального блока.
 #pragma omp parallel for collapse(3) reduction(max:max_diff)
     for (int i = 1; i <= info.local_nx; ++i) {
         for (int j = 1; j <= info.local_ny; ++j) {
             for (int k = 1; k <= info.local_nz; ++k) {
-                // Пропускаем внутренние точки, они уже посчитаны на Этапе 2
                 if (i > 1 && i < info.local_nx && j > 1 && j < info.local_ny) continue;
 
                 int idx = i * stride_x + j * stride_y + k;
@@ -216,7 +235,6 @@ void jacobi_step(
                 int gj = info.coords[1] * info.local_ny + (j - 1);
                 int gk = k - 1;
 
-                // Глобальные границы не перевычисляются, они зафиксированы
                 if (gi == 0 || gi == Nx || gj == 0 || gj == Ny || gk == 0 || gk == Nz) continue;
 
                 double x = X0 + gi * info.hx;
@@ -235,12 +253,16 @@ void jacobi_step(
             }
         }
     }
-//    MPE_Log_event(evt_end_comp_bnd, 0, "end");
+
+    // Возвращаем времена через параметры
+    compute_time = local_compute_time;
+    wait_time = local_wait_time;
 }
 
 // ============================================================================
-// Главная функция
+// В ФУНКЦИИ main() модифицируем цикл и добавляем вывод статистики
 // ============================================================================
+
 int main(int argc, char** argv) {
     MPI_Init(&argc, &argv);
 
@@ -248,7 +270,7 @@ int main(int argc, char** argv) {
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
     MPI_Comm_size(MPI_COMM_WORLD, &size);
 
-    // Размеры глобальной сетки
+    // Размеры глобальной сетки...
     int Nx = 128, Ny = 128, Nz = 128;
     if (argc > 3) {
         Nx = get_int_arg(argc, argv, 1, 128);
@@ -265,9 +287,9 @@ int main(int argc, char** argv) {
         return 1;
     }
 
-    // Создание 2D декартовой топологии
+    // Создание 2D декартовой топологии...
     int dims[2] = {0, 0};
-    int periods[2] = {0, 0}; // <-- ИСПРАВЛЕНО: 0 означает непериодические границы (Дирихле)
+    int periods[2] = {0, 0};
     MPI_Dims_create(size, 2, dims);
 
     if (dims[0] <= 0 || dims[1] <= 0) {
@@ -282,32 +304,13 @@ int main(int argc, char** argv) {
     DomainInfo info{};
     MPI_Cart_create(MPI_COMM_WORLD, 2, dims, periods, 1, &info.cart_comm);
 
-	// Инициализация лога MPE
-//	MPE_Init_log();
-
-	// Получаем уникальные ID для наших фаз (вызывается на всех процессах синхронно)
-//	evt_begin_halo = MPE_Log_get_event_number();
-//	evt_end_halo = MPE_Log_get_event_number();
-//	evt_begin_comp_int = MPE_Log_get_event_number();
-//	evt_end_comp_int = MPE_Log_get_event_number();
-//	evt_begin_wait = MPE_Log_get_event_number();
-//	evt_end_wait = MPE_Log_get_event_number();
-//	evt_begin_comp_bnd = MPE_Log_get_event_number();
-//	evt_end_comp_bnd = MPE_Log_get_event_number();
-
-	// Описываем состояния (название и цвет для Jumpshot)
-//	MPE_Describe_state(evt_begin_halo, evt_end_halo, "1_Halo_Exchange", "red");
-//	MPE_Describe_state(evt_begin_comp_int, evt_end_comp_int, "2_Compute_Internal", "green");
-//	MPE_Describe_state(evt_begin_wait, evt_end_wait, "3_Waitall", "blue");
-//	MPE_Describe_state(evt_begin_comp_bnd, evt_end_comp_bnd, "4_Compute_Boundary", "yellow");
-
     int cart_rank;
     MPI_Comm_rank(info.cart_comm, &cart_rank);
     MPI_Cart_coords(info.cart_comm, cart_rank, 2, info.coords);
     MPI_Cart_shift(info.cart_comm, 0, 1, &info.left, &info.right);
     MPI_Cart_shift(info.cart_comm, 1, 1, &info.bottom, &info.top);
 
-    // Расчёт локальных размеров и шагов сетки
+    // Расчёт локальных размеров и шагов сетки...
     info.local_nx = Nx / dims[0];
     info.local_ny = Ny / dims[1];
     info.local_nz = Nz;
@@ -335,7 +338,7 @@ int main(int argc, char** argv) {
         return 1;
     }
 
-    // Выделение памяти с ghost-слоями: [local_nx + 2][local_ny + 2][local_nz + 2]
+    // Выделение памяти...
     int stride_y = info.local_nz + 2;
     int stride_x = (info.local_ny + 2) * stride_y;
     int total_size = (info.local_nx + 2) * stride_x;
@@ -343,22 +346,36 @@ int main(int argc, char** argv) {
     std::vector<double> phi(total_size, 0.0);
     std::vector<double> phi_new(total_size, 0.0);
 
-    // Инициализация
+    // Инициализация...
     if (rank == 0) {
         std::cout << "Запуск расчета: сетка " << Nx << "x" << Ny << "x" << Nz
                   << " на " << size << " MPI процессах." << std::endl;
     }
     initialize_grid(phi, phi_new, info, Nx, Ny, Nz);
 
-    // Итерационный процесс
-    auto start_chrono_time = std::chrono::high_resolution_clock::now();
-    double start_omp_time = omp_get_wtime();
-    double start_mpi_time = MPI_Wtime();
+    // ========================================================================
+    // ПЕРЕМЕННЫЕ ДЛЯ ПРОФИЛИРОВАНИЯ
+    // ========================================================================
+    double total_loop_time = 0.0;
+    double total_compute_time = 0.0;
+    double total_wait_time = 0.0;
     int iter = 0;
     double max_diff = 1.0;
 
+    double loop_start, loop_end;
+    double step_compute_time, step_wait_time;
+
+    // ========================================================================
+    // ИТЕРАЦИОННЫЙ ПРОЦЕСС С ПРОФИЛИРОВАНИЕМ
+    // ========================================================================
+    auto start_chrono_time = std::chrono::high_resolution_clock::now();
+    double start_omp_time = omp_get_wtime();
+    double start_mpi_time = MPI_Wtime();
+
     while (max_diff > EPSILON && iter < MAX_ITER) {
-        jacobi_step(phi, phi_new, info, Nx, Ny, Nz, max_diff);
+        loop_start = MPI_Wtime();
+
+        jacobi_step(phi, phi_new, info, Nx, Ny, Nz, max_diff, step_compute_time, step_wait_time);
 
         // Глобальный сбор максимальной невязки
         double global_max_diff;
@@ -371,6 +388,13 @@ int main(int argc, char** argv) {
             phi[idx] = phi_new[idx];
         }
 
+        loop_end = MPI_Wtime();
+
+        // Накопление времен
+        total_loop_time += (loop_end - loop_start);
+        total_compute_time += step_compute_time;
+        total_wait_time += step_wait_time;
+
         iter++;
     }
 
@@ -382,9 +406,20 @@ int main(int argc, char** argv) {
     double omp_elapsed_time = end_omp_time - start_omp_time;
     double elapsed_mpi_time = end_mpi_time - start_mpi_time;
 
-    double tick = omp_get_wtick();
+    // ========================================================================
+    // СБОР СТАТИСТИКИ СО ВСЕХ ПРОЦЕССОВ
+    // ========================================================================
+    double global_total_loop_time, global_total_compute_time, global_max_wait_time;
 
-    // Вычисление точности решения (максимальное отклонение от точного решения)
+    // Суммируем время цикла со всех процессов
+    MPI_Reduce(&total_loop_time, &global_total_loop_time, 1, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
+    MPI_Reduce(&total_compute_time, &global_total_compute_time, 1, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
+    MPI_Reduce(&total_wait_time, &global_max_wait_time, 1, MPI_DOUBLE, MPI_MAX, 0, MPI_COMM_WORLD);
+
+    // Вычисляем среднее время вычислений на процесс
+    double avg_compute_time = global_total_compute_time / size;
+
+    // Вычисление точности решения...
     double max_error = 0.0;
 
 #pragma omp parallel for collapse(3) reduction(max:max_error)
@@ -392,8 +427,6 @@ int main(int argc, char** argv) {
         for (int j = 1; j <= info.local_ny; ++j) {
             for (int k = 1; k <= info.local_nz; ++k) {
                 int idx = i * stride_x + j * stride_y + k;
-
-                // Глобальные координаты
                 int gi = info.coords[0] * info.local_nx + (i - 1);
                 int gj = info.coords[1] * info.local_ny + (j - 1);
                 int gk = k - 1;
@@ -402,31 +435,52 @@ int main(int argc, char** argv) {
                 double y = Y0 + gj * info.hy;
                 double z = Z0 + gk * info.hz;
 
-                // Точное решение
                 double phi_exact = exact_solution(x, y, z);
-
-                // Отклонение
                 double error = std::abs(phi[idx] - phi_exact);
                 if (error > max_error) max_error = error;
             }
         }
     }
 
-    // Глобальный сбор максимальной ошибки
     double global_max_error;
     MPI_Allreduce(&max_error, &global_max_error, 1, MPI_DOUBLE, MPI_MAX, MPI_COMM_WORLD);
-
+    // ========================================================================
+    // ВЫВОД ПРОФИЛИРОВАНИЯ (только с процесса 0)
+    // ========================================================================
     if (rank == 0) {
+        std::cout << "\n";
+        std::cout << "--- Profiling Results (N=" << Nx << ", Procs=" << size << ") ---" << std::endl;
+        std::cout << "Total iterations: " << iter << std::endl;
+        std::cout << "Total loop time: " << total_loop_time << " s" << std::endl;
+        std::cout << "Internal Compute: " << avg_compute_time << " s (avg per proc)" << std::endl;
+        std::cout << "Wait Time: " << global_max_wait_time << " s (max overhead)" << std::endl;
+
+        // Вычисляем эффективность перекрытия
+        double overlap_efficiency = 0.0;
+        if (total_loop_time > 0) {
+            overlap_efficiency = (avg_compute_time / total_loop_time) * 100.0;
+        }
+
+        std::cout << "Overlap Efficiency: " << overlap_efficiency << "%" << std::endl;
+
+        // Определяем статус
+        if (overlap_efficiency > 90.0) {
+            std::cout << "Status: SUCCESS. Communication is effectively hidden." << std::endl;
+        } else if (overlap_efficiency > 70.0) {
+            std::cout << "Status: GOOD. Some communication overhead visible." << std::endl;
+        } else {
+            std::cout << "Status: WARNING. Significant communication overhead." << std::endl;
+        }
+
+        std::cout << "\n";
         std::cout << "Конвергенция достигнута за " << iter << " итераций." << std::endl;
         std::cout << "Максимальная невязка: " << max_diff << std::endl;
         std::cout << "Максимальное отклонение от точного решения (Δ): " << global_max_error << "\n";
         std::cout << "Общее время счета (MPI TIME): " << elapsed_mpi_time << " sec." << std::endl;
         std::cout << "Общее время счета (Chrono TIME): " << chrono_elapsed_time.count() / 1000 << " sec." << std::endl;
         std::cout << "Общее время счета (OpenMP TIME) " << omp_elapsed_time << " sec." << std::endl;
-        std::cout << "Точность таймера: " << tick << " секунд" << std::endl;;
     }
 
-//    MPE_Finish_log("jacobi_profile.clog2");
     MPI_Comm_free(&info.cart_comm);
     MPI_Finalize();
     return 0;

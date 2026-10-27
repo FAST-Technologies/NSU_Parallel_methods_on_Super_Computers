@@ -1,0 +1,18 @@
+var searchData=
+[
+  ['b_0',['b',['../structrect.html#aaa94c7790074662fcc239bc93a3976b1',1,'rect']]],
+  ['background_1',['background',['../structXBWindow.html#af65b4fc9d276e7d21c0cf7befabbaba8',1,'XBWindow']]],
+  ['best_5fgpofst_2',['best_gpofst',['../structCLOG__Sync__t.html#aadb811f958c834d18acd51987dca9720',1,'CLOG_Sync_t']]],
+  ['block_5fsize_3',['block_size',['../structCLOG__Buffer__t.html#afa3eee20234aadde204d0c0432332546',1,'CLOG_Buffer_t::block_size'],['../structCLOG__Cache__t.html#a4dae1389f278b6bf88529466a381d31e',1,'CLOG_Cache_t::block_size'],['../structCLOG__Merger__t.html#a02c944cf18eb10f466dc6808aa0ce375',1,'CLOG_Merger_t::block_size'],['../structCLOG__Preamble__t.html#adfd2c671ae66377fa2883925bcfd1f04',1,'CLOG_Preamble_t::block_size']]],
+  ['blockdata_4',['blockdata',['../structCLOG__Cache__t.html#a2d686412e739fa152f105ab69295d0b6',1,'CLOG_Cache_t']]],
+  ['blogging_5',['bLogging',['../structRLOG__Struct.html#afe4ab8084a1e43b2a468c2e378904c6d',1,'RLOG_Struct']]],
+  ['blue_6',['blue',['../structTRACE__Category__head__t.html#a6255b76ab1a7955fde88fd6da8b09373',1,'TRACE_Category_head_t']]],
+  ['bottom_7',['bottom',['../structDomainInfo.html#a405c0af8de5d8988a0acf9c2788a7d5d',1,'DomainInfo']]],
+  ['boundary_5fsq_8',['boundary_sq',['../structMbrot__settings__.html#aedc2e40cd089d050b08d350736ea0c80',1,'Mbrot_settings_::boundary_sq'],['../struct__Flags.html#ae7164b29bae7f7d548ea02dd316475b3',1,'_Flags::boundary_sq'],['../structJulia__settings__.html#a09d2e3a7e6472bd7310925f906b0be9b',1,'Julia_settings_::boundary_sq']]],
+  ['box_9',['Box',['../structXBDecoration.html#a78700e55b6a002b7b57720545706288c',1,'XBDecoration']]],
+  ['breakout_10',['breakout',['../struct__Flags.html#a7b75ab801c3afccbd2826bf1c1db2e02',1,'_Flags']]],
+  ['buf_11',['buf',['../struct__MPE__Log__MBuf.html#a41e43e2baa9bf7edccae7a1453d0a11b',1,'_MPE_Log_MBuf']]],
+  ['buffer_12',['buffer',['../structMPE__CallStack.html#a012e8194ee09d7712cd9bb9d5aaf0305',1,'MPE_CallStack::buffer'],['../structCLOG__Stream__t.html#a84f1537cf2aa7a5624cf882f1cc32abb',1,'CLOG_Stream_t::buffer'],['../structIRLOG__IOStruct.html#abcd45360624b022ceaa1526702ebaef4',1,'IRLOG_IOStruct::buffer']]],
+  ['bw_13',['bw',['../struct__Winspecs.html#a7739b8b8f69717b6bde6f55d2cd7b0c3',1,'_Winspecs']]],
+  ['bytes_14',['bytes',['../structCLOG__Rec__CargoEvt__t.html#a7faba562428e2a1f2cfb403ca5a5d4ef',1,'CLOG_Rec_CargoEvt_t']]]
+];

@@ -1,0 +1,708 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lab_02: MPI + OpenMP Parallel Programming: Файл poisson_solver.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Lab_02: MPI + OpenMP Parallel Programming<span id="projectnumber">&#160;2.1</span>
+   </div>
+   <div id="projectbrief">Решение 3D уравнения Пуассона методом Якоби с двумерной декомпозицией</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Классы</a> &#124;
+<a href="#func-members">Функции</a> &#124;
+<a href="#var-members">Переменные</a>  </div>
+  <div class="headertitle"><div class="title">Файл poisson_solver.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Заголовочный файл для параллельного решателя уравнения Пуассона методом Якоби.  
+<a href="#details">Подробнее...</a></p>
+<div class="textblock"><code>#include &lt;mpi.h&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
+<code>#include &lt;array&gt;</code><br />
+</div>
+<p><a href="poisson__solver_8hpp_source.html">См. исходные тексты.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Классы</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structDomainInfo.html">DomainInfo</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Структура, хранящая параметры декомпозиции и сетки для текущего MPI-процесса.  <a href="structDomainInfo.html#details">Подробнее...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Функции</h2></td></tr>
+<tr class="memitem:a6917cbe5e834c30b17b5f0161ee1a611" id="r_a6917cbe5e834c30b17b5f0161ee1a611"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="poisson__solver_8hpp.html#a6917cbe5e834c30b17b5f0161ee1a611">exact_solution</a> (<a class="el" href="structvector.html">double</a> x, <a class="el" href="structvector.html">double</a> y, <a class="el" href="structvector.html">double</a> <a class="el" href="structvector.html">z</a>)</td></tr>
+<tr class="memdesc:a6917cbe5e834c30b17b5f0161ee1a611"><td class="mdescLeft">&#160;</td><td class="mdescRight">Точное аналитическое решение для контроля и граничных условий.  <br /></td></tr>
+<tr class="separator:a6917cbe5e834c30b17b5f0161ee1a611"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4e30aac664fbda86581981fba33464d" id="r_ad4e30aac664fbda86581981fba33464d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="poisson__solver_8hpp.html#ad4e30aac664fbda86581981fba33464d">rhs_function</a> (<a class="el" href="structvector.html">double</a> x, <a class="el" href="structvector.html">double</a> y, <a class="el" href="structvector.html">double</a> <a class="el" href="structvector.html">z</a>)</td></tr>
+<tr class="memdesc:ad4e30aac664fbda86581981fba33464d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Функция правой части уравнения Пуассона.  <br /></td></tr>
+<tr class="separator:ad4e30aac664fbda86581981fba33464d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9cde64d81680cf008f9bf093a8135605" id="r_a9cde64d81680cf008f9bf093a8135605"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="poisson__solver_8hpp.html#a9cde64d81680cf008f9bf093a8135605">get_int_arg</a> (<a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">argc</a>, <a class="el" href="structvector.html">char</a> **<a class="el" href="structvector.html">argv</a>, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">arg_index</a>, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">default_value</a>)</td></tr>
+<tr class="memdesc:a9cde64d81680cf008f9bf093a8135605"><td class="mdescLeft">&#160;</td><td class="mdescRight">Безопасное получение целочисленного аргумента из командной строки.  <br /></td></tr>
+<tr class="separator:a9cde64d81680cf008f9bf093a8135605"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adfa8b8f46ad4621c3d8863611b067354" id="r_adfa8b8f46ad4621c3d8863611b067354"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="poisson__solver_8hpp.html#adfa8b8f46ad4621c3d8863611b067354">initialize_grid</a> (std::vector&lt; <a class="el" href="structvector.html">double</a> &gt; &amp;<a class="el" href="structvector.html">phi</a>, <a class="el" href="structvector.html">const</a> <a class="el" href="structDomainInfo.html">DomainInfo</a> &amp;<a class="el" href="structvector.html">info</a>, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">Nx</a>, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">Ny</a>, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">Nz</a>)</td></tr>
+<tr class="memdesc:adfa8b8f46ad4621c3d8863611b067354"><td class="mdescLeft">&#160;</td><td class="mdescRight">Инициализация сетки: задание граничных условий и начального приближения.  <br /></td></tr>
+<tr class="separator:adfa8b8f46ad4621c3d8863611b067354"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ee58cad3e8ca484a391cc45104af378" id="r_a4ee58cad3e8ca484a391cc45104af378"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="poisson__solver_8hpp.html#a4ee58cad3e8ca484a391cc45104af378">jacobi_step</a> (std::vector&lt; <a class="el" href="structvector.html">double</a> &gt; &amp;<a class="el" href="structvector.html">phi</a>, std::vector&lt; <a class="el" href="structvector.html">double</a> &gt; &amp;<a class="el" href="structvector.html">phi_new</a>, <a class="el" href="structvector.html">const</a> <a class="el" href="structDomainInfo.html">DomainInfo</a> &amp;<a class="el" href="structvector.html">info</a>, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">Nx</a>, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">Ny</a>, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">Nz</a>, <a class="el" href="structvector.html">double</a> &amp;<a class="el" href="structvector.html">max_diff</a>)</td></tr>
+<tr class="memdesc:a4ee58cad3e8ca484a391cc45104af378"><td class="mdescLeft">&#160;</td><td class="mdescRight">Выполнение одного шага метода Якоби с перекрытием вычислений и обменов.  <br /></td></tr>
+<tr class="separator:a4ee58cad3e8ca484a391cc45104af378"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Переменные</h2></td></tr>
+<tr class="memitem:a205a52e0162e00171f1837d1aff71d41" id="r_a205a52e0162e00171f1837d1aff71d41"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">constexpr</a> <a class="el" href="structvector.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="poisson__solver_8hpp.html#a205a52e0162e00171f1837d1aff71d41">X0</a> = -1.0</td></tr>
+<tr class="memdesc:a205a52e0162e00171f1837d1aff71d41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Начальная координата области по оси X.  <br /></td></tr>
+<tr class="separator:a205a52e0162e00171f1837d1aff71d41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8cc594edaf4ae4027ba7f96add65e03" id="r_ae8cc594edaf4ae4027ba7f96add65e03"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">constexpr</a> <a class="el" href="structvector.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="poisson__solver_8hpp.html#ae8cc594edaf4ae4027ba7f96add65e03">Y0</a> = -1.0</td></tr>
+<tr class="memdesc:ae8cc594edaf4ae4027ba7f96add65e03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Начальная координата области по оси Y.  <br /></td></tr>
+<tr class="separator:ae8cc594edaf4ae4027ba7f96add65e03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e42cec47648826781e9f6a224023ae0" id="r_a5e42cec47648826781e9f6a224023ae0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">constexpr</a> <a class="el" href="structvector.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="poisson__solver_8hpp.html#a5e42cec47648826781e9f6a224023ae0">Z0</a> = -1.0</td></tr>
+<tr class="memdesc:a5e42cec47648826781e9f6a224023ae0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Начальная координата области по оси Z.  <br /></td></tr>
+<tr class="separator:a5e42cec47648826781e9f6a224023ae0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8a390c4c604854c7990a92462f87bc1" id="r_aa8a390c4c604854c7990a92462f87bc1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">constexpr</a> <a class="el" href="structvector.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="poisson__solver_8hpp.html#aa8a390c4c604854c7990a92462f87bc1">DX</a> = 2.0</td></tr>
+<tr class="memdesc:aa8a390c4c604854c7990a92462f87bc1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Размер области по оси X.  <br /></td></tr>
+<tr class="separator:aa8a390c4c604854c7990a92462f87bc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4dcaf30828f9ce24a1268e1f881cf5e" id="r_ac4dcaf30828f9ce24a1268e1f881cf5e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">constexpr</a> <a class="el" href="structvector.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="poisson__solver_8hpp.html#ac4dcaf30828f9ce24a1268e1f881cf5e">DY</a> = 2.0</td></tr>
+<tr class="memdesc:ac4dcaf30828f9ce24a1268e1f881cf5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Размер области по оси Y.  <br /></td></tr>
+<tr class="separator:ac4dcaf30828f9ce24a1268e1f881cf5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a700cbc0ead57702822cf92ad5f975109" id="r_a700cbc0ead57702822cf92ad5f975109"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">constexpr</a> <a class="el" href="structvector.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="poisson__solver_8hpp.html#a700cbc0ead57702822cf92ad5f975109">DZ</a> = 2.0</td></tr>
+<tr class="memdesc:a700cbc0ead57702822cf92ad5f975109"><td class="mdescLeft">&#160;</td><td class="mdescRight">Размер области по оси Z.  <br /></td></tr>
+<tr class="separator:a700cbc0ead57702822cf92ad5f975109"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70b7aba2e8c84226d69e089e41808d54" id="r_a70b7aba2e8c84226d69e089e41808d54"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">constexpr</a> <a class="el" href="structvector.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="poisson__solver_8hpp.html#a70b7aba2e8c84226d69e089e41808d54">A_PARAM</a> = 1<a class="el" href="structvector.html">e5</a></td></tr>
+<tr class="memdesc:a70b7aba2e8c84226d69e089e41808d54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Параметр уравнения Пуассона (a).  <br /></td></tr>
+<tr class="separator:a70b7aba2e8c84226d69e089e41808d54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75f355966e0a97665eaf5a4c79baa7af" id="r_a75f355966e0a97665eaf5a4c79baa7af"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">constexpr</a> <a class="el" href="structvector.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="poisson__solver_8hpp.html#a75f355966e0a97665eaf5a4c79baa7af">EPSILON</a> = 1<a class="el" href="structvector.html">e</a>-8</td></tr>
+<tr class="memdesc:a75f355966e0a97665eaf5a4c79baa7af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Порог сходимости итерационного процесса (ε).  <br /></td></tr>
+<tr class="separator:a75f355966e0a97665eaf5a4c79baa7af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5118e5cbc4f0886e27b3a7a2544dded1" id="r_a5118e5cbc4f0886e27b3a7a2544dded1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">constexpr</a> <a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="poisson__solver_8hpp.html#a5118e5cbc4f0886e27b3a7a2544dded1">MAX_ITER</a> = 10000</td></tr>
+<tr class="memdesc:a5118e5cbc4f0886e27b3a7a2544dded1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Максимальное количество итераций.  <br /></td></tr>
+<tr class="separator:a5118e5cbc4f0886e27b3a7a2544dded1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>Заголовочный файл для параллельного решателя уравнения Пуассона методом Якоби. </p>
+<p>Содержит структуру данных, константы и прототипы функций для решения трехмерного уравнения Пуассона с использованием гибридной модели MPI + OpenMP. Реализована двумерная декомпозиция области, виртуальная топология, неблокирующие обмены (halo exchange) и перекрытие вычислений с коммуникациями. </p><dl class="section author"><dt>Автор</dt><dd>F.A.S.T. DEVELOPMENT Refactored for educational purposes. </dd></dl>
+<dl class="section version"><dt>Версия</dt><dd>1.0. </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="poisson__solver_8hpp_source.html">poisson_solver.hpp</a></p>
+</div><h2 class="groupheader">Функции</h2>
+<a id="a6917cbe5e834c30b17b5f0161ee1a611" name="a6917cbe5e834c30b17b5f0161ee1a611"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6917cbe5e834c30b17b5f0161ee1a611">&#9670;&#160;</a></span>exact_solution()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">double</a> exact_solution </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">double</a>&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">double</a>&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">double</a>&#160;</td>
+          <td class="paramname"><em>z</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Точное аналитическое решение для контроля и граничных условий. </p>
+<p>Используется для задания граничных условий 1-го рода (Дирихле) и для проверки точности полученного численного решения. </p><dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Координата X. </td></tr>
+    <tr><td class="paramname">y</td><td>Координата Y. </td></tr>
+    <tr><td class="paramname">z</td><td>Координата Z. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Значение функции φ(x,y,z) = x² + y² + z². </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="main_8cpp_source.html">main.cpp</a> строка <a class="el" href="main_8cpp_source.html#l00024">24</a></p>
+
+<p class="reference">Используется в <a class="el" href="main_8cpp_source.html#l00045">initialize_grid()</a>, <a class="el" href="main_8cpp_source.html#l00244">main()</a> и <a class="el" href="main_8cpp_source.html#l00028">rhs_function()</a>.</p>
+
+</div>
+</div>
+<a id="a9cde64d81680cf008f9bf093a8135605" name="a9cde64d81680cf008f9bf093a8135605"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9cde64d81680cf008f9bf093a8135605">&#9670;&#160;</a></span>get_int_arg()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> get_int_arg </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>argc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> **&#160;</td>
+          <td class="paramname"><em>argv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>arg_index</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>default_value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Безопасное получение целочисленного аргумента из командной строки. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">argc</td><td>Количество аргументов. </td></tr>
+    <tr><td class="paramname">argv</td><td>Массив аргументов. </td></tr>
+    <tr><td class="paramname">arg_index</td><td>Индекс требуемого аргумента (начиная с 1). </td></tr>
+    <tr><td class="paramname">default_value</td><td>Значение по умолчанию, если аргумент отсутствует или некорректен. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Преобразованное целое число или default_value. </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="main_8cpp_source.html">main.cpp</a> строка <a class="el" href="main_8cpp_source.html#l00032">32</a></p>
+
+<p class="reference">Используется в <a class="el" href="main_8cpp_source.html#l00244">main()</a>.</p>
+
+</div>
+</div>
+<a id="adfa8b8f46ad4621c3d8863611b067354" name="adfa8b8f46ad4621c3d8863611b067354"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adfa8b8f46ad4621c3d8863611b067354">&#9670;&#160;</a></span>initialize_grid()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> initialize_grid </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="structvector.html">double</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>phi</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structDomainInfo.html">DomainInfo</a> &amp;&#160;</td>
+          <td class="paramname"><em>info</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>Nx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>Ny</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>Nz</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Инициализация сетки: задание граничных условий и начального приближения. </p>
+<p>Заполняет массив phi начальными значениями. На границах области задаются значения точного решения (граничные условия Дирихле), во внутренней области - нулевое начальное приближение. </p><dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">phi</td><td>Ссылка на вектор значений функции (включая ghost-слои). </td></tr>
+    <tr><td class="paramname">info</td><td>Структура с параметрами домена. </td></tr>
+    <tr><td class="paramname">Nx</td><td>Глобальный размер сетки по X. </td></tr>
+    <tr><td class="paramname">Ny</td><td>Глобальный размер сетки по Y. </td></tr>
+    <tr><td class="paramname">Nz</td><td>Глобальный размер сетки по Z. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4ee58cad3e8ca484a391cc45104af378" name="a4ee58cad3e8ca484a391cc45104af378"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ee58cad3e8ca484a391cc45104af378">&#9670;&#160;</a></span>jacobi_step()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> jacobi_step </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="structvector.html">double</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>phi</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="structvector.html">double</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>phi_new</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structDomainInfo.html">DomainInfo</a> &amp;&#160;</td>
+          <td class="paramname"><em>info</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>Nx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>Ny</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>Nz</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">double</a> &amp;&#160;</td>
+          <td class="paramname"><em>max_diff</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Выполнение одного шага метода Якоби с перекрытием вычислений и обменов. </p>
+<p>Реализует один итерационный шаг метода Якоби с использованием неблокирующих MPI-обменов для перекрытия коммуникаций и вычислений. Алгоритм:</p><ol type="1">
+<li>Упаковка данных и запуск асинхронных обменов (Non-blocking).</li>
+<li>Вычисление внутренних точек (перекрытие с коммуникациями).</li>
+<li>Ожидание завершения всех обменов.</li>
+<li>Распаковка полученных данных в ghost-слои.</li>
+<li>Вычисление граничных точек локальной подобласти. <dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">phi</td><td>Текущее приближение решения (включая ghost-слои). </td></tr>
+    <tr><td class="paramname">phi_new</td><td>Вектор для записи нового приближения. </td></tr>
+    <tr><td class="paramname">info</td><td>Структура с параметрами домена. </td></tr>
+    <tr><td class="paramname">Nx</td><td>Глобальный размер сетки по X. </td></tr>
+    <tr><td class="paramname">Ny</td><td>Глобальный размер сетки по Y. </td></tr>
+    <tr><td class="paramname">Nz</td><td>Глобальный размер сетки по Z. </td></tr>
+    <tr><td class="paramname">max_diff</td><td>Ссылка на переменную для записи локальной максимальной невязки. </td></tr>
+  </table>
+  </dd>
+</dl>
+</li>
+</ol>
+
+<p class="definition">См. определение в файле <a class="el" href="main_8cpp_source.html">main.cpp</a> строка <a class="el" href="main_8cpp_source.html#l00086">86</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="mpi__null_8h_source.html#l00035">MPI_DOUBLE</a>, <a class="el" href="main_8cpp_source.html#l00028">rhs_function()</a>, <a class="el" href="poisson__solver_8hpp_source.html#l00024">X0</a>, <a class="el" href="poisson__solver_8hpp_source.html#l00027">Y0</a> и <a class="el" href="poisson__solver_8hpp_source.html#l00030">Z0</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="main_8cpp_source.html#l00244">main()</a>.</p>
+
+</div>
+</div>
+<a id="ad4e30aac664fbda86581981fba33464d" name="ad4e30aac664fbda86581981fba33464d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4e30aac664fbda86581981fba33464d">&#9670;&#160;</a></span>rhs_function()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">double</a> rhs_function </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">double</a>&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">double</a>&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">double</a>&#160;</td>
+          <td class="paramname"><em>z</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Функция правой части уравнения Пуассона. </p>
+<p>Уравнение: p = Δφ - a·φ = 6 - a*(x² + y² + z²). Для φ = x²+y²+z² лапласиан Δφ = 6. Δφ - Лапласиан, равный d²phi/dx² + d²phi/dy² + d²phi/dz². </p><dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Координата X. </td></tr>
+    <tr><td class="paramname">y</td><td>Координата Y. </td></tr>
+    <tr><td class="paramname">z</td><td>Координата Z. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Значение правой части ρ(x,y,z) = 6 - a·(x²+y²+z²). </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="main_8cpp_source.html">main.cpp</a> строка <a class="el" href="main_8cpp_source.html#l00028">28</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="poisson__solver_8hpp_source.html#l00042">A_PARAM</a> и <a class="el" href="main_8cpp_source.html#l00024">exact_solution()</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="main_8cpp_source.html#l00086">jacobi_step()</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Переменные</h2>
+<a id="a70b7aba2e8c84226d69e089e41808d54" name="a70b7aba2e8c84226d69e089e41808d54"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70b7aba2e8c84226d69e089e41808d54">&#9670;&#160;</a></span>A_PARAM</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">constexpr</a> <a class="el" href="structvector.html">double</a> A_PARAM = 1<a class="el" href="structvector.html">e5</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Параметр уравнения Пуассона (a). </p>
+
+<p class="definition">См. определение в файле <a class="el" href="poisson__solver_8hpp_source.html">poisson_solver.hpp</a> строка <a class="el" href="poisson__solver_8hpp_source.html#l00042">42</a></p>
+
+<p class="reference">Используется в <a class="el" href="main_8cpp_source.html#l00244">main()</a> и <a class="el" href="main_8cpp_source.html#l00028">rhs_function()</a>.</p>
+
+</div>
+</div>
+<a id="aa8a390c4c604854c7990a92462f87bc1" name="aa8a390c4c604854c7990a92462f87bc1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8a390c4c604854c7990a92462f87bc1">&#9670;&#160;</a></span>DX</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">constexpr</a> <a class="el" href="structvector.html">double</a> DX = 2.0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Размер области по оси X. </p>
+
+<p class="definition">См. определение в файле <a class="el" href="poisson__solver_8hpp_source.html">poisson_solver.hpp</a> строка <a class="el" href="poisson__solver_8hpp_source.html#l00033">33</a></p>
+
+<p class="reference">Используется в <a class="el" href="main_8cpp_source.html#l00244">main()</a>.</p>
+
+</div>
+</div>
+<a id="ac4dcaf30828f9ce24a1268e1f881cf5e" name="ac4dcaf30828f9ce24a1268e1f881cf5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4dcaf30828f9ce24a1268e1f881cf5e">&#9670;&#160;</a></span>DY</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">constexpr</a> <a class="el" href="structvector.html">double</a> DY = 2.0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Размер области по оси Y. </p>
+
+<p class="definition">См. определение в файле <a class="el" href="poisson__solver_8hpp_source.html">poisson_solver.hpp</a> строка <a class="el" href="poisson__solver_8hpp_source.html#l00036">36</a></p>
+
+<p class="reference">Используется в <a class="el" href="main_8cpp_source.html#l00244">main()</a>.</p>
+
+</div>
+</div>
+<a id="a700cbc0ead57702822cf92ad5f975109" name="a700cbc0ead57702822cf92ad5f975109"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a700cbc0ead57702822cf92ad5f975109">&#9670;&#160;</a></span>DZ</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">constexpr</a> <a class="el" href="structvector.html">double</a> DZ = 2.0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Размер области по оси Z. </p>
+
+<p class="definition">См. определение в файле <a class="el" href="poisson__solver_8hpp_source.html">poisson_solver.hpp</a> строка <a class="el" href="poisson__solver_8hpp_source.html#l00039">39</a></p>
+
+<p class="reference">Используется в <a class="el" href="main_8cpp_source.html#l00244">main()</a>.</p>
+
+</div>
+</div>
+<a id="a75f355966e0a97665eaf5a4c79baa7af" name="a75f355966e0a97665eaf5a4c79baa7af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75f355966e0a97665eaf5a4c79baa7af">&#9670;&#160;</a></span>EPSILON</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">constexpr</a> <a class="el" href="structvector.html">double</a> EPSILON = 1<a class="el" href="structvector.html">e</a>-8</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Порог сходимости итерационного процесса (ε). </p>
+
+<p class="definition">См. определение в файле <a class="el" href="poisson__solver_8hpp_source.html">poisson_solver.hpp</a> строка <a class="el" href="poisson__solver_8hpp_source.html#l00045">45</a></p>
+
+<p class="reference">Используется в <a class="el" href="main_8cpp_source.html#l00244">main()</a>.</p>
+
+</div>
+</div>
+<a id="a5118e5cbc4f0886e27b3a7a2544dded1" name="a5118e5cbc4f0886e27b3a7a2544dded1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5118e5cbc4f0886e27b3a7a2544dded1">&#9670;&#160;</a></span>MAX_ITER</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">constexpr</a> <a class="el" href="structvector.html">int</a> MAX_ITER = 10000</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Максимальное количество итераций. </p>
+
+<p class="definition">См. определение в файле <a class="el" href="poisson__solver_8hpp_source.html">poisson_solver.hpp</a> строка <a class="el" href="poisson__solver_8hpp_source.html#l00048">48</a></p>
+
+<p class="reference">Используется в <a class="el" href="main_8cpp_source.html#l00244">main()</a>.</p>
+
+</div>
+</div>
+<a id="a205a52e0162e00171f1837d1aff71d41" name="a205a52e0162e00171f1837d1aff71d41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a205a52e0162e00171f1837d1aff71d41">&#9670;&#160;</a></span>X0</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">constexpr</a> <a class="el" href="structvector.html">double</a> X0 = -1.0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Начальная координата области по оси X. </p>
+
+<p class="definition">См. определение в файле <a class="el" href="poisson__solver_8hpp_source.html">poisson_solver.hpp</a> строка <a class="el" href="poisson__solver_8hpp_source.html#l00024">24</a></p>
+
+<p class="reference">Используется в <a class="el" href="main_8cpp_source.html#l00045">initialize_grid()</a>, <a class="el" href="main_8cpp_source.html#l00086">jacobi_step()</a> и <a class="el" href="main_8cpp_source.html#l00244">main()</a>.</p>
+
+</div>
+</div>
+<a id="ae8cc594edaf4ae4027ba7f96add65e03" name="ae8cc594edaf4ae4027ba7f96add65e03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8cc594edaf4ae4027ba7f96add65e03">&#9670;&#160;</a></span>Y0</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">constexpr</a> <a class="el" href="structvector.html">double</a> Y0 = -1.0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Начальная координата области по оси Y. </p>
+
+<p class="definition">См. определение в файле <a class="el" href="poisson__solver_8hpp_source.html">poisson_solver.hpp</a> строка <a class="el" href="poisson__solver_8hpp_source.html#l00027">27</a></p>
+
+<p class="reference">Используется в <a class="el" href="main_8cpp_source.html#l00045">initialize_grid()</a>, <a class="el" href="main_8cpp_source.html#l00086">jacobi_step()</a> и <a class="el" href="main_8cpp_source.html#l00244">main()</a>.</p>
+
+</div>
+</div>
+<a id="a5e42cec47648826781e9f6a224023ae0" name="a5e42cec47648826781e9f6a224023ae0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e42cec47648826781e9f6a224023ae0">&#9670;&#160;</a></span>Z0</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">constexpr</a> <a class="el" href="structvector.html">double</a> Z0 = -1.0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Начальная координата области по оси Z. </p>
+
+<p class="definition">См. определение в файле <a class="el" href="poisson__solver_8hpp_source.html">poisson_solver.hpp</a> строка <a class="el" href="poisson__solver_8hpp_source.html#l00030">30</a></p>
+
+<p class="reference">Используется в <a class="el" href="main_8cpp_source.html#l00045">initialize_grid()</a>, <a class="el" href="main_8cpp_source.html#l00086">jacobi_step()</a> и <a class="el" href="main_8cpp_source.html#l00244">main()</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

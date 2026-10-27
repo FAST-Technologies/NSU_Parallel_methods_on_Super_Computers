@@ -1,0 +1,477 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lab_02: MPI + OpenMP Parallel Programming: Структура RLOG_IOStruct</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Lab_02: MPI + OpenMP Parallel Programming<span id="projectnumber">&#160;2.1</span>
+   </div>
+   <div id="projectbrief">Решение 3D уравнения Пуассона методом Якоби с двумерной декомпозицией</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-attribs">Открытые атрибуты</a> &#124;
+<a href="structRLOG__IOStruct-members.html">Полный список членов класса</a>  </div>
+  <div class="headertitle"><div class="title">Структура RLOG_IOStruct</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html">rlog.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Открытые атрибуты</h2></td></tr>
+<tr class="memitem:a138023890e2386b3afc037def549fa40" id="r_a138023890e2386b3afc037def549fa40"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">FILE</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structRLOG__IOStruct.html#a138023890e2386b3afc037def549fa40">f</a></td></tr>
+<tr class="separator:a138023890e2386b3afc037def549fa40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9be7e4343a1a4d5fec7f6b6b68a7a0b6" id="r_a9be7e4343a1a4d5fec7f6b6b68a7a0b6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structRLOG__FILE__HEADER.html">RLOG_FILE_HEADER</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structRLOG__IOStruct.html#a9be7e4343a1a4d5fec7f6b6b68a7a0b6">header</a></td></tr>
+<tr class="separator:a9be7e4343a1a4d5fec7f6b6b68a7a0b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1779d44ad09ce7be4e8c23302ed84f17" id="r_a1779d44ad09ce7be4e8c23302ed84f17"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structRLOG__IOStruct.html#a1779d44ad09ce7be4e8c23302ed84f17">nNumStates</a></td></tr>
+<tr class="separator:a1779d44ad09ce7be4e8c23302ed84f17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff34d9483e8e26e42126898dd4ce6388" id="r_aff34d9483e8e26e42126898dd4ce6388"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structRLOG__IOStruct.html#aff34d9483e8e26e42126898dd4ce6388">nCurState</a></td></tr>
+<tr class="separator:aff34d9483e8e26e42126898dd4ce6388"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1568d337e1d233c9401696e35829e117" id="r_a1568d337e1d233c9401696e35829e117"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">long</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structRLOG__IOStruct.html#a1568d337e1d233c9401696e35829e117">nStateOffset</a></td></tr>
+<tr class="separator:a1568d337e1d233c9401696e35829e117"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78e2922767e667d8c4fefce5cbd86790" id="r_a78e2922767e667d8c4fefce5cbd86790"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structRLOG__IOStruct.html#a78e2922767e667d8c4fefce5cbd86790">nNumArrows</a></td></tr>
+<tr class="separator:a78e2922767e667d8c4fefce5cbd86790"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a769d3941e6d3519b50394c1e2cd2c59a" id="r_a769d3941e6d3519b50394c1e2cd2c59a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structRLOG__IOStruct.html#a769d3941e6d3519b50394c1e2cd2c59a">nCurArrow</a></td></tr>
+<tr class="separator:a769d3941e6d3519b50394c1e2cd2c59a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab51b511e1758a4bdc962282bbb94f235" id="r_ab51b511e1758a4bdc962282bbb94f235"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">long</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structRLOG__IOStruct.html#ab51b511e1758a4bdc962282bbb94f235">nArrowOffset</a></td></tr>
+<tr class="separator:ab51b511e1758a4bdc962282bbb94f235"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b112af93c444990b9a12c41b973fbc3" id="r_a3b112af93c444990b9a12c41b973fbc3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structRLOG__IOStruct.html#a3b112af93c444990b9a12c41b973fbc3">nNumRanks</a></td></tr>
+<tr class="separator:a3b112af93c444990b9a12c41b973fbc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9c823af2dd0c72767c9d9850b653c15" id="r_ad9c823af2dd0c72767c9d9850b653c15"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structRLOG__IOStruct.html#ad9c823af2dd0c72767c9d9850b653c15">pRank</a></td></tr>
+<tr class="separator:ad9c823af2dd0c72767c9d9850b653c15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06713e59d6abb28f2ff123bff6a3573f" id="r_a06713e59d6abb28f2ff123bff6a3573f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structRLOG__IOStruct.html#a06713e59d6abb28f2ff123bff6a3573f">pNumEventRecursions</a></td></tr>
+<tr class="separator:a06713e59d6abb28f2ff123bff6a3573f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb3374a6b3a318ae2e0c1ce2fbbfe5d2" id="r_acb3374a6b3a318ae2e0c1ce2fbbfe5d2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a> **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structRLOG__IOStruct.html#acb3374a6b3a318ae2e0c1ce2fbbfe5d2">ppNumEvents</a></td></tr>
+<tr class="separator:acb3374a6b3a318ae2e0c1ce2fbbfe5d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8f8a45abacdb4b8df810abc3437155d" id="r_ab8f8a45abacdb4b8df810abc3437155d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a> **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structRLOG__IOStruct.html#ab8f8a45abacdb4b8df810abc3437155d">ppCurEvent</a></td></tr>
+<tr class="separator:ab8f8a45abacdb4b8df810abc3437155d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade89b97c347eac2522154df74b7674ef" id="r_ade89b97c347eac2522154df74b7674ef"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a> **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structRLOG__IOStruct.html#ade89b97c347eac2522154df74b7674ef">ppCurGlobalEvent</a></td></tr>
+<tr class="separator:ade89b97c347eac2522154df74b7674ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35be4dbf91ede99a47931e82e0e00350" id="r_a35be4dbf91ede99a47931e82e0e00350"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structRLOG__EVENT.html">RLOG_EVENT</a> **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structRLOG__IOStruct.html#a35be4dbf91ede99a47931e82e0e00350">gppCurEvent</a></td></tr>
+<tr class="separator:a35be4dbf91ede99a47931e82e0e00350"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2cce9c088e1042427e795d8de2e506bf" id="r_a2cce9c088e1042427e795d8de2e506bf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structRLOG__EVENT.html">RLOG_EVENT</a> **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structRLOG__IOStruct.html#a2cce9c088e1042427e795d8de2e506bf">gppPrevEvent</a></td></tr>
+<tr class="separator:a2cce9c088e1042427e795d8de2e506bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a3550b3fe09d3061704ef054125f97b" id="r_a6a3550b3fe09d3061704ef054125f97b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structRLOG__EVENT.html">RLOG_EVENT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structRLOG__IOStruct.html#a6a3550b3fe09d3061704ef054125f97b">gCurEvent</a></td></tr>
+<tr class="separator:a6a3550b3fe09d3061704ef054125f97b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac11c0905c71df37168fb6e2874347b75" id="r_ac11c0905c71df37168fb6e2874347b75"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structRLOG__IOStruct.html#ac11c0905c71df37168fb6e2874347b75">gnCurRank</a></td></tr>
+<tr class="separator:ac11c0905c71df37168fb6e2874347b75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b3a9fad78c856a093b06a855a6bfb3f" id="r_a8b3a9fad78c856a093b06a855a6bfb3f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structRLOG__IOStruct.html#a8b3a9fad78c856a093b06a855a6bfb3f">gnCurLevel</a></td></tr>
+<tr class="separator:a8b3a9fad78c856a093b06a855a6bfb3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab70c112b0cf2b6c063353366b722a54a" id="r_ab70c112b0cf2b6c063353366b722a54a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structRLOG__IOStruct.html#ab70c112b0cf2b6c063353366b722a54a">gnCurEvent</a></td></tr>
+<tr class="separator:ab70c112b0cf2b6c063353366b722a54a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78cca96a734829758d41c8f299c853f8" id="r_a78cca96a734829758d41c8f299c853f8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">long</a> **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structRLOG__IOStruct.html#a78cca96a734829758d41c8f299c853f8">ppEventOffset</a></td></tr>
+<tr class="separator:a78cca96a734829758d41c8f299c853f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock">
+<p class="definition">См. определение в файле <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html">mpe2-1.3.0/src/slog2sdk/trace_rlog/src/rlog.h</a> строка <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html#l00141">141</a></p>
+</div><h2 class="groupheader">Данные класса</h2>
+<a id="a138023890e2386b3afc037def549fa40" name="a138023890e2386b3afc037def549fa40"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a138023890e2386b3afc037def549fa40">&#9670;&#160;</a></span>f</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">FILE</a> * RLOG_IOStruct::f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html">mpe2-1.3.0/src/slog2sdk/trace_rlog/src/rlog.h</a> строка <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html#l00143">143</a></p>
+
+</div>
+</div>
+<a id="a6a3550b3fe09d3061704ef054125f97b" name="a6a3550b3fe09d3061704ef054125f97b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a3550b3fe09d3061704ef054125f97b">&#9670;&#160;</a></span>gCurEvent</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structRLOG__EVENT.html">RLOG_EVENT</a> RLOG_IOStruct::gCurEvent</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html">mpe2-1.3.0/src/slog2sdk/trace_rlog/src/rlog.h</a> строка <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html#l00154">154</a></p>
+
+</div>
+</div>
+<a id="ab70c112b0cf2b6c063353366b722a54a" name="ab70c112b0cf2b6c063353366b722a54a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab70c112b0cf2b6c063353366b722a54a">&#9670;&#160;</a></span>gnCurEvent</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> RLOG_IOStruct::gnCurEvent</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html">mpe2-1.3.0/src/slog2sdk/trace_rlog/src/rlog.h</a> строка <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html#l00155">155</a></p>
+
+</div>
+</div>
+<a id="a8b3a9fad78c856a093b06a855a6bfb3f" name="a8b3a9fad78c856a093b06a855a6bfb3f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b3a9fad78c856a093b06a855a6bfb3f">&#9670;&#160;</a></span>gnCurLevel</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> RLOG_IOStruct::gnCurLevel</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html">mpe2-1.3.0/src/slog2sdk/trace_rlog/src/rlog.h</a> строка <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html#l00155">155</a></p>
+
+</div>
+</div>
+<a id="ac11c0905c71df37168fb6e2874347b75" name="ac11c0905c71df37168fb6e2874347b75"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac11c0905c71df37168fb6e2874347b75">&#9670;&#160;</a></span>gnCurRank</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> RLOG_IOStruct::gnCurRank</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html">mpe2-1.3.0/src/slog2sdk/trace_rlog/src/rlog.h</a> строка <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html#l00155">155</a></p>
+
+</div>
+</div>
+<a id="a35be4dbf91ede99a47931e82e0e00350" name="a35be4dbf91ede99a47931e82e0e00350"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35be4dbf91ede99a47931e82e0e00350">&#9670;&#160;</a></span>gppCurEvent</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structRLOG__EVENT.html">RLOG_EVENT</a> ** RLOG_IOStruct::gppCurEvent</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html">mpe2-1.3.0/src/slog2sdk/trace_rlog/src/rlog.h</a> строка <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html#l00154">154</a></p>
+
+</div>
+</div>
+<a id="a2cce9c088e1042427e795d8de2e506bf" name="a2cce9c088e1042427e795d8de2e506bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2cce9c088e1042427e795d8de2e506bf">&#9670;&#160;</a></span>gppPrevEvent</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structRLOG__EVENT.html">RLOG_EVENT</a> ** RLOG_IOStruct::gppPrevEvent</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html">mpe2-1.3.0/src/slog2sdk/trace_rlog/src/rlog.h</a> строка <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html#l00154">154</a></p>
+
+</div>
+</div>
+<a id="a9be7e4343a1a4d5fec7f6b6b68a7a0b6" name="a9be7e4343a1a4d5fec7f6b6b68a7a0b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9be7e4343a1a4d5fec7f6b6b68a7a0b6">&#9670;&#160;</a></span>header</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structRLOG__FILE__HEADER.html">RLOG_FILE_HEADER</a> RLOG_IOStruct::header</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html">mpe2-1.3.0/src/slog2sdk/trace_rlog/src/rlog.h</a> строка <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html#l00144">144</a></p>
+
+</div>
+</div>
+<a id="ab51b511e1758a4bdc962282bbb94f235" name="ab51b511e1758a4bdc962282bbb94f235"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab51b511e1758a4bdc962282bbb94f235">&#9670;&#160;</a></span>nArrowOffset</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">long</a> RLOG_IOStruct::nArrowOffset</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html">mpe2-1.3.0/src/slog2sdk/trace_rlog/src/rlog.h</a> строка <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html#l00148">148</a></p>
+
+</div>
+</div>
+<a id="a769d3941e6d3519b50394c1e2cd2c59a" name="a769d3941e6d3519b50394c1e2cd2c59a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a769d3941e6d3519b50394c1e2cd2c59a">&#9670;&#160;</a></span>nCurArrow</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> RLOG_IOStruct::nCurArrow</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html">mpe2-1.3.0/src/slog2sdk/trace_rlog/src/rlog.h</a> строка <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html#l00147">147</a></p>
+
+</div>
+</div>
+<a id="aff34d9483e8e26e42126898dd4ce6388" name="aff34d9483e8e26e42126898dd4ce6388"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff34d9483e8e26e42126898dd4ce6388">&#9670;&#160;</a></span>nCurState</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> RLOG_IOStruct::nCurState</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html">mpe2-1.3.0/src/slog2sdk/trace_rlog/src/rlog.h</a> строка <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html#l00145">145</a></p>
+
+</div>
+</div>
+<a id="a78e2922767e667d8c4fefce5cbd86790" name="a78e2922767e667d8c4fefce5cbd86790"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78e2922767e667d8c4fefce5cbd86790">&#9670;&#160;</a></span>nNumArrows</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> RLOG_IOStruct::nNumArrows</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html">mpe2-1.3.0/src/slog2sdk/trace_rlog/src/rlog.h</a> строка <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html#l00147">147</a></p>
+
+</div>
+</div>
+<a id="a3b112af93c444990b9a12c41b973fbc3" name="a3b112af93c444990b9a12c41b973fbc3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b112af93c444990b9a12c41b973fbc3">&#9670;&#160;</a></span>nNumRanks</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> RLOG_IOStruct::nNumRanks</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html">mpe2-1.3.0/src/slog2sdk/trace_rlog/src/rlog.h</a> строка <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html#l00149">149</a></p>
+
+</div>
+</div>
+<a id="a1779d44ad09ce7be4e8c23302ed84f17" name="a1779d44ad09ce7be4e8c23302ed84f17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1779d44ad09ce7be4e8c23302ed84f17">&#9670;&#160;</a></span>nNumStates</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> RLOG_IOStruct::nNumStates</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html">mpe2-1.3.0/src/slog2sdk/trace_rlog/src/rlog.h</a> строка <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html#l00145">145</a></p>
+
+</div>
+</div>
+<a id="a1568d337e1d233c9401696e35829e117" name="a1568d337e1d233c9401696e35829e117"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1568d337e1d233c9401696e35829e117">&#9670;&#160;</a></span>nStateOffset</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">long</a> RLOG_IOStruct::nStateOffset</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html">mpe2-1.3.0/src/slog2sdk/trace_rlog/src/rlog.h</a> строка <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html#l00146">146</a></p>
+
+</div>
+</div>
+<a id="a06713e59d6abb28f2ff123bff6a3573f" name="a06713e59d6abb28f2ff123bff6a3573f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06713e59d6abb28f2ff123bff6a3573f">&#9670;&#160;</a></span>pNumEventRecursions</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> * RLOG_IOStruct::pNumEventRecursions</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html">mpe2-1.3.0/src/slog2sdk/trace_rlog/src/rlog.h</a> строка <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html#l00151">151</a></p>
+
+</div>
+</div>
+<a id="ab8f8a45abacdb4b8df810abc3437155d" name="ab8f8a45abacdb4b8df810abc3437155d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8f8a45abacdb4b8df810abc3437155d">&#9670;&#160;</a></span>ppCurEvent</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> ** RLOG_IOStruct::ppCurEvent</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html">mpe2-1.3.0/src/slog2sdk/trace_rlog/src/rlog.h</a> строка <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html#l00152">152</a></p>
+
+</div>
+</div>
+<a id="ade89b97c347eac2522154df74b7674ef" name="ade89b97c347eac2522154df74b7674ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade89b97c347eac2522154df74b7674ef">&#9670;&#160;</a></span>ppCurGlobalEvent</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> ** RLOG_IOStruct::ppCurGlobalEvent</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html">mpe2-1.3.0/src/slog2sdk/trace_rlog/src/rlog.h</a> строка <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html#l00153">153</a></p>
+
+</div>
+</div>
+<a id="a78cca96a734829758d41c8f299c853f8" name="a78cca96a734829758d41c8f299c853f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78cca96a734829758d41c8f299c853f8">&#9670;&#160;</a></span>ppEventOffset</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">long</a> ** RLOG_IOStruct::ppEventOffset</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html">mpe2-1.3.0/src/slog2sdk/trace_rlog/src/rlog.h</a> строка <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html#l00156">156</a></p>
+
+</div>
+</div>
+<a id="acb3374a6b3a318ae2e0c1ce2fbbfe5d2" name="acb3374a6b3a318ae2e0c1ce2fbbfe5d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb3374a6b3a318ae2e0c1ce2fbbfe5d2">&#9670;&#160;</a></span>ppNumEvents</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> ** RLOG_IOStruct::ppNumEvents</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html">mpe2-1.3.0/src/slog2sdk/trace_rlog/src/rlog.h</a> строка <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html#l00152">152</a></p>
+
+</div>
+</div>
+<a id="ad9c823af2dd0c72767c9d9850b653c15" name="ad9c823af2dd0c72767c9d9850b653c15"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9c823af2dd0c72767c9d9850b653c15">&#9670;&#160;</a></span>pRank</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> * RLOG_IOStruct::pRank</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html">mpe2-1.3.0/src/slog2sdk/trace_rlog/src/rlog.h</a> строка <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html#l00150">150</a></p>
+
+</div>
+</div>
+<hr/>Объявления и описания членов структур находятся в файлах:<ul>
+<li><a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html">mpe2-1.3.0/src/slog2sdk/trace_rlog/src/rlog.h</a></li>
+<li><a class="el" href="slog2sdk-1_82_86_2trace__rlog_2src_2rlog_8h_source.html">slog2sdk-1.2.6/trace_rlog/src/rlog.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lab_02: MPI + OpenMP Parallel Programming: Исходный файл poisson_solver.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Lab_02: MPI + OpenMP Parallel Programming<span id="projectnumber">&#160;2.1</span>
+   </div>
+   <div id="projectbrief">Решение 3D уравнения Пуассона методом Якоби с двумерной декомпозицией</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">poisson_solver.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="poisson__solver_8hpp.html">См. документацию.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#ifndef POISSON_SOLVER_HPP</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#define POISSON_SOLVER_HPP</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;mpi.h&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;array&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="comment">// ============================================================================</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="comment">// Глобальные параметры задачи</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="comment">// ============================================================================</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="poisson__solver_8hpp.html#a205a52e0162e00171f1837d1aff71d41">   24</a></span><span class="keyword">constexpr</span> <span class="keywordtype">double</span> <a class="code hl_variable" href="poisson__solver_8hpp.html#a205a52e0162e00171f1837d1aff71d41">X0</a> = -1.0;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="poisson__solver_8hpp.html#ae8cc594edaf4ae4027ba7f96add65e03">   27</a></span><span class="keyword">constexpr</span> <span class="keywordtype">double</span> <a class="code hl_variable" href="poisson__solver_8hpp.html#ae8cc594edaf4ae4027ba7f96add65e03">Y0</a> = -1.0;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="poisson__solver_8hpp.html#a5e42cec47648826781e9f6a224023ae0">   30</a></span><span class="keyword">constexpr</span> <span class="keywordtype">double</span> <a class="code hl_variable" href="poisson__solver_8hpp.html#a5e42cec47648826781e9f6a224023ae0">Z0</a> = -1.0;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="poisson__solver_8hpp.html#aa8a390c4c604854c7990a92462f87bc1">   33</a></span><span class="keyword">constexpr</span> <span class="keywordtype">double</span> <a class="code hl_variable" href="poisson__solver_8hpp.html#aa8a390c4c604854c7990a92462f87bc1">DX</a> = 2.0;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="poisson__solver_8hpp.html#ac4dcaf30828f9ce24a1268e1f881cf5e">   36</a></span><span class="keyword">constexpr</span> <span class="keywordtype">double</span> <a class="code hl_variable" href="poisson__solver_8hpp.html#ac4dcaf30828f9ce24a1268e1f881cf5e">DY</a> = 2.0;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="poisson__solver_8hpp.html#a700cbc0ead57702822cf92ad5f975109">   39</a></span><span class="keyword">constexpr</span> <span class="keywordtype">double</span> <a class="code hl_variable" href="poisson__solver_8hpp.html#a700cbc0ead57702822cf92ad5f975109">DZ</a> = 2.0;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="poisson__solver_8hpp.html#a70b7aba2e8c84226d69e089e41808d54">   42</a></span><span class="keyword">constexpr</span> <span class="keywordtype">double</span> <a class="code hl_variable" href="poisson__solver_8hpp.html#a70b7aba2e8c84226d69e089e41808d54">A_PARAM</a> = 1<a class="code hl_struct" href="structvector.html">e5</a>;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="poisson__solver_8hpp.html#a75f355966e0a97665eaf5a4c79baa7af">   45</a></span><span class="keyword">constexpr</span> <span class="keywordtype">double</span> <a class="code hl_variable" href="poisson__solver_8hpp.html#a75f355966e0a97665eaf5a4c79baa7af">EPSILON</a> = 1<a class="code hl_struct" href="structvector.html">e</a>-8;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="poisson__solver_8hpp.html#a5118e5cbc4f0886e27b3a7a2544dded1">   48</a></span><span class="keyword">constexpr</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="poisson__solver_8hpp.html#a5118e5cbc4f0886e27b3a7a2544dded1">MAX_ITER</a> = 10000;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="comment">// ============================================================================</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="comment">// Структуры данных</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="comment">// ============================================================================</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="foldopen" id="foldopen00059" data-start="{" data-end="};">
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="structDomainInfo.html">   59</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structDomainInfo.html">DomainInfo</a> {</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="structDomainInfo.html#a2526343b5d0891c55b4c2537d1692510">   60</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structDomainInfo.html#a2526343b5d0891c55b4c2537d1692510">local_nx</a>; </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="structDomainInfo.html#a628cd69707d5bac3960f7b45680b6f09">   61</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structDomainInfo.html#a628cd69707d5bac3960f7b45680b6f09">local_ny</a>; </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="structDomainInfo.html#ad62cf23131e111f1e1cc190d87ddd097">   62</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structDomainInfo.html#ad62cf23131e111f1e1cc190d87ddd097">local_nz</a>; </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="structDomainInfo.html#aeda89d24d9ee194a05dac40a235597da">   63</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structDomainInfo.html#aeda89d24d9ee194a05dac40a235597da">coords</a>[2]; </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="structDomainInfo.html#a86114f7cbcce8614f227d3492e8cbc09">   64</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structDomainInfo.html#a86114f7cbcce8614f227d3492e8cbc09">left</a>; </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="structDomainInfo.html#a8527ecb3c2ebb06290a8d074adcc4826">   65</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structDomainInfo.html#a8527ecb3c2ebb06290a8d074adcc4826">right</a>; </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="structDomainInfo.html#a8c85a9c4ecfec6950e704836e3bf9afa">   66</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structDomainInfo.html#a8c85a9c4ecfec6950e704836e3bf9afa">top</a>; </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="structDomainInfo.html#a405c0af8de5d8988a0acf9c2788a7d5d">   67</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structDomainInfo.html#a405c0af8de5d8988a0acf9c2788a7d5d">bottom</a>; </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="structDomainInfo.html#ae4a7c9b806949fe85178ecc4a08450ca">   68</a></span>    <span class="keywordtype">double</span> <a class="code hl_variable" href="structDomainInfo.html#ae4a7c9b806949fe85178ecc4a08450ca">hx</a>; </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="structDomainInfo.html#ab853af290f42b26ef26ba1b2d9d10cf8">   69</a></span>    <span class="keywordtype">double</span> <a class="code hl_variable" href="structDomainInfo.html#ab853af290f42b26ef26ba1b2d9d10cf8">hy</a>; </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="structDomainInfo.html#a44cb99988f6a046cfb99c30ab0d8c7cb">   70</a></span>    <span class="keywordtype">double</span> <a class="code hl_variable" href="structDomainInfo.html#a44cb99988f6a046cfb99c30ab0d8c7cb">hz</a>; </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="structDomainInfo.html#ae66cc800d98d9f19e617476f124a00d3">   71</a></span>    <span class="keywordtype">double</span> <a class="code hl_variable" href="structDomainInfo.html#ae66cc800d98d9f19e617476f124a00d3">denom</a>; </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="structDomainInfo.html#af9c37cde7caba0a9608879528f07bbff">   72</a></span>    <a class="code hl_struct" href="structvector.html">MPI_Comm</a> <a class="code hl_variable" href="structDomainInfo.html#af9c37cde7caba0a9608879528f07bbff">cart_comm</a>; </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>};</div>
+</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="comment">// ============================================================================</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="comment">// Математические функции</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="comment">// ============================================================================</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="keywordtype">double</span> <a class="code hl_function" href="poisson__solver_8hpp.html#a6917cbe5e834c30b17b5f0161ee1a611">exact_solution</a>(<span class="keywordtype">double</span> x, <span class="keywordtype">double</span> y, <span class="keywordtype">double</span> <a class="code hl_struct" href="structvector.html">z</a>);</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span><span class="keywordtype">double</span> <a class="code hl_function" href="poisson__solver_8hpp.html#ad4e30aac664fbda86581981fba33464d">rhs_function</a>(<span class="keywordtype">double</span> x, <span class="keywordtype">double</span> y, <span class="keywordtype">double</span> <a class="code hl_struct" href="structvector.html">z</a>);</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="comment">// ============================================================================</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="comment">// Функции инициализации и итерационного процесса</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span><span class="comment">// ============================================================================</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="keywordtype">int</span> <a class="code hl_function" href="poisson__solver_8hpp.html#a9cde64d81680cf008f9bf093a8135605">get_int_arg</a>(<span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">argc</a>, <span class="keywordtype">char</span>** <a class="code hl_struct" href="structvector.html">argv</a>, <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">arg_index</a>, <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">default_value</a>);</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno"><a class="line" href="poisson__solver_8hpp.html#adfa8b8f46ad4621c3d8863611b067354">  126</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="poisson__solver_8hpp.html#adfa8b8f46ad4621c3d8863611b067354">initialize_grid</a>(std::vector&lt;double&gt;&amp; <a class="code hl_struct" href="structvector.html">phi</a>, <span class="keyword">const</span> <a class="code hl_struct" href="structDomainInfo.html">DomainInfo</a>&amp; <a class="code hl_struct" href="structvector.html">info</a>,</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>                     <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">Nx</a>, <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">Ny</a>, <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">Nz</a>);</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span><span class="keywordtype">void</span> <a class="code hl_function" href="poisson__solver_8hpp.html#a4ee58cad3e8ca484a391cc45104af378">jacobi_step</a>(std::vector&lt;double&gt;&amp; <a class="code hl_struct" href="structvector.html">phi</a>, std::vector&lt;double&gt;&amp; <a class="code hl_struct" href="structvector.html">phi_new</a>,</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>                 <span class="keyword">const</span> <a class="code hl_struct" href="structDomainInfo.html">DomainInfo</a>&amp; <a class="code hl_struct" href="structvector.html">info</a>, <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">Nx</a>, <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">Ny</a>, <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">Nz</a>, <span class="keywordtype">double</span>&amp; <a class="code hl_struct" href="structvector.html">max_diff</a>);</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span> </div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span><span class="preprocessor">#endif </span><span class="comment">// POISSON_SOLVER_HPP</span></div>
+<div class="ttc" id="apoisson__solver_8hpp_html_a205a52e0162e00171f1837d1aff71d41"><div class="ttname"><a href="poisson__solver_8hpp.html#a205a52e0162e00171f1837d1aff71d41">X0</a></div><div class="ttdeci">constexpr double X0</div><div class="ttdoc">Начальная координата области по оси X.</div><div class="ttdef"><b>Definition</b> <a href="poisson__solver_8hpp_source.html#l00024">poisson_solver.hpp:24</a></div></div>
+<div class="ttc" id="apoisson__solver_8hpp_html_a4ee58cad3e8ca484a391cc45104af378"><div class="ttname"><a href="poisson__solver_8hpp.html#a4ee58cad3e8ca484a391cc45104af378">jacobi_step</a></div><div class="ttdeci">void jacobi_step(std::vector&lt; double &gt; &amp;phi, std::vector&lt; double &gt; &amp;phi_new, const DomainInfo &amp;info, int Nx, int Ny, int Nz, double &amp;max_diff)</div><div class="ttdoc">Выполнение одного шага метода Якоби с перекрытием вычислений и обменов.</div><div class="ttdef"><b>Definition</b> <a href="main_8cpp_source.html#l00086">main.cpp:86</a></div></div>
+<div class="ttc" id="apoisson__solver_8hpp_html_a5118e5cbc4f0886e27b3a7a2544dded1"><div class="ttname"><a href="poisson__solver_8hpp.html#a5118e5cbc4f0886e27b3a7a2544dded1">MAX_ITER</a></div><div class="ttdeci">constexpr int MAX_ITER</div><div class="ttdoc">Максимальное количество итераций.</div><div class="ttdef"><b>Definition</b> <a href="poisson__solver_8hpp_source.html#l00048">poisson_solver.hpp:48</a></div></div>
+<div class="ttc" id="apoisson__solver_8hpp_html_a5e42cec47648826781e9f6a224023ae0"><div class="ttname"><a href="poisson__solver_8hpp.html#a5e42cec47648826781e9f6a224023ae0">Z0</a></div><div class="ttdeci">constexpr double Z0</div><div class="ttdoc">Начальная координата области по оси Z.</div><div class="ttdef"><b>Definition</b> <a href="poisson__solver_8hpp_source.html#l00030">poisson_solver.hpp:30</a></div></div>
+<div class="ttc" id="apoisson__solver_8hpp_html_a6917cbe5e834c30b17b5f0161ee1a611"><div class="ttname"><a href="poisson__solver_8hpp.html#a6917cbe5e834c30b17b5f0161ee1a611">exact_solution</a></div><div class="ttdeci">double exact_solution(double x, double y, double z)</div><div class="ttdoc">Точное аналитическое решение для контроля и граничных условий.</div><div class="ttdef"><b>Definition</b> <a href="main_8cpp_source.html#l00024">main.cpp:24</a></div></div>
+<div class="ttc" id="apoisson__solver_8hpp_html_a700cbc0ead57702822cf92ad5f975109"><div class="ttname"><a href="poisson__solver_8hpp.html#a700cbc0ead57702822cf92ad5f975109">DZ</a></div><div class="ttdeci">constexpr double DZ</div><div class="ttdoc">Размер области по оси Z.</div><div class="ttdef"><b>Definition</b> <a href="poisson__solver_8hpp_source.html#l00039">poisson_solver.hpp:39</a></div></div>
+<div class="ttc" id="apoisson__solver_8hpp_html_a70b7aba2e8c84226d69e089e41808d54"><div class="ttname"><a href="poisson__solver_8hpp.html#a70b7aba2e8c84226d69e089e41808d54">A_PARAM</a></div><div class="ttdeci">constexpr double A_PARAM</div><div class="ttdoc">Параметр уравнения Пуассона (a).</div><div class="ttdef"><b>Definition</b> <a href="poisson__solver_8hpp_source.html#l00042">poisson_solver.hpp:42</a></div></div>
+<div class="ttc" id="apoisson__solver_8hpp_html_a75f355966e0a97665eaf5a4c79baa7af"><div class="ttname"><a href="poisson__solver_8hpp.html#a75f355966e0a97665eaf5a4c79baa7af">EPSILON</a></div><div class="ttdeci">constexpr double EPSILON</div><div class="ttdoc">Порог сходимости итерационного процесса (ε).</div><div class="ttdef"><b>Definition</b> <a href="poisson__solver_8hpp_source.html#l00045">poisson_solver.hpp:45</a></div></div>
+<div class="ttc" id="apoisson__solver_8hpp_html_a9cde64d81680cf008f9bf093a8135605"><div class="ttname"><a href="poisson__solver_8hpp.html#a9cde64d81680cf008f9bf093a8135605">get_int_arg</a></div><div class="ttdeci">int get_int_arg(int argc, char **argv, int arg_index, int default_value)</div><div class="ttdoc">Безопасное получение целочисленного аргумента из командной строки.</div><div class="ttdef"><b>Definition</b> <a href="main_8cpp_source.html#l00032">main.cpp:32</a></div></div>
+<div class="ttc" id="apoisson__solver_8hpp_html_aa8a390c4c604854c7990a92462f87bc1"><div class="ttname"><a href="poisson__solver_8hpp.html#aa8a390c4c604854c7990a92462f87bc1">DX</a></div><div class="ttdeci">constexpr double DX</div><div class="ttdoc">Размер области по оси X.</div><div class="ttdef"><b>Definition</b> <a href="poisson__solver_8hpp_source.html#l00033">poisson_solver.hpp:33</a></div></div>
+<div class="ttc" id="apoisson__solver_8hpp_html_ac4dcaf30828f9ce24a1268e1f881cf5e"><div class="ttname"><a href="poisson__solver_8hpp.html#ac4dcaf30828f9ce24a1268e1f881cf5e">DY</a></div><div class="ttdeci">constexpr double DY</div><div class="ttdoc">Размер области по оси Y.</div><div class="ttdef"><b>Definition</b> <a href="poisson__solver_8hpp_source.html#l00036">poisson_solver.hpp:36</a></div></div>
+<div class="ttc" id="apoisson__solver_8hpp_html_ad4e30aac664fbda86581981fba33464d"><div class="ttname"><a href="poisson__solver_8hpp.html#ad4e30aac664fbda86581981fba33464d">rhs_function</a></div><div class="ttdeci">double rhs_function(double x, double y, double z)</div><div class="ttdoc">Функция правой части уравнения Пуассона.</div><div class="ttdef"><b>Definition</b> <a href="main_8cpp_source.html#l00028">main.cpp:28</a></div></div>
+<div class="ttc" id="apoisson__solver_8hpp_html_adfa8b8f46ad4621c3d8863611b067354"><div class="ttname"><a href="poisson__solver_8hpp.html#adfa8b8f46ad4621c3d8863611b067354">initialize_grid</a></div><div class="ttdeci">void initialize_grid(std::vector&lt; double &gt; &amp;phi, const DomainInfo &amp;info, int Nx, int Ny, int Nz)</div><div class="ttdoc">Инициализация сетки: задание граничных условий и начального приближения.</div></div>
+<div class="ttc" id="apoisson__solver_8hpp_html_ae8cc594edaf4ae4027ba7f96add65e03"><div class="ttname"><a href="poisson__solver_8hpp.html#ae8cc594edaf4ae4027ba7f96add65e03">Y0</a></div><div class="ttdeci">constexpr double Y0</div><div class="ttdoc">Начальная координата области по оси Y.</div><div class="ttdef"><b>Definition</b> <a href="poisson__solver_8hpp_source.html#l00027">poisson_solver.hpp:27</a></div></div>
+<div class="ttc" id="astructDomainInfo_html"><div class="ttname"><a href="structDomainInfo.html">DomainInfo</a></div><div class="ttdoc">Структура, хранящая параметры декомпозиции и сетки для текущего MPI-процесса.</div><div class="ttdef"><b>Definition</b> <a href="poisson__solver_8hpp_source.html#l00059">poisson_solver.hpp:59</a></div></div>
+<div class="ttc" id="astructDomainInfo_html_a2526343b5d0891c55b4c2537d1692510"><div class="ttname"><a href="structDomainInfo.html#a2526343b5d0891c55b4c2537d1692510">DomainInfo::local_nx</a></div><div class="ttdeci">int local_nx</div><div class="ttdoc">Локальный размер сетки по X (без ghost-слоев).</div><div class="ttdef"><b>Definition</b> <a href="poisson__solver_8hpp_source.html#l00060">poisson_solver.hpp:60</a></div></div>
+<div class="ttc" id="astructDomainInfo_html_a405c0af8de5d8988a0acf9c2788a7d5d"><div class="ttname"><a href="structDomainInfo.html#a405c0af8de5d8988a0acf9c2788a7d5d">DomainInfo::bottom</a></div><div class="ttdeci">int bottom</div><div class="ttdoc">Ранг соседа снизу (по оси Y).</div><div class="ttdef"><b>Definition</b> <a href="poisson__solver_8hpp_source.html#l00067">poisson_solver.hpp:67</a></div></div>
+<div class="ttc" id="astructDomainInfo_html_a44cb99988f6a046cfb99c30ab0d8c7cb"><div class="ttname"><a href="structDomainInfo.html#a44cb99988f6a046cfb99c30ab0d8c7cb">DomainInfo::hz</a></div><div class="ttdeci">double hz</div><div class="ttdoc">Шаг сетки по оси Z.</div><div class="ttdef"><b>Definition</b> <a href="poisson__solver_8hpp_source.html#l00070">poisson_solver.hpp:70</a></div></div>
+<div class="ttc" id="astructDomainInfo_html_a628cd69707d5bac3960f7b45680b6f09"><div class="ttname"><a href="structDomainInfo.html#a628cd69707d5bac3960f7b45680b6f09">DomainInfo::local_ny</a></div><div class="ttdeci">int local_ny</div><div class="ttdoc">Локальный размер сетки по Y (без ghost-слоев).</div><div class="ttdef"><b>Definition</b> <a href="poisson__solver_8hpp_source.html#l00061">poisson_solver.hpp:61</a></div></div>
+<div class="ttc" id="astructDomainInfo_html_a8527ecb3c2ebb06290a8d074adcc4826"><div class="ttname"><a href="structDomainInfo.html#a8527ecb3c2ebb06290a8d074adcc4826">DomainInfo::right</a></div><div class="ttdeci">int right</div><div class="ttdoc">Ранг соседа справа (по оси X).</div><div class="ttdef"><b>Definition</b> <a href="poisson__solver_8hpp_source.html#l00065">poisson_solver.hpp:65</a></div></div>
+<div class="ttc" id="astructDomainInfo_html_a86114f7cbcce8614f227d3492e8cbc09"><div class="ttname"><a href="structDomainInfo.html#a86114f7cbcce8614f227d3492e8cbc09">DomainInfo::left</a></div><div class="ttdeci">int left</div><div class="ttdoc">Ранг соседа слева (по оси X).</div><div class="ttdef"><b>Definition</b> <a href="poisson__solver_8hpp_source.html#l00064">poisson_solver.hpp:64</a></div></div>
+<div class="ttc" id="astructDomainInfo_html_a8c85a9c4ecfec6950e704836e3bf9afa"><div class="ttname"><a href="structDomainInfo.html#a8c85a9c4ecfec6950e704836e3bf9afa">DomainInfo::top</a></div><div class="ttdeci">int top</div><div class="ttdoc">Ранг соседа сверху (по оси Y).</div><div class="ttdef"><b>Definition</b> <a href="poisson__solver_8hpp_source.html#l00066">poisson_solver.hpp:66</a></div></div>
+<div class="ttc" id="astructDomainInfo_html_ab853af290f42b26ef26ba1b2d9d10cf8"><div class="ttname"><a href="structDomainInfo.html#ab853af290f42b26ef26ba1b2d9d10cf8">DomainInfo::hy</a></div><div class="ttdeci">double hy</div><div class="ttdoc">Шаг сетки по оси Y.</div><div class="ttdef"><b>Definition</b> <a href="poisson__solver_8hpp_source.html#l00069">poisson_solver.hpp:69</a></div></div>
+<div class="ttc" id="astructDomainInfo_html_ad62cf23131e111f1e1cc190d87ddd097"><div class="ttname"><a href="structDomainInfo.html#ad62cf23131e111f1e1cc190d87ddd097">DomainInfo::local_nz</a></div><div class="ttdeci">int local_nz</div><div class="ttdoc">Локальный размер сетки по Z (без ghost-слоев).</div><div class="ttdef"><b>Definition</b> <a href="poisson__solver_8hpp_source.html#l00062">poisson_solver.hpp:62</a></div></div>
+<div class="ttc" id="astructDomainInfo_html_ae4a7c9b806949fe85178ecc4a08450ca"><div class="ttname"><a href="structDomainInfo.html#ae4a7c9b806949fe85178ecc4a08450ca">DomainInfo::hx</a></div><div class="ttdeci">double hx</div><div class="ttdoc">Шаг сетки по оси X.</div><div class="ttdef"><b>Definition</b> <a href="poisson__solver_8hpp_source.html#l00068">poisson_solver.hpp:68</a></div></div>
+<div class="ttc" id="astructDomainInfo_html_ae66cc800d98d9f19e617476f124a00d3"><div class="ttname"><a href="structDomainInfo.html#ae66cc800d98d9f19e617476f124a00d3">DomainInfo::denom</a></div><div class="ttdeci">double denom</div><div class="ttdoc">Знаменатель в формуле метода Якоби.</div><div class="ttdef"><b>Definition</b> <a href="poisson__solver_8hpp_source.html#l00071">poisson_solver.hpp:71</a></div></div>
+<div class="ttc" id="astructDomainInfo_html_aeda89d24d9ee194a05dac40a235597da"><div class="ttname"><a href="structDomainInfo.html#aeda89d24d9ee194a05dac40a235597da">DomainInfo::coords</a></div><div class="ttdeci">int coords[2]</div><div class="ttdoc">Координаты процесса в 2D декартовой топологии.</div><div class="ttdef"><b>Definition</b> <a href="poisson__solver_8hpp_source.html#l00063">poisson_solver.hpp:63</a></div></div>
+<div class="ttc" id="astructDomainInfo_html_af9c37cde7caba0a9608879528f07bbff"><div class="ttname"><a href="structDomainInfo.html#af9c37cde7caba0a9608879528f07bbff">DomainInfo::cart_comm</a></div><div class="ttdeci">MPI_Comm cart_comm</div><div class="ttdoc">Коммуникатор декартовой топологии.</div><div class="ttdef"><b>Definition</b> <a href="poisson__solver_8hpp_source.html#l00072">poisson_solver.hpp:72</a></div></div>
+<div class="ttc" id="astructvector_html"><div class="ttname"><a href="structvector.html">vector</a></div><div class="ttdef"><b>Definition</b> <a href="point_8h_source.html#l00012">point.h:12</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

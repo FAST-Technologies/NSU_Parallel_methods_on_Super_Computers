@@ -1,0 +1,404 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lab_02: MPI + OpenMP Parallel Programming: Структура XBWindow</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Lab_02: MPI + OpenMP Parallel Programming<span id="projectnumber">&#160;2.1</span>
+   </div>
+   <div id="projectbrief">Решение 3D уравнения Пуассона методом Якоби с двумерной декомпозицией</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-attribs">Открытые атрибуты</a> &#124;
+<a href="structXBWindow-members.html">Полный список членов класса</a>  </div>
+  <div class="headertitle"><div class="title">Структура XBWindow</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="basex11_8h_source.html">basex11.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Открытые атрибуты</h2></td></tr>
+<tr class="memitem:af9e8f464362aad0b24d4b1dfabcec2fb" id="r_af9e8f464362aad0b24d4b1dfabcec2fb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">Display</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structXBWindow.html#af9e8f464362aad0b24d4b1dfabcec2fb">disp</a></td></tr>
+<tr class="separator:af9e8f464362aad0b24d4b1dfabcec2fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06ce510cdca467e4b6dddaa525a046b0" id="r_a06ce510cdca467e4b6dddaa525a046b0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structXBWindow.html#a06ce510cdca467e4b6dddaa525a046b0">screen</a></td></tr>
+<tr class="separator:a06ce510cdca467e4b6dddaa525a046b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4bab94eb26d36030b790230ee38efa43" id="r_a4bab94eb26d36030b790230ee38efa43"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">Window</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structXBWindow.html#a4bab94eb26d36030b790230ee38efa43">win</a></td></tr>
+<tr class="separator:a4bab94eb26d36030b790230ee38efa43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f60e24d0093159cd65107958a9b87b1" id="r_a7f60e24d0093159cd65107958a9b87b1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structGCCache.html">GCCache</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structXBWindow.html#a7f60e24d0093159cd65107958a9b87b1">gc</a></td></tr>
+<tr class="separator:a7f60e24d0093159cd65107958a9b87b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5375e7e2ea74cf0ff26aaa75fed2cfa2" id="r_a5375e7e2ea74cf0ff26aaa75fed2cfa2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">Visual</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structXBWindow.html#a5375e7e2ea74cf0ff26aaa75fed2cfa2">vis</a></td></tr>
+<tr class="separator:a5375e7e2ea74cf0ff26aaa75fed2cfa2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b993d803a23ec0679cde513820e3204" id="r_a1b993d803a23ec0679cde513820e3204"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structXBWindow.html#a1b993d803a23ec0679cde513820e3204">depth</a></td></tr>
+<tr class="separator:a1b993d803a23ec0679cde513820e3204"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d21f5dba7e815b969390beab656851e" id="r_a7d21f5dba7e815b969390beab656851e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structXBWindow.html#a7d21f5dba7e815b969390beab656851e">numcolors</a></td></tr>
+<tr class="separator:a7d21f5dba7e815b969390beab656851e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a952f0bee7f37375265198c400b183b33" id="r_a952f0bee7f37375265198c400b183b33"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structXBWindow.html#a952f0bee7f37375265198c400b183b33">maxcolors</a></td></tr>
+<tr class="separator:a952f0bee7f37375265198c400b183b33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ffef0736cfa4f8ad02475ff5b0b85bc" id="r_a1ffef0736cfa4f8ad02475ff5b0b85bc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">Colormap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structXBWindow.html#a1ffef0736cfa4f8ad02475ff5b0b85bc">cmap</a></td></tr>
+<tr class="separator:a1ffef0736cfa4f8ad02475ff5b0b85bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a992a8bc7c06a591bb98b401bf9c6a3" id="r_a2a992a8bc7c06a591bb98b401bf9c6a3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="basex11_8h.html#aad48178f1183ee70ec05e8018f4e553c">PixVal</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structXBWindow.html#a2a992a8bc7c06a591bb98b401bf9c6a3">foreground</a></td></tr>
+<tr class="separator:a2a992a8bc7c06a591bb98b401bf9c6a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af65b4fc9d276e7d21c0cf7befabbaba8" id="r_af65b4fc9d276e7d21c0cf7befabbaba8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="basex11_8h.html#aad48178f1183ee70ec05e8018f4e553c">PixVal</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structXBWindow.html#af65b4fc9d276e7d21c0cf7befabbaba8">background</a></td></tr>
+<tr class="separator:af65b4fc9d276e7d21c0cf7befabbaba8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08591dcdbf4abca52d6bb5b0f83311cd" id="r_a08591dcdbf4abca52d6bb5b0f83311cd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="basex11_8h.html#aad48178f1183ee70ec05e8018f4e553c">PixVal</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structXBWindow.html#a08591dcdbf4abca52d6bb5b0f83311cd">cmapping</a> [256]</td></tr>
+<tr class="separator:a08591dcdbf4abca52d6bb5b0f83311cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afefecdfe0dda6c7362d2bccded38f871" id="r_afefecdfe0dda6c7362d2bccded38f871"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structXBWindow.html#afefecdfe0dda6c7362d2bccded38f871">x</a></td></tr>
+<tr class="separator:afefecdfe0dda6c7362d2bccded38f871"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac072333833a3213f39f7abc5e5b9f6a" id="r_aac072333833a3213f39f7abc5e5b9f6a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structXBWindow.html#aac072333833a3213f39f7abc5e5b9f6a">y</a></td></tr>
+<tr class="separator:aac072333833a3213f39f7abc5e5b9f6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a0d35ad175b229ee2eedf80cb54768c" id="r_a6a0d35ad175b229ee2eedf80cb54768c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structXBWindow.html#a6a0d35ad175b229ee2eedf80cb54768c">w</a></td></tr>
+<tr class="separator:a6a0d35ad175b229ee2eedf80cb54768c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5404e61d539eec697eb87516f4d12a4d" id="r_a5404e61d539eec697eb87516f4d12a4d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structXBWindow.html#a5404e61d539eec697eb87516f4d12a4d">h</a></td></tr>
+<tr class="separator:a5404e61d539eec697eb87516f4d12a4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2faa00b50426a549627f6c111d301054" id="r_a2faa00b50426a549627f6c111d301054"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">Drawable</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structXBWindow.html#a2faa00b50426a549627f6c111d301054">drw</a></td></tr>
+<tr class="separator:a2faa00b50426a549627f6c111d301054"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock">
+<p class="definition">См. определение в файле <a class="el" href="basex11_8h_source.html">basex11.h</a> строка <a class="el" href="basex11_8h_source.html#l00038">38</a></p>
+</div><h2 class="groupheader">Данные класса</h2>
+<a id="af65b4fc9d276e7d21c0cf7befabbaba8" name="af65b4fc9d276e7d21c0cf7befabbaba8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af65b4fc9d276e7d21c0cf7befabbaba8">&#9670;&#160;</a></span>background</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="basex11_8h.html#aad48178f1183ee70ec05e8018f4e553c">PixVal</a> XBWindow::background</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="basex11_8h_source.html">basex11.h</a> строка <a class="el" href="basex11_8h_source.html#l00048">48</a></p>
+
+</div>
+</div>
+<a id="a1ffef0736cfa4f8ad02475ff5b0b85bc" name="a1ffef0736cfa4f8ad02475ff5b0b85bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ffef0736cfa4f8ad02475ff5b0b85bc">&#9670;&#160;</a></span>cmap</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">Colormap</a> XBWindow::cmap</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="basex11_8h_source.html">basex11.h</a> строка <a class="el" href="basex11_8h_source.html#l00047">47</a></p>
+
+</div>
+</div>
+<a id="a08591dcdbf4abca52d6bb5b0f83311cd" name="a08591dcdbf4abca52d6bb5b0f83311cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08591dcdbf4abca52d6bb5b0f83311cd">&#9670;&#160;</a></span>cmapping</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="basex11_8h.html#aad48178f1183ee70ec05e8018f4e553c">PixVal</a> XBWindow::cmapping[256]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="basex11_8h_source.html">basex11.h</a> строка <a class="el" href="basex11_8h_source.html#l00049">49</a></p>
+
+</div>
+</div>
+<a id="a1b993d803a23ec0679cde513820e3204" name="a1b993d803a23ec0679cde513820e3204"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b993d803a23ec0679cde513820e3204">&#9670;&#160;</a></span>depth</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> XBWindow::depth</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="basex11_8h_source.html">basex11.h</a> строка <a class="el" href="basex11_8h_source.html#l00044">44</a></p>
+
+</div>
+</div>
+<a id="af9e8f464362aad0b24d4b1dfabcec2fb" name="af9e8f464362aad0b24d4b1dfabcec2fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9e8f464362aad0b24d4b1dfabcec2fb">&#9670;&#160;</a></span>disp</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">Display</a>* XBWindow::disp</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="basex11_8h_source.html">basex11.h</a> строка <a class="el" href="basex11_8h_source.html#l00039">39</a></p>
+
+</div>
+</div>
+<a id="a2faa00b50426a549627f6c111d301054" name="a2faa00b50426a549627f6c111d301054"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2faa00b50426a549627f6c111d301054">&#9670;&#160;</a></span>drw</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">Drawable</a> XBWindow::drw</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="basex11_8h_source.html">basex11.h</a> строка <a class="el" href="basex11_8h_source.html#l00055">55</a></p>
+
+</div>
+</div>
+<a id="a2a992a8bc7c06a591bb98b401bf9c6a3" name="a2a992a8bc7c06a591bb98b401bf9c6a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a992a8bc7c06a591bb98b401bf9c6a3">&#9670;&#160;</a></span>foreground</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="basex11_8h.html#aad48178f1183ee70ec05e8018f4e553c">PixVal</a> XBWindow::foreground</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="basex11_8h_source.html">basex11.h</a> строка <a class="el" href="basex11_8h_source.html#l00048">48</a></p>
+
+</div>
+</div>
+<a id="a7f60e24d0093159cd65107958a9b87b1" name="a7f60e24d0093159cd65107958a9b87b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f60e24d0093159cd65107958a9b87b1">&#9670;&#160;</a></span>gc</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structGCCache.html">GCCache</a> XBWindow::gc</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="basex11_8h_source.html">basex11.h</a> строка <a class="el" href="basex11_8h_source.html#l00042">42</a></p>
+
+</div>
+</div>
+<a id="a5404e61d539eec697eb87516f4d12a4d" name="a5404e61d539eec697eb87516f4d12a4d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5404e61d539eec697eb87516f4d12a4d">&#9670;&#160;</a></span>h</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> XBWindow::h</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="basex11_8h_source.html">basex11.h</a> строка <a class="el" href="basex11_8h_source.html#l00050">50</a></p>
+
+</div>
+</div>
+<a id="a952f0bee7f37375265198c400b183b33" name="a952f0bee7f37375265198c400b183b33"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a952f0bee7f37375265198c400b183b33">&#9670;&#160;</a></span>maxcolors</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> XBWindow::maxcolors</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="basex11_8h_source.html">basex11.h</a> строка <a class="el" href="basex11_8h_source.html#l00046">46</a></p>
+
+</div>
+</div>
+<a id="a7d21f5dba7e815b969390beab656851e" name="a7d21f5dba7e815b969390beab656851e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d21f5dba7e815b969390beab656851e">&#9670;&#160;</a></span>numcolors</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> XBWindow::numcolors</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="basex11_8h_source.html">basex11.h</a> строка <a class="el" href="basex11_8h_source.html#l00045">45</a></p>
+
+</div>
+</div>
+<a id="a06ce510cdca467e4b6dddaa525a046b0" name="a06ce510cdca467e4b6dddaa525a046b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06ce510cdca467e4b6dddaa525a046b0">&#9670;&#160;</a></span>screen</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> XBWindow::screen</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="basex11_8h_source.html">basex11.h</a> строка <a class="el" href="basex11_8h_source.html#l00040">40</a></p>
+
+</div>
+</div>
+<a id="a5375e7e2ea74cf0ff26aaa75fed2cfa2" name="a5375e7e2ea74cf0ff26aaa75fed2cfa2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5375e7e2ea74cf0ff26aaa75fed2cfa2">&#9670;&#160;</a></span>vis</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">Visual</a>* XBWindow::vis</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="basex11_8h_source.html">basex11.h</a> строка <a class="el" href="basex11_8h_source.html#l00043">43</a></p>
+
+</div>
+</div>
+<a id="a6a0d35ad175b229ee2eedf80cb54768c" name="a6a0d35ad175b229ee2eedf80cb54768c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a0d35ad175b229ee2eedf80cb54768c">&#9670;&#160;</a></span>w</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> XBWindow::w</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="basex11_8h_source.html">basex11.h</a> строка <a class="el" href="basex11_8h_source.html#l00050">50</a></p>
+
+</div>
+</div>
+<a id="a4bab94eb26d36030b790230ee38efa43" name="a4bab94eb26d36030b790230ee38efa43"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4bab94eb26d36030b790230ee38efa43">&#9670;&#160;</a></span>win</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">Window</a> XBWindow::win</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="basex11_8h_source.html">basex11.h</a> строка <a class="el" href="basex11_8h_source.html#l00041">41</a></p>
+
+</div>
+</div>
+<a id="afefecdfe0dda6c7362d2bccded38f871" name="afefecdfe0dda6c7362d2bccded38f871"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afefecdfe0dda6c7362d2bccded38f871">&#9670;&#160;</a></span>x</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> XBWindow::x</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="basex11_8h_source.html">basex11.h</a> строка <a class="el" href="basex11_8h_source.html#l00050">50</a></p>
+
+</div>
+</div>
+<a id="aac072333833a3213f39f7abc5e5b9f6a" name="aac072333833a3213f39f7abc5e5b9f6a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac072333833a3213f39f7abc5e5b9f6a">&#9670;&#160;</a></span>y</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> XBWindow::y</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="basex11_8h_source.html">basex11.h</a> строка <a class="el" href="basex11_8h_source.html#l00050">50</a></p>
+
+</div>
+</div>
+<hr/>Объявления и описания членов структуры находятся в файле:<ul>
+<li><a class="el" href="basex11_8h_source.html">basex11.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

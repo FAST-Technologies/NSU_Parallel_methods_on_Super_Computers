@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lab_02: MPI + OpenMP Parallel Programming: Структура CLOG_Rec_CargoEvt_t</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Lab_02: MPI + OpenMP Parallel Programming<span id="projectnumber">&#160;2.1</span>
+   </div>
+   <div id="projectbrief">Решение 3D уравнения Пуассона методом Якоби с двумерной декомпозицией</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-attribs">Открытые атрибуты</a> &#124;
+<a href="structCLOG__Rec__CargoEvt__t-members.html">Полный список членов класса</a>  </div>
+  <div class="headertitle"><div class="title">Структура CLOG_Rec_CargoEvt_t</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="clog__record_8h_source.html">clog_record.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Открытые атрибуты</h2></td></tr>
+<tr class="memitem:a8f15fbd14198c5d79c40f9c56c4f005b" id="r_a8f15fbd14198c5d79c40f9c56c4f005b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="include_2clog__inttypes_8h.html#a7543a663a5d561bfc1aa988a42e400c9">CLOG_int32_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCLOG__Rec__CargoEvt__t.html#a8f15fbd14198c5d79c40f9c56c4f005b">etype</a></td></tr>
+<tr class="separator:a8f15fbd14198c5d79c40f9c56c4f005b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6fcdc3fd83697b5c14c48cd85739aa6f" id="r_a6fcdc3fd83697b5c14c48cd85739aa6f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="include_2clog__inttypes_8h.html#a7543a663a5d561bfc1aa988a42e400c9">CLOG_int32_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCLOG__Rec__CargoEvt__t.html#a6fcdc3fd83697b5c14c48cd85739aa6f">pad</a></td></tr>
+<tr class="separator:a6fcdc3fd83697b5c14c48cd85739aa6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7faba562428e2a1f2cfb403ca5a5d4ef" id="r_a7faba562428e2a1f2cfb403ca5a5d4ef"><td class="memItemLeft" align="right" valign="top"><a class="el" href="clog__record_8h.html#a09cf40f702d9021dd206432a1b895254">CLOG_Str_Bytes_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCLOG__Rec__CargoEvt__t.html#a7faba562428e2a1f2cfb403ca5a5d4ef">bytes</a></td></tr>
+<tr class="separator:a7faba562428e2a1f2cfb403ca5a5d4ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7ea817b6550e7248372d8a656f2a5b2" id="r_af7ea817b6550e7248372d8a656f2a5b2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="clog__block_8h.html#a0de432a0e86e2f4accd4551941c27bf2">CLOG_DataUnit_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCLOG__Rec__CargoEvt__t.html#af7ea817b6550e7248372d8a656f2a5b2">end</a> [1]</td></tr>
+<tr class="separator:af7ea817b6550e7248372d8a656f2a5b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock">
+<p class="definition">См. определение в файле <a class="el" href="clog__record_8h_source.html">clog_record.h</a> строка <a class="el" href="clog__record_8h_source.html#l00098">98</a></p>
+</div><h2 class="groupheader">Данные класса</h2>
+<a id="a7faba562428e2a1f2cfb403ca5a5d4ef" name="a7faba562428e2a1f2cfb403ca5a5d4ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7faba562428e2a1f2cfb403ca5a5d4ef">&#9670;&#160;</a></span>bytes</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="clog__record_8h.html#a09cf40f702d9021dd206432a1b895254">CLOG_Str_Bytes_t</a> CLOG_Rec_CargoEvt_t::bytes</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="clog__record_8h_source.html">clog_record.h</a> строка <a class="el" href="clog__record_8h_source.html#l00101">101</a></p>
+
+</div>
+</div>
+<a id="af7ea817b6550e7248372d8a656f2a5b2" name="af7ea817b6550e7248372d8a656f2a5b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7ea817b6550e7248372d8a656f2a5b2">&#9670;&#160;</a></span>end</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="clog__block_8h.html#a0de432a0e86e2f4accd4551941c27bf2">CLOG_DataUnit_t</a> CLOG_Rec_CargoEvt_t::end[1]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="clog__record_8h_source.html">clog_record.h</a> строка <a class="el" href="clog__record_8h_source.html#l00102">102</a></p>
+
+</div>
+</div>
+<a id="a8f15fbd14198c5d79c40f9c56c4f005b" name="a8f15fbd14198c5d79c40f9c56c4f005b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f15fbd14198c5d79c40f9c56c4f005b">&#9670;&#160;</a></span>etype</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="include_2clog__inttypes_8h.html#a7543a663a5d561bfc1aa988a42e400c9">CLOG_int32_t</a> CLOG_Rec_CargoEvt_t::etype</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="clog__record_8h_source.html">clog_record.h</a> строка <a class="el" href="clog__record_8h_source.html#l00099">99</a></p>
+
+</div>
+</div>
+<a id="a6fcdc3fd83697b5c14c48cd85739aa6f" name="a6fcdc3fd83697b5c14c48cd85739aa6f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6fcdc3fd83697b5c14c48cd85739aa6f">&#9670;&#160;</a></span>pad</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="include_2clog__inttypes_8h.html#a7543a663a5d561bfc1aa988a42e400c9">CLOG_int32_t</a> CLOG_Rec_CargoEvt_t::pad</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="clog__record_8h_source.html">clog_record.h</a> строка <a class="el" href="clog__record_8h_source.html#l00100">100</a></p>
+
+</div>
+</div>
+<hr/>Объявления и описания членов структуры находятся в файле:<ul>
+<li><a class="el" href="clog__record_8h_source.html">clog_record.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

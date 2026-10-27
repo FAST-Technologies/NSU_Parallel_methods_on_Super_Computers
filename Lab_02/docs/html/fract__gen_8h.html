@@ -1,0 +1,1113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lab_02: MPI + OpenMP Parallel Programming: Файл fract_gen.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Lab_02: MPI + OpenMP Parallel Programming<span id="projectnumber">&#160;2.1</span>
+   </div>
+   <div id="projectbrief">Решение 3D уравнения Пуассона методом Якоби с двумерной декомпозицией</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_1f646cbbb0f6227d25dd06f792d51aba.html">mpe2-1.3.0</a></li><li class="navelem"><a class="el" href="dir_493399512d45eb30627376023737183a.html">src</a></li><li class="navelem"><a class="el" href="dir_532b6e0bbac9f63fe589b390252576da.html">graphics</a></li><li class="navelem"><a class="el" href="dir_79216fb839f205e39a4f1139e127db43.html">contrib</a></li><li class="navelem"><a class="el" href="dir_36c5fa1fce864ea26b23b700a1dd37b8.html">mandel</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Классы</a> &#124;
+<a href="#define-members">Макросы</a> &#124;
+<a href="#typedef-members">Определения типов</a> &#124;
+<a href="#enum-members">Перечисления</a> &#124;
+<a href="#func-members">Функции</a>  </div>
+  <div class="headertitle"><div class="title">Файл fract_gen.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
+</div>
+<p><a href="fract__gen_8h_source.html">См. исходные тексты.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Классы</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMbrot__settings__.html">Mbrot_settings_</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structJulia__settings__.html">Julia_settings_</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structNewton__settings__.html">Newton_settings_</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Макросы</h2></td></tr>
+<tr class="memitem:aaf0952059602752258dccaa015d7b54a" id="r_aaf0952059602752258dccaa015d7b54a"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fract__gen_8h.html#aaf0952059602752258dccaa015d7b54a">NUM</a>&#160;&#160;&#160;<a class="el" href="structvector.html">double</a></td></tr>
+<tr class="separator:aaf0952059602752258dccaa015d7b54a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a956c7ba9724b1cac73a3c2c3ea0d9715" id="r_a956c7ba9724b1cac73a3c2c3ea0d9715"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fract__gen_8h.html#a956c7ba9724b1cac73a3c2c3ea0d9715">NUM_ASSIGN</a>(<a class="el" href="structvector.html">a</a>,  b)&#160;&#160;&#160;{(<a class="el" href="structvector.html">a</a>)=(b);}</td></tr>
+<tr class="separator:a956c7ba9724b1cac73a3c2c3ea0d9715"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44808b896cef4cfa1d00ad88786464ed" id="r_a44808b896cef4cfa1d00ad88786464ed"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fract__gen_8h.html#a44808b896cef4cfa1d00ad88786464ed">NUM_PTR_ASSIGN</a>(<a class="el" href="structvector.html">a</a>,  b)&#160;&#160;&#160;{*(<a class="el" href="structvector.html">a</a>)=(b);}</td></tr>
+<tr class="separator:a44808b896cef4cfa1d00ad88786464ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af613f8f9be8e802020d9f3bcbb0fd4cf" id="r_af613f8f9be8e802020d9f3bcbb0fd4cf"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fract__gen_8h.html#af613f8f9be8e802020d9f3bcbb0fd4cf">NUM_ADD</a>(<a class="el" href="structvector.html">a</a>,  b)&#160;&#160;&#160;((<a class="el" href="structvector.html">a</a>)+(b))</td></tr>
+<tr class="separator:af613f8f9be8e802020d9f3bcbb0fd4cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a341b18e15abe98249443e0b7cf340a3e" id="r_a341b18e15abe98249443e0b7cf340a3e"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fract__gen_8h.html#a341b18e15abe98249443e0b7cf340a3e">NUM_SUB</a>(<a class="el" href="structvector.html">a</a>,  b)&#160;&#160;&#160;((<a class="el" href="structvector.html">a</a>)-(b))</td></tr>
+<tr class="separator:a341b18e15abe98249443e0b7cf340a3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a093dbe0203f03a8cb815a3894402260e" id="r_a093dbe0203f03a8cb815a3894402260e"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fract__gen_8h.html#a093dbe0203f03a8cb815a3894402260e">NUM_MULT</a>(<a class="el" href="structvector.html">a</a>,  b)&#160;&#160;&#160;((<a class="el" href="structvector.html">a</a>)*(b))</td></tr>
+<tr class="separator:a093dbe0203f03a8cb815a3894402260e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab2e3c9128c9ab69490f847c495cefb3" id="r_aab2e3c9128c9ab69490f847c495cefb3"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fract__gen_8h.html#aab2e3c9128c9ab69490f847c495cefb3">NUM_DIV</a>(<a class="el" href="structvector.html">a</a>,  b)&#160;&#160;&#160;((<a class="el" href="structvector.html">a</a>)/(b))</td></tr>
+<tr class="separator:aab2e3c9128c9ab69490f847c495cefb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea470838fad32fbb7372454192d671a9" id="r_aea470838fad32fbb7372454192d671a9"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fract__gen_8h.html#aea470838fad32fbb7372454192d671a9">INT2NUM</a>(<a class="el" href="structvector.html">a</a>)&#160;&#160;&#160;((<a class="el" href="fract__gen_8h.html#aaf0952059602752258dccaa015d7b54a">NUM</a>)(<a class="el" href="structvector.html">a</a>))</td></tr>
+<tr class="separator:aea470838fad32fbb7372454192d671a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ece25d3ab00b0b6a9ffb910f955b4c9" id="r_a9ece25d3ab00b0b6a9ffb910f955b4c9"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fract__gen_8h.html#a9ece25d3ab00b0b6a9ffb910f955b4c9">NUM2INT</a>(<a class="el" href="structvector.html">a</a>)&#160;&#160;&#160;((<a class="el" href="structvector.html">int</a>)(<a class="el" href="structvector.html">a</a>))</td></tr>
+<tr class="separator:a9ece25d3ab00b0b6a9ffb910f955b4c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad05a2abfc3431434a0accfc0f073484b" id="r_ad05a2abfc3431434a0accfc0f073484b"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fract__gen_8h.html#ad05a2abfc3431434a0accfc0f073484b">DBL2NUM</a>(<a class="el" href="structvector.html">a</a>)&#160;&#160;&#160;(<a class="el" href="structvector.html">a</a>)</td></tr>
+<tr class="separator:ad05a2abfc3431434a0accfc0f073484b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92a45782303372eccb5a18985a91ca86" id="r_a92a45782303372eccb5a18985a91ca86"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fract__gen_8h.html#a92a45782303372eccb5a18985a91ca86">NUM2DBL</a>(<a class="el" href="structvector.html">a</a>)&#160;&#160;&#160;(<a class="el" href="structvector.html">a</a>)</td></tr>
+<tr class="separator:a92a45782303372eccb5a18985a91ca86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8b5351350b9de193bb8efc155c877af" id="r_aa8b5351350b9de193bb8efc155c877af"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fract__gen_8h.html#aa8b5351350b9de193bb8efc155c877af">COMPLEX_SQUARE</a>(r,  i,  <a class="el" href="structvector.html">temp</a>)</td></tr>
+<tr class="separator:aa8b5351350b9de193bb8efc155c877af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e1da0957d79c311bee6672fb790a236" id="r_a8e1da0957d79c311bee6672fb790a236"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fract__gen_8h.html#a8e1da0957d79c311bee6672fb790a236">COMPLEX_ADD</a>(<a class="el" href="structvector.html">ar</a>,  <a class="el" href="structvector.html">ai</a>,  <a class="el" href="structvector.html">br</a>,  <a class="el" href="structvector.html">bi</a>)</td></tr>
+<tr class="separator:a8e1da0957d79c311bee6672fb790a236"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a562718e1e97112228ec30fea010d47a7" id="r_a562718e1e97112228ec30fea010d47a7"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fract__gen_8h.html#a562718e1e97112228ec30fea010d47a7">COMPLEX_SQ_ADD</a>(<a class="el" href="structvector.html">ar</a>,  <a class="el" href="structvector.html">ai</a>,  <a class="el" href="structvector.html">br</a>,  <a class="el" href="structvector.html">bi</a>,  <a class="el" href="structvector.html">temp</a>)</td></tr>
+<tr class="separator:a562718e1e97112228ec30fea010d47a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac857d11c4c13c5b26da865ef71f0e2cf" id="r_ac857d11c4c13c5b26da865ef71f0e2cf"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fract__gen_8h.html#ac857d11c4c13c5b26da865ef71f0e2cf">COMPLEX_MAGNITUDE_SQ</a>(<a class="el" href="structvector.html">ar</a>,  <a class="el" href="structvector.html">ai</a>)&#160;&#160;&#160;  <a class="el" href="fract__gen_8h.html#af613f8f9be8e802020d9f3bcbb0fd4cf">NUM_ADD</a>( <a class="el" href="fract__gen_8h.html#a093dbe0203f03a8cb815a3894402260e">NUM_MULT</a>( (<a class="el" href="structvector.html">ar</a>), (<a class="el" href="structvector.html">ar</a>)), <a class="el" href="fract__gen_8h.html#a093dbe0203f03a8cb815a3894402260e">NUM_MULT</a>( (<a class="el" href="structvector.html">ai</a>), (<a class="el" href="structvector.html">ai</a>) ) )</td></tr>
+<tr class="separator:ac857d11c4c13c5b26da865ef71f0e2cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4100bb0aee111b97b19cb2d7fc6d6db" id="r_af4100bb0aee111b97b19cb2d7fc6d6db"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fract__gen_8h.html#af4100bb0aee111b97b19cb2d7fc6d6db">CHECK_ORDER</a>(<a class="el" href="structvector.html">a</a>,  b)</td></tr>
+<tr class="separator:af4100bb0aee111b97b19cb2d7fc6d6db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a915b1aab750b776d52c15cb2307aae0c" id="r_a915b1aab750b776d52c15cb2307aae0c"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fract__gen_8h.html#a915b1aab750b776d52c15cb2307aae0c">COORD2CMPLX</a>(<a class="el" href="structvector.html">cmin</a>,  <a class="el" href="structvector.html">cmax</a>,  xmin,  xmax,  x)</td></tr>
+<tr class="separator:a915b1aab750b776d52c15cb2307aae0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Определения типов</h2></td></tr>
+<tr class="memitem:a0affc787d755a8408d3866bf90876520" id="r_a0affc787d755a8408d3866bf90876520"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">typedef</a> <a class="el" href="structvector.html">enum</a> <a class="el" href="fract__gen_8h.html#a20c12f9ca78eab74dbc6757a1dc59071">_Fractal_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fract__gen_8h.html#a0affc787d755a8408d3866bf90876520">Fractal_type</a></td></tr>
+<tr class="separator:a0affc787d755a8408d3866bf90876520"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c6bdc10601fed214f84740a8eb13890" id="r_a9c6bdc10601fed214f84740a8eb13890"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">typedef</a> <a class="el" href="structvector.html">struct</a> <a class="el" href="structMbrot__settings__.html">Mbrot_settings_</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fract__gen_8h.html#a9c6bdc10601fed214f84740a8eb13890">Mbrot_settings</a></td></tr>
+<tr class="separator:a9c6bdc10601fed214f84740a8eb13890"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7df3d55aa642de4ae02a38770e0462d" id="r_ac7df3d55aa642de4ae02a38770e0462d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">typedef</a> <a class="el" href="structvector.html">struct</a> <a class="el" href="structJulia__settings__.html">Julia_settings_</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fract__gen_8h.html#ac7df3d55aa642de4ae02a38770e0462d">Julia_settings</a></td></tr>
+<tr class="separator:ac7df3d55aa642de4ae02a38770e0462d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ba0341d0a3af70959e7a3b559ea8226" id="r_a2ba0341d0a3af70959e7a3b559ea8226"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">typedef</a> <a class="el" href="structvector.html">struct</a> <a class="el" href="structNewton__settings__.html">Newton_settings_</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fract__gen_8h.html#a2ba0341d0a3af70959e7a3b559ea8226">Newton_settings</a></td></tr>
+<tr class="separator:a2ba0341d0a3af70959e7a3b559ea8226"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+Перечисления</h2></td></tr>
+<tr class="memitem:a20c12f9ca78eab74dbc6757a1dc59071" id="r_a20c12f9ca78eab74dbc6757a1dc59071"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fract__gen_8h.html#a20c12f9ca78eab74dbc6757a1dc59071">_Fractal_type</a> { <a class="el" href="fract__gen_8h.html#a20c12f9ca78eab74dbc6757a1dc59071a6acf3c30030eea67674190347caff27b">MBROT</a>
+, <a class="el" href="fract__gen_8h.html#a20c12f9ca78eab74dbc6757a1dc59071a6f8f3219a598fcd6038302ab91897d41">JULIA</a>
+, <a class="el" href="fract__gen_8h.html#a20c12f9ca78eab74dbc6757a1dc59071acb672e33270b2496f98d3d6995d503f2">NEWTON</a>
+ }</td></tr>
+<tr class="separator:a20c12f9ca78eab74dbc6757a1dc59071"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Функции</h2></td></tr>
+<tr class="memitem:a05aa09ea707953d584d005937d5767fa" id="r_a05aa09ea707953d584d005937d5767fa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fract__gen_8h.html#a05aa09ea707953d584d005937d5767fa">Mbrot_Settings</a> (<a class="el" href="structvector.html">double</a> <a class="el" href="structvector.html">boundary</a>, <a class="el" href="structvector.html">int</a> maxiter)</td></tr>
+<tr class="separator:a05aa09ea707953d584d005937d5767fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a565ab48c187ffce7248969cc73cd56cf" id="r_a565ab48c187ffce7248969cc73cd56cf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fract__gen_8h.html#a565ab48c187ffce7248969cc73cd56cf">MbrotCalcIter</a> (<a class="el" href="fract__gen_8h.html#aaf0952059602752258dccaa015d7b54a">NUM</a> <a class="el" href="structvector.html">re</a>, <a class="el" href="fract__gen_8h.html#aaf0952059602752258dccaa015d7b54a">NUM</a> <a class="el" href="structvector.html">im</a>)</td></tr>
+<tr class="separator:a565ab48c187ffce7248969cc73cd56cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62571f819cf6eeaa1c04b8441570458e" id="r_a62571f819cf6eeaa1c04b8441570458e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fract__gen_8h.html#a62571f819cf6eeaa1c04b8441570458e">Julia_Settings</a> (<a class="el" href="structvector.html">double</a> <a class="el" href="structvector.html">boundary</a>, <a class="el" href="structvector.html">int</a> maxiter, <a class="el" href="fract__gen_8h.html#aaf0952059602752258dccaa015d7b54a">NUM</a> <a class="el" href="structvector.html">real</a>, <a class="el" href="fract__gen_8h.html#aaf0952059602752258dccaa015d7b54a">NUM</a> <a class="el" href="structvector.html">imag</a>)</td></tr>
+<tr class="separator:a62571f819cf6eeaa1c04b8441570458e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b1483fda5b7a0f24d006690c1bab82f" id="r_a2b1483fda5b7a0f24d006690c1bab82f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fract__gen_8h.html#a2b1483fda5b7a0f24d006690c1bab82f">JuliaCalcIter</a> (<a class="el" href="fract__gen_8h.html#aaf0952059602752258dccaa015d7b54a">NUM</a> <a class="el" href="structvector.html">re</a>, <a class="el" href="fract__gen_8h.html#aaf0952059602752258dccaa015d7b54a">NUM</a> <a class="el" href="structvector.html">im</a>)</td></tr>
+<tr class="separator:a2b1483fda5b7a0f24d006690c1bab82f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d5f2c068047a3f64764f02218822c4d" id="r_a2d5f2c068047a3f64764f02218822c4d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fract__gen_8h.html#a2d5f2c068047a3f64764f02218822c4d">Mbrotrep_Settings</a> (<a class="el" href="structvector.html">double</a> <a class="el" href="structvector.html">boundary</a>, <a class="el" href="structvector.html">int</a> maxiter, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">miniter</a>, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">longestCycle</a>, <a class="el" href="structvector.html">double</a> <a class="el" href="structvector.html">fudgeFactor</a>)</td></tr>
+<tr class="separator:a2d5f2c068047a3f64764f02218822c4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa308d4e527c3c5306384b07cf51664e3" id="r_aa308d4e527c3c5306384b07cf51664e3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fract__gen_8h.html#aa308d4e527c3c5306384b07cf51664e3">MbrotrepCalcIter</a> (<a class="el" href="fract__gen_8h.html#aaf0952059602752258dccaa015d7b54a">NUM</a> <a class="el" href="structvector.html">re</a>, <a class="el" href="fract__gen_8h.html#aaf0952059602752258dccaa015d7b54a">NUM</a> <a class="el" href="structvector.html">im</a>)</td></tr>
+<tr class="separator:aa308d4e527c3c5306384b07cf51664e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e5da505755c97a9d66958ac79662b27" id="r_a4e5da505755c97a9d66958ac79662b27"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fract__gen_8h.html#a4e5da505755c97a9d66958ac79662b27">CalcField</a> (<a class="el" href="fract__gen_8h.html#a0affc787d755a8408d3866bf90876520">Fractal_type</a>, <a class="el" href="structvector.html">int</a> *<a class="el" href="structvector.html">iterField</a>, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">xstart</a>, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">xend</a>, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">ystart</a>, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">yend</a>)</td></tr>
+<tr class="separator:a4e5da505755c97a9d66958ac79662b27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab06e0286b0fd504bdc0419b5ab7096e5" id="r_ab06e0286b0fd504bdc0419b5ab7096e5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fract__gen_8h.html#ab06e0286b0fd504bdc0419b5ab7096e5">Copysub2DArray</a> (<a class="el" href="structvector.html">int</a> *<a class="el" href="structvector.html">mainArray</a>, <a class="el" href="structvector.html">int</a> *<a class="el" href="structvector.html">subArray</a>, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">mainWidth</a>, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">mainHeight</a>, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">subWidth</a>, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">subHeight</a>, <a class="el" href="structvector.html">int</a> xpos, <a class="el" href="structvector.html">int</a> ypos)</td></tr>
+<tr class="separator:ab06e0286b0fd504bdc0419b5ab7096e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Макросы</h2>
+<a id="af4100bb0aee111b97b19cb2d7fc6d6db" name="af4100bb0aee111b97b19cb2d7fc6d6db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4100bb0aee111b97b19cb2d7fc6d6db">&#9670;&#160;</a></span>CHECK_ORDER</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> CHECK_ORDER</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><a class="el" href="structvector.html">a</a>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">b&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Макроопределение:</b><div class="fragment"><div class="line">  { \</div>
+<div class="line">  <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">temp</a>; <a class="code hl_struct" href="structvector.html">\</a></div>
+<div class="line"><a class="code hl_struct" href="structvector.html">  if</a> ((<a class="code hl_struct" href="structvector.html">a</a>)&gt;(b)) {(<a class="code hl_struct" href="structvector.html">temp</a>)=(<a class="code hl_struct" href="structvector.html">a</a>); (<a class="code hl_struct" href="structvector.html">a</a>)=(b); (b)=(<a class="code hl_struct" href="structvector.html">temp</a>);} \</div>
+<div class="line">}</div>
+<div class="ttc" id="astructvector_html"><div class="ttname"><a href="structvector.html">vector</a></div><div class="ttdef"><b>Definition</b> <a href="point_8h_source.html#l00012">point.h:12</a></div></div>
+</div><!-- fragment -->
+<p class="definition">См. определение в файле <a class="el" href="fract__gen_8h_source.html">fract_gen.h</a> строка <a class="el" href="fract__gen_8h_source.html#l00058">58</a></p>
+
+</div>
+</div>
+<a id="a8e1da0957d79c311bee6672fb790a236" name="a8e1da0957d79c311bee6672fb790a236"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e1da0957d79c311bee6672fb790a236">&#9670;&#160;</a></span>COMPLEX_ADD</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> COMPLEX_ADD</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><a class="el" href="structvector.html">ar</a>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><a class="el" href="structvector.html">ai</a>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><a class="el" href="structvector.html">br</a>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><a class="el" href="structvector.html">bi</a>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Макроопределение:</b><div class="fragment"><div class="line">  { <a class="code hl_struct" href="structvector.html">\</a></div>
+<div class="line"><a class="code hl_struct" href="structvector.html">  NUM_ASSIGN</a>( (<a class="code hl_struct" href="structvector.html">ar</a>), <a class="code hl_define" href="fract__gen_8h.html#af613f8f9be8e802020d9f3bcbb0fd4cf">NUM_ADD</a>( (<a class="code hl_struct" href="structvector.html">ar</a>), (<a class="code hl_struct" href="structvector.html">br</a>)) ); <a class="code hl_struct" href="structvector.html">\</a></div>
+<div class="line"><a class="code hl_struct" href="structvector.html">  NUM_ASSIGN</a>( (<a class="code hl_struct" href="structvector.html">ai</a>), <a class="code hl_define" href="fract__gen_8h.html#af613f8f9be8e802020d9f3bcbb0fd4cf">NUM_ADD</a>( (<a class="code hl_struct" href="structvector.html">ai</a>), (<a class="code hl_struct" href="structvector.html">bi</a>)) ); \</div>
+<div class="line">}</div>
+<div class="ttc" id="afract__gen_8h_html_af613f8f9be8e802020d9f3bcbb0fd4cf"><div class="ttname"><a href="fract__gen_8h.html#af613f8f9be8e802020d9f3bcbb0fd4cf">NUM_ADD</a></div><div class="ttdeci">#define NUM_ADD(a, b)</div><div class="ttdef"><b>Definition</b> <a href="fract__gen_8h_source.html#l00021">fract_gen.h:21</a></div></div>
+</div><!-- fragment -->
+<p class="definition">См. определение в файле <a class="el" href="fract__gen_8h_source.html">fract_gen.h</a> строка <a class="el" href="fract__gen_8h_source.html#l00040">40</a></p>
+
+</div>
+</div>
+<a id="ac857d11c4c13c5b26da865ef71f0e2cf" name="ac857d11c4c13c5b26da865ef71f0e2cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac857d11c4c13c5b26da865ef71f0e2cf">&#9670;&#160;</a></span>COMPLEX_MAGNITUDE_SQ</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> COMPLEX_MAGNITUDE_SQ</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><a class="el" href="structvector.html">ar</a>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><a class="el" href="structvector.html">ai</a>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;  <a class="el" href="fract__gen_8h.html#af613f8f9be8e802020d9f3bcbb0fd4cf">NUM_ADD</a>( <a class="el" href="fract__gen_8h.html#a093dbe0203f03a8cb815a3894402260e">NUM_MULT</a>( (<a class="el" href="structvector.html">ar</a>), (<a class="el" href="structvector.html">ar</a>)), <a class="el" href="fract__gen_8h.html#a093dbe0203f03a8cb815a3894402260e">NUM_MULT</a>( (<a class="el" href="structvector.html">ai</a>), (<a class="el" href="structvector.html">ai</a>) ) )</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="fract__gen_8h_source.html">fract_gen.h</a> строка <a class="el" href="fract__gen_8h_source.html#l00055">55</a></p>
+
+</div>
+</div>
+<a id="a562718e1e97112228ec30fea010d47a7" name="a562718e1e97112228ec30fea010d47a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a562718e1e97112228ec30fea010d47a7">&#9670;&#160;</a></span>COMPLEX_SQ_ADD</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> COMPLEX_SQ_ADD</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><a class="el" href="structvector.html">ar</a>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><a class="el" href="structvector.html">ai</a>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><a class="el" href="structvector.html">br</a>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><a class="el" href="structvector.html">bi</a>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><a class="el" href="structvector.html">temp</a>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Макроопределение:</b><div class="fragment"><div class="line">    { <a class="code hl_struct" href="structvector.html">\</a></div>
+<div class="line"><a class="code hl_struct" href="structvector.html">	NUM_ASSIGN</a>( (<a class="code hl_struct" href="structvector.html">temp</a>), <a class="code hl_define" href="fract__gen_8h.html#a093dbe0203f03a8cb815a3894402260e">NUM_MULT</a>((<a class="code hl_struct" href="structvector.html">ar</a>),(<a class="code hl_struct" href="structvector.html">ai</a>))); <a class="code hl_struct" href="structvector.html">\</a></div>
+<div class="line"><a class="code hl_struct" href="structvector.html">	NUM_ASSIGN</a>( (<a class="code hl_struct" href="structvector.html">ar</a>), <a class="code hl_define" href="fract__gen_8h.html#af613f8f9be8e802020d9f3bcbb0fd4cf">NUM_ADD</a>( <a class="code hl_define" href="fract__gen_8h.html#a341b18e15abe98249443e0b7cf340a3e">NUM_SUB</a>( <a class="code hl_define" href="fract__gen_8h.html#a093dbe0203f03a8cb815a3894402260e">NUM_MULT</a>((<a class="code hl_struct" href="structvector.html">ar</a>),(<a class="code hl_struct" href="structvector.html">ar</a>)), \</div>
+<div class="line">                     <a class="code hl_define" href="fract__gen_8h.html#a093dbe0203f03a8cb815a3894402260e">NUM_MULT</a>((<a class="code hl_struct" href="structvector.html">ai</a>),(<a class="code hl_struct" href="structvector.html">ai</a>)) ), \</div>
+<div class="line">                 (<a class="code hl_struct" href="structvector.html">ar</a>) ) ); <a class="code hl_struct" href="structvector.html">\</a></div>
+<div class="line"><a class="code hl_struct" href="structvector.html">	NUM_ASSIGN</a>( (<a class="code hl_struct" href="structvector.html">ai</a>), <a class="code hl_define" href="fract__gen_8h.html#af613f8f9be8e802020d9f3bcbb0fd4cf">NUM_ADD</a>( <a class="code hl_define" href="fract__gen_8h.html#af613f8f9be8e802020d9f3bcbb0fd4cf">NUM_ADD</a>((<a class="code hl_struct" href="structvector.html">temp</a>),(<a class="code hl_struct" href="structvector.html">temp</a>)), (<a class="code hl_struct" href="structvector.html">bi</a>) ) ); \</div>
+<div class="line">}</div>
+<div class="ttc" id="afract__gen_8h_html_a093dbe0203f03a8cb815a3894402260e"><div class="ttname"><a href="fract__gen_8h.html#a093dbe0203f03a8cb815a3894402260e">NUM_MULT</a></div><div class="ttdeci">#define NUM_MULT(a, b)</div><div class="ttdef"><b>Definition</b> <a href="fract__gen_8h_source.html#l00023">fract_gen.h:23</a></div></div>
+<div class="ttc" id="afract__gen_8h_html_a341b18e15abe98249443e0b7cf340a3e"><div class="ttname"><a href="fract__gen_8h.html#a341b18e15abe98249443e0b7cf340a3e">NUM_SUB</a></div><div class="ttdeci">#define NUM_SUB(a, b)</div><div class="ttdef"><b>Definition</b> <a href="fract__gen_8h_source.html#l00022">fract_gen.h:22</a></div></div>
+</div><!-- fragment -->
+<p class="definition">См. определение в файле <a class="el" href="fract__gen_8h_source.html">fract_gen.h</a> строка <a class="el" href="fract__gen_8h_source.html#l00046">46</a></p>
+
+</div>
+</div>
+<a id="aa8b5351350b9de193bb8efc155c877af" name="aa8b5351350b9de193bb8efc155c877af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8b5351350b9de193bb8efc155c877af">&#9670;&#160;</a></span>COMPLEX_SQUARE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> COMPLEX_SQUARE</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">r, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">i, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><a class="el" href="structvector.html">temp</a>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Макроопределение:</b><div class="fragment"><div class="line">    { <a class="code hl_struct" href="structvector.html">\</a></div>
+<div class="line"><a class="code hl_struct" href="structvector.html">	NUM_ASSIGN</a>( (<a class="code hl_struct" href="structvector.html">temp</a>), <a class="code hl_define" href="fract__gen_8h.html#a093dbe0203f03a8cb815a3894402260e">NUM_MULT</a>((r),(i))); <a class="code hl_struct" href="structvector.html">\</a></div>
+<div class="line"><a class="code hl_struct" href="structvector.html">	NUM_ASSIGN</a>( (r), <a class="code hl_define" href="fract__gen_8h.html#a341b18e15abe98249443e0b7cf340a3e">NUM_SUB</a>( <a class="code hl_define" href="fract__gen_8h.html#a093dbe0203f03a8cb815a3894402260e">NUM_MULT</a>((r),(r)), <a class="code hl_define" href="fract__gen_8h.html#a093dbe0203f03a8cb815a3894402260e">NUM_MULT</a>((i),(i)) ) ); <a class="code hl_struct" href="structvector.html">\</a></div>
+<div class="line"><a class="code hl_struct" href="structvector.html">	NUM_ASSIGN</a>( (i), <a class="code hl_define" href="fract__gen_8h.html#af613f8f9be8e802020d9f3bcbb0fd4cf">NUM_ADD</a>((<a class="code hl_struct" href="structvector.html">temp</a>),(<a class="code hl_struct" href="structvector.html">temp</a>)) ); \</div>
+<div class="line">}</div>
+</div><!-- fragment -->
+<p class="definition">См. определение в файле <a class="el" href="fract__gen_8h_source.html">fract_gen.h</a> строка <a class="el" href="fract__gen_8h_source.html#l00034">34</a></p>
+
+</div>
+</div>
+<a id="a915b1aab750b776d52c15cb2307aae0c" name="a915b1aab750b776d52c15cb2307aae0c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a915b1aab750b776d52c15cb2307aae0c">&#9670;&#160;</a></span>COORD2CMPLX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> COORD2CMPLX</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><a class="el" href="structvector.html">cmin</a>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><a class="el" href="structvector.html">cmax</a>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">xmin, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">xmax, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">x&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Макроопределение:</b><div class="fragment"><div class="line">  <a class="code hl_define" href="fract__gen_8h.html#af613f8f9be8e802020d9f3bcbb0fd4cf">NUM_ADD</a>( <a class="code hl_define" href="fract__gen_8h.html#a093dbe0203f03a8cb815a3894402260e">NUM_MULT</a>( <a class="code hl_define" href="fract__gen_8h.html#aea470838fad32fbb7372454192d671a9">INT2NUM</a>( (x) - (xmin) ), <a class="code hl_define" href="fract__gen_8h.html#aab2e3c9128c9ab69490f847c495cefb3">NUM_DIV</a>( \</div>
+<div class="line">    <a class="code hl_define" href="fract__gen_8h.html#a341b18e15abe98249443e0b7cf340a3e">NUM_SUB</a>( (<a class="code hl_struct" href="structvector.html">cmax</a>), (<a class="code hl_struct" href="structvector.html">cmin</a>) ), <a class="code hl_define" href="fract__gen_8h.html#aea470838fad32fbb7372454192d671a9">INT2NUM</a>( (xmax)-(xmin) ) ) ), (<a class="code hl_struct" href="structvector.html">cmin</a>) )</div>
+<div class="ttc" id="afract__gen_8h_html_aab2e3c9128c9ab69490f847c495cefb3"><div class="ttname"><a href="fract__gen_8h.html#aab2e3c9128c9ab69490f847c495cefb3">NUM_DIV</a></div><div class="ttdeci">#define NUM_DIV(a, b)</div><div class="ttdef"><b>Definition</b> <a href="fract__gen_8h_source.html#l00024">fract_gen.h:24</a></div></div>
+<div class="ttc" id="afract__gen_8h_html_aea470838fad32fbb7372454192d671a9"><div class="ttname"><a href="fract__gen_8h.html#aea470838fad32fbb7372454192d671a9">INT2NUM</a></div><div class="ttdeci">#define INT2NUM(a)</div><div class="ttdef"><b>Definition</b> <a href="fract__gen_8h_source.html#l00025">fract_gen.h:25</a></div></div>
+</div><!-- fragment -->
+<p class="definition">См. определение в файле <a class="el" href="fract__gen_8h_source.html">fract_gen.h</a> строка <a class="el" href="fract__gen_8h_source.html#l00064">64</a></p>
+
+</div>
+</div>
+<a id="ad05a2abfc3431434a0accfc0f073484b" name="ad05a2abfc3431434a0accfc0f073484b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad05a2abfc3431434a0accfc0f073484b">&#9670;&#160;</a></span>DBL2NUM</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> DBL2NUM</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><a class="el" href="structvector.html">a</a></td><td>)</td>
+          <td>&#160;&#160;&#160;(<a class="el" href="structvector.html">a</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="fract__gen_8h_source.html">fract_gen.h</a> строка <a class="el" href="fract__gen_8h_source.html#l00027">27</a></p>
+
+</div>
+</div>
+<a id="aea470838fad32fbb7372454192d671a9" name="aea470838fad32fbb7372454192d671a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea470838fad32fbb7372454192d671a9">&#9670;&#160;</a></span>INT2NUM</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> INT2NUM</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><a class="el" href="structvector.html">a</a></td><td>)</td>
+          <td>&#160;&#160;&#160;((<a class="el" href="fract__gen_8h.html#aaf0952059602752258dccaa015d7b54a">NUM</a>)(<a class="el" href="structvector.html">a</a>))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="fract__gen_8h_source.html">fract_gen.h</a> строка <a class="el" href="fract__gen_8h_source.html#l00025">25</a></p>
+
+</div>
+</div>
+<a id="aaf0952059602752258dccaa015d7b54a" name="aaf0952059602752258dccaa015d7b54a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf0952059602752258dccaa015d7b54a">&#9670;&#160;</a></span>NUM</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> NUM&#160;&#160;&#160;<a class="el" href="structvector.html">double</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="fract__gen_8h_source.html">fract_gen.h</a> строка <a class="el" href="fract__gen_8h_source.html#l00017">17</a></p>
+
+</div>
+</div>
+<a id="a92a45782303372eccb5a18985a91ca86" name="a92a45782303372eccb5a18985a91ca86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92a45782303372eccb5a18985a91ca86">&#9670;&#160;</a></span>NUM2DBL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> NUM2DBL</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><a class="el" href="structvector.html">a</a></td><td>)</td>
+          <td>&#160;&#160;&#160;(<a class="el" href="structvector.html">a</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="fract__gen_8h_source.html">fract_gen.h</a> строка <a class="el" href="fract__gen_8h_source.html#l00028">28</a></p>
+
+</div>
+</div>
+<a id="a9ece25d3ab00b0b6a9ffb910f955b4c9" name="a9ece25d3ab00b0b6a9ffb910f955b4c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ece25d3ab00b0b6a9ffb910f955b4c9">&#9670;&#160;</a></span>NUM2INT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> NUM2INT</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><a class="el" href="structvector.html">a</a></td><td>)</td>
+          <td>&#160;&#160;&#160;((<a class="el" href="structvector.html">int</a>)(<a class="el" href="structvector.html">a</a>))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="fract__gen_8h_source.html">fract_gen.h</a> строка <a class="el" href="fract__gen_8h_source.html#l00026">26</a></p>
+
+</div>
+</div>
+<a id="af613f8f9be8e802020d9f3bcbb0fd4cf" name="af613f8f9be8e802020d9f3bcbb0fd4cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af613f8f9be8e802020d9f3bcbb0fd4cf">&#9670;&#160;</a></span>NUM_ADD</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> NUM_ADD</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><a class="el" href="structvector.html">a</a>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">b&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;((<a class="el" href="structvector.html">a</a>)+(b))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="fract__gen_8h_source.html">fract_gen.h</a> строка <a class="el" href="fract__gen_8h_source.html#l00021">21</a></p>
+
+</div>
+</div>
+<a id="a956c7ba9724b1cac73a3c2c3ea0d9715" name="a956c7ba9724b1cac73a3c2c3ea0d9715"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a956c7ba9724b1cac73a3c2c3ea0d9715">&#9670;&#160;</a></span>NUM_ASSIGN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> NUM_ASSIGN</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><a class="el" href="structvector.html">a</a>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">b&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;{(<a class="el" href="structvector.html">a</a>)=(b);}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="fract__gen_8h_source.html">fract_gen.h</a> строка <a class="el" href="fract__gen_8h_source.html#l00019">19</a></p>
+
+</div>
+</div>
+<a id="aab2e3c9128c9ab69490f847c495cefb3" name="aab2e3c9128c9ab69490f847c495cefb3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab2e3c9128c9ab69490f847c495cefb3">&#9670;&#160;</a></span>NUM_DIV</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> NUM_DIV</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><a class="el" href="structvector.html">a</a>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">b&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;((<a class="el" href="structvector.html">a</a>)/(b))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="fract__gen_8h_source.html">fract_gen.h</a> строка <a class="el" href="fract__gen_8h_source.html#l00024">24</a></p>
+
+</div>
+</div>
+<a id="a093dbe0203f03a8cb815a3894402260e" name="a093dbe0203f03a8cb815a3894402260e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a093dbe0203f03a8cb815a3894402260e">&#9670;&#160;</a></span>NUM_MULT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> NUM_MULT</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><a class="el" href="structvector.html">a</a>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">b&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;((<a class="el" href="structvector.html">a</a>)*(b))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="fract__gen_8h_source.html">fract_gen.h</a> строка <a class="el" href="fract__gen_8h_source.html#l00023">23</a></p>
+
+</div>
+</div>
+<a id="a44808b896cef4cfa1d00ad88786464ed" name="a44808b896cef4cfa1d00ad88786464ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44808b896cef4cfa1d00ad88786464ed">&#9670;&#160;</a></span>NUM_PTR_ASSIGN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> NUM_PTR_ASSIGN</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><a class="el" href="structvector.html">a</a>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">b&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;{*(<a class="el" href="structvector.html">a</a>)=(b);}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="fract__gen_8h_source.html">fract_gen.h</a> строка <a class="el" href="fract__gen_8h_source.html#l00020">20</a></p>
+
+</div>
+</div>
+<a id="a341b18e15abe98249443e0b7cf340a3e" name="a341b18e15abe98249443e0b7cf340a3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a341b18e15abe98249443e0b7cf340a3e">&#9670;&#160;</a></span>NUM_SUB</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> NUM_SUB</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><a class="el" href="structvector.html">a</a>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">b&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;((<a class="el" href="structvector.html">a</a>)-(b))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="fract__gen_8h_source.html">fract_gen.h</a> строка <a class="el" href="fract__gen_8h_source.html#l00022">22</a></p>
+
+</div>
+</div>
+<h2 class="groupheader">Типы</h2>
+<a id="a0affc787d755a8408d3866bf90876520" name="a0affc787d755a8408d3866bf90876520"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0affc787d755a8408d3866bf90876520">&#9670;&#160;</a></span>Fractal_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">typedef</a> <a class="el" href="structvector.html">enum</a> <a class="el" href="fract__gen_8h.html#a20c12f9ca78eab74dbc6757a1dc59071">_Fractal_type</a> <a class="el" href="fract__gen_8h.html#a0affc787d755a8408d3866bf90876520">Fractal_type</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac7df3d55aa642de4ae02a38770e0462d" name="ac7df3d55aa642de4ae02a38770e0462d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7df3d55aa642de4ae02a38770e0462d">&#9670;&#160;</a></span>Julia_settings</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">typedef</a> <a class="el" href="structvector.html">struct</a> <a class="el" href="structJulia__settings__.html">Julia_settings_</a> <a class="el" href="fract__gen_8h.html#ac7df3d55aa642de4ae02a38770e0462d">Julia_settings</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9c6bdc10601fed214f84740a8eb13890" name="a9c6bdc10601fed214f84740a8eb13890"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c6bdc10601fed214f84740a8eb13890">&#9670;&#160;</a></span>Mbrot_settings</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">typedef</a> <a class="el" href="structvector.html">struct</a> <a class="el" href="structMbrot__settings__.html">Mbrot_settings_</a> <a class="el" href="fract__gen_8h.html#a9c6bdc10601fed214f84740a8eb13890">Mbrot_settings</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2ba0341d0a3af70959e7a3b559ea8226" name="a2ba0341d0a3af70959e7a3b559ea8226"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ba0341d0a3af70959e7a3b559ea8226">&#9670;&#160;</a></span>Newton_settings</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">typedef</a> <a class="el" href="structvector.html">struct</a> <a class="el" href="structNewton__settings__.html">Newton_settings_</a> <a class="el" href="fract__gen_8h.html#a2ba0341d0a3af70959e7a3b559ea8226">Newton_settings</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Перечисления</h2>
+<a id="a20c12f9ca78eab74dbc6757a1dc59071" name="a20c12f9ca78eab74dbc6757a1dc59071"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20c12f9ca78eab74dbc6757a1dc59071">&#9670;&#160;</a></span>_Fractal_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">enum</a> <a class="el" href="fract__gen_8h.html#a20c12f9ca78eab74dbc6757a1dc59071">_Fractal_type</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Элементы перечислений</th></tr><tr><td class="fieldname"><a id="a20c12f9ca78eab74dbc6757a1dc59071a6acf3c30030eea67674190347caff27b" name="a20c12f9ca78eab74dbc6757a1dc59071a6acf3c30030eea67674190347caff27b"></a>MBROT&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a20c12f9ca78eab74dbc6757a1dc59071a6f8f3219a598fcd6038302ab91897d41" name="a20c12f9ca78eab74dbc6757a1dc59071a6f8f3219a598fcd6038302ab91897d41"></a>JULIA&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a20c12f9ca78eab74dbc6757a1dc59071acb672e33270b2496f98d3d6995d503f2" name="a20c12f9ca78eab74dbc6757a1dc59071acb672e33270b2496f98d3d6995d503f2"></a>NEWTON&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+<p class="definition">См. определение в файле <a class="el" href="fract__gen_8h_source.html">fract_gen.h</a> строка <a class="el" href="fract__gen_8h_source.html#l00015">15</a></p>
+
+</div>
+</div>
+<h2 class="groupheader">Функции</h2>
+<a id="a4e5da505755c97a9d66958ac79662b27" name="a4e5da505755c97a9d66958ac79662b27"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e5da505755c97a9d66958ac79662b27">&#9670;&#160;</a></span>CalcField()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CalcField </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="fract__gen_8h.html#a0affc787d755a8408d3866bf90876520">Fractal_type</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname"><em>iterField</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>xstart</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>xend</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>ystart</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>yend</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab06e0286b0fd504bdc0419b5ab7096e5" name="ab06e0286b0fd504bdc0419b5ab7096e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab06e0286b0fd504bdc0419b5ab7096e5">&#9670;&#160;</a></span>Copysub2DArray()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> Copysub2DArray </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname"><em>mainArray</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname"><em>subArray</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>mainWidth</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>mainHeight</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>subWidth</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>subHeight</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>xpos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>ypos</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a62571f819cf6eeaa1c04b8441570458e" name="a62571f819cf6eeaa1c04b8441570458e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62571f819cf6eeaa1c04b8441570458e">&#9670;&#160;</a></span>Julia_Settings()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> Julia_Settings </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">double</a>&#160;</td>
+          <td class="paramname"><em>boundary</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>maxiter</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="fract__gen_8h.html#aaf0952059602752258dccaa015d7b54a">NUM</a>&#160;</td>
+          <td class="paramname"><em>real</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="fract__gen_8h.html#aaf0952059602752258dccaa015d7b54a">NUM</a>&#160;</td>
+          <td class="paramname"><em>imag</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2b1483fda5b7a0f24d006690c1bab82f" name="a2b1483fda5b7a0f24d006690c1bab82f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b1483fda5b7a0f24d006690c1bab82f">&#9670;&#160;</a></span>JuliaCalcIter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> JuliaCalcIter </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="fract__gen_8h.html#aaf0952059602752258dccaa015d7b54a">NUM</a>&#160;</td>
+          <td class="paramname"><em>re</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="fract__gen_8h.html#aaf0952059602752258dccaa015d7b54a">NUM</a>&#160;</td>
+          <td class="paramname"><em>im</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a05aa09ea707953d584d005937d5767fa" name="a05aa09ea707953d584d005937d5767fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05aa09ea707953d584d005937d5767fa">&#9670;&#160;</a></span>Mbrot_Settings()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> Mbrot_Settings </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">double</a>&#160;</td>
+          <td class="paramname"><em>boundary</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>maxiter</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a565ab48c187ffce7248969cc73cd56cf" name="a565ab48c187ffce7248969cc73cd56cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a565ab48c187ffce7248969cc73cd56cf">&#9670;&#160;</a></span>MbrotCalcIter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MbrotCalcIter </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="fract__gen_8h.html#aaf0952059602752258dccaa015d7b54a">NUM</a>&#160;</td>
+          <td class="paramname"><em>re</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="fract__gen_8h.html#aaf0952059602752258dccaa015d7b54a">NUM</a>&#160;</td>
+          <td class="paramname"><em>im</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2d5f2c068047a3f64764f02218822c4d" name="a2d5f2c068047a3f64764f02218822c4d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d5f2c068047a3f64764f02218822c4d">&#9670;&#160;</a></span>Mbrotrep_Settings()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> Mbrotrep_Settings </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">double</a>&#160;</td>
+          <td class="paramname"><em>boundary</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>maxiter</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>miniter</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>longestCycle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">double</a>&#160;</td>
+          <td class="paramname"><em>fudgeFactor</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa308d4e527c3c5306384b07cf51664e3" name="aa308d4e527c3c5306384b07cf51664e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa308d4e527c3c5306384b07cf51664e3">&#9670;&#160;</a></span>MbrotrepCalcIter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MbrotrepCalcIter </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="fract__gen_8h.html#aaf0952059602752258dccaa015d7b54a">NUM</a>&#160;</td>
+          <td class="paramname"><em>re</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="fract__gen_8h.html#aaf0952059602752258dccaa015d7b54a">NUM</a>&#160;</td>
+          <td class="paramname"><em>im</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

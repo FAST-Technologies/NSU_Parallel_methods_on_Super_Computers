@@ -1,0 +1,20 @@
+var searchData=
+[
+  ['data_0',['data',['../struct__CLOG__Block__t.html#a8dd51946084fc92f5586de5e587328c2',1,'_CLOG_Block_t']]],
+  ['debug_5ffile_1',['debug_file',['../pmandel_8h.html#af5cc516f4d3c010da348387f6910a556',1,'pmandel.h']]],
+  ['delete_5flocalfile_2',['delete_localfile',['../structCLOG__Buffer__t.html#ab92ce6c55b105043573121fee06e50bb',1,'CLOG_Buffer_t']]],
+  ['denom_3',['denom',['../structDomainInfo.html#ae66cc800d98d9f19e617476f124a00d3',1,'DomainInfo']]],
+  ['depth_4',['depth',['../structMPE__CallStack.html#a41e58e46ed443d4b4d5a19269d739c5f',1,'MPE_CallStack::depth'],['../structXBWindow.html#a1b993d803a23ec0679cde513820e3204',1,'XBWindow::depth']]],
+  ['description_5',['description',['../structRLOG__STATE.html#a5ed8b45b8e5fdfce1d0ac08b384094b0',1,'RLOG_STATE']]],
+  ['dest_6',['dest',['../structRLOG__ARROW.html#a90c3b4932a4564773afc26908fe465b6',1,'RLOG_ARROW']]],
+  ['dfirsttimestamp_7',['dFirstTimestamp',['../structRLOG__Struct.html#a9d50b7fc0a2efc4ce761313a43dd2b01',1,'RLOG_Struct']]],
+  ['diskevent_8',['DiskEvent',['../structRLOG__Struct.html#abb8a9d6f23bc3e1d6c8dda97aa65a79e',1,'RLOG_Struct']]],
+  ['diskheader_9',['DiskHeader',['../structRLOG__Struct.html#a048f18442d099142eb440509fcfd27b6',1,'RLOG_Struct']]],
+  ['disp_10',['disp',['../structXBWindow.html#af9e8f464362aad0b24d4b1dfabcec2fb',1,'XBWindow']]],
+  ['drawblockregion_11',['drawBlockRegion',['../struct__Flags.html#a983302efbdbf09631f03382c0da4965e',1,'_Flags']]],
+  ['drw_12',['drw',['../structXBWindow.html#a2faa00b50426a549627f6c111d301054',1,'XBWindow']]],
+  ['dtype_13',['dtype',['../structMPE__Log__VFIELD.html#a30fffb774490b5764821332e937acffa',1,'MPE_Log_VFIELD']]],
+  ['dx_14',['DX',['../poisson__solver_8hpp.html#aa8a390c4c604854c7990a92462f87bc1',1,'poisson_solver.hpp']]],
+  ['dy_15',['DY',['../poisson__solver_8hpp.html#ac4dcaf30828f9ce24a1268e1f881cf5e',1,'poisson_solver.hpp']]],
+  ['dz_16',['DZ',['../poisson__solver_8hpp.html#a700cbc0ead57702822cf92ad5f975109',1,'poisson_solver.hpp']]]
+];

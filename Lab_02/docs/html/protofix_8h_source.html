@@ -1,0 +1,185 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lab_02: MPI + OpenMP Parallel Programming: Исходный файл protofix.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Lab_02: MPI + OpenMP Parallel Programming<span id="projectnumber">&#160;2.1</span>
+   </div>
+   <div id="projectbrief">Решение 3D уравнения Пуассона методом Якоби с двумерной декомпозицией</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_1f646cbbb0f6227d25dd06f792d51aba.html">mpe2-1.3.0</a></li><li class="navelem"><a class="el" href="dir_e4f2aaf8f2e8ac04a936ef91fbeb17bc.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">protofix.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="protofix_8h.html">См. документацию.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">   (C) 2001 by Argonne National Laboratory.</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">       See COPYRIGHT in top-level directory.</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">*/</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> * Gcc in particular tends to defer to the system&#39;s prototypes, even</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment"> * when Gcc purports to provide them.  This file contains a set of</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment"> * replacements for those needed in MPICH and MPE which may be used</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment"> * for systems that don&#39;t provide correct or complete prototypes.</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#if defined(NEEDS_STDLIB_PROTOTYPES) || !defined(PROTOFIX_INCLUDED)</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#define PROTOFIX_INCLUDED</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">/* </span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">   Some gcc installations have out-of-date include files and need these</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">   definitions to handle the &quot;missing&quot; prototypes.  This is NOT</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">   autodetected, but is provided and can be selected by using a switch</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment">   on the options line.</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="comment"></span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="comment">   These are from stdlib.h, stdio.h, and unistd.h</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &lt;sys/types.h&gt;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="comment">/* stdio.h */</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="protofix_8h.html#a7bf6a1c211d3c8438565885855321b22">   25</a></span><span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code hl_function" href="protofix_8h.html#a7bf6a1c211d3c8438565885855321b22">fprintf</a>(<a class="code hl_struct" href="structvector.html">FILE</a>*,<span class="keyword">const</span> <span class="keywordtype">char</span>*,...);</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="protofix_8h.html#ad3275c2da349019932874fbf31fd91c6">   26</a></span><span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code hl_function" href="protofix_8h.html#ad3275c2da349019932874fbf31fd91c6">printf</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>*,...);</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="protofix_8h.html#afa9ad98643851ca03a428e264122dac0">   27</a></span><span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code hl_function" href="protofix_8h.html#afa9ad98643851ca03a428e264122dac0">fflush</a>(<a class="code hl_struct" href="structvector.html">FILE</a> *);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="protofix_8h.html#a6441bf0a1040701d1ba906b64f348daf">   28</a></span><span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code hl_function" href="protofix_8h.html#a6441bf0a1040701d1ba906b64f348daf">fclose</a>(<a class="code hl_struct" href="structvector.html">FILE</a> *);</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="protofix_8h.html#a9c0b19d6c0371deb9c35e3b6e0edeb51">   29</a></span><span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code hl_function" href="protofix_8h.html#a9c0b19d6c0371deb9c35e3b6e0edeb51">fscanf</a>(<a class="code hl_struct" href="structvector.html">FILE</a> *,<span class="keyword">const</span> <span class="keywordtype">char</span> *,...);</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="protofix_8h.html#a908b30e1f45b09bb45441a26885fd119">   30</a></span><span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code hl_function" href="protofix_8h.html#a908b30e1f45b09bb45441a26885fd119">fputs</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *,<a class="code hl_struct" href="structvector.html">FILE</a> *);</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="protofix_8h.html#a2256f668bdd3192173bb90c396a1d4fa">   31</a></span><span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code hl_function" href="protofix_8h.html#a2256f668bdd3192173bb90c396a1d4fa">sscanf</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *, <span class="keyword">const</span> <span class="keywordtype">char</span> *, ... );</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="protofix_8h.html#ad5f1d47e8cc6b2c92be35a2402ad4ed5">   32</a></span><span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code hl_function" href="protofix_8h.html#ad5f1d47e8cc6b2c92be35a2402ad4ed5">perror</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> * );</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="protofix_8h.html#ab7493ce15bd9a9c8715b2e527ac07c1e">   33</a></span><span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code hl_function" href="protofix_8h.html#ab7493ce15bd9a9c8715b2e527ac07c1e">setvbuf</a> (<a class="code hl_struct" href="structvector.html">FILE</a> *, <span class="keywordtype">char</span> *, <span class="keywordtype">int</span>, <span class="keywordtype">size_t</span>);</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="comment">/* extern int vfprintf (FILE *, const char *, ... ); */</span><span class="comment">/* va_list */</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="protofix_8h.html#a92e41b535f1505676ed8cbe5896606d5">   35</a></span><span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code hl_function" href="protofix_8h.html#a92e41b535f1505676ed8cbe5896606d5">pclose</a> (<a class="code hl_struct" href="structvector.html">FILE</a> *);</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="comment">/* unistd.h */</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="protofix_8h.html#af4803ba08fb0c8e16ff82cf93cfa12df">   38</a></span><span class="keyword">extern</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_function" href="protofix_8h.html#af4803ba08fb0c8e16ff82cf93cfa12df">sleep</a> ( <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> );</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="protofix_8h.html#af7a35798497c81c66a20d35ad74c19e6">   39</a></span><span class="keyword">extern</span> <span class="keywordtype">char</span> *<a class="code hl_function" href="protofix_8h.html#af7a35798497c81c66a20d35ad74c19e6">getenv</a> (<span class="keyword">const</span> <span class="keywordtype">char</span> *);</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="protofix_8h.html#a2eff4381836e7becd8a0cf15316f2cb2">   40</a></span><span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code hl_function" href="protofix_8h.html#a2eff4381836e7becd8a0cf15316f2cb2">nice</a>( <span class="keywordtype">int</span> );</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="protofix_8h.html#a0016dfa8c60e53506667c34e0de2fe6b">   41</a></span><span class="keyword">extern</span> <span class="keywordtype">char</span> *<a class="code hl_function" href="protofix_8h.html#a0016dfa8c60e53506667c34e0de2fe6b">getwd</a> (<span class="keywordtype">char</span> *);</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="comment">/* string.h */</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="protofix_8h.html#a1fd2a6e188f02599e5eeb17519f67f3e">   44</a></span><span class="keyword">extern</span> <span class="keywordtype">char</span> *<a class="code hl_function" href="protofix_8h.html#a1fd2a6e188f02599e5eeb17519f67f3e">strcat</a>( <span class="keywordtype">char</span> *, <span class="keyword">const</span> <span class="keywordtype">char</span> * );</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="protofix_8h.html#a81577c743915e4fb8759ef9081f10838">   45</a></span><span class="keyword">extern</span> <span class="keywordtype">char</span> *<a class="code hl_function" href="protofix_8h.html#a81577c743915e4fb8759ef9081f10838">strncpy</a>(<span class="keywordtype">char</span> *, <span class="keyword">const</span> <span class="keywordtype">char</span> *, <span class="keywordtype">size_t</span> );</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="protofix_8h.html#afa4a8701698b766f40180c735726cfe7">   46</a></span><span class="keyword">extern</span> <span class="keywordtype">char</span> *<a class="code hl_function" href="protofix_8h.html#afa4a8701698b766f40180c735726cfe7">strncat</a>(<span class="keywordtype">char</span> *, <span class="keyword">const</span> <span class="keywordtype">char</span> *, <span class="keywordtype">size_t</span> );</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="protofix_8h.html#a8f49550cc1e16fff2d707f91667eb80c">   47</a></span><span class="keyword">extern</span> <span class="keywordtype">void</span> *<a class="code hl_function" href="protofix_8h.html#a8f49550cc1e16fff2d707f91667eb80c">memset</a>(<span class="keywordtype">void</span> *, <span class="keywordtype">int</span>, <span class="keywordtype">size_t</span>);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="protofix_8h.html#a5f60008005ea7557430149926cf583d7">   48</a></span><span class="keyword">extern</span> <span class="keywordtype">void</span> *<a class="code hl_function" href="protofix_8h.html#a5f60008005ea7557430149926cf583d7">memcpy</a>(<span class="keywordtype">void</span> *, <span class="keyword">const</span> <span class="keywordtype">void</span> *, <span class="keywordtype">size_t</span> );</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="comment">/* stdlib.h */</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="protofix_8h.html#acc83831a3c113aad520e966b931821b4">   51</a></span><span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code hl_function" href="protofix_8h.html#acc83831a3c113aad520e966b931821b4">system</a>( <span class="keyword">const</span> <span class="keywordtype">char</span> * );</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="protofix_8h.html#ac3819512c287f480eb0f5c4e0b4c6194">   52</a></span><span class="keyword">extern</span> <span class="keywordtype">long</span> <span class="keywordtype">int</span> <a class="code hl_function" href="protofix_8h.html#ac3819512c287f480eb0f5c4e0b4c6194">atol</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *);</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="protofix_8h.html#a4e157d18591ba54c92e4da99a3d1ccae">   53</a></span><span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code hl_function" href="protofix_8h.html#a4e157d18591ba54c92e4da99a3d1ccae">atoi</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *);</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="preprocessor">#ifndef malloc</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="comment">/* In case malloc is being replaced ... */</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="protofix_8h.html#af07d89f5ceaea0c7c8252cc41fd75f37">   56</a></span><span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code hl_function" href="protofix_8h.html#af07d89f5ceaea0c7c8252cc41fd75f37">free</a>(<span class="keywordtype">void</span> *);</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="protofix_8h.html#a52abbdf8792edbd1e34d4ca8d061f840">   57</a></span><span class="keyword">extern</span> <span class="keywordtype">void</span> *<a class="code hl_function" href="protofix_8h.html#a52abbdf8792edbd1e34d4ca8d061f840">malloc</a>( <span class="keywordtype">size_t</span> );</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="comment">/* time.h */</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="protofix_8h.html#aae026724f73c36340024c657f4f44dab">   61</a></span><span class="keyword">extern</span> <a class="code hl_struct" href="structvector.html">time_t</a>   <a class="code hl_function" href="protofix_8h.html#aae026724f73c36340024c657f4f44dab">time</a> (<a class="code hl_struct" href="structvector.html">time_t</a> *);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="protofix_8h.html#a7590c028d2a4942072461107e4431373">   62</a></span><span class="keyword">extern</span> <span class="keywordtype">char</span>     *<a class="code hl_function" href="protofix_8h.html#a7590c028d2a4942072461107e4431373">ctime</a> (<span class="keyword">const</span> <a class="code hl_struct" href="structvector.html">time_t</a> *);</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="comment">/* For test programs */</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="protofix_8h.html#a0ddf1224851353fc92bfbff6f499fa97">   64</a></span><span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code hl_function" href="protofix_8h.html#a0ddf1224851353fc92bfbff6f499fa97">main</a>( <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">argc</a>, <span class="keywordtype">char</span> *<a class="code hl_struct" href="structvector.html">argv</a>[] );</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aprotofix_8h_html_a0016dfa8c60e53506667c34e0de2fe6b"><div class="ttname"><a href="protofix_8h.html#a0016dfa8c60e53506667c34e0de2fe6b">getwd</a></div><div class="ttdeci">char * getwd(char *)</div></div>
+<div class="ttc" id="aprotofix_8h_html_a0ddf1224851353fc92bfbff6f499fa97"><div class="ttname"><a href="protofix_8h.html#a0ddf1224851353fc92bfbff6f499fa97">main</a></div><div class="ttdeci">int main(int argc, char *argv[])</div></div>
+<div class="ttc" id="aprotofix_8h_html_a1fd2a6e188f02599e5eeb17519f67f3e"><div class="ttname"><a href="protofix_8h.html#a1fd2a6e188f02599e5eeb17519f67f3e">strcat</a></div><div class="ttdeci">char * strcat(char *, const char *)</div></div>
+<div class="ttc" id="aprotofix_8h_html_a2256f668bdd3192173bb90c396a1d4fa"><div class="ttname"><a href="protofix_8h.html#a2256f668bdd3192173bb90c396a1d4fa">sscanf</a></div><div class="ttdeci">int sscanf(const char *, const char *,...)</div></div>
+<div class="ttc" id="aprotofix_8h_html_a2eff4381836e7becd8a0cf15316f2cb2"><div class="ttname"><a href="protofix_8h.html#a2eff4381836e7becd8a0cf15316f2cb2">nice</a></div><div class="ttdeci">int nice(int)</div></div>
+<div class="ttc" id="aprotofix_8h_html_a4e157d18591ba54c92e4da99a3d1ccae"><div class="ttname"><a href="protofix_8h.html#a4e157d18591ba54c92e4da99a3d1ccae">atoi</a></div><div class="ttdeci">int atoi(const char *)</div></div>
+<div class="ttc" id="aprotofix_8h_html_a52abbdf8792edbd1e34d4ca8d061f840"><div class="ttname"><a href="protofix_8h.html#a52abbdf8792edbd1e34d4ca8d061f840">malloc</a></div><div class="ttdeci">void * malloc(size_t)</div></div>
+<div class="ttc" id="aprotofix_8h_html_a5f60008005ea7557430149926cf583d7"><div class="ttname"><a href="protofix_8h.html#a5f60008005ea7557430149926cf583d7">memcpy</a></div><div class="ttdeci">void * memcpy(void *, const void *, size_t)</div></div>
+<div class="ttc" id="aprotofix_8h_html_a6441bf0a1040701d1ba906b64f348daf"><div class="ttname"><a href="protofix_8h.html#a6441bf0a1040701d1ba906b64f348daf">fclose</a></div><div class="ttdeci">int fclose(FILE *)</div></div>
+<div class="ttc" id="aprotofix_8h_html_a7590c028d2a4942072461107e4431373"><div class="ttname"><a href="protofix_8h.html#a7590c028d2a4942072461107e4431373">ctime</a></div><div class="ttdeci">char * ctime(const time_t *)</div></div>
+<div class="ttc" id="aprotofix_8h_html_a7bf6a1c211d3c8438565885855321b22"><div class="ttname"><a href="protofix_8h.html#a7bf6a1c211d3c8438565885855321b22">fprintf</a></div><div class="ttdeci">int fprintf(FILE *, const char *,...)</div></div>
+<div class="ttc" id="aprotofix_8h_html_a81577c743915e4fb8759ef9081f10838"><div class="ttname"><a href="protofix_8h.html#a81577c743915e4fb8759ef9081f10838">strncpy</a></div><div class="ttdeci">char * strncpy(char *, const char *, size_t)</div></div>
+<div class="ttc" id="aprotofix_8h_html_a8f49550cc1e16fff2d707f91667eb80c"><div class="ttname"><a href="protofix_8h.html#a8f49550cc1e16fff2d707f91667eb80c">memset</a></div><div class="ttdeci">void * memset(void *, int, size_t)</div></div>
+<div class="ttc" id="aprotofix_8h_html_a908b30e1f45b09bb45441a26885fd119"><div class="ttname"><a href="protofix_8h.html#a908b30e1f45b09bb45441a26885fd119">fputs</a></div><div class="ttdeci">int fputs(const char *, FILE *)</div></div>
+<div class="ttc" id="aprotofix_8h_html_a92e41b535f1505676ed8cbe5896606d5"><div class="ttname"><a href="protofix_8h.html#a92e41b535f1505676ed8cbe5896606d5">pclose</a></div><div class="ttdeci">int pclose(FILE *)</div></div>
+<div class="ttc" id="aprotofix_8h_html_a9c0b19d6c0371deb9c35e3b6e0edeb51"><div class="ttname"><a href="protofix_8h.html#a9c0b19d6c0371deb9c35e3b6e0edeb51">fscanf</a></div><div class="ttdeci">int fscanf(FILE *, const char *,...)</div></div>
+<div class="ttc" id="aprotofix_8h_html_aae026724f73c36340024c657f4f44dab"><div class="ttname"><a href="protofix_8h.html#aae026724f73c36340024c657f4f44dab">time</a></div><div class="ttdeci">time_t time(time_t *)</div></div>
+<div class="ttc" id="aprotofix_8h_html_ab7493ce15bd9a9c8715b2e527ac07c1e"><div class="ttname"><a href="protofix_8h.html#ab7493ce15bd9a9c8715b2e527ac07c1e">setvbuf</a></div><div class="ttdeci">int setvbuf(FILE *, char *, int, size_t)</div></div>
+<div class="ttc" id="aprotofix_8h_html_ac3819512c287f480eb0f5c4e0b4c6194"><div class="ttname"><a href="protofix_8h.html#ac3819512c287f480eb0f5c4e0b4c6194">atol</a></div><div class="ttdeci">long int atol(const char *)</div></div>
+<div class="ttc" id="aprotofix_8h_html_acc83831a3c113aad520e966b931821b4"><div class="ttname"><a href="protofix_8h.html#acc83831a3c113aad520e966b931821b4">system</a></div><div class="ttdeci">int system(const char *)</div></div>
+<div class="ttc" id="aprotofix_8h_html_ad3275c2da349019932874fbf31fd91c6"><div class="ttname"><a href="protofix_8h.html#ad3275c2da349019932874fbf31fd91c6">printf</a></div><div class="ttdeci">int printf(const char *,...)</div></div>
+<div class="ttc" id="aprotofix_8h_html_ad5f1d47e8cc6b2c92be35a2402ad4ed5"><div class="ttname"><a href="protofix_8h.html#ad5f1d47e8cc6b2c92be35a2402ad4ed5">perror</a></div><div class="ttdeci">void perror(const char *)</div></div>
+<div class="ttc" id="aprotofix_8h_html_af07d89f5ceaea0c7c8252cc41fd75f37"><div class="ttname"><a href="protofix_8h.html#af07d89f5ceaea0c7c8252cc41fd75f37">free</a></div><div class="ttdeci">void free(void *)</div></div>
+<div class="ttc" id="aprotofix_8h_html_af4803ba08fb0c8e16ff82cf93cfa12df"><div class="ttname"><a href="protofix_8h.html#af4803ba08fb0c8e16ff82cf93cfa12df">sleep</a></div><div class="ttdeci">unsigned int sleep(unsigned int)</div></div>
+<div class="ttc" id="aprotofix_8h_html_af7a35798497c81c66a20d35ad74c19e6"><div class="ttname"><a href="protofix_8h.html#af7a35798497c81c66a20d35ad74c19e6">getenv</a></div><div class="ttdeci">char * getenv(const char *)</div></div>
+<div class="ttc" id="aprotofix_8h_html_afa4a8701698b766f40180c735726cfe7"><div class="ttname"><a href="protofix_8h.html#afa4a8701698b766f40180c735726cfe7">strncat</a></div><div class="ttdeci">char * strncat(char *, const char *, size_t)</div></div>
+<div class="ttc" id="aprotofix_8h_html_afa9ad98643851ca03a428e264122dac0"><div class="ttname"><a href="protofix_8h.html#afa9ad98643851ca03a428e264122dac0">fflush</a></div><div class="ttdeci">int fflush(FILE *)</div></div>
+<div class="ttc" id="astructvector_html"><div class="ttname"><a href="structvector.html">vector</a></div><div class="ttdef"><b>Definition</b> <a href="point_8h_source.html#l00012">point.h:12</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

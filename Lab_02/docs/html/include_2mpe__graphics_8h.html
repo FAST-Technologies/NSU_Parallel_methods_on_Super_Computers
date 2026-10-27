@@ -1,0 +1,2039 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lab_02: MPI + OpenMP Parallel Programming: Файл mpe_graphics.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Lab_02: MPI + OpenMP Parallel Programming<span id="projectnumber">&#160;2.1</span>
+   </div>
+   <div id="projectbrief">Решение 3D уравнения Пуассона методом Якоби с двумерной декомпозицией</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_1f646cbbb0f6227d25dd06f792d51aba.html">mpe2-1.3.0</a></li><li class="navelem"><a class="el" href="dir_e4f2aaf8f2e8ac04a936ef91fbeb17bc.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Классы</a> &#124;
+<a href="#define-members">Макросы</a> &#124;
+<a href="#typedef-members">Определения типов</a> &#124;
+<a href="#enum-members">Перечисления</a> &#124;
+<a href="#func-members">Функции</a> &#124;
+<a href="#var-members">Переменные</a>  </div>
+  <div class="headertitle"><div class="title">Файл mpe_graphics.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;mpi.h&quot;</code><br />
+</div>
+<p><a href="include_2mpe__graphics_8h_source.html">См. исходные тексты.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Классы</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMPE__Point__.html">MPE_Point_</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Макросы</h2></td></tr>
+<tr class="memitem:ab4b19ffb891f06322a49514b3ba76f25" id="r_ab4b19ffb891f06322a49514b3ba76f25"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#ab4b19ffb891f06322a49514b3ba76f25">MPE_SUCCESS</a>&#160;&#160;&#160;0           /* <a class="el" href="structvector.html">successful</a> <a class="el" href="structvector.html">operation</a> */</td></tr>
+<tr class="separator:ab4b19ffb891f06322a49514b3ba76f25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a266d3585ba30f7f14e16ec23b14b6b28" id="r_a266d3585ba30f7f14e16ec23b14b6b28"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#a266d3585ba30f7f14e16ec23b14b6b28">MPE_ERR_NOXCONNECT</a>&#160;&#160;&#160;1           /* <a class="el" href="structvector.html">could</a> <a class="el" href="structvector.html">not</a> <a class="el" href="structvector.html">connect</a> <a class="el" href="structvector.html">to</a> <a class="el" href="structvector.html">X</a> <a class="el" href="structvector.html">server</a> */</td></tr>
+<tr class="separator:a266d3585ba30f7f14e16ec23b14b6b28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86cdc6f9f0efd33408f300ac31c7239a" id="r_a86cdc6f9f0efd33408f300ac31c7239a"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#a86cdc6f9f0efd33408f300ac31c7239a">MPE_ERR_BAD_ARGS</a>&#160;&#160;&#160;2           /* <a class="el" href="structvector.html">graphics</a> <a class="el" href="structvector.html">handle</a> <a class="el" href="structvector.html">invalid</a> */</td></tr>
+<tr class="separator:a86cdc6f9f0efd33408f300ac31c7239a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27d0bb82f0a67464342bf374495619de" id="r_a27d0bb82f0a67464342bf374495619de"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#a27d0bb82f0a67464342bf374495619de">MPE_ERR_LOW_MEM</a>&#160;&#160;&#160;3           /* <a class="el" href="structvector.html">out</a> <a class="el" href="structvector.html">of</a> <a class="el" href="structvector.html">memory</a> (<a class="el" href="protofix_8h.html#a52abbdf8792edbd1e34d4ca8d061f840">malloc</a>() <a class="el" href="structvector.html">failed</a>) */</td></tr>
+<tr class="separator:a27d0bb82f0a67464342bf374495619de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99caaede06f2736435275c71eaed7f1a" id="r_a99caaede06f2736435275c71eaed7f1a"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#a99caaede06f2736435275c71eaed7f1a">MPE_LOGIC_CLEAR</a>&#160;&#160;&#160;(<a class="el" href="include_2mpe__graphics_8h.html#aa10de6848834828ada6ec251aefab2c1">MPE_logicArray</a>[0])</td></tr>
+<tr class="separator:a99caaede06f2736435275c71eaed7f1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa044df19289e3235715e129155264b9a" id="r_aa044df19289e3235715e129155264b9a"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#aa044df19289e3235715e129155264b9a">MPE_LOGIC_AND</a>&#160;&#160;&#160;(<a class="el" href="include_2mpe__graphics_8h.html#aa10de6848834828ada6ec251aefab2c1">MPE_logicArray</a>[1])</td></tr>
+<tr class="separator:aa044df19289e3235715e129155264b9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4099881c325b8f5ef4316e74e7ae2121" id="r_a4099881c325b8f5ef4316e74e7ae2121"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#a4099881c325b8f5ef4316e74e7ae2121">MPE_LOGIC_ANDREVERSE</a>&#160;&#160;&#160;(<a class="el" href="include_2mpe__graphics_8h.html#aa10de6848834828ada6ec251aefab2c1">MPE_logicArray</a>[2])</td></tr>
+<tr class="separator:a4099881c325b8f5ef4316e74e7ae2121"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a9740be4c23e7afc6e46631b69a20b7" id="r_a7a9740be4c23e7afc6e46631b69a20b7"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#a7a9740be4c23e7afc6e46631b69a20b7">MPE_LOGIC_COPY</a>&#160;&#160;&#160;(<a class="el" href="include_2mpe__graphics_8h.html#aa10de6848834828ada6ec251aefab2c1">MPE_logicArray</a>[3])</td></tr>
+<tr class="separator:a7a9740be4c23e7afc6e46631b69a20b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afcef8f3fdf2d60edc0edca61dbd93713" id="r_afcef8f3fdf2d60edc0edca61dbd93713"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#afcef8f3fdf2d60edc0edca61dbd93713">MPE_LOGIC_ANDINVERTED</a>&#160;&#160;&#160;(<a class="el" href="include_2mpe__graphics_8h.html#aa10de6848834828ada6ec251aefab2c1">MPE_logicArray</a>[4])</td></tr>
+<tr class="separator:afcef8f3fdf2d60edc0edca61dbd93713"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af583f78285cb725083de0d7df0a20a3f" id="r_af583f78285cb725083de0d7df0a20a3f"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#af583f78285cb725083de0d7df0a20a3f">MPE_LOGIC_NOOP</a>&#160;&#160;&#160;(<a class="el" href="include_2mpe__graphics_8h.html#aa10de6848834828ada6ec251aefab2c1">MPE_logicArray</a>[5])</td></tr>
+<tr class="separator:af583f78285cb725083de0d7df0a20a3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7cc729e6495f10424b73fe06e1cd6c5" id="r_af7cc729e6495f10424b73fe06e1cd6c5"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#af7cc729e6495f10424b73fe06e1cd6c5">MPE_LOGIC_XOR</a>&#160;&#160;&#160;(<a class="el" href="include_2mpe__graphics_8h.html#aa10de6848834828ada6ec251aefab2c1">MPE_logicArray</a>[6])</td></tr>
+<tr class="separator:af7cc729e6495f10424b73fe06e1cd6c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7bd002187a0edde16183f6c0f8be7e8b" id="r_a7bd002187a0edde16183f6c0f8be7e8b"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#a7bd002187a0edde16183f6c0f8be7e8b">MPE_LOGIC_OR</a>&#160;&#160;&#160;(<a class="el" href="include_2mpe__graphics_8h.html#aa10de6848834828ada6ec251aefab2c1">MPE_logicArray</a>[7])</td></tr>
+<tr class="separator:a7bd002187a0edde16183f6c0f8be7e8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab311c8dd142e0cd6f689f5a081486e76" id="r_ab311c8dd142e0cd6f689f5a081486e76"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#ab311c8dd142e0cd6f689f5a081486e76">MPE_LOGIC_NOR</a>&#160;&#160;&#160;(<a class="el" href="include_2mpe__graphics_8h.html#aa10de6848834828ada6ec251aefab2c1">MPE_logicArray</a>[8])</td></tr>
+<tr class="separator:ab311c8dd142e0cd6f689f5a081486e76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8fc2384196b87b84667c3bfd51d35b46" id="r_a8fc2384196b87b84667c3bfd51d35b46"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#a8fc2384196b87b84667c3bfd51d35b46">MPE_LOGIC_EQUIV</a>&#160;&#160;&#160;(<a class="el" href="include_2mpe__graphics_8h.html#aa10de6848834828ada6ec251aefab2c1">MPE_logicArray</a>[9])</td></tr>
+<tr class="separator:a8fc2384196b87b84667c3bfd51d35b46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ef293a99b68b30a0b50f90911ee051d" id="r_a4ef293a99b68b30a0b50f90911ee051d"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#a4ef293a99b68b30a0b50f90911ee051d">MPE_LOGIC_INVERT</a>&#160;&#160;&#160;(<a class="el" href="include_2mpe__graphics_8h.html#aa10de6848834828ada6ec251aefab2c1">MPE_logicArray</a>[10])</td></tr>
+<tr class="separator:a4ef293a99b68b30a0b50f90911ee051d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7de58e95301abdbf49dbb5e1bc9c6b18" id="r_a7de58e95301abdbf49dbb5e1bc9c6b18"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#a7de58e95301abdbf49dbb5e1bc9c6b18">MPE_LOGIC_ORREVERSE</a>&#160;&#160;&#160;(<a class="el" href="include_2mpe__graphics_8h.html#aa10de6848834828ada6ec251aefab2c1">MPE_logicArray</a>[11])</td></tr>
+<tr class="separator:a7de58e95301abdbf49dbb5e1bc9c6b18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6392d3b8ff928886a973321897e3be40" id="r_a6392d3b8ff928886a973321897e3be40"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#a6392d3b8ff928886a973321897e3be40">MPE_LOGIC_COPYINVERTED</a>&#160;&#160;&#160;(<a class="el" href="include_2mpe__graphics_8h.html#aa10de6848834828ada6ec251aefab2c1">MPE_logicArray</a>[12])</td></tr>
+<tr class="separator:a6392d3b8ff928886a973321897e3be40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a1ef2f0aef70e224eabf1528c09ed54" id="r_a5a1ef2f0aef70e224eabf1528c09ed54"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#a5a1ef2f0aef70e224eabf1528c09ed54">MPE_LOGIC_ORINVERTED</a>&#160;&#160;&#160;(<a class="el" href="include_2mpe__graphics_8h.html#aa10de6848834828ada6ec251aefab2c1">MPE_logicArray</a>[13])</td></tr>
+<tr class="separator:a5a1ef2f0aef70e224eabf1528c09ed54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa402961f6d6cb9121d06d160d80e7d0" id="r_aaa402961f6d6cb9121d06d160d80e7d0"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#aaa402961f6d6cb9121d06d160d80e7d0">MPE_LOGIC_NAND</a>&#160;&#160;&#160;(<a class="el" href="include_2mpe__graphics_8h.html#aa10de6848834828ada6ec251aefab2c1">MPE_logicArray</a>[14])</td></tr>
+<tr class="separator:aaa402961f6d6cb9121d06d160d80e7d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a315986897f2e30a5ab797ef94d7f5303" id="r_a315986897f2e30a5ab797ef94d7f5303"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#a315986897f2e30a5ab797ef94d7f5303">MPE_LOGIC_SET</a>&#160;&#160;&#160;(<a class="el" href="include_2mpe__graphics_8h.html#aa10de6848834828ada6ec251aefab2c1">MPE_logicArray</a>[15])</td></tr>
+<tr class="separator:a315986897f2e30a5ab797ef94d7f5303"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1149f6f2a3812c4a58341adbe8ffd815" id="r_a1149f6f2a3812c4a58341adbe8ffd815"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#a1149f6f2a3812c4a58341adbe8ffd815">MPE_BUTTON1</a>&#160;&#160;&#160;(<a class="el" href="include_2mpe__graphics_8h.html#a60645e5ccf3209a5bb8569d0895a5e81">MPE_buttonArray</a>[0])</td></tr>
+<tr class="separator:a1149f6f2a3812c4a58341adbe8ffd815"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e33b60970d01d2cd901e7e58186516b" id="r_a2e33b60970d01d2cd901e7e58186516b"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#a2e33b60970d01d2cd901e7e58186516b">MPE_BUTTON2</a>&#160;&#160;&#160;(<a class="el" href="include_2mpe__graphics_8h.html#a60645e5ccf3209a5bb8569d0895a5e81">MPE_buttonArray</a>[1])</td></tr>
+<tr class="separator:a2e33b60970d01d2cd901e7e58186516b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb03cc2c2987d4beb7b97fe570b36006" id="r_acb03cc2c2987d4beb7b97fe570b36006"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#acb03cc2c2987d4beb7b97fe570b36006">MPE_BUTTON3</a>&#160;&#160;&#160;(<a class="el" href="include_2mpe__graphics_8h.html#a60645e5ccf3209a5bb8569d0895a5e81">MPE_buttonArray</a>[2])</td></tr>
+<tr class="separator:acb03cc2c2987d4beb7b97fe570b36006"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18350c8aa69d92777a5689ced114ab6e" id="r_a18350c8aa69d92777a5689ced114ab6e"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#a18350c8aa69d92777a5689ced114ab6e">MPE_BUTTON4</a>&#160;&#160;&#160;(<a class="el" href="include_2mpe__graphics_8h.html#a60645e5ccf3209a5bb8569d0895a5e81">MPE_buttonArray</a>[3])</td></tr>
+<tr class="separator:a18350c8aa69d92777a5689ced114ab6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af552edb66bf8aac72590b0ce1935a27c" id="r_af552edb66bf8aac72590b0ce1935a27c"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#af552edb66bf8aac72590b0ce1935a27c">MPE_BUTTON5</a>&#160;&#160;&#160;(<a class="el" href="include_2mpe__graphics_8h.html#a60645e5ccf3209a5bb8569d0895a5e81">MPE_buttonArray</a>[4])</td></tr>
+<tr class="separator:af552edb66bf8aac72590b0ce1935a27c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aefd29829aa20af113e5520051dd68140" id="r_aefd29829aa20af113e5520051dd68140"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#aefd29829aa20af113e5520051dd68140">MPE_DRAG_NONE</a>&#160;&#160;&#160;0		     /* <a class="el" href="structvector.html">no</a> <a class="el" href="structvector.html">visual</a> */</td></tr>
+<tr class="separator:aefd29829aa20af113e5520051dd68140"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ce97695965e00542bde4c680918cca8" id="r_a7ce97695965e00542bde4c680918cca8"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#a7ce97695965e00542bde4c680918cca8">MPE_DRAG_RECT</a>&#160;&#160;&#160;1		     /* <a class="el" href="structvector.html">rubber</a> <a class="el" href="structvector.html">band</a> <a class="el" href="structvector.html">box</a> */</td></tr>
+<tr class="separator:a7ce97695965e00542bde4c680918cca8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6ba6250b164984741b0e225c223ea15" id="r_aa6ba6250b164984741b0e225c223ea15"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#aa6ba6250b164984741b0e225c223ea15">MPE_DRAG_LINE</a>&#160;&#160;&#160;2		     /* <a class="el" href="structvector.html">rubber</a> <a class="el" href="structvector.html">band</a> <a class="el" href="structvector.html">line</a> */</td></tr>
+<tr class="separator:aa6ba6250b164984741b0e225c223ea15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9653d8c57378665a356c1b8e5d64540c" id="r_a9653d8c57378665a356c1b8e5d64540c"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#a9653d8c57378665a356c1b8e5d64540c">MPE_DRAG_CIRCLE_RADIUS</a>&#160;&#160;&#160;3     /* <a class="el" href="structvector.html">rubber</a> <a class="el" href="structvector.html">band</a> <a class="el" href="structvector.html">circle</a>, */</td></tr>
+<tr class="separator:a9653d8c57378665a356c1b8e5d64540c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0870fed971ed60d6fcfa4ad3f36fafaa" id="r_a0870fed971ed60d6fcfa4ad3f36fafaa"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#a0870fed971ed60d6fcfa4ad3f36fafaa">MPE_DRAG_CIRCLE_DIAMETER</a>&#160;&#160;&#160;4</td></tr>
+<tr class="separator:a0870fed971ed60d6fcfa4ad3f36fafaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4f48414af1a01877f093eb7e82edead" id="r_ac4f48414af1a01877f093eb7e82edead"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#ac4f48414af1a01877f093eb7e82edead">MPE_DRAG_CIRCLE_BBOX</a>&#160;&#160;&#160;5</td></tr>
+<tr class="separator:ac4f48414af1a01877f093eb7e82edead"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5572d7d6ac00d7e5d53c8166c512afac" id="r_a5572d7d6ac00d7e5d53c8166c512afac"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#a5572d7d6ac00d7e5d53c8166c512afac">MPE_DRAG_OVAL_BBOX</a>&#160;&#160;&#160;6</td></tr>
+<tr class="separator:a5572d7d6ac00d7e5d53c8166c512afac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2d4f4bab6d64530258b8b5af402d596" id="r_af2d4f4bab6d64530258b8b5af402d596"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#af2d4f4bab6d64530258b8b5af402d596">MPE_DRAG_SQUARE</a>&#160;&#160;&#160;7</td></tr>
+<tr class="separator:af2d4f4bab6d64530258b8b5af402d596"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e3f9963cb3299a22cf3b43d94346a90" id="r_a8e3f9963cb3299a22cf3b43d94346a90"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#a8e3f9963cb3299a22cf3b43d94346a90">MPE_GRAPH_INDEPDENT</a>&#160;&#160;&#160;0</td></tr>
+<tr class="separator:a8e3f9963cb3299a22cf3b43d94346a90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48ebf880f27a72ef2e1142888bc7a777" id="r_a48ebf880f27a72ef2e1142888bc7a777"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#a48ebf880f27a72ef2e1142888bc7a777">MPE_GRAPH_INDEPENDENT</a>&#160;&#160;&#160;<a class="el" href="include_2mpe__graphics_8h.html#a8e3f9963cb3299a22cf3b43d94346a90">MPE_GRAPH_INDEPDENT</a></td></tr>
+<tr class="separator:a48ebf880f27a72ef2e1142888bc7a777"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91534ad6e3c2cb1de8fdf789d778e4bb" id="r_a91534ad6e3c2cb1de8fdf789d778e4bb"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#a91534ad6e3c2cb1de8fdf789d778e4bb">MPE_GRAPH_COLLECTIVE</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:a91534ad6e3c2cb1de8fdf789d778e4bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Определения типов</h2></td></tr>
+<tr class="memitem:a018a866a1c4c132e5b22c0651beac95b" id="r_a018a866a1c4c132e5b22c0651beac95b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">typedef</a> <a class="el" href="structvector.html">void</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#a018a866a1c4c132e5b22c0651beac95b">MPE_XGraph</a></td></tr>
+<tr class="separator:a018a866a1c4c132e5b22c0651beac95b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38311b9c172c9c03576c1ef52c11b257" id="r_a38311b9c172c9c03576c1ef52c11b257"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">typedef</a> <a class="el" href="structvector.html">struct</a> <a class="el" href="structMPE__Point__.html">MPE_Point_</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#a38311b9c172c9c03576c1ef52c11b257">MPE_Point</a></td></tr>
+<tr class="separator:a38311b9c172c9c03576c1ef52c11b257"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+Перечисления</h2></td></tr>
+<tr class="memitem:a5fa1b05b20c35b88f5256bb39e30af3e" id="r_a5fa1b05b20c35b88f5256bb39e30af3e"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#a5fa1b05b20c35b88f5256bb39e30af3e">MPE_Color</a> { <br />
+&#160;&#160;<a class="el" href="include_2mpe__graphics_8h.html#a5fa1b05b20c35b88f5256bb39e30af3eaf27cd4f4e4c0288f8163346e0fd804b5">MPE_WHITE</a> = 0
+, <a class="el" href="include_2mpe__graphics_8h.html#a5fa1b05b20c35b88f5256bb39e30af3eac2f43e5d63e0910a7da26ce3cfee93c0">MPE_BLACK</a> = 1
+, <a class="el" href="include_2mpe__graphics_8h.html#a5fa1b05b20c35b88f5256bb39e30af3ea74129421234eead928894a7f90816310">MPE_RED</a> = 2
+, <a class="el" href="include_2mpe__graphics_8h.html#a5fa1b05b20c35b88f5256bb39e30af3ea1a03bdb57d69bc2ddaf288ae2a9d6c51">MPE_YELLOW</a> = 3
+, <br />
+&#160;&#160;<a class="el" href="include_2mpe__graphics_8h.html#a5fa1b05b20c35b88f5256bb39e30af3eade1a61939cebc8fda16d1a08973a465f">MPE_GREEN</a> = 4
+, <a class="el" href="include_2mpe__graphics_8h.html#a5fa1b05b20c35b88f5256bb39e30af3ea4418e0d26165a3616fe1b20fdb6dc6af">MPE_CYAN</a> = 5
+, <a class="el" href="include_2mpe__graphics_8h.html#a5fa1b05b20c35b88f5256bb39e30af3ea14c5048045a3677e30993916040374b9">MPE_BLUE</a> = 6
+, <a class="el" href="include_2mpe__graphics_8h.html#a5fa1b05b20c35b88f5256bb39e30af3eae4afdc66bec0fe33f8f2f23a4cd70e62">MPE_MAGENTA</a> = 7
+, <br />
+&#160;&#160;<a class="el" href="include_2mpe__graphics_8h.html#a5fa1b05b20c35b88f5256bb39e30af3eaf16e2c21ca6b23103453ed4096fadb9e">MPE_AQUAMARINE</a> = 8
+, <a class="el" href="include_2mpe__graphics_8h.html#a5fa1b05b20c35b88f5256bb39e30af3ea45c1c983a46876874809f2a226837222">MPE_FORESTGREEN</a> = 9
+, <a class="el" href="include_2mpe__graphics_8h.html#a5fa1b05b20c35b88f5256bb39e30af3ea9aed0f11bc2f97a4ba58b6493f47001e">MPE_ORANGE</a> = 10
+, <a class="el" href="include_2mpe__graphics_8h.html#a5fa1b05b20c35b88f5256bb39e30af3ea4bfe5fb043500ea7513735c71102c1dd">MPE_MAROON</a> = 11
+, <br />
+&#160;&#160;<a class="el" href="include_2mpe__graphics_8h.html#a5fa1b05b20c35b88f5256bb39e30af3ea7e972c0131b6ae8ad62f0544f4e60800">MPE_BROWN</a> = 12
+, <a class="el" href="include_2mpe__graphics_8h.html#a5fa1b05b20c35b88f5256bb39e30af3ea6ca9690da9fe524b1bc2b1b330c8f010">MPE_PINK</a> = 13
+, <a class="el" href="include_2mpe__graphics_8h.html#a5fa1b05b20c35b88f5256bb39e30af3ea485d4c4afbd304c734f26706eefb8b97">MPE_CORAL</a> = 14
+, <a class="el" href="include_2mpe__graphics_8h.html#a5fa1b05b20c35b88f5256bb39e30af3ea458fb19f4db3521332631e2ca3611b76">MPE_GRAY</a> = 15
+<br />
+ }</td></tr>
+<tr class="separator:a5fa1b05b20c35b88f5256bb39e30af3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Функции</h2></td></tr>
+<tr class="memitem:a152fee68219da24590b2a6df342c3c36" id="r_a152fee68219da24590b2a6df342c3c36"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#a152fee68219da24590b2a6df342c3c36">MPE_Open_graphics</a> (<a class="el" href="include_2mpe__graphics_8h.html#a018a866a1c4c132e5b22c0651beac95b">MPE_XGraph</a> *, <a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>, <a class="el" href="structvector.html">char</a> *, <a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">int</a>)</td></tr>
+<tr class="separator:a152fee68219da24590b2a6df342c3c36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a766f1739dff059ac004175aa667fd947" id="r_a766f1739dff059ac004175aa667fd947"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#a766f1739dff059ac004175aa667fd947">MPE_Draw_point</a> (<a class="el" href="include_2mpe__graphics_8h.html#a018a866a1c4c132e5b22c0651beac95b">MPE_XGraph</a>, <a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">int</a>, <a class="el" href="include_2mpe__graphics_8h.html#a5fa1b05b20c35b88f5256bb39e30af3e">MPE_Color</a>)</td></tr>
+<tr class="separator:a766f1739dff059ac004175aa667fd947"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f05c490d170feef2f7ee33eff550b97" id="r_a5f05c490d170feef2f7ee33eff550b97"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#a5f05c490d170feef2f7ee33eff550b97">MPE_Draw_line</a> (<a class="el" href="include_2mpe__graphics_8h.html#a018a866a1c4c132e5b22c0651beac95b">MPE_XGraph</a>, <a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">int</a>, <a class="el" href="include_2mpe__graphics_8h.html#a5fa1b05b20c35b88f5256bb39e30af3e">MPE_Color</a>)</td></tr>
+<tr class="separator:a5f05c490d170feef2f7ee33eff550b97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31caeb1b0e9e5699c91febbb02e16a4c" id="r_a31caeb1b0e9e5699c91febbb02e16a4c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#a31caeb1b0e9e5699c91febbb02e16a4c">MPE_Draw_circle</a> (<a class="el" href="include_2mpe__graphics_8h.html#a018a866a1c4c132e5b22c0651beac95b">MPE_XGraph</a>, <a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">int</a>, <a class="el" href="include_2mpe__graphics_8h.html#a5fa1b05b20c35b88f5256bb39e30af3e">MPE_Color</a>)</td></tr>
+<tr class="separator:a31caeb1b0e9e5699c91febbb02e16a4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65dcd3d7f3630a6653d3c67d054886f8" id="r_a65dcd3d7f3630a6653d3c67d054886f8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#a65dcd3d7f3630a6653d3c67d054886f8">MPE_Draw_string</a> (<a class="el" href="include_2mpe__graphics_8h.html#a018a866a1c4c132e5b22c0651beac95b">MPE_XGraph</a>, <a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">int</a>, <a class="el" href="include_2mpe__graphics_8h.html#a5fa1b05b20c35b88f5256bb39e30af3e">MPE_Color</a>, <a class="el" href="structvector.html">char</a> *)</td></tr>
+<tr class="separator:a65dcd3d7f3630a6653d3c67d054886f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0744c2037a49f15db5d19f9f44c1975b" id="r_a0744c2037a49f15db5d19f9f44c1975b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#a0744c2037a49f15db5d19f9f44c1975b">MPE_Fill_rectangle</a> (<a class="el" href="include_2mpe__graphics_8h.html#a018a866a1c4c132e5b22c0651beac95b">MPE_XGraph</a>, <a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">int</a>, <a class="el" href="include_2mpe__graphics_8h.html#a5fa1b05b20c35b88f5256bb39e30af3e">MPE_Color</a>)</td></tr>
+<tr class="separator:a0744c2037a49f15db5d19f9f44c1975b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a780cb61cb764836207166410fdc9f7db" id="r_a780cb61cb764836207166410fdc9f7db"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#a780cb61cb764836207166410fdc9f7db">MPE_Update</a> (<a class="el" href="include_2mpe__graphics_8h.html#a018a866a1c4c132e5b22c0651beac95b">MPE_XGraph</a>)</td></tr>
+<tr class="separator:a780cb61cb764836207166410fdc9f7db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77b932845a22193d13499559cc844890" id="r_a77b932845a22193d13499559cc844890"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#a77b932845a22193d13499559cc844890">MPE_Num_colors</a> (<a class="el" href="include_2mpe__graphics_8h.html#a018a866a1c4c132e5b22c0651beac95b">MPE_XGraph</a>, <a class="el" href="structvector.html">int</a> *)</td></tr>
+<tr class="separator:a77b932845a22193d13499559cc844890"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a871b9ec9b4fa87aca5bb82c0273cdb84" id="r_a871b9ec9b4fa87aca5bb82c0273cdb84"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#a871b9ec9b4fa87aca5bb82c0273cdb84">MPE_Make_color_array</a> (<a class="el" href="include_2mpe__graphics_8h.html#a018a866a1c4c132e5b22c0651beac95b">MPE_XGraph</a>, <a class="el" href="structvector.html">int</a>, <a class="el" href="include_2mpe__graphics_8h.html#a5fa1b05b20c35b88f5256bb39e30af3e">MPE_Color</a>[])</td></tr>
+<tr class="separator:a871b9ec9b4fa87aca5bb82c0273cdb84"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40ae3559079dc90babca91500d67d78d" id="r_a40ae3559079dc90babca91500d67d78d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#a40ae3559079dc90babca91500d67d78d">MPE_Close_graphics</a> (<a class="el" href="include_2mpe__graphics_8h.html#a018a866a1c4c132e5b22c0651beac95b">MPE_XGraph</a> *)</td></tr>
+<tr class="separator:a40ae3559079dc90babca91500d67d78d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d62da9f6d6f1c7c9ee497d69720bf5f" id="r_a0d62da9f6d6f1c7c9ee497d69720bf5f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#a0d62da9f6d6f1c7c9ee497d69720bf5f">MPE_CaptureFile</a> (<a class="el" href="include_2mpe__graphics_8h.html#a018a866a1c4c132e5b22c0651beac95b">MPE_XGraph</a>, <a class="el" href="structvector.html">char</a> *, <a class="el" href="structvector.html">int</a>)</td></tr>
+<tr class="separator:a0d62da9f6d6f1c7c9ee497d69720bf5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb058762705d67f92a8abbf0553cae5a" id="r_acb058762705d67f92a8abbf0553cae5a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#acb058762705d67f92a8abbf0553cae5a">MPE_Draw_points</a> (<a class="el" href="include_2mpe__graphics_8h.html#a018a866a1c4c132e5b22c0651beac95b">MPE_XGraph</a>, <a class="el" href="include_2mpe__graphics_8h.html#a38311b9c172c9c03576c1ef52c11b257">MPE_Point</a> *, <a class="el" href="structvector.html">int</a>)</td></tr>
+<tr class="separator:acb058762705d67f92a8abbf0553cae5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aded556c7d588edaa8406533be8e2f2d0" id="r_aded556c7d588edaa8406533be8e2f2d0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#aded556c7d588edaa8406533be8e2f2d0">MPE_Fill_circle</a> (<a class="el" href="include_2mpe__graphics_8h.html#a018a866a1c4c132e5b22c0651beac95b">MPE_XGraph</a>, <a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">int</a>, <a class="el" href="include_2mpe__graphics_8h.html#a5fa1b05b20c35b88f5256bb39e30af3e">MPE_Color</a>)</td></tr>
+<tr class="separator:aded556c7d588edaa8406533be8e2f2d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39d39ffa4470b05bec81301b036cf5a8" id="r_a39d39ffa4470b05bec81301b036cf5a8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#a39d39ffa4470b05bec81301b036cf5a8">MPE_Draw_logic</a> (<a class="el" href="include_2mpe__graphics_8h.html#a018a866a1c4c132e5b22c0651beac95b">MPE_XGraph</a>, <a class="el" href="structvector.html">int</a>)</td></tr>
+<tr class="separator:a39d39ffa4470b05bec81301b036cf5a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3055a5fea156581f36ea8550f8dcad42" id="r_a3055a5fea156581f36ea8550f8dcad42"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#a3055a5fea156581f36ea8550f8dcad42">MPE_Line_thickness</a> (<a class="el" href="include_2mpe__graphics_8h.html#a018a866a1c4c132e5b22c0651beac95b">MPE_XGraph</a>, <a class="el" href="structvector.html">int</a>)</td></tr>
+<tr class="separator:a3055a5fea156581f36ea8550f8dcad42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abce721e5269193df1767223c790bef10" id="r_abce721e5269193df1767223c790bef10"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#abce721e5269193df1767223c790bef10">MPE_Draw_dashes</a> (<a class="el" href="include_2mpe__graphics_8h.html#a018a866a1c4c132e5b22c0651beac95b">MPE_XGraph</a>, <a class="el" href="structvector.html">int</a>)</td></tr>
+<tr class="separator:abce721e5269193df1767223c790bef10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78b9df0f796feae5df1c5b845a2a5e91" id="r_a78b9df0f796feae5df1c5b845a2a5e91"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#a78b9df0f796feae5df1c5b845a2a5e91">MPE_Dash_offset</a> (<a class="el" href="include_2mpe__graphics_8h.html#a018a866a1c4c132e5b22c0651beac95b">MPE_XGraph</a>, <a class="el" href="structvector.html">int</a>)</td></tr>
+<tr class="separator:a78b9df0f796feae5df1c5b845a2a5e91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a395eb8414b5f1dcd7a6ad8a72ae75e87" id="r_a395eb8414b5f1dcd7a6ad8a72ae75e87"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#a395eb8414b5f1dcd7a6ad8a72ae75e87">MPE_Add_RGB_color</a> (<a class="el" href="include_2mpe__graphics_8h.html#a018a866a1c4c132e5b22c0651beac95b">MPE_XGraph</a>, <a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">int</a>, <a class="el" href="include_2mpe__graphics_8h.html#a5fa1b05b20c35b88f5256bb39e30af3e">MPE_Color</a> *)</td></tr>
+<tr class="separator:a395eb8414b5f1dcd7a6ad8a72ae75e87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33d377ca4d1746ce063536715583c4ae" id="r_a33d377ca4d1746ce063536715583c4ae"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#a33d377ca4d1746ce063536715583c4ae">MPE_Xerror</a> (<a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">char</a> *)</td></tr>
+<tr class="separator:a33d377ca4d1746ce063536715583c4ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad37931e6af99e7d0a8eb1266a0d885c0" id="r_ad37931e6af99e7d0a8eb1266a0d885c0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#ad37931e6af99e7d0a8eb1266a0d885c0">MPE_Get_mouse_press</a> (<a class="el" href="include_2mpe__graphics_8h.html#a018a866a1c4c132e5b22c0651beac95b">MPE_XGraph</a>, <a class="el" href="structvector.html">int</a> *, <a class="el" href="structvector.html">int</a> *, <a class="el" href="structvector.html">int</a> *)</td></tr>
+<tr class="separator:ad37931e6af99e7d0a8eb1266a0d885c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a25d34dfe46f218e742395a743341d3" id="r_a9a25d34dfe46f218e742395a743341d3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#a9a25d34dfe46f218e742395a743341d3">MPE_Iget_mouse_press</a> (<a class="el" href="include_2mpe__graphics_8h.html#a018a866a1c4c132e5b22c0651beac95b">MPE_XGraph</a>, <a class="el" href="structvector.html">int</a> *, <a class="el" href="structvector.html">int</a> *, <a class="el" href="structvector.html">int</a> *, <a class="el" href="structvector.html">int</a> *)</td></tr>
+<tr class="separator:a9a25d34dfe46f218e742395a743341d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a080055a739ebbc74ef0c3e66fdb1501f" id="r_a080055a739ebbc74ef0c3e66fdb1501f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#a080055a739ebbc74ef0c3e66fdb1501f">MPE_Get_drag_region</a> (<a class="el" href="include_2mpe__graphics_8h.html#a018a866a1c4c132e5b22c0651beac95b">MPE_XGraph</a>, <a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">int</a> *, <a class="el" href="structvector.html">int</a> *, <a class="el" href="structvector.html">int</a> *, <a class="el" href="structvector.html">int</a> *)</td></tr>
+<tr class="separator:a080055a739ebbc74ef0c3e66fdb1501f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0941554a4d1241130680a03d03fd1dda" id="r_a0941554a4d1241130680a03d03fd1dda"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#a0941554a4d1241130680a03d03fd1dda">MPE_Get_drag_region_fixratio</a> (<a class="el" href="include_2mpe__graphics_8h.html#a018a866a1c4c132e5b22c0651beac95b">MPE_XGraph</a>, <a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">double</a>, <a class="el" href="structvector.html">int</a> *, <a class="el" href="structvector.html">int</a> *, <a class="el" href="structvector.html">int</a> *, <a class="el" href="structvector.html">int</a> *)</td></tr>
+<tr class="separator:a0941554a4d1241130680a03d03fd1dda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Переменные</h2></td></tr>
+<tr class="memitem:a60645e5ccf3209a5bb8569d0895a5e81" id="r_a60645e5ccf3209a5bb8569d0895a5e81"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#a60645e5ccf3209a5bb8569d0895a5e81">MPE_buttonArray</a> []</td></tr>
+<tr class="separator:a60645e5ccf3209a5bb8569d0895a5e81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa10de6848834828ada6ec251aefab2c1" id="r_aa10de6848834828ada6ec251aefab2c1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__graphics_8h.html#aa10de6848834828ada6ec251aefab2c1">MPE_logicArray</a> []</td></tr>
+<tr class="separator:aa10de6848834828ada6ec251aefab2c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Макросы</h2>
+<a id="a1149f6f2a3812c4a58341adbe8ffd815" name="a1149f6f2a3812c4a58341adbe8ffd815"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1149f6f2a3812c4a58341adbe8ffd815">&#9670;&#160;</a></span>MPE_BUTTON1</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_BUTTON1&#160;&#160;&#160;(<a class="el" href="include_2mpe__graphics_8h.html#a60645e5ccf3209a5bb8569d0895a5e81">MPE_buttonArray</a>[0])</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__graphics_8h_source.html">include/mpe_graphics.h</a> строка <a class="el" href="include_2mpe__graphics_8h_source.html#l00051">51</a></p>
+
+</div>
+</div>
+<a id="a2e33b60970d01d2cd901e7e58186516b" name="a2e33b60970d01d2cd901e7e58186516b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e33b60970d01d2cd901e7e58186516b">&#9670;&#160;</a></span>MPE_BUTTON2</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_BUTTON2&#160;&#160;&#160;(<a class="el" href="include_2mpe__graphics_8h.html#a60645e5ccf3209a5bb8569d0895a5e81">MPE_buttonArray</a>[1])</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__graphics_8h_source.html">include/mpe_graphics.h</a> строка <a class="el" href="include_2mpe__graphics_8h_source.html#l00052">52</a></p>
+
+</div>
+</div>
+<a id="acb03cc2c2987d4beb7b97fe570b36006" name="acb03cc2c2987d4beb7b97fe570b36006"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb03cc2c2987d4beb7b97fe570b36006">&#9670;&#160;</a></span>MPE_BUTTON3</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_BUTTON3&#160;&#160;&#160;(<a class="el" href="include_2mpe__graphics_8h.html#a60645e5ccf3209a5bb8569d0895a5e81">MPE_buttonArray</a>[2])</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__graphics_8h_source.html">include/mpe_graphics.h</a> строка <a class="el" href="include_2mpe__graphics_8h_source.html#l00053">53</a></p>
+
+</div>
+</div>
+<a id="a18350c8aa69d92777a5689ced114ab6e" name="a18350c8aa69d92777a5689ced114ab6e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18350c8aa69d92777a5689ced114ab6e">&#9670;&#160;</a></span>MPE_BUTTON4</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_BUTTON4&#160;&#160;&#160;(<a class="el" href="include_2mpe__graphics_8h.html#a60645e5ccf3209a5bb8569d0895a5e81">MPE_buttonArray</a>[3])</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__graphics_8h_source.html">include/mpe_graphics.h</a> строка <a class="el" href="include_2mpe__graphics_8h_source.html#l00054">54</a></p>
+
+</div>
+</div>
+<a id="af552edb66bf8aac72590b0ce1935a27c" name="af552edb66bf8aac72590b0ce1935a27c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af552edb66bf8aac72590b0ce1935a27c">&#9670;&#160;</a></span>MPE_BUTTON5</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_BUTTON5&#160;&#160;&#160;(<a class="el" href="include_2mpe__graphics_8h.html#a60645e5ccf3209a5bb8569d0895a5e81">MPE_buttonArray</a>[4])</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__graphics_8h_source.html">include/mpe_graphics.h</a> строка <a class="el" href="include_2mpe__graphics_8h_source.html#l00055">55</a></p>
+
+</div>
+</div>
+<a id="ac4f48414af1a01877f093eb7e82edead" name="ac4f48414af1a01877f093eb7e82edead"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4f48414af1a01877f093eb7e82edead">&#9670;&#160;</a></span>MPE_DRAG_CIRCLE_BBOX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_DRAG_CIRCLE_BBOX&#160;&#160;&#160;5</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__graphics_8h_source.html">include/mpe_graphics.h</a> строка <a class="el" href="include_2mpe__graphics_8h_source.html#l00066">66</a></p>
+
+</div>
+</div>
+<a id="a0870fed971ed60d6fcfa4ad3f36fafaa" name="a0870fed971ed60d6fcfa4ad3f36fafaa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0870fed971ed60d6fcfa4ad3f36fafaa">&#9670;&#160;</a></span>MPE_DRAG_CIRCLE_DIAMETER</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_DRAG_CIRCLE_DIAMETER&#160;&#160;&#160;4</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__graphics_8h_source.html">include/mpe_graphics.h</a> строка <a class="el" href="include_2mpe__graphics_8h_source.html#l00064">64</a></p>
+
+</div>
+</div>
+<a id="a9653d8c57378665a356c1b8e5d64540c" name="a9653d8c57378665a356c1b8e5d64540c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9653d8c57378665a356c1b8e5d64540c">&#9670;&#160;</a></span>MPE_DRAG_CIRCLE_RADIUS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_DRAG_CIRCLE_RADIUS&#160;&#160;&#160;3     /* <a class="el" href="structvector.html">rubber</a> <a class="el" href="structvector.html">band</a> <a class="el" href="structvector.html">circle</a>, */</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__graphics_8h_source.html">include/mpe_graphics.h</a> строка <a class="el" href="include_2mpe__graphics_8h_source.html#l00062">62</a></p>
+
+</div>
+</div>
+<a id="aa6ba6250b164984741b0e225c223ea15" name="aa6ba6250b164984741b0e225c223ea15"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6ba6250b164984741b0e225c223ea15">&#9670;&#160;</a></span>MPE_DRAG_LINE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_DRAG_LINE&#160;&#160;&#160;2		     /* <a class="el" href="structvector.html">rubber</a> <a class="el" href="structvector.html">band</a> <a class="el" href="structvector.html">line</a> */</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__graphics_8h_source.html">include/mpe_graphics.h</a> строка <a class="el" href="include_2mpe__graphics_8h_source.html#l00061">61</a></p>
+
+</div>
+</div>
+<a id="aefd29829aa20af113e5520051dd68140" name="aefd29829aa20af113e5520051dd68140"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aefd29829aa20af113e5520051dd68140">&#9670;&#160;</a></span>MPE_DRAG_NONE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_DRAG_NONE&#160;&#160;&#160;0		     /* <a class="el" href="structvector.html">no</a> <a class="el" href="structvector.html">visual</a> */</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__graphics_8h_source.html">include/mpe_graphics.h</a> строка <a class="el" href="include_2mpe__graphics_8h_source.html#l00059">59</a></p>
+
+</div>
+</div>
+<a id="a5572d7d6ac00d7e5d53c8166c512afac" name="a5572d7d6ac00d7e5d53c8166c512afac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5572d7d6ac00d7e5d53c8166c512afac">&#9670;&#160;</a></span>MPE_DRAG_OVAL_BBOX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_DRAG_OVAL_BBOX&#160;&#160;&#160;6</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__graphics_8h_source.html">include/mpe_graphics.h</a> строка <a class="el" href="include_2mpe__graphics_8h_source.html#l00068">68</a></p>
+
+</div>
+</div>
+<a id="a7ce97695965e00542bde4c680918cca8" name="a7ce97695965e00542bde4c680918cca8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ce97695965e00542bde4c680918cca8">&#9670;&#160;</a></span>MPE_DRAG_RECT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_DRAG_RECT&#160;&#160;&#160;1		     /* <a class="el" href="structvector.html">rubber</a> <a class="el" href="structvector.html">band</a> <a class="el" href="structvector.html">box</a> */</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__graphics_8h_source.html">include/mpe_graphics.h</a> строка <a class="el" href="include_2mpe__graphics_8h_source.html#l00060">60</a></p>
+
+</div>
+</div>
+<a id="af2d4f4bab6d64530258b8b5af402d596" name="af2d4f4bab6d64530258b8b5af402d596"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2d4f4bab6d64530258b8b5af402d596">&#9670;&#160;</a></span>MPE_DRAG_SQUARE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_DRAG_SQUARE&#160;&#160;&#160;7</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__graphics_8h_source.html">include/mpe_graphics.h</a> строка <a class="el" href="include_2mpe__graphics_8h_source.html#l00070">70</a></p>
+
+</div>
+</div>
+<a id="a86cdc6f9f0efd33408f300ac31c7239a" name="a86cdc6f9f0efd33408f300ac31c7239a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86cdc6f9f0efd33408f300ac31c7239a">&#9670;&#160;</a></span>MPE_ERR_BAD_ARGS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_ERR_BAD_ARGS&#160;&#160;&#160;2           /* <a class="el" href="structvector.html">graphics</a> <a class="el" href="structvector.html">handle</a> <a class="el" href="structvector.html">invalid</a> */</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__graphics_8h_source.html">include/mpe_graphics.h</a> строка <a class="el" href="include_2mpe__graphics_8h_source.html#l00020">20</a></p>
+
+</div>
+</div>
+<a id="a27d0bb82f0a67464342bf374495619de" name="a27d0bb82f0a67464342bf374495619de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27d0bb82f0a67464342bf374495619de">&#9670;&#160;</a></span>MPE_ERR_LOW_MEM</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_ERR_LOW_MEM&#160;&#160;&#160;3           /* <a class="el" href="structvector.html">out</a> <a class="el" href="structvector.html">of</a> <a class="el" href="structvector.html">memory</a> (<a class="el" href="protofix_8h.html#a52abbdf8792edbd1e34d4ca8d061f840">malloc</a>() <a class="el" href="structvector.html">failed</a>) */</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__graphics_8h_source.html">include/mpe_graphics.h</a> строка <a class="el" href="include_2mpe__graphics_8h_source.html#l00021">21</a></p>
+
+</div>
+</div>
+<a id="a266d3585ba30f7f14e16ec23b14b6b28" name="a266d3585ba30f7f14e16ec23b14b6b28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a266d3585ba30f7f14e16ec23b14b6b28">&#9670;&#160;</a></span>MPE_ERR_NOXCONNECT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_ERR_NOXCONNECT&#160;&#160;&#160;1           /* <a class="el" href="structvector.html">could</a> <a class="el" href="structvector.html">not</a> <a class="el" href="structvector.html">connect</a> <a class="el" href="structvector.html">to</a> <a class="el" href="structvector.html">X</a> <a class="el" href="structvector.html">server</a> */</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__graphics_8h_source.html">include/mpe_graphics.h</a> строка <a class="el" href="include_2mpe__graphics_8h_source.html#l00019">19</a></p>
+
+</div>
+</div>
+<a id="a91534ad6e3c2cb1de8fdf789d778e4bb" name="a91534ad6e3c2cb1de8fdf789d778e4bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a91534ad6e3c2cb1de8fdf789d778e4bb">&#9670;&#160;</a></span>MPE_GRAPH_COLLECTIVE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_GRAPH_COLLECTIVE&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__graphics_8h_source.html">include/mpe_graphics.h</a> строка <a class="el" href="include_2mpe__graphics_8h_source.html#l00131">131</a></p>
+
+</div>
+</div>
+<a id="a8e3f9963cb3299a22cf3b43d94346a90" name="a8e3f9963cb3299a22cf3b43d94346a90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e3f9963cb3299a22cf3b43d94346a90">&#9670;&#160;</a></span>MPE_GRAPH_INDEPDENT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_GRAPH_INDEPDENT&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__graphics_8h_source.html">include/mpe_graphics.h</a> строка <a class="el" href="include_2mpe__graphics_8h_source.html#l00129">129</a></p>
+
+</div>
+</div>
+<a id="a48ebf880f27a72ef2e1142888bc7a777" name="a48ebf880f27a72ef2e1142888bc7a777"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a48ebf880f27a72ef2e1142888bc7a777">&#9670;&#160;</a></span>MPE_GRAPH_INDEPENDENT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_GRAPH_INDEPENDENT&#160;&#160;&#160;<a class="el" href="include_2mpe__graphics_8h.html#a8e3f9963cb3299a22cf3b43d94346a90">MPE_GRAPH_INDEPDENT</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__graphics_8h_source.html">include/mpe_graphics.h</a> строка <a class="el" href="include_2mpe__graphics_8h_source.html#l00130">130</a></p>
+
+</div>
+</div>
+<a id="aa044df19289e3235715e129155264b9a" name="aa044df19289e3235715e129155264b9a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa044df19289e3235715e129155264b9a">&#9670;&#160;</a></span>MPE_LOGIC_AND</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_LOGIC_AND&#160;&#160;&#160;(<a class="el" href="include_2mpe__graphics_8h.html#aa10de6848834828ada6ec251aefab2c1">MPE_logicArray</a>[1])</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__graphics_8h_source.html">include/mpe_graphics.h</a> строка <a class="el" href="include_2mpe__graphics_8h_source.html#l00035">35</a></p>
+
+</div>
+</div>
+<a id="afcef8f3fdf2d60edc0edca61dbd93713" name="afcef8f3fdf2d60edc0edca61dbd93713"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afcef8f3fdf2d60edc0edca61dbd93713">&#9670;&#160;</a></span>MPE_LOGIC_ANDINVERTED</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_LOGIC_ANDINVERTED&#160;&#160;&#160;(<a class="el" href="include_2mpe__graphics_8h.html#aa10de6848834828ada6ec251aefab2c1">MPE_logicArray</a>[4])</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__graphics_8h_source.html">include/mpe_graphics.h</a> строка <a class="el" href="include_2mpe__graphics_8h_source.html#l00038">38</a></p>
+
+</div>
+</div>
+<a id="a4099881c325b8f5ef4316e74e7ae2121" name="a4099881c325b8f5ef4316e74e7ae2121"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4099881c325b8f5ef4316e74e7ae2121">&#9670;&#160;</a></span>MPE_LOGIC_ANDREVERSE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_LOGIC_ANDREVERSE&#160;&#160;&#160;(<a class="el" href="include_2mpe__graphics_8h.html#aa10de6848834828ada6ec251aefab2c1">MPE_logicArray</a>[2])</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__graphics_8h_source.html">include/mpe_graphics.h</a> строка <a class="el" href="include_2mpe__graphics_8h_source.html#l00036">36</a></p>
+
+</div>
+</div>
+<a id="a99caaede06f2736435275c71eaed7f1a" name="a99caaede06f2736435275c71eaed7f1a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99caaede06f2736435275c71eaed7f1a">&#9670;&#160;</a></span>MPE_LOGIC_CLEAR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_LOGIC_CLEAR&#160;&#160;&#160;(<a class="el" href="include_2mpe__graphics_8h.html#aa10de6848834828ada6ec251aefab2c1">MPE_logicArray</a>[0])</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__graphics_8h_source.html">include/mpe_graphics.h</a> строка <a class="el" href="include_2mpe__graphics_8h_source.html#l00034">34</a></p>
+
+</div>
+</div>
+<a id="a7a9740be4c23e7afc6e46631b69a20b7" name="a7a9740be4c23e7afc6e46631b69a20b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a9740be4c23e7afc6e46631b69a20b7">&#9670;&#160;</a></span>MPE_LOGIC_COPY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_LOGIC_COPY&#160;&#160;&#160;(<a class="el" href="include_2mpe__graphics_8h.html#aa10de6848834828ada6ec251aefab2c1">MPE_logicArray</a>[3])</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__graphics_8h_source.html">include/mpe_graphics.h</a> строка <a class="el" href="include_2mpe__graphics_8h_source.html#l00037">37</a></p>
+
+</div>
+</div>
+<a id="a6392d3b8ff928886a973321897e3be40" name="a6392d3b8ff928886a973321897e3be40"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6392d3b8ff928886a973321897e3be40">&#9670;&#160;</a></span>MPE_LOGIC_COPYINVERTED</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_LOGIC_COPYINVERTED&#160;&#160;&#160;(<a class="el" href="include_2mpe__graphics_8h.html#aa10de6848834828ada6ec251aefab2c1">MPE_logicArray</a>[12])</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__graphics_8h_source.html">include/mpe_graphics.h</a> строка <a class="el" href="include_2mpe__graphics_8h_source.html#l00046">46</a></p>
+
+</div>
+</div>
+<a id="a8fc2384196b87b84667c3bfd51d35b46" name="a8fc2384196b87b84667c3bfd51d35b46"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8fc2384196b87b84667c3bfd51d35b46">&#9670;&#160;</a></span>MPE_LOGIC_EQUIV</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_LOGIC_EQUIV&#160;&#160;&#160;(<a class="el" href="include_2mpe__graphics_8h.html#aa10de6848834828ada6ec251aefab2c1">MPE_logicArray</a>[9])</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__graphics_8h_source.html">include/mpe_graphics.h</a> строка <a class="el" href="include_2mpe__graphics_8h_source.html#l00043">43</a></p>
+
+</div>
+</div>
+<a id="a4ef293a99b68b30a0b50f90911ee051d" name="a4ef293a99b68b30a0b50f90911ee051d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ef293a99b68b30a0b50f90911ee051d">&#9670;&#160;</a></span>MPE_LOGIC_INVERT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_LOGIC_INVERT&#160;&#160;&#160;(<a class="el" href="include_2mpe__graphics_8h.html#aa10de6848834828ada6ec251aefab2c1">MPE_logicArray</a>[10])</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__graphics_8h_source.html">include/mpe_graphics.h</a> строка <a class="el" href="include_2mpe__graphics_8h_source.html#l00044">44</a></p>
+
+</div>
+</div>
+<a id="aaa402961f6d6cb9121d06d160d80e7d0" name="aaa402961f6d6cb9121d06d160d80e7d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa402961f6d6cb9121d06d160d80e7d0">&#9670;&#160;</a></span>MPE_LOGIC_NAND</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_LOGIC_NAND&#160;&#160;&#160;(<a class="el" href="include_2mpe__graphics_8h.html#aa10de6848834828ada6ec251aefab2c1">MPE_logicArray</a>[14])</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__graphics_8h_source.html">include/mpe_graphics.h</a> строка <a class="el" href="include_2mpe__graphics_8h_source.html#l00048">48</a></p>
+
+</div>
+</div>
+<a id="af583f78285cb725083de0d7df0a20a3f" name="af583f78285cb725083de0d7df0a20a3f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af583f78285cb725083de0d7df0a20a3f">&#9670;&#160;</a></span>MPE_LOGIC_NOOP</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_LOGIC_NOOP&#160;&#160;&#160;(<a class="el" href="include_2mpe__graphics_8h.html#aa10de6848834828ada6ec251aefab2c1">MPE_logicArray</a>[5])</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__graphics_8h_source.html">include/mpe_graphics.h</a> строка <a class="el" href="include_2mpe__graphics_8h_source.html#l00039">39</a></p>
+
+</div>
+</div>
+<a id="ab311c8dd142e0cd6f689f5a081486e76" name="ab311c8dd142e0cd6f689f5a081486e76"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab311c8dd142e0cd6f689f5a081486e76">&#9670;&#160;</a></span>MPE_LOGIC_NOR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_LOGIC_NOR&#160;&#160;&#160;(<a class="el" href="include_2mpe__graphics_8h.html#aa10de6848834828ada6ec251aefab2c1">MPE_logicArray</a>[8])</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__graphics_8h_source.html">include/mpe_graphics.h</a> строка <a class="el" href="include_2mpe__graphics_8h_source.html#l00042">42</a></p>
+
+</div>
+</div>
+<a id="a7bd002187a0edde16183f6c0f8be7e8b" name="a7bd002187a0edde16183f6c0f8be7e8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7bd002187a0edde16183f6c0f8be7e8b">&#9670;&#160;</a></span>MPE_LOGIC_OR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_LOGIC_OR&#160;&#160;&#160;(<a class="el" href="include_2mpe__graphics_8h.html#aa10de6848834828ada6ec251aefab2c1">MPE_logicArray</a>[7])</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__graphics_8h_source.html">include/mpe_graphics.h</a> строка <a class="el" href="include_2mpe__graphics_8h_source.html#l00041">41</a></p>
+
+</div>
+</div>
+<a id="a5a1ef2f0aef70e224eabf1528c09ed54" name="a5a1ef2f0aef70e224eabf1528c09ed54"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a1ef2f0aef70e224eabf1528c09ed54">&#9670;&#160;</a></span>MPE_LOGIC_ORINVERTED</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_LOGIC_ORINVERTED&#160;&#160;&#160;(<a class="el" href="include_2mpe__graphics_8h.html#aa10de6848834828ada6ec251aefab2c1">MPE_logicArray</a>[13])</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__graphics_8h_source.html">include/mpe_graphics.h</a> строка <a class="el" href="include_2mpe__graphics_8h_source.html#l00047">47</a></p>
+
+</div>
+</div>
+<a id="a7de58e95301abdbf49dbb5e1bc9c6b18" name="a7de58e95301abdbf49dbb5e1bc9c6b18"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7de58e95301abdbf49dbb5e1bc9c6b18">&#9670;&#160;</a></span>MPE_LOGIC_ORREVERSE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_LOGIC_ORREVERSE&#160;&#160;&#160;(<a class="el" href="include_2mpe__graphics_8h.html#aa10de6848834828ada6ec251aefab2c1">MPE_logicArray</a>[11])</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__graphics_8h_source.html">include/mpe_graphics.h</a> строка <a class="el" href="include_2mpe__graphics_8h_source.html#l00045">45</a></p>
+
+</div>
+</div>
+<a id="a315986897f2e30a5ab797ef94d7f5303" name="a315986897f2e30a5ab797ef94d7f5303"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a315986897f2e30a5ab797ef94d7f5303">&#9670;&#160;</a></span>MPE_LOGIC_SET</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_LOGIC_SET&#160;&#160;&#160;(<a class="el" href="include_2mpe__graphics_8h.html#aa10de6848834828ada6ec251aefab2c1">MPE_logicArray</a>[15])</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__graphics_8h_source.html">include/mpe_graphics.h</a> строка <a class="el" href="include_2mpe__graphics_8h_source.html#l00049">49</a></p>
+
+</div>
+</div>
+<a id="af7cc729e6495f10424b73fe06e1cd6c5" name="af7cc729e6495f10424b73fe06e1cd6c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7cc729e6495f10424b73fe06e1cd6c5">&#9670;&#160;</a></span>MPE_LOGIC_XOR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_LOGIC_XOR&#160;&#160;&#160;(<a class="el" href="include_2mpe__graphics_8h.html#aa10de6848834828ada6ec251aefab2c1">MPE_logicArray</a>[6])</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__graphics_8h_source.html">include/mpe_graphics.h</a> строка <a class="el" href="include_2mpe__graphics_8h_source.html#l00040">40</a></p>
+
+</div>
+</div>
+<a id="ab4b19ffb891f06322a49514b3ba76f25" name="ab4b19ffb891f06322a49514b3ba76f25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4b19ffb891f06322a49514b3ba76f25">&#9670;&#160;</a></span>MPE_SUCCESS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_SUCCESS&#160;&#160;&#160;0           /* <a class="el" href="structvector.html">successful</a> <a class="el" href="structvector.html">operation</a> */</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__graphics_8h_source.html">include/mpe_graphics.h</a> строка <a class="el" href="include_2mpe__graphics_8h_source.html#l00018">18</a></p>
+
+</div>
+</div>
+<h2 class="groupheader">Типы</h2>
+<a id="a38311b9c172c9c03576c1ef52c11b257" name="a38311b9c172c9c03576c1ef52c11b257"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38311b9c172c9c03576c1ef52c11b257">&#9670;&#160;</a></span>MPE_Point</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">typedef</a> <a class="el" href="structvector.html">struct</a> <a class="el" href="structMPE__Point__.html">MPE_Point_</a> <a class="el" href="include_2mpe__graphics_8h.html#a38311b9c172c9c03576c1ef52c11b257">MPE_Point</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a018a866a1c4c132e5b22c0651beac95b" name="a018a866a1c4c132e5b22c0651beac95b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a018a866a1c4c132e5b22c0651beac95b">&#9670;&#160;</a></span>MPE_XGraph</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">typedef</a> <a class="el" href="structvector.html">void</a>* <a class="el" href="include_2mpe__graphics_8h.html#a018a866a1c4c132e5b22c0651beac95b">MPE_XGraph</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__graphics_8h_source.html">include/mpe_graphics.h</a> строка <a class="el" href="include_2mpe__graphics_8h_source.html#l00116">116</a></p>
+
+</div>
+</div>
+<h2 class="groupheader">Перечисления</h2>
+<a id="a5fa1b05b20c35b88f5256bb39e30af3e" name="a5fa1b05b20c35b88f5256bb39e30af3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5fa1b05b20c35b88f5256bb39e30af3e">&#9670;&#160;</a></span>MPE_Color</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">enum</a> <a class="el" href="include_2mpe__graphics_8h.html#a5fa1b05b20c35b88f5256bb39e30af3e">MPE_Color</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Элементы перечислений</th></tr><tr><td class="fieldname"><a id="a5fa1b05b20c35b88f5256bb39e30af3eaf27cd4f4e4c0288f8163346e0fd804b5" name="a5fa1b05b20c35b88f5256bb39e30af3eaf27cd4f4e4c0288f8163346e0fd804b5"></a>MPE_WHITE&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a5fa1b05b20c35b88f5256bb39e30af3eac2f43e5d63e0910a7da26ce3cfee93c0" name="a5fa1b05b20c35b88f5256bb39e30af3eac2f43e5d63e0910a7da26ce3cfee93c0"></a>MPE_BLACK&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a5fa1b05b20c35b88f5256bb39e30af3ea74129421234eead928894a7f90816310" name="a5fa1b05b20c35b88f5256bb39e30af3ea74129421234eead928894a7f90816310"></a>MPE_RED&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a5fa1b05b20c35b88f5256bb39e30af3ea1a03bdb57d69bc2ddaf288ae2a9d6c51" name="a5fa1b05b20c35b88f5256bb39e30af3ea1a03bdb57d69bc2ddaf288ae2a9d6c51"></a>MPE_YELLOW&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a5fa1b05b20c35b88f5256bb39e30af3eade1a61939cebc8fda16d1a08973a465f" name="a5fa1b05b20c35b88f5256bb39e30af3eade1a61939cebc8fda16d1a08973a465f"></a>MPE_GREEN&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a5fa1b05b20c35b88f5256bb39e30af3ea4418e0d26165a3616fe1b20fdb6dc6af" name="a5fa1b05b20c35b88f5256bb39e30af3ea4418e0d26165a3616fe1b20fdb6dc6af"></a>MPE_CYAN&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a5fa1b05b20c35b88f5256bb39e30af3ea14c5048045a3677e30993916040374b9" name="a5fa1b05b20c35b88f5256bb39e30af3ea14c5048045a3677e30993916040374b9"></a>MPE_BLUE&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a5fa1b05b20c35b88f5256bb39e30af3eae4afdc66bec0fe33f8f2f23a4cd70e62" name="a5fa1b05b20c35b88f5256bb39e30af3eae4afdc66bec0fe33f8f2f23a4cd70e62"></a>MPE_MAGENTA&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a5fa1b05b20c35b88f5256bb39e30af3eaf16e2c21ca6b23103453ed4096fadb9e" name="a5fa1b05b20c35b88f5256bb39e30af3eaf16e2c21ca6b23103453ed4096fadb9e"></a>MPE_AQUAMARINE&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a5fa1b05b20c35b88f5256bb39e30af3ea45c1c983a46876874809f2a226837222" name="a5fa1b05b20c35b88f5256bb39e30af3ea45c1c983a46876874809f2a226837222"></a>MPE_FORESTGREEN&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a5fa1b05b20c35b88f5256bb39e30af3ea9aed0f11bc2f97a4ba58b6493f47001e" name="a5fa1b05b20c35b88f5256bb39e30af3ea9aed0f11bc2f97a4ba58b6493f47001e"></a>MPE_ORANGE&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a5fa1b05b20c35b88f5256bb39e30af3ea4bfe5fb043500ea7513735c71102c1dd" name="a5fa1b05b20c35b88f5256bb39e30af3ea4bfe5fb043500ea7513735c71102c1dd"></a>MPE_MAROON&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a5fa1b05b20c35b88f5256bb39e30af3ea7e972c0131b6ae8ad62f0544f4e60800" name="a5fa1b05b20c35b88f5256bb39e30af3ea7e972c0131b6ae8ad62f0544f4e60800"></a>MPE_BROWN&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a5fa1b05b20c35b88f5256bb39e30af3ea6ca9690da9fe524b1bc2b1b330c8f010" name="a5fa1b05b20c35b88f5256bb39e30af3ea6ca9690da9fe524b1bc2b1b330c8f010"></a>MPE_PINK&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a5fa1b05b20c35b88f5256bb39e30af3ea485d4c4afbd304c734f26706eefb8b97" name="a5fa1b05b20c35b88f5256bb39e30af3ea485d4c4afbd304c734f26706eefb8b97"></a>MPE_CORAL&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a5fa1b05b20c35b88f5256bb39e30af3ea458fb19f4db3521332631e2ca3611b76" name="a5fa1b05b20c35b88f5256bb39e30af3ea458fb19f4db3521332631e2ca3611b76"></a>MPE_GRAY&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__graphics_8h_source.html">include/mpe_graphics.h</a> строка <a class="el" href="include_2mpe__graphics_8h_source.html#l00024">24</a></p>
+
+</div>
+</div>
+<h2 class="groupheader">Функции</h2>
+<a id="a395eb8414b5f1dcd7a6ad8a72ae75e87" name="a395eb8414b5f1dcd7a6ad8a72ae75e87"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a395eb8414b5f1dcd7a6ad8a72ae75e87">&#9670;&#160;</a></span>MPE_Add_RGB_color()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Add_RGB_color </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="include_2mpe__graphics_8h.html#a018a866a1c4c132e5b22c0651beac95b">MPE_XGraph</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="include_2mpe__graphics_8h.html#a5fa1b05b20c35b88f5256bb39e30af3e">MPE_Color</a> *&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0d62da9f6d6f1c7c9ee497d69720bf5f" name="a0d62da9f6d6f1c7c9ee497d69720bf5f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d62da9f6d6f1c7c9ee497d69720bf5f">&#9670;&#160;</a></span>MPE_CaptureFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_CaptureFile </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="include_2mpe__graphics_8h.html#a018a866a1c4c132e5b22c0651beac95b">MPE_XGraph</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a40ae3559079dc90babca91500d67d78d" name="a40ae3559079dc90babca91500d67d78d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40ae3559079dc90babca91500d67d78d">&#9670;&#160;</a></span>MPE_Close_graphics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Close_graphics </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="include_2mpe__graphics_8h.html#a018a866a1c4c132e5b22c0651beac95b">MPE_XGraph</a> *&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a78b9df0f796feae5df1c5b845a2a5e91" name="a78b9df0f796feae5df1c5b845a2a5e91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78b9df0f796feae5df1c5b845a2a5e91">&#9670;&#160;</a></span>MPE_Dash_offset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Dash_offset </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="include_2mpe__graphics_8h.html#a018a866a1c4c132e5b22c0651beac95b">MPE_XGraph</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a31caeb1b0e9e5699c91febbb02e16a4c" name="a31caeb1b0e9e5699c91febbb02e16a4c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31caeb1b0e9e5699c91febbb02e16a4c">&#9670;&#160;</a></span>MPE_Draw_circle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Draw_circle </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="include_2mpe__graphics_8h.html#a018a866a1c4c132e5b22c0651beac95b">MPE_XGraph</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="include_2mpe__graphics_8h.html#a5fa1b05b20c35b88f5256bb39e30af3e">MPE_Color</a>&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abce721e5269193df1767223c790bef10" name="abce721e5269193df1767223c790bef10"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abce721e5269193df1767223c790bef10">&#9670;&#160;</a></span>MPE_Draw_dashes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Draw_dashes </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="include_2mpe__graphics_8h.html#a018a866a1c4c132e5b22c0651beac95b">MPE_XGraph</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5f05c490d170feef2f7ee33eff550b97" name="a5f05c490d170feef2f7ee33eff550b97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f05c490d170feef2f7ee33eff550b97">&#9670;&#160;</a></span>MPE_Draw_line()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Draw_line </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="include_2mpe__graphics_8h.html#a018a866a1c4c132e5b22c0651beac95b">MPE_XGraph</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="include_2mpe__graphics_8h.html#a5fa1b05b20c35b88f5256bb39e30af3e">MPE_Color</a>&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a39d39ffa4470b05bec81301b036cf5a8" name="a39d39ffa4470b05bec81301b036cf5a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39d39ffa4470b05bec81301b036cf5a8">&#9670;&#160;</a></span>MPE_Draw_logic()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Draw_logic </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="include_2mpe__graphics_8h.html#a018a866a1c4c132e5b22c0651beac95b">MPE_XGraph</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a766f1739dff059ac004175aa667fd947" name="a766f1739dff059ac004175aa667fd947"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a766f1739dff059ac004175aa667fd947">&#9670;&#160;</a></span>MPE_Draw_point()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Draw_point </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="include_2mpe__graphics_8h.html#a018a866a1c4c132e5b22c0651beac95b">MPE_XGraph</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="include_2mpe__graphics_8h.html#a5fa1b05b20c35b88f5256bb39e30af3e">MPE_Color</a>&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acb058762705d67f92a8abbf0553cae5a" name="acb058762705d67f92a8abbf0553cae5a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb058762705d67f92a8abbf0553cae5a">&#9670;&#160;</a></span>MPE_Draw_points()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Draw_points </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="include_2mpe__graphics_8h.html#a018a866a1c4c132e5b22c0651beac95b">MPE_XGraph</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="include_2mpe__graphics_8h.html#a38311b9c172c9c03576c1ef52c11b257">MPE_Point</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a65dcd3d7f3630a6653d3c67d054886f8" name="a65dcd3d7f3630a6653d3c67d054886f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65dcd3d7f3630a6653d3c67d054886f8">&#9670;&#160;</a></span>MPE_Draw_string()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Draw_string </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="include_2mpe__graphics_8h.html#a018a866a1c4c132e5b22c0651beac95b">MPE_XGraph</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="include_2mpe__graphics_8h.html#a5fa1b05b20c35b88f5256bb39e30af3e">MPE_Color</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aded556c7d588edaa8406533be8e2f2d0" name="aded556c7d588edaa8406533be8e2f2d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aded556c7d588edaa8406533be8e2f2d0">&#9670;&#160;</a></span>MPE_Fill_circle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Fill_circle </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="include_2mpe__graphics_8h.html#a018a866a1c4c132e5b22c0651beac95b">MPE_XGraph</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="include_2mpe__graphics_8h.html#a5fa1b05b20c35b88f5256bb39e30af3e">MPE_Color</a>&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0744c2037a49f15db5d19f9f44c1975b" name="a0744c2037a49f15db5d19f9f44c1975b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0744c2037a49f15db5d19f9f44c1975b">&#9670;&#160;</a></span>MPE_Fill_rectangle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Fill_rectangle </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="include_2mpe__graphics_8h.html#a018a866a1c4c132e5b22c0651beac95b">MPE_XGraph</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="include_2mpe__graphics_8h.html#a5fa1b05b20c35b88f5256bb39e30af3e">MPE_Color</a>&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a080055a739ebbc74ef0c3e66fdb1501f" name="a080055a739ebbc74ef0c3e66fdb1501f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a080055a739ebbc74ef0c3e66fdb1501f">&#9670;&#160;</a></span>MPE_Get_drag_region()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Get_drag_region </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="include_2mpe__graphics_8h.html#a018a866a1c4c132e5b22c0651beac95b">MPE_XGraph</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0941554a4d1241130680a03d03fd1dda" name="a0941554a4d1241130680a03d03fd1dda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0941554a4d1241130680a03d03fd1dda">&#9670;&#160;</a></span>MPE_Get_drag_region_fixratio()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Get_drag_region_fixratio </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="include_2mpe__graphics_8h.html#a018a866a1c4c132e5b22c0651beac95b">MPE_XGraph</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">double</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad37931e6af99e7d0a8eb1266a0d885c0" name="ad37931e6af99e7d0a8eb1266a0d885c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad37931e6af99e7d0a8eb1266a0d885c0">&#9670;&#160;</a></span>MPE_Get_mouse_press()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Get_mouse_press </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="include_2mpe__graphics_8h.html#a018a866a1c4c132e5b22c0651beac95b">MPE_XGraph</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9a25d34dfe46f218e742395a743341d3" name="a9a25d34dfe46f218e742395a743341d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a25d34dfe46f218e742395a743341d3">&#9670;&#160;</a></span>MPE_Iget_mouse_press()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Iget_mouse_press </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="include_2mpe__graphics_8h.html#a018a866a1c4c132e5b22c0651beac95b">MPE_XGraph</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3055a5fea156581f36ea8550f8dcad42" name="a3055a5fea156581f36ea8550f8dcad42"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3055a5fea156581f36ea8550f8dcad42">&#9670;&#160;</a></span>MPE_Line_thickness()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Line_thickness </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="include_2mpe__graphics_8h.html#a018a866a1c4c132e5b22c0651beac95b">MPE_XGraph</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a871b9ec9b4fa87aca5bb82c0273cdb84" name="a871b9ec9b4fa87aca5bb82c0273cdb84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a871b9ec9b4fa87aca5bb82c0273cdb84">&#9670;&#160;</a></span>MPE_Make_color_array()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Make_color_array </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="include_2mpe__graphics_8h.html#a018a866a1c4c132e5b22c0651beac95b">MPE_XGraph</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="include_2mpe__graphics_8h.html#a5fa1b05b20c35b88f5256bb39e30af3e">MPE_Color</a>&#160;</td>
+          <td class="paramname">[]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a77b932845a22193d13499559cc844890" name="a77b932845a22193d13499559cc844890"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77b932845a22193d13499559cc844890">&#9670;&#160;</a></span>MPE_Num_colors()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Num_colors </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="include_2mpe__graphics_8h.html#a018a866a1c4c132e5b22c0651beac95b">MPE_XGraph</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a152fee68219da24590b2a6df342c3c36" name="a152fee68219da24590b2a6df342c3c36"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a152fee68219da24590b2a6df342c3c36">&#9670;&#160;</a></span>MPE_Open_graphics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Open_graphics </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="include_2mpe__graphics_8h.html#a018a866a1c4c132e5b22c0651beac95b">MPE_XGraph</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a780cb61cb764836207166410fdc9f7db" name="a780cb61cb764836207166410fdc9f7db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a780cb61cb764836207166410fdc9f7db">&#9670;&#160;</a></span>MPE_Update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Update </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="include_2mpe__graphics_8h.html#a018a866a1c4c132e5b22c0651beac95b">MPE_XGraph</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a33d377ca4d1746ce063536715583c4ae" name="a33d377ca4d1746ce063536715583c4ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33d377ca4d1746ce063536715583c4ae">&#9670;&#160;</a></span>MPE_Xerror()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Xerror </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Переменные</h2>
+<a id="a60645e5ccf3209a5bb8569d0895a5e81" name="a60645e5ccf3209a5bb8569d0895a5e81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60645e5ccf3209a5bb8569d0895a5e81">&#9670;&#160;</a></span>MPE_buttonArray</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_buttonArray[]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa10de6848834828ada6ec251aefab2c1" name="aa10de6848834828ada6ec251aefab2c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa10de6848834828ada6ec251aefab2c1">&#9670;&#160;</a></span>MPE_logicArray</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_logicArray[]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

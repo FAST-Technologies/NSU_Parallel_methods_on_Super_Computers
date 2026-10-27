@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lab_02: MPI + OpenMP Parallel Programming: Структура _MPE_Log_MBuf</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Lab_02: MPI + OpenMP Parallel Programming<span id="projectnumber">&#160;2.1</span>
+   </div>
+   <div id="projectbrief">Решение 3D уравнения Пуассона методом Якоби с двумерной декомпозицией</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-attribs">Открытые атрибуты</a> &#124;
+<a href="struct__MPE__Log__MBuf-members.html">Полный список членов класса</a>  </div>
+  <div class="headertitle"><div class="title">Структура _MPE_Log_MBuf</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="mpe__log__genproc_8h_source.html">mpe_log_genproc.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Открытые атрибуты</h2></td></tr>
+<tr class="memitem:a1e26b0d77b93c0e8160a2078b8078524" id="r_a1e26b0d77b93c0e8160a2078b8078524"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__MPE__Log__MBuf.html#a1e26b0d77b93c0e8160a2078b8078524">p</a></td></tr>
+<tr class="separator:a1e26b0d77b93c0e8160a2078b8078524"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17882a57b393c1719f1f8c92cee9ef15" id="r_a17882a57b393c1719f1f8c92cee9ef15"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__MPE__Log__MBuf.html#a17882a57b393c1719f1f8c92cee9ef15">plast</a></td></tr>
+<tr class="separator:a17882a57b393c1719f1f8c92cee9ef15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41e43e2baa9bf7edccae7a1453d0a11b" id="r_a41e43e2baa9bf7edccae7a1453d0a11b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__MPE__Log__MBuf.html#a41e43e2baa9bf7edccae7a1453d0a11b">buf</a> [<a class="el" href="mpe__log__genproc_8h.html#abc02e08100b18d3c8e2d9bcd31ad5fd2">MPE_Log_MBUF_SIZE</a>]</td></tr>
+<tr class="separator:a41e43e2baa9bf7edccae7a1453d0a11b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a568575b3994ab9b29f5557beca342fff" id="r_a568575b3994ab9b29f5557beca342fff"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__MPE__Log__MBuf.html#a568575b3994ab9b29f5557beca342fff">t</a></td></tr>
+<tr class="separator:a568575b3994ab9b29f5557beca342fff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f27c2de68a45a9efb277ec64e6f08c1" id="r_a7f27c2de68a45a9efb277ec64e6f08c1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__MPE__Log__MBuf.html#a7f27c2de68a45a9efb277ec64e6f08c1">reload</a> )(<a class="el" href="structvector.html">struct</a> <a class="el" href="struct__MPE__Log__MBuf.html">_MPE_Log_MBuf</a> *, <a class="el" href="structvector.html">int</a> *)</td></tr>
+<tr class="separator:a7f27c2de68a45a9efb277ec64e6f08c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3b54f5157e8fb18564df2b02df0449d" id="r_ad3b54f5157e8fb18564df2b02df0449d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__MPE__Log__MBuf.html#ad3b54f5157e8fb18564df2b02df0449d">reload_ctx</a></td></tr>
+<tr class="separator:ad3b54f5157e8fb18564df2b02df0449d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock">
+<p class="definition">См. определение в файле <a class="el" href="mpe__log__genproc_8h_source.html">mpe_log_genproc.h</a> строка <a class="el" href="mpe__log__genproc_8h_source.html#l00156">156</a></p>
+</div><h2 class="groupheader">Данные класса</h2>
+<a id="a41e43e2baa9bf7edccae7a1453d0a11b" name="a41e43e2baa9bf7edccae7a1453d0a11b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41e43e2baa9bf7edccae7a1453d0a11b">&#9670;&#160;</a></span>buf</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> _MPE_Log_MBuf::buf[<a class="el" href="mpe__log__genproc_8h.html#abc02e08100b18d3c8e2d9bcd31ad5fd2">MPE_Log_MBUF_SIZE</a>]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__log__genproc_8h_source.html">mpe_log_genproc.h</a> строка <a class="el" href="mpe__log__genproc_8h_source.html#l00158">158</a></p>
+
+</div>
+</div>
+<a id="a1e26b0d77b93c0e8160a2078b8078524" name="a1e26b0d77b93c0e8160a2078b8078524"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e26b0d77b93c0e8160a2078b8078524">&#9670;&#160;</a></span>p</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a>* _MPE_Log_MBuf::p</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__log__genproc_8h_source.html">mpe_log_genproc.h</a> строка <a class="el" href="mpe__log__genproc_8h_source.html#l00157">157</a></p>
+
+</div>
+</div>
+<a id="a17882a57b393c1719f1f8c92cee9ef15" name="a17882a57b393c1719f1f8c92cee9ef15"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17882a57b393c1719f1f8c92cee9ef15">&#9670;&#160;</a></span>plast</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> * _MPE_Log_MBuf::plast</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__log__genproc_8h_source.html">mpe_log_genproc.h</a> строка <a class="el" href="mpe__log__genproc_8h_source.html#l00157">157</a></p>
+
+</div>
+</div>
+<a id="a7f27c2de68a45a9efb277ec64e6f08c1" name="a7f27c2de68a45a9efb277ec64e6f08c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f27c2de68a45a9efb277ec64e6f08c1">&#9670;&#160;</a></span>reload</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a>(* _MPE_Log_MBuf::reload) (<a class="el" href="structvector.html">struct</a> <a class="el" href="struct__MPE__Log__MBuf.html">_MPE_Log_MBuf</a> *, <a class="el" href="structvector.html">int</a> *)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__log__genproc_8h_source.html">mpe_log_genproc.h</a> строка <a class="el" href="mpe__log__genproc_8h_source.html#l00160">160</a></p>
+
+</div>
+</div>
+<a id="ad3b54f5157e8fb18564df2b02df0449d" name="ad3b54f5157e8fb18564df2b02df0449d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3b54f5157e8fb18564df2b02df0449d">&#9670;&#160;</a></span>reload_ctx</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a>* _MPE_Log_MBuf::reload_ctx</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__log__genproc_8h_source.html">mpe_log_genproc.h</a> строка <a class="el" href="mpe__log__genproc_8h_source.html#l00162">162</a></p>
+
+</div>
+</div>
+<a id="a568575b3994ab9b29f5557beca342fff" name="a568575b3994ab9b29f5557beca342fff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a568575b3994ab9b29f5557beca342fff">&#9670;&#160;</a></span>t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">double</a> _MPE_Log_MBuf::t</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__log__genproc_8h_source.html">mpe_log_genproc.h</a> строка <a class="el" href="mpe__log__genproc_8h_source.html#l00159">159</a></p>
+
+</div>
+</div>
+<hr/>Объявления и описания членов структуры находятся в файле:<ul>
+<li><a class="el" href="mpe__log__genproc_8h_source.html">mpe_log_genproc.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

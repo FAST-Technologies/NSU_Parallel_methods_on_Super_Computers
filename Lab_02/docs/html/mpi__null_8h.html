@@ -1,0 +1,1696 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lab_02: MPI + OpenMP Parallel Programming: Файл mpi_null.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Lab_02: MPI + OpenMP Parallel Programming<span id="projectnumber">&#160;2.1</span>
+   </div>
+   <div id="projectbrief">Решение 3D уравнения Пуассона методом Якоби с двумерной декомпозицией</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_1f646cbbb0f6227d25dd06f792d51aba.html">mpe2-1.3.0</a></li><li class="navelem"><a class="el" href="dir_493399512d45eb30627376023737183a.html">src</a></li><li class="navelem"><a class="el" href="dir_4dd21a1309df0d73c93832f59c814642.html">logging</a></li><li class="navelem"><a class="el" href="dir_d1e3342e2909ab46223a280715173519.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Классы</a> &#124;
+<a href="#define-members">Макросы</a> &#124;
+<a href="#typedef-members">Определения типов</a> &#124;
+<a href="#func-members">Функции</a> &#124;
+<a href="#var-members">Переменные</a>  </div>
+  <div class="headertitle"><div class="title">Файл mpi_null.h</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><a href="mpi__null_8h_source.html">См. исходные тексты.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Классы</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMPI__Status.html">MPI_Status</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Макросы</h2></td></tr>
+<tr class="memitem:a0fbe8ff99a24dc3156038ec99babadca" id="r_a0fbe8ff99a24dc3156038ec99babadca"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#a0fbe8ff99a24dc3156038ec99babadca">_MPI_NULL_MPI_COMM</a></td></tr>
+<tr class="separator:a0fbe8ff99a24dc3156038ec99babadca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a117133520e81a669c853602ac650d9d4" id="r_a117133520e81a669c853602ac650d9d4"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#a117133520e81a669c853602ac650d9d4">MPI_COMM_NULL</a>&#160;&#160;&#160;((<a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>)-1)</td></tr>
+<tr class="separator:a117133520e81a669c853602ac650d9d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2df6a15627583d5e6f5a48550644cbef" id="r_a2df6a15627583d5e6f5a48550644cbef"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#a2df6a15627583d5e6f5a48550644cbef">MPI_COMM_WORLD</a>&#160;&#160;&#160;((<a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>)0)</td></tr>
+<tr class="separator:a2df6a15627583d5e6f5a48550644cbef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5dcc99c598f5bd6968077f68dea4376e" id="r_a5dcc99c598f5bd6968077f68dea4376e"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#a5dcc99c598f5bd6968077f68dea4376e">MPI_COMM_SELF</a>&#160;&#160;&#160;((<a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>)1)</td></tr>
+<tr class="separator:a5dcc99c598f5bd6968077f68dea4376e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab417c4c4d0cc0566dd11a9e62a73fcb5" id="r_ab417c4c4d0cc0566dd11a9e62a73fcb5"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#ab417c4c4d0cc0566dd11a9e62a73fcb5">MPI_COMM_NULL_COPY_FN</a>&#160;&#160;&#160;((<a class="el" href="mpi__null_8h.html#a140317d69b8ee525dac53ba137518c16">MPI_Comm_copy_attr_function</a>*)0)</td></tr>
+<tr class="separator:ab417c4c4d0cc0566dd11a9e62a73fcb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7c07d0c6620cfaaf856bf2607a614e4" id="r_ac7c07d0c6620cfaaf856bf2607a614e4"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#ac7c07d0c6620cfaaf856bf2607a614e4">MPI_COMM_NULL_DELETE_FN</a>&#160;&#160;&#160;((<a class="el" href="mpi__null_8h.html#a7ae066fe34c84f0ab11afd9cb86453f0">MPI_Comm_delete_attr_function</a>*)0)</td></tr>
+<tr class="separator:ac7c07d0c6620cfaaf856bf2607a614e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac521acab90e22ecd11466d7229986673" id="r_ac521acab90e22ecd11466d7229986673"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#ac521acab90e22ecd11466d7229986673">MPI_CHAR</a>&#160;&#160;&#160;((<a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>)<a class="el" href="structvector.html">sizeof</a>(<a class="el" href="structvector.html">char</a>))</td></tr>
+<tr class="separator:ac521acab90e22ecd11466d7229986673"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b3d59a5aa038a03f5fee91c426476b9" id="r_a5b3d59a5aa038a03f5fee91c426476b9"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#a5b3d59a5aa038a03f5fee91c426476b9">MPI_BYTE</a>&#160;&#160;&#160;((<a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>)<a class="el" href="structvector.html">sizeof</a>(<a class="el" href="structvector.html">char</a>))</td></tr>
+<tr class="separator:a5b3d59a5aa038a03f5fee91c426476b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43ed7cd86d20f84db849adc64a09415e" id="r_a43ed7cd86d20f84db849adc64a09415e"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#a43ed7cd86d20f84db849adc64a09415e">MPI_INT</a>&#160;&#160;&#160;((<a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>)<a class="el" href="structvector.html">sizeof</a>(<a class="el" href="structvector.html">int</a>))</td></tr>
+<tr class="separator:a43ed7cd86d20f84db849adc64a09415e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aafd1dc0086079e7904385538c54c9c8f" id="r_aafd1dc0086079e7904385538c54c9c8f"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#aafd1dc0086079e7904385538c54c9c8f">MPI_DOUBLE</a>&#160;&#160;&#160;((<a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>)<a class="el" href="structvector.html">sizeof</a>(<a class="el" href="structvector.html">double</a>))</td></tr>
+<tr class="separator:aafd1dc0086079e7904385538c54c9c8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80d80987b473f4a13b0cc0384eddb51b" id="r_a80d80987b473f4a13b0cc0384eddb51b"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#a80d80987b473f4a13b0cc0384eddb51b">MPI_MAX</a>&#160;&#160;&#160;(<a class="el" href="mpi__null_8h.html#a1e6360539c256e76b432da612d0ec399">MPI_Op</a>)(0x58000001)</td></tr>
+<tr class="separator:a80d80987b473f4a13b0cc0384eddb51b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2fecfa16d35e8fa3894c512a527b73f" id="r_aa2fecfa16d35e8fa3894c512a527b73f"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#aa2fecfa16d35e8fa3894c512a527b73f">MPI_MIN</a>&#160;&#160;&#160;(<a class="el" href="mpi__null_8h.html#a1e6360539c256e76b432da612d0ec399">MPI_Op</a>)(0x58000002)</td></tr>
+<tr class="separator:aa2fecfa16d35e8fa3894c512a527b73f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa058ba472f0fd41ae860caeaebca0166" id="r_aa058ba472f0fd41ae860caeaebca0166"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#aa058ba472f0fd41ae860caeaebca0166">MPI_SUM</a>&#160;&#160;&#160;(<a class="el" href="mpi__null_8h.html#a1e6360539c256e76b432da612d0ec399">MPI_Op</a>)(0x58000003)</td></tr>
+<tr class="separator:aa058ba472f0fd41ae860caeaebca0166"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff6b3ceb2c22396e5eab7f509b3da0dc" id="r_aff6b3ceb2c22396e5eab7f509b3da0dc"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#aff6b3ceb2c22396e5eab7f509b3da0dc">MPI_UNDEFINED</a>&#160;&#160;&#160;(-32766)</td></tr>
+<tr class="separator:aff6b3ceb2c22396e5eab7f509b3da0dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aefb24270fcb1c3bc46c8c988100c5476" id="r_aefb24270fcb1c3bc46c8c988100c5476"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#aefb24270fcb1c3bc46c8c988100c5476">MPI_KEYVAL_INVALID</a>&#160;&#160;&#160;0x24000000</td></tr>
+<tr class="separator:aefb24270fcb1c3bc46c8c988100c5476"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32c2e019a42e9bfc9db6f8d9cf6adb4e" id="r_a32c2e019a42e9bfc9db6f8d9cf6adb4e"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#a32c2e019a42e9bfc9db6f8d9cf6adb4e">MPI_MAX_PROCESSOR_NAME</a>&#160;&#160;&#160;128</td></tr>
+<tr class="separator:a32c2e019a42e9bfc9db6f8d9cf6adb4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62f1a2971d72ca736c9997d98568ff73" id="r_a62f1a2971d72ca736c9997d98568ff73"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#a62f1a2971d72ca736c9997d98568ff73">MPI_PROC_NULL</a>&#160;&#160;&#160;(-1)</td></tr>
+<tr class="separator:a62f1a2971d72ca736c9997d98568ff73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad01846ca8da972658f74b9affe1d5e8" id="r_aad01846ca8da972658f74b9affe1d5e8"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#aad01846ca8da972658f74b9affe1d5e8">MPI_ANY_SOURCE</a>&#160;&#160;&#160;(-2)</td></tr>
+<tr class="separator:aad01846ca8da972658f74b9affe1d5e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62cbfaf451bca1210033e31e37b2131c" id="r_a62cbfaf451bca1210033e31e37b2131c"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#a62cbfaf451bca1210033e31e37b2131c">MPI_ROOT</a>&#160;&#160;&#160;(-3)</td></tr>
+<tr class="separator:a62cbfaf451bca1210033e31e37b2131c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89445dffa33bb6aea4d49bab508a3d30" id="r_a89445dffa33bb6aea4d49bab508a3d30"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#a89445dffa33bb6aea4d49bab508a3d30">MPI_ANY_TAG</a>&#160;&#160;&#160;(-1)</td></tr>
+<tr class="separator:a89445dffa33bb6aea4d49bab508a3d30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a004dd3ebf764c8c42e600ae5513e4dbc" id="r_a004dd3ebf764c8c42e600ae5513e4dbc"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#a004dd3ebf764c8c42e600ae5513e4dbc">MPI_SUCCESS</a>&#160;&#160;&#160;0      /* <a class="el" href="structvector.html">Successful</a> <a class="el" href="structvector.html">return</a> <a class="el" href="structvector.html">code</a> */</td></tr>
+<tr class="separator:a004dd3ebf764c8c42e600ae5513e4dbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1098aaeb70e1841dc783b07663800b18" id="r_a1098aaeb70e1841dc783b07663800b18"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#a1098aaeb70e1841dc783b07663800b18">MPI_ERR_COMM</a>&#160;&#160;&#160;5      /* <a class="el" href="structvector.html">Invalid</a> <a class="el" href="structvector.html">communicator</a> */</td></tr>
+<tr class="separator:a1098aaeb70e1841dc783b07663800b18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18a3019568becd9f79fb05a093d3c56c" id="r_a18a3019568becd9f79fb05a093d3c56c"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#a18a3019568becd9f79fb05a093d3c56c">MPI_ERR_INTERN</a>&#160;&#160;&#160;16      /* <a class="el" href="structvector.html">Internal</a> <a class="el" href="structvector.html">error</a> <a class="el" href="structvector.html">code</a>    */</td></tr>
+<tr class="separator:a18a3019568becd9f79fb05a093d3c56c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab57c1ad50678be0c518a0adbdb595671" id="r_ab57c1ad50678be0c518a0adbdb595671"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#ab57c1ad50678be0c518a0adbdb595671">MPI_ERR_NO_MEM</a>&#160;&#160;&#160;34</td></tr>
+<tr class="separator:ab57c1ad50678be0c518a0adbdb595671"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52159c469e9e6061d434ff8091dee69d" id="r_a52159c469e9e6061d434ff8091dee69d"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#a52159c469e9e6061d434ff8091dee69d">MPI_ERR_KEYVAL</a>&#160;&#160;&#160;48      /* <a class="el" href="structvector.html">Erroneous</a> <a class="el" href="structvector.html">attribute</a> <a class="el" href="structvector.html">key</a> */</td></tr>
+<tr class="separator:a52159c469e9e6061d434ff8091dee69d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Определения типов</h2></td></tr>
+<tr class="memitem:a68c509d4adb3f4a1d6fe3a9b0b87c7b9" id="r_a68c509d4adb3f4a1d6fe3a9b0b87c7b9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">typedef</a> <a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a></td></tr>
+<tr class="separator:a68c509d4adb3f4a1d6fe3a9b0b87c7b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a140317d69b8ee525dac53ba137518c16" id="r_a140317d69b8ee525dac53ba137518c16"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">typedef</a> <a class="el" href="structvector.html">int</a>()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#a140317d69b8ee525dac53ba137518c16">MPI_Comm_copy_attr_function</a>(<a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>, <a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">void</a> *, <a class="el" href="structvector.html">void</a> *, <a class="el" href="structvector.html">void</a> *, <a class="el" href="structvector.html">int</a> *)</td></tr>
+<tr class="separator:a140317d69b8ee525dac53ba137518c16"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ae066fe34c84f0ab11afd9cb86453f0" id="r_a7ae066fe34c84f0ab11afd9cb86453f0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">typedef</a> <a class="el" href="structvector.html">int</a>()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#a7ae066fe34c84f0ab11afd9cb86453f0">MPI_Comm_delete_attr_function</a>(<a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>, <a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">void</a> *, <a class="el" href="structvector.html">void</a> *)</td></tr>
+<tr class="separator:a7ae066fe34c84f0ab11afd9cb86453f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affc17fe964f9f670fb06e09d6134b4ff" id="r_affc17fe964f9f670fb06e09d6134b4ff"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">typedef</a> <a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a></td></tr>
+<tr class="separator:affc17fe964f9f670fb06e09d6134b4ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae09feb8ce97721832de670a05b2788fe" id="r_ae09feb8ce97721832de670a05b2788fe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">typedef</a> <a class="el" href="structvector.html">struct</a> <a class="el" href="structMPI__Status.html">MPI_Status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#ae09feb8ce97721832de670a05b2788fe">MPI_Status</a></td></tr>
+<tr class="separator:ae09feb8ce97721832de670a05b2788fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a240e9d13a157e03c75e42306b13cd8d8" id="r_a240e9d13a157e03c75e42306b13cd8d8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">typedef</a> <a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#a240e9d13a157e03c75e42306b13cd8d8">MPI_Request</a></td></tr>
+<tr class="separator:a240e9d13a157e03c75e42306b13cd8d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e6360539c256e76b432da612d0ec399" id="r_a1e6360539c256e76b432da612d0ec399"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">typedef</a> <a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#a1e6360539c256e76b432da612d0ec399">MPI_Op</a></td></tr>
+<tr class="separator:a1e6360539c256e76b432da612d0ec399"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Функции</h2></td></tr>
+<tr class="memitem:ad51db1f8a017ca850d160a6799fc147f" id="r_ad51db1f8a017ca850d160a6799fc147f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#ad51db1f8a017ca850d160a6799fc147f">PMPI_Init</a> (<a class="el" href="structvector.html">int</a> *<a class="el" href="structvector.html">argc</a>, <a class="el" href="structvector.html">char</a> ***<a class="el" href="structvector.html">argv</a>)</td></tr>
+<tr class="separator:ad51db1f8a017ca850d160a6799fc147f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67751aa6bfb9b8eaac1de8ef3d8b33a0" id="r_a67751aa6bfb9b8eaac1de8ef3d8b33a0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#a67751aa6bfb9b8eaac1de8ef3d8b33a0">PMPI_Finalize</a> (<a class="el" href="structvector.html">void</a>)</td></tr>
+<tr class="separator:a67751aa6bfb9b8eaac1de8ef3d8b33a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae35d2ae286ce7a9ffd5113b721794f34" id="r_ae35d2ae286ce7a9ffd5113b721794f34"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#ae35d2ae286ce7a9ffd5113b721794f34">PMPI_Abort</a> (<a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">errorcode</a>)</td></tr>
+<tr class="separator:ae35d2ae286ce7a9ffd5113b721794f34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77e8a6e8948a096f4a9c7d4f6c0684c6" id="r_a77e8a6e8948a096f4a9c7d4f6c0684c6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#a77e8a6e8948a096f4a9c7d4f6c0684c6">PMPI_Initialized</a> (<a class="el" href="structvector.html">int</a> *<a class="el" href="structvector.html">flag</a>)</td></tr>
+<tr class="separator:a77e8a6e8948a096f4a9c7d4f6c0684c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09816dd0fa54b5d80c0590444ffcf0b0" id="r_a09816dd0fa54b5d80c0590444ffcf0b0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#a09816dd0fa54b5d80c0590444ffcf0b0">PMPI_Get_processor_name</a> (<a class="el" href="structvector.html">char</a> *name, <a class="el" href="structvector.html">int</a> *<a class="el" href="structvector.html">resultlen</a>)</td></tr>
+<tr class="separator:a09816dd0fa54b5d80c0590444ffcf0b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad520837f304bcd350b96d8e9372b52d6" id="r_ad520837f304bcd350b96d8e9372b52d6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#ad520837f304bcd350b96d8e9372b52d6">PMPI_Comm_size</a> (<a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm, <a class="el" href="structvector.html">int</a> *size)</td></tr>
+<tr class="separator:ad520837f304bcd350b96d8e9372b52d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9ab6df872273b2d974b41d12f8aeff5" id="r_ac9ab6df872273b2d974b41d12f8aeff5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#ac9ab6df872273b2d974b41d12f8aeff5">PMPI_Comm_rank</a> (<a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm, <a class="el" href="structvector.html">int</a> *rank)</td></tr>
+<tr class="separator:ac9ab6df872273b2d974b41d12f8aeff5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a671325cd18c88b4b618673120654926e" id="r_a671325cd18c88b4b618673120654926e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#a671325cd18c88b4b618673120654926e">PMPI_Wtime</a> (<a class="el" href="structvector.html">void</a>)</td></tr>
+<tr class="separator:a671325cd18c88b4b618673120654926e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a2898d434439a818e5f47174f4a0404" id="r_a3a2898d434439a818e5f47174f4a0404"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#a3a2898d434439a818e5f47174f4a0404">PMPI_Comm_create_keyval</a> (<a class="el" href="mpi__null_8h.html#a140317d69b8ee525dac53ba137518c16">MPI_Comm_copy_attr_function</a> *<a class="el" href="structvector.html">comm_copy_attr_fn</a>, <a class="el" href="mpi__null_8h.html#a7ae066fe34c84f0ab11afd9cb86453f0">MPI_Comm_delete_attr_function</a> *<a class="el" href="structvector.html">comm_delete_attr_fn</a>, <a class="el" href="structvector.html">int</a> *<a class="el" href="structvector.html">comm_keyval</a>, <a class="el" href="structvector.html">void</a> *<a class="el" href="structvector.html">extra_state</a>)</td></tr>
+<tr class="separator:a3a2898d434439a818e5f47174f4a0404"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a581c1ec066b4678311ee1554ce09d2c7" id="r_a581c1ec066b4678311ee1554ce09d2c7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#a581c1ec066b4678311ee1554ce09d2c7">PMPI_Comm_free_keyval</a> (<a class="el" href="structvector.html">int</a> *<a class="el" href="structvector.html">comm_keyval</a>)</td></tr>
+<tr class="separator:a581c1ec066b4678311ee1554ce09d2c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4414a75465a6666a614d4f2cc6aadd77" id="r_a4414a75465a6666a614d4f2cc6aadd77"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#a4414a75465a6666a614d4f2cc6aadd77">PMPI_Comm_set_attr</a> (<a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">comm_keyval</a>, <a class="el" href="structvector.html">void</a> *<a class="el" href="structvector.html">attribute_val</a>)</td></tr>
+<tr class="separator:a4414a75465a6666a614d4f2cc6aadd77"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adaceb50f8ec7f1951191045b8cc9009c" id="r_adaceb50f8ec7f1951191045b8cc9009c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#adaceb50f8ec7f1951191045b8cc9009c">PMPI_Comm_get_attr</a> (<a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">comm_keyval</a>, <a class="el" href="structvector.html">void</a> *<a class="el" href="structvector.html">attribute_val</a>, <a class="el" href="structvector.html">int</a> *<a class="el" href="structvector.html">flag</a>)</td></tr>
+<tr class="separator:adaceb50f8ec7f1951191045b8cc9009c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04786ed5fd569fc589f50f74bd8d8c23" id="r_a04786ed5fd569fc589f50f74bd8d8c23"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#a04786ed5fd569fc589f50f74bd8d8c23">PMPI_Comm_test_inter</a> (<a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm, <a class="el" href="structvector.html">int</a> *<a class="el" href="structvector.html">flag</a>)</td></tr>
+<tr class="separator:a04786ed5fd569fc589f50f74bd8d8c23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a614a43579a54db91c4447ad8b040c08f" id="r_a614a43579a54db91c4447ad8b040c08f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#a614a43579a54db91c4447ad8b040c08f">PMPI_Ssend</a> (<a class="el" href="structvector.html">void</a> *buf, <a class="el" href="structvector.html">int</a> count, <a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a> <a class="el" href="structvector.html">datatype</a>, <a class="el" href="structvector.html">int</a> dest, <a class="el" href="structvector.html">int</a> tag, <a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm)</td></tr>
+<tr class="separator:a614a43579a54db91c4447ad8b040c08f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbdb434f1c6e67b292b5c0dcf7e614e4" id="r_abbdb434f1c6e67b292b5c0dcf7e614e4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#abbdb434f1c6e67b292b5c0dcf7e614e4">PMPI_Send</a> (<a class="el" href="structvector.html">void</a> *buf, <a class="el" href="structvector.html">int</a> count, <a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a> <a class="el" href="structvector.html">datatype</a>, <a class="el" href="structvector.html">int</a> dest, <a class="el" href="structvector.html">int</a> tag, <a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm)</td></tr>
+<tr class="separator:abbdb434f1c6e67b292b5c0dcf7e614e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7fa896a6bf85cad8df9b7f1cb1537c94" id="r_a7fa896a6bf85cad8df9b7f1cb1537c94"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#a7fa896a6bf85cad8df9b7f1cb1537c94">PMPI_Recv</a> (<a class="el" href="structvector.html">void</a> *buf, <a class="el" href="structvector.html">int</a> count, <a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a> <a class="el" href="structvector.html">datatype</a>, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">source</a>, <a class="el" href="structvector.html">int</a> tag, <a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm, <a class="el" href="structMPI__Status.html">MPI_Status</a> *status)</td></tr>
+<tr class="separator:a7fa896a6bf85cad8df9b7f1cb1537c94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf9edfe4317d5d39dc4dfca3d818e258" id="r_abf9edfe4317d5d39dc4dfca3d818e258"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#abf9edfe4317d5d39dc4dfca3d818e258">PMPI_Irecv</a> (<a class="el" href="structvector.html">void</a> *buf, <a class="el" href="structvector.html">int</a> count, <a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a> <a class="el" href="structvector.html">datatype</a>, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">source</a>, <a class="el" href="structvector.html">int</a> tag, <a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm, <a class="el" href="mpi__null_8h.html#a240e9d13a157e03c75e42306b13cd8d8">MPI_Request</a> *request)</td></tr>
+<tr class="separator:abf9edfe4317d5d39dc4dfca3d818e258"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3306a2e5f7ef80294879684f1aa76ba5" id="r_a3306a2e5f7ef80294879684f1aa76ba5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#a3306a2e5f7ef80294879684f1aa76ba5">PMPI_Wait</a> (<a class="el" href="mpi__null_8h.html#a240e9d13a157e03c75e42306b13cd8d8">MPI_Request</a> *request, <a class="el" href="structMPI__Status.html">MPI_Status</a> *status)</td></tr>
+<tr class="separator:a3306a2e5f7ef80294879684f1aa76ba5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab62cb3935052cfb05b7666c0e4af47d1" id="r_ab62cb3935052cfb05b7666c0e4af47d1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#ab62cb3935052cfb05b7666c0e4af47d1">PMPI_Get_count</a> (<a class="el" href="structMPI__Status.html">MPI_Status</a> *status, <a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a> <a class="el" href="structvector.html">datatype</a>, <a class="el" href="structvector.html">int</a> *count)</td></tr>
+<tr class="separator:ab62cb3935052cfb05b7666c0e4af47d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae480e4208055eb81af0d9c7e9902d3f7" id="r_ae480e4208055eb81af0d9c7e9902d3f7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#ae480e4208055eb81af0d9c7e9902d3f7">PMPI_Barrier</a> (<a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm)</td></tr>
+<tr class="separator:ae480e4208055eb81af0d9c7e9902d3f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabaf1799037783a2ce5799d61e809641" id="r_aabaf1799037783a2ce5799d61e809641"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#aabaf1799037783a2ce5799d61e809641">PMPI_Bcast</a> (<a class="el" href="structvector.html">void</a> *buffer, <a class="el" href="structvector.html">int</a> count, <a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a> <a class="el" href="structvector.html">datatype</a>, <a class="el" href="structvector.html">int</a> root, <a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm)</td></tr>
+<tr class="separator:aabaf1799037783a2ce5799d61e809641"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d463b0c88410bf7a868254fa3745417" id="r_a9d463b0c88410bf7a868254fa3745417"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#a9d463b0c88410bf7a868254fa3745417">PMPI_Scan</a> (<a class="el" href="structvector.html">void</a> *<a class="el" href="structvector.html">sendbuf</a>, <a class="el" href="structvector.html">void</a> *<a class="el" href="structvector.html">recvbuf</a>, <a class="el" href="structvector.html">int</a> count, <a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a> <a class="el" href="structvector.html">datatype</a>, <a class="el" href="mpi__null_8h.html#a1e6360539c256e76b432da612d0ec399">MPI_Op</a> <a class="el" href="structvector.html">op</a>, <a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm)</td></tr>
+<tr class="separator:a9d463b0c88410bf7a868254fa3745417"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9f876e99a72891fccefa51f006bd1a9" id="r_ab9f876e99a72891fccefa51f006bd1a9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#ab9f876e99a72891fccefa51f006bd1a9">PMPI_Scatter</a> (<a class="el" href="structvector.html">void</a> *<a class="el" href="structvector.html">sendbuf</a>, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">sendcnt</a>, <a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a> <a class="el" href="structvector.html">sendtype</a>, <a class="el" href="structvector.html">void</a> *<a class="el" href="structvector.html">recvbuf</a>, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">recvcnt</a>, <a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a> <a class="el" href="structvector.html">recvtype</a>, <a class="el" href="structvector.html">int</a> root, <a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm)</td></tr>
+<tr class="separator:ab9f876e99a72891fccefa51f006bd1a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8615a0822815284bb03a0cda00323129" id="r_a8615a0822815284bb03a0cda00323129"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#a8615a0822815284bb03a0cda00323129">PMPI_Gather</a> (<a class="el" href="structvector.html">void</a> *<a class="el" href="structvector.html">sendbuf</a>, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">sendcnt</a>, <a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a> <a class="el" href="structvector.html">sendtype</a>, <a class="el" href="structvector.html">void</a> *<a class="el" href="structvector.html">recvbuf</a>, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">recvcnt</a>, <a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a> <a class="el" href="structvector.html">recvtype</a>, <a class="el" href="structvector.html">int</a> root, <a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm)</td></tr>
+<tr class="separator:a8615a0822815284bb03a0cda00323129"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbe29ef9f63f3115f96023a92cffb218" id="r_abbe29ef9f63f3115f96023a92cffb218"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#abbe29ef9f63f3115f96023a92cffb218">PMPI_Allreduce</a> (<a class="el" href="structvector.html">void</a> *<a class="el" href="structvector.html">sendbuf</a>, <a class="el" href="structvector.html">void</a> *<a class="el" href="structvector.html">recvbuf</a>, <a class="el" href="structvector.html">int</a> count, <a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a> <a class="el" href="structvector.html">datatype</a>, <a class="el" href="mpi__null_8h.html#a1e6360539c256e76b432da612d0ec399">MPI_Op</a> <a class="el" href="structvector.html">op</a>, <a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm)</td></tr>
+<tr class="separator:abbe29ef9f63f3115f96023a92cffb218"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Переменные</h2></td></tr>
+<tr class="memitem:aa99e6f32d5d7b21bb515e7076e2b4d10" id="r_aa99e6f32d5d7b21bb515e7076e2b4d10"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpi__null_8h.html#aa99e6f32d5d7b21bb515e7076e2b4d10">MPI_WTIME_IS_GLOBAL</a></td></tr>
+<tr class="separator:aa99e6f32d5d7b21bb515e7076e2b4d10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Макросы</h2>
+<a id="a0fbe8ff99a24dc3156038ec99babadca" name="a0fbe8ff99a24dc3156038ec99babadca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0fbe8ff99a24dc3156038ec99babadca">&#9670;&#160;</a></span>_MPI_NULL_MPI_COMM</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> _MPI_NULL_MPI_COMM</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpi__null_8h_source.html">mpi_null.h</a> строка <a class="el" href="mpi__null_8h_source.html#l00016">16</a></p>
+
+</div>
+</div>
+<a id="aad01846ca8da972658f74b9affe1d5e8" name="aad01846ca8da972658f74b9affe1d5e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad01846ca8da972658f74b9affe1d5e8">&#9670;&#160;</a></span>MPI_ANY_SOURCE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPI_ANY_SOURCE&#160;&#160;&#160;(-2)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpi__null_8h_source.html">mpi_null.h</a> строка <a class="el" href="mpi__null_8h_source.html#l00059">59</a></p>
+
+</div>
+</div>
+<a id="a89445dffa33bb6aea4d49bab508a3d30" name="a89445dffa33bb6aea4d49bab508a3d30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89445dffa33bb6aea4d49bab508a3d30">&#9670;&#160;</a></span>MPI_ANY_TAG</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPI_ANY_TAG&#160;&#160;&#160;(-1)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpi__null_8h_source.html">mpi_null.h</a> строка <a class="el" href="mpi__null_8h_source.html#l00061">61</a></p>
+
+</div>
+</div>
+<a id="a5b3d59a5aa038a03f5fee91c426476b9" name="a5b3d59a5aa038a03f5fee91c426476b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b3d59a5aa038a03f5fee91c426476b9">&#9670;&#160;</a></span>MPI_BYTE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPI_BYTE&#160;&#160;&#160;((<a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>)<a class="el" href="structvector.html">sizeof</a>(<a class="el" href="structvector.html">char</a>))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpi__null_8h_source.html">mpi_null.h</a> строка <a class="el" href="mpi__null_8h_source.html#l00033">33</a></p>
+
+</div>
+</div>
+<a id="ac521acab90e22ecd11466d7229986673" name="ac521acab90e22ecd11466d7229986673"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac521acab90e22ecd11466d7229986673">&#9670;&#160;</a></span>MPI_CHAR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPI_CHAR&#160;&#160;&#160;((<a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>)<a class="el" href="structvector.html">sizeof</a>(<a class="el" href="structvector.html">char</a>))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpi__null_8h_source.html">mpi_null.h</a> строка <a class="el" href="mpi__null_8h_source.html#l00032">32</a></p>
+
+</div>
+</div>
+<a id="a117133520e81a669c853602ac650d9d4" name="a117133520e81a669c853602ac650d9d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a117133520e81a669c853602ac650d9d4">&#9670;&#160;</a></span>MPI_COMM_NULL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPI_COMM_NULL&#160;&#160;&#160;((<a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>)-1)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpi__null_8h_source.html">mpi_null.h</a> строка <a class="el" href="mpi__null_8h_source.html#l00019">19</a></p>
+
+</div>
+</div>
+<a id="ab417c4c4d0cc0566dd11a9e62a73fcb5" name="ab417c4c4d0cc0566dd11a9e62a73fcb5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab417c4c4d0cc0566dd11a9e62a73fcb5">&#9670;&#160;</a></span>MPI_COMM_NULL_COPY_FN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPI_COMM_NULL_COPY_FN&#160;&#160;&#160;((<a class="el" href="mpi__null_8h.html#a140317d69b8ee525dac53ba137518c16">MPI_Comm_copy_attr_function</a>*)0)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpi__null_8h_source.html">mpi_null.h</a> строка <a class="el" href="mpi__null_8h_source.html#l00025">25</a></p>
+
+</div>
+</div>
+<a id="ac7c07d0c6620cfaaf856bf2607a614e4" name="ac7c07d0c6620cfaaf856bf2607a614e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7c07d0c6620cfaaf856bf2607a614e4">&#9670;&#160;</a></span>MPI_COMM_NULL_DELETE_FN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPI_COMM_NULL_DELETE_FN&#160;&#160;&#160;((<a class="el" href="mpi__null_8h.html#a7ae066fe34c84f0ab11afd9cb86453f0">MPI_Comm_delete_attr_function</a>*)0)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpi__null_8h_source.html">mpi_null.h</a> строка <a class="el" href="mpi__null_8h_source.html#l00028">28</a></p>
+
+</div>
+</div>
+<a id="a5dcc99c598f5bd6968077f68dea4376e" name="a5dcc99c598f5bd6968077f68dea4376e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5dcc99c598f5bd6968077f68dea4376e">&#9670;&#160;</a></span>MPI_COMM_SELF</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPI_COMM_SELF&#160;&#160;&#160;((<a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>)1)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpi__null_8h_source.html">mpi_null.h</a> строка <a class="el" href="mpi__null_8h_source.html#l00021">21</a></p>
+
+</div>
+</div>
+<a id="a2df6a15627583d5e6f5a48550644cbef" name="a2df6a15627583d5e6f5a48550644cbef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2df6a15627583d5e6f5a48550644cbef">&#9670;&#160;</a></span>MPI_COMM_WORLD</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPI_COMM_WORLD&#160;&#160;&#160;((<a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>)0)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpi__null_8h_source.html">mpi_null.h</a> строка <a class="el" href="mpi__null_8h_source.html#l00020">20</a></p>
+
+</div>
+</div>
+<a id="aafd1dc0086079e7904385538c54c9c8f" name="aafd1dc0086079e7904385538c54c9c8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aafd1dc0086079e7904385538c54c9c8f">&#9670;&#160;</a></span>MPI_DOUBLE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPI_DOUBLE&#160;&#160;&#160;((<a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>)<a class="el" href="structvector.html">sizeof</a>(<a class="el" href="structvector.html">double</a>))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpi__null_8h_source.html">mpi_null.h</a> строка <a class="el" href="mpi__null_8h_source.html#l00035">35</a></p>
+
+</div>
+</div>
+<a id="a1098aaeb70e1841dc783b07663800b18" name="a1098aaeb70e1841dc783b07663800b18"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1098aaeb70e1841dc783b07663800b18">&#9670;&#160;</a></span>MPI_ERR_COMM</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPI_ERR_COMM&#160;&#160;&#160;5      /* <a class="el" href="structvector.html">Invalid</a> <a class="el" href="structvector.html">communicator</a> */</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpi__null_8h_source.html">mpi_null.h</a> строка <a class="el" href="mpi__null_8h_source.html#l00065">65</a></p>
+
+</div>
+</div>
+<a id="a18a3019568becd9f79fb05a093d3c56c" name="a18a3019568becd9f79fb05a093d3c56c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18a3019568becd9f79fb05a093d3c56c">&#9670;&#160;</a></span>MPI_ERR_INTERN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPI_ERR_INTERN&#160;&#160;&#160;16      /* <a class="el" href="structvector.html">Internal</a> <a class="el" href="structvector.html">error</a> <a class="el" href="structvector.html">code</a>    */</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpi__null_8h_source.html">mpi_null.h</a> строка <a class="el" href="mpi__null_8h_source.html#l00066">66</a></p>
+
+</div>
+</div>
+<a id="a52159c469e9e6061d434ff8091dee69d" name="a52159c469e9e6061d434ff8091dee69d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52159c469e9e6061d434ff8091dee69d">&#9670;&#160;</a></span>MPI_ERR_KEYVAL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPI_ERR_KEYVAL&#160;&#160;&#160;48      /* <a class="el" href="structvector.html">Erroneous</a> <a class="el" href="structvector.html">attribute</a> <a class="el" href="structvector.html">key</a> */</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpi__null_8h_source.html">mpi_null.h</a> строка <a class="el" href="mpi__null_8h_source.html#l00068">68</a></p>
+
+</div>
+</div>
+<a id="ab57c1ad50678be0c518a0adbdb595671" name="ab57c1ad50678be0c518a0adbdb595671"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab57c1ad50678be0c518a0adbdb595671">&#9670;&#160;</a></span>MPI_ERR_NO_MEM</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPI_ERR_NO_MEM&#160;&#160;&#160;34</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpi__null_8h_source.html">mpi_null.h</a> строка <a class="el" href="mpi__null_8h_source.html#l00067">67</a></p>
+
+</div>
+</div>
+<a id="a43ed7cd86d20f84db849adc64a09415e" name="a43ed7cd86d20f84db849adc64a09415e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43ed7cd86d20f84db849adc64a09415e">&#9670;&#160;</a></span>MPI_INT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPI_INT&#160;&#160;&#160;((<a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>)<a class="el" href="structvector.html">sizeof</a>(<a class="el" href="structvector.html">int</a>))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpi__null_8h_source.html">mpi_null.h</a> строка <a class="el" href="mpi__null_8h_source.html#l00034">34</a></p>
+
+</div>
+</div>
+<a id="aefb24270fcb1c3bc46c8c988100c5476" name="aefb24270fcb1c3bc46c8c988100c5476"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aefb24270fcb1c3bc46c8c988100c5476">&#9670;&#160;</a></span>MPI_KEYVAL_INVALID</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPI_KEYVAL_INVALID&#160;&#160;&#160;0x24000000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpi__null_8h_source.html">mpi_null.h</a> строка <a class="el" href="mpi__null_8h_source.html#l00055">55</a></p>
+
+</div>
+</div>
+<a id="a80d80987b473f4a13b0cc0384eddb51b" name="a80d80987b473f4a13b0cc0384eddb51b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80d80987b473f4a13b0cc0384eddb51b">&#9670;&#160;</a></span>MPI_MAX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPI_MAX&#160;&#160;&#160;(<a class="el" href="mpi__null_8h.html#a1e6360539c256e76b432da612d0ec399">MPI_Op</a>)(0x58000001)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpi__null_8h_source.html">mpi_null.h</a> строка <a class="el" href="mpi__null_8h_source.html#l00048">48</a></p>
+
+</div>
+</div>
+<a id="a32c2e019a42e9bfc9db6f8d9cf6adb4e" name="a32c2e019a42e9bfc9db6f8d9cf6adb4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32c2e019a42e9bfc9db6f8d9cf6adb4e">&#9670;&#160;</a></span>MPI_MAX_PROCESSOR_NAME</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPI_MAX_PROCESSOR_NAME&#160;&#160;&#160;128</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpi__null_8h_source.html">mpi_null.h</a> строка <a class="el" href="mpi__null_8h_source.html#l00056">56</a></p>
+
+</div>
+</div>
+<a id="aa2fecfa16d35e8fa3894c512a527b73f" name="aa2fecfa16d35e8fa3894c512a527b73f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa2fecfa16d35e8fa3894c512a527b73f">&#9670;&#160;</a></span>MPI_MIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPI_MIN&#160;&#160;&#160;(<a class="el" href="mpi__null_8h.html#a1e6360539c256e76b432da612d0ec399">MPI_Op</a>)(0x58000002)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpi__null_8h_source.html">mpi_null.h</a> строка <a class="el" href="mpi__null_8h_source.html#l00049">49</a></p>
+
+</div>
+</div>
+<a id="a62f1a2971d72ca736c9997d98568ff73" name="a62f1a2971d72ca736c9997d98568ff73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62f1a2971d72ca736c9997d98568ff73">&#9670;&#160;</a></span>MPI_PROC_NULL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPI_PROC_NULL&#160;&#160;&#160;(-1)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpi__null_8h_source.html">mpi_null.h</a> строка <a class="el" href="mpi__null_8h_source.html#l00058">58</a></p>
+
+</div>
+</div>
+<a id="a62cbfaf451bca1210033e31e37b2131c" name="a62cbfaf451bca1210033e31e37b2131c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62cbfaf451bca1210033e31e37b2131c">&#9670;&#160;</a></span>MPI_ROOT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPI_ROOT&#160;&#160;&#160;(-3)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpi__null_8h_source.html">mpi_null.h</a> строка <a class="el" href="mpi__null_8h_source.html#l00060">60</a></p>
+
+</div>
+</div>
+<a id="a004dd3ebf764c8c42e600ae5513e4dbc" name="a004dd3ebf764c8c42e600ae5513e4dbc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a004dd3ebf764c8c42e600ae5513e4dbc">&#9670;&#160;</a></span>MPI_SUCCESS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPI_SUCCESS&#160;&#160;&#160;0      /* <a class="el" href="structvector.html">Successful</a> <a class="el" href="structvector.html">return</a> <a class="el" href="structvector.html">code</a> */</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpi__null_8h_source.html">mpi_null.h</a> строка <a class="el" href="mpi__null_8h_source.html#l00064">64</a></p>
+
+</div>
+</div>
+<a id="aa058ba472f0fd41ae860caeaebca0166" name="aa058ba472f0fd41ae860caeaebca0166"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa058ba472f0fd41ae860caeaebca0166">&#9670;&#160;</a></span>MPI_SUM</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPI_SUM&#160;&#160;&#160;(<a class="el" href="mpi__null_8h.html#a1e6360539c256e76b432da612d0ec399">MPI_Op</a>)(0x58000003)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpi__null_8h_source.html">mpi_null.h</a> строка <a class="el" href="mpi__null_8h_source.html#l00050">50</a></p>
+
+</div>
+</div>
+<a id="aff6b3ceb2c22396e5eab7f509b3da0dc" name="aff6b3ceb2c22396e5eab7f509b3da0dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff6b3ceb2c22396e5eab7f509b3da0dc">&#9670;&#160;</a></span>MPI_UNDEFINED</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPI_UNDEFINED&#160;&#160;&#160;(-32766)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpi__null_8h_source.html">mpi_null.h</a> строка <a class="el" href="mpi__null_8h_source.html#l00054">54</a></p>
+
+</div>
+</div>
+<h2 class="groupheader">Типы</h2>
+<a id="a68c509d4adb3f4a1d6fe3a9b0b87c7b9" name="a68c509d4adb3f4a1d6fe3a9b0b87c7b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">&#9670;&#160;</a></span>MPI_Comm</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">typedef</a> <a class="el" href="structvector.html">int</a> <a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpi__null_8h_source.html">mpi_null.h</a> строка <a class="el" href="mpi__null_8h_source.html#l00017">17</a></p>
+
+</div>
+</div>
+<a id="a140317d69b8ee525dac53ba137518c16" name="a140317d69b8ee525dac53ba137518c16"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a140317d69b8ee525dac53ba137518c16">&#9670;&#160;</a></span>MPI_Comm_copy_attr_function</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">typedef</a> <a class="el" href="structvector.html">int</a>() MPI_Comm_copy_attr_function(<a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>, <a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">void</a> *, <a class="el" href="structvector.html">void</a> *, <a class="el" href="structvector.html">void</a> *, <a class="el" href="structvector.html">int</a> *)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpi__null_8h_source.html">mpi_null.h</a> строка <a class="el" href="mpi__null_8h_source.html#l00023">23</a></p>
+
+</div>
+</div>
+<a id="a7ae066fe34c84f0ab11afd9cb86453f0" name="a7ae066fe34c84f0ab11afd9cb86453f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ae066fe34c84f0ab11afd9cb86453f0">&#9670;&#160;</a></span>MPI_Comm_delete_attr_function</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">typedef</a> <a class="el" href="structvector.html">int</a>() MPI_Comm_delete_attr_function(<a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>, <a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">void</a> *, <a class="el" href="structvector.html">void</a> *)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpi__null_8h_source.html">mpi_null.h</a> строка <a class="el" href="mpi__null_8h_source.html#l00027">27</a></p>
+
+</div>
+</div>
+<a id="affc17fe964f9f670fb06e09d6134b4ff" name="affc17fe964f9f670fb06e09d6134b4ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affc17fe964f9f670fb06e09d6134b4ff">&#9670;&#160;</a></span>MPI_Datatype</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">typedef</a> <a class="el" href="structvector.html">int</a> <a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpi__null_8h_source.html">mpi_null.h</a> строка <a class="el" href="mpi__null_8h_source.html#l00031">31</a></p>
+
+</div>
+</div>
+<a id="a1e6360539c256e76b432da612d0ec399" name="a1e6360539c256e76b432da612d0ec399"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e6360539c256e76b432da612d0ec399">&#9670;&#160;</a></span>MPI_Op</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">typedef</a> <a class="el" href="structvector.html">int</a> <a class="el" href="mpi__null_8h.html#a1e6360539c256e76b432da612d0ec399">MPI_Op</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpi__null_8h_source.html">mpi_null.h</a> строка <a class="el" href="mpi__null_8h_source.html#l00047">47</a></p>
+
+</div>
+</div>
+<a id="a240e9d13a157e03c75e42306b13cd8d8" name="a240e9d13a157e03c75e42306b13cd8d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a240e9d13a157e03c75e42306b13cd8d8">&#9670;&#160;</a></span>MPI_Request</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">typedef</a> <a class="el" href="structvector.html">int</a> <a class="el" href="mpi__null_8h.html#a240e9d13a157e03c75e42306b13cd8d8">MPI_Request</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpi__null_8h_source.html">mpi_null.h</a> строка <a class="el" href="mpi__null_8h_source.html#l00045">45</a></p>
+
+</div>
+</div>
+<a id="ae09feb8ce97721832de670a05b2788fe" name="ae09feb8ce97721832de670a05b2788fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae09feb8ce97721832de670a05b2788fe">&#9670;&#160;</a></span>MPI_Status</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">typedef</a> <a class="el" href="structvector.html">struct</a> <a class="el" href="structMPI__Status.html">MPI_Status</a> <a class="el" href="structMPI__Status.html">MPI_Status</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Функции</h2>
+<a id="ae35d2ae286ce7a9ffd5113b721794f34" name="ae35d2ae286ce7a9ffd5113b721794f34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae35d2ae286ce7a9ffd5113b721794f34">&#9670;&#160;</a></span>PMPI_Abort()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> PMPI_Abort </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>&#160;</td>
+          <td class="paramname"><em>comm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>errorcode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abbe29ef9f63f3115f96023a92cffb218" name="abbe29ef9f63f3115f96023a92cffb218"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abbe29ef9f63f3115f96023a92cffb218">&#9670;&#160;</a></span>PMPI_Allreduce()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> PMPI_Allreduce </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">void</a> *&#160;</td>
+          <td class="paramname"><em>sendbuf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">void</a> *&#160;</td>
+          <td class="paramname"><em>recvbuf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>count</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>&#160;</td>
+          <td class="paramname"><em>datatype</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#a1e6360539c256e76b432da612d0ec399">MPI_Op</a>&#160;</td>
+          <td class="paramname"><em>op</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>&#160;</td>
+          <td class="paramname"><em>comm</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae480e4208055eb81af0d9c7e9902d3f7" name="ae480e4208055eb81af0d9c7e9902d3f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae480e4208055eb81af0d9c7e9902d3f7">&#9670;&#160;</a></span>PMPI_Barrier()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> PMPI_Barrier </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>&#160;</td>
+          <td class="paramname"><em>comm</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aabaf1799037783a2ce5799d61e809641" name="aabaf1799037783a2ce5799d61e809641"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aabaf1799037783a2ce5799d61e809641">&#9670;&#160;</a></span>PMPI_Bcast()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> PMPI_Bcast </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">void</a> *&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>count</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>&#160;</td>
+          <td class="paramname"><em>datatype</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>root</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>&#160;</td>
+          <td class="paramname"><em>comm</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3a2898d434439a818e5f47174f4a0404" name="a3a2898d434439a818e5f47174f4a0404"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a2898d434439a818e5f47174f4a0404">&#9670;&#160;</a></span>PMPI_Comm_create_keyval()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> PMPI_Comm_create_keyval </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#a140317d69b8ee525dac53ba137518c16">MPI_Comm_copy_attr_function</a> *&#160;</td>
+          <td class="paramname"><em>comm_copy_attr_fn</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#a7ae066fe34c84f0ab11afd9cb86453f0">MPI_Comm_delete_attr_function</a> *&#160;</td>
+          <td class="paramname"><em>comm_delete_attr_fn</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname"><em>comm_keyval</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">void</a> *&#160;</td>
+          <td class="paramname"><em>extra_state</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a581c1ec066b4678311ee1554ce09d2c7" name="a581c1ec066b4678311ee1554ce09d2c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a581c1ec066b4678311ee1554ce09d2c7">&#9670;&#160;</a></span>PMPI_Comm_free_keyval()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> PMPI_Comm_free_keyval </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname"><em>comm_keyval</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adaceb50f8ec7f1951191045b8cc9009c" name="adaceb50f8ec7f1951191045b8cc9009c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adaceb50f8ec7f1951191045b8cc9009c">&#9670;&#160;</a></span>PMPI_Comm_get_attr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> PMPI_Comm_get_attr </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>&#160;</td>
+          <td class="paramname"><em>comm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>comm_keyval</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">void</a> *&#160;</td>
+          <td class="paramname"><em>attribute_val</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname"><em>flag</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac9ab6df872273b2d974b41d12f8aeff5" name="ac9ab6df872273b2d974b41d12f8aeff5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9ab6df872273b2d974b41d12f8aeff5">&#9670;&#160;</a></span>PMPI_Comm_rank()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> PMPI_Comm_rank </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>&#160;</td>
+          <td class="paramname"><em>comm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname"><em>rank</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4414a75465a6666a614d4f2cc6aadd77" name="a4414a75465a6666a614d4f2cc6aadd77"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4414a75465a6666a614d4f2cc6aadd77">&#9670;&#160;</a></span>PMPI_Comm_set_attr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> PMPI_Comm_set_attr </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>&#160;</td>
+          <td class="paramname"><em>comm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>comm_keyval</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">void</a> *&#160;</td>
+          <td class="paramname"><em>attribute_val</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad520837f304bcd350b96d8e9372b52d6" name="ad520837f304bcd350b96d8e9372b52d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad520837f304bcd350b96d8e9372b52d6">&#9670;&#160;</a></span>PMPI_Comm_size()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> PMPI_Comm_size </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>&#160;</td>
+          <td class="paramname"><em>comm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a04786ed5fd569fc589f50f74bd8d8c23" name="a04786ed5fd569fc589f50f74bd8d8c23"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04786ed5fd569fc589f50f74bd8d8c23">&#9670;&#160;</a></span>PMPI_Comm_test_inter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> PMPI_Comm_test_inter </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>&#160;</td>
+          <td class="paramname"><em>comm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname"><em>flag</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a67751aa6bfb9b8eaac1de8ef3d8b33a0" name="a67751aa6bfb9b8eaac1de8ef3d8b33a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67751aa6bfb9b8eaac1de8ef3d8b33a0">&#9670;&#160;</a></span>PMPI_Finalize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> PMPI_Finalize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8615a0822815284bb03a0cda00323129" name="a8615a0822815284bb03a0cda00323129"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8615a0822815284bb03a0cda00323129">&#9670;&#160;</a></span>PMPI_Gather()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> PMPI_Gather </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">void</a> *&#160;</td>
+          <td class="paramname"><em>sendbuf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>sendcnt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>&#160;</td>
+          <td class="paramname"><em>sendtype</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">void</a> *&#160;</td>
+          <td class="paramname"><em>recvbuf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>recvcnt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>&#160;</td>
+          <td class="paramname"><em>recvtype</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>root</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>&#160;</td>
+          <td class="paramname"><em>comm</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab62cb3935052cfb05b7666c0e4af47d1" name="ab62cb3935052cfb05b7666c0e4af47d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab62cb3935052cfb05b7666c0e4af47d1">&#9670;&#160;</a></span>PMPI_Get_count()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> PMPI_Get_count </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structMPI__Status.html">MPI_Status</a> *&#160;</td>
+          <td class="paramname"><em>status</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>&#160;</td>
+          <td class="paramname"><em>datatype</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a09816dd0fa54b5d80c0590444ffcf0b0" name="a09816dd0fa54b5d80c0590444ffcf0b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09816dd0fa54b5d80c0590444ffcf0b0">&#9670;&#160;</a></span>PMPI_Get_processor_name()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> PMPI_Get_processor_name </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname"><em>resultlen</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad51db1f8a017ca850d160a6799fc147f" name="ad51db1f8a017ca850d160a6799fc147f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad51db1f8a017ca850d160a6799fc147f">&#9670;&#160;</a></span>PMPI_Init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> PMPI_Init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname"><em>argc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> ***&#160;</td>
+          <td class="paramname"><em>argv</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a77e8a6e8948a096f4a9c7d4f6c0684c6" name="a77e8a6e8948a096f4a9c7d4f6c0684c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77e8a6e8948a096f4a9c7d4f6c0684c6">&#9670;&#160;</a></span>PMPI_Initialized()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> PMPI_Initialized </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname"><em>flag</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abf9edfe4317d5d39dc4dfca3d818e258" name="abf9edfe4317d5d39dc4dfca3d818e258"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf9edfe4317d5d39dc4dfca3d818e258">&#9670;&#160;</a></span>PMPI_Irecv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> PMPI_Irecv </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">void</a> *&#160;</td>
+          <td class="paramname"><em>buf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>count</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>&#160;</td>
+          <td class="paramname"><em>datatype</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>source</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>tag</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>&#160;</td>
+          <td class="paramname"><em>comm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#a240e9d13a157e03c75e42306b13cd8d8">MPI_Request</a> *&#160;</td>
+          <td class="paramname"><em>request</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7fa896a6bf85cad8df9b7f1cb1537c94" name="a7fa896a6bf85cad8df9b7f1cb1537c94"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7fa896a6bf85cad8df9b7f1cb1537c94">&#9670;&#160;</a></span>PMPI_Recv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> PMPI_Recv </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">void</a> *&#160;</td>
+          <td class="paramname"><em>buf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>count</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>&#160;</td>
+          <td class="paramname"><em>datatype</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>source</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>tag</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>&#160;</td>
+          <td class="paramname"><em>comm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structMPI__Status.html">MPI_Status</a> *&#160;</td>
+          <td class="paramname"><em>status</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9d463b0c88410bf7a868254fa3745417" name="a9d463b0c88410bf7a868254fa3745417"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d463b0c88410bf7a868254fa3745417">&#9670;&#160;</a></span>PMPI_Scan()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> PMPI_Scan </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">void</a> *&#160;</td>
+          <td class="paramname"><em>sendbuf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">void</a> *&#160;</td>
+          <td class="paramname"><em>recvbuf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>count</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>&#160;</td>
+          <td class="paramname"><em>datatype</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#a1e6360539c256e76b432da612d0ec399">MPI_Op</a>&#160;</td>
+          <td class="paramname"><em>op</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>&#160;</td>
+          <td class="paramname"><em>comm</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab9f876e99a72891fccefa51f006bd1a9" name="ab9f876e99a72891fccefa51f006bd1a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9f876e99a72891fccefa51f006bd1a9">&#9670;&#160;</a></span>PMPI_Scatter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> PMPI_Scatter </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">void</a> *&#160;</td>
+          <td class="paramname"><em>sendbuf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>sendcnt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>&#160;</td>
+          <td class="paramname"><em>sendtype</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">void</a> *&#160;</td>
+          <td class="paramname"><em>recvbuf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>recvcnt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>&#160;</td>
+          <td class="paramname"><em>recvtype</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>root</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>&#160;</td>
+          <td class="paramname"><em>comm</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abbdb434f1c6e67b292b5c0dcf7e614e4" name="abbdb434f1c6e67b292b5c0dcf7e614e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abbdb434f1c6e67b292b5c0dcf7e614e4">&#9670;&#160;</a></span>PMPI_Send()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> PMPI_Send </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">void</a> *&#160;</td>
+          <td class="paramname"><em>buf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>count</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>&#160;</td>
+          <td class="paramname"><em>datatype</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>dest</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>tag</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>&#160;</td>
+          <td class="paramname"><em>comm</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a614a43579a54db91c4447ad8b040c08f" name="a614a43579a54db91c4447ad8b040c08f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a614a43579a54db91c4447ad8b040c08f">&#9670;&#160;</a></span>PMPI_Ssend()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> PMPI_Ssend </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">void</a> *&#160;</td>
+          <td class="paramname"><em>buf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>count</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>&#160;</td>
+          <td class="paramname"><em>datatype</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>dest</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>tag</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>&#160;</td>
+          <td class="paramname"><em>comm</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3306a2e5f7ef80294879684f1aa76ba5" name="a3306a2e5f7ef80294879684f1aa76ba5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3306a2e5f7ef80294879684f1aa76ba5">&#9670;&#160;</a></span>PMPI_Wait()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> PMPI_Wait </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#a240e9d13a157e03c75e42306b13cd8d8">MPI_Request</a> *&#160;</td>
+          <td class="paramname"><em>request</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structMPI__Status.html">MPI_Status</a> *&#160;</td>
+          <td class="paramname"><em>status</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a671325cd18c88b4b618673120654926e" name="a671325cd18c88b4b618673120654926e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a671325cd18c88b4b618673120654926e">&#9670;&#160;</a></span>PMPI_Wtime()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">double</a> PMPI_Wtime </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Переменные</h2>
+<a id="aa99e6f32d5d7b21bb515e7076e2b4d10" name="aa99e6f32d5d7b21bb515e7076e2b4d10"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa99e6f32d5d7b21bb515e7076e2b4d10">&#9670;&#160;</a></span>MPI_WTIME_IS_GLOBAL</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPI_WTIME_IS_GLOBAL</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

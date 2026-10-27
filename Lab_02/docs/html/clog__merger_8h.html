@@ -1,0 +1,522 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lab_02: MPI + OpenMP Parallel Programming: Файл clog_merger.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Lab_02: MPI + OpenMP Parallel Programming<span id="projectnumber">&#160;2.1</span>
+   </div>
+   <div id="projectbrief">Решение 3D уравнения Пуассона методом Якоби с двумерной декомпозицией</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_1f646cbbb0f6227d25dd06f792d51aba.html">mpe2-1.3.0</a></li><li class="navelem"><a class="el" href="dir_493399512d45eb30627376023737183a.html">src</a></li><li class="navelem"><a class="el" href="dir_4dd21a1309df0d73c93832f59c814642.html">logging</a></li><li class="navelem"><a class="el" href="dir_d1e3342e2909ab46223a280715173519.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Классы</a> &#124;
+<a href="#define-members">Макросы</a> &#124;
+<a href="#func-members">Функции</a>  </div>
+  <div class="headertitle"><div class="title">Файл clog_merger.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="src_2logging_2include_2clog__const_8h_source.html">clog_const.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="clog__block_8h_source.html">clog_block.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="clog__buffer_8h_source.html">clog_buffer.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="clog__record_8h_source.html">clog_record.h</a>&quot;</code><br />
+</div>
+<p><a href="clog__merger_8h_source.html">См. исходные тексты.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Классы</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCLOG__Merger__t.html">CLOG_Merger_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Макросы</h2></td></tr>
+<tr class="memitem:a52486b128fb4056471f522b2420a2e09" id="r_a52486b128fb4056471f522b2420a2e09"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__merger_8h.html#a52486b128fb4056471f522b2420a2e09">CLOG_MERGE_LOGBUFTYPE</a>&#160;&#160;&#160;777</td></tr>
+<tr class="separator:a52486b128fb4056471f522b2420a2e09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Функции</h2></td></tr>
+<tr class="memitem:ad2e0ea0d62aeff188d10cdf3f4e22aed" id="r_ad2e0ea0d62aeff188d10cdf3f4e22aed"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structCLOG__Merger__t.html">CLOG_Merger_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__merger_8h.html#ad2e0ea0d62aeff188d10cdf3f4e22aed">CLOG_Merger_create</a> (<a class="el" href="structvector.html">unsigned</a> <a class="el" href="structvector.html">int</a> block_size)</td></tr>
+<tr class="separator:ad2e0ea0d62aeff188d10cdf3f4e22aed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc11ea72d64505f9c67a07bfbd3743e2" id="r_acc11ea72d64505f9c67a07bfbd3743e2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__merger_8h.html#acc11ea72d64505f9c67a07bfbd3743e2">CLOG_Merger_free</a> (<a class="el" href="structCLOG__Merger__t.html">CLOG_Merger_t</a> **<a class="el" href="structvector.html">merger_handle</a>)</td></tr>
+<tr class="separator:acc11ea72d64505f9c67a07bfbd3743e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac436d4c0307793a28ef7fa75105e2ceb" id="r_ac436d4c0307793a28ef7fa75105e2ceb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__merger_8h.html#ac436d4c0307793a28ef7fa75105e2ceb">CLOG_Merger_set_neighbor_ranks</a> (<a class="el" href="structCLOG__Merger__t.html">CLOG_Merger_t</a> *merger)</td></tr>
+<tr class="separator:ac436d4c0307793a28ef7fa75105e2ceb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac16389acbbde5cd53da9f4ac0cebef03" id="r_ac16389acbbde5cd53da9f4ac0cebef03"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__merger_8h.html#ac16389acbbde5cd53da9f4ac0cebef03">CLOG_Merger_init</a> (<a class="el" href="structCLOG__Merger__t.html">CLOG_Merger_t</a> *merger, <a class="el" href="structvector.html">const</a> <a class="el" href="structCLOG__Preamble__t.html">CLOG_Preamble_t</a> *preamble, <a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *<a class="el" href="structvector.html">merged_file_prefix</a>)</td></tr>
+<tr class="separator:ac16389acbbde5cd53da9f4ac0cebef03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a028dea70f2ca40ffe647df1dd5cb66ee" id="r_a028dea70f2ca40ffe647df1dd5cb66ee"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__merger_8h.html#a028dea70f2ca40ffe647df1dd5cb66ee">CLOG_Merger_finalize</a> (<a class="el" href="structCLOG__Merger__t.html">CLOG_Merger_t</a> *merger, <a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer)</td></tr>
+<tr class="separator:a028dea70f2ca40ffe647df1dd5cb66ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a601fbdb5bd904d92ff628bee50a2cc57" id="r_a601fbdb5bd904d92ff628bee50a2cc57"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__merger_8h.html#a601fbdb5bd904d92ff628bee50a2cc57">CLOG_Merger_flush</a> (<a class="el" href="structCLOG__Merger__t.html">CLOG_Merger_t</a> *merger)</td></tr>
+<tr class="separator:a601fbdb5bd904d92ff628bee50a2cc57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a360a2b3de852046a4a6f85f17b6abb2f" id="r_a360a2b3de852046a4a6f85f17b6abb2f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__merger_8h.html#a360a2b3de852046a4a6f85f17b6abb2f">CLOG_Merger_save_rec</a> (<a class="el" href="structCLOG__Merger__t.html">CLOG_Merger_t</a> *merger, <a class="el" href="structvector.html">const</a> <a class="el" href="structCLOG__Rec__Header__t.html">CLOG_Rec_Header_t</a> *<a class="el" href="structvector.html">hdr</a>)</td></tr>
+<tr class="separator:a360a2b3de852046a4a6f85f17b6abb2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5177e78195b3524842c63cad006b0614" id="r_a5177e78195b3524842c63cad006b0614"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__merger_8h.html#a5177e78195b3524842c63cad006b0614">CLOG_Merger_refill_sideblock</a> (<a class="el" href="structCLOG__BlockData__t.html">CLOG_BlockData_t</a> *blockdata, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">block_world_rank</a>, <a class="el" href="structvector.html">int</a> block_size)</td></tr>
+<tr class="separator:a5177e78195b3524842c63cad006b0614"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaaa8d06a1cba74e639c3bcfebbf7a212" id="r_aaaa8d06a1cba74e639c3bcfebbf7a212"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__merger_8h.html#aaaa8d06a1cba74e639c3bcfebbf7a212">CLOG_Merger_refill_localblock</a> (<a class="el" href="structCLOG__BlockData__t.html">CLOG_BlockData_t</a> *blockdata, <a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer, <a class="el" href="clog__timer_8h.html#abf0f7e46df13fdbacdb7a819cf12267d">CLOG_Time_t</a> *<a class="el" href="structvector.html">timediff_handle</a>)</td></tr>
+<tr class="separator:aaaa8d06a1cba74e639c3bcfebbf7a212"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e848c6f5a2d1c1ffa99e9f8ec02ec82" id="r_a0e848c6f5a2d1c1ffa99e9f8ec02ec82"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structCLOG__Rec__Header__t.html">CLOG_Rec_Header_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__merger_8h.html#a0e848c6f5a2d1c1ffa99e9f8ec02ec82">CLOG_Merger_next_sideblock_hdr</a> (<a class="el" href="structCLOG__BlockData__t.html">CLOG_BlockData_t</a> *blockdata, <a class="el" href="structCLOG__Rec__Header__t.html">CLOG_Rec_Header_t</a> *<a class="el" href="structvector.html">hdr</a>, <a class="el" href="structCLOG__Merger__t.html">CLOG_Merger_t</a> *merger, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">block_world_rank</a>, <a class="el" href="structvector.html">int</a> block_size)</td></tr>
+<tr class="separator:a0e848c6f5a2d1c1ffa99e9f8ec02ec82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae77b25a2ca4a357779a07637a64c525" id="r_aae77b25a2ca4a357779a07637a64c525"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structCLOG__Rec__Header__t.html">CLOG_Rec_Header_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__merger_8h.html#aae77b25a2ca4a357779a07637a64c525">CLOG_Merger_next_localblock_hdr</a> (<a class="el" href="structCLOG__BlockData__t.html">CLOG_BlockData_t</a> *blockdata, <a class="el" href="structCLOG__Rec__Header__t.html">CLOG_Rec_Header_t</a> *<a class="el" href="structvector.html">hdr</a>, <a class="el" href="structCLOG__Merger__t.html">CLOG_Merger_t</a> *merger, <a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer, <a class="el" href="clog__timer_8h.html#abf0f7e46df13fdbacdb7a819cf12267d">CLOG_Time_t</a> *<a class="el" href="structvector.html">timediff_handle</a>)</td></tr>
+<tr class="separator:aae77b25a2ca4a357779a07637a64c525"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a423c5442b1dbd20dbd9d8dc2050fb489" id="r_a423c5442b1dbd20dbd9d8dc2050fb489"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__merger_8h.html#a423c5442b1dbd20dbd9d8dc2050fb489">CLOG_Merger_sort</a> (<a class="el" href="structCLOG__Merger__t.html">CLOG_Merger_t</a> *merger, <a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer)</td></tr>
+<tr class="separator:a423c5442b1dbd20dbd9d8dc2050fb489"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca39584d62b187899f65c2216797b08b" id="r_aca39584d62b187899f65c2216797b08b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__merger_8h.html#aca39584d62b187899f65c2216797b08b">CLOG_Merger_last_flush</a> (<a class="el" href="structCLOG__Merger__t.html">CLOG_Merger_t</a> *merger)</td></tr>
+<tr class="separator:aca39584d62b187899f65c2216797b08b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Макросы</h2>
+<a id="a52486b128fb4056471f522b2420a2e09" name="a52486b128fb4056471f522b2420a2e09"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52486b128fb4056471f522b2420a2e09">&#9670;&#160;</a></span>CLOG_MERGE_LOGBUFTYPE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> CLOG_MERGE_LOGBUFTYPE&#160;&#160;&#160;777</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="clog__merger_8h_source.html">clog_merger.h</a> строка <a class="el" href="clog__merger_8h_source.html#l00013">13</a></p>
+
+</div>
+</div>
+<h2 class="groupheader">Функции</h2>
+<a id="ad2e0ea0d62aeff188d10cdf3f4e22aed" name="ad2e0ea0d62aeff188d10cdf3f4e22aed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2e0ea0d62aeff188d10cdf3f4e22aed">&#9670;&#160;</a></span>CLOG_Merger_create()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structCLOG__Merger__t.html">CLOG_Merger_t</a> * CLOG_Merger_create </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">unsigned</a> <a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>block_size</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a028dea70f2ca40ffe647df1dd5cb66ee" name="a028dea70f2ca40ffe647df1dd5cb66ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a028dea70f2ca40ffe647df1dd5cb66ee">&#9670;&#160;</a></span>CLOG_Merger_finalize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Merger_finalize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Merger__t.html">CLOG_Merger_t</a> *&#160;</td>
+          <td class="paramname"><em>merger</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *&#160;</td>
+          <td class="paramname"><em>buffer</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a601fbdb5bd904d92ff628bee50a2cc57" name="a601fbdb5bd904d92ff628bee50a2cc57"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a601fbdb5bd904d92ff628bee50a2cc57">&#9670;&#160;</a></span>CLOG_Merger_flush()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Merger_flush </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Merger__t.html">CLOG_Merger_t</a> *&#160;</td>
+          <td class="paramname"><em>merger</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acc11ea72d64505f9c67a07bfbd3743e2" name="acc11ea72d64505f9c67a07bfbd3743e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc11ea72d64505f9c67a07bfbd3743e2">&#9670;&#160;</a></span>CLOG_Merger_free()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Merger_free </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Merger__t.html">CLOG_Merger_t</a> **&#160;</td>
+          <td class="paramname"><em>merger_handle</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac16389acbbde5cd53da9f4ac0cebef03" name="ac16389acbbde5cd53da9f4ac0cebef03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac16389acbbde5cd53da9f4ac0cebef03">&#9670;&#160;</a></span>CLOG_Merger_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Merger_init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Merger__t.html">CLOG_Merger_t</a> *&#160;</td>
+          <td class="paramname"><em>merger</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structCLOG__Preamble__t.html">CLOG_Preamble_t</a> *&#160;</td>
+          <td class="paramname"><em>preamble</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>merged_file_prefix</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aca39584d62b187899f65c2216797b08b" name="aca39584d62b187899f65c2216797b08b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca39584d62b187899f65c2216797b08b">&#9670;&#160;</a></span>CLOG_Merger_last_flush()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Merger_last_flush </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Merger__t.html">CLOG_Merger_t</a> *&#160;</td>
+          <td class="paramname"><em>merger</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aae77b25a2ca4a357779a07637a64c525" name="aae77b25a2ca4a357779a07637a64c525"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae77b25a2ca4a357779a07637a64c525">&#9670;&#160;</a></span>CLOG_Merger_next_localblock_hdr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structCLOG__Rec__Header__t.html">CLOG_Rec_Header_t</a> * CLOG_Merger_next_localblock_hdr </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__BlockData__t.html">CLOG_BlockData_t</a> *&#160;</td>
+          <td class="paramname"><em>blockdata</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structCLOG__Rec__Header__t.html">CLOG_Rec_Header_t</a> *&#160;</td>
+          <td class="paramname"><em>hdr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structCLOG__Merger__t.html">CLOG_Merger_t</a> *&#160;</td>
+          <td class="paramname"><em>merger</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="clog__timer_8h.html#abf0f7e46df13fdbacdb7a819cf12267d">CLOG_Time_t</a> *&#160;</td>
+          <td class="paramname"><em>timediff_handle</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0e848c6f5a2d1c1ffa99e9f8ec02ec82" name="a0e848c6f5a2d1c1ffa99e9f8ec02ec82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e848c6f5a2d1c1ffa99e9f8ec02ec82">&#9670;&#160;</a></span>CLOG_Merger_next_sideblock_hdr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structCLOG__Rec__Header__t.html">CLOG_Rec_Header_t</a> * CLOG_Merger_next_sideblock_hdr </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__BlockData__t.html">CLOG_BlockData_t</a> *&#160;</td>
+          <td class="paramname"><em>blockdata</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structCLOG__Rec__Header__t.html">CLOG_Rec_Header_t</a> *&#160;</td>
+          <td class="paramname"><em>hdr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structCLOG__Merger__t.html">CLOG_Merger_t</a> *&#160;</td>
+          <td class="paramname"><em>merger</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>block_world_rank</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>block_size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aaaa8d06a1cba74e639c3bcfebbf7a212" name="aaaa8d06a1cba74e639c3bcfebbf7a212"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaaa8d06a1cba74e639c3bcfebbf7a212">&#9670;&#160;</a></span>CLOG_Merger_refill_localblock()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Merger_refill_localblock </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__BlockData__t.html">CLOG_BlockData_t</a> *&#160;</td>
+          <td class="paramname"><em>blockdata</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="clog__timer_8h.html#abf0f7e46df13fdbacdb7a819cf12267d">CLOG_Time_t</a> *&#160;</td>
+          <td class="paramname"><em>timediff_handle</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5177e78195b3524842c63cad006b0614" name="a5177e78195b3524842c63cad006b0614"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5177e78195b3524842c63cad006b0614">&#9670;&#160;</a></span>CLOG_Merger_refill_sideblock()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Merger_refill_sideblock </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__BlockData__t.html">CLOG_BlockData_t</a> *&#160;</td>
+          <td class="paramname"><em>blockdata</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>block_world_rank</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>block_size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a360a2b3de852046a4a6f85f17b6abb2f" name="a360a2b3de852046a4a6f85f17b6abb2f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a360a2b3de852046a4a6f85f17b6abb2f">&#9670;&#160;</a></span>CLOG_Merger_save_rec()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Merger_save_rec </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Merger__t.html">CLOG_Merger_t</a> *&#160;</td>
+          <td class="paramname"><em>merger</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structCLOG__Rec__Header__t.html">CLOG_Rec_Header_t</a> *&#160;</td>
+          <td class="paramname"><em>hdr</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac436d4c0307793a28ef7fa75105e2ceb" name="ac436d4c0307793a28ef7fa75105e2ceb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac436d4c0307793a28ef7fa75105e2ceb">&#9670;&#160;</a></span>CLOG_Merger_set_neighbor_ranks()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Merger_set_neighbor_ranks </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Merger__t.html">CLOG_Merger_t</a> *&#160;</td>
+          <td class="paramname"><em>merger</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a423c5442b1dbd20dbd9d8dc2050fb489" name="a423c5442b1dbd20dbd9d8dc2050fb489"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a423c5442b1dbd20dbd9d8dc2050fb489">&#9670;&#160;</a></span>CLOG_Merger_sort()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Merger_sort </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Merger__t.html">CLOG_Merger_t</a> *&#160;</td>
+          <td class="paramname"><em>merger</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *&#160;</td>
+          <td class="paramname"><em>buffer</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

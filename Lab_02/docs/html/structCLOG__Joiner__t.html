@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lab_02: MPI + OpenMP Parallel Programming: Структура CLOG_Joiner_t</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Lab_02: MPI + OpenMP Parallel Programming<span id="projectnumber">&#160;2.1</span>
+   </div>
+   <div id="projectbrief">Решение 3D уравнения Пуассона методом Якоби с двумерной декомпозицией</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-attribs">Открытые атрибуты</a> &#124;
+<a href="structCLOG__Joiner__t-members.html">Полный список членов класса</a>  </div>
+  <div class="headertitle"><div class="title">Структура CLOG_Joiner_t</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="clog__joiner_8h_source.html">clog_joiner.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Открытые атрибуты</h2></td></tr>
+<tr class="memitem:a994e4a70d4ef26101177551bcee3da70" id="r_a994e4a70d4ef26101177551bcee3da70"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structCLOG__Cache__t.html">CLOG_Cache_t</a> **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCLOG__Joiner__t.html#a994e4a70d4ef26101177551bcee3da70">in_caches</a></td></tr>
+<tr class="separator:a994e4a70d4ef26101177551bcee3da70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d4cbe0ced1fefc83f65ddb5b4b921bf" id="r_a8d4cbe0ced1fefc83f65ddb5b4b921bf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">unsigned</a> <a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCLOG__Joiner__t.html#a8d4cbe0ced1fefc83f65ddb5b4b921bf">num_caches</a></td></tr>
+<tr class="separator:a8d4cbe0ced1fefc83f65ddb5b4b921bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a7daed9a9aac811356dce32498afc5b" id="r_a4a7daed9a9aac811356dce32498afc5b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structCLOG__Cache__t.html">CLOG_Cache_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCLOG__Joiner__t.html#a4a7daed9a9aac811356dce32498afc5b">out_cache</a></td></tr>
+<tr class="separator:a4a7daed9a9aac811356dce32498afc5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ac3d79c9a2366b7b1ccbe0c4c6c61f1" id="r_a2ac3d79c9a2366b7b1ccbe0c4c6c61f1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="clog__cache_8h.html#aa352d911b654cd7f9363461218183c25">CLOG_CacheLink_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCLOG__Joiner__t.html#a2ac3d79c9a2366b7b1ccbe0c4c6c61f1">sorted_caches_head</a></td></tr>
+<tr class="separator:a2ac3d79c9a2366b7b1ccbe0c4c6c61f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a358c7472020445f642e11af5d7302176" id="r_a358c7472020445f642e11af5d7302176"><td class="memItemLeft" align="right" valign="top"><a class="el" href="clog__cache_8h.html#aa352d911b654cd7f9363461218183c25">CLOG_CacheLink_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCLOG__Joiner__t.html#a358c7472020445f642e11af5d7302176">sorted_caches_tail</a></td></tr>
+<tr class="separator:a358c7472020445f642e11af5d7302176"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock">
+<p class="definition">См. определение в файле <a class="el" href="clog__joiner_8h_source.html">clog_joiner.h</a> строка <a class="el" href="clog__joiner_8h_source.html#l00011">11</a></p>
+</div><h2 class="groupheader">Данные класса</h2>
+<a id="a994e4a70d4ef26101177551bcee3da70" name="a994e4a70d4ef26101177551bcee3da70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a994e4a70d4ef26101177551bcee3da70">&#9670;&#160;</a></span>in_caches</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structCLOG__Cache__t.html">CLOG_Cache_t</a>** CLOG_Joiner_t::in_caches</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="clog__joiner_8h_source.html">clog_joiner.h</a> строка <a class="el" href="clog__joiner_8h_source.html#l00013">13</a></p>
+
+</div>
+</div>
+<a id="a8d4cbe0ced1fefc83f65ddb5b4b921bf" name="a8d4cbe0ced1fefc83f65ddb5b4b921bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d4cbe0ced1fefc83f65ddb5b4b921bf">&#9670;&#160;</a></span>num_caches</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">unsigned</a> <a class="el" href="structvector.html">int</a> CLOG_Joiner_t::num_caches</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="clog__joiner_8h_source.html">clog_joiner.h</a> строка <a class="el" href="clog__joiner_8h_source.html#l00014">14</a></p>
+
+</div>
+</div>
+<a id="a4a7daed9a9aac811356dce32498afc5b" name="a4a7daed9a9aac811356dce32498afc5b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a7daed9a9aac811356dce32498afc5b">&#9670;&#160;</a></span>out_cache</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structCLOG__Cache__t.html">CLOG_Cache_t</a>* CLOG_Joiner_t::out_cache</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="clog__joiner_8h_source.html">clog_joiner.h</a> строка <a class="el" href="clog__joiner_8h_source.html#l00016">16</a></p>
+
+</div>
+</div>
+<a id="a2ac3d79c9a2366b7b1ccbe0c4c6c61f1" name="a2ac3d79c9a2366b7b1ccbe0c4c6c61f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ac3d79c9a2366b7b1ccbe0c4c6c61f1">&#9670;&#160;</a></span>sorted_caches_head</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="clog__cache_8h.html#aa352d911b654cd7f9363461218183c25">CLOG_CacheLink_t</a>* CLOG_Joiner_t::sorted_caches_head</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="clog__joiner_8h_source.html">clog_joiner.h</a> строка <a class="el" href="clog__joiner_8h_source.html#l00019">19</a></p>
+
+</div>
+</div>
+<a id="a358c7472020445f642e11af5d7302176" name="a358c7472020445f642e11af5d7302176"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a358c7472020445f642e11af5d7302176">&#9670;&#160;</a></span>sorted_caches_tail</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="clog__cache_8h.html#aa352d911b654cd7f9363461218183c25">CLOG_CacheLink_t</a>* CLOG_Joiner_t::sorted_caches_tail</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="clog__joiner_8h_source.html">clog_joiner.h</a> строка <a class="el" href="clog__joiner_8h_source.html#l00020">20</a></p>
+
+</div>
+</div>
+<hr/>Объявления и описания членов структуры находятся в файле:<ul>
+<li><a class="el" href="clog__joiner_8h_source.html">clog_joiner.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

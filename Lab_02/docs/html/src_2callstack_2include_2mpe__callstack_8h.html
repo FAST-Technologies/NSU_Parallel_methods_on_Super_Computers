@@ -1,0 +1,372 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lab_02: MPI + OpenMP Parallel Programming: Файл mpe_callstack.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Lab_02: MPI + OpenMP Parallel Programming<span id="projectnumber">&#160;2.1</span>
+   </div>
+   <div id="projectbrief">Решение 3D уравнения Пуассона методом Якоби с двумерной декомпозицией</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_1f646cbbb0f6227d25dd06f792d51aba.html">mpe2-1.3.0</a></li><li class="navelem"><a class="el" href="dir_493399512d45eb30627376023737183a.html">src</a></li><li class="navelem"><a class="el" href="dir_bf1397540baadd53971cc789aca5138d.html">callstack</a></li><li class="navelem"><a class="el" href="dir_5514e9bb75a139d3c942e82ec9ab0380.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Классы</a> &#124;
+<a href="#define-members">Макросы</a> &#124;
+<a href="#typedef-members">Определения типов</a> &#124;
+<a href="#func-members">Функции</a>  </div>
+  <div class="headertitle"><div class="title">Файл mpe_callstack.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;execinfo.h&gt;</code><br />
+</div>
+<p><a href="src_2callstack_2include_2mpe__callstack_8h_source.html">См. исходные тексты.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Классы</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMPE__CallStack.html">MPE_CallStack</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Макросы</h2></td></tr>
+<tr class="memitem:a20b54f4ff55e31a8cca0a50884304a79" id="r_a20b54f4ff55e31a8cca0a50884304a79"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="src_2callstack_2include_2mpe__callstack_8h.html#a20b54f4ff55e31a8cca0a50884304a79">HAVE_BACKTRACE</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:a20b54f4ff55e31a8cca0a50884304a79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ac0da49f5682b68df2abed022edb449" id="r_a4ac0da49f5682b68df2abed022edb449"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="src_2callstack_2include_2mpe__callstack_8h.html#a4ac0da49f5682b68df2abed022edb449">MPE_CALLSTACK_UNLIMITED</a>&#160;&#160;&#160;9999</td></tr>
+<tr class="separator:a4ac0da49f5682b68df2abed022edb449"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adbe8a15eaf1964a2c8b365129a0fdf90" id="r_adbe8a15eaf1964a2c8b365129a0fdf90"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="src_2callstack_2include_2mpe__callstack_8h.html#adbe8a15eaf1964a2c8b365129a0fdf90">MPE_CALLSTACK_MAXLINE</a>&#160;&#160;&#160;1024</td></tr>
+<tr class="separator:adbe8a15eaf1964a2c8b365129a0fdf90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5fec8d028fe44ecc5d1f3824323ee758" id="r_a5fec8d028fe44ecc5d1f3824323ee758"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="src_2callstack_2include_2mpe__callstack_8h.html#a5fec8d028fe44ecc5d1f3824323ee758">MPE_CALLSTACK_MAXDEPTH</a>&#160;&#160;&#160;128</td></tr>
+<tr class="separator:a5fec8d028fe44ecc5d1f3824323ee758"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a097122ca1ca7afc57d519a213733d14a" id="r_a097122ca1ca7afc57d519a213733d14a"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="src_2callstack_2include_2mpe__callstack_8h.html#a097122ca1ca7afc57d519a213733d14a">MPE_CallStack_init</a>(<a class="el" href="structvector.html">cstk</a>)</td></tr>
+<tr class="separator:a097122ca1ca7afc57d519a213733d14a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af557e1e92ffdc9451c15f6bfebfd1d8c" id="r_af557e1e92ffdc9451c15f6bfebfd1d8c"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="src_2callstack_2include_2mpe__callstack_8h.html#af557e1e92ffdc9451c15f6bfebfd1d8c">MPE_CallStack_print</a>(<a class="el" href="structvector.html">cstk</a>,  <a class="el" href="structvector.html">fd</a>)</td></tr>
+<tr class="separator:af557e1e92ffdc9451c15f6bfebfd1d8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Определения типов</h2></td></tr>
+<tr class="memitem:a134e024756a8ffac91fb9c3cdaca4992" id="r_a134e024756a8ffac91fb9c3cdaca4992"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">typedef</a> <a class="el" href="structvector.html">struct</a> <a class="el" href="structMPE__CallStack.html">MPE_CallStack</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="src_2callstack_2include_2mpe__callstack_8h.html#a134e024756a8ffac91fb9c3cdaca4992">MPE_CallStack_t</a></td></tr>
+<tr class="separator:a134e024756a8ffac91fb9c3cdaca4992"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Функции</h2></td></tr>
+<tr class="memitem:a1b27496cfc79a41b635d0530892781eb" id="r_a1b27496cfc79a41b635d0530892781eb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="src_2callstack_2include_2mpe__callstack_8h.html#a1b27496cfc79a41b635d0530892781eb">MPE_CallStack_iteratorInit</a> (<a class="el" href="include_2mpe__callstack_8h.html#a134e024756a8ffac91fb9c3cdaca4992">MPE_CallStack_t</a> *<a class="el" href="structvector.html">cstk</a>)</td></tr>
+<tr class="separator:a1b27496cfc79a41b635d0530892781eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e0d4db5e0702320ff74015e425de8ac" id="r_a8e0d4db5e0702320ff74015e425de8ac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="src_2callstack_2include_2mpe__callstack_8h.html#a8e0d4db5e0702320ff74015e425de8ac">MPE_CallStack_iteratorHasMore</a> (<a class="el" href="include_2mpe__callstack_8h.html#a134e024756a8ffac91fb9c3cdaca4992">MPE_CallStack_t</a> *<a class="el" href="structvector.html">cstk</a>)</td></tr>
+<tr class="separator:a8e0d4db5e0702320ff74015e425de8ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa043dda063afffdcdea8212eaca769ba" id="r_aa043dda063afffdcdea8212eaca769ba"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="src_2callstack_2include_2mpe__callstack_8h.html#aa043dda063afffdcdea8212eaca769ba">MPE_CallStack_iteratorFetchNext</a> (<a class="el" href="include_2mpe__callstack_8h.html#a134e024756a8ffac91fb9c3cdaca4992">MPE_CallStack_t</a> *<a class="el" href="structvector.html">cstk</a>)</td></tr>
+<tr class="separator:aa043dda063afffdcdea8212eaca769ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69c56e3b79c21561be5b575f3634d18d" id="r_a69c56e3b79c21561be5b575f3634d18d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="src_2callstack_2include_2mpe__callstack_8h.html#a69c56e3b79c21561be5b575f3634d18d">MPE_CallStack_fancyprint</a> (<a class="el" href="include_2mpe__callstack_8h.html#a134e024756a8ffac91fb9c3cdaca4992">MPE_CallStack_t</a> *<a class="el" href="structvector.html">cstk</a>, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">fd</a>, <a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *<a class="el" href="structvector.html">line_prefix</a>, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">to_print_stack_index</a>, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">max_printed_frames</a>)</td></tr>
+<tr class="separator:a69c56e3b79c21561be5b575f3634d18d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Макросы</h2>
+<a id="a20b54f4ff55e31a8cca0a50884304a79" name="a20b54f4ff55e31a8cca0a50884304a79"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20b54f4ff55e31a8cca0a50884304a79">&#9670;&#160;</a></span>HAVE_BACKTRACE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> HAVE_BACKTRACE&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="src_2callstack_2include_2mpe__callstack_8h_source.html">src/callstack/include/mpe_callstack.h</a> строка <a class="el" href="src_2callstack_2include_2mpe__callstack_8h_source.html#l00009">9</a></p>
+
+</div>
+</div>
+<a id="a097122ca1ca7afc57d519a213733d14a" name="a097122ca1ca7afc57d519a213733d14a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a097122ca1ca7afc57d519a213733d14a">&#9670;&#160;</a></span>MPE_CallStack_init</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_CallStack_init</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><a class="el" href="structvector.html">cstk</a></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Макроопределение:</b><div class="fragment"><div class="line">        <span class="keywordflow">do</span> { \</div>
+<div class="line">            (<a class="code hl_struct" href="structvector.html">cstk</a>)-&gt;depth = <a class="code hl_struct" href="structvector.html">backtrace</a>( (<a class="code hl_struct" href="structvector.html">cstk</a>)-&gt;buffer, \</div>
+<div class="line">                                       <a class="code hl_define" href="src_2callstack_2include_2mpe__callstack_8h.html#a5fec8d028fe44ecc5d1f3824323ee758">MPE_CALLSTACK_MAXDEPTH</a> ); \</div>
+<div class="line">            (<a class="code hl_struct" href="structvector.html">cstk</a>)-&gt;pipefile = <a class="code hl_struct" href="structvector.html">NULL</a>; \</div>
+<div class="line">        } <span class="keywordflow">while</span> (0)</div>
+<div class="ttc" id="asrc_2callstack_2include_2mpe__callstack_8h_html_a5fec8d028fe44ecc5d1f3824323ee758"><div class="ttname"><a href="src_2callstack_2include_2mpe__callstack_8h.html#a5fec8d028fe44ecc5d1f3824323ee758">MPE_CALLSTACK_MAXDEPTH</a></div><div class="ttdeci">#define MPE_CALLSTACK_MAXDEPTH</div><div class="ttdef"><b>Definition</b> <a href="src_2callstack_2include_2mpe__callstack_8h_source.html#l00018">src/callstack/include/mpe_callstack.h:18</a></div></div>
+<div class="ttc" id="astructvector_html"><div class="ttname"><a href="structvector.html">vector</a></div><div class="ttdef"><b>Definition</b> <a href="point_8h_source.html#l00012">point.h:12</a></div></div>
+</div><!-- fragment -->
+<p class="definition">См. определение в файле <a class="el" href="src_2callstack_2include_2mpe__callstack_8h_source.html">src/callstack/include/mpe_callstack.h</a> строка <a class="el" href="src_2callstack_2include_2mpe__callstack_8h_source.html#l00027">27</a></p>
+
+</div>
+</div>
+<a id="a5fec8d028fe44ecc5d1f3824323ee758" name="a5fec8d028fe44ecc5d1f3824323ee758"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5fec8d028fe44ecc5d1f3824323ee758">&#9670;&#160;</a></span>MPE_CALLSTACK_MAXDEPTH</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_CALLSTACK_MAXDEPTH&#160;&#160;&#160;128</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="src_2callstack_2include_2mpe__callstack_8h_source.html">src/callstack/include/mpe_callstack.h</a> строка <a class="el" href="src_2callstack_2include_2mpe__callstack_8h_source.html#l00018">18</a></p>
+
+</div>
+</div>
+<a id="adbe8a15eaf1964a2c8b365129a0fdf90" name="adbe8a15eaf1964a2c8b365129a0fdf90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adbe8a15eaf1964a2c8b365129a0fdf90">&#9670;&#160;</a></span>MPE_CALLSTACK_MAXLINE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_CALLSTACK_MAXLINE&#160;&#160;&#160;1024</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="src_2callstack_2include_2mpe__callstack_8h_source.html">src/callstack/include/mpe_callstack.h</a> строка <a class="el" href="src_2callstack_2include_2mpe__callstack_8h_source.html#l00012">12</a></p>
+
+</div>
+</div>
+<a id="af557e1e92ffdc9451c15f6bfebfd1d8c" name="af557e1e92ffdc9451c15f6bfebfd1d8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af557e1e92ffdc9451c15f6bfebfd1d8c">&#9670;&#160;</a></span>MPE_CallStack_print</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_CallStack_print</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><a class="el" href="structvector.html">cstk</a>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><a class="el" href="structvector.html">fd</a>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Макроопределение:</b><div class="fragment"><div class="line">        <span class="keywordflow">do</span> { <a class="code hl_struct" href="structvector.html">\</a></div>
+<div class="line"><a class="code hl_struct" href="structvector.html">            backtrace_symbols_fd</a>( (<a class="code hl_struct" href="structvector.html">cstk</a>)-&gt;buffer, (<a class="code hl_struct" href="structvector.html">cstk</a>)-&gt;depth, (<a class="code hl_struct" href="structvector.html">fd</a>) ); \</div>
+<div class="line">        } <span class="keywordflow">while</span> (0)</div>
+</div><!-- fragment -->
+<p class="definition">См. определение в файле <a class="el" href="src_2callstack_2include_2mpe__callstack_8h_source.html">src/callstack/include/mpe_callstack.h</a> строка <a class="el" href="src_2callstack_2include_2mpe__callstack_8h_source.html#l00034">34</a></p>
+
+</div>
+</div>
+<a id="a4ac0da49f5682b68df2abed022edb449" name="a4ac0da49f5682b68df2abed022edb449"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ac0da49f5682b68df2abed022edb449">&#9670;&#160;</a></span>MPE_CALLSTACK_UNLIMITED</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_CALLSTACK_UNLIMITED&#160;&#160;&#160;9999</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="src_2callstack_2include_2mpe__callstack_8h_source.html">src/callstack/include/mpe_callstack.h</a> строка <a class="el" href="src_2callstack_2include_2mpe__callstack_8h_source.html#l00011">11</a></p>
+
+</div>
+</div>
+<h2 class="groupheader">Типы</h2>
+<a id="a134e024756a8ffac91fb9c3cdaca4992" name="a134e024756a8ffac91fb9c3cdaca4992"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a134e024756a8ffac91fb9c3cdaca4992">&#9670;&#160;</a></span>MPE_CallStack_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">typedef</a> <a class="el" href="structvector.html">struct</a> <a class="el" href="structMPE__CallStack.html">MPE_CallStack</a> <a class="el" href="include_2mpe__callstack_8h.html#a134e024756a8ffac91fb9c3cdaca4992">MPE_CallStack_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Функции</h2>
+<a id="a69c56e3b79c21561be5b575f3634d18d" name="a69c56e3b79c21561be5b575f3634d18d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69c56e3b79c21561be5b575f3634d18d">&#9670;&#160;</a></span>MPE_CallStack_fancyprint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> MPE_CallStack_fancyprint </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="include_2mpe__callstack_8h.html#a134e024756a8ffac91fb9c3cdaca4992">MPE_CallStack_t</a> *&#160;</td>
+          <td class="paramname"><em>cstk</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>fd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>line_prefix</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>to_print_stack_index</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>max_printed_frames</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa043dda063afffdcdea8212eaca769ba" name="aa043dda063afffdcdea8212eaca769ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa043dda063afffdcdea8212eaca769ba">&#9670;&#160;</a></span>MPE_CallStack_iteratorFetchNext()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> * MPE_CallStack_iteratorFetchNext </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="include_2mpe__callstack_8h.html#a134e024756a8ffac91fb9c3cdaca4992">MPE_CallStack_t</a> *&#160;</td>
+          <td class="paramname"><em>cstk</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8e0d4db5e0702320ff74015e425de8ac" name="a8e0d4db5e0702320ff74015e425de8ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e0d4db5e0702320ff74015e425de8ac">&#9670;&#160;</a></span>MPE_CallStack_iteratorHasMore()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_CallStack_iteratorHasMore </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="include_2mpe__callstack_8h.html#a134e024756a8ffac91fb9c3cdaca4992">MPE_CallStack_t</a> *&#160;</td>
+          <td class="paramname"><em>cstk</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1b27496cfc79a41b635d0530892781eb" name="a1b27496cfc79a41b635d0530892781eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b27496cfc79a41b635d0530892781eb">&#9670;&#160;</a></span>MPE_CallStack_iteratorInit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> MPE_CallStack_iteratorInit </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="include_2mpe__callstack_8h.html#a134e024756a8ffac91fb9c3cdaca4992">MPE_CallStack_t</a> *&#160;</td>
+          <td class="paramname"><em>cstk</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

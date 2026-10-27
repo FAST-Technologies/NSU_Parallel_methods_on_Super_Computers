@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lab_02: MPI + OpenMP Parallel Programming: Исходный файл clog_merger.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Lab_02: MPI + OpenMP Parallel Programming<span id="projectnumber">&#160;2.1</span>
+   </div>
+   <div id="projectbrief">Решение 3D уравнения Пуассона методом Якоби с двумерной декомпозицией</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_1f646cbbb0f6227d25dd06f792d51aba.html">mpe2-1.3.0</a></li><li class="navelem"><a class="el" href="dir_493399512d45eb30627376023737183a.html">src</a></li><li class="navelem"><a class="el" href="dir_4dd21a1309df0d73c93832f59c814642.html">logging</a></li><li class="navelem"><a class="el" href="dir_d1e3342e2909ab46223a280715173519.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">clog_merger.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="clog__merger_8h.html">См. документацию.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">   (C) 2001 by Argonne National Laboratory.</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">       See COPYRIGHT in top-level directory.</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">*/</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#if !defined( _CLOG_MERGER )</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#define _CLOG_MERGER</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="src_2logging_2include_2clog__const_8h.html">clog_const.h</a>&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="clog__block_8h.html">clog_block.h</a>&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="clog__buffer_8h.html">clog_buffer.h</a>&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;<a class="code" href="clog__record_8h.html">clog_record.h</a>&quot;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="clog__merger_8h.html#a52486b128fb4056471f522b2420a2e09">   13</a></span><span class="preprocessor">#define CLOG_MERGE_LOGBUFTYPE  777</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="foldopen" id="foldopen00015" data-start="{" data-end="};">
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="structCLOG__Merger__t.html">   15</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="structCLOG__Merger__t.html#a18d02e92d658f3aca613703c02ee89f1">   16</a></span>   <a class="code hl_struct" href="structCLOG__BlockData__t.html">CLOG_BlockData_t</a>   *<a class="code hl_variable" href="structCLOG__Merger__t.html#a18d02e92d658f3aca613703c02ee89f1">left_blk</a>;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="structCLOG__Merger__t.html#aef13417224c8696fa6c0927776a3ba0f">   17</a></span>   <a class="code hl_struct" href="structCLOG__BlockData__t.html">CLOG_BlockData_t</a>   *<a class="code hl_variable" href="structCLOG__Merger__t.html#aef13417224c8696fa6c0927776a3ba0f">right_blk</a>;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="structCLOG__Merger__t.html#ad7a26548f45021e8becd7e6c875975c0">   18</a></span>   <a class="code hl_struct" href="structCLOG__BlockData__t.html">CLOG_BlockData_t</a>   *<a class="code hl_variable" href="structCLOG__Merger__t.html#ad7a26548f45021e8becd7e6c875975c0">sorted_blk</a>;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="structCLOG__Merger__t.html#a02c944cf18eb10f466dc6808aa0ce375">   19</a></span>   <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>        <a class="code hl_variable" href="structCLOG__Merger__t.html#a02c944cf18eb10f466dc6808aa0ce375">block_size</a>;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="structCLOG__Merger__t.html#a183453698dfb9b902f04cefa6e34da9a">   20</a></span>   <span class="keywordtype">int</span>                 <a class="code hl_variable" href="structCLOG__Merger__t.html#a183453698dfb9b902f04cefa6e34da9a">num_active_blks</a>;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="structCLOG__Merger__t.html#ae03c9489f44b1de7341663ea02312240">   22</a></span>   <span class="keywordtype">int</span>                 <a class="code hl_variable" href="structCLOG__Merger__t.html#ae03c9489f44b1de7341663ea02312240">world_size</a>;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="structCLOG__Merger__t.html#a01badead56b09c4cfd47e2e9e80f0a07">   23</a></span>   <span class="keywordtype">int</span>                 <a class="code hl_variable" href="structCLOG__Merger__t.html#a01badead56b09c4cfd47e2e9e80f0a07">local_world_rank</a>;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="structCLOG__Merger__t.html#a3ba5a62f4b5aa85b9e58493125c1e687">   24</a></span>   <span class="keywordtype">int</span>                 <a class="code hl_variable" href="structCLOG__Merger__t.html#a3ba5a62f4b5aa85b9e58493125c1e687">left_world_rank</a>;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="structCLOG__Merger__t.html#a7f15ffca007333284a3d0e131fc250c5">   25</a></span>   <span class="keywordtype">int</span>                 <a class="code hl_variable" href="structCLOG__Merger__t.html#a7f15ffca007333284a3d0e131fc250c5">right_world_rank</a>;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="structCLOG__Merger__t.html#a38ac85e373cb8a929393d88f77e07b82">   26</a></span>   <span class="keywordtype">int</span>                 <a class="code hl_variable" href="structCLOG__Merger__t.html#a38ac85e373cb8a929393d88f77e07b82">parent_world_rank</a>;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="structCLOG__Merger__t.html#a2c11799f9d7fa7aad50c264be8ee0370">   28</a></span>   <a class="code hl_define" href="include_2clog__const_8h.html#a0046a65ff3bf0ae8b87013b27ea09783">CLOG_BOOL_T</a>         <a class="code hl_variable" href="structCLOG__Merger__t.html#a2c11799f9d7fa7aad50c264be8ee0370">is_big_endian</a>;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="structCLOG__Merger__t.html#a33e72b2ab49503eafc63f50cbab05564">   29</a></span>   <span class="keywordtype">char</span>                out_filename[ <a class="code hl_define" href="include_2clog__const_8h.html#ab6501f5486fd7479fcf0efd9c6638c54">CLOG_PATH_STRLEN</a> ];</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="structCLOG__Merger__t.html#a08d340a7e841454c94077980abb2f960">   30</a></span>   <span class="keywordtype">int</span>                 <a class="code hl_variable" href="structCLOG__Merger__t.html#a08d340a7e841454c94077980abb2f960">out_fd</a>;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>} <a class="code hl_struct" href="structCLOG__Merger__t.html">CLOG_Merger_t</a>;</div>
+</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="clog__merger_8h.html#ad2e0ea0d62aeff188d10cdf3f4e22aed">   33</a></span><a class="code hl_struct" href="structCLOG__Merger__t.html">CLOG_Merger_t</a>* <a class="code hl_function" href="clog__merger_8h.html#ad2e0ea0d62aeff188d10cdf3f4e22aed">CLOG_Merger_create</a>( <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>  block_size );</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="clog__merger_8h.html#acc11ea72d64505f9c67a07bfbd3743e2">   35</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="clog__merger_8h.html#acc11ea72d64505f9c67a07bfbd3743e2">CLOG_Merger_free</a>( <a class="code hl_struct" href="structCLOG__Merger__t.html">CLOG_Merger_t</a> **<a class="code hl_struct" href="structvector.html">merger_handle</a> );</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="clog__merger_8h.html#ac436d4c0307793a28ef7fa75105e2ceb">   37</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="clog__merger_8h.html#ac436d4c0307793a28ef7fa75105e2ceb">CLOG_Merger_set_neighbor_ranks</a>( <a class="code hl_struct" href="structCLOG__Merger__t.html">CLOG_Merger_t</a> *merger );</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="clog__merger_8h.html#ac16389acbbde5cd53da9f4ac0cebef03">   39</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="clog__merger_8h.html#ac16389acbbde5cd53da9f4ac0cebef03">CLOG_Merger_init</a>(       <a class="code hl_struct" href="structCLOG__Merger__t.html">CLOG_Merger_t</a>    *merger,</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>                       <span class="keyword">const</span> <a class="code hl_struct" href="structCLOG__Preamble__t.html">CLOG_Preamble_t</a>  *preamble,</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>                       <span class="keyword">const</span> <span class="keywordtype">char</span>             *<a class="code hl_struct" href="structvector.html">merged_file_prefix</a> );</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="clog__merger_8h.html#a028dea70f2ca40ffe647df1dd5cb66ee">   43</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="clog__merger_8h.html#a028dea70f2ca40ffe647df1dd5cb66ee">CLOG_Merger_finalize</a>( <a class="code hl_struct" href="structCLOG__Merger__t.html">CLOG_Merger_t</a> *merger, <a class="code hl_struct" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer );</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="clog__merger_8h.html#a601fbdb5bd904d92ff628bee50a2cc57">   45</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="clog__merger_8h.html#a601fbdb5bd904d92ff628bee50a2cc57">CLOG_Merger_flush</a>( <a class="code hl_struct" href="structCLOG__Merger__t.html">CLOG_Merger_t</a> *merger );</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="clog__merger_8h.html#a360a2b3de852046a4a6f85f17b6abb2f">   47</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="clog__merger_8h.html#a360a2b3de852046a4a6f85f17b6abb2f">CLOG_Merger_save_rec</a>(       <a class="code hl_struct" href="structCLOG__Merger__t.html">CLOG_Merger_t</a> *merger,</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>                           <span class="keyword">const</span> <a class="code hl_struct" href="structCLOG__Rec__Header__t.html">CLOG_Rec_Header_t</a> *<a class="code hl_struct" href="structvector.html">hdr</a> );</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="clog__merger_8h.html#a5177e78195b3524842c63cad006b0614">   50</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="clog__merger_8h.html#a5177e78195b3524842c63cad006b0614">CLOG_Merger_refill_sideblock</a>( <a class="code hl_struct" href="structCLOG__BlockData__t.html">CLOG_BlockData_t</a>  *blockdata,</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>                                   <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">block_world_rank</a>, <span class="keywordtype">int</span> block_size );</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="clog__merger_8h.html#aaaa8d06a1cba74e639c3bcfebbf7a212">   53</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="clog__merger_8h.html#aaaa8d06a1cba74e639c3bcfebbf7a212">CLOG_Merger_refill_localblock</a>( <a class="code hl_struct" href="structCLOG__BlockData__t.html">CLOG_BlockData_t</a> *blockdata,</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>                                    <a class="code hl_struct" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a>    *buffer,</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>                                    <a class="code hl_define" href="clog__timer_8h.html#abf0f7e46df13fdbacdb7a819cf12267d">CLOG_Time_t</a>      *<a class="code hl_struct" href="structvector.html">timediff_handle</a> );</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><a class="code hl_struct" href="structCLOG__Rec__Header__t.html">CLOG_Rec_Header_t</a> *</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="clog__merger_8h.html#a0e848c6f5a2d1c1ffa99e9f8ec02ec82">   58</a></span><a class="code hl_function" href="clog__merger_8h.html#a0e848c6f5a2d1c1ffa99e9f8ec02ec82">CLOG_Merger_next_sideblock_hdr</a>( <a class="code hl_struct" href="structCLOG__BlockData__t.html">CLOG_BlockData_t</a>   *blockdata,</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>                                <a class="code hl_struct" href="structCLOG__Rec__Header__t.html">CLOG_Rec_Header_t</a>  *<a class="code hl_struct" href="structvector.html">hdr</a>,</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>                                <a class="code hl_struct" href="structCLOG__Merger__t.html">CLOG_Merger_t</a>      *merger,</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>                                <span class="keywordtype">int</span>                 <a class="code hl_struct" href="structvector.html">block_world_rank</a>,</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>                                <span class="keywordtype">int</span>                 block_size );</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><a class="code hl_struct" href="structCLOG__Rec__Header__t.html">CLOG_Rec_Header_t</a> *</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="clog__merger_8h.html#aae77b25a2ca4a357779a07637a64c525">   65</a></span><a class="code hl_function" href="clog__merger_8h.html#aae77b25a2ca4a357779a07637a64c525">CLOG_Merger_next_localblock_hdr</a>( <a class="code hl_struct" href="structCLOG__BlockData__t.html">CLOG_BlockData_t</a>   *blockdata,</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>                                 <a class="code hl_struct" href="structCLOG__Rec__Header__t.html">CLOG_Rec_Header_t</a>  *<a class="code hl_struct" href="structvector.html">hdr</a>,</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>                                 <a class="code hl_struct" href="structCLOG__Merger__t.html">CLOG_Merger_t</a>      *merger,</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>                                 <a class="code hl_struct" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a>      *buffer,</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>                                 <a class="code hl_define" href="clog__timer_8h.html#abf0f7e46df13fdbacdb7a819cf12267d">CLOG_Time_t</a>        *<a class="code hl_struct" href="structvector.html">timediff_handle</a> );</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="clog__merger_8h.html#a423c5442b1dbd20dbd9d8dc2050fb489">   71</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="clog__merger_8h.html#a423c5442b1dbd20dbd9d8dc2050fb489">CLOG_Merger_sort</a>( <a class="code hl_struct" href="structCLOG__Merger__t.html">CLOG_Merger_t</a> *merger, <a class="code hl_struct" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *buffer );</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="clog__merger_8h.html#aca39584d62b187899f65c2216797b08b">   73</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="clog__merger_8h.html#aca39584d62b187899f65c2216797b08b">CLOG_Merger_last_flush</a>( <a class="code hl_struct" href="structCLOG__Merger__t.html">CLOG_Merger_t</a> *merger );</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclog__block_8h_html"><div class="ttname"><a href="clog__block_8h.html">clog_block.h</a></div></div>
+<div class="ttc" id="aclog__buffer_8h_html"><div class="ttname"><a href="clog__buffer_8h.html">clog_buffer.h</a></div></div>
+<div class="ttc" id="aclog__merger_8h_html_a028dea70f2ca40ffe647df1dd5cb66ee"><div class="ttname"><a href="clog__merger_8h.html#a028dea70f2ca40ffe647df1dd5cb66ee">CLOG_Merger_finalize</a></div><div class="ttdeci">void CLOG_Merger_finalize(CLOG_Merger_t *merger, CLOG_Buffer_t *buffer)</div></div>
+<div class="ttc" id="aclog__merger_8h_html_a0e848c6f5a2d1c1ffa99e9f8ec02ec82"><div class="ttname"><a href="clog__merger_8h.html#a0e848c6f5a2d1c1ffa99e9f8ec02ec82">CLOG_Merger_next_sideblock_hdr</a></div><div class="ttdeci">CLOG_Rec_Header_t * CLOG_Merger_next_sideblock_hdr(CLOG_BlockData_t *blockdata, CLOG_Rec_Header_t *hdr, CLOG_Merger_t *merger, int block_world_rank, int block_size)</div></div>
+<div class="ttc" id="aclog__merger_8h_html_a360a2b3de852046a4a6f85f17b6abb2f"><div class="ttname"><a href="clog__merger_8h.html#a360a2b3de852046a4a6f85f17b6abb2f">CLOG_Merger_save_rec</a></div><div class="ttdeci">void CLOG_Merger_save_rec(CLOG_Merger_t *merger, const CLOG_Rec_Header_t *hdr)</div></div>
+<div class="ttc" id="aclog__merger_8h_html_a423c5442b1dbd20dbd9d8dc2050fb489"><div class="ttname"><a href="clog__merger_8h.html#a423c5442b1dbd20dbd9d8dc2050fb489">CLOG_Merger_sort</a></div><div class="ttdeci">void CLOG_Merger_sort(CLOG_Merger_t *merger, CLOG_Buffer_t *buffer)</div></div>
+<div class="ttc" id="aclog__merger_8h_html_a5177e78195b3524842c63cad006b0614"><div class="ttname"><a href="clog__merger_8h.html#a5177e78195b3524842c63cad006b0614">CLOG_Merger_refill_sideblock</a></div><div class="ttdeci">void CLOG_Merger_refill_sideblock(CLOG_BlockData_t *blockdata, int block_world_rank, int block_size)</div></div>
+<div class="ttc" id="aclog__merger_8h_html_a601fbdb5bd904d92ff628bee50a2cc57"><div class="ttname"><a href="clog__merger_8h.html#a601fbdb5bd904d92ff628bee50a2cc57">CLOG_Merger_flush</a></div><div class="ttdeci">void CLOG_Merger_flush(CLOG_Merger_t *merger)</div></div>
+<div class="ttc" id="aclog__merger_8h_html_aaaa8d06a1cba74e639c3bcfebbf7a212"><div class="ttname"><a href="clog__merger_8h.html#aaaa8d06a1cba74e639c3bcfebbf7a212">CLOG_Merger_refill_localblock</a></div><div class="ttdeci">void CLOG_Merger_refill_localblock(CLOG_BlockData_t *blockdata, CLOG_Buffer_t *buffer, CLOG_Time_t *timediff_handle)</div></div>
+<div class="ttc" id="aclog__merger_8h_html_aae77b25a2ca4a357779a07637a64c525"><div class="ttname"><a href="clog__merger_8h.html#aae77b25a2ca4a357779a07637a64c525">CLOG_Merger_next_localblock_hdr</a></div><div class="ttdeci">CLOG_Rec_Header_t * CLOG_Merger_next_localblock_hdr(CLOG_BlockData_t *blockdata, CLOG_Rec_Header_t *hdr, CLOG_Merger_t *merger, CLOG_Buffer_t *buffer, CLOG_Time_t *timediff_handle)</div></div>
+<div class="ttc" id="aclog__merger_8h_html_ac16389acbbde5cd53da9f4ac0cebef03"><div class="ttname"><a href="clog__merger_8h.html#ac16389acbbde5cd53da9f4ac0cebef03">CLOG_Merger_init</a></div><div class="ttdeci">void CLOG_Merger_init(CLOG_Merger_t *merger, const CLOG_Preamble_t *preamble, const char *merged_file_prefix)</div></div>
+<div class="ttc" id="aclog__merger_8h_html_ac436d4c0307793a28ef7fa75105e2ceb"><div class="ttname"><a href="clog__merger_8h.html#ac436d4c0307793a28ef7fa75105e2ceb">CLOG_Merger_set_neighbor_ranks</a></div><div class="ttdeci">void CLOG_Merger_set_neighbor_ranks(CLOG_Merger_t *merger)</div></div>
+<div class="ttc" id="aclog__merger_8h_html_aca39584d62b187899f65c2216797b08b"><div class="ttname"><a href="clog__merger_8h.html#aca39584d62b187899f65c2216797b08b">CLOG_Merger_last_flush</a></div><div class="ttdeci">void CLOG_Merger_last_flush(CLOG_Merger_t *merger)</div></div>
+<div class="ttc" id="aclog__merger_8h_html_acc11ea72d64505f9c67a07bfbd3743e2"><div class="ttname"><a href="clog__merger_8h.html#acc11ea72d64505f9c67a07bfbd3743e2">CLOG_Merger_free</a></div><div class="ttdeci">void CLOG_Merger_free(CLOG_Merger_t **merger_handle)</div></div>
+<div class="ttc" id="aclog__merger_8h_html_ad2e0ea0d62aeff188d10cdf3f4e22aed"><div class="ttname"><a href="clog__merger_8h.html#ad2e0ea0d62aeff188d10cdf3f4e22aed">CLOG_Merger_create</a></div><div class="ttdeci">CLOG_Merger_t * CLOG_Merger_create(unsigned int block_size)</div></div>
+<div class="ttc" id="aclog__record_8h_html"><div class="ttname"><a href="clog__record_8h.html">clog_record.h</a></div></div>
+<div class="ttc" id="aclog__timer_8h_html_abf0f7e46df13fdbacdb7a819cf12267d"><div class="ttname"><a href="clog__timer_8h.html#abf0f7e46df13fdbacdb7a819cf12267d">CLOG_Time_t</a></div><div class="ttdeci">#define CLOG_Time_t</div><div class="ttdef"><b>Definition</b> <a href="clog__timer_8h_source.html#l00008">clog_timer.h:8</a></div></div>
+<div class="ttc" id="ainclude_2clog__const_8h_html_a0046a65ff3bf0ae8b87013b27ea09783"><div class="ttname"><a href="include_2clog__const_8h.html#a0046a65ff3bf0ae8b87013b27ea09783">CLOG_BOOL_T</a></div><div class="ttdeci">#define CLOG_BOOL_T</div><div class="ttdef"><b>Definition</b> <a href="include_2clog__const_8h_source.html#l00014">include/clog_const.h:14</a></div></div>
+<div class="ttc" id="ainclude_2clog__const_8h_html_ab6501f5486fd7479fcf0efd9c6638c54"><div class="ttname"><a href="include_2clog__const_8h.html#ab6501f5486fd7479fcf0efd9c6638c54">CLOG_PATH_STRLEN</a></div><div class="ttdeci">#define CLOG_PATH_STRLEN</div><div class="ttdef"><b>Definition</b> <a href="include_2clog__const_8h_source.html#l00019">include/clog_const.h:19</a></div></div>
+<div class="ttc" id="asrc_2logging_2include_2clog__const_8h_html"><div class="ttname"><a href="src_2logging_2include_2clog__const_8h.html">clog_const.h</a></div></div>
+<div class="ttc" id="astructCLOG__BlockData__t_html"><div class="ttname"><a href="structCLOG__BlockData__t.html">CLOG_BlockData_t</a></div><div class="ttdef"><b>Definition</b> <a href="clog__block_8h_source.html#l00020">clog_block.h:20</a></div></div>
+<div class="ttc" id="astructCLOG__Buffer__t_html"><div class="ttname"><a href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a></div><div class="ttdef"><b>Definition</b> <a href="clog__buffer_8h_source.html#l00036">clog_buffer.h:36</a></div></div>
+<div class="ttc" id="astructCLOG__Merger__t_html"><div class="ttname"><a href="structCLOG__Merger__t.html">CLOG_Merger_t</a></div><div class="ttdef"><b>Definition</b> <a href="clog__merger_8h_source.html#l00015">clog_merger.h:15</a></div></div>
+<div class="ttc" id="astructCLOG__Merger__t_html_a01badead56b09c4cfd47e2e9e80f0a07"><div class="ttname"><a href="structCLOG__Merger__t.html#a01badead56b09c4cfd47e2e9e80f0a07">CLOG_Merger_t::local_world_rank</a></div><div class="ttdeci">int local_world_rank</div><div class="ttdef"><b>Definition</b> <a href="clog__merger_8h_source.html#l00023">clog_merger.h:23</a></div></div>
+<div class="ttc" id="astructCLOG__Merger__t_html_a02c944cf18eb10f466dc6808aa0ce375"><div class="ttname"><a href="structCLOG__Merger__t.html#a02c944cf18eb10f466dc6808aa0ce375">CLOG_Merger_t::block_size</a></div><div class="ttdeci">unsigned int block_size</div><div class="ttdef"><b>Definition</b> <a href="clog__merger_8h_source.html#l00019">clog_merger.h:19</a></div></div>
+<div class="ttc" id="astructCLOG__Merger__t_html_a08d340a7e841454c94077980abb2f960"><div class="ttname"><a href="structCLOG__Merger__t.html#a08d340a7e841454c94077980abb2f960">CLOG_Merger_t::out_fd</a></div><div class="ttdeci">int out_fd</div><div class="ttdef"><b>Definition</b> <a href="clog__merger_8h_source.html#l00030">clog_merger.h:30</a></div></div>
+<div class="ttc" id="astructCLOG__Merger__t_html_a183453698dfb9b902f04cefa6e34da9a"><div class="ttname"><a href="structCLOG__Merger__t.html#a183453698dfb9b902f04cefa6e34da9a">CLOG_Merger_t::num_active_blks</a></div><div class="ttdeci">int num_active_blks</div><div class="ttdef"><b>Definition</b> <a href="clog__merger_8h_source.html#l00020">clog_merger.h:20</a></div></div>
+<div class="ttc" id="astructCLOG__Merger__t_html_a18d02e92d658f3aca613703c02ee89f1"><div class="ttname"><a href="structCLOG__Merger__t.html#a18d02e92d658f3aca613703c02ee89f1">CLOG_Merger_t::left_blk</a></div><div class="ttdeci">CLOG_BlockData_t * left_blk</div><div class="ttdef"><b>Definition</b> <a href="clog__merger_8h_source.html#l00016">clog_merger.h:16</a></div></div>
+<div class="ttc" id="astructCLOG__Merger__t_html_a2c11799f9d7fa7aad50c264be8ee0370"><div class="ttname"><a href="structCLOG__Merger__t.html#a2c11799f9d7fa7aad50c264be8ee0370">CLOG_Merger_t::is_big_endian</a></div><div class="ttdeci">CLOG_BOOL_T is_big_endian</div><div class="ttdef"><b>Definition</b> <a href="clog__merger_8h_source.html#l00028">clog_merger.h:28</a></div></div>
+<div class="ttc" id="astructCLOG__Merger__t_html_a38ac85e373cb8a929393d88f77e07b82"><div class="ttname"><a href="structCLOG__Merger__t.html#a38ac85e373cb8a929393d88f77e07b82">CLOG_Merger_t::parent_world_rank</a></div><div class="ttdeci">int parent_world_rank</div><div class="ttdef"><b>Definition</b> <a href="clog__merger_8h_source.html#l00026">clog_merger.h:26</a></div></div>
+<div class="ttc" id="astructCLOG__Merger__t_html_a3ba5a62f4b5aa85b9e58493125c1e687"><div class="ttname"><a href="structCLOG__Merger__t.html#a3ba5a62f4b5aa85b9e58493125c1e687">CLOG_Merger_t::left_world_rank</a></div><div class="ttdeci">int left_world_rank</div><div class="ttdef"><b>Definition</b> <a href="clog__merger_8h_source.html#l00024">clog_merger.h:24</a></div></div>
+<div class="ttc" id="astructCLOG__Merger__t_html_a7f15ffca007333284a3d0e131fc250c5"><div class="ttname"><a href="structCLOG__Merger__t.html#a7f15ffca007333284a3d0e131fc250c5">CLOG_Merger_t::right_world_rank</a></div><div class="ttdeci">int right_world_rank</div><div class="ttdef"><b>Definition</b> <a href="clog__merger_8h_source.html#l00025">clog_merger.h:25</a></div></div>
+<div class="ttc" id="astructCLOG__Merger__t_html_ad7a26548f45021e8becd7e6c875975c0"><div class="ttname"><a href="structCLOG__Merger__t.html#ad7a26548f45021e8becd7e6c875975c0">CLOG_Merger_t::sorted_blk</a></div><div class="ttdeci">CLOG_BlockData_t * sorted_blk</div><div class="ttdef"><b>Definition</b> <a href="clog__merger_8h_source.html#l00018">clog_merger.h:18</a></div></div>
+<div class="ttc" id="astructCLOG__Merger__t_html_ae03c9489f44b1de7341663ea02312240"><div class="ttname"><a href="structCLOG__Merger__t.html#ae03c9489f44b1de7341663ea02312240">CLOG_Merger_t::world_size</a></div><div class="ttdeci">int world_size</div><div class="ttdef"><b>Definition</b> <a href="clog__merger_8h_source.html#l00022">clog_merger.h:22</a></div></div>
+<div class="ttc" id="astructCLOG__Merger__t_html_aef13417224c8696fa6c0927776a3ba0f"><div class="ttname"><a href="structCLOG__Merger__t.html#aef13417224c8696fa6c0927776a3ba0f">CLOG_Merger_t::right_blk</a></div><div class="ttdeci">CLOG_BlockData_t * right_blk</div><div class="ttdef"><b>Definition</b> <a href="clog__merger_8h_source.html#l00017">clog_merger.h:17</a></div></div>
+<div class="ttc" id="astructCLOG__Preamble__t_html"><div class="ttname"><a href="structCLOG__Preamble__t.html">CLOG_Preamble_t</a></div><div class="ttdef"><b>Definition</b> <a href="clog__preamble_8h_source.html#l00018">clog_preamble.h:18</a></div></div>
+<div class="ttc" id="astructCLOG__Rec__Header__t_html"><div class="ttname"><a href="structCLOG__Rec__Header__t.html">CLOG_Rec_Header_t</a></div><div class="ttdef"><b>Definition</b> <a href="clog__record_8h_source.html#l00027">clog_record.h:27</a></div></div>
+<div class="ttc" id="astructvector_html"><div class="ttname"><a href="structvector.html">vector</a></div><div class="ttdef"><b>Definition</b> <a href="point_8h_source.html#l00012">point.h:12</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lab_02: MPI + OpenMP Parallel Programming: Исходный файл mpe_log_genproc.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Lab_02: MPI + OpenMP Parallel Programming<span id="projectnumber">&#160;2.1</span>
+   </div>
+   <div id="projectbrief">Решение 3D уравнения Пуассона методом Якоби с двумерной декомпозицией</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_1f646cbbb0f6227d25dd06f792d51aba.html">mpe2-1.3.0</a></li><li class="navelem"><a class="el" href="dir_493399512d45eb30627376023737183a.html">src</a></li><li class="navelem"><a class="el" href="dir_67305665d0d0fb6a8ea1e892f770249b.html">unused</a></li><li class="navelem"><a class="el" href="dir_d96eb50103a65c62d73b02690afaaa54.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">mpe_log_genproc.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="mpe__log__genproc_8h.html">См. документацию.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">   (C) 2001 by Argonne National Laboratory.</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">       See COPYRIGHT in top-level directory.</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">*/</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="mpe__log__genproc_8h.html#a332a108cc146d62f929217aac810474e">   17</a></span><span class="preprocessor">#define MPE_Log_BUF_SIZE   500</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="mpe__log__genproc_8h.html#a43bfe59a36fc46ff1c95723b4dc66ed9">   18</a></span><span class="preprocessor">#define MPE_Log_EVENT_SYNC -100</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="mpe__log__genproc_8h.html#a1df08b28e2d40da29ca1231a58dee23b">   19</a></span><span class="preprocessor">#define MAX_HEADER_EVT     -1</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="mpe__log__genproc_8h.html#ab2c060095466d4a1afdde54446d15394">   20</a></span><span class="preprocessor">#define MIN_HEADER_EVT     -100</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="mpe__log__genproc_8h.html#aea0ba6ebc2fe6e0d8f3f8da7338f3c76">   22</a></span><span class="preprocessor">#define LOG_STATE_DEF -13</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="mpe__log__genproc_8h.html#a081b449dced51994cafd04d752b79782">   23</a></span><span class="preprocessor">#define LOG_MESG_SEND -101</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="mpe__log__genproc_8h.html#a4cd2ea6624107c92282960a047e1bd41">   24</a></span><span class="preprocessor">#define LOG_MESG_RECV -102</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="foldopen" id="foldopen00026" data-start="{" data-end="};">
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="struct__MPE__Log__BLOCK.html">   26</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="struct__MPE__Log__BLOCK.html">_MPE_Log_BLOCK</a> {</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="struct__MPE__Log__BLOCK.html#ae19b6fa254fe8fe9ce8bd0c0e8aab1a8">   27</a></span>  <span class="keyword">struct </span><a class="code hl_struct" href="struct__MPE__Log__BLOCK.html">_MPE_Log_BLOCK</a> *<a class="code hl_variable" href="struct__MPE__Log__BLOCK.html#ae19b6fa254fe8fe9ce8bd0c0e8aab1a8">next</a>;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="struct__MPE__Log__BLOCK.html#ac4694d2de434755325b12efda89fb3b9">   28</a></span>  <span class="keywordtype">int</span> <a class="code hl_variable" href="struct__MPE__Log__BLOCK.html#ac4694d2de434755325b12efda89fb3b9">size</a>;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="mpe__log__genproc_8h.html#aadb9de970fd4b9752968785de18f98b6">   29</a></span>} <a class="code hl_typedef" href="mpe__log__genproc_8h.html#aadb9de970fd4b9752968785de18f98b6">MPE_Log_BLOCK</a>;</div>
+</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="comment">/* Here is the definition of a MPE_Log record: */</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="comment">Note that this is variable-sized, and that &quot;size&quot; is in ints.</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="comment">This really isn&#39;t sufficient.  We really need to identify the type of</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="comment">data.  Thus, I propose:</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="comment"> */</span></div>
+<div class="foldopen" id="foldopen00038" data-start="{" data-end="};">
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="structMPE__Log__VFIELD.html">   38</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="structMPE__Log__VFIELD.html#a5ef0728a2d25129449fe416857a5f25d">   39</a></span>  <span class="keywordtype">short</span> <a class="code hl_variable" href="structMPE__Log__VFIELD.html#a5ef0728a2d25129449fe416857a5f25d">len</a>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="structMPE__Log__VFIELD.html#a30fffb774490b5764821332e937acffa">   40</a></span>  <span class="keywordtype">short</span> <a class="code hl_variable" href="structMPE__Log__VFIELD.html#a30fffb774490b5764821332e937acffa">dtype</a>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="structMPE__Log__VFIELD.html#a76f3c9ef5d14aef2bfacfb5cda2e854a">   41</a></span>  <span class="keywordtype">int</span>   other[1];</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>} <a class="code hl_struct" href="structMPE__Log__VFIELD.html">MPE_Log_VFIELD</a>;</div>
+</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="foldopen" id="foldopen00044" data-start="{" data-end="};">
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="structMPE__Log__HEADER.html">   44</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="structMPE__Log__HEADER.html#ad4a02beb2605eaaa37acf2831fe8a300">   45</a></span>  <span class="keywordtype">short</span> <a class="code hl_variable" href="structMPE__Log__HEADER.html#ad4a02beb2605eaaa37acf2831fe8a300">len</a>;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="structMPE__Log__HEADER.html#a6680fe1d74c30dd3854ea2144cd8c1f3">   46</a></span>  <span class="keywordtype">short</span> <a class="code hl_variable" href="structMPE__Log__HEADER.html#a6680fe1d74c30dd3854ea2144cd8c1f3">event</a>;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="structMPE__Log__HEADER.html#aa137e7a5a061e0363513f0488c337aa1">   47</a></span>  <span class="keywordtype">double</span> <a class="code hl_variable" href="structMPE__Log__HEADER.html#aa137e7a5a061e0363513f0488c337aa1">time</a>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>} <a class="code hl_struct" href="structMPE__Log__HEADER.html">MPE_Log_HEADER</a>;</div>
+</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="comment">   This assumes that sizeof(short) % sizeof(int) == 0.</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="comment">   The use of shorts keeps the size of the individual records down.</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="comment">   Using pairs is helpful, since we want ints to be on int boundaries.</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="comment">    </span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="comment">There are further assumptions for &quot;alog&quot; records:</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="comment"></span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="comment">if (size == 4), record has no &quot;other&quot; part.</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="comment">if (size &gt; 4)   record is:</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="comment">    size, event, time, data1, string</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="comment">*/</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="comment">  To make these easier to use, the following macros are provided:</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="comment">*/</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="mpe__log__genproc_8h.html#a192ee9644c488382164fe1973ff205a4">   65</a></span><span class="preprocessor">#define MPE_Log_INT 0</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="mpe__log__genproc_8h.html#aabc846a1634f4ef2eebb0292a377a418">   66</a></span><span class="preprocessor">#define MPE_Log_CHAR 1</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="mpe__log__genproc_8h.html#aa8546b27841584cc774e9a5a1050e899">   67</a></span><span class="preprocessor">#define MPE_Log_DOUBLE 2</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="comment">/* </span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="comment"> * This is needed incase we&#39;re compiling with the header that changes all</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="comment"> * MPI_ to PMPI_, including MPI_Wtime.  This should be ok, except the IBM</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="comment"> * MPI has PMPI_Wtime always returning zero (!).</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="preprocessor">#ifdef MPI_Wtime</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="preprocessor">#undef MPI_Wtime</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="comment">/* These give the sizes in ints */</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="mpe__log__genproc_8h.html#a69244091e032fbf3f5ef5152e3b5f24c">   79</a></span><span class="preprocessor">#define MPE_Log_HEADERSIZE    (sizeof(MPE_Log_HEADER)/sizeof(int))</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="mpe__log__genproc_8h.html#a04b32cb0845f3fcc19b79bc7362f0ab8">   80</a></span><span class="preprocessor">#define MPE_Log_VFIELDSIZE(n) ((sizeof(MPE_Log_VFIELD)/sizeof(int))+(n-1))</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="foldopen" id="foldopen00082" data-start="" data-end="">
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="mpe__log__genproc_8h.html#a7b4e8b070855804e62bc72b7820ec08a">   82</a></span><span class="preprocessor">#define MPE_Log_ADDHEADER(b,ev) { \</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="preprocessor">  double temp_time; \</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="preprocessor">  b           = (MPE_Log_HEADER *)((int *)(MPE_Log_thisBlock+1) + MPE_Log_i); \</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span><span class="preprocessor">  b-&gt;len      = (sizeof(MPE_Log_HEADER)/sizeof(int)); \</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="preprocessor">  b-&gt;event    = ev; \</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span><span class="preprocessor">  temp_time = MPI_Wtime(); \</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="preprocessor">  MOVEDBL( &amp;b-&gt;time, &amp;temp_time ); \</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="preprocessor">  MPE_Log_i   += b-&gt;len; }</span></div>
+</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="foldopen" id="foldopen00091" data-start="" data-end="">
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="mpe__log__genproc_8h.html#a3cc6813522796cbc783155adf8cc77cc">   91</a></span><span class="preprocessor">#define MPE_Log_ADDINTS(b,v,n,i) \</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="preprocessor">{    v           = (MPE_Log_VFIELD *)((int *)(MPE_Log_thisBlock+1) + \</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="preprocessor">                      MPE_Log_i);\</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="preprocessor">    v-&gt;len      = (sizeof(MPE_Log_VFIELD) / sizeof(int)) + (n-1);\</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="preprocessor">    b-&gt;len      += v-&gt;len;\</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span><span class="preprocessor">    v-&gt;dtype    = MPE_Log_INT;\</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span><span class="preprocessor">    memcpy(v-&gt;other,i,n*sizeof(int) ); \</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span><span class="preprocessor">    MPE_Log_i   += v-&gt;len;  }</span></div>
+</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="foldopen" id="foldopen00100" data-start="" data-end="">
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno"><a class="line" href="mpe__log__genproc_8h.html#ab9611b20caf71ed32f66eff5b237aa5a">  100</a></span><span class="preprocessor">#define MPE_Log_ADDSTRING(b,v,str) \</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="preprocessor">{   int ln, ln4;\</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="preprocessor">    ln          = strlen(str) + 1;\</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span><span class="preprocessor">    ln4         = (ln + sizeof(int) - 1) / sizeof(int);\</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="preprocessor">    v           = (MPE_Log_VFIELD *)((int *)(MPE_Log_thisBlock+1) + MPE_Log_i);\</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="preprocessor">    v-&gt;len      = (sizeof(MPE_Log_VFIELD) / sizeof(int)) + ln4 - 1;\</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="preprocessor">    b-&gt;len      += v-&gt;len;\</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="preprocessor">    v-&gt;dtype    = MPE_Log_CHAR;\</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span><span class="preprocessor">    memcpy( v-&gt;other, str, ln );\</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span><span class="preprocessor">    MPE_Log_i   += v-&gt;len;}</span></div>
+</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno"><a class="line" href="mpe__log__genproc_8h.html#ab4631cb16d85a7bb601f6f609f410cdf">  111</a></span><span class="preprocessor">#define MPE_Log_ZEROTIME(b) { double x=0; MOVEDBL( &amp;b-&gt;time, &amp;x); }</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="comment">/* macro definitions */</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="foldopen" id="foldopen00115" data-start="" data-end="">
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno"><a class="line" href="mpe__log__genproc_8h.html#ac337d18fbc50e9c2f5f3c6bde929a7c7">  115</a></span><span class="preprocessor">#define MPE_Log_ADDRECORD \</span></div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span><span class="preprocessor">{ if (!newLogBlk ||     </span><span class="comment">/* if this is the first block, */</span><span class="preprocessor"> \</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span><span class="preprocessor">      (newLogBlk-&gt;size+readRecHdr-&gt;len &gt; MPE_Log_size)) { \</span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span><span class="preprocessor">                    </span><span class="comment">/* or if this block is full, */</span><span class="preprocessor"> \</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span><span class="preprocessor">    if (newLogHeadBlk) {    </span><span class="comment">/* tack the new one on the end */</span><span class="preprocessor"> \</span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span><span class="preprocessor">      newLogBlk-&gt;next = MPE_Log_GetBuf(); \</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span><span class="preprocessor">      newLogBlk = newLogBlk-&gt;next; \</span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span><span class="preprocessor">    } else {            </span><span class="comment">/* if this is first block in the chain */</span><span class="preprocessor"> \</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span><span class="preprocessor">      newLogHeadBlk = newLogBlk = MPE_Log_GetBuf(); \</span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span><span class="preprocessor">                </span><span class="comment">/* set the head pointer */</span><span class="preprocessor"> \</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span><span class="preprocessor">    } \</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span><span class="preprocessor">    newRecHdr=(MPE_Log_HEADER *)(newLogBlk+1); \</span></div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span><span class="preprocessor">                </span><span class="comment">/* go to after the block header */</span><span class="preprocessor"> \</span></div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span><span class="preprocessor">  } \</span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span><span class="preprocessor">  memcpy (newRecHdr, readRecHdr, readRecHdr-&gt;len*sizeof(int)); \</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span><span class="preprocessor">                </span><span class="comment">/* copy record */</span><span class="preprocessor"> \</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span><span class="preprocessor">  newLogBlk-&gt;size += readRecHdr-&gt;len; </span><span class="comment">/* update block length */</span><span class="preprocessor"> \</span></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span><span class="preprocessor">  newRecHdr = (MPE_Log_HEADER*)((int*)newRecHdr+readRecHdr-&gt;len); \</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span><span class="preprocessor">                </span><span class="comment">/* set position for next record write */</span><span class="preprocessor"> \</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span><span class="preprocessor">}</span></div>
+</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span> </div>
+<div class="foldopen" id="foldopen00136" data-start="" data-end="">
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno"><a class="line" href="mpe__log__genproc_8h.html#ae4df9bcf83673b9a3f7d3b0c81064d74">  136</a></span><span class="preprocessor">#define MPE_Log_TRAVERSE_LOG(condition) { \</span></div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span><span class="preprocessor">while (readBlk) {       </span><span class="comment">/* loop through the linked list of blocks */</span><span class="preprocessor"> \</span></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span><span class="preprocessor">     n = readBlk-&gt;size;     </span><span class="comment">/* get # of ints in this block */</span><span class="preprocessor"> \</span></div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span><span class="preprocessor">     readRecHdr = (MPE_Log_HEADER *)(readBlk + 1); \</span></div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span><span class="preprocessor">                </span><span class="comment">/* goto first record in this block */</span><span class="preprocessor"> \</span></div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span><span class="preprocessor">     i = 0; \</span></div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span><span class="preprocessor">     while (i &lt; n) {        </span><span class="comment">/* loop through until all ints used up */</span><span class="preprocessor"> \</span></div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span><span class="preprocessor">       if (condition) {     </span><span class="comment">/* if this is the correct pass, */</span><span class="preprocessor"> \</span></div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span><span class="preprocessor">     MPE_Log_ADDRECORD; </span><span class="comment">/* copy this record */</span><span class="preprocessor"> \</span></div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span><span class="preprocessor">       } \</span></div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span><span class="preprocessor">       i += readRecHdr-&gt;len;    </span><span class="comment">/* update used int count */</span><span class="preprocessor"> \</span></div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span><span class="preprocessor">       readRecHdr = (MPE_Log_HEADER*)((int*)readRecHdr + \</span></div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span><span class="preprocessor">                    readRecHdr-&gt;len); </span><span class="comment">/* goto next record */</span><span class="preprocessor"> \</span></div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span><span class="preprocessor">     } \</span></div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span><span class="preprocessor">     readBlk = (MPE_Log_BLOCK *)(readBlk-&gt;next); </span><span class="comment">/* goto next block */</span><span class="preprocessor"> \</span></div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span><span class="preprocessor">  } \</span></div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span><span class="preprocessor">}</span></div>
+</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span> </div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno"><a class="line" href="mpe__log__genproc_8h.html#abc02e08100b18d3c8e2d9bcd31ad5fd2">  154</a></span><span class="preprocessor">#define MPE_Log_MBUF_SIZE MPE_Log_BUF_SIZE*2</span></div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span> </div>
+<div class="foldopen" id="foldopen00156" data-start="{" data-end="};">
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno"><a class="line" href="struct__MPE__Log__MBuf.html">  156</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="struct__MPE__Log__MBuf.html">_MPE_Log_MBuf</a> {</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno"><a class="line" href="struct__MPE__Log__MBuf.html#a1e26b0d77b93c0e8160a2078b8078524">  157</a></span>  <span class="keywordtype">int</span>    *<a class="code hl_variable" href="struct__MPE__Log__MBuf.html#a1e26b0d77b93c0e8160a2078b8078524">p</a>, *<a class="code hl_variable" href="struct__MPE__Log__MBuf.html#a17882a57b393c1719f1f8c92cee9ef15">plast</a>;         <span class="comment">/* Pointers to current and last+1 entries */</span></div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno"><a class="line" href="struct__MPE__Log__MBuf.html#a41e43e2baa9bf7edccae7a1453d0a11b">  158</a></span>  <span class="keywordtype">int</span>    <a class="code hl_variable" href="struct__MPE__Log__MBuf.html#a41e43e2baa9bf7edccae7a1453d0a11b">buf</a>[<a class="code hl_define" href="mpe__log__genproc_8h.html#abc02e08100b18d3c8e2d9bcd31ad5fd2">MPE_Log_MBUF_SIZE</a>]; <span class="comment">/* Holds blog buffer plus some */</span></div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno"><a class="line" href="struct__MPE__Log__MBuf.html#a568575b3994ab9b29f5557beca342fff">  159</a></span>  <span class="keywordtype">double</span> <a class="code hl_variable" href="struct__MPE__Log__MBuf.html#a568575b3994ab9b29f5557beca342fff">t</a>;          <span class="comment">/* Time of current entry */</span></div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno"><a class="line" href="struct__MPE__Log__MBuf.html#a7f27c2de68a45a9efb277ec64e6f08c1">  160</a></span>  <a class="code hl_struct" href="structvector.html">int</a>    (*<a class="code hl_variable" href="struct__MPE__Log__MBuf.html#a7f27c2de68a45a9efb277ec64e6f08c1">reload</a>) ( <span class="keyword">struct </span><a class="code hl_struct" href="struct__MPE__Log__MBuf.html">_MPE_Log_MBuf</a> *, <span class="keywordtype">int</span> * );</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    <span class="comment">/* routine and context used to reload buf */</span></div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno"><a class="line" href="struct__MPE__Log__MBuf.html#ad3b54f5157e8fb18564df2b02df0449d">  162</a></span>  <span class="keywordtype">void</span>   *<a class="code hl_variable" href="struct__MPE__Log__MBuf.html#ad3b54f5157e8fb18564df2b02df0449d">reload_ctx</a>;</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno"><a class="line" href="mpe__log__genproc_8h.html#ad9f9a5b327da918f2b7c5642a2680471">  163</a></span>} <a class="code hl_typedef" href="mpe__log__genproc_8h.html#ad9f9a5b327da918f2b7c5642a2680471">MPE_Log_MBuf</a>;</div>
+</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno"><a class="line" href="mpe__log__genproc_8h.html#a91e845f8f2a152d2aabdcdaa457d3097">  165</a></span><span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="mpe__log__genproc_8h.html#a91e845f8f2a152d2aabdcdaa457d3097">MPE_Log_GenerateHeader</a> ( <a class="code hl_struct" href="structvector.html">FILE</a> *<a class="code hl_struct" href="structvector.html">fp</a> );</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno"><a class="line" href="mpe__log__genproc_8h.html#aa7db680344dbef37fa8ff88b534aef0a">  166</a></span><span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="mpe__log__genproc_8h.html#aa7db680344dbef37fa8ff88b534aef0a">MPE_Log_Output</a> ( <a class="code hl_struct" href="struct__MPE__Log__MBuf.html">MPE_Log_MBuf</a> *<a class="code hl_struct" href="structvector.html">inBuffer</a>, <a class="code hl_struct" href="struct__MPE__Log__MBuf.html">MPE_Log_MBuf</a></div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>                    *<a class="code hl_struct" href="structvector.html">outBuffer</a>, <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">mesgtag</a>, <span class="keywordtype">int</span> *<a class="code hl_struct" href="structvector.html">srcs</a>,</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>                    <a class="code hl_struct" href="structvector.html">FILE</a> *<a class="code hl_struct" href="structvector.html">fp</a>, <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">parent</a> );</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno"><a class="line" href="mpe__log__genproc_8h.html#a46d5fa0c9287f6db0389c704035ca0c2">  169</a></span><span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="mpe__log__genproc_8h.html#a46d5fa0c9287f6db0389c704035ca0c2">MPE_Log_FormatRecord</a> ( <a class="code hl_struct" href="structvector.html">FILE</a> *<a class="code hl_struct" href="structvector.html">fp</a>, <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">procid</a>, <span class="keywordtype">int</span> *<a class="code hl_struct" href="structvector.html">rec</a> );</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno"><a class="line" href="mpe__log__genproc_8h.html#a6411893f88dc7fa102a375ce190c169c">  170</a></span><span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code hl_function" href="mpe__log__genproc_8h.html#a6411893f88dc7fa102a375ce190c169c">MPE_Log_ReloadFromData</a> ( <a class="code hl_struct" href="struct__MPE__Log__MBuf.html">MPE_Log_MBuf</a> *<a class="code hl_struct" href="structvector.html">destBuffer</a>, <span class="keywordtype">int</span> *<a class="code hl_struct" href="structvector.html">srcs</a> );</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno"><a class="line" href="mpe__log__genproc_8h.html#afe5ceb1b29121356a8880f247488428d">  171</a></span><span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code hl_function" href="mpe__log__genproc_8h.html#afe5ceb1b29121356a8880f247488428d">MPE_Log_ReloadFromChild</a> ( <a class="code hl_struct" href="struct__MPE__Log__MBuf.html">MPE_Log_MBuf</a> *<a class="code hl_struct" href="structvector.html">destBuffer</a>,</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>                         <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">msgtype</a>, <span class="keywordtype">int</span> *<a class="code hl_struct" href="structvector.html">srcs</a> );</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno"><a class="line" href="mpe__log__genproc_8h.html#a86a950583c01592c380fd411d6aed7b2">  173</a></span><span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code hl_function" href="mpe__log__genproc_8h.html#a86a950583c01592c380fd411d6aed7b2">MPE_Log_ReloadFromChildL</a> ( <a class="code hl_struct" href="struct__MPE__Log__MBuf.html">MPE_Log_MBuf</a> *b, <span class="keywordtype">int</span> *<a class="code hl_struct" href="structvector.html">srcs</a> );</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno"><a class="line" href="mpe__log__genproc_8h.html#a04228e0e085b4af4e3afd7d6f8c1d9fb">  174</a></span><span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code hl_function" href="mpe__log__genproc_8h.html#a04228e0e085b4af4e3afd7d6f8c1d9fb">MPE_Log_ReloadFromChildR</a> ( <a class="code hl_struct" href="struct__MPE__Log__MBuf.html">MPE_Log_MBuf</a> *b, <span class="keywordtype">int</span> *<a class="code hl_struct" href="structvector.html">srcs</a> ));</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno"><a class="line" href="mpe__log__genproc_8h.html#aeb4ec2f408a1b6fceb3f6002abf30a61">  175</a></span><span class="keyword">static</span> <a class="code hl_struct" href="struct__MPE__Log__BLOCK.html">MPE_Log_BLOCK</a> *<a class="code hl_function" href="mpe__log__genproc_8h.html#aeb4ec2f408a1b6fceb3f6002abf30a61">MPE_Log_Sort</a> ( <a class="code hl_struct" href="struct__MPE__Log__BLOCK.html">MPE_Log_BLOCK</a> *<a class="code hl_struct" href="structvector.html">readBlock</a> );</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno"><a class="line" href="mpe__log__genproc_8h.html#a8b93676ab49a5a4358d52bf4d6e98028">  176</a></span><span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="mpe__log__genproc_8h.html#a8b93676ab49a5a4358d52bf4d6e98028">MPE_Log_SetTreeNodes</a> ( <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">procid</a>, <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">np</a>, <span class="keywordtype">int</span> *<a class="code hl_struct" href="structvector.html">lchild</a>,</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>                      <span class="keywordtype">int</span> *<a class="code hl_struct" href="structvector.html">rchild</a>, <span class="keywordtype">int</span> *<a class="code hl_struct" href="structvector.html">parent</a>,</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>                      <span class="keywordtype">int</span> *<a class="code hl_struct" href="structvector.html">am_left</a> );</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno"><a class="line" href="mpe__log__genproc_8h.html#a84ddf224a17296fe9e3eea326c6bb09c">  179</a></span><span class="keyword">static</span> <a class="code hl_function" href="mpe__log__genproc_8h.html#a84ddf224a17296fe9e3eea326c6bb09c">MPE_Log_ParallelMerge</a> ( <span class="keywordtype">char</span> *filename );</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno"><a class="line" href="mpe__log__genproc_8h.html#a6ad61fb0ba09c7dca16dbb3c0f1557d2">  180</a></span><span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="mpe__log__genproc_8h.html#a6ad61fb0ba09c7dca16dbb3c0f1557d2">MPE_Log_GetStatistics</a> ( <span class="keywordtype">int</span> *<a class="code hl_struct" href="structvector.html">nevents</a>, <span class="keywordtype">int</span> *<a class="code hl_struct" href="structvector.html">ne_types</a>,</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>                       <span class="keywordtype">double</span> *<a class="code hl_struct" href="structvector.html">startTime</a>,</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>                       <span class="keywordtype">double</span> *<a class="code hl_struct" href="structvector.html">endTime</a> );</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span> </div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno"><a class="line" href="mpe__log__genproc_8h.html#a6acf0d013a4241052bd6873d6abff601">  184</a></span><a class="code hl_struct" href="struct__MPE__Log__BLOCK.html">MPE_Log_BLOCK</a> *<a class="code hl_function" href="mpe__log__genproc_8h.html#a6acf0d013a4241052bd6873d6abff601">MPE_Log_GetBuf</a> ( <span class="keywordtype">void</span> );</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno"><a class="line" href="mpe__log__genproc_8h.html#ade664d01ed4057b1b80e5187039659be">  185</a></span><a class="code hl_struct" href="struct__MPE__Log__BLOCK.html">MPE_Log_BLOCK</a> *<a class="code hl_function" href="mpe__log__genproc_8h.html#ade664d01ed4057b1b80e5187039659be">MPE_Log_Flush</a> ( <span class="keywordtype">void</span> );</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno"><a class="line" href="mpe__log__genproc_8h.html#a8dc6a23c73451e9a1aae1f245e5cc329">  186</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="mpe__log__genproc_8h.html#a8dc6a23c73451e9a1aae1f245e5cc329">MPE_Log_FreeLogMem</a>  (<a class="code hl_struct" href="struct__MPE__Log__BLOCK.html">MPE_Log_BLOCK</a> * );</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno"><a class="line" href="mpe__log__genproc_8h.html#a2502899024be05661b41adbe4406519e">  187</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="mpe__log__genproc_8h.html#a2502899024be05661b41adbe4406519e">MPE_Log_init_clock</a> ( <span class="keywordtype">void</span> );</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno"><a class="line" href="mpe__log__genproc_8h.html#a0fa859340ac509e3c1841381014b2217">  188</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="mpe__log__genproc_8h.html#a0fa859340ac509e3c1841381014b2217">MPE_Log_def</a> ( <span class="keywordtype">int</span>, <span class="keywordtype">char</span> * );</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span><span class="comment">/* void MPE_Log_FlushOutput (); */</span></div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span> </div>
+<div class="ttc" id="ampe__log__genproc_8h_html_a04228e0e085b4af4e3afd7d6f8c1d9fb"><div class="ttname"><a href="mpe__log__genproc_8h.html#a04228e0e085b4af4e3afd7d6f8c1d9fb">MPE_Log_ReloadFromChildR</a></div><div class="ttdeci">static int MPE_Log_ReloadFromChildR(MPE_Log_MBuf *b, int *srcs))</div></div>
+<div class="ttc" id="ampe__log__genproc_8h_html_a0fa859340ac509e3c1841381014b2217"><div class="ttname"><a href="mpe__log__genproc_8h.html#a0fa859340ac509e3c1841381014b2217">MPE_Log_def</a></div><div class="ttdeci">void MPE_Log_def(int, char *)</div></div>
+<div class="ttc" id="ampe__log__genproc_8h_html_a2502899024be05661b41adbe4406519e"><div class="ttname"><a href="mpe__log__genproc_8h.html#a2502899024be05661b41adbe4406519e">MPE_Log_init_clock</a></div><div class="ttdeci">int MPE_Log_init_clock(void)</div></div>
+<div class="ttc" id="ampe__log__genproc_8h_html_a46d5fa0c9287f6db0389c704035ca0c2"><div class="ttname"><a href="mpe__log__genproc_8h.html#a46d5fa0c9287f6db0389c704035ca0c2">MPE_Log_FormatRecord</a></div><div class="ttdeci">static void MPE_Log_FormatRecord(FILE *fp, int procid, int *rec)</div></div>
+<div class="ttc" id="ampe__log__genproc_8h_html_a6411893f88dc7fa102a375ce190c169c"><div class="ttname"><a href="mpe__log__genproc_8h.html#a6411893f88dc7fa102a375ce190c169c">MPE_Log_ReloadFromData</a></div><div class="ttdeci">static int MPE_Log_ReloadFromData(MPE_Log_MBuf *destBuffer, int *srcs)</div></div>
+<div class="ttc" id="ampe__log__genproc_8h_html_a6acf0d013a4241052bd6873d6abff601"><div class="ttname"><a href="mpe__log__genproc_8h.html#a6acf0d013a4241052bd6873d6abff601">MPE_Log_GetBuf</a></div><div class="ttdeci">MPE_Log_BLOCK * MPE_Log_GetBuf(void)</div></div>
+<div class="ttc" id="ampe__log__genproc_8h_html_a6ad61fb0ba09c7dca16dbb3c0f1557d2"><div class="ttname"><a href="mpe__log__genproc_8h.html#a6ad61fb0ba09c7dca16dbb3c0f1557d2">MPE_Log_GetStatistics</a></div><div class="ttdeci">static void MPE_Log_GetStatistics(int *nevents, int *ne_types, double *startTime, double *endTime)</div></div>
+<div class="ttc" id="ampe__log__genproc_8h_html_a84ddf224a17296fe9e3eea326c6bb09c"><div class="ttname"><a href="mpe__log__genproc_8h.html#a84ddf224a17296fe9e3eea326c6bb09c">MPE_Log_ParallelMerge</a></div><div class="ttdeci">static MPE_Log_ParallelMerge(char *filename)</div></div>
+<div class="ttc" id="ampe__log__genproc_8h_html_a86a950583c01592c380fd411d6aed7b2"><div class="ttname"><a href="mpe__log__genproc_8h.html#a86a950583c01592c380fd411d6aed7b2">MPE_Log_ReloadFromChildL</a></div><div class="ttdeci">static int MPE_Log_ReloadFromChildL(MPE_Log_MBuf *b, int *srcs)</div></div>
+<div class="ttc" id="ampe__log__genproc_8h_html_a8b93676ab49a5a4358d52bf4d6e98028"><div class="ttname"><a href="mpe__log__genproc_8h.html#a8b93676ab49a5a4358d52bf4d6e98028">MPE_Log_SetTreeNodes</a></div><div class="ttdeci">static void MPE_Log_SetTreeNodes(int procid, int np, int *lchild, int *rchild, int *parent, int *am_left)</div></div>
+<div class="ttc" id="ampe__log__genproc_8h_html_a8dc6a23c73451e9a1aae1f245e5cc329"><div class="ttname"><a href="mpe__log__genproc_8h.html#a8dc6a23c73451e9a1aae1f245e5cc329">MPE_Log_FreeLogMem</a></div><div class="ttdeci">int MPE_Log_FreeLogMem(MPE_Log_BLOCK *)</div></div>
+<div class="ttc" id="ampe__log__genproc_8h_html_a91e845f8f2a152d2aabdcdaa457d3097"><div class="ttname"><a href="mpe__log__genproc_8h.html#a91e845f8f2a152d2aabdcdaa457d3097">MPE_Log_GenerateHeader</a></div><div class="ttdeci">static void MPE_Log_GenerateHeader(FILE *fp)</div></div>
+<div class="ttc" id="ampe__log__genproc_8h_html_aa7db680344dbef37fa8ff88b534aef0a"><div class="ttname"><a href="mpe__log__genproc_8h.html#aa7db680344dbef37fa8ff88b534aef0a">MPE_Log_Output</a></div><div class="ttdeci">static void MPE_Log_Output(MPE_Log_MBuf *inBuffer, MPE_Log_MBuf *outBuffer, int mesgtag, int *srcs, FILE *fp, int parent)</div></div>
+<div class="ttc" id="ampe__log__genproc_8h_html_aadb9de970fd4b9752968785de18f98b6"><div class="ttname"><a href="mpe__log__genproc_8h.html#aadb9de970fd4b9752968785de18f98b6">MPE_Log_BLOCK</a></div><div class="ttdeci">struct _MPE_Log_BLOCK MPE_Log_BLOCK</div></div>
+<div class="ttc" id="ampe__log__genproc_8h_html_abc02e08100b18d3c8e2d9bcd31ad5fd2"><div class="ttname"><a href="mpe__log__genproc_8h.html#abc02e08100b18d3c8e2d9bcd31ad5fd2">MPE_Log_MBUF_SIZE</a></div><div class="ttdeci">#define MPE_Log_MBUF_SIZE</div><div class="ttdef"><b>Definition</b> <a href="mpe__log__genproc_8h_source.html#l00154">mpe_log_genproc.h:154</a></div></div>
+<div class="ttc" id="ampe__log__genproc_8h_html_ad9f9a5b327da918f2b7c5642a2680471"><div class="ttname"><a href="mpe__log__genproc_8h.html#ad9f9a5b327da918f2b7c5642a2680471">MPE_Log_MBuf</a></div><div class="ttdeci">struct _MPE_Log_MBuf MPE_Log_MBuf</div></div>
+<div class="ttc" id="ampe__log__genproc_8h_html_ade664d01ed4057b1b80e5187039659be"><div class="ttname"><a href="mpe__log__genproc_8h.html#ade664d01ed4057b1b80e5187039659be">MPE_Log_Flush</a></div><div class="ttdeci">MPE_Log_BLOCK * MPE_Log_Flush(void)</div></div>
+<div class="ttc" id="ampe__log__genproc_8h_html_aeb4ec2f408a1b6fceb3f6002abf30a61"><div class="ttname"><a href="mpe__log__genproc_8h.html#aeb4ec2f408a1b6fceb3f6002abf30a61">MPE_Log_Sort</a></div><div class="ttdeci">static MPE_Log_BLOCK * MPE_Log_Sort(MPE_Log_BLOCK *readBlock)</div></div>
+<div class="ttc" id="ampe__log__genproc_8h_html_afe5ceb1b29121356a8880f247488428d"><div class="ttname"><a href="mpe__log__genproc_8h.html#afe5ceb1b29121356a8880f247488428d">MPE_Log_ReloadFromChild</a></div><div class="ttdeci">static int MPE_Log_ReloadFromChild(MPE_Log_MBuf *destBuffer, int msgtype, int *srcs)</div></div>
+<div class="ttc" id="astructMPE__Log__HEADER_html"><div class="ttname"><a href="structMPE__Log__HEADER.html">MPE_Log_HEADER</a></div><div class="ttdef"><b>Definition</b> <a href="mpe__log__genproc_8h_source.html#l00044">mpe_log_genproc.h:44</a></div></div>
+<div class="ttc" id="astructMPE__Log__HEADER_html_a6680fe1d74c30dd3854ea2144cd8c1f3"><div class="ttname"><a href="structMPE__Log__HEADER.html#a6680fe1d74c30dd3854ea2144cd8c1f3">MPE_Log_HEADER::event</a></div><div class="ttdeci">short event</div><div class="ttdef"><b>Definition</b> <a href="mpe__log__genproc_8h_source.html#l00046">mpe_log_genproc.h:46</a></div></div>
+<div class="ttc" id="astructMPE__Log__HEADER_html_aa137e7a5a061e0363513f0488c337aa1"><div class="ttname"><a href="structMPE__Log__HEADER.html#aa137e7a5a061e0363513f0488c337aa1">MPE_Log_HEADER::time</a></div><div class="ttdeci">double time</div><div class="ttdef"><b>Definition</b> <a href="mpe__log__genproc_8h_source.html#l00047">mpe_log_genproc.h:47</a></div></div>
+<div class="ttc" id="astructMPE__Log__HEADER_html_ad4a02beb2605eaaa37acf2831fe8a300"><div class="ttname"><a href="structMPE__Log__HEADER.html#ad4a02beb2605eaaa37acf2831fe8a300">MPE_Log_HEADER::len</a></div><div class="ttdeci">short len</div><div class="ttdef"><b>Definition</b> <a href="mpe__log__genproc_8h_source.html#l00045">mpe_log_genproc.h:45</a></div></div>
+<div class="ttc" id="astructMPE__Log__VFIELD_html"><div class="ttname"><a href="structMPE__Log__VFIELD.html">MPE_Log_VFIELD</a></div><div class="ttdef"><b>Definition</b> <a href="mpe__log__genproc_8h_source.html#l00038">mpe_log_genproc.h:38</a></div></div>
+<div class="ttc" id="astructMPE__Log__VFIELD_html_a30fffb774490b5764821332e937acffa"><div class="ttname"><a href="structMPE__Log__VFIELD.html#a30fffb774490b5764821332e937acffa">MPE_Log_VFIELD::dtype</a></div><div class="ttdeci">short dtype</div><div class="ttdef"><b>Definition</b> <a href="mpe__log__genproc_8h_source.html#l00040">mpe_log_genproc.h:40</a></div></div>
+<div class="ttc" id="astructMPE__Log__VFIELD_html_a5ef0728a2d25129449fe416857a5f25d"><div class="ttname"><a href="structMPE__Log__VFIELD.html#a5ef0728a2d25129449fe416857a5f25d">MPE_Log_VFIELD::len</a></div><div class="ttdeci">short len</div><div class="ttdef"><b>Definition</b> <a href="mpe__log__genproc_8h_source.html#l00039">mpe_log_genproc.h:39</a></div></div>
+<div class="ttc" id="astruct__MPE__Log__BLOCK_html"><div class="ttname"><a href="struct__MPE__Log__BLOCK.html">_MPE_Log_BLOCK</a></div><div class="ttdef"><b>Definition</b> <a href="mpe__log__genproc_8h_source.html#l00026">mpe_log_genproc.h:26</a></div></div>
+<div class="ttc" id="astruct__MPE__Log__BLOCK_html_ac4694d2de434755325b12efda89fb3b9"><div class="ttname"><a href="struct__MPE__Log__BLOCK.html#ac4694d2de434755325b12efda89fb3b9">_MPE_Log_BLOCK::size</a></div><div class="ttdeci">int size</div><div class="ttdef"><b>Definition</b> <a href="mpe__log__genproc_8h_source.html#l00028">mpe_log_genproc.h:28</a></div></div>
+<div class="ttc" id="astruct__MPE__Log__BLOCK_html_ae19b6fa254fe8fe9ce8bd0c0e8aab1a8"><div class="ttname"><a href="struct__MPE__Log__BLOCK.html#ae19b6fa254fe8fe9ce8bd0c0e8aab1a8">_MPE_Log_BLOCK::next</a></div><div class="ttdeci">struct _MPE_Log_BLOCK * next</div><div class="ttdef"><b>Definition</b> <a href="mpe__log__genproc_8h_source.html#l00027">mpe_log_genproc.h:27</a></div></div>
+<div class="ttc" id="astruct__MPE__Log__MBuf_html"><div class="ttname"><a href="struct__MPE__Log__MBuf.html">_MPE_Log_MBuf</a></div><div class="ttdef"><b>Definition</b> <a href="mpe__log__genproc_8h_source.html#l00156">mpe_log_genproc.h:156</a></div></div>
+<div class="ttc" id="astruct__MPE__Log__MBuf_html_a17882a57b393c1719f1f8c92cee9ef15"><div class="ttname"><a href="struct__MPE__Log__MBuf.html#a17882a57b393c1719f1f8c92cee9ef15">_MPE_Log_MBuf::plast</a></div><div class="ttdeci">int * plast</div><div class="ttdef"><b>Definition</b> <a href="mpe__log__genproc_8h_source.html#l00157">mpe_log_genproc.h:157</a></div></div>
+<div class="ttc" id="astruct__MPE__Log__MBuf_html_a1e26b0d77b93c0e8160a2078b8078524"><div class="ttname"><a href="struct__MPE__Log__MBuf.html#a1e26b0d77b93c0e8160a2078b8078524">_MPE_Log_MBuf::p</a></div><div class="ttdeci">int * p</div><div class="ttdef"><b>Definition</b> <a href="mpe__log__genproc_8h_source.html#l00157">mpe_log_genproc.h:157</a></div></div>
+<div class="ttc" id="astruct__MPE__Log__MBuf_html_a41e43e2baa9bf7edccae7a1453d0a11b"><div class="ttname"><a href="struct__MPE__Log__MBuf.html#a41e43e2baa9bf7edccae7a1453d0a11b">_MPE_Log_MBuf::buf</a></div><div class="ttdeci">int buf[MPE_Log_MBUF_SIZE]</div><div class="ttdef"><b>Definition</b> <a href="mpe__log__genproc_8h_source.html#l00158">mpe_log_genproc.h:158</a></div></div>
+<div class="ttc" id="astruct__MPE__Log__MBuf_html_a568575b3994ab9b29f5557beca342fff"><div class="ttname"><a href="struct__MPE__Log__MBuf.html#a568575b3994ab9b29f5557beca342fff">_MPE_Log_MBuf::t</a></div><div class="ttdeci">double t</div><div class="ttdef"><b>Definition</b> <a href="mpe__log__genproc_8h_source.html#l00159">mpe_log_genproc.h:159</a></div></div>
+<div class="ttc" id="astruct__MPE__Log__MBuf_html_a7f27c2de68a45a9efb277ec64e6f08c1"><div class="ttname"><a href="struct__MPE__Log__MBuf.html#a7f27c2de68a45a9efb277ec64e6f08c1">_MPE_Log_MBuf::reload</a></div><div class="ttdeci">int(* reload)(struct _MPE_Log_MBuf *, int *)</div><div class="ttdef"><b>Definition</b> <a href="mpe__log__genproc_8h_source.html#l00160">mpe_log_genproc.h:160</a></div></div>
+<div class="ttc" id="astruct__MPE__Log__MBuf_html_ad3b54f5157e8fb18564df2b02df0449d"><div class="ttname"><a href="struct__MPE__Log__MBuf.html#ad3b54f5157e8fb18564df2b02df0449d">_MPE_Log_MBuf::reload_ctx</a></div><div class="ttdeci">void * reload_ctx</div><div class="ttdef"><b>Definition</b> <a href="mpe__log__genproc_8h_source.html#l00162">mpe_log_genproc.h:162</a></div></div>
+<div class="ttc" id="astructvector_html"><div class="ttname"><a href="structvector.html">vector</a></div><div class="ttdef"><b>Definition</b> <a href="point_8h_source.html#l00012">point.h:12</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

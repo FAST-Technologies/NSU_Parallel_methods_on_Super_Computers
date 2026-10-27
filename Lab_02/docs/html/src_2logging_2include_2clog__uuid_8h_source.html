@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lab_02: MPI + OpenMP Parallel Programming: Исходный файл clog_uuid.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Lab_02: MPI + OpenMP Parallel Programming<span id="projectnumber">&#160;2.1</span>
+   </div>
+   <div id="projectbrief">Решение 3D уравнения Пуассона методом Якоби с двумерной декомпозицией</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_1f646cbbb0f6227d25dd06f792d51aba.html">mpe2-1.3.0</a></li><li class="navelem"><a class="el" href="dir_493399512d45eb30627376023737183a.html">src</a></li><li class="navelem"><a class="el" href="dir_4dd21a1309df0d73c93832f59c814642.html">logging</a></li><li class="navelem"><a class="el" href="dir_d1e3342e2909ab46223a280715173519.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">src/logging/include/clog_uuid.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="src_2logging_2include_2clog__uuid_8h.html">См. документацию.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">   (C) 2001 by Argonne National Laboratory.</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">       See COPYRIGHT in top-level directory.</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">*/</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#if !defined( _CLOG_UUID )</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#define _CLOG_UUID</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="src_2logging_2include_2clog__inttypes_8h.html">clog_inttypes.h</a>&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">   Only CLOG_UUID_NAME_SIZE-1 is useful.</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">   The last char in CLOG_UUID_NAME_SIZE is NULL char,</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">   the terminating character.</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">#define CLOG_UUID_NAME_SIZE 17</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">#define CLOG_UUID_SIZE sizeof(CLOG_int32_t)+sizeof(double)+CLOG_UUID_NAME_SIZE-1</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment"></span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">typedef struct {</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">  CLOG_int32_t  rand;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment">  double        time;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="comment">  char          name[CLOG_UUID_NAME_SIZE];</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="comment">} CLOG_Uuid_t;</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="comment">*/</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="src_2logging_2include_2clog__uuid_8h.html#a76dccb54dec7d7d175f0a5e9d5f1e064">   22</a></span><span class="preprocessor">#define CLOG_UUID_NAME_SIZE   20</span></div>
+<div class="foldopen" id="foldopen00023" data-start="" data-end="">
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="src_2logging_2include_2clog__uuid_8h.html#a4125866622934fbc97bc8f38ae31fd71">   23</a></span><span class="preprocessor">#define CLOG_UUID_SIZE        sizeof(CLOG_int32_t) + sizeof(double) \</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">                            + CLOG_UUID_NAME_SIZE</span></div>
+</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="comment">/* size of string representation of CLOG_Uuit_t */</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="src_2logging_2include_2clog__uuid_8h.html#a906c34a2f2d19bc12c9ed591c9bf9bb7">   27</a></span><span class="preprocessor">#define CLOG_UUID_STR_SIZE   80</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#if defined(__cplusplus)</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="src_2logging_2include_2clog__uuid_8h.html#a558fd896247893ff44335374254d579c">   33</a></span><span class="keyword">typedef</span> <span class="keywordtype">char</span>  <a class="code hl_typedef" href="src_2logging_2include_2clog__uuid_8h.html#a558fd896247893ff44335374254d579c">CLOG_Uuid_t</a>[ <a class="code hl_define" href="src_2logging_2include_2clog__uuid_8h.html#a4125866622934fbc97bc8f38ae31fd71">CLOG_UUID_SIZE</a> ];</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="src_2logging_2include_2clog__uuid_8h.html#ab232bbdb58cd117186a0add75c246ecb">   35</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="src_2logging_2include_2clog__uuid_8h.html#ab232bbdb58cd117186a0add75c246ecb">CLOG_Uuid_init</a>( <span class="keywordtype">void</span> );</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="src_2logging_2include_2clog__uuid_8h.html#a20c2b96543da8a9115c0829a1b7866bd">   37</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="src_2logging_2include_2clog__uuid_8h.html#a20c2b96543da8a9115c0829a1b7866bd">CLOG_Uuid_finalize</a>( <span class="keywordtype">void</span> );</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="src_2logging_2include_2clog__uuid_8h.html#a92ff9ca016b3c1abfb6843bd0757baaf">   39</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="src_2logging_2include_2clog__uuid_8h.html#a92ff9ca016b3c1abfb6843bd0757baaf">CLOG_Uuid_generate</a>( <a class="code hl_typedef" href="src_2logging_2include_2clog__uuid_8h.html#a558fd896247893ff44335374254d579c">CLOG_Uuid_t</a> <a class="code hl_struct" href="structvector.html">uuid</a> );</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="src_2logging_2include_2clog__uuid_8h.html#a3a4ba57904f4c37a6cdbbb398641ff3b">   41</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="src_2logging_2include_2clog__uuid_8h.html#a3a4ba57904f4c37a6cdbbb398641ff3b">CLOG_Uuid_sprint</a>( <a class="code hl_typedef" href="src_2logging_2include_2clog__uuid_8h.html#a558fd896247893ff44335374254d579c">CLOG_Uuid_t</a> <a class="code hl_struct" href="structvector.html">uuid</a>, <span class="keywordtype">char</span> *<a class="code hl_struct" href="structvector.html">str</a> );</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="src_2logging_2include_2clog__uuid_8h.html#aa702adbe1ff0491ca09687d5e2e8f0a0">   43</a></span><span class="keywordtype">int</span>  <a class="code hl_function" href="src_2logging_2include_2clog__uuid_8h.html#aa702adbe1ff0491ca09687d5e2e8f0a0">CLOG_Uuid_is_equal</a>( <span class="keyword">const</span> <a class="code hl_typedef" href="src_2logging_2include_2clog__uuid_8h.html#a558fd896247893ff44335374254d579c">CLOG_Uuid_t</a> <a class="code hl_struct" href="structvector.html">uuid1</a>, <span class="keyword">const</span> <a class="code hl_typedef" href="src_2logging_2include_2clog__uuid_8h.html#a558fd896247893ff44335374254d579c">CLOG_Uuid_t</a> <a class="code hl_struct" href="structvector.html">uuid2</a> );</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="src_2logging_2include_2clog__uuid_8h.html#a7e2c9f15f01dfa50706441798953d152">   45</a></span><span class="keywordtype">int</span>  <a class="code hl_function" href="src_2logging_2include_2clog__uuid_8h.html#a7e2c9f15f01dfa50706441798953d152">CLOG_Uuid_compare</a>( <span class="keyword">const</span> <span class="keywordtype">void</span> *<a class="code hl_struct" href="structvector.html">obj1</a>, <span class="keyword">const</span> <span class="keywordtype">void</span> *<a class="code hl_struct" href="structvector.html">obj2</a> );</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="src_2logging_2include_2clog__uuid_8h.html#a2624dcaf571b5f08fd66bf6baa4f65c9">   47</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="src_2logging_2include_2clog__uuid_8h.html#a2624dcaf571b5f08fd66bf6baa4f65c9">CLOG_Uuid_copy</a>( <span class="keyword">const</span> <a class="code hl_typedef" href="src_2logging_2include_2clog__uuid_8h.html#a558fd896247893ff44335374254d579c">CLOG_Uuid_t</a> <a class="code hl_struct" href="structvector.html">src_uuid</a>, <a class="code hl_typedef" href="src_2logging_2include_2clog__uuid_8h.html#a558fd896247893ff44335374254d579c">CLOG_Uuid_t</a> <a class="code hl_struct" href="structvector.html">dest_uuid</a> );</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="src_2logging_2include_2clog__uuid_8h.html#ae82fbff7bf6467e624ed09828016f1b1">   49</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="src_2logging_2include_2clog__uuid_8h.html#ae82fbff7bf6467e624ed09828016f1b1">CLOG_Uuid_swap_bytes</a>( <a class="code hl_typedef" href="src_2logging_2include_2clog__uuid_8h.html#a558fd896247893ff44335374254d579c">CLOG_Uuid_t</a> <a class="code hl_struct" href="structvector.html">uuid</a> );</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="preprocessor">#if defined(__cplusplus)</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>}</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="preprocessor">#endif </span><span class="comment">/* of _CLOG_UUID */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="asrc_2logging_2include_2clog__inttypes_8h_html"><div class="ttname"><a href="src_2logging_2include_2clog__inttypes_8h.html">clog_inttypes.h</a></div></div>
+<div class="ttc" id="asrc_2logging_2include_2clog__uuid_8h_html_a20c2b96543da8a9115c0829a1b7866bd"><div class="ttname"><a href="src_2logging_2include_2clog__uuid_8h.html#a20c2b96543da8a9115c0829a1b7866bd">CLOG_Uuid_finalize</a></div><div class="ttdeci">void CLOG_Uuid_finalize(void)</div></div>
+<div class="ttc" id="asrc_2logging_2include_2clog__uuid_8h_html_a2624dcaf571b5f08fd66bf6baa4f65c9"><div class="ttname"><a href="src_2logging_2include_2clog__uuid_8h.html#a2624dcaf571b5f08fd66bf6baa4f65c9">CLOG_Uuid_copy</a></div><div class="ttdeci">void CLOG_Uuid_copy(const CLOG_Uuid_t src_uuid, CLOG_Uuid_t dest_uuid)</div></div>
+<div class="ttc" id="asrc_2logging_2include_2clog__uuid_8h_html_a3a4ba57904f4c37a6cdbbb398641ff3b"><div class="ttname"><a href="src_2logging_2include_2clog__uuid_8h.html#a3a4ba57904f4c37a6cdbbb398641ff3b">CLOG_Uuid_sprint</a></div><div class="ttdeci">void CLOG_Uuid_sprint(CLOG_Uuid_t uuid, char *str)</div></div>
+<div class="ttc" id="asrc_2logging_2include_2clog__uuid_8h_html_a4125866622934fbc97bc8f38ae31fd71"><div class="ttname"><a href="src_2logging_2include_2clog__uuid_8h.html#a4125866622934fbc97bc8f38ae31fd71">CLOG_UUID_SIZE</a></div><div class="ttdeci">#define CLOG_UUID_SIZE</div><div class="ttdef"><b>Definition</b> <a href="src_2logging_2include_2clog__uuid_8h_source.html#l00023">src/logging/include/clog_uuid.h:23</a></div></div>
+<div class="ttc" id="asrc_2logging_2include_2clog__uuid_8h_html_a558fd896247893ff44335374254d579c"><div class="ttname"><a href="src_2logging_2include_2clog__uuid_8h.html#a558fd896247893ff44335374254d579c">CLOG_Uuid_t</a></div><div class="ttdeci">char CLOG_Uuid_t[CLOG_UUID_SIZE]</div><div class="ttdef"><b>Definition</b> <a href="src_2logging_2include_2clog__uuid_8h_source.html#l00033">src/logging/include/clog_uuid.h:33</a></div></div>
+<div class="ttc" id="asrc_2logging_2include_2clog__uuid_8h_html_a7e2c9f15f01dfa50706441798953d152"><div class="ttname"><a href="src_2logging_2include_2clog__uuid_8h.html#a7e2c9f15f01dfa50706441798953d152">CLOG_Uuid_compare</a></div><div class="ttdeci">int CLOG_Uuid_compare(const void *obj1, const void *obj2)</div></div>
+<div class="ttc" id="asrc_2logging_2include_2clog__uuid_8h_html_a92ff9ca016b3c1abfb6843bd0757baaf"><div class="ttname"><a href="src_2logging_2include_2clog__uuid_8h.html#a92ff9ca016b3c1abfb6843bd0757baaf">CLOG_Uuid_generate</a></div><div class="ttdeci">void CLOG_Uuid_generate(CLOG_Uuid_t uuid)</div></div>
+<div class="ttc" id="asrc_2logging_2include_2clog__uuid_8h_html_aa702adbe1ff0491ca09687d5e2e8f0a0"><div class="ttname"><a href="src_2logging_2include_2clog__uuid_8h.html#aa702adbe1ff0491ca09687d5e2e8f0a0">CLOG_Uuid_is_equal</a></div><div class="ttdeci">int CLOG_Uuid_is_equal(const CLOG_Uuid_t uuid1, const CLOG_Uuid_t uuid2)</div></div>
+<div class="ttc" id="asrc_2logging_2include_2clog__uuid_8h_html_ab232bbdb58cd117186a0add75c246ecb"><div class="ttname"><a href="src_2logging_2include_2clog__uuid_8h.html#ab232bbdb58cd117186a0add75c246ecb">CLOG_Uuid_init</a></div><div class="ttdeci">void CLOG_Uuid_init(void)</div></div>
+<div class="ttc" id="asrc_2logging_2include_2clog__uuid_8h_html_ae82fbff7bf6467e624ed09828016f1b1"><div class="ttname"><a href="src_2logging_2include_2clog__uuid_8h.html#ae82fbff7bf6467e624ed09828016f1b1">CLOG_Uuid_swap_bytes</a></div><div class="ttdeci">void CLOG_Uuid_swap_bytes(CLOG_Uuid_t uuid)</div></div>
+<div class="ttc" id="astructvector_html"><div class="ttname"><a href="structvector.html">vector</a></div><div class="ttdef"><b>Definition</b> <a href="point_8h_source.html#l00012">point.h:12</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

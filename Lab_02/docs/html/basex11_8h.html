@@ -1,0 +1,1923 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lab_02: MPI + OpenMP Parallel Programming: Файл basex11.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Lab_02: MPI + OpenMP Parallel Programming<span id="projectnumber">&#160;2.1</span>
+   </div>
+   <div id="projectbrief">Решение 3D уравнения Пуассона методом Якоби с двумерной декомпозицией</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_1f646cbbb0f6227d25dd06f792d51aba.html">mpe2-1.3.0</a></li><li class="navelem"><a class="el" href="dir_493399512d45eb30627376023737183a.html">src</a></li><li class="navelem"><a class="el" href="dir_532b6e0bbac9f63fe589b390252576da.html">graphics</a></li><li class="navelem"><a class="el" href="dir_f8939cd86ff433d97cf6067dc1b8028e.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Классы</a> &#124;
+<a href="#define-members">Макросы</a> &#124;
+<a href="#typedef-members">Определения типов</a> &#124;
+<a href="#func-members">Функции</a>  </div>
+  <div class="headertitle"><div class="title">Файл basex11.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;sys/types.h&gt;</code><br />
+<code>#include &lt;X11/Xlib.h&gt;</code><br />
+<code>#include &lt;X11/Xutil.h&gt;</code><br />
+</div>
+<p><a href="basex11_8h_source.html">См. исходные тексты.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Классы</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structGCCache.html">GCCache</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structXBWindow.html">XBWindow</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structXBFont.html">XBFont</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structXBAppRegion.html">XBAppRegion</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structXBRegion.html">XBRegion</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structXBDecoration.html">XBDecoration</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Макросы</h2></td></tr>
+<tr class="memitem:a3d67ce134ff2d6ebbfe4244e2c8d49fa" id="r_a3d67ce134ff2d6ebbfe4244e2c8d49fa"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="basex11_8h.html#a3d67ce134ff2d6ebbfe4244e2c8d49fa">XBDrawable</a>(w)&#160;&#160;&#160;((w)-&gt;drw ? (w)-&gt;drw : (w)-&gt;win)</td></tr>
+<tr class="separator:a3d67ce134ff2d6ebbfe4244e2c8d49fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2821d43dc8dc9fd2c49d6886114cf944" id="r_a2821d43dc8dc9fd2c49d6886114cf944"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="basex11_8h.html#a2821d43dc8dc9fd2c49d6886114cf944">XBSetPixVal</a>(<a class="el" href="structvector.html">xbwin</a>,  <a class="el" href="structvector.html">pixval</a>)</td></tr>
+<tr class="separator:a2821d43dc8dc9fd2c49d6886114cf944"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b56856cca35314c37feb54567c0fbef" id="r_a9b56856cca35314c37feb54567c0fbef"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="basex11_8h.html#a9b56856cca35314c37feb54567c0fbef">ERR_CAN_NOT_OPEN_DISPLAY</a>&#160;&#160;&#160;0x10001</td></tr>
+<tr class="separator:a9b56856cca35314c37feb54567c0fbef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37aded73fc53250eaeda38022c757700" id="r_a37aded73fc53250eaeda38022c757700"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="basex11_8h.html#a37aded73fc53250eaeda38022c757700">ERR_NO_DISPLAY</a>&#160;&#160;&#160;0x10002</td></tr>
+<tr class="separator:a37aded73fc53250eaeda38022c757700"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad82ec8c58870f8a878703ea1124fbf98" id="r_ad82ec8c58870f8a878703ea1124fbf98"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="basex11_8h.html#ad82ec8c58870f8a878703ea1124fbf98">ERR_CAN_NOT_OPEN_WINDOW</a>&#160;&#160;&#160;0x10003</td></tr>
+<tr class="separator:ad82ec8c58870f8a878703ea1124fbf98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad653f389e5e3ffdb5cc345a3a0aed2c5" id="r_ad653f389e5e3ffdb5cc345a3a0aed2c5"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="basex11_8h.html#ad653f389e5e3ffdb5cc345a3a0aed2c5">ERR_ILLEGAL_SIZE</a>&#160;&#160;&#160;0x10004</td></tr>
+<tr class="separator:ad653f389e5e3ffdb5cc345a3a0aed2c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Определения типов</h2></td></tr>
+<tr class="memitem:aad48178f1183ee70ec05e8018f4e553c" id="r_aad48178f1183ee70ec05e8018f4e553c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">typedef</a> <a class="el" href="structvector.html">unsigned</a> <a class="el" href="structvector.html">long</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="basex11_8h.html#aad48178f1183ee70ec05e8018f4e553c">PixVal</a></td></tr>
+<tr class="separator:aad48178f1183ee70ec05e8018f4e553c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Функции</h2></td></tr>
+<tr class="memitem:ab01e8be26c5abfe06a250bdf7c594f03" id="r_ab01e8be26c5abfe06a250bdf7c594f03"><td class="memItemLeft" align="right" valign="top"><a class="el" href="basex11_8h.html#aad48178f1183ee70ec05e8018f4e553c">PixVal</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="basex11_8h.html#ab01e8be26c5abfe06a250bdf7c594f03">XBGetColor</a> (<a class="el" href="structXBWindow.html">XBWindow</a> *, <a class="el" href="structvector.html">char</a> *, <a class="el" href="structvector.html">int</a>)</td></tr>
+<tr class="separator:ab01e8be26c5abfe06a250bdf7c594f03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af968e9a33f9efff2cdfcdde510c6b65b" id="r_af968e9a33f9efff2cdfcdde510c6b65b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="basex11_8h.html#af968e9a33f9efff2cdfcdde510c6b65b">XB_wait_map</a> (<a class="el" href="structXBWindow.html">XBWindow</a> *, <a class="el" href="structvector.html">void</a>(*)(<a class="el" href="structXBWindow.html">XBWindow</a> *, <a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">int</a>))</td></tr>
+<tr class="separator:af968e9a33f9efff2cdfcdde510c6b65b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e6c7509fc369dfdd1b993171f3a1c75" id="r_a1e6c7509fc369dfdd1b993171f3a1c75"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="basex11_8h.html#a1e6c7509fc369dfdd1b993171f3a1c75">XBSync</a> (<a class="el" href="structXBWindow.html">XBWindow</a> *)</td></tr>
+<tr class="separator:a1e6c7509fc369dfdd1b993171f3a1c75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5bb27c7ba101509a76646b8fac55c211" id="r_a5bb27c7ba101509a76646b8fac55c211"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structXBWindow.html">XBWindow</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="basex11_8h.html#a5bb27c7ba101509a76646b8fac55c211">XBWinCreate</a> (<a class="el" href="structvector.html">void</a>)</td></tr>
+<tr class="separator:a5bb27c7ba101509a76646b8fac55c211"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3da8b74bd12aff1d324e49f1f759624" id="r_aa3da8b74bd12aff1d324e49f1f759624"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="basex11_8h.html#aa3da8b74bd12aff1d324e49f1f759624">XBWinDestroy</a> (<a class="el" href="structXBWindow.html">XBWindow</a> *)</td></tr>
+<tr class="separator:aa3da8b74bd12aff1d324e49f1f759624"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a868d85189d79ae14c5f73b1f05f9976f" id="r_a868d85189d79ae14c5f73b1f05f9976f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="basex11_8h.html#a868d85189d79ae14c5f73b1f05f9976f">XBOpenDisplay</a> (<a class="el" href="structXBWindow.html">XBWindow</a> *, <a class="el" href="structvector.html">char</a> *)</td></tr>
+<tr class="separator:a868d85189d79ae14c5f73b1f05f9976f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c2a640450c181c55c3380167f48fb97" id="r_a4c2a640450c181c55c3380167f48fb97"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="basex11_8h.html#a4c2a640450c181c55c3380167f48fb97">XBSetVisual</a> (<a class="el" href="structXBWindow.html">XBWindow</a> *, <a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">Colormap</a>, <a class="el" href="structvector.html">int</a>)</td></tr>
+<tr class="separator:a4c2a640450c181c55c3380167f48fb97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae552b8e34798503a1abae09716d43af4" id="r_ae552b8e34798503a1abae09716d43af4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="basex11_8h.html#ae552b8e34798503a1abae09716d43af4">XBSetGC</a> (<a class="el" href="structXBWindow.html">XBWindow</a> *, <a class="el" href="basex11_8h.html#aad48178f1183ee70ec05e8018f4e553c">PixVal</a>)</td></tr>
+<tr class="separator:ae552b8e34798503a1abae09716d43af4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9d819a7c7338b89cde61b9d300e2f6f" id="r_ad9d819a7c7338b89cde61b9d300e2f6f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="basex11_8h.html#ad9d819a7c7338b89cde61b9d300e2f6f">XBOpenWindow</a> (<a class="el" href="structXBWindow.html">XBWindow</a> *)</td></tr>
+<tr class="separator:ad9d819a7c7338b89cde61b9d300e2f6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73d65d3c588b3edb4c7306689b37a959" id="r_a73d65d3c588b3edb4c7306689b37a959"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="basex11_8h.html#a73d65d3c588b3edb4c7306689b37a959">XBDisplayWindow</a> (<a class="el" href="structXBWindow.html">XBWindow</a> *, <a class="el" href="structvector.html">char</a> *, <a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">int</a>, <a class="el" href="basex11_8h.html#aad48178f1183ee70ec05e8018f4e553c">PixVal</a>)</td></tr>
+<tr class="separator:a73d65d3c588b3edb4c7306689b37a959"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e2c275a527108d99859e432916a5214" id="r_a3e2c275a527108d99859e432916a5214"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="basex11_8h.html#a3e2c275a527108d99859e432916a5214">XBGetArgs</a> (<a class="el" href="structvector.html">int</a> *, <a class="el" href="structvector.html">char</a> **, <a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">int</a> *, <a class="el" href="structvector.html">int</a> *, <a class="el" href="structvector.html">int</a> *, <a class="el" href="structvector.html">int</a> *)</td></tr>
+<tr class="separator:a3e2c275a527108d99859e432916a5214"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af15cffb5bc65cddc458902fd6e7962ec" id="r_af15cffb5bc65cddc458902fd6e7962ec"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="basex11_8h.html#af15cffb5bc65cddc458902fd6e7962ec">XBGetArgsDisplay</a> (<a class="el" href="structvector.html">int</a> *, <a class="el" href="structvector.html">char</a> **, <a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">char</a> *)</td></tr>
+<tr class="separator:af15cffb5bc65cddc458902fd6e7962ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5abdf62136ceafecb575bf0f282a9b0" id="r_af5abdf62136ceafecb575bf0f282a9b0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="basex11_8h.html#af5abdf62136ceafecb575bf0f282a9b0">XBiQuickWindow</a> (<a class="el" href="structXBWindow.html">XBWindow</a> *, <a class="el" href="structvector.html">char</a> *, <a class="el" href="structvector.html">char</a> *, <a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">int</a>)</td></tr>
+<tr class="separator:af5abdf62136ceafecb575bf0f282a9b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a172ac04aa1941ec99d34e5c0054f369f" id="r_a172ac04aa1941ec99d34e5c0054f369f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="basex11_8h.html#a172ac04aa1941ec99d34e5c0054f369f">XBQuickWindow</a> (<a class="el" href="structXBWindow.html">XBWindow</a> *, <a class="el" href="structvector.html">char</a> *, <a class="el" href="structvector.html">char</a> *, <a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">int</a>)</td></tr>
+<tr class="separator:a172ac04aa1941ec99d34e5c0054f369f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9ae02a2997a75d4ddbb8595c5cde6ce" id="r_ad9ae02a2997a75d4ddbb8595c5cde6ce"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="basex11_8h.html#ad9ae02a2997a75d4ddbb8595c5cde6ce">XBQuickWindowFromWindow</a> (<a class="el" href="structXBWindow.html">XBWindow</a> *, <a class="el" href="structvector.html">char</a> *, <a class="el" href="structvector.html">Window</a>)</td></tr>
+<tr class="separator:ad9ae02a2997a75d4ddbb8595c5cde6ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06c19b3103cf0362e25a9bde0c0e90a5" id="r_a06c19b3103cf0362e25a9bde0c0e90a5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="basex11_8h.html#a06c19b3103cf0362e25a9bde0c0e90a5">XBFlush</a> (<a class="el" href="structXBWindow.html">XBWindow</a> *)</td></tr>
+<tr class="separator:a06c19b3103cf0362e25a9bde0c0e90a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a926174c5aef24ffabdb3a841e872f792" id="r_a926174c5aef24ffabdb3a841e872f792"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="basex11_8h.html#a926174c5aef24ffabdb3a841e872f792">XBSetWindowLabel</a> (<a class="el" href="structXBWindow.html">XBWindow</a> *, <a class="el" href="structvector.html">char</a> *)</td></tr>
+<tr class="separator:a926174c5aef24ffabdb3a841e872f792"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae45c7342b688cbfb5e86c4fed1b30c79" id="r_ae45c7342b688cbfb5e86c4fed1b30c79"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="basex11_8h.html#ae45c7342b688cbfb5e86c4fed1b30c79">XBCaptureWindowToFile</a> (<a class="el" href="structXBWindow.html">XBWindow</a> *, <a class="el" href="structvector.html">char</a> *)</td></tr>
+<tr class="separator:ae45c7342b688cbfb5e86c4fed1b30c79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6952a3fd9db05056346a16d9e9333489" id="r_a6952a3fd9db05056346a16d9e9333489"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="basex11_8h.html#a6952a3fd9db05056346a16d9e9333489">XBFrameColors</a> (<a class="el" href="structXBWindow.html">XBWindow</a> *, <a class="el" href="structXBDecoration.html">XBDecoration</a> *, <a class="el" href="structvector.html">char</a> *, <a class="el" href="structvector.html">char</a> *)</td></tr>
+<tr class="separator:a6952a3fd9db05056346a16d9e9333489"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89ae719001a6378a4ee24cbe95ff8df4" id="r_a89ae719001a6378a4ee24cbe95ff8df4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="basex11_8h.html#a89ae719001a6378a4ee24cbe95ff8df4">XBDrawFrame</a> (<a class="el" href="structXBWindow.html">XBWindow</a> *, <a class="el" href="structXBDecoration.html">XBDecoration</a> *)</td></tr>
+<tr class="separator:a89ae719001a6378a4ee24cbe95ff8df4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd17c097b5261c2487f19ff4fce44a4e" id="r_afd17c097b5261c2487f19ff4fce44a4e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="basex11_8h.html#afd17c097b5261c2487f19ff4fce44a4e">XBClearWindow</a> (<a class="el" href="structXBWindow.html">XBWindow</a> *, <a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">int</a>)</td></tr>
+<tr class="separator:afd17c097b5261c2487f19ff4fce44a4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a547e43bb360ef501905b623810dc5a84" id="r_a547e43bb360ef501905b623810dc5a84"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="basex11_8h.html#a547e43bb360ef501905b623810dc5a84">XBFrameColorsByName</a> (<a class="el" href="structXBWindow.html">XBWindow</a> *, <a class="el" href="structvector.html">char</a> *, <a class="el" href="structvector.html">char</a> *)</td></tr>
+<tr class="separator:a547e43bb360ef501905b623810dc5a84"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14e491939c3942beb2824d86cc74f8e8" id="r_a14e491939c3942beb2824d86cc74f8e8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="basex11_8h.html#a14e491939c3942beb2824d86cc74f8e8">XBInitColors</a> (<a class="el" href="structXBWindow.html">XBWindow</a> *, <a class="el" href="structvector.html">Colormap</a>, <a class="el" href="structvector.html">int</a>)</td></tr>
+<tr class="separator:a14e491939c3942beb2824d86cc74f8e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab01ec6affea8993514beb37de1b5cd91" id="r_ab01ec6affea8993514beb37de1b5cd91"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="basex11_8h.html#ab01ec6affea8993514beb37de1b5cd91">XBInitCmap</a> (<a class="el" href="structXBWindow.html">XBWindow</a> *)</td></tr>
+<tr class="separator:ab01ec6affea8993514beb37de1b5cd91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa93f85fae8b065a1937a436b9e574830" id="r_aa93f85fae8b065a1937a436b9e574830"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="basex11_8h.html#aa93f85fae8b065a1937a436b9e574830">XBCmap</a> (<a class="el" href="structvector.html">unsigned</a> <a class="el" href="structvector.html">char</a>[], <a class="el" href="structvector.html">unsigned</a> <a class="el" href="structvector.html">char</a>[], <a class="el" href="structvector.html">unsigned</a> <a class="el" href="structvector.html">char</a>[], <a class="el" href="structvector.html">int</a>, <a class="el" href="structXBWindow.html">XBWindow</a> *)</td></tr>
+<tr class="separator:aa93f85fae8b065a1937a436b9e574830"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6067736b6820dbdc7ef640b4ebb3d13a" id="r_a6067736b6820dbdc7ef640b4ebb3d13a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="basex11_8h.html#a6067736b6820dbdc7ef640b4ebb3d13a">XBSetVisualClass</a> (<a class="el" href="structXBWindow.html">XBWindow</a> *)</td></tr>
+<tr class="separator:a6067736b6820dbdc7ef640b4ebb3d13a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23860cf99dab560823a485da3a62e250" id="r_a23860cf99dab560823a485da3a62e250"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="basex11_8h.html#a23860cf99dab560823a485da3a62e250">XBGetVisualClass</a> (<a class="el" href="structXBWindow.html">XBWindow</a> *)</td></tr>
+<tr class="separator:a23860cf99dab560823a485da3a62e250"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae24febbccf850e7b86efb25a5e60e146" id="r_ae24febbccf850e7b86efb25a5e60e146"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">Colormap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="basex11_8h.html#ae24febbccf850e7b86efb25a5e60e146">XBCreateColormap</a> (<a class="el" href="structvector.html">Display</a> *, <a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">Visual</a> *)</td></tr>
+<tr class="separator:ae24febbccf850e7b86efb25a5e60e146"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a134c711ccabb1397b1d7650ae7f11ee9" id="r_a134c711ccabb1397b1d7650ae7f11ee9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="basex11_8h.html#a134c711ccabb1397b1d7650ae7f11ee9">XBSetColormap</a> (<a class="el" href="structXBWindow.html">XBWindow</a> *)</td></tr>
+<tr class="separator:a134c711ccabb1397b1d7650ae7f11ee9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e91aa39e0da8a2b1952bea3940693c4" id="r_a5e91aa39e0da8a2b1952bea3940693c4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="basex11_8h.html#a5e91aa39e0da8a2b1952bea3940693c4">XBAllocBW</a> (<a class="el" href="structXBWindow.html">XBWindow</a> *, <a class="el" href="basex11_8h.html#aad48178f1183ee70ec05e8018f4e553c">PixVal</a> *, <a class="el" href="basex11_8h.html#aad48178f1183ee70ec05e8018f4e553c">PixVal</a> *)</td></tr>
+<tr class="separator:a5e91aa39e0da8a2b1952bea3940693c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e410c611a5dca61c23efac255140136" id="r_a0e410c611a5dca61c23efac255140136"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="basex11_8h.html#a0e410c611a5dca61c23efac255140136">XBGetBaseColor</a> (<a class="el" href="structXBWindow.html">XBWindow</a> *, <a class="el" href="basex11_8h.html#aad48178f1183ee70ec05e8018f4e553c">PixVal</a> *, <a class="el" href="basex11_8h.html#aad48178f1183ee70ec05e8018f4e553c">PixVal</a> *)</td></tr>
+<tr class="separator:a0e410c611a5dca61c23efac255140136"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acadf8c545d212d9d4869ea0350f28d61" id="r_acadf8c545d212d9d4869ea0350f28d61"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="basex11_8h.html#acadf8c545d212d9d4869ea0350f28d61">XBSetGamma</a> (<a class="el" href="structvector.html">double</a>)</td></tr>
+<tr class="separator:acadf8c545d212d9d4869ea0350f28d61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2770cc7214af443205775e8caaee5e6c" id="r_a2770cc7214af443205775e8caaee5e6c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="basex11_8h.html#a2770cc7214af443205775e8caaee5e6c">XBSetCmapHue</a> (<a class="el" href="structvector.html">unsigned</a> <a class="el" href="structvector.html">char</a> *, <a class="el" href="structvector.html">unsigned</a> <a class="el" href="structvector.html">char</a> *, <a class="el" href="structvector.html">unsigned</a> <a class="el" href="structvector.html">char</a> *, <a class="el" href="structvector.html">int</a>)</td></tr>
+<tr class="separator:a2770cc7214af443205775e8caaee5e6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7060556b0e249b09be7f256ad22b1c2" id="r_ae7060556b0e249b09be7f256ad22b1c2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="basex11_8h.html#ae7060556b0e249b09be7f256ad22b1c2">XBFindColor</a> (<a class="el" href="structXBWindow.html">XBWindow</a> *, <a class="el" href="structvector.html">char</a> *, <a class="el" href="basex11_8h.html#aad48178f1183ee70ec05e8018f4e553c">PixVal</a> *)</td></tr>
+<tr class="separator:ae7060556b0e249b09be7f256ad22b1c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42e1171dbe5e5a52ef0fb32e53e9cad0" id="r_a42e1171dbe5e5a52ef0fb32e53e9cad0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="basex11_8h.html#a42e1171dbe5e5a52ef0fb32e53e9cad0">XBAddCmap</a> (<a class="el" href="structvector.html">unsigned</a> <a class="el" href="structvector.html">char</a>[], <a class="el" href="structvector.html">unsigned</a> <a class="el" href="structvector.html">char</a>[], <a class="el" href="structvector.html">unsigned</a> <a class="el" href="structvector.html">char</a>[], <a class="el" href="structvector.html">int</a>, <a class="el" href="structXBWindow.html">XBWindow</a> *)</td></tr>
+<tr class="separator:a42e1171dbe5e5a52ef0fb32e53e9cad0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a255a1697b39ecd89952ae623d19ea61a" id="r_a255a1697b39ecd89952ae623d19ea61a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="basex11_8h.html#aad48178f1183ee70ec05e8018f4e553c">PixVal</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="basex11_8h.html#a255a1697b39ecd89952ae623d19ea61a">XBSimColor</a> (<a class="el" href="structXBWindow.html">XBWindow</a> *, <a class="el" href="basex11_8h.html#aad48178f1183ee70ec05e8018f4e553c">PixVal</a>, <a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">int</a>)</td></tr>
+<tr class="separator:a255a1697b39ecd89952ae623d19ea61a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71880f76dc9cb1d7bc8e9e6c66307d44" id="r_a71880f76dc9cb1d7bc8e9e6c66307d44"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="basex11_8h.html#a71880f76dc9cb1d7bc8e9e6c66307d44">XBUniformHues</a> (<a class="el" href="structXBWindow.html">XBWindow</a> *, <a class="el" href="structvector.html">int</a>)</td></tr>
+<tr class="separator:a71880f76dc9cb1d7bc8e9e6c66307d44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6d23488277393b15b0983b6622e9b96" id="r_aa6d23488277393b15b0983b6622e9b96"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="basex11_8h.html#aa6d23488277393b15b0983b6622e9b96">XBSetCmapLight</a> (<a class="el" href="structvector.html">unsigned</a> <a class="el" href="structvector.html">char</a> *, <a class="el" href="structvector.html">unsigned</a> <a class="el" href="structvector.html">char</a> *, <a class="el" href="structvector.html">unsigned</a> <a class="el" href="structvector.html">char</a> *, <a class="el" href="structvector.html">int</a>)</td></tr>
+<tr class="separator:aa6d23488277393b15b0983b6622e9b96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Макросы</h2>
+<a id="a9b56856cca35314c37feb54567c0fbef" name="a9b56856cca35314c37feb54567c0fbef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b56856cca35314c37feb54567c0fbef">&#9670;&#160;</a></span>ERR_CAN_NOT_OPEN_DISPLAY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> ERR_CAN_NOT_OPEN_DISPLAY&#160;&#160;&#160;0x10001</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="basex11_8h_source.html">basex11.h</a> строка <a class="el" href="basex11_8h_source.html#l00097">97</a></p>
+
+</div>
+</div>
+<a id="ad82ec8c58870f8a878703ea1124fbf98" name="ad82ec8c58870f8a878703ea1124fbf98"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad82ec8c58870f8a878703ea1124fbf98">&#9670;&#160;</a></span>ERR_CAN_NOT_OPEN_WINDOW</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> ERR_CAN_NOT_OPEN_WINDOW&#160;&#160;&#160;0x10003</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="basex11_8h_source.html">basex11.h</a> строка <a class="el" href="basex11_8h_source.html#l00099">99</a></p>
+
+</div>
+</div>
+<a id="ad653f389e5e3ffdb5cc345a3a0aed2c5" name="ad653f389e5e3ffdb5cc345a3a0aed2c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad653f389e5e3ffdb5cc345a3a0aed2c5">&#9670;&#160;</a></span>ERR_ILLEGAL_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> ERR_ILLEGAL_SIZE&#160;&#160;&#160;0x10004</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="basex11_8h_source.html">basex11.h</a> строка <a class="el" href="basex11_8h_source.html#l00100">100</a></p>
+
+</div>
+</div>
+<a id="a37aded73fc53250eaeda38022c757700" name="a37aded73fc53250eaeda38022c757700"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37aded73fc53250eaeda38022c757700">&#9670;&#160;</a></span>ERR_NO_DISPLAY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> ERR_NO_DISPLAY&#160;&#160;&#160;0x10002</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="basex11_8h_source.html">basex11.h</a> строка <a class="el" href="basex11_8h_source.html#l00098">98</a></p>
+
+</div>
+</div>
+<a id="a3d67ce134ff2d6ebbfe4244e2c8d49fa" name="a3d67ce134ff2d6ebbfe4244e2c8d49fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d67ce134ff2d6ebbfe4244e2c8d49fa">&#9670;&#160;</a></span>XBDrawable</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> XBDrawable</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">w</td><td>)</td>
+          <td>&#160;&#160;&#160;((w)-&gt;drw ? (w)-&gt;drw : (w)-&gt;win)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="basex11_8h_source.html">basex11.h</a> строка <a class="el" href="basex11_8h_source.html#l00061">61</a></p>
+
+</div>
+</div>
+<a id="a2821d43dc8dc9fd2c49d6886114cf944" name="a2821d43dc8dc9fd2c49d6886114cf944"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2821d43dc8dc9fd2c49d6886114cf944">&#9670;&#160;</a></span>XBSetPixVal</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> XBSetPixVal</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><a class="el" href="structvector.html">xbwin</a>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><a class="el" href="structvector.html">pixval</a>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Макроопределение:</b><div class="fragment"><div class="line"><span class="keywordflow">if</span> (<a class="code hl_struct" href="structvector.html">xbwin</a>-&gt;gc.cur_pix != <a class="code hl_struct" href="structvector.html">pixval</a>) { <a class="code hl_struct" href="structvector.html">\</a></div>
+<div class="line"><a class="code hl_struct" href="structvector.html">    XSetForeground</a>( <a class="code hl_struct" href="structvector.html">xbwin</a>-&gt;disp, <a class="code hl_struct" href="structvector.html">xbwin</a>-&gt;gc.set, <a class="code hl_struct" href="structvector.html">pixval</a> ); \</div>
+<div class="line">    <a class="code hl_struct" href="structvector.html">xbwin</a>-&gt;gc.cur_pix   = <a class="code hl_struct" href="structvector.html">pixval</a>;\</div>
+<div class="line">    }</div>
+<div class="ttc" id="astructvector_html"><div class="ttname"><a href="structvector.html">vector</a></div><div class="ttdef"><b>Definition</b> <a href="point_8h_source.html#l00012">point.h:12</a></div></div>
+</div><!-- fragment -->
+<p class="definition">См. определение в файле <a class="el" href="basex11_8h_source.html">basex11.h</a> строка <a class="el" href="basex11_8h_source.html#l00090">90</a></p>
+
+</div>
+</div>
+<h2 class="groupheader">Типы</h2>
+<a id="aad48178f1183ee70ec05e8018f4e553c" name="aad48178f1183ee70ec05e8018f4e553c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad48178f1183ee70ec05e8018f4e553c">&#9670;&#160;</a></span>PixVal</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">typedef</a> <a class="el" href="structvector.html">unsigned</a> <a class="el" href="structvector.html">long</a> <a class="el" href="basex11_8h.html#aad48178f1183ee70ec05e8018f4e553c">PixVal</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="basex11_8h_source.html">basex11.h</a> строка <a class="el" href="basex11_8h_source.html#l00021">21</a></p>
+
+</div>
+</div>
+<h2 class="groupheader">Функции</h2>
+<a id="af968e9a33f9efff2cdfcdde510c6b65b" name="af968e9a33f9efff2cdfcdde510c6b65b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af968e9a33f9efff2cdfcdde510c6b65b">&#9670;&#160;</a></span>XB_wait_map()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> XB_wait_map </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structXBWindow.html">XBWindow</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">void</a>(*)(<a class="el" href="structXBWindow.html">XBWindow</a> *, <a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">int</a>)&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a42e1171dbe5e5a52ef0fb32e53e9cad0" name="a42e1171dbe5e5a52ef0fb32e53e9cad0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42e1171dbe5e5a52ef0fb32e53e9cad0">&#9670;&#160;</a></span>XBAddCmap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> XBAddCmap </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">unsigned</a> <a class="el" href="structvector.html">char</a>&#160;</td>
+          <td class="paramname">[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">unsigned</a> <a class="el" href="structvector.html">char</a>&#160;</td>
+          <td class="paramname">[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">unsigned</a> <a class="el" href="structvector.html">char</a>&#160;</td>
+          <td class="paramname">[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structXBWindow.html">XBWindow</a> *&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5e91aa39e0da8a2b1952bea3940693c4" name="a5e91aa39e0da8a2b1952bea3940693c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e91aa39e0da8a2b1952bea3940693c4">&#9670;&#160;</a></span>XBAllocBW()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> XBAllocBW </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structXBWindow.html">XBWindow</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="basex11_8h.html#aad48178f1183ee70ec05e8018f4e553c">PixVal</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="basex11_8h.html#aad48178f1183ee70ec05e8018f4e553c">PixVal</a> *&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae45c7342b688cbfb5e86c4fed1b30c79" name="ae45c7342b688cbfb5e86c4fed1b30c79"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae45c7342b688cbfb5e86c4fed1b30c79">&#9670;&#160;</a></span>XBCaptureWindowToFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> XBCaptureWindowToFile </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structXBWindow.html">XBWindow</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afd17c097b5261c2487f19ff4fce44a4e" name="afd17c097b5261c2487f19ff4fce44a4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd17c097b5261c2487f19ff4fce44a4e">&#9670;&#160;</a></span>XBClearWindow()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> XBClearWindow </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structXBWindow.html">XBWindow</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa93f85fae8b065a1937a436b9e574830" name="aa93f85fae8b065a1937a436b9e574830"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa93f85fae8b065a1937a436b9e574830">&#9670;&#160;</a></span>XBCmap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> XBCmap </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">unsigned</a> <a class="el" href="structvector.html">char</a>&#160;</td>
+          <td class="paramname">[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">unsigned</a> <a class="el" href="structvector.html">char</a>&#160;</td>
+          <td class="paramname">[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">unsigned</a> <a class="el" href="structvector.html">char</a>&#160;</td>
+          <td class="paramname">[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structXBWindow.html">XBWindow</a> *&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae24febbccf850e7b86efb25a5e60e146" name="ae24febbccf850e7b86efb25a5e60e146"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae24febbccf850e7b86efb25a5e60e146">&#9670;&#160;</a></span>XBCreateColormap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">Colormap</a> XBCreateColormap </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">Display</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">Visual</a> *&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a73d65d3c588b3edb4c7306689b37a959" name="a73d65d3c588b3edb4c7306689b37a959"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73d65d3c588b3edb4c7306689b37a959">&#9670;&#160;</a></span>XBDisplayWindow()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> XBDisplayWindow </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structXBWindow.html">XBWindow</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="basex11_8h.html#aad48178f1183ee70ec05e8018f4e553c">PixVal</a>&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a89ae719001a6378a4ee24cbe95ff8df4" name="a89ae719001a6378a4ee24cbe95ff8df4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89ae719001a6378a4ee24cbe95ff8df4">&#9670;&#160;</a></span>XBDrawFrame()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> XBDrawFrame </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structXBWindow.html">XBWindow</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structXBDecoration.html">XBDecoration</a> *&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae7060556b0e249b09be7f256ad22b1c2" name="ae7060556b0e249b09be7f256ad22b1c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7060556b0e249b09be7f256ad22b1c2">&#9670;&#160;</a></span>XBFindColor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> XBFindColor </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structXBWindow.html">XBWindow</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="basex11_8h.html#aad48178f1183ee70ec05e8018f4e553c">PixVal</a> *&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a06c19b3103cf0362e25a9bde0c0e90a5" name="a06c19b3103cf0362e25a9bde0c0e90a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06c19b3103cf0362e25a9bde0c0e90a5">&#9670;&#160;</a></span>XBFlush()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> XBFlush </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structXBWindow.html">XBWindow</a> *&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6952a3fd9db05056346a16d9e9333489" name="a6952a3fd9db05056346a16d9e9333489"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6952a3fd9db05056346a16d9e9333489">&#9670;&#160;</a></span>XBFrameColors()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> XBFrameColors </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structXBWindow.html">XBWindow</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structXBDecoration.html">XBDecoration</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a547e43bb360ef501905b623810dc5a84" name="a547e43bb360ef501905b623810dc5a84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a547e43bb360ef501905b623810dc5a84">&#9670;&#160;</a></span>XBFrameColorsByName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> XBFrameColorsByName </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structXBWindow.html">XBWindow</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3e2c275a527108d99859e432916a5214" name="a3e2c275a527108d99859e432916a5214"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e2c275a527108d99859e432916a5214">&#9670;&#160;</a></span>XBGetArgs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> XBGetArgs </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> **&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af15cffb5bc65cddc458902fd6e7962ec" name="af15cffb5bc65cddc458902fd6e7962ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af15cffb5bc65cddc458902fd6e7962ec">&#9670;&#160;</a></span>XBGetArgsDisplay()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> XBGetArgsDisplay </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> **&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0e410c611a5dca61c23efac255140136" name="a0e410c611a5dca61c23efac255140136"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e410c611a5dca61c23efac255140136">&#9670;&#160;</a></span>XBGetBaseColor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> XBGetBaseColor </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structXBWindow.html">XBWindow</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="basex11_8h.html#aad48178f1183ee70ec05e8018f4e553c">PixVal</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="basex11_8h.html#aad48178f1183ee70ec05e8018f4e553c">PixVal</a> *&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab01e8be26c5abfe06a250bdf7c594f03" name="ab01e8be26c5abfe06a250bdf7c594f03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab01e8be26c5abfe06a250bdf7c594f03">&#9670;&#160;</a></span>XBGetColor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="basex11_8h.html#aad48178f1183ee70ec05e8018f4e553c">PixVal</a> XBGetColor </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structXBWindow.html">XBWindow</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a23860cf99dab560823a485da3a62e250" name="a23860cf99dab560823a485da3a62e250"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a23860cf99dab560823a485da3a62e250">&#9670;&#160;</a></span>XBGetVisualClass()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> XBGetVisualClass </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structXBWindow.html">XBWindow</a> *&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab01ec6affea8993514beb37de1b5cd91" name="ab01ec6affea8993514beb37de1b5cd91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab01ec6affea8993514beb37de1b5cd91">&#9670;&#160;</a></span>XBInitCmap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> XBInitCmap </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structXBWindow.html">XBWindow</a> *&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a14e491939c3942beb2824d86cc74f8e8" name="a14e491939c3942beb2824d86cc74f8e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a14e491939c3942beb2824d86cc74f8e8">&#9670;&#160;</a></span>XBInitColors()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> XBInitColors </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structXBWindow.html">XBWindow</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">Colormap</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af5abdf62136ceafecb575bf0f282a9b0" name="af5abdf62136ceafecb575bf0f282a9b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5abdf62136ceafecb575bf0f282a9b0">&#9670;&#160;</a></span>XBiQuickWindow()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> XBiQuickWindow </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structXBWindow.html">XBWindow</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a868d85189d79ae14c5f73b1f05f9976f" name="a868d85189d79ae14c5f73b1f05f9976f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a868d85189d79ae14c5f73b1f05f9976f">&#9670;&#160;</a></span>XBOpenDisplay()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> XBOpenDisplay </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structXBWindow.html">XBWindow</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad9d819a7c7338b89cde61b9d300e2f6f" name="ad9d819a7c7338b89cde61b9d300e2f6f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9d819a7c7338b89cde61b9d300e2f6f">&#9670;&#160;</a></span>XBOpenWindow()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> XBOpenWindow </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structXBWindow.html">XBWindow</a> *&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a172ac04aa1941ec99d34e5c0054f369f" name="a172ac04aa1941ec99d34e5c0054f369f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a172ac04aa1941ec99d34e5c0054f369f">&#9670;&#160;</a></span>XBQuickWindow()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> XBQuickWindow </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structXBWindow.html">XBWindow</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad9ae02a2997a75d4ddbb8595c5cde6ce" name="ad9ae02a2997a75d4ddbb8595c5cde6ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9ae02a2997a75d4ddbb8595c5cde6ce">&#9670;&#160;</a></span>XBQuickWindowFromWindow()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> XBQuickWindowFromWindow </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structXBWindow.html">XBWindow</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">Window</a>&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2770cc7214af443205775e8caaee5e6c" name="a2770cc7214af443205775e8caaee5e6c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2770cc7214af443205775e8caaee5e6c">&#9670;&#160;</a></span>XBSetCmapHue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> XBSetCmapHue </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">unsigned</a> <a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">unsigned</a> <a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">unsigned</a> <a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa6d23488277393b15b0983b6622e9b96" name="aa6d23488277393b15b0983b6622e9b96"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6d23488277393b15b0983b6622e9b96">&#9670;&#160;</a></span>XBSetCmapLight()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> XBSetCmapLight </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">unsigned</a> <a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">unsigned</a> <a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">unsigned</a> <a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a134c711ccabb1397b1d7650ae7f11ee9" name="a134c711ccabb1397b1d7650ae7f11ee9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a134c711ccabb1397b1d7650ae7f11ee9">&#9670;&#160;</a></span>XBSetColormap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> XBSetColormap </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structXBWindow.html">XBWindow</a> *&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acadf8c545d212d9d4869ea0350f28d61" name="acadf8c545d212d9d4869ea0350f28d61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acadf8c545d212d9d4869ea0350f28d61">&#9670;&#160;</a></span>XBSetGamma()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> XBSetGamma </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">double</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae552b8e34798503a1abae09716d43af4" name="ae552b8e34798503a1abae09716d43af4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae552b8e34798503a1abae09716d43af4">&#9670;&#160;</a></span>XBSetGC()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> XBSetGC </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structXBWindow.html">XBWindow</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="basex11_8h.html#aad48178f1183ee70ec05e8018f4e553c">PixVal</a>&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4c2a640450c181c55c3380167f48fb97" name="a4c2a640450c181c55c3380167f48fb97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c2a640450c181c55c3380167f48fb97">&#9670;&#160;</a></span>XBSetVisual()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> XBSetVisual </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structXBWindow.html">XBWindow</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">Colormap</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6067736b6820dbdc7ef640b4ebb3d13a" name="a6067736b6820dbdc7ef640b4ebb3d13a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6067736b6820dbdc7ef640b4ebb3d13a">&#9670;&#160;</a></span>XBSetVisualClass()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> XBSetVisualClass </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structXBWindow.html">XBWindow</a> *&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a926174c5aef24ffabdb3a841e872f792" name="a926174c5aef24ffabdb3a841e872f792"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a926174c5aef24ffabdb3a841e872f792">&#9670;&#160;</a></span>XBSetWindowLabel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> XBSetWindowLabel </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structXBWindow.html">XBWindow</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a255a1697b39ecd89952ae623d19ea61a" name="a255a1697b39ecd89952ae623d19ea61a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a255a1697b39ecd89952ae623d19ea61a">&#9670;&#160;</a></span>XBSimColor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="basex11_8h.html#aad48178f1183ee70ec05e8018f4e553c">PixVal</a> XBSimColor </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structXBWindow.html">XBWindow</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="basex11_8h.html#aad48178f1183ee70ec05e8018f4e553c">PixVal</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1e6c7509fc369dfdd1b993171f3a1c75" name="a1e6c7509fc369dfdd1b993171f3a1c75"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e6c7509fc369dfdd1b993171f3a1c75">&#9670;&#160;</a></span>XBSync()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> XBSync </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structXBWindow.html">XBWindow</a> *&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a71880f76dc9cb1d7bc8e9e6c66307d44" name="a71880f76dc9cb1d7bc8e9e6c66307d44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71880f76dc9cb1d7bc8e9e6c66307d44">&#9670;&#160;</a></span>XBUniformHues()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> XBUniformHues </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structXBWindow.html">XBWindow</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5bb27c7ba101509a76646b8fac55c211" name="a5bb27c7ba101509a76646b8fac55c211"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5bb27c7ba101509a76646b8fac55c211">&#9670;&#160;</a></span>XBWinCreate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structXBWindow.html">XBWindow</a> * XBWinCreate </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa3da8b74bd12aff1d324e49f1f759624" name="aa3da8b74bd12aff1d324e49f1f759624"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3da8b74bd12aff1d324e49f1f759624">&#9670;&#160;</a></span>XBWinDestroy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> XBWinDestroy </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structXBWindow.html">XBWindow</a> *&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

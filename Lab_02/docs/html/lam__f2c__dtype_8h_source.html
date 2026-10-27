@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lab_02: MPI + OpenMP Parallel Programming: Исходный файл lam_f2c_dtype.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Lab_02: MPI + OpenMP Parallel Programming<span id="projectnumber">&#160;2.1</span>
+   </div>
+   <div id="projectbrief">Решение 3D уравнения Пуассона методом Якоби с двумерной декомпозицией</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_1f646cbbb0f6227d25dd06f792d51aba.html">mpe2-1.3.0</a></li><li class="navelem"><a class="el" href="dir_493399512d45eb30627376023737183a.html">src</a></li><li class="navelem"><a class="el" href="dir_a2eccd5b3f0c3c7ebe8d4b9f9baae753.html">collchk</a></li><li class="navelem"><a class="el" href="dir_a6912acc79beca46e77fc341e118635d.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">lam_f2c_dtype.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="lam__f2c__dtype_8h.html">См. документацию.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">      (C) 2001 by Argonne National Laboratory.</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">             See COPYRIGHT in top-level directory.</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">*/</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">/* These constants are defined for LAM/MPI */</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno"><a class="line" href="lam__f2c__dtype_8h.html#a85f42a33601b87ba4ec84ae97d0993e7">    6</a></span><span class="preprocessor">#define MPI_INTEGER           ((MPI_Datatype) &amp;lam_mpi_integer)</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno"><a class="line" href="lam__f2c__dtype_8h.html#aabb46448e7a3ce8c7fac9606af673805">    7</a></span><span class="preprocessor">#define MPI_INTEGER1          ((MPI_Datatype) &amp;lam_mpi_integer1)</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="lam__f2c__dtype_8h.html#abaab33a6002c2c39b70766c68bd905c3">    8</a></span><span class="preprocessor">#define MPI_INTEGER2          ((MPI_Datatype) &amp;lam_mpi_integer2)</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="lam__f2c__dtype_8h.html#a8c4a23ac315a53c10d823d54089dd511">    9</a></span><span class="preprocessor">#define MPI_INTEGER4          ((MPI_Datatype) &amp;lam_mpi_integer4)</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="lam__f2c__dtype_8h.html#a302242fac93fc7e37893669525619f3f">   10</a></span><span class="preprocessor">#define MPI_INTEGER8          ((MPI_Datatype) &amp;lam_mpi_integer8)</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="lam__f2c__dtype_8h.html#a156a427b64b04699ae72f82fa1509fae">   11</a></span><span class="preprocessor">#define MPI_REAL              ((MPI_Datatype) &amp;lam_mpi_real)</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="lam__f2c__dtype_8h.html#a359cd55fbc04f915c1dfa6a3efc78e88">   12</a></span><span class="preprocessor">#define MPI_REAL4             ((MPI_Datatype) &amp;lam_mpi_real4)</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="lam__f2c__dtype_8h.html#a79c8249386c84bdf794b4bc2d7b36408">   13</a></span><span class="preprocessor">#define MPI_REAL8             ((MPI_Datatype) &amp;lam_mpi_real8)</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="lam__f2c__dtype_8h.html#ae79427924bf15e2362903b7c2cec3a4f">   14</a></span><span class="preprocessor">#define MPI_REAL16            ((MPI_Datatype) &amp;lam_mpi_real16)</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="lam__f2c__dtype_8h.html#a8ba9b55ec1ecd4881377b68bf04ad2ee">   15</a></span><span class="preprocessor">#define MPI_DOUBLE_PRECISION  ((MPI_Datatype) &amp;lam_mpi_dblprec)</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="lam__f2c__dtype_8h.html#a2fa60e50715c58ccf52ed76dc277ba21">   16</a></span><span class="preprocessor">#define MPI_CHARACTER         ((MPI_Datatype) &amp;lam_mpi_character)</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="lam__f2c__dtype_8h.html#a54f2d3f56465d191544ef05527b4ba69">   17</a></span><span class="preprocessor">#define MPI_LOGICAL           ((MPI_Datatype) &amp;lam_mpi_logic)</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="lam__f2c__dtype_8h.html#a97f75883105db36b63884c20abd0ccdb">   18</a></span><span class="preprocessor">#define MPI_COMPLEX           ((MPI_Datatype) &amp;lam_mpi_cplex)</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="lam__f2c__dtype_8h.html#a3943e0d19db632e1ce6e2932208c9c63">   19</a></span><span class="preprocessor">#define MPI_DOUBLE_COMPLEX    ((MPI_Datatype) &amp;lam_mpi_dblcplex)</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="lam__f2c__dtype_8h.html#aa1f5dc7849788030acb18d7124d55cbc">   20</a></span><span class="preprocessor">#define MPI_2INTEGER          ((MPI_Datatype) &amp;lam_mpi_2integer)</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="lam__f2c__dtype_8h.html#af69c0150d75b4fa73afcb3b327763896">   21</a></span><span class="preprocessor">#define MPI_2REAL             ((MPI_Datatype) &amp;lam_mpi_2real)</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="lam__f2c__dtype_8h.html#af1fba7488efb6620ef63ac52d996456e">   22</a></span><span class="preprocessor">#define MPI_2DOUBLE_PRECISION ((MPI_Datatype) &amp;lam_mpi_2dblprec)</span></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

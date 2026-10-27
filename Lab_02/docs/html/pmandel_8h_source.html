@@ -1,0 +1,364 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lab_02: MPI + OpenMP Parallel Programming: Исходный файл pmandel.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Lab_02: MPI + OpenMP Parallel Programming<span id="projectnumber">&#160;2.1</span>
+   </div>
+   <div id="projectbrief">Решение 3D уравнения Пуассона методом Якоби с двумерной декомпозицией</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_1f646cbbb0f6227d25dd06f792d51aba.html">mpe2-1.3.0</a></li><li class="navelem"><a class="el" href="dir_493399512d45eb30627376023737183a.html">src</a></li><li class="navelem"><a class="el" href="dir_532b6e0bbac9f63fe589b390252576da.html">graphics</a></li><li class="navelem"><a class="el" href="dir_79216fb839f205e39a4f1139e127db43.html">contrib</a></li><li class="navelem"><a class="el" href="dir_36c5fa1fce864ea26b23b700a1dd37b8.html">mandel</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">pmandel.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="pmandel_8h.html">См. документацию.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> *  (C) 2001 by Argonne National Laboratory.</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *      See COPYRIGHT in top-level directory.</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#ifndef _PM_H_</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#define _PM_H_</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;mpe_graphics.h&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;mpi.h&quot;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;<a class="code" href="mpe_8h.html">mpe.h</a>&quot;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &quot;<a class="code" href="fract__gen_8h.html">fract_gen.h</a>&quot;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="pmandel_8h.html#a159ca84d25a5487d8e81e4438725df19">   15</a></span><span class="preprocessor">#define LOG 1</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="pmandel_8h.html#adc5331ac83ffa7732daba54a32c8fa98">   16</a></span><span class="preprocessor">#define MAX_RECT_PASSED 4</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="pmandel_8h.html#a4a13984551585859f63cb88477d2f404">   18</a></span><span class="keyword">extern</span> <a class="code hl_struct" href="structvector.html">MPI_Datatype</a> <a class="code hl_variable" href="pmandel_8h.html#ad08d759c71d9d0b59aa2759d000f882e">winspecs_type</a>, <a class="code hl_variable" href="pmandel_8h.html#a4a13984551585859f63cb88477d2f404">flags_type</a>, <a class="code hl_variable" href="pmandel_8h.html#a91471f51634c2e0e8053b0cc455e60df">NUM_type</a>, <a class="code hl_variable" href="pmandel_8h.html#a0f42c25704b48da9c18782f2cc0000a9">rect_type</a>;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">extern</span> <a class="code hl_struct" href="structvector.html">FILE</a> *<a class="code hl_variable" href="pmandel_8h.html#af5cc516f4d3c010da348387f6910a556">debug_file</a>;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="foldopen" id="foldopen00021" data-start="{" data-end="};">
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="pmandel_8h.html#ab44dc22dc33d5811bb3f76bd9d980e85">   21</a></span><span class="keyword">typedef</span> <span class="keyword">enum</span> <a class="code hl_enumeration" href="pmandel_8h.html#ab44dc22dc33d5811bb3f76bd9d980e85">_Algorithms</a> {</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="pmandel_8h.html#ab44dc22dc33d5811bb3f76bd9d980e85a780663ac135128ef44a1aa3bec36fee6">   22</a></span>  <a class="code hl_enumvalue" href="pmandel_8h.html#ab44dc22dc33d5811bb3f76bd9d980e85a780663ac135128ef44a1aa3bec36fee6">alg_block</a>,</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="pmandel_8h.html#ab44dc22dc33d5811bb3f76bd9d980e85acce7c6b50e626e4599bf6ae07df92459">   23</a></span>  <a class="code hl_enumvalue" href="pmandel_8h.html#ab44dc22dc33d5811bb3f76bd9d980e85acce7c6b50e626e4599bf6ae07df92459">alg_separate_rect</a>,</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>  <a class="code hl_enumvalue" href="pmandel_8h.html#ab44dc22dc33d5811bb3f76bd9d980e85a74fadb130a886bf5bdf8a45eb6af6181">alg_solid_rect</a></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="pmandel_8h.html#ab44dc22dc33d5811bb3f76bd9d980e85a74fadb130a886bf5bdf8a45eb6af6181">   25</a></span>} <a class="code hl_typedef" href="pmandel_8h.html#ae894d506ca8b7887f5258b7b42b48107">Algorithms</a>;</div>
+</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">extern</span> <a class="code hl_typedef" href="include_2mpe__graphics_8h.html#a018a866a1c4c132e5b22c0651beac95b">MPE_XGraph</a> <a class="code hl_variable" href="pmandel_8h.html#adfd7dd8e88dca8c182b4f7f42e3298b9">tracking_win</a>;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="foldopen" id="foldopen00029" data-start="{" data-end="};">
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="struct__Winspecs.html">   29</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="struct__Winspecs.html">_Winspecs</a> {</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="struct__Winspecs.html#a743a1b7af5d91f0fe3f9e1f85b90b08c">   30</a></span>  <span class="keywordtype">int</span> <a class="code hl_variable" href="struct__Winspecs.html#a743a1b7af5d91f0fe3f9e1f85b90b08c">height</a>, <a class="code hl_variable" href="struct__Winspecs.html#ac267792baa894e89e5564e82ba448bf9">width</a>;        <span class="comment">/* size of the window */</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="struct__Winspecs.html#a7739b8b8f69717b6bde6f55d2cd7b0c3">   31</a></span>  <span class="keywordtype">int</span> <a class="code hl_variable" href="struct__Winspecs.html#a7739b8b8f69717b6bde6f55d2cd7b0c3">bw</a>;           <span class="comment">/* whether to draw in black&amp;white */</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="struct__Winspecs.html#a8ec92a93afcf4dca7be2b63882d1d78a">   32</a></span>  <span class="keywordtype">int</span> <a class="code hl_variable" href="struct__Winspecs.html#a8ec92a93afcf4dca7be2b63882d1d78a">xpos</a>, <a class="code hl_variable" href="struct__Winspecs.html#a2032447d7db7d035556e211607722cd3">ypos</a>;       <span class="comment">/* position of the window */</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="struct__Winspecs.html#aa5cf4534da81c6899e9464ba976d4a60">   33</a></span>  <span class="keywordtype">int</span> <a class="code hl_variable" href="struct__Winspecs.html#aa5cf4534da81c6899e9464ba976d4a60">numColors</a>;        <span class="comment">/* number of colors to use */</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="struct__Winspecs.html#ad486796114433e368c70380b1ad44d43">   34</a></span>  <span class="keywordtype">int</span> <a class="code hl_variable" href="struct__Winspecs.html#ad486796114433e368c70380b1ad44d43">my_tracking_color</a>;        <span class="comment">/* Color used in tracking window, if used. */</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="struct__Winspecs.html#aa42cfdc5e3fd60aeee350c2a5ff8bbb8">   35</a></span>  <a class="code hl_enumeration" href="include_2mpe__graphics_8h.html#a5fa1b05b20c35b88f5256bb39e30af3e">MPE_Color</a> *<a class="code hl_variable" href="struct__Winspecs.html#aa42cfdc5e3fd60aeee350c2a5ff8bbb8">colorArray</a>;    <span class="comment">/* colors */</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="pmandel_8h.html#a402fa2e4e062829750ddca43163a69fb">   36</a></span>} <a class="code hl_typedef" href="pmandel_8h.html#a402fa2e4e062829750ddca43163a69fb">Winspecs</a>;</div>
+</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="foldopen" id="foldopen00038" data-start="{" data-end="};">
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="struct__Flags.html">   38</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="struct__Flags.html">_Flags</a> {</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="struct__Flags.html#ab1fee9677f57d5a9f98a96d1e871b4f7">   39</a></span>  <span class="keywordtype">char</span> *<a class="code hl_variable" href="struct__Flags.html#ab1fee9677f57d5a9f98a96d1e871b4f7">logfile</a>;        <span class="comment">/* name of logfile (NULL for no logging) */</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="struct__Flags.html#a107ac656b502c7fe6e66d05a1af1a788">   40</a></span>  <span class="keywordtype">char</span> *<a class="code hl_variable" href="struct__Flags.html#a107ac656b502c7fe6e66d05a1af1a788">inf</a>;            <span class="comment">/* input file (NULL for no input file) */</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="struct__Flags.html#aea3cf33e156b0f6b48541510580ea8c2">   41</a></span>  <span class="keywordtype">char</span> *<a class="code hl_variable" href="struct__Flags.html#aea3cf33e156b0f6b48541510580ea8c2">outf</a>;           <span class="comment">/* output file (NULL for no output file) */</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="struct__Flags.html#ad99315157e27ec4e545d870839f61480">   42</a></span>  <a class="code hl_struct" href="struct__Winspecs.html">Winspecs</a> *<a class="code hl_variable" href="struct__Flags.html#ad99315157e27ec4e545d870839f61480">winspecs</a>;       <span class="comment">/* so we only need to pass one */</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="struct__Flags.html#a7b75ab801c3afccbd2826bf1c1db2e02">   43</a></span>  <span class="keywordtype">int</span> <a class="code hl_variable" href="struct__Flags.html#a7b75ab801c3afccbd2826bf1c1db2e02">breakout</a>;         <span class="comment">/* when to stop subdividing */</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="struct__Flags.html#a9f3d7d96e8070992340727b7c3a6bf3d">   44</a></span>  <span class="keywordtype">int</span> <a class="code hl_variable" href="struct__Flags.html#a9f3d7d96e8070992340727b7c3a6bf3d">randomize</a>;        <span class="comment">/* whether to proceed in a random order */</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="struct__Flags.html#af61c8569506befb3a817494f4f87d130">   45</a></span>  <span class="keywordtype">int</span> <a class="code hl_variable" href="struct__Flags.html#af61c8569506befb3a817494f4f87d130">colReduceFactor</a>;      <span class="comment">/* how many iteration levels each color will</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="comment">                   span */</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="struct__Flags.html#ac6a71f485f71ebf4a6892424145d9c92">   47</a></span>  <span class="keywordtype">int</span> <a class="code hl_variable" href="struct__Flags.html#ac6a71f485f71ebf4a6892424145d9c92">loop</a>;         <span class="comment">/* continually loop through input file */</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="struct__Flags.html#a0e0151c60b9a44452fd979dfde89fe29">   48</a></span>  <span class="keywordtype">int</span> <a class="code hl_variable" href="struct__Flags.html#a0e0151c60b9a44452fd979dfde89fe29">zoom</a>;         <span class="comment">/* ask for zoom rectangle after each */</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="struct__Flags.html#a453057fba8f1a1ef6923f793dceb71c2">   49</a></span>  <span class="keywordtype">int</span> <a class="code hl_variable" href="struct__Flags.html#a453057fba8f1a1ef6923f793dceb71c2">askNeighbor</a>;      <span class="comment">/* in alg_solid_rect, whether to ask neighbor</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="comment">                   or master for work */</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="struct__Flags.html#a94a0526337b064d9dd943911298c7eee">   51</a></span>  <span class="keywordtype">int</span> <a class="code hl_variable" href="struct__Flags.html#a94a0526337b064d9dd943911298c7eee">sendMasterComplexity</a>; <span class="comment">/* in alg_solid_rect with !askNeighbor,</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="comment">                   whether to send the master the complexity</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="comment">                   of the region you need computed */</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="struct__Flags.html#a983302efbdbf09631f03382c0da4965e">   54</a></span>  <span class="keywordtype">int</span> <a class="code hl_variable" href="struct__Flags.html#a983302efbdbf09631f03382c0da4965e">drawBlockRegion</a>;      <span class="comment">/* in alg_solid_rect, whether to draw the</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="comment">                   region computed at once or to</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="comment">                   wait and draw a complete rectangle */</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="struct__Flags.html#af4a425664699b8b3b19ab3602a5ad6ce">   57</a></span>  <span class="keywordtype">int</span> <a class="code hl_variable" href="struct__Flags.html#af4a425664699b8b3b19ab3602a5ad6ce">fractal</a>;          <span class="comment">/* fractal type-MBROT, JULIA, or NEWTON */</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="struct__Flags.html#a9b4c0175c7a1421da4c6cce9970a0556">   58</a></span>  <span class="keywordtype">int</span> <a class="code hl_variable" href="struct__Flags.html#a9b4c0175c7a1421da4c6cce9970a0556">maxiter</a>;          <span class="comment">/* bailout point  */</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="struct__Flags.html#a68ba4df0f3a169a29c539b80c6db44f3">   59</a></span>  <span class="keywordtype">int</span> <a class="code hl_variable" href="struct__Flags.html#a68ba4df0f3a169a29c539b80c6db44f3">with_tracking_win</a>;        <span class="comment">/* boolean: add a second window for</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="comment">                                   indicating who computed what. */</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="struct__Flags.html#ae0f5e1bc05cd5416622a5a8b3a6a7aaa">   61</a></span>  <span class="keywordtype">int</span> <a class="code hl_variable" href="struct__Flags.html#ae0f5e1bc05cd5416622a5a8b3a6a7aaa">no_remote_X</a>;              <span class="comment">/* boolean: master handles all X displaying. */</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="struct__Flags.html#ae7164b29bae7f7d548ea02dd316475b3">   63</a></span>  <span class="keywordtype">double</span> <a class="code hl_variable" href="struct__Flags.html#ae7164b29bae7f7d548ea02dd316475b3">boundary_sq</a>;       <span class="comment">/* boundary for JULIA &amp; MBROT */</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="struct__Flags.html#a3c194a2ce8fc618af7f32b91126f1c68">   64</a></span>  <span class="keywordtype">double</span> <a class="code hl_variable" href="struct__Flags.html#a3c194a2ce8fc618af7f32b91126f1c68">epsilon</a>;       <span class="comment">/* epsilon for NEWTON */</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="struct__Flags.html#a156d01e480c09aeacc3b8a613f43edb1">   65</a></span>  <a class="code hl_define" href="fract__gen_8h.html#aaf0952059602752258dccaa015d7b54a">NUM</a> <a class="code hl_variable" href="struct__Flags.html#abec2ea17cac1b2e2e5f9b0f24f1d9bb8">rmin</a>, <a class="code hl_variable" href="struct__Flags.html#a7e482963f247fdbfb866f0d008e27c50">rmax</a>, <a class="code hl_variable" href="struct__Flags.html#a0fbc72b814346b4f686b7f7cf8623079">imin</a>, <a class="code hl_variable" href="struct__Flags.html#a156d01e480c09aeacc3b8a613f43edb1">imax</a>;   <span class="comment">/* region to be computed */</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="struct__Flags.html#aec3a7214ea75146a21b783f3f8ba0557">   66</a></span>  <a class="code hl_define" href="fract__gen_8h.html#aaf0952059602752258dccaa015d7b54a">NUM</a> <a class="code hl_variable" href="struct__Flags.html#a7b22b7a1f79fb8c170fcb7de365825c2">julia_r</a>, <a class="code hl_variable" href="struct__Flags.html#aec3a7214ea75146a21b783f3f8ba0557">julia_i</a>;     <span class="comment">/* point the Julia set is related to */</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="pmandel_8h.html#a170683f19b73e356570a258debb0b196">   67</a></span>} <a class="code hl_typedef" href="pmandel_8h.html#a170683f19b73e356570a258debb0b196">Flags</a>;</div>
+</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="comment">/* logfile events */</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="pmandel_8h.html#aad5bc14822380a8176f0d3a52a290660">   71</a></span><span class="preprocessor">#define S_COMPUTE 10</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="pmandel_8h.html#a334977c83f10b347aff7269b6e29a48d">   72</a></span><span class="preprocessor">#define E_COMPUTE 11</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="pmandel_8h.html#a286e3d6e87221c11a37b062db0c75e39">   73</a></span><span class="preprocessor">#define S_DRAW_BLOCK 12</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="pmandel_8h.html#a31d0bd9807684fcdd0592f3b1f46269f">   74</a></span><span class="preprocessor">#define E_DRAW_BLOCK 13</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="pmandel_8h.html#a3808caa19f4e87794b1e35feea46deaa">   75</a></span><span class="preprocessor">#define S_WAIT_FOR_MESSAGE 14</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="pmandel_8h.html#a1aaaaa475064ac8ca93c1dce6942029d">   76</a></span><span class="preprocessor">#define E_WAIT_FOR_MESSAGE 15</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="pmandel_8h.html#a7ec026f11c0c4c6be707e4ccaebd29f1">   77</a></span><span class="preprocessor">#define S_DRAW_RECT 16</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="pmandel_8h.html#af4a184c5f7db02fcf253eb39c3c1e7b5">   78</a></span><span class="preprocessor">#define E_DRAW_RECT 17</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="pmandel_8h.html#af202ef27e0264027d47b186893d3b2d2">   79</a></span><span class="preprocessor">#define S_DRAW_CHUNK 18</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="pmandel_8h.html#a7704f25b392d96e719f07686fd75ea92">   80</a></span><span class="preprocessor">#define E_DRAW_CHUNK 19</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="pmandel_8h.html#af3f880f4d89c11eb20f911479f502308">   81</a></span><span class="preprocessor">#define SEND_RECTS 20</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="comment">/* defaults: */</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="pmandel_8h.html#addd1e0c364f26c1c1240073d1ef186c0">   85</a></span><span class="preprocessor">#define DEF_height    500</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="pmandel_8h.html#a98a6ea93185807e9d9dd04108513dc29">   86</a></span><span class="preprocessor">#define DEF_width     500</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="pmandel_8h.html#a739f6c5fac9d65b477a1d0403d28f5b7">   87</a></span><span class="preprocessor">#define DEF_bw        0</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="pmandel_8h.html#a8a43ad774cc8779a8ad3d0c21a21f55f">   88</a></span><span class="preprocessor">#define DEF_xpos      -1</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="pmandel_8h.html#a91df2e0dd99c335920ecaa3206f25cbf">   89</a></span><span class="preprocessor">#define DEF_ypos      -1</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="pmandel_8h.html#a050a1057f7020bcb62883874f323f409">   90</a></span><span class="preprocessor">#define DEF_numColors 256</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="pmandel_8h.html#aa457496a6f0449a82fe9fa7d16c702df">   92</a></span><span class="preprocessor">#define DEF_logfile   0</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="pmandel_8h.html#a1349de13d1dcc1b0989301e3ba2d5b6c">   93</a></span><span class="preprocessor">#define DEF_inf       0</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="pmandel_8h.html#a377ca8ec2be7691030db39b020d5110c">   94</a></span><span class="preprocessor">#define DEF_outf      0</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="pmandel_8h.html#ac386c48c60cc9fdc5f6ddc044bf16993">   95</a></span><span class="preprocessor">#define DEF_breakout  12</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="pmandel_8h.html#ab79269b0e75f048bd7ff79b1f235bef7">   96</a></span><span class="preprocessor">#define DEF_randomize 1</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="pmandel_8h.html#ad2f3bf58a35734af7f5e867a82905034">   97</a></span><span class="preprocessor">#define DEF_colReduceFactor 4</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="pmandel_8h.html#a5b2dad51f14b1f05baef1a440d0969aa">   98</a></span><span class="preprocessor">#define DEF_loop      0</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="pmandel_8h.html#a5a0f84506fc36c39c288602cf9557d51">   99</a></span><span class="preprocessor">#define DEF_zoom      1</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno"><a class="line" href="pmandel_8h.html#a4d4376ec8830b63c43004d95915fe577">  100</a></span><span class="preprocessor">#define DEF_askNeighbor 1</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno"><a class="line" href="pmandel_8h.html#ad4ffd4cfe872f60ddb9f7f15b2b5ed9e">  101</a></span><span class="preprocessor">#define DEF_sendMasterComplexity 0</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="pmandel_8h.html#ac8a5fcd33cb420d3d643e2615bfa6832">  102</a></span><span class="preprocessor">#define DEF_drawBlockRegion 1</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="pmandel_8h.html#a6a077e13db3507bae365be386e2bf78c">  103</a></span><span class="preprocessor">#define DEF_fractal   MBROT</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="pmandel_8h.html#a4f7e542b8fe4721fc34d7107d4d63ca7">  104</a></span><span class="preprocessor">#define DEF_maxiter   1000</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno"><a class="line" href="pmandel_8h.html#a7d916fa2db0a6d42c1748651f99805d5">  105</a></span><span class="preprocessor">#define DEF_boundary  2.0</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="pmandel_8h.html#aaf94401effb58acb7bd51723a3cb8f1e">  106</a></span><span class="preprocessor">#define DEF_epsilon   .01</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span><span class="comment">#define DEF_rmin      -.8</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span><span class="comment">#define DEF_rmax      -.7</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span><span class="comment">#define DEF_imin      .05</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span><span class="comment">#define DEF_imax      .15</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span><span class="comment">*/</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno"><a class="line" href="pmandel_8h.html#a0bee4f59627fa477bb267ec1d0b805a4">  113</a></span><span class="preprocessor">#define DEF_rmin      -2.0</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno"><a class="line" href="pmandel_8h.html#a50ab0bb5155edf614e0ea77e8dc3d67b">  114</a></span><span class="preprocessor">#define DEF_rmax      2.0</span></div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno"><a class="line" href="pmandel_8h.html#a72929e43735285a797c62406543b5a28">  115</a></span><span class="preprocessor">#define DEF_imin      -2.0</span></div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno"><a class="line" href="pmandel_8h.html#ac5c3a6bc54001e6ca9a5a60f7df4783c">  116</a></span><span class="preprocessor">#define DEF_imax      2.0</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno"><a class="line" href="pmandel_8h.html#ad7bf7c2b09086799c54002d690eb87ea">  117</a></span><span class="preprocessor">#define DEF_julia_r   .331</span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno"><a class="line" href="pmandel_8h.html#a9cabddd25497b6ad780d50e6bf6dd417">  118</a></span><span class="preprocessor">#define DEF_julia_i   -.4</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno"><a class="line" href="pmandel_8h.html#a0ba150614739746481cd61d5d24fa74c">  120</a></span><span class="preprocessor">#define DEF_with_tracking_win 0</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno"><a class="line" href="pmandel_8h.html#ad7f91ef5182054cfdd39fb84755d0a16">  121</a></span><span class="preprocessor">#define DEF_no_remote_X 1</span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
+<div class="foldopen" id="foldopen00123" data-start="{" data-end="};">
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno"><a class="line" href="structrect.html">  123</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno"><a class="line" href="structrect.html#aaa94c7790074662fcc239bc93a3976b1">  124</a></span>  <span class="keywordtype">int</span> l, r, t, <a class="code hl_variable" href="structrect.html#aaa94c7790074662fcc239bc93a3976b1">b</a>, length;</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>  <span class="comment">/* length =  (r.r-r.l+1) * (r.b-r.t+1) */</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>} <a class="code hl_struct" href="structrect.html">rect</a>;</div>
+</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
+<div class="foldopen" id="foldopen00128" data-start="{" data-end="};">
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno"><a class="line" href="structrect__queue.html">  128</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno"><a class="line" href="structrect__queue.html#a2e8d4da87f6c6e435eeba83fae66717c">  129</a></span>  <span class="keywordtype">int</span> <a class="code hl_variable" href="structrect__queue.html#a2e8d4da87f6c6e435eeba83fae66717c">head</a>, tail, size, randomPt, randomize;</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno"><a class="line" href="structrect__queue.html#a29a8b78e0cca21c402061c02d990a824">  130</a></span>  <a class="code hl_struct" href="structrect.html">rect</a> *<a class="code hl_variable" href="structrect__queue.html#a29a8b78e0cca21c402061c02d990a824">r</a>;</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>} <a class="code hl_struct" href="structrect__queue.html">rect_queue</a>;</div>
+</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span><span class="comment">/* messge tags: */</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span><span class="comment">/*    master to slave: */</span></div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno"><a class="line" href="pmandel_8h.html#a659f361e82a427dc4dd0e15ff9095f01">  135</a></span><span class="preprocessor">#define READY_TO_START   42</span></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno"><a class="line" href="pmandel_8h.html#a5475a3244fde63c30dc16ad0d4bf0218">  136</a></span><span class="preprocessor">#define READY_FOR_MORE   43</span></div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno"><a class="line" href="pmandel_8h.html#a83ccd620aa78293d28685971b73a4abd">  137</a></span><span class="preprocessor">#define ADD2Q            44</span></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno"><a class="line" href="pmandel_8h.html#a9bacf7160b7ea2bf7a2f46e44e2509dd">  138</a></span><span class="preprocessor">#define RECTS_TO_ENQUEUE 45</span></div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span><span class="comment">/*    slave to master: */</span></div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno"><a class="line" href="pmandel_8h.html#ad1cd2dc32d6952fc25d047025d3e2351">  140</a></span><span class="preprocessor">#define ASSIGNMENT       46</span></div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno"><a class="line" href="pmandel_8h.html#a3630b049d534e6438c0f161780836162">  141</a></span><span class="preprocessor">#define ALL_DONE         47</span></div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span> </div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span><span class="comment">/* Some new message tags for use in sending the point data to the master. */</span></div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno"><a class="line" href="pmandel_8h.html#ae4c22bd55836cfbafd815744656a35d6">  145</a></span><span class="preprocessor">#define POINT_COUNT  201</span></div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno"><a class="line" href="pmandel_8h.html#a0a2cfbea6782eb3aeea01903f3f6ee0d">  146</a></span><span class="preprocessor">#define POINT_DATA   202</span></div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno"><a class="line" href="pmandel_8h.html#ad75cb25f88bb8019b42d058ea997c374">  147</a></span><span class="preprocessor">#define RECT_SPEC    203</span></div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno"><a class="line" href="pmandel_8h.html#a60bfb2c5578bb2c570678f984393cb60">  148</a></span><span class="preprocessor">#define RECT_COLOR   204</span></div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno"><a class="line" href="pmandel_8h.html#ae7e65c456e9e3008aaef05111b7b6175">  149</a></span><span class="preprocessor">#define BLOCK_TYPE   205</span></div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno"><a class="line" href="pmandel_8h.html#a5f048926a37dbc8f7cca17118f2607a6">  150</a></span><span class="preprocessor">#define TRACKING_COLOR 206</span></div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span><span class="comment">/* One of the following two integers are sent to the master to tell it</span></div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span><span class="comment">   whether to expect a block of points or a specification for a rectangle.</span></div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span><span class="comment">   (much of this is only needed because I am avoiding the use of MPI_Probe)</span></div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span><span class="comment">*/</span></div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno"><a class="line" href="pmandel_8h.html#ae6910994a90091fe877b021c590c894e">  155</a></span><span class="preprocessor">#define POINTS POINT_COUNT</span></div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno"><a class="line" href="pmandel_8h.html#a17627969a0b20159adbc851345ef510e">  156</a></span><span class="preprocessor">#define RECTANGLE RECT_SPEC</span></div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span> </div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span><span class="preprocessor">#if LOG </span></div>
+<div class="foldopen" id="foldopen00159" data-start="" data-end="">
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno"><a class="line" href="pmandel_8h.html#a4f12b128d836eab817baf64fcd2a2173">  159</a></span><span class="preprocessor">#define MPE_LOG_SEND( to, tag, size ) \</span></div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span><span class="preprocessor">  if (flags-&gt;logfile) MPE_Log_send( to, tag, size )</span></div>
+</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span> </div>
+<div class="foldopen" id="foldopen00162" data-start="" data-end="">
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno"><a class="line" href="pmandel_8h.html#a2e29b1c4a16d2f3f5c3e8f66972a9156">  162</a></span><span class="preprocessor">#define MPE_LOG_RECEIVE( from, tag, size ) \</span></div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span><span class="preprocessor">  if (flags-&gt;logfile) MPE_Log_receive( from, tag, size )</span></div>
+</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
+<div class="foldopen" id="foldopen00165" data-start="" data-end="">
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno"><a class="line" href="pmandel_8h.html#a860cc188ebe3520c95875fa23d578c28">  165</a></span><span class="preprocessor">#define MPE_LOG_EVENT( event, data, str ) \</span></div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span><span class="preprocessor">  if (flags-&gt;logfile) MPE_Log_event( event, data, str )</span></div>
+</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span> </div>
+<div class="foldopen" id="foldopen00168" data-start="" data-end="">
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno"><a class="line" href="pmandel_8h.html#a0dec76b1ba36161de984f5c580b4bfea">  168</a></span><span class="preprocessor">#define MPE_DESCRIBE_STATE( start, end, name , color ) \</span></div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span><span class="preprocessor">  if (flags-&gt;logfile) MPE_Describe_state( start, end, name , color )</span></div>
+</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span> </div>
+<div class="foldopen" id="foldopen00171" data-start="" data-end="">
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno"><a class="line" href="pmandel_8h.html#a46635b96f57952ba3b8feb925182833c">  171</a></span><span class="preprocessor">#define MPE_DESCRIBE_EVENT( event, name ) \</span></div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span><span class="preprocessor">  if (flags-&gt;logfile) MPE_Describe_event( event, name )</span></div>
+</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span> </div>
+<div class="foldopen" id="foldopen00174" data-start="" data-end="">
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno"><a class="line" href="pmandel_8h.html#a62291c38542f99b906145d3300c15c21">  174</a></span><span class="preprocessor">#define MPE_INIT_LOG() \</span></div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span><span class="preprocessor">  if (flags-&gt;logfile) MPE_Init_log()</span></div>
+</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span> </div>
+<div class="foldopen" id="foldopen00177" data-start="" data-end="">
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno"><a class="line" href="pmandel_8h.html#ab65d1550a7310c579d899525e757c6bd">  177</a></span><span class="preprocessor">#define MPE_FINISH_LOG( file ) \</span></div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span><span class="preprocessor">  if (flags-&gt;logfile) MPE_Finish_log( file )</span></div>
+</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span> </div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span><span class="preprocessor">#define MPE_LOG_SEND( to, tag, size ) {}</span></div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span><span class="preprocessor">#define MPE_LOG_RECEIVE( from, tag, size ) {}</span></div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span><span class="preprocessor">#define MPE_LOG_EVENT( event, data, str ) {}</span></div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span><span class="preprocessor">#define MPE_DESCRIBE_STATE( start, end, name , color ) {}</span></div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span><span class="preprocessor">#define MPE_DESCRIBE_EVENT( event, name ) {}</span></div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span><span class="preprocessor">#define MPE_INIT_LOG() {}</span></div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span><span class="preprocessor">#define MPE_FINISH_LOG( file ) {}</span></div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span> </div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span><span class="comment">/* _PM_H_ */</span></div>
+<div class="ttc" id="afract__gen_8h_html"><div class="ttname"><a href="fract__gen_8h.html">fract_gen.h</a></div></div>
+<div class="ttc" id="afract__gen_8h_html_aaf0952059602752258dccaa015d7b54a"><div class="ttname"><a href="fract__gen_8h.html#aaf0952059602752258dccaa015d7b54a">NUM</a></div><div class="ttdeci">#define NUM</div><div class="ttdef"><b>Definition</b> <a href="fract__gen_8h_source.html#l00017">fract_gen.h:17</a></div></div>
+<div class="ttc" id="ainclude_2mpe__graphics_8h_html_a018a866a1c4c132e5b22c0651beac95b"><div class="ttname"><a href="include_2mpe__graphics_8h.html#a018a866a1c4c132e5b22c0651beac95b">MPE_XGraph</a></div><div class="ttdeci">void * MPE_XGraph</div><div class="ttdef"><b>Definition</b> <a href="include_2mpe__graphics_8h_source.html#l00116">include/mpe_graphics.h:116</a></div></div>
+<div class="ttc" id="ainclude_2mpe__graphics_8h_html_a5fa1b05b20c35b88f5256bb39e30af3e"><div class="ttname"><a href="include_2mpe__graphics_8h.html#a5fa1b05b20c35b88f5256bb39e30af3e">MPE_Color</a></div><div class="ttdeci">MPE_Color</div><div class="ttdef"><b>Definition</b> <a href="include_2mpe__graphics_8h_source.html#l00024">include/mpe_graphics.h:24</a></div></div>
+<div class="ttc" id="ampe_8h_html"><div class="ttname"><a href="mpe_8h.html">mpe.h</a></div></div>
+<div class="ttc" id="apmandel_8h_html_a0f42c25704b48da9c18782f2cc0000a9"><div class="ttname"><a href="pmandel_8h.html#a0f42c25704b48da9c18782f2cc0000a9">rect_type</a></div><div class="ttdeci">MPI_Datatype rect_type</div><div class="ttdef"><b>Definition</b> <a href="pmandel_8h_source.html#l00018">pmandel.h:18</a></div></div>
+<div class="ttc" id="apmandel_8h_html_a170683f19b73e356570a258debb0b196"><div class="ttname"><a href="pmandel_8h.html#a170683f19b73e356570a258debb0b196">Flags</a></div><div class="ttdeci">struct _Flags Flags</div></div>
+<div class="ttc" id="apmandel_8h_html_a402fa2e4e062829750ddca43163a69fb"><div class="ttname"><a href="pmandel_8h.html#a402fa2e4e062829750ddca43163a69fb">Winspecs</a></div><div class="ttdeci">struct _Winspecs Winspecs</div></div>
+<div class="ttc" id="apmandel_8h_html_a4a13984551585859f63cb88477d2f404"><div class="ttname"><a href="pmandel_8h.html#a4a13984551585859f63cb88477d2f404">flags_type</a></div><div class="ttdeci">MPI_Datatype flags_type</div><div class="ttdef"><b>Definition</b> <a href="pmandel_8h_source.html#l00018">pmandel.h:18</a></div></div>
+<div class="ttc" id="apmandel_8h_html_a91471f51634c2e0e8053b0cc455e60df"><div class="ttname"><a href="pmandel_8h.html#a91471f51634c2e0e8053b0cc455e60df">NUM_type</a></div><div class="ttdeci">MPI_Datatype NUM_type</div><div class="ttdef"><b>Definition</b> <a href="pmandel_8h_source.html#l00018">pmandel.h:18</a></div></div>
+<div class="ttc" id="apmandel_8h_html_ab44dc22dc33d5811bb3f76bd9d980e85"><div class="ttname"><a href="pmandel_8h.html#ab44dc22dc33d5811bb3f76bd9d980e85">_Algorithms</a></div><div class="ttdeci">_Algorithms</div><div class="ttdef"><b>Definition</b> <a href="pmandel_8h_source.html#l00021">pmandel.h:21</a></div></div>
+<div class="ttc" id="apmandel_8h_html_ab44dc22dc33d5811bb3f76bd9d980e85a74fadb130a886bf5bdf8a45eb6af6181"><div class="ttname"><a href="pmandel_8h.html#ab44dc22dc33d5811bb3f76bd9d980e85a74fadb130a886bf5bdf8a45eb6af6181">alg_solid_rect</a></div><div class="ttdeci">@ alg_solid_rect</div><div class="ttdef"><b>Definition</b> <a href="pmandel_8h_source.html#l00025">pmandel.h:24</a></div></div>
+<div class="ttc" id="apmandel_8h_html_ab44dc22dc33d5811bb3f76bd9d980e85a780663ac135128ef44a1aa3bec36fee6"><div class="ttname"><a href="pmandel_8h.html#ab44dc22dc33d5811bb3f76bd9d980e85a780663ac135128ef44a1aa3bec36fee6">alg_block</a></div><div class="ttdeci">@ alg_block</div><div class="ttdef"><b>Definition</b> <a href="pmandel_8h_source.html#l00022">pmandel.h:22</a></div></div>
+<div class="ttc" id="apmandel_8h_html_ab44dc22dc33d5811bb3f76bd9d980e85acce7c6b50e626e4599bf6ae07df92459"><div class="ttname"><a href="pmandel_8h.html#ab44dc22dc33d5811bb3f76bd9d980e85acce7c6b50e626e4599bf6ae07df92459">alg_separate_rect</a></div><div class="ttdeci">@ alg_separate_rect</div><div class="ttdef"><b>Definition</b> <a href="pmandel_8h_source.html#l00023">pmandel.h:23</a></div></div>
+<div class="ttc" id="apmandel_8h_html_ad08d759c71d9d0b59aa2759d000f882e"><div class="ttname"><a href="pmandel_8h.html#ad08d759c71d9d0b59aa2759d000f882e">winspecs_type</a></div><div class="ttdeci">MPI_Datatype winspecs_type</div></div>
+<div class="ttc" id="apmandel_8h_html_adfd7dd8e88dca8c182b4f7f42e3298b9"><div class="ttname"><a href="pmandel_8h.html#adfd7dd8e88dca8c182b4f7f42e3298b9">tracking_win</a></div><div class="ttdeci">MPE_XGraph tracking_win</div></div>
+<div class="ttc" id="apmandel_8h_html_ae894d506ca8b7887f5258b7b42b48107"><div class="ttname"><a href="pmandel_8h.html#ae894d506ca8b7887f5258b7b42b48107">Algorithms</a></div><div class="ttdeci">enum _Algorithms Algorithms</div></div>
+<div class="ttc" id="apmandel_8h_html_af5cc516f4d3c010da348387f6910a556"><div class="ttname"><a href="pmandel_8h.html#af5cc516f4d3c010da348387f6910a556">debug_file</a></div><div class="ttdeci">FILE * debug_file</div></div>
+<div class="ttc" id="astruct__Flags_html"><div class="ttname"><a href="struct__Flags.html">_Flags</a></div><div class="ttdef"><b>Definition</b> <a href="pmandel_8h_source.html#l00038">pmandel.h:38</a></div></div>
+<div class="ttc" id="astruct__Flags_html_a0e0151c60b9a44452fd979dfde89fe29"><div class="ttname"><a href="struct__Flags.html#a0e0151c60b9a44452fd979dfde89fe29">_Flags::zoom</a></div><div class="ttdeci">int zoom</div><div class="ttdef"><b>Definition</b> <a href="pmandel_8h_source.html#l00048">pmandel.h:48</a></div></div>
+<div class="ttc" id="astruct__Flags_html_a0fbc72b814346b4f686b7f7cf8623079"><div class="ttname"><a href="struct__Flags.html#a0fbc72b814346b4f686b7f7cf8623079">_Flags::imin</a></div><div class="ttdeci">NUM imin</div><div class="ttdef"><b>Definition</b> <a href="pmandel_8h_source.html#l00065">pmandel.h:65</a></div></div>
+<div class="ttc" id="astruct__Flags_html_a107ac656b502c7fe6e66d05a1af1a788"><div class="ttname"><a href="struct__Flags.html#a107ac656b502c7fe6e66d05a1af1a788">_Flags::inf</a></div><div class="ttdeci">char * inf</div><div class="ttdef"><b>Definition</b> <a href="pmandel_8h_source.html#l00040">pmandel.h:40</a></div></div>
+<div class="ttc" id="astruct__Flags_html_a156d01e480c09aeacc3b8a613f43edb1"><div class="ttname"><a href="struct__Flags.html#a156d01e480c09aeacc3b8a613f43edb1">_Flags::imax</a></div><div class="ttdeci">NUM imax</div><div class="ttdef"><b>Definition</b> <a href="pmandel_8h_source.html#l00065">pmandel.h:65</a></div></div>
+<div class="ttc" id="astruct__Flags_html_a3c194a2ce8fc618af7f32b91126f1c68"><div class="ttname"><a href="struct__Flags.html#a3c194a2ce8fc618af7f32b91126f1c68">_Flags::epsilon</a></div><div class="ttdeci">double epsilon</div><div class="ttdef"><b>Definition</b> <a href="pmandel_8h_source.html#l00064">pmandel.h:64</a></div></div>
+<div class="ttc" id="astruct__Flags_html_a453057fba8f1a1ef6923f793dceb71c2"><div class="ttname"><a href="struct__Flags.html#a453057fba8f1a1ef6923f793dceb71c2">_Flags::askNeighbor</a></div><div class="ttdeci">int askNeighbor</div><div class="ttdef"><b>Definition</b> <a href="pmandel_8h_source.html#l00049">pmandel.h:49</a></div></div>
+<div class="ttc" id="astruct__Flags_html_a68ba4df0f3a169a29c539b80c6db44f3"><div class="ttname"><a href="struct__Flags.html#a68ba4df0f3a169a29c539b80c6db44f3">_Flags::with_tracking_win</a></div><div class="ttdeci">int with_tracking_win</div><div class="ttdef"><b>Definition</b> <a href="pmandel_8h_source.html#l00059">pmandel.h:59</a></div></div>
+<div class="ttc" id="astruct__Flags_html_a7b22b7a1f79fb8c170fcb7de365825c2"><div class="ttname"><a href="struct__Flags.html#a7b22b7a1f79fb8c170fcb7de365825c2">_Flags::julia_r</a></div><div class="ttdeci">NUM julia_r</div><div class="ttdef"><b>Definition</b> <a href="pmandel_8h_source.html#l00066">pmandel.h:66</a></div></div>
+<div class="ttc" id="astruct__Flags_html_a7b75ab801c3afccbd2826bf1c1db2e02"><div class="ttname"><a href="struct__Flags.html#a7b75ab801c3afccbd2826bf1c1db2e02">_Flags::breakout</a></div><div class="ttdeci">int breakout</div><div class="ttdef"><b>Definition</b> <a href="pmandel_8h_source.html#l00043">pmandel.h:43</a></div></div>
+<div class="ttc" id="astruct__Flags_html_a7e482963f247fdbfb866f0d008e27c50"><div class="ttname"><a href="struct__Flags.html#a7e482963f247fdbfb866f0d008e27c50">_Flags::rmax</a></div><div class="ttdeci">NUM rmax</div><div class="ttdef"><b>Definition</b> <a href="pmandel_8h_source.html#l00065">pmandel.h:65</a></div></div>
+<div class="ttc" id="astruct__Flags_html_a94a0526337b064d9dd943911298c7eee"><div class="ttname"><a href="struct__Flags.html#a94a0526337b064d9dd943911298c7eee">_Flags::sendMasterComplexity</a></div><div class="ttdeci">int sendMasterComplexity</div><div class="ttdef"><b>Definition</b> <a href="pmandel_8h_source.html#l00051">pmandel.h:51</a></div></div>
+<div class="ttc" id="astruct__Flags_html_a983302efbdbf09631f03382c0da4965e"><div class="ttname"><a href="struct__Flags.html#a983302efbdbf09631f03382c0da4965e">_Flags::drawBlockRegion</a></div><div class="ttdeci">int drawBlockRegion</div><div class="ttdef"><b>Definition</b> <a href="pmandel_8h_source.html#l00054">pmandel.h:54</a></div></div>
+<div class="ttc" id="astruct__Flags_html_a9b4c0175c7a1421da4c6cce9970a0556"><div class="ttname"><a href="struct__Flags.html#a9b4c0175c7a1421da4c6cce9970a0556">_Flags::maxiter</a></div><div class="ttdeci">int maxiter</div><div class="ttdef"><b>Definition</b> <a href="pmandel_8h_source.html#l00058">pmandel.h:58</a></div></div>
+<div class="ttc" id="astruct__Flags_html_a9f3d7d96e8070992340727b7c3a6bf3d"><div class="ttname"><a href="struct__Flags.html#a9f3d7d96e8070992340727b7c3a6bf3d">_Flags::randomize</a></div><div class="ttdeci">int randomize</div><div class="ttdef"><b>Definition</b> <a href="pmandel_8h_source.html#l00044">pmandel.h:44</a></div></div>
+<div class="ttc" id="astruct__Flags_html_ab1fee9677f57d5a9f98a96d1e871b4f7"><div class="ttname"><a href="struct__Flags.html#ab1fee9677f57d5a9f98a96d1e871b4f7">_Flags::logfile</a></div><div class="ttdeci">char * logfile</div><div class="ttdef"><b>Definition</b> <a href="pmandel_8h_source.html#l00039">pmandel.h:39</a></div></div>
+<div class="ttc" id="astruct__Flags_html_abec2ea17cac1b2e2e5f9b0f24f1d9bb8"><div class="ttname"><a href="struct__Flags.html#abec2ea17cac1b2e2e5f9b0f24f1d9bb8">_Flags::rmin</a></div><div class="ttdeci">NUM rmin</div><div class="ttdef"><b>Definition</b> <a href="pmandel_8h_source.html#l00065">pmandel.h:65</a></div></div>
+<div class="ttc" id="astruct__Flags_html_ac6a71f485f71ebf4a6892424145d9c92"><div class="ttname"><a href="struct__Flags.html#ac6a71f485f71ebf4a6892424145d9c92">_Flags::loop</a></div><div class="ttdeci">int loop</div><div class="ttdef"><b>Definition</b> <a href="pmandel_8h_source.html#l00047">pmandel.h:47</a></div></div>
+<div class="ttc" id="astruct__Flags_html_ad99315157e27ec4e545d870839f61480"><div class="ttname"><a href="struct__Flags.html#ad99315157e27ec4e545d870839f61480">_Flags::winspecs</a></div><div class="ttdeci">Winspecs * winspecs</div><div class="ttdef"><b>Definition</b> <a href="pmandel_8h_source.html#l00042">pmandel.h:42</a></div></div>
+<div class="ttc" id="astruct__Flags_html_ae0f5e1bc05cd5416622a5a8b3a6a7aaa"><div class="ttname"><a href="struct__Flags.html#ae0f5e1bc05cd5416622a5a8b3a6a7aaa">_Flags::no_remote_X</a></div><div class="ttdeci">int no_remote_X</div><div class="ttdef"><b>Definition</b> <a href="pmandel_8h_source.html#l00061">pmandel.h:61</a></div></div>
+<div class="ttc" id="astruct__Flags_html_ae7164b29bae7f7d548ea02dd316475b3"><div class="ttname"><a href="struct__Flags.html#ae7164b29bae7f7d548ea02dd316475b3">_Flags::boundary_sq</a></div><div class="ttdeci">double boundary_sq</div><div class="ttdef"><b>Definition</b> <a href="pmandel_8h_source.html#l00063">pmandel.h:63</a></div></div>
+<div class="ttc" id="astruct__Flags_html_aea3cf33e156b0f6b48541510580ea8c2"><div class="ttname"><a href="struct__Flags.html#aea3cf33e156b0f6b48541510580ea8c2">_Flags::outf</a></div><div class="ttdeci">char * outf</div><div class="ttdef"><b>Definition</b> <a href="pmandel_8h_source.html#l00041">pmandel.h:41</a></div></div>
+<div class="ttc" id="astruct__Flags_html_aec3a7214ea75146a21b783f3f8ba0557"><div class="ttname"><a href="struct__Flags.html#aec3a7214ea75146a21b783f3f8ba0557">_Flags::julia_i</a></div><div class="ttdeci">NUM julia_i</div><div class="ttdef"><b>Definition</b> <a href="pmandel_8h_source.html#l00066">pmandel.h:66</a></div></div>
+<div class="ttc" id="astruct__Flags_html_af4a425664699b8b3b19ab3602a5ad6ce"><div class="ttname"><a href="struct__Flags.html#af4a425664699b8b3b19ab3602a5ad6ce">_Flags::fractal</a></div><div class="ttdeci">int fractal</div><div class="ttdef"><b>Definition</b> <a href="pmandel_8h_source.html#l00057">pmandel.h:57</a></div></div>
+<div class="ttc" id="astruct__Flags_html_af61c8569506befb3a817494f4f87d130"><div class="ttname"><a href="struct__Flags.html#af61c8569506befb3a817494f4f87d130">_Flags::colReduceFactor</a></div><div class="ttdeci">int colReduceFactor</div><div class="ttdef"><b>Definition</b> <a href="pmandel_8h_source.html#l00045">pmandel.h:45</a></div></div>
+<div class="ttc" id="astruct__Winspecs_html"><div class="ttname"><a href="struct__Winspecs.html">_Winspecs</a></div><div class="ttdef"><b>Definition</b> <a href="pmandel_8h_source.html#l00029">pmandel.h:29</a></div></div>
+<div class="ttc" id="astruct__Winspecs_html_a2032447d7db7d035556e211607722cd3"><div class="ttname"><a href="struct__Winspecs.html#a2032447d7db7d035556e211607722cd3">_Winspecs::ypos</a></div><div class="ttdeci">int ypos</div><div class="ttdef"><b>Definition</b> <a href="pmandel_8h_source.html#l00032">pmandel.h:32</a></div></div>
+<div class="ttc" id="astruct__Winspecs_html_a743a1b7af5d91f0fe3f9e1f85b90b08c"><div class="ttname"><a href="struct__Winspecs.html#a743a1b7af5d91f0fe3f9e1f85b90b08c">_Winspecs::height</a></div><div class="ttdeci">int height</div><div class="ttdef"><b>Definition</b> <a href="pmandel_8h_source.html#l00030">pmandel.h:30</a></div></div>
+<div class="ttc" id="astruct__Winspecs_html_a7739b8b8f69717b6bde6f55d2cd7b0c3"><div class="ttname"><a href="struct__Winspecs.html#a7739b8b8f69717b6bde6f55d2cd7b0c3">_Winspecs::bw</a></div><div class="ttdeci">int bw</div><div class="ttdef"><b>Definition</b> <a href="pmandel_8h_source.html#l00031">pmandel.h:31</a></div></div>
+<div class="ttc" id="astruct__Winspecs_html_a8ec92a93afcf4dca7be2b63882d1d78a"><div class="ttname"><a href="struct__Winspecs.html#a8ec92a93afcf4dca7be2b63882d1d78a">_Winspecs::xpos</a></div><div class="ttdeci">int xpos</div><div class="ttdef"><b>Definition</b> <a href="pmandel_8h_source.html#l00032">pmandel.h:32</a></div></div>
+<div class="ttc" id="astruct__Winspecs_html_aa42cfdc5e3fd60aeee350c2a5ff8bbb8"><div class="ttname"><a href="struct__Winspecs.html#aa42cfdc5e3fd60aeee350c2a5ff8bbb8">_Winspecs::colorArray</a></div><div class="ttdeci">MPE_Color * colorArray</div><div class="ttdef"><b>Definition</b> <a href="pmandel_8h_source.html#l00035">pmandel.h:35</a></div></div>
+<div class="ttc" id="astruct__Winspecs_html_aa5cf4534da81c6899e9464ba976d4a60"><div class="ttname"><a href="struct__Winspecs.html#aa5cf4534da81c6899e9464ba976d4a60">_Winspecs::numColors</a></div><div class="ttdeci">int numColors</div><div class="ttdef"><b>Definition</b> <a href="pmandel_8h_source.html#l00033">pmandel.h:33</a></div></div>
+<div class="ttc" id="astruct__Winspecs_html_ac267792baa894e89e5564e82ba448bf9"><div class="ttname"><a href="struct__Winspecs.html#ac267792baa894e89e5564e82ba448bf9">_Winspecs::width</a></div><div class="ttdeci">int width</div><div class="ttdef"><b>Definition</b> <a href="pmandel_8h_source.html#l00030">pmandel.h:30</a></div></div>
+<div class="ttc" id="astruct__Winspecs_html_ad486796114433e368c70380b1ad44d43"><div class="ttname"><a href="struct__Winspecs.html#ad486796114433e368c70380b1ad44d43">_Winspecs::my_tracking_color</a></div><div class="ttdeci">int my_tracking_color</div><div class="ttdef"><b>Definition</b> <a href="pmandel_8h_source.html#l00034">pmandel.h:34</a></div></div>
+<div class="ttc" id="astructrect__queue_html"><div class="ttname"><a href="structrect__queue.html">rect_queue</a></div><div class="ttdef"><b>Definition</b> <a href="pmandel_8h_source.html#l00128">pmandel.h:128</a></div></div>
+<div class="ttc" id="astructrect__queue_html_a29a8b78e0cca21c402061c02d990a824"><div class="ttname"><a href="structrect__queue.html#a29a8b78e0cca21c402061c02d990a824">rect_queue::r</a></div><div class="ttdeci">rect * r</div><div class="ttdef"><b>Definition</b> <a href="pmandel_8h_source.html#l00130">pmandel.h:130</a></div></div>
+<div class="ttc" id="astructrect__queue_html_a2e8d4da87f6c6e435eeba83fae66717c"><div class="ttname"><a href="structrect__queue.html#a2e8d4da87f6c6e435eeba83fae66717c">rect_queue::head</a></div><div class="ttdeci">int head</div><div class="ttdef"><b>Definition</b> <a href="pmandel_8h_source.html#l00129">pmandel.h:129</a></div></div>
+<div class="ttc" id="astructrect_html"><div class="ttname"><a href="structrect.html">rect</a></div><div class="ttdef"><b>Definition</b> <a href="pmandel_8h_source.html#l00123">pmandel.h:123</a></div></div>
+<div class="ttc" id="astructrect_html_aaa94c7790074662fcc239bc93a3976b1"><div class="ttname"><a href="structrect.html#aaa94c7790074662fcc239bc93a3976b1">rect::b</a></div><div class="ttdeci">int b</div><div class="ttdef"><b>Definition</b> <a href="pmandel_8h_source.html#l00124">pmandel.h:124</a></div></div>
+<div class="ttc" id="astructvector_html"><div class="ttname"><a href="structvector.html">vector</a></div><div class="ttdef"><b>Definition</b> <a href="point_8h_source.html#l00012">point.h:12</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

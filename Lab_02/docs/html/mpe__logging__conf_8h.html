@@ -1,0 +1,763 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lab_02: MPI + OpenMP Parallel Programming: Файл mpe_logging_conf.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Lab_02: MPI + OpenMP Parallel Programming<span id="projectnumber">&#160;2.1</span>
+   </div>
+   <div id="projectbrief">Решение 3D уравнения Пуассона методом Якоби с двумерной декомпозицией</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_1f646cbbb0f6227d25dd06f792d51aba.html">mpe2-1.3.0</a></li><li class="navelem"><a class="el" href="dir_493399512d45eb30627376023737183a.html">src</a></li><li class="navelem"><a class="el" href="dir_4dd21a1309df0d73c93832f59c814642.html">logging</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#define-members">Макросы</a>  </div>
+  <div class="headertitle"><div class="title">Файл mpe_logging_conf.h</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><a href="mpe__logging__conf_8h_source.html">См. исходные тексты.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Макросы</h2></td></tr>
+<tr class="memitem:ab59ff7162d8171bd1ed29d9bc200a281" id="r_ab59ff7162d8171bd1ed29d9bc200a281"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__logging__conf_8h.html#ab59ff7162d8171bd1ed29d9bc200a281">CLOG_IMPL</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:ab59ff7162d8171bd1ed29d9bc200a281"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a765d75020849aa0a9b6becd9a5b7a193" id="r_a765d75020849aa0a9b6becd9a5b7a193"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__logging__conf_8h.html#a765d75020849aa0a9b6becd9a5b7a193">HAVE_FCNTL_H</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:a765d75020849aa0a9b6becd9a5b7a193"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0b94ec7b234d12081fda3f601aa01b5" id="r_ac0b94ec7b234d12081fda3f601aa01b5"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__logging__conf_8h.html#ac0b94ec7b234d12081fda3f601aa01b5">HAVE_GETHOSTNAME</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:ac0b94ec7b234d12081fda3f601aa01b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab90a030ff2790ebdc176660a6dd2a478" id="r_ab90a030ff2790ebdc176660a6dd2a478"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__logging__conf_8h.html#ab90a030ff2790ebdc176660a6dd2a478">HAVE_INTTYPES_H</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:ab90a030ff2790ebdc176660a6dd2a478"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e55aaa6b69400645b6b23359e860751" id="r_a1e55aaa6b69400645b6b23359e860751"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__logging__conf_8h.html#a1e55aaa6b69400645b6b23359e860751">HAVE_LIBPTHREAD</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:a1e55aaa6b69400645b6b23359e860751"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adabaeb3fa3d671b0dc4ac4e37c13ecd8" id="r_adabaeb3fa3d671b0dc4ac4e37c13ecd8"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__logging__conf_8h.html#adabaeb3fa3d671b0dc4ac4e37c13ecd8">HAVE_LRAND48</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:adabaeb3fa3d671b0dc4ac4e37c13ecd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae93a78f9d076138897af441c9f86f285" id="r_ae93a78f9d076138897af441c9f86f285"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__logging__conf_8h.html#ae93a78f9d076138897af441c9f86f285">HAVE_MEMORY_H</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:ae93a78f9d076138897af441c9f86f285"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16c4f395f7b7bb5d5b18c132ef84fb5e" id="r_a16c4f395f7b7bb5d5b18c132ef84fb5e"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__logging__conf_8h.html#a16c4f395f7b7bb5d5b18c132ef84fb5e">HAVE_MKSTEMP</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:a16c4f395f7b7bb5d5b18c132ef84fb5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbbd31dc45001dad62ef6248e3cbee81" id="r_abbbd31dc45001dad62ef6248e3cbee81"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__logging__conf_8h.html#abbbd31dc45001dad62ef6248e3cbee81">HAVE_O_LARGEFILE</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:abbbd31dc45001dad62ef6248e3cbee81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d29ae3ac829e559c3246b9dceefa281" id="r_a3d29ae3ac829e559c3246b9dceefa281"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__logging__conf_8h.html#a3d29ae3ac829e559c3246b9dceefa281">HAVE_PMPI_COMM_CREATE_KEYVAL</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:a3d29ae3ac829e559c3246b9dceefa281"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9bd2f2736f03e31d28845b27fb779c8" id="r_af9bd2f2736f03e31d28845b27fb779c8"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__logging__conf_8h.html#af9bd2f2736f03e31d28845b27fb779c8">HAVE_PMPI_COMM_FREE_KEYVAL</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:af9bd2f2736f03e31d28845b27fb779c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ab4969efd16615b1bcdd5725cede74c" id="r_a6ab4969efd16615b1bcdd5725cede74c"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__logging__conf_8h.html#a6ab4969efd16615b1bcdd5725cede74c">HAVE_PMPI_COMM_GET_ATTR</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:a6ab4969efd16615b1bcdd5725cede74c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7970eef2debd382ebfb3f9f7cfcc6ae2" id="r_a7970eef2debd382ebfb3f9f7cfcc6ae2"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__logging__conf_8h.html#a7970eef2debd382ebfb3f9f7cfcc6ae2">HAVE_PMPI_COMM_SET_ATTR</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:a7970eef2debd382ebfb3f9f7cfcc6ae2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf71b36fdd29bd9ef6709cecac0536d2" id="r_acf71b36fdd29bd9ef6709cecac0536d2"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__logging__conf_8h.html#acf71b36fdd29bd9ef6709cecac0536d2">HAVE_PTHREAD_H</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:acf71b36fdd29bd9ef6709cecac0536d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a040bd9182ad5ba7261448993c38565ea" id="r_a040bd9182ad5ba7261448993c38565ea"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__logging__conf_8h.html#a040bd9182ad5ba7261448993c38565ea">HAVE_SNPRINTF</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:a040bd9182ad5ba7261448993c38565ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d1adeac1e509a3bc5e1825884ac4b22" id="r_a5d1adeac1e509a3bc5e1825884ac4b22"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__logging__conf_8h.html#a5d1adeac1e509a3bc5e1825884ac4b22">HAVE_SRAND48</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:a5d1adeac1e509a3bc5e1825884ac4b22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6cd6d1c63c1e26ea2d4537b77148354" id="r_ab6cd6d1c63c1e26ea2d4537b77148354"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__logging__conf_8h.html#ab6cd6d1c63c1e26ea2d4537b77148354">HAVE_STDINT_H</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:ab6cd6d1c63c1e26ea2d4537b77148354"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae021ce4fe74984428cc97427b7358fda" id="r_ae021ce4fe74984428cc97427b7358fda"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__logging__conf_8h.html#ae021ce4fe74984428cc97427b7358fda">HAVE_STDIO_H</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:ae021ce4fe74984428cc97427b7358fda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e0e434ec1a6ddbd97db12b5a32905e0" id="r_a9e0e434ec1a6ddbd97db12b5a32905e0"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__logging__conf_8h.html#a9e0e434ec1a6ddbd97db12b5a32905e0">HAVE_STDLIB_H</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:a9e0e434ec1a6ddbd97db12b5a32905e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a405d10d46190bcb0320524c54eafc850" id="r_a405d10d46190bcb0320524c54eafc850"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__logging__conf_8h.html#a405d10d46190bcb0320524c54eafc850">HAVE_STRINGS_H</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:a405d10d46190bcb0320524c54eafc850"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4c234dd1625255dc626a15886306e7d" id="r_ad4c234dd1625255dc626a15886306e7d"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__logging__conf_8h.html#ad4c234dd1625255dc626a15886306e7d">HAVE_STRING_H</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:ad4c234dd1625255dc626a15886306e7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a228b2a184bbed5a42c16481a57e29456" id="r_a228b2a184bbed5a42c16481a57e29456"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__logging__conf_8h.html#a228b2a184bbed5a42c16481a57e29456">HAVE_SYS_BITYPES_H</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:a228b2a184bbed5a42c16481a57e29456"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace156430ba007d19b4348a950d0c692b" id="r_ace156430ba007d19b4348a950d0c692b"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__logging__conf_8h.html#ace156430ba007d19b4348a950d0c692b">HAVE_SYS_STAT_H</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:ace156430ba007d19b4348a950d0c692b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2aae46056558e9d6fef6380f9678ffe3" id="r_a2aae46056558e9d6fef6380f9678ffe3"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__logging__conf_8h.html#a2aae46056558e9d6fef6380f9678ffe3">HAVE_SYS_TIME_H</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:a2aae46056558e9d6fef6380f9678ffe3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69dc70bea5d1f8bd2be9740e974fa666" id="r_a69dc70bea5d1f8bd2be9740e974fa666"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__logging__conf_8h.html#a69dc70bea5d1f8bd2be9740e974fa666">HAVE_SYS_TYPES_H</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:a69dc70bea5d1f8bd2be9740e974fa666"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a219b06937831d0da94d801ab13987639" id="r_a219b06937831d0da94d801ab13987639"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__logging__conf_8h.html#a219b06937831d0da94d801ab13987639">HAVE_UNISTD_H</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:a219b06937831d0da94d801ab13987639"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d1d2d7f8d2f95b376954d649ab03233" id="r_a1d1d2d7f8d2f95b376954d649ab03233"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__logging__conf_8h.html#a1d1d2d7f8d2f95b376954d649ab03233">PACKAGE_BUGREPORT</a>&#160;&#160;&#160;&quot;&quot;</td></tr>
+<tr class="separator:a1d1d2d7f8d2f95b376954d649ab03233"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c0439e4355794c09b64274849eb0279" id="r_a1c0439e4355794c09b64274849eb0279"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__logging__conf_8h.html#a1c0439e4355794c09b64274849eb0279">PACKAGE_NAME</a>&#160;&#160;&#160;&quot;&quot;</td></tr>
+<tr class="separator:a1c0439e4355794c09b64274849eb0279"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac73e6f903c16eca7710f92e36e1c6fbf" id="r_ac73e6f903c16eca7710f92e36e1c6fbf"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__logging__conf_8h.html#ac73e6f903c16eca7710f92e36e1c6fbf">PACKAGE_STRING</a>&#160;&#160;&#160;&quot;&quot;</td></tr>
+<tr class="separator:ac73e6f903c16eca7710f92e36e1c6fbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af415af6bfede0e8d5453708afe68651c" id="r_af415af6bfede0e8d5453708afe68651c"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__logging__conf_8h.html#af415af6bfede0e8d5453708afe68651c">PACKAGE_TARNAME</a>&#160;&#160;&#160;&quot;&quot;</td></tr>
+<tr class="separator:af415af6bfede0e8d5453708afe68651c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c93853116d5a50307b6744f147840aa" id="r_a5c93853116d5a50307b6744f147840aa"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__logging__conf_8h.html#a5c93853116d5a50307b6744f147840aa">PACKAGE_URL</a>&#160;&#160;&#160;&quot;&quot;</td></tr>
+<tr class="separator:a5c93853116d5a50307b6744f147840aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa326a05d5e30f9e9a4bb0b4469d5d0c0" id="r_aa326a05d5e30f9e9a4bb0b4469d5d0c0"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__logging__conf_8h.html#aa326a05d5e30f9e9a4bb0b4469d5d0c0">PACKAGE_VERSION</a>&#160;&#160;&#160;&quot;&quot;</td></tr>
+<tr class="separator:aa326a05d5e30f9e9a4bb0b4469d5d0c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92616c6df51185d4cf143d10fe85739c" id="r_a92616c6df51185d4cf143d10fe85739c"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__logging__conf_8h.html#a92616c6df51185d4cf143d10fe85739c">SIZEOF_VOID_P</a>&#160;&#160;&#160;8</td></tr>
+<tr class="separator:a92616c6df51185d4cf143d10fe85739c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a550e5c272cc3cf3814651721167dcd23" id="r_a550e5c272cc3cf3814651721167dcd23"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__logging__conf_8h.html#a550e5c272cc3cf3814651721167dcd23">STDC_HEADERS</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:a550e5c272cc3cf3814651721167dcd23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e6d20c5075b52b0f0bc4858d51c8591" id="r_a0e6d20c5075b52b0f0bc4858d51c8591"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__logging__conf_8h.html#a0e6d20c5075b52b0f0bc4858d51c8591">_LARGEFILE64_SOURCE</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:a0e6d20c5075b52b0f0bc4858d51c8591"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb34609fd7c6ed71b58514afd393191a" id="r_abb34609fd7c6ed71b58514afd393191a"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpe__logging__conf_8h.html#abb34609fd7c6ed71b58514afd393191a">OPEN</a>(<a class="el" href="structvector.html">a</a>,  b,  c)&#160;&#160;&#160;<a class="el" href="structvector.html">open</a>( <a class="el" href="structvector.html">a</a>, b | <a class="el" href="structvector.html">O_LARGEFILE</a>, c )</td></tr>
+<tr class="separator:abb34609fd7c6ed71b58514afd393191a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Макросы</h2>
+<a id="a0e6d20c5075b52b0f0bc4858d51c8591" name="a0e6d20c5075b52b0f0bc4858d51c8591"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e6d20c5075b52b0f0bc4858d51c8591">&#9670;&#160;</a></span>_LARGEFILE64_SOURCE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> _LARGEFILE64_SOURCE&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__logging__conf_8h_source.html">mpe_logging_conf.h</a> строка <a class="el" href="mpe__logging__conf_8h_source.html#l00170">170</a></p>
+
+</div>
+</div>
+<a id="ab59ff7162d8171bd1ed29d9bc200a281" name="ab59ff7162d8171bd1ed29d9bc200a281"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab59ff7162d8171bd1ed29d9bc200a281">&#9670;&#160;</a></span>CLOG_IMPL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> CLOG_IMPL&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__logging__conf_8h_source.html">mpe_logging_conf.h</a> строка <a class="el" href="mpe__logging__conf_8h_source.html#l00008">8</a></p>
+
+</div>
+</div>
+<a id="a765d75020849aa0a9b6becd9a5b7a193" name="a765d75020849aa0a9b6becd9a5b7a193"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a765d75020849aa0a9b6becd9a5b7a193">&#9670;&#160;</a></span>HAVE_FCNTL_H</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> HAVE_FCNTL_H&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__logging__conf_8h_source.html">mpe_logging_conf.h</a> строка <a class="el" href="mpe__logging__conf_8h_source.html#l00017">17</a></p>
+
+</div>
+</div>
+<a id="ac0b94ec7b234d12081fda3f601aa01b5" name="ac0b94ec7b234d12081fda3f601aa01b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0b94ec7b234d12081fda3f601aa01b5">&#9670;&#160;</a></span>HAVE_GETHOSTNAME</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> HAVE_GETHOSTNAME&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__logging__conf_8h_source.html">mpe_logging_conf.h</a> строка <a class="el" href="mpe__logging__conf_8h_source.html#l00020">20</a></p>
+
+</div>
+</div>
+<a id="ab90a030ff2790ebdc176660a6dd2a478" name="ab90a030ff2790ebdc176660a6dd2a478"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab90a030ff2790ebdc176660a6dd2a478">&#9670;&#160;</a></span>HAVE_INTTYPES_H</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> HAVE_INTTYPES_H&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__logging__conf_8h_source.html">mpe_logging_conf.h</a> строка <a class="el" href="mpe__logging__conf_8h_source.html#l00023">23</a></p>
+
+</div>
+</div>
+<a id="a1e55aaa6b69400645b6b23359e860751" name="a1e55aaa6b69400645b6b23359e860751"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e55aaa6b69400645b6b23359e860751">&#9670;&#160;</a></span>HAVE_LIBPTHREAD</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> HAVE_LIBPTHREAD&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__logging__conf_8h_source.html">mpe_logging_conf.h</a> строка <a class="el" href="mpe__logging__conf_8h_source.html#l00026">26</a></p>
+
+</div>
+</div>
+<a id="adabaeb3fa3d671b0dc4ac4e37c13ecd8" name="adabaeb3fa3d671b0dc4ac4e37c13ecd8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adabaeb3fa3d671b0dc4ac4e37c13ecd8">&#9670;&#160;</a></span>HAVE_LRAND48</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> HAVE_LRAND48&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__logging__conf_8h_source.html">mpe_logging_conf.h</a> строка <a class="el" href="mpe__logging__conf_8h_source.html#l00029">29</a></p>
+
+</div>
+</div>
+<a id="ae93a78f9d076138897af441c9f86f285" name="ae93a78f9d076138897af441c9f86f285"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae93a78f9d076138897af441c9f86f285">&#9670;&#160;</a></span>HAVE_MEMORY_H</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> HAVE_MEMORY_H&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__logging__conf_8h_source.html">mpe_logging_conf.h</a> строка <a class="el" href="mpe__logging__conf_8h_source.html#l00032">32</a></p>
+
+</div>
+</div>
+<a id="a16c4f395f7b7bb5d5b18c132ef84fb5e" name="a16c4f395f7b7bb5d5b18c132ef84fb5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16c4f395f7b7bb5d5b18c132ef84fb5e">&#9670;&#160;</a></span>HAVE_MKSTEMP</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> HAVE_MKSTEMP&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__logging__conf_8h_source.html">mpe_logging_conf.h</a> строка <a class="el" href="mpe__logging__conf_8h_source.html#l00035">35</a></p>
+
+</div>
+</div>
+<a id="abbbd31dc45001dad62ef6248e3cbee81" name="abbbd31dc45001dad62ef6248e3cbee81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abbbd31dc45001dad62ef6248e3cbee81">&#9670;&#160;</a></span>HAVE_O_LARGEFILE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> HAVE_O_LARGEFILE&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__logging__conf_8h_source.html">mpe_logging_conf.h</a> строка <a class="el" href="mpe__logging__conf_8h_source.html#l00041">41</a></p>
+
+</div>
+</div>
+<a id="a3d29ae3ac829e559c3246b9dceefa281" name="a3d29ae3ac829e559c3246b9dceefa281"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d29ae3ac829e559c3246b9dceefa281">&#9670;&#160;</a></span>HAVE_PMPI_COMM_CREATE_KEYVAL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> HAVE_PMPI_COMM_CREATE_KEYVAL&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__logging__conf_8h_source.html">mpe_logging_conf.h</a> строка <a class="el" href="mpe__logging__conf_8h_source.html#l00044">44</a></p>
+
+</div>
+</div>
+<a id="af9bd2f2736f03e31d28845b27fb779c8" name="af9bd2f2736f03e31d28845b27fb779c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9bd2f2736f03e31d28845b27fb779c8">&#9670;&#160;</a></span>HAVE_PMPI_COMM_FREE_KEYVAL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> HAVE_PMPI_COMM_FREE_KEYVAL&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__logging__conf_8h_source.html">mpe_logging_conf.h</a> строка <a class="el" href="mpe__logging__conf_8h_source.html#l00047">47</a></p>
+
+</div>
+</div>
+<a id="a6ab4969efd16615b1bcdd5725cede74c" name="a6ab4969efd16615b1bcdd5725cede74c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ab4969efd16615b1bcdd5725cede74c">&#9670;&#160;</a></span>HAVE_PMPI_COMM_GET_ATTR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> HAVE_PMPI_COMM_GET_ATTR&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__logging__conf_8h_source.html">mpe_logging_conf.h</a> строка <a class="el" href="mpe__logging__conf_8h_source.html#l00050">50</a></p>
+
+</div>
+</div>
+<a id="a7970eef2debd382ebfb3f9f7cfcc6ae2" name="a7970eef2debd382ebfb3f9f7cfcc6ae2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7970eef2debd382ebfb3f9f7cfcc6ae2">&#9670;&#160;</a></span>HAVE_PMPI_COMM_SET_ATTR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> HAVE_PMPI_COMM_SET_ATTR&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__logging__conf_8h_source.html">mpe_logging_conf.h</a> строка <a class="el" href="mpe__logging__conf_8h_source.html#l00053">53</a></p>
+
+</div>
+</div>
+<a id="acf71b36fdd29bd9ef6709cecac0536d2" name="acf71b36fdd29bd9ef6709cecac0536d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf71b36fdd29bd9ef6709cecac0536d2">&#9670;&#160;</a></span>HAVE_PTHREAD_H</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> HAVE_PTHREAD_H&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__logging__conf_8h_source.html">mpe_logging_conf.h</a> строка <a class="el" href="mpe__logging__conf_8h_source.html#l00056">56</a></p>
+
+</div>
+</div>
+<a id="a040bd9182ad5ba7261448993c38565ea" name="a040bd9182ad5ba7261448993c38565ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a040bd9182ad5ba7261448993c38565ea">&#9670;&#160;</a></span>HAVE_SNPRINTF</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> HAVE_SNPRINTF&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__logging__conf_8h_source.html">mpe_logging_conf.h</a> строка <a class="el" href="mpe__logging__conf_8h_source.html#l00059">59</a></p>
+
+</div>
+</div>
+<a id="a5d1adeac1e509a3bc5e1825884ac4b22" name="a5d1adeac1e509a3bc5e1825884ac4b22"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d1adeac1e509a3bc5e1825884ac4b22">&#9670;&#160;</a></span>HAVE_SRAND48</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> HAVE_SRAND48&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__logging__conf_8h_source.html">mpe_logging_conf.h</a> строка <a class="el" href="mpe__logging__conf_8h_source.html#l00062">62</a></p>
+
+</div>
+</div>
+<a id="ab6cd6d1c63c1e26ea2d4537b77148354" name="ab6cd6d1c63c1e26ea2d4537b77148354"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6cd6d1c63c1e26ea2d4537b77148354">&#9670;&#160;</a></span>HAVE_STDINT_H</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> HAVE_STDINT_H&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__logging__conf_8h_source.html">mpe_logging_conf.h</a> строка <a class="el" href="mpe__logging__conf_8h_source.html#l00065">65</a></p>
+
+</div>
+</div>
+<a id="ae021ce4fe74984428cc97427b7358fda" name="ae021ce4fe74984428cc97427b7358fda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae021ce4fe74984428cc97427b7358fda">&#9670;&#160;</a></span>HAVE_STDIO_H</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> HAVE_STDIO_H&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__logging__conf_8h_source.html">mpe_logging_conf.h</a> строка <a class="el" href="mpe__logging__conf_8h_source.html#l00068">68</a></p>
+
+</div>
+</div>
+<a id="a9e0e434ec1a6ddbd97db12b5a32905e0" name="a9e0e434ec1a6ddbd97db12b5a32905e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e0e434ec1a6ddbd97db12b5a32905e0">&#9670;&#160;</a></span>HAVE_STDLIB_H</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> HAVE_STDLIB_H&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__logging__conf_8h_source.html">mpe_logging_conf.h</a> строка <a class="el" href="mpe__logging__conf_8h_source.html#l00071">71</a></p>
+
+</div>
+</div>
+<a id="ad4c234dd1625255dc626a15886306e7d" name="ad4c234dd1625255dc626a15886306e7d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4c234dd1625255dc626a15886306e7d">&#9670;&#160;</a></span>HAVE_STRING_H</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> HAVE_STRING_H&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__logging__conf_8h_source.html">mpe_logging_conf.h</a> строка <a class="el" href="mpe__logging__conf_8h_source.html#l00077">77</a></p>
+
+</div>
+</div>
+<a id="a405d10d46190bcb0320524c54eafc850" name="a405d10d46190bcb0320524c54eafc850"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a405d10d46190bcb0320524c54eafc850">&#9670;&#160;</a></span>HAVE_STRINGS_H</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> HAVE_STRINGS_H&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__logging__conf_8h_source.html">mpe_logging_conf.h</a> строка <a class="el" href="mpe__logging__conf_8h_source.html#l00074">74</a></p>
+
+</div>
+</div>
+<a id="a228b2a184bbed5a42c16481a57e29456" name="a228b2a184bbed5a42c16481a57e29456"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a228b2a184bbed5a42c16481a57e29456">&#9670;&#160;</a></span>HAVE_SYS_BITYPES_H</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> HAVE_SYS_BITYPES_H&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__logging__conf_8h_source.html">mpe_logging_conf.h</a> строка <a class="el" href="mpe__logging__conf_8h_source.html#l00080">80</a></p>
+
+</div>
+</div>
+<a id="ace156430ba007d19b4348a950d0c692b" name="ace156430ba007d19b4348a950d0c692b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace156430ba007d19b4348a950d0c692b">&#9670;&#160;</a></span>HAVE_SYS_STAT_H</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> HAVE_SYS_STAT_H&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__logging__conf_8h_source.html">mpe_logging_conf.h</a> строка <a class="el" href="mpe__logging__conf_8h_source.html#l00083">83</a></p>
+
+</div>
+</div>
+<a id="a2aae46056558e9d6fef6380f9678ffe3" name="a2aae46056558e9d6fef6380f9678ffe3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2aae46056558e9d6fef6380f9678ffe3">&#9670;&#160;</a></span>HAVE_SYS_TIME_H</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> HAVE_SYS_TIME_H&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__logging__conf_8h_source.html">mpe_logging_conf.h</a> строка <a class="el" href="mpe__logging__conf_8h_source.html#l00086">86</a></p>
+
+</div>
+</div>
+<a id="a69dc70bea5d1f8bd2be9740e974fa666" name="a69dc70bea5d1f8bd2be9740e974fa666"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69dc70bea5d1f8bd2be9740e974fa666">&#9670;&#160;</a></span>HAVE_SYS_TYPES_H</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> HAVE_SYS_TYPES_H&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__logging__conf_8h_source.html">mpe_logging_conf.h</a> строка <a class="el" href="mpe__logging__conf_8h_source.html#l00089">89</a></p>
+
+</div>
+</div>
+<a id="a219b06937831d0da94d801ab13987639" name="a219b06937831d0da94d801ab13987639"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a219b06937831d0da94d801ab13987639">&#9670;&#160;</a></span>HAVE_UNISTD_H</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> HAVE_UNISTD_H&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__logging__conf_8h_source.html">mpe_logging_conf.h</a> строка <a class="el" href="mpe__logging__conf_8h_source.html#l00092">92</a></p>
+
+</div>
+</div>
+<a id="abb34609fd7c6ed71b58514afd393191a" name="abb34609fd7c6ed71b58514afd393191a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb34609fd7c6ed71b58514afd393191a">&#9670;&#160;</a></span>OPEN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> OPEN</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><a class="el" href="structvector.html">a</a>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">b, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">c&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;<a class="el" href="structvector.html">open</a>( <a class="el" href="structvector.html">a</a>, b | <a class="el" href="structvector.html">O_LARGEFILE</a>, c )</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__logging__conf_8h_source.html">mpe_logging_conf.h</a> строка <a class="el" href="mpe__logging__conf_8h_source.html#l00202">202</a></p>
+
+</div>
+</div>
+<a id="a1d1d2d7f8d2f95b376954d649ab03233" name="a1d1d2d7f8d2f95b376954d649ab03233"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d1d2d7f8d2f95b376954d649ab03233">&#9670;&#160;</a></span>PACKAGE_BUGREPORT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> PACKAGE_BUGREPORT&#160;&#160;&#160;&quot;&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__logging__conf_8h_source.html">mpe_logging_conf.h</a> строка <a class="el" href="mpe__logging__conf_8h_source.html#l00113">113</a></p>
+
+</div>
+</div>
+<a id="a1c0439e4355794c09b64274849eb0279" name="a1c0439e4355794c09b64274849eb0279"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c0439e4355794c09b64274849eb0279">&#9670;&#160;</a></span>PACKAGE_NAME</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> PACKAGE_NAME&#160;&#160;&#160;&quot;&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__logging__conf_8h_source.html">mpe_logging_conf.h</a> строка <a class="el" href="mpe__logging__conf_8h_source.html#l00116">116</a></p>
+
+</div>
+</div>
+<a id="ac73e6f903c16eca7710f92e36e1c6fbf" name="ac73e6f903c16eca7710f92e36e1c6fbf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac73e6f903c16eca7710f92e36e1c6fbf">&#9670;&#160;</a></span>PACKAGE_STRING</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> PACKAGE_STRING&#160;&#160;&#160;&quot;&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__logging__conf_8h_source.html">mpe_logging_conf.h</a> строка <a class="el" href="mpe__logging__conf_8h_source.html#l00119">119</a></p>
+
+</div>
+</div>
+<a id="af415af6bfede0e8d5453708afe68651c" name="af415af6bfede0e8d5453708afe68651c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af415af6bfede0e8d5453708afe68651c">&#9670;&#160;</a></span>PACKAGE_TARNAME</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> PACKAGE_TARNAME&#160;&#160;&#160;&quot;&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__logging__conf_8h_source.html">mpe_logging_conf.h</a> строка <a class="el" href="mpe__logging__conf_8h_source.html#l00122">122</a></p>
+
+</div>
+</div>
+<a id="a5c93853116d5a50307b6744f147840aa" name="a5c93853116d5a50307b6744f147840aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c93853116d5a50307b6744f147840aa">&#9670;&#160;</a></span>PACKAGE_URL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> PACKAGE_URL&#160;&#160;&#160;&quot;&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__logging__conf_8h_source.html">mpe_logging_conf.h</a> строка <a class="el" href="mpe__logging__conf_8h_source.html#l00125">125</a></p>
+
+</div>
+</div>
+<a id="aa326a05d5e30f9e9a4bb0b4469d5d0c0" name="aa326a05d5e30f9e9a4bb0b4469d5d0c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa326a05d5e30f9e9a4bb0b4469d5d0c0">&#9670;&#160;</a></span>PACKAGE_VERSION</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> PACKAGE_VERSION&#160;&#160;&#160;&quot;&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__logging__conf_8h_source.html">mpe_logging_conf.h</a> строка <a class="el" href="mpe__logging__conf_8h_source.html#l00128">128</a></p>
+
+</div>
+</div>
+<a id="a92616c6df51185d4cf143d10fe85739c" name="a92616c6df51185d4cf143d10fe85739c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92616c6df51185d4cf143d10fe85739c">&#9670;&#160;</a></span>SIZEOF_VOID_P</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> SIZEOF_VOID_P&#160;&#160;&#160;8</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__logging__conf_8h_source.html">mpe_logging_conf.h</a> строка <a class="el" href="mpe__logging__conf_8h_source.html#l00149">149</a></p>
+
+</div>
+</div>
+<a id="a550e5c272cc3cf3814651721167dcd23" name="a550e5c272cc3cf3814651721167dcd23"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a550e5c272cc3cf3814651721167dcd23">&#9670;&#160;</a></span>STDC_HEADERS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> STDC_HEADERS&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__logging__conf_8h_source.html">mpe_logging_conf.h</a> строка <a class="el" href="mpe__logging__conf_8h_source.html#l00152">152</a></p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

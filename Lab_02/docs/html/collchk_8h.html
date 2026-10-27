@@ -1,0 +1,1855 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lab_02: MPI + OpenMP Parallel Programming: Файл collchk.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Lab_02: MPI + OpenMP Parallel Programming<span id="projectnumber">&#160;2.1</span>
+   </div>
+   <div id="projectbrief">Решение 3D уравнения Пуассона методом Якоби с двумерной декомпозицией</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_1f646cbbb0f6227d25dd06f792d51aba.html">mpe2-1.3.0</a></li><li class="navelem"><a class="el" href="dir_493399512d45eb30627376023737183a.html">src</a></li><li class="navelem"><a class="el" href="dir_a2eccd5b3f0c3c7ebe8d4b9f9baae753.html">collchk</a></li><li class="navelem"><a class="el" href="dir_a6912acc79beca46e77fc341e118635d.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Классы</a> &#124;
+<a href="#define-members">Макросы</a> &#124;
+<a href="#func-members">Функции</a> &#124;
+<a href="#var-members">Переменные</a>  </div>
+  <div class="headertitle"><div class="title">Файл collchk.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="mpe__collchk__conf_8h_source.html">mpe_collchk_conf.h</a>&quot;</code><br />
+<code>#include &quot;mpi.h&quot;</code><br />
+</div>
+<p><a href="collchk_8h_source.html">См. исходные тексты.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Классы</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCollChk__hash__t.html">CollChk_hash_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Макросы</h2></td></tr>
+<tr class="memitem:a3176bbc7426a9df49cc90f4334a3cdaa" id="r_a3176bbc7426a9df49cc90f4334a3cdaa"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="collchk_8h.html#a3176bbc7426a9df49cc90f4334a3cdaa">COLLCHK_NO_ERROR_STR</a>&#160;&#160;&#160;&quot;no <a class="el" href="structvector.html">error&quot;</a></td></tr>
+<tr class="separator:a3176bbc7426a9df49cc90f4334a3cdaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afeec6a9d01531ffe0868b0a232eb7171" id="r_afeec6a9d01531ffe0868b0a232eb7171"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="collchk_8h.html#afeec6a9d01531ffe0868b0a232eb7171">COLLCHK_SM_STRLEN</a>&#160;&#160;&#160;32</td></tr>
+<tr class="separator:afeec6a9d01531ffe0868b0a232eb7171"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62dc58cb7cec7c22fe960228ec01d15d" id="r_a62dc58cb7cec7c22fe960228ec01d15d"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="collchk_8h.html#a62dc58cb7cec7c22fe960228ec01d15d">COLLCHK_STD_STRLEN</a>&#160;&#160;&#160;256</td></tr>
+<tr class="separator:a62dc58cb7cec7c22fe960228ec01d15d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69fd8fa3ca6272c68b5f67b1383dd8e0" id="r_a69fd8fa3ca6272c68b5f67b1383dd8e0"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="collchk_8h.html#a69fd8fa3ca6272c68b5f67b1383dd8e0">COLLCHK_LG_STRLEN</a>&#160;&#160;&#160;1024</td></tr>
+<tr class="separator:a69fd8fa3ca6272c68b5f67b1383dd8e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Функции</h2></td></tr>
+<tr class="memitem:a4ae68f93ee70901589d17ff4b8902891" id="r_a4ae68f93ee70901589d17ff4b8902891"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="collchk_8h.html#a4ae68f93ee70901589d17ff4b8902891">MPI_Add_error_class</a> (<a class="el" href="structvector.html">int</a> *<a class="el" href="structvector.html">errorclass</a>)</td></tr>
+<tr class="separator:a4ae68f93ee70901589d17ff4b8902891"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a564e6aa399f05b1c865d5dcd213e4776" id="r_a564e6aa399f05b1c865d5dcd213e4776"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="collchk_8h.html#a564e6aa399f05b1c865d5dcd213e4776">MPI_Add_error_code</a> (<a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">errorclass</a>, <a class="el" href="structvector.html">int</a> *<a class="el" href="structvector.html">errorcode</a>)</td></tr>
+<tr class="separator:a564e6aa399f05b1c865d5dcd213e4776"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7680157292cdd338a2273638daf6a2d7" id="r_a7680157292cdd338a2273638daf6a2d7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="collchk_8h.html#a7680157292cdd338a2273638daf6a2d7">MPI_Add_error_string</a> (<a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">errorcode</a>, <a class="el" href="structvector.html">char</a> *string)</td></tr>
+<tr class="separator:a7680157292cdd338a2273638daf6a2d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a124b9ac63fbd47758d1e3ebea22c6374" id="r_a124b9ac63fbd47758d1e3ebea22c6374"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="collchk_8h.html#a124b9ac63fbd47758d1e3ebea22c6374">MPI_Comm_call_errhandler</a> (<a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">errorcode</a>)</td></tr>
+<tr class="separator:a124b9ac63fbd47758d1e3ebea22c6374"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adafbdedfce51ee55c6797164d021f76b" id="r_adafbdedfce51ee55c6797164d021f76b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="collchk_8h.html#adafbdedfce51ee55c6797164d021f76b">CollChk_set_begin</a> (<a class="el" href="structvector.html">char</a> *<a class="el" href="structvector.html">in</a>)</td></tr>
+<tr class="separator:adafbdedfce51ee55c6797164d021f76b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4885b7b30662802b6632ebfec1f8022d" id="r_a4885b7b30662802b6632ebfec1f8022d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="collchk_8h.html#a4885b7b30662802b6632ebfec1f8022d">CollChk_unset_begin</a> (<a class="el" href="structvector.html">void</a>)</td></tr>
+<tr class="separator:a4885b7b30662802b6632ebfec1f8022d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79e080d4a6e87271209a83811d72dfc8" id="r_a79e080d4a6e87271209a83811d72dfc8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="collchk_8h.html#a79e080d4a6e87271209a83811d72dfc8">CollChk_check_buff</a> (<a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm, <a class="el" href="structvector.html">void</a> *<a class="el" href="structvector.html">buff</a>, <a class="el" href="structvector.html">char</a> *<a class="el" href="structvector.html">call</a>)</td></tr>
+<tr class="separator:a79e080d4a6e87271209a83811d72dfc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2f96932af18b819db79c79783231c2c" id="r_ac2f96932af18b819db79c79783231c2c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="collchk_8h.html#ac2f96932af18b819db79c79783231c2c">CollChk_check_dims</a> (<a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">ndims</a>, <a class="el" href="structvector.html">int</a> *<a class="el" href="structvector.html">dims</a>, <a class="el" href="structvector.html">char</a> *<a class="el" href="structvector.html">call</a>)</td></tr>
+<tr class="separator:ac2f96932af18b819db79c79783231c2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aada1a230cab11ba77ac83b23c030b992" id="r_aada1a230cab11ba77ac83b23c030b992"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="collchk_8h.html#aada1a230cab11ba77ac83b23c030b992">CollChk_check_graph</a> (<a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">nnodes</a>, <a class="el" href="structvector.html">int</a> *index, <a class="el" href="structvector.html">int</a> *<a class="el" href="structvector.html">edges</a>, <a class="el" href="structvector.html">char</a> *<a class="el" href="structvector.html">call</a>)</td></tr>
+<tr class="separator:aada1a230cab11ba77ac83b23c030b992"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64dca57b0b9500d9831aa1164570adb8" id="r_a64dca57b0b9500d9831aa1164570adb8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="collchk_8h.html#a64dca57b0b9500d9831aa1164570adb8">CollChk_check_size</a> (<a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm, <a class="el" href="structvector.html">int</a> size, <a class="el" href="structvector.html">char</a> *<a class="el" href="structvector.html">call</a>)</td></tr>
+<tr class="separator:a64dca57b0b9500d9831aa1164570adb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c98d5162fa8a336ebc122d16481654f" id="r_a9c98d5162fa8a336ebc122d16481654f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="collchk_8h.html#a9c98d5162fa8a336ebc122d16481654f">CollChk_err_han</a> (<a class="el" href="structvector.html">char</a> *<a class="el" href="structvector.html">err_str</a>, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">err_code</a>, <a class="el" href="structvector.html">char</a> *<a class="el" href="structvector.html">call</a>, <a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm)</td></tr>
+<tr class="separator:a9c98d5162fa8a336ebc122d16481654f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a285c880cde2958818cf7eab38aa159aa" id="r_a285c880cde2958818cf7eab38aa159aa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="collchk_8h.html#a285c880cde2958818cf7eab38aa159aa">CollChk_is_init</a> (<a class="el" href="structvector.html">void</a>)</td></tr>
+<tr class="separator:a285c880cde2958818cf7eab38aa159aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47fdd57654a8c06d66c968b92f427028" id="r_a47fdd57654a8c06d66c968b92f427028"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="collchk_8h.html#a47fdd57654a8c06d66c968b92f427028">CollChk_same_amode</a> (<a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">amode</a>, <a class="el" href="structvector.html">char</a> *<a class="el" href="structvector.html">call</a>)</td></tr>
+<tr class="separator:a47fdd57654a8c06d66c968b92f427028"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6943d282a0779d6d63af35ec71c20404" id="r_a6943d282a0779d6d63af35ec71c20404"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="collchk_8h.html#a6943d282a0779d6d63af35ec71c20404">CollChk_same_call</a> (<a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm, <a class="el" href="structvector.html">char</a> *<a class="el" href="structvector.html">call</a>)</td></tr>
+<tr class="separator:a6943d282a0779d6d63af35ec71c20404"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add0a9f4f6965b9a71627abbe35592fae" id="r_add0a9f4f6965b9a71627abbe35592fae"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="collchk_8h.html#add0a9f4f6965b9a71627abbe35592fae">CollChk_same_datarep</a> (<a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm, <a class="el" href="structvector.html">char</a> *<a class="el" href="structvector.html">datarep</a>, <a class="el" href="structvector.html">char</a> *<a class="el" href="structvector.html">call</a>)</td></tr>
+<tr class="separator:add0a9f4f6965b9a71627abbe35592fae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a780bfff3869fac376e04231b2009e12d" id="r_a780bfff3869fac376e04231b2009e12d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="collchk_8h.html#a780bfff3869fac376e04231b2009e12d">CollChk_hash_equal</a> (<a class="el" href="structvector.html">const</a> <a class="el" href="structCollChk__hash__t.html">CollChk_hash_t</a> *alpha, <a class="el" href="structvector.html">const</a> <a class="el" href="structCollChk__hash__t.html">CollChk_hash_t</a> *<a class="el" href="structvector.html">beta</a>)</td></tr>
+<tr class="separator:a780bfff3869fac376e04231b2009e12d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa74f0c80169718930937c902240119b6" id="r_aa74f0c80169718930937c902240119b6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="collchk_8h.html#aa74f0c80169718930937c902240119b6">CollChk_dtype_hash</a> (<a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a> type, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">cnt</a>, <a class="el" href="structCollChk__hash__t.html">CollChk_hash_t</a> *<a class="el" href="structvector.html">dt_hash</a>)</td></tr>
+<tr class="separator:aa74f0c80169718930937c902240119b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3cb4cb769125d089afbad800cd524213" id="r_a3cb4cb769125d089afbad800cd524213"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="collchk_8h.html#a3cb4cb769125d089afbad800cd524213">CollChk_dtype_bcast</a> (<a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm, <a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a> type, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">cnt</a>, <a class="el" href="structvector.html">int</a> root, <a class="el" href="structvector.html">char</a> *<a class="el" href="structvector.html">call</a>)</td></tr>
+<tr class="separator:a3cb4cb769125d089afbad800cd524213"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad46bd8d4b8096487e5e20f0fd071aab4" id="r_ad46bd8d4b8096487e5e20f0fd071aab4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="collchk_8h.html#ad46bd8d4b8096487e5e20f0fd071aab4">CollChk_dtype_scatter</a> (<a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm, <a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a> <a class="el" href="structvector.html">sendtype</a>, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">sendcnt</a>, <a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a> <a class="el" href="structvector.html">recvtype</a>, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">recvcnt</a>, <a class="el" href="structvector.html">int</a> root, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">are2buffs</a>, <a class="el" href="structvector.html">char</a> *<a class="el" href="structvector.html">call</a>)</td></tr>
+<tr class="separator:ad46bd8d4b8096487e5e20f0fd071aab4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a816e7177fe6630bbf0613005b71d0a87" id="r_a816e7177fe6630bbf0613005b71d0a87"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="collchk_8h.html#a816e7177fe6630bbf0613005b71d0a87">CollChk_dtype_scatterv</a> (<a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm, <a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a> <a class="el" href="structvector.html">sendtype</a>, <a class="el" href="structvector.html">int</a> *<a class="el" href="structvector.html">sendcnts</a>, <a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a> <a class="el" href="structvector.html">recvtype</a>, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">recvcnt</a>, <a class="el" href="structvector.html">int</a> root, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">are2buffs</a>, <a class="el" href="structvector.html">char</a> *<a class="el" href="structvector.html">call</a>)</td></tr>
+<tr class="separator:a816e7177fe6630bbf0613005b71d0a87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ad8cb06310662b3e7caf9c2f0b5e917" id="r_a6ad8cb06310662b3e7caf9c2f0b5e917"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="collchk_8h.html#a6ad8cb06310662b3e7caf9c2f0b5e917">CollChk_dtype_allgather</a> (<a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm, <a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a> <a class="el" href="structvector.html">sendtype</a>, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">sendcnt</a>, <a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a> <a class="el" href="structvector.html">recvtype</a>, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">recvcnt</a>, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">are2buffs</a>, <a class="el" href="structvector.html">char</a> *<a class="el" href="structvector.html">call</a>)</td></tr>
+<tr class="separator:a6ad8cb06310662b3e7caf9c2f0b5e917"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa26b027e72356cfc52338f76565926d1" id="r_aa26b027e72356cfc52338f76565926d1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="collchk_8h.html#aa26b027e72356cfc52338f76565926d1">CollChk_dtype_allgatherv</a> (<a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm, <a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a> <a class="el" href="structvector.html">sendtype</a>, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">sendcnt</a>, <a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a> <a class="el" href="structvector.html">recvtype</a>, <a class="el" href="structvector.html">int</a> *<a class="el" href="structvector.html">recvcnts</a>, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">are2buffs</a>, <a class="el" href="structvector.html">char</a> *<a class="el" href="structvector.html">call</a>)</td></tr>
+<tr class="separator:aa26b027e72356cfc52338f76565926d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74d49ed55e71bfabf1f2a3472660455d" id="r_a74d49ed55e71bfabf1f2a3472660455d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="collchk_8h.html#a74d49ed55e71bfabf1f2a3472660455d">CollChk_dtype_alltoallv</a> (<a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm, <a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a> <a class="el" href="structvector.html">sendtype</a>, <a class="el" href="structvector.html">int</a> *<a class="el" href="structvector.html">sendcnts</a>, <a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a> <a class="el" href="structvector.html">recvtype</a>, <a class="el" href="structvector.html">int</a> *<a class="el" href="structvector.html">recvcnts</a>, <a class="el" href="structvector.html">char</a> *<a class="el" href="structvector.html">call</a>)</td></tr>
+<tr class="separator:a74d49ed55e71bfabf1f2a3472660455d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac98f86f17c51c6125a1778c9e3e514e" id="r_aac98f86f17c51c6125a1778c9e3e514e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="collchk_8h.html#aac98f86f17c51c6125a1778c9e3e514e">CollChk_dtype_alltoallw</a> (<a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm, <a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a> *<a class="el" href="structvector.html">sendtypes</a>, <a class="el" href="structvector.html">int</a> *<a class="el" href="structvector.html">sendcnts</a>, <a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a> *<a class="el" href="structvector.html">recvtypes</a>, <a class="el" href="structvector.html">int</a> *<a class="el" href="structvector.html">recvcnts</a>, <a class="el" href="structvector.html">char</a> *<a class="el" href="structvector.html">call</a>)</td></tr>
+<tr class="separator:aac98f86f17c51c6125a1778c9e3e514e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0bb7469e5b1d1d5b78456dacbfece6eb" id="r_a0bb7469e5b1d1d5b78456dacbfece6eb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="collchk_8h.html#a0bb7469e5b1d1d5b78456dacbfece6eb">CollChk_same_high_low</a> (<a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">high_low</a>, <a class="el" href="structvector.html">char</a> *<a class="el" href="structvector.html">call</a>)</td></tr>
+<tr class="separator:a0bb7469e5b1d1d5b78456dacbfece6eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1af2d0c57d91020695daa1a7d066876" id="r_ab1af2d0c57d91020695daa1a7d066876"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="collchk_8h.html#ab1af2d0c57d91020695daa1a7d066876">CollChk_same_int</a> (<a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">val</a>, <a class="el" href="structvector.html">char</a> *<a class="el" href="structvector.html">call</a>, <a class="el" href="structvector.html">char</a> *<a class="el" href="structvector.html">check</a>, <a class="el" href="structvector.html">char</a> *<a class="el" href="structvector.html">err_str</a>)</td></tr>
+<tr class="separator:ab1af2d0c57d91020695daa1a7d066876"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a390c4f3f8f60eb5c52208a2cb3237e40" id="r_a390c4f3f8f60eb5c52208a2cb3237e40"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="collchk_8h.html#a390c4f3f8f60eb5c52208a2cb3237e40">CollChk_same_local_leader</a> (<a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">ll</a>, <a class="el" href="structvector.html">char</a> *<a class="el" href="structvector.html">call</a>)</td></tr>
+<tr class="separator:a390c4f3f8f60eb5c52208a2cb3237e40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad928091d26d67b7454cfce775a5d2d6a" id="r_ad928091d26d67b7454cfce775a5d2d6a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="collchk_8h.html#ad928091d26d67b7454cfce775a5d2d6a">CollChk_same_op</a> (<a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm, <a class="el" href="mpi__null_8h.html#a1e6360539c256e76b432da612d0ec399">MPI_Op</a> <a class="el" href="structvector.html">op</a>, <a class="el" href="structvector.html">char</a> *<a class="el" href="structvector.html">call</a>)</td></tr>
+<tr class="separator:ad928091d26d67b7454cfce775a5d2d6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a80ade77fe8c88cdc185439b4ac0163" id="r_a8a80ade77fe8c88cdc185439b4ac0163"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="collchk_8h.html#a8a80ade77fe8c88cdc185439b4ac0163">CollChk_same_root</a> (<a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm, <a class="el" href="structvector.html">int</a> root, <a class="el" href="structvector.html">char</a> *<a class="el" href="structvector.html">call</a>)</td></tr>
+<tr class="separator:a8a80ade77fe8c88cdc185439b4ac0163"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a235a242cb80f361bee12ecbe265afb97" id="r_a235a242cb80f361bee12ecbe265afb97"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="collchk_8h.html#a235a242cb80f361bee12ecbe265afb97">CollChk_same_tag</a> (<a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm, <a class="el" href="structvector.html">int</a> tag, <a class="el" href="structvector.html">char</a> *<a class="el" href="structvector.html">call</a>)</td></tr>
+<tr class="separator:a235a242cb80f361bee12ecbe265afb97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b251e2ded1cbdd6a841dd8d8a02d00d" id="r_a2b251e2ded1cbdd6a841dd8d8a02d00d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="collchk_8h.html#a2b251e2ded1cbdd6a841dd8d8a02d00d">CollChk_same_whence</a> (<a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">whence</a>, <a class="el" href="structvector.html">char</a> *<a class="el" href="structvector.html">call</a>)</td></tr>
+<tr class="separator:a2b251e2ded1cbdd6a841dd8d8a02d00d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Переменные</h2></td></tr>
+<tr class="memitem:a4559f564aff8cfdba659ff1969f05a03" id="r_a4559f564aff8cfdba659ff1969f05a03"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">char</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="collchk_8h.html#a4559f564aff8cfdba659ff1969f05a03">CollChk_begin_str</a> [128]</td></tr>
+<tr class="separator:a4559f564aff8cfdba659ff1969f05a03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9fe9f95993aa58d15f0c186ba437c847" id="r_a9fe9f95993aa58d15f0c186ba437c847"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="collchk_8h.html#a9fe9f95993aa58d15f0c186ba437c847">COLLCHK_CALLED_BEGIN</a></td></tr>
+<tr class="separator:a9fe9f95993aa58d15f0c186ba437c847"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a529cf245e1a61c86906e6b08d13ab77a" id="r_a529cf245e1a61c86906e6b08d13ab77a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="collchk_8h.html#a529cf245e1a61c86906e6b08d13ab77a">COLLCHK_ERRORS</a></td></tr>
+<tr class="separator:a529cf245e1a61c86906e6b08d13ab77a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4c3727c08912dd311381198af0a6668" id="r_af4c3727c08912dd311381198af0a6668"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="collchk_8h.html#af4c3727c08912dd311381198af0a6668">COLLCHK_ERR_NOT_INIT</a></td></tr>
+<tr class="separator:af4c3727c08912dd311381198af0a6668"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f304972ff86a56c0f886013456c4dd4" id="r_a8f304972ff86a56c0f886013456c4dd4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="collchk_8h.html#a8f304972ff86a56c0f886013456c4dd4">COLLCHK_ERR_ROOT</a></td></tr>
+<tr class="separator:a8f304972ff86a56c0f886013456c4dd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c0a84c6b5de947ba3f7b2810a70e367" id="r_a6c0a84c6b5de947ba3f7b2810a70e367"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="collchk_8h.html#a6c0a84c6b5de947ba3f7b2810a70e367">COLLCHK_ERR_CALL</a></td></tr>
+<tr class="separator:a6c0a84c6b5de947ba3f7b2810a70e367"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a291818ff5871a48db969f2bdcda0dbdd" id="r_a291818ff5871a48db969f2bdcda0dbdd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="collchk_8h.html#a291818ff5871a48db969f2bdcda0dbdd">COLLCHK_ERR_OP</a></td></tr>
+<tr class="separator:a291818ff5871a48db969f2bdcda0dbdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58c711be54615719085d897e70f1bf06" id="r_a58c711be54615719085d897e70f1bf06"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="collchk_8h.html#a58c711be54615719085d897e70f1bf06">COLLCHK_ERR_INPLACE</a></td></tr>
+<tr class="separator:a58c711be54615719085d897e70f1bf06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1381580fd1e3d92c10641949b4c84e14" id="r_a1381580fd1e3d92c10641949b4c84e14"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="collchk_8h.html#a1381580fd1e3d92c10641949b4c84e14">COLLCHK_ERR_DTYPE</a></td></tr>
+<tr class="separator:a1381580fd1e3d92c10641949b4c84e14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61365148680dba7e18818af59fba8a33" id="r_a61365148680dba7e18818af59fba8a33"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="collchk_8h.html#a61365148680dba7e18818af59fba8a33">COLLCHK_ERR_HIGH_LOW</a></td></tr>
+<tr class="separator:a61365148680dba7e18818af59fba8a33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afce5f5799f2158fa39fad53de9035767" id="r_afce5f5799f2158fa39fad53de9035767"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="collchk_8h.html#afce5f5799f2158fa39fad53de9035767">COLLCHK_ERR_LL</a></td></tr>
+<tr class="separator:afce5f5799f2158fa39fad53de9035767"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59c5bf254aae8ff7215b8c7aa51482c1" id="r_a59c5bf254aae8ff7215b8c7aa51482c1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="collchk_8h.html#a59c5bf254aae8ff7215b8c7aa51482c1">COLLCHK_ERR_TAG</a></td></tr>
+<tr class="separator:a59c5bf254aae8ff7215b8c7aa51482c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae288613c9c3d453567f878dc6dffcc2f" id="r_ae288613c9c3d453567f878dc6dffcc2f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="collchk_8h.html#ae288613c9c3d453567f878dc6dffcc2f">COLLCHK_ERR_DIMS</a></td></tr>
+<tr class="separator:ae288613c9c3d453567f878dc6dffcc2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeade093988ae937e46dc7862d874bcb5" id="r_aeade093988ae937e46dc7862d874bcb5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="collchk_8h.html#aeade093988ae937e46dc7862d874bcb5">COLLCHK_ERR_GRAPH</a></td></tr>
+<tr class="separator:aeade093988ae937e46dc7862d874bcb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9071b4e7cfe7e61b7d110800fd20501" id="r_ad9071b4e7cfe7e61b7d110800fd20501"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="collchk_8h.html#ad9071b4e7cfe7e61b7d110800fd20501">COLLCHK_ERR_AMODE</a></td></tr>
+<tr class="separator:ad9071b4e7cfe7e61b7d110800fd20501"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa41e74cea002cdc6c6d9750a2850921" id="r_aaa41e74cea002cdc6c6d9750a2850921"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="collchk_8h.html#aaa41e74cea002cdc6c6d9750a2850921">COLLCHK_ERR_WHENCE</a></td></tr>
+<tr class="separator:aaa41e74cea002cdc6c6d9750a2850921"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5014113260b874e05dc59a7018ba586a" id="r_a5014113260b874e05dc59a7018ba586a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="collchk_8h.html#a5014113260b874e05dc59a7018ba586a">COLLCHK_ERR_DATAREP</a></td></tr>
+<tr class="separator:a5014113260b874e05dc59a7018ba586a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d61fe1b6e54b3181ed7bee6921529ff" id="r_a0d61fe1b6e54b3181ed7bee6921529ff"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="collchk_8h.html#a0d61fe1b6e54b3181ed7bee6921529ff">COLLCHK_ERR_PREVIOUS_BEGIN</a></td></tr>
+<tr class="separator:a0d61fe1b6e54b3181ed7bee6921529ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65400b144c54fce71d0f0e9aa7d53b1d" id="r_a65400b144c54fce71d0f0e9aa7d53b1d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="collchk_8h.html#a65400b144c54fce71d0f0e9aa7d53b1d">COLLCHK_ERR_FILE_NOT_OPEN</a></td></tr>
+<tr class="separator:a65400b144c54fce71d0f0e9aa7d53b1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Макросы</h2>
+<a id="a69fd8fa3ca6272c68b5f67b1383dd8e0" name="a69fd8fa3ca6272c68b5f67b1383dd8e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69fd8fa3ca6272c68b5f67b1383dd8e0">&#9670;&#160;</a></span>COLLCHK_LG_STRLEN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> COLLCHK_LG_STRLEN&#160;&#160;&#160;1024</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="collchk_8h_source.html">collchk.h</a> строка <a class="el" href="collchk_8h_source.html#l00153">153</a></p>
+
+</div>
+</div>
+<a id="a3176bbc7426a9df49cc90f4334a3cdaa" name="a3176bbc7426a9df49cc90f4334a3cdaa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3176bbc7426a9df49cc90f4334a3cdaa">&#9670;&#160;</a></span>COLLCHK_NO_ERROR_STR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> COLLCHK_NO_ERROR_STR&#160;&#160;&#160;&quot;no <a class="el" href="structvector.html">error&quot;</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="collchk_8h_source.html">collchk.h</a> строка <a class="el" href="collchk_8h_source.html#l00150">150</a></p>
+
+</div>
+</div>
+<a id="afeec6a9d01531ffe0868b0a232eb7171" name="afeec6a9d01531ffe0868b0a232eb7171"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afeec6a9d01531ffe0868b0a232eb7171">&#9670;&#160;</a></span>COLLCHK_SM_STRLEN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> COLLCHK_SM_STRLEN&#160;&#160;&#160;32</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="collchk_8h_source.html">collchk.h</a> строка <a class="el" href="collchk_8h_source.html#l00151">151</a></p>
+
+</div>
+</div>
+<a id="a62dc58cb7cec7c22fe960228ec01d15d" name="a62dc58cb7cec7c22fe960228ec01d15d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62dc58cb7cec7c22fe960228ec01d15d">&#9670;&#160;</a></span>COLLCHK_STD_STRLEN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> COLLCHK_STD_STRLEN&#160;&#160;&#160;256</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="collchk_8h_source.html">collchk.h</a> строка <a class="el" href="collchk_8h_source.html#l00152">152</a></p>
+
+</div>
+</div>
+<h2 class="groupheader">Функции</h2>
+<a id="a79e080d4a6e87271209a83811d72dfc8" name="a79e080d4a6e87271209a83811d72dfc8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79e080d4a6e87271209a83811d72dfc8">&#9670;&#160;</a></span>CollChk_check_buff()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> CollChk_check_buff </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>&#160;</td>
+          <td class="paramname"><em>comm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">void</a> *&#160;</td>
+          <td class="paramname"><em>buff</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>call</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac2f96932af18b819db79c79783231c2c" name="ac2f96932af18b819db79c79783231c2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2f96932af18b819db79c79783231c2c">&#9670;&#160;</a></span>CollChk_check_dims()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> CollChk_check_dims </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>&#160;</td>
+          <td class="paramname"><em>comm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>ndims</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname"><em>dims</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>call</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aada1a230cab11ba77ac83b23c030b992" name="aada1a230cab11ba77ac83b23c030b992"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aada1a230cab11ba77ac83b23c030b992">&#9670;&#160;</a></span>CollChk_check_graph()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> CollChk_check_graph </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>&#160;</td>
+          <td class="paramname"><em>comm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>nnodes</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname"><em>index</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname"><em>edges</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>call</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a64dca57b0b9500d9831aa1164570adb8" name="a64dca57b0b9500d9831aa1164570adb8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64dca57b0b9500d9831aa1164570adb8">&#9670;&#160;</a></span>CollChk_check_size()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> CollChk_check_size </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>&#160;</td>
+          <td class="paramname"><em>comm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>call</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6ad8cb06310662b3e7caf9c2f0b5e917" name="a6ad8cb06310662b3e7caf9c2f0b5e917"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ad8cb06310662b3e7caf9c2f0b5e917">&#9670;&#160;</a></span>CollChk_dtype_allgather()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> CollChk_dtype_allgather </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>&#160;</td>
+          <td class="paramname"><em>comm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>&#160;</td>
+          <td class="paramname"><em>sendtype</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>sendcnt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>&#160;</td>
+          <td class="paramname"><em>recvtype</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>recvcnt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>are2buffs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>call</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa26b027e72356cfc52338f76565926d1" name="aa26b027e72356cfc52338f76565926d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa26b027e72356cfc52338f76565926d1">&#9670;&#160;</a></span>CollChk_dtype_allgatherv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> CollChk_dtype_allgatherv </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>&#160;</td>
+          <td class="paramname"><em>comm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>&#160;</td>
+          <td class="paramname"><em>sendtype</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>sendcnt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>&#160;</td>
+          <td class="paramname"><em>recvtype</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname"><em>recvcnts</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>are2buffs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>call</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a74d49ed55e71bfabf1f2a3472660455d" name="a74d49ed55e71bfabf1f2a3472660455d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74d49ed55e71bfabf1f2a3472660455d">&#9670;&#160;</a></span>CollChk_dtype_alltoallv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> CollChk_dtype_alltoallv </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>&#160;</td>
+          <td class="paramname"><em>comm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>&#160;</td>
+          <td class="paramname"><em>sendtype</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname"><em>sendcnts</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>&#160;</td>
+          <td class="paramname"><em>recvtype</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname"><em>recvcnts</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>call</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aac98f86f17c51c6125a1778c9e3e514e" name="aac98f86f17c51c6125a1778c9e3e514e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac98f86f17c51c6125a1778c9e3e514e">&#9670;&#160;</a></span>CollChk_dtype_alltoallw()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> CollChk_dtype_alltoallw </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>&#160;</td>
+          <td class="paramname"><em>comm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a> *&#160;</td>
+          <td class="paramname"><em>sendtypes</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname"><em>sendcnts</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a> *&#160;</td>
+          <td class="paramname"><em>recvtypes</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname"><em>recvcnts</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>call</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3cb4cb769125d089afbad800cd524213" name="a3cb4cb769125d089afbad800cd524213"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3cb4cb769125d089afbad800cd524213">&#9670;&#160;</a></span>CollChk_dtype_bcast()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> CollChk_dtype_bcast </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>&#160;</td>
+          <td class="paramname"><em>comm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>&#160;</td>
+          <td class="paramname"><em>type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>cnt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>root</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>call</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa74f0c80169718930937c902240119b6" name="aa74f0c80169718930937c902240119b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa74f0c80169718930937c902240119b6">&#9670;&#160;</a></span>CollChk_dtype_hash()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CollChk_dtype_hash </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>&#160;</td>
+          <td class="paramname"><em>type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>cnt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structCollChk__hash__t.html">CollChk_hash_t</a> *&#160;</td>
+          <td class="paramname"><em>dt_hash</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad46bd8d4b8096487e5e20f0fd071aab4" name="ad46bd8d4b8096487e5e20f0fd071aab4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad46bd8d4b8096487e5e20f0fd071aab4">&#9670;&#160;</a></span>CollChk_dtype_scatter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> CollChk_dtype_scatter </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>&#160;</td>
+          <td class="paramname"><em>comm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>&#160;</td>
+          <td class="paramname"><em>sendtype</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>sendcnt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>&#160;</td>
+          <td class="paramname"><em>recvtype</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>recvcnt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>root</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>are2buffs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>call</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a816e7177fe6630bbf0613005b71d0a87" name="a816e7177fe6630bbf0613005b71d0a87"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a816e7177fe6630bbf0613005b71d0a87">&#9670;&#160;</a></span>CollChk_dtype_scatterv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> CollChk_dtype_scatterv </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>&#160;</td>
+          <td class="paramname"><em>comm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>&#160;</td>
+          <td class="paramname"><em>sendtype</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname"><em>sendcnts</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>&#160;</td>
+          <td class="paramname"><em>recvtype</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>recvcnt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>root</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>are2buffs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>call</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9c98d5162fa8a336ebc122d16481654f" name="a9c98d5162fa8a336ebc122d16481654f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c98d5162fa8a336ebc122d16481654f">&#9670;&#160;</a></span>CollChk_err_han()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> CollChk_err_han </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>err_str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>err_code</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>call</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>&#160;</td>
+          <td class="paramname"><em>comm</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a780bfff3869fac376e04231b2009e12d" name="a780bfff3869fac376e04231b2009e12d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a780bfff3869fac376e04231b2009e12d">&#9670;&#160;</a></span>CollChk_hash_equal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> CollChk_hash_equal </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structCollChk__hash__t.html">CollChk_hash_t</a> *&#160;</td>
+          <td class="paramname"><em>alpha</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structCollChk__hash__t.html">CollChk_hash_t</a> *&#160;</td>
+          <td class="paramname"><em>beta</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a285c880cde2958818cf7eab38aa159aa" name="a285c880cde2958818cf7eab38aa159aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a285c880cde2958818cf7eab38aa159aa">&#9670;&#160;</a></span>CollChk_is_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> CollChk_is_init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a47fdd57654a8c06d66c968b92f427028" name="a47fdd57654a8c06d66c968b92f427028"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47fdd57654a8c06d66c968b92f427028">&#9670;&#160;</a></span>CollChk_same_amode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> CollChk_same_amode </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>&#160;</td>
+          <td class="paramname"><em>comm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>amode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>call</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6943d282a0779d6d63af35ec71c20404" name="a6943d282a0779d6d63af35ec71c20404"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6943d282a0779d6d63af35ec71c20404">&#9670;&#160;</a></span>CollChk_same_call()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> CollChk_same_call </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>&#160;</td>
+          <td class="paramname"><em>comm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>call</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="add0a9f4f6965b9a71627abbe35592fae" name="add0a9f4f6965b9a71627abbe35592fae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add0a9f4f6965b9a71627abbe35592fae">&#9670;&#160;</a></span>CollChk_same_datarep()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> CollChk_same_datarep </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>&#160;</td>
+          <td class="paramname"><em>comm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>datarep</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>call</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0bb7469e5b1d1d5b78456dacbfece6eb" name="a0bb7469e5b1d1d5b78456dacbfece6eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0bb7469e5b1d1d5b78456dacbfece6eb">&#9670;&#160;</a></span>CollChk_same_high_low()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> CollChk_same_high_low </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>&#160;</td>
+          <td class="paramname"><em>comm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>high_low</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>call</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab1af2d0c57d91020695daa1a7d066876" name="ab1af2d0c57d91020695daa1a7d066876"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1af2d0c57d91020695daa1a7d066876">&#9670;&#160;</a></span>CollChk_same_int()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> CollChk_same_int </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>&#160;</td>
+          <td class="paramname"><em>comm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>val</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>call</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>check</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>err_str</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a390c4f3f8f60eb5c52208a2cb3237e40" name="a390c4f3f8f60eb5c52208a2cb3237e40"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a390c4f3f8f60eb5c52208a2cb3237e40">&#9670;&#160;</a></span>CollChk_same_local_leader()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> CollChk_same_local_leader </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>&#160;</td>
+          <td class="paramname"><em>comm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>ll</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>call</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad928091d26d67b7454cfce775a5d2d6a" name="ad928091d26d67b7454cfce775a5d2d6a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad928091d26d67b7454cfce775a5d2d6a">&#9670;&#160;</a></span>CollChk_same_op()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> CollChk_same_op </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>&#160;</td>
+          <td class="paramname"><em>comm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#a1e6360539c256e76b432da612d0ec399">MPI_Op</a>&#160;</td>
+          <td class="paramname"><em>op</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>call</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8a80ade77fe8c88cdc185439b4ac0163" name="a8a80ade77fe8c88cdc185439b4ac0163"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a80ade77fe8c88cdc185439b4ac0163">&#9670;&#160;</a></span>CollChk_same_root()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> CollChk_same_root </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>&#160;</td>
+          <td class="paramname"><em>comm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>root</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>call</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a235a242cb80f361bee12ecbe265afb97" name="a235a242cb80f361bee12ecbe265afb97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a235a242cb80f361bee12ecbe265afb97">&#9670;&#160;</a></span>CollChk_same_tag()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> CollChk_same_tag </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>&#160;</td>
+          <td class="paramname"><em>comm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>tag</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>call</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2b251e2ded1cbdd6a841dd8d8a02d00d" name="a2b251e2ded1cbdd6a841dd8d8a02d00d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b251e2ded1cbdd6a841dd8d8a02d00d">&#9670;&#160;</a></span>CollChk_same_whence()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> CollChk_same_whence </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>&#160;</td>
+          <td class="paramname"><em>comm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>whence</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>call</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adafbdedfce51ee55c6797164d021f76b" name="adafbdedfce51ee55c6797164d021f76b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adafbdedfce51ee55c6797164d021f76b">&#9670;&#160;</a></span>CollChk_set_begin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CollChk_set_begin </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>in</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4885b7b30662802b6632ebfec1f8022d" name="a4885b7b30662802b6632ebfec1f8022d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4885b7b30662802b6632ebfec1f8022d">&#9670;&#160;</a></span>CollChk_unset_begin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CollChk_unset_begin </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4ae68f93ee70901589d17ff4b8902891" name="a4ae68f93ee70901589d17ff4b8902891"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ae68f93ee70901589d17ff4b8902891">&#9670;&#160;</a></span>MPI_Add_error_class()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPI_Add_error_class </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname"><em>errorclass</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a564e6aa399f05b1c865d5dcd213e4776" name="a564e6aa399f05b1c865d5dcd213e4776"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a564e6aa399f05b1c865d5dcd213e4776">&#9670;&#160;</a></span>MPI_Add_error_code()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPI_Add_error_code </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>errorclass</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname"><em>errorcode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7680157292cdd338a2273638daf6a2d7" name="a7680157292cdd338a2273638daf6a2d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7680157292cdd338a2273638daf6a2d7">&#9670;&#160;</a></span>MPI_Add_error_string()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPI_Add_error_string </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>errorcode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>string</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a124b9ac63fbd47758d1e3ebea22c6374" name="a124b9ac63fbd47758d1e3ebea22c6374"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a124b9ac63fbd47758d1e3ebea22c6374">&#9670;&#160;</a></span>MPI_Comm_call_errhandler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPI_Comm_call_errhandler </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>&#160;</td>
+          <td class="paramname"><em>comm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>errorcode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Переменные</h2>
+<a id="a4559f564aff8cfdba659ff1969f05a03" name="a4559f564aff8cfdba659ff1969f05a03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4559f564aff8cfdba659ff1969f05a03">&#9670;&#160;</a></span>CollChk_begin_str</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">char</a> CollChk_begin_str[128]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9fe9f95993aa58d15f0c186ba437c847" name="a9fe9f95993aa58d15f0c186ba437c847"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9fe9f95993aa58d15f0c186ba437c847">&#9670;&#160;</a></span>COLLCHK_CALLED_BEGIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> COLLCHK_CALLED_BEGIN</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad9071b4e7cfe7e61b7d110800fd20501" name="ad9071b4e7cfe7e61b7d110800fd20501"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9071b4e7cfe7e61b7d110800fd20501">&#9670;&#160;</a></span>COLLCHK_ERR_AMODE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> COLLCHK_ERR_AMODE</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6c0a84c6b5de947ba3f7b2810a70e367" name="a6c0a84c6b5de947ba3f7b2810a70e367"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c0a84c6b5de947ba3f7b2810a70e367">&#9670;&#160;</a></span>COLLCHK_ERR_CALL</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> COLLCHK_ERR_CALL</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5014113260b874e05dc59a7018ba586a" name="a5014113260b874e05dc59a7018ba586a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5014113260b874e05dc59a7018ba586a">&#9670;&#160;</a></span>COLLCHK_ERR_DATAREP</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> COLLCHK_ERR_DATAREP</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae288613c9c3d453567f878dc6dffcc2f" name="ae288613c9c3d453567f878dc6dffcc2f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae288613c9c3d453567f878dc6dffcc2f">&#9670;&#160;</a></span>COLLCHK_ERR_DIMS</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> COLLCHK_ERR_DIMS</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1381580fd1e3d92c10641949b4c84e14" name="a1381580fd1e3d92c10641949b4c84e14"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1381580fd1e3d92c10641949b4c84e14">&#9670;&#160;</a></span>COLLCHK_ERR_DTYPE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> COLLCHK_ERR_DTYPE</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a65400b144c54fce71d0f0e9aa7d53b1d" name="a65400b144c54fce71d0f0e9aa7d53b1d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65400b144c54fce71d0f0e9aa7d53b1d">&#9670;&#160;</a></span>COLLCHK_ERR_FILE_NOT_OPEN</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> COLLCHK_ERR_FILE_NOT_OPEN</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aeade093988ae937e46dc7862d874bcb5" name="aeade093988ae937e46dc7862d874bcb5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeade093988ae937e46dc7862d874bcb5">&#9670;&#160;</a></span>COLLCHK_ERR_GRAPH</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> COLLCHK_ERR_GRAPH</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a61365148680dba7e18818af59fba8a33" name="a61365148680dba7e18818af59fba8a33"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a61365148680dba7e18818af59fba8a33">&#9670;&#160;</a></span>COLLCHK_ERR_HIGH_LOW</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> COLLCHK_ERR_HIGH_LOW</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a58c711be54615719085d897e70f1bf06" name="a58c711be54615719085d897e70f1bf06"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58c711be54615719085d897e70f1bf06">&#9670;&#160;</a></span>COLLCHK_ERR_INPLACE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> COLLCHK_ERR_INPLACE</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afce5f5799f2158fa39fad53de9035767" name="afce5f5799f2158fa39fad53de9035767"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afce5f5799f2158fa39fad53de9035767">&#9670;&#160;</a></span>COLLCHK_ERR_LL</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> COLLCHK_ERR_LL</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af4c3727c08912dd311381198af0a6668" name="af4c3727c08912dd311381198af0a6668"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4c3727c08912dd311381198af0a6668">&#9670;&#160;</a></span>COLLCHK_ERR_NOT_INIT</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> COLLCHK_ERR_NOT_INIT</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a291818ff5871a48db969f2bdcda0dbdd" name="a291818ff5871a48db969f2bdcda0dbdd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a291818ff5871a48db969f2bdcda0dbdd">&#9670;&#160;</a></span>COLLCHK_ERR_OP</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> COLLCHK_ERR_OP</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0d61fe1b6e54b3181ed7bee6921529ff" name="a0d61fe1b6e54b3181ed7bee6921529ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d61fe1b6e54b3181ed7bee6921529ff">&#9670;&#160;</a></span>COLLCHK_ERR_PREVIOUS_BEGIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> COLLCHK_ERR_PREVIOUS_BEGIN</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8f304972ff86a56c0f886013456c4dd4" name="a8f304972ff86a56c0f886013456c4dd4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f304972ff86a56c0f886013456c4dd4">&#9670;&#160;</a></span>COLLCHK_ERR_ROOT</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> COLLCHK_ERR_ROOT</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a59c5bf254aae8ff7215b8c7aa51482c1" name="a59c5bf254aae8ff7215b8c7aa51482c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59c5bf254aae8ff7215b8c7aa51482c1">&#9670;&#160;</a></span>COLLCHK_ERR_TAG</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> COLLCHK_ERR_TAG</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aaa41e74cea002cdc6c6d9750a2850921" name="aaa41e74cea002cdc6c6d9750a2850921"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa41e74cea002cdc6c6d9750a2850921">&#9670;&#160;</a></span>COLLCHK_ERR_WHENCE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> COLLCHK_ERR_WHENCE</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a529cf245e1a61c86906e6b08d13ab77a" name="a529cf245e1a61c86906e6b08d13ab77a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a529cf245e1a61c86906e6b08d13ab77a">&#9670;&#160;</a></span>COLLCHK_ERRORS</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> COLLCHK_ERRORS</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

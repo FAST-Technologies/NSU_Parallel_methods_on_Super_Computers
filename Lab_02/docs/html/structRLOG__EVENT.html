@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lab_02: MPI + OpenMP Parallel Programming: Структура RLOG_EVENT</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Lab_02: MPI + OpenMP Parallel Programming<span id="projectnumber">&#160;2.1</span>
+   </div>
+   <div id="projectbrief">Решение 3D уравнения Пуассона методом Якоби с двумерной декомпозицией</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-attribs">Открытые атрибуты</a> &#124;
+<a href="structRLOG__EVENT-members.html">Полный список членов класса</a>  </div>
+  <div class="headertitle"><div class="title">Структура RLOG_EVENT</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html">rlog.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Открытые атрибуты</h2></td></tr>
+<tr class="memitem:a38b226fc285fffa7f4b085a144c7324e" id="r_a38b226fc285fffa7f4b085a144c7324e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structRLOG__EVENT.html#a38b226fc285fffa7f4b085a144c7324e">rank</a></td></tr>
+<tr class="separator:a38b226fc285fffa7f4b085a144c7324e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6966817015a703da9b9faebbc02e4d82" id="r_a6966817015a703da9b9faebbc02e4d82"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structRLOG__EVENT.html#a6966817015a703da9b9faebbc02e4d82">event</a></td></tr>
+<tr class="separator:a6966817015a703da9b9faebbc02e4d82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acda2a363e82b41c423c02f1ee8d57834" id="r_acda2a363e82b41c423c02f1ee8d57834"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structRLOG__EVENT.html#acda2a363e82b41c423c02f1ee8d57834">pad</a></td></tr>
+<tr class="separator:acda2a363e82b41c423c02f1ee8d57834"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55572bf51c7afc0ad75d2d98ba56b260" id="r_a55572bf51c7afc0ad75d2d98ba56b260"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structRLOG__EVENT.html#a55572bf51c7afc0ad75d2d98ba56b260">recursion</a></td></tr>
+<tr class="separator:a55572bf51c7afc0ad75d2d98ba56b260"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adbf3486d9f3744157bc8e800001a1180" id="r_adbf3486d9f3744157bc8e800001a1180"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structRLOG__EVENT.html#adbf3486d9f3744157bc8e800001a1180">start_time</a></td></tr>
+<tr class="separator:adbf3486d9f3744157bc8e800001a1180"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61b281ee1bf8c00dcfde1691d957e733" id="r_a61b281ee1bf8c00dcfde1691d957e733"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structRLOG__EVENT.html#a61b281ee1bf8c00dcfde1691d957e733">end_time</a></td></tr>
+<tr class="separator:a61b281ee1bf8c00dcfde1691d957e733"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock">
+<p class="definition">См. определение в файле <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html">mpe2-1.3.0/src/slog2sdk/trace_rlog/src/rlog.h</a> строка <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html#l00072">72</a></p>
+</div><h2 class="groupheader">Данные класса</h2>
+<a id="a61b281ee1bf8c00dcfde1691d957e733" name="a61b281ee1bf8c00dcfde1691d957e733"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a61b281ee1bf8c00dcfde1691d957e733">&#9670;&#160;</a></span>end_time</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">double</a> RLOG_EVENT::end_time</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html">mpe2-1.3.0/src/slog2sdk/trace_rlog/src/rlog.h</a> строка <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html#l00079">79</a></p>
+
+</div>
+</div>
+<a id="a6966817015a703da9b9faebbc02e4d82" name="a6966817015a703da9b9faebbc02e4d82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6966817015a703da9b9faebbc02e4d82">&#9670;&#160;</a></span>event</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> RLOG_EVENT::event</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html">mpe2-1.3.0/src/slog2sdk/trace_rlog/src/rlog.h</a> строка <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html#l00075">75</a></p>
+
+</div>
+</div>
+<a id="acda2a363e82b41c423c02f1ee8d57834" name="acda2a363e82b41c423c02f1ee8d57834"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acda2a363e82b41c423c02f1ee8d57834">&#9670;&#160;</a></span>pad</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> RLOG_EVENT::pad</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html">mpe2-1.3.0/src/slog2sdk/trace_rlog/src/rlog.h</a> строка <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html#l00076">76</a></p>
+
+</div>
+</div>
+<a id="a38b226fc285fffa7f4b085a144c7324e" name="a38b226fc285fffa7f4b085a144c7324e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38b226fc285fffa7f4b085a144c7324e">&#9670;&#160;</a></span>rank</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> RLOG_EVENT::rank</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html">mpe2-1.3.0/src/slog2sdk/trace_rlog/src/rlog.h</a> строка <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html#l00074">74</a></p>
+
+</div>
+</div>
+<a id="a55572bf51c7afc0ad75d2d98ba56b260" name="a55572bf51c7afc0ad75d2d98ba56b260"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55572bf51c7afc0ad75d2d98ba56b260">&#9670;&#160;</a></span>recursion</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> RLOG_EVENT::recursion</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html">mpe2-1.3.0/src/slog2sdk/trace_rlog/src/rlog.h</a> строка <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html#l00077">77</a></p>
+
+</div>
+</div>
+<a id="adbf3486d9f3744157bc8e800001a1180" name="adbf3486d9f3744157bc8e800001a1180"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adbf3486d9f3744157bc8e800001a1180">&#9670;&#160;</a></span>start_time</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">double</a> RLOG_EVENT::start_time</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html">mpe2-1.3.0/src/slog2sdk/trace_rlog/src/rlog.h</a> строка <a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html#l00078">78</a></p>
+
+</div>
+</div>
+<hr/>Объявления и описания членов структур находятся в файлах:<ul>
+<li><a class="el" href="mpe2-1_83_80_2src_2slog2sdk_2trace__rlog_2src_2rlog_8h_source.html">mpe2-1.3.0/src/slog2sdk/trace_rlog/src/rlog.h</a></li>
+<li><a class="el" href="slog2sdk-1_82_86_2trace__rlog_2src_2rlog_8h_source.html">slog2sdk-1.2.6/trace_rlog/src/rlog.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

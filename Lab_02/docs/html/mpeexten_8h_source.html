@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lab_02: MPI + OpenMP Parallel Programming: Исходный файл mpeexten.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Lab_02: MPI + OpenMP Parallel Programming<span id="projectnumber">&#160;2.1</span>
+   </div>
+   <div id="projectbrief">Решение 3D уравнения Пуассона методом Якоби с двумерной декомпозицией</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_1f646cbbb0f6227d25dd06f792d51aba.html">mpe2-1.3.0</a></li><li class="navelem"><a class="el" href="dir_493399512d45eb30627376023737183a.html">src</a></li><li class="navelem"><a class="el" href="dir_4c40ebb1b0381ee9ce856ef0b9d6a30e.html">misc</a></li><li class="navelem"><a class="el" href="dir_2831e663119a58bd4b4b1e898dfc49dc.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">mpeexten.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="mpeexten_8h.html">См. документацию.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">   (C) 2001 by Argonne National Laboratory.</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">       See COPYRIGHT in top-level directory.</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">*/</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">/* Prototypes for the mpe extension routines */</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#ifndef MPE_EXTENSION_INC</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#define MPE_EXTENSION_INC</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment"> * In order to provide better compile time error checking for the </span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment"> * implementation, we use a union to store the actual copy/delete functions</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment"> * for the different languages</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="mpeexten_8h.html#a3580c5d314cec66662d66a00461745ce">   14</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="mpeexten_8h.html#a3580c5d314cec66662d66a00461745ce">MPE_Print_datatype_unpack_action</a> ( <a class="code hl_struct" href="structvector.html">FILE</a> *, <span class="keywordtype">int</span>, <a class="code hl_struct" href="structvector.html">MPI_Datatype</a>, <span class="keywordtype">int</span>, <span class="keywordtype">int</span> );</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="mpeexten_8h.html#a3ec0ace81ba06bfb29275a71a7d0a104">   15</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="mpeexten_8h.html#a3ec0ace81ba06bfb29275a71a7d0a104">MPE_Print_datatype_pack_action</a> ( <a class="code hl_struct" href="structvector.html">FILE</a> *, <span class="keywordtype">int</span>, <a class="code hl_struct" href="structvector.html">MPI_Datatype</a>, <span class="keywordtype">int</span>, <span class="keywordtype">int</span> );</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="mpeexten_8h.html#ae1979508ae18d30ac1bfd7fff19b26d2">   17</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="mpeexten_8h.html#ae1979508ae18d30ac1bfd7fff19b26d2">MPE_Comm_global_rank</a> ( <a class="code hl_typedef" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>, <span class="keywordtype">int</span>, <span class="keywordtype">int</span> * );</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="comment">/* dbxerr.c */</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="mpeexten_8h.html#a8c9cfeeb5ba6a02b8819749cd671dc57">   20</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="mpeexten_8h.html#a8c9cfeeb5ba6a02b8819749cd671dc57">MPE_Errors_call_debugger</a> ( <span class="keywordtype">char</span> *, <span class="keywordtype">char</span> *, <span class="keywordtype">char</span> ** );</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="mpeexten_8h.html#a62b67a75fb30e70dbd597abbaf221f9a">   21</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="mpeexten_8h.html#a62b67a75fb30e70dbd597abbaf221f9a">MPE_Errors_call_dbx_in_xterm</a> ( <span class="keywordtype">char</span> *, <span class="keywordtype">char</span> * );</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="mpeexten_8h.html#acdfc87139aa9c66921d90cc854b8465a">   22</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="mpeexten_8h.html#acdfc87139aa9c66921d90cc854b8465a">MPE_Errors_call_gdb_in_xterm</a> ( <span class="keywordtype">char</span> *, <span class="keywordtype">char</span> * );</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="mpeexten_8h.html#a1156f0897c02be94fcb9b750caa20074">   23</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="mpeexten_8h.html#a1156f0897c02be94fcb9b750caa20074">MPE_Signals_call_debugger</a> ( <span class="keywordtype">void</span> );</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="ampeexten_8h_html_a1156f0897c02be94fcb9b750caa20074"><div class="ttname"><a href="mpeexten_8h.html#a1156f0897c02be94fcb9b750caa20074">MPE_Signals_call_debugger</a></div><div class="ttdeci">void MPE_Signals_call_debugger(void)</div></div>
+<div class="ttc" id="ampeexten_8h_html_a3580c5d314cec66662d66a00461745ce"><div class="ttname"><a href="mpeexten_8h.html#a3580c5d314cec66662d66a00461745ce">MPE_Print_datatype_unpack_action</a></div><div class="ttdeci">int MPE_Print_datatype_unpack_action(FILE *, int, MPI_Datatype, int, int)</div></div>
+<div class="ttc" id="ampeexten_8h_html_a3ec0ace81ba06bfb29275a71a7d0a104"><div class="ttname"><a href="mpeexten_8h.html#a3ec0ace81ba06bfb29275a71a7d0a104">MPE_Print_datatype_pack_action</a></div><div class="ttdeci">int MPE_Print_datatype_pack_action(FILE *, int, MPI_Datatype, int, int)</div></div>
+<div class="ttc" id="ampeexten_8h_html_a62b67a75fb30e70dbd597abbaf221f9a"><div class="ttname"><a href="mpeexten_8h.html#a62b67a75fb30e70dbd597abbaf221f9a">MPE_Errors_call_dbx_in_xterm</a></div><div class="ttdeci">void MPE_Errors_call_dbx_in_xterm(char *, char *)</div></div>
+<div class="ttc" id="ampeexten_8h_html_a8c9cfeeb5ba6a02b8819749cd671dc57"><div class="ttname"><a href="mpeexten_8h.html#a8c9cfeeb5ba6a02b8819749cd671dc57">MPE_Errors_call_debugger</a></div><div class="ttdeci">void MPE_Errors_call_debugger(char *, char *, char **)</div></div>
+<div class="ttc" id="ampeexten_8h_html_acdfc87139aa9c66921d90cc854b8465a"><div class="ttname"><a href="mpeexten_8h.html#acdfc87139aa9c66921d90cc854b8465a">MPE_Errors_call_gdb_in_xterm</a></div><div class="ttdeci">void MPE_Errors_call_gdb_in_xterm(char *, char *)</div></div>
+<div class="ttc" id="ampeexten_8h_html_ae1979508ae18d30ac1bfd7fff19b26d2"><div class="ttname"><a href="mpeexten_8h.html#ae1979508ae18d30ac1bfd7fff19b26d2">MPE_Comm_global_rank</a></div><div class="ttdeci">void MPE_Comm_global_rank(MPI_Comm, int, int *)</div></div>
+<div class="ttc" id="ampi__null_8h_html_a68c509d4adb3f4a1d6fe3a9b0b87c7b9"><div class="ttname"><a href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a></div><div class="ttdeci">int MPI_Comm</div><div class="ttdef"><b>Definition</b> <a href="mpi__null_8h_source.html#l00017">mpi_null.h:17</a></div></div>
+<div class="ttc" id="astructvector_html"><div class="ttname"><a href="structvector.html">vector</a></div><div class="ttdef"><b>Definition</b> <a href="point_8h_source.html#l00012">point.h:12</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

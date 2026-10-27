@@ -1,0 +1,366 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lab_02: MPI + OpenMP Parallel Programming: Файл clog_preamble.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Lab_02: MPI + OpenMP Parallel Programming<span id="projectnumber">&#160;2.1</span>
+   </div>
+   <div id="projectbrief">Решение 3D уравнения Пуассона методом Якоби с двумерной декомпозицией</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_1f646cbbb0f6227d25dd06f792d51aba.html">mpe2-1.3.0</a></li><li class="navelem"><a class="el" href="dir_493399512d45eb30627376023737183a.html">src</a></li><li class="navelem"><a class="el" href="dir_4dd21a1309df0d73c93832f59c814642.html">logging</a></li><li class="navelem"><a class="el" href="dir_d1e3342e2909ab46223a280715173519.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Классы</a> &#124;
+<a href="#define-members">Макросы</a> &#124;
+<a href="#func-members">Функции</a>  </div>
+  <div class="headertitle"><div class="title">Файл clog_preamble.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="src_2logging_2include_2clog__inttypes_8h_source.html">clog_inttypes.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="src_2logging_2include_2clog__const_8h_source.html">clog_const.h</a>&quot;</code><br />
+</div>
+<p><a href="clog__preamble_8h_source.html">См. исходные тексты.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Классы</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCLOG__Preamble__t.html">CLOG_Preamble_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Макросы</h2></td></tr>
+<tr class="memitem:a2b4c1fc68a02b0cf356e3b5b5ddb40bd" id="r_a2b4c1fc68a02b0cf356e3b5b5ddb40bd"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__preamble_8h.html#a2b4c1fc68a02b0cf356e3b5b5ddb40bd">CLOG_PREAMBLE_SIZE</a>&#160;&#160;&#160;1024</td></tr>
+<tr class="separator:a2b4c1fc68a02b0cf356e3b5b5ddb40bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9b1ec33e35d5b516b6db30fca6405bf" id="r_af9b1ec33e35d5b516b6db30fca6405bf"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__preamble_8h.html#af9b1ec33e35d5b516b6db30fca6405bf">CLOG_VERSION_STRLEN</a>&#160;&#160;&#160;12</td></tr>
+<tr class="separator:af9b1ec33e35d5b516b6db30fca6405bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Функции</h2></td></tr>
+<tr class="memitem:ab44a1b7de68d2b57d0ea27847f2b2ebc" id="r_ab44a1b7de68d2b57d0ea27847f2b2ebc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structCLOG__Preamble__t.html">CLOG_Preamble_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__preamble_8h.html#ab44a1b7de68d2b57d0ea27847f2b2ebc">CLOG_Preamble_create</a> (<a class="el" href="structvector.html">void</a>)</td></tr>
+<tr class="separator:ab44a1b7de68d2b57d0ea27847f2b2ebc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4589828f8b2780e083484d178ea385c5" id="r_a4589828f8b2780e083484d178ea385c5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__preamble_8h.html#a4589828f8b2780e083484d178ea385c5">CLOG_Preamble_free</a> (<a class="el" href="structCLOG__Preamble__t.html">CLOG_Preamble_t</a> **preamble)</td></tr>
+<tr class="separator:a4589828f8b2780e083484d178ea385c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2bd3a8e9d283eec95b83faa2dba8c9d4" id="r_a2bd3a8e9d283eec95b83faa2dba8c9d4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__preamble_8h.html#a2bd3a8e9d283eec95b83faa2dba8c9d4">CLOG_Preamble_env_init</a> (<a class="el" href="structCLOG__Preamble__t.html">CLOG_Preamble_t</a> *preamble)</td></tr>
+<tr class="separator:a2bd3a8e9d283eec95b83faa2dba8c9d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a936f0f7e92ce73d19fbaea2988ef79fa" id="r_a936f0f7e92ce73d19fbaea2988ef79fa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__preamble_8h.html#a936f0f7e92ce73d19fbaea2988ef79fa">CLOG_Preamble_write</a> (<a class="el" href="structvector.html">const</a> <a class="el" href="structCLOG__Preamble__t.html">CLOG_Preamble_t</a> *preamble, <a class="el" href="include_2clog__const_8h.html#a0046a65ff3bf0ae8b87013b27ea09783">CLOG_BOOL_T</a> is_big_endian, <a class="el" href="include_2clog__const_8h.html#a0046a65ff3bf0ae8b87013b27ea09783">CLOG_BOOL_T</a> is_finalized, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">fd</a>)</td></tr>
+<tr class="separator:a936f0f7e92ce73d19fbaea2988ef79fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac14bee4e269dc0b3e5f92d659d01b237" id="r_ac14bee4e269dc0b3e5f92d659d01b237"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__preamble_8h.html#ac14bee4e269dc0b3e5f92d659d01b237">CLOG_Preamble_read</a> (<a class="el" href="structCLOG__Preamble__t.html">CLOG_Preamble_t</a> *preamble, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">fd</a>)</td></tr>
+<tr class="separator:ac14bee4e269dc0b3e5f92d659d01b237"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23e3fde2f9cd602c66d5847002ce0cd5" id="r_a23e3fde2f9cd602c66d5847002ce0cd5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__preamble_8h.html#a23e3fde2f9cd602c66d5847002ce0cd5">CLOG_Preamble_print</a> (<a class="el" href="structvector.html">const</a> <a class="el" href="structCLOG__Preamble__t.html">CLOG_Preamble_t</a> *preamble, <a class="el" href="structvector.html">FILE</a> *<a class="el" href="structvector.html">stream</a>)</td></tr>
+<tr class="separator:a23e3fde2f9cd602c66d5847002ce0cd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f8bd41cb5ce9d3049b17fb3da01000d" id="r_a4f8bd41cb5ce9d3049b17fb3da01000d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__preamble_8h.html#a4f8bd41cb5ce9d3049b17fb3da01000d">CLOG_Preamble_copy</a> (<a class="el" href="structvector.html">const</a> <a class="el" href="structCLOG__Preamble__t.html">CLOG_Preamble_t</a> *src, <a class="el" href="structCLOG__Preamble__t.html">CLOG_Preamble_t</a> *dest)</td></tr>
+<tr class="separator:a4f8bd41cb5ce9d3049b17fb3da01000d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa3f82d5750c3ccf25883dcb6c0e24e1" id="r_aaa3f82d5750c3ccf25883dcb6c0e24e1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__preamble_8h.html#aaa3f82d5750c3ccf25883dcb6c0e24e1">CLOG_Preamble_sync</a> (<a class="el" href="structCLOG__Preamble__t.html">CLOG_Preamble_t</a> *<a class="el" href="structvector.html">parent</a>, <a class="el" href="structvector.html">const</a> <a class="el" href="structCLOG__Preamble__t.html">CLOG_Preamble_t</a> *<a class="el" href="structvector.html">child</a>)</td></tr>
+<tr class="separator:aaa3f82d5750c3ccf25883dcb6c0e24e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Макросы</h2>
+<a id="a2b4c1fc68a02b0cf356e3b5b5ddb40bd" name="a2b4c1fc68a02b0cf356e3b5b5ddb40bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b4c1fc68a02b0cf356e3b5b5ddb40bd">&#9670;&#160;</a></span>CLOG_PREAMBLE_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> CLOG_PREAMBLE_SIZE&#160;&#160;&#160;1024</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="clog__preamble_8h_source.html">clog_preamble.h</a> строка <a class="el" href="clog__preamble_8h_source.html#l00015">15</a></p>
+
+</div>
+</div>
+<a id="af9b1ec33e35d5b516b6db30fca6405bf" name="af9b1ec33e35d5b516b6db30fca6405bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9b1ec33e35d5b516b6db30fca6405bf">&#9670;&#160;</a></span>CLOG_VERSION_STRLEN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> CLOG_VERSION_STRLEN&#160;&#160;&#160;12</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="clog__preamble_8h_source.html">clog_preamble.h</a> строка <a class="el" href="clog__preamble_8h_source.html#l00016">16</a></p>
+
+</div>
+</div>
+<h2 class="groupheader">Функции</h2>
+<a id="a4f8bd41cb5ce9d3049b17fb3da01000d" name="a4f8bd41cb5ce9d3049b17fb3da01000d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f8bd41cb5ce9d3049b17fb3da01000d">&#9670;&#160;</a></span>CLOG_Preamble_copy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Preamble_copy </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structCLOG__Preamble__t.html">CLOG_Preamble_t</a> *&#160;</td>
+          <td class="paramname"><em>src</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structCLOG__Preamble__t.html">CLOG_Preamble_t</a> *&#160;</td>
+          <td class="paramname"><em>dest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab44a1b7de68d2b57d0ea27847f2b2ebc" name="ab44a1b7de68d2b57d0ea27847f2b2ebc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab44a1b7de68d2b57d0ea27847f2b2ebc">&#9670;&#160;</a></span>CLOG_Preamble_create()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structCLOG__Preamble__t.html">CLOG_Preamble_t</a> * CLOG_Preamble_create </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2bd3a8e9d283eec95b83faa2dba8c9d4" name="a2bd3a8e9d283eec95b83faa2dba8c9d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2bd3a8e9d283eec95b83faa2dba8c9d4">&#9670;&#160;</a></span>CLOG_Preamble_env_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Preamble_env_init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Preamble__t.html">CLOG_Preamble_t</a> *&#160;</td>
+          <td class="paramname"><em>preamble</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4589828f8b2780e083484d178ea385c5" name="a4589828f8b2780e083484d178ea385c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4589828f8b2780e083484d178ea385c5">&#9670;&#160;</a></span>CLOG_Preamble_free()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Preamble_free </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Preamble__t.html">CLOG_Preamble_t</a> **&#160;</td>
+          <td class="paramname"><em>preamble</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a23e3fde2f9cd602c66d5847002ce0cd5" name="a23e3fde2f9cd602c66d5847002ce0cd5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a23e3fde2f9cd602c66d5847002ce0cd5">&#9670;&#160;</a></span>CLOG_Preamble_print()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Preamble_print </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structCLOG__Preamble__t.html">CLOG_Preamble_t</a> *&#160;</td>
+          <td class="paramname"><em>preamble</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">FILE</a> *&#160;</td>
+          <td class="paramname"><em>stream</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac14bee4e269dc0b3e5f92d659d01b237" name="ac14bee4e269dc0b3e5f92d659d01b237"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac14bee4e269dc0b3e5f92d659d01b237">&#9670;&#160;</a></span>CLOG_Preamble_read()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Preamble_read </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Preamble__t.html">CLOG_Preamble_t</a> *&#160;</td>
+          <td class="paramname"><em>preamble</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>fd</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aaa3f82d5750c3ccf25883dcb6c0e24e1" name="aaa3f82d5750c3ccf25883dcb6c0e24e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa3f82d5750c3ccf25883dcb6c0e24e1">&#9670;&#160;</a></span>CLOG_Preamble_sync()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Preamble_sync </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Preamble__t.html">CLOG_Preamble_t</a> *&#160;</td>
+          <td class="paramname"><em>parent</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structCLOG__Preamble__t.html">CLOG_Preamble_t</a> *&#160;</td>
+          <td class="paramname"><em>child</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a936f0f7e92ce73d19fbaea2988ef79fa" name="a936f0f7e92ce73d19fbaea2988ef79fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a936f0f7e92ce73d19fbaea2988ef79fa">&#9670;&#160;</a></span>CLOG_Preamble_write()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Preamble_write </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structCLOG__Preamble__t.html">CLOG_Preamble_t</a> *&#160;</td>
+          <td class="paramname"><em>preamble</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="include_2clog__const_8h.html#a0046a65ff3bf0ae8b87013b27ea09783">CLOG_BOOL_T</a>&#160;</td>
+          <td class="paramname"><em>is_big_endian</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="include_2clog__const_8h.html#a0046a65ff3bf0ae8b87013b27ea09783">CLOG_BOOL_T</a>&#160;</td>
+          <td class="paramname"><em>is_finalized</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>fd</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

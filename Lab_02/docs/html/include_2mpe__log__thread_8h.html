@@ -1,0 +1,465 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lab_02: MPI + OpenMP Parallel Programming: Файл mpe_log_thread.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Lab_02: MPI + OpenMP Parallel Programming<span id="projectnumber">&#160;2.1</span>
+   </div>
+   <div id="projectbrief">Решение 3D уравнения Пуассона методом Якоби с двумерной декомпозицией</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_1f646cbbb0f6227d25dd06f792d51aba.html">mpe2-1.3.0</a></li><li class="navelem"><a class="el" href="dir_e4f2aaf8f2e8ac04a936ef91fbeb17bc.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Классы</a> &#124;
+<a href="#define-members">Макросы</a> &#124;
+<a href="#func-members">Функции</a> &#124;
+<a href="#var-members">Переменные</a>  </div>
+  <div class="headertitle"><div class="title">Файл mpe_log_thread.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;pthread.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="include_2mpe__callstack_8h_source.html">mpe_callstack.h</a>&quot;</code><br />
+</div>
+<p><a href="include_2mpe__log__thread_8h_source.html">См. исходные тексты.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Классы</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMPE__ThreadStm__t.html">MPE_ThreadStm_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Макросы</h2></td></tr>
+<tr class="memitem:a30e9272b363c62b3505aff2615832ed1" id="r_a30e9272b363c62b3505aff2615832ed1"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log__thread_8h.html#a30e9272b363c62b3505aff2615832ed1">HAVE_PTHREAD_IN_MPI</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:a30e9272b363c62b3505aff2615832ed1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8de75531d46ec9d17c6879509eb4a80" id="r_aa8de75531d46ec9d17c6879509eb4a80"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log__thread_8h.html#aa8de75531d46ec9d17c6879509eb4a80">MPE_ThreadID_t</a>&#160;&#160;&#160;<a class="el" href="structvector.html">int</a></td></tr>
+<tr class="separator:aa8de75531d46ec9d17c6879509eb4a80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adfa9fbfe38d5bee779ca2b9f6cb9ce1b" id="r_adfa9fbfe38d5bee779ca2b9f6cb9ce1b"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log__thread_8h.html#adfa9fbfe38d5bee779ca2b9f6cb9ce1b">MPE_LOG_THREAD_PRINTSTACK</a>()</td></tr>
+<tr class="separator:adfa9fbfe38d5bee779ca2b9f6cb9ce1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeafe2f4ac2f4b31c8ba86864d65df40e" id="r_aeafe2f4ac2f4b31c8ba86864d65df40e"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log__thread_8h.html#aeafe2f4ac2f4b31c8ba86864d65df40e">MPE_LOG_THREADSTM_DECL</a>&#160;&#160;&#160;    <a class="el" href="structMPE__ThreadStm__t.html">MPE_ThreadStm_t</a> *<a class="el" href="structvector.html">thdstm</a> = <a class="el" href="structvector.html">NULL</a>;</td></tr>
+<tr class="separator:aeafe2f4ac2f4b31c8ba86864d65df40e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a747357e144f57edd32c014d12ed7663f" id="r_a747357e144f57edd32c014d12ed7663f"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log__thread_8h.html#a747357e144f57edd32c014d12ed7663f">MPE_LOG_THREAD_LOCK</a></td></tr>
+<tr class="separator:a747357e144f57edd32c014d12ed7663f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae62b41b80f2d31c648459593a82e1ee9" id="r_ae62b41b80f2d31c648459593a82e1ee9"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log__thread_8h.html#ae62b41b80f2d31c648459593a82e1ee9">MPE_LOG_THREAD_UNLOCK</a></td></tr>
+<tr class="separator:ae62b41b80f2d31c648459593a82e1ee9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b1c9c19d6aac78d06c658e4f8140c79" id="r_a6b1c9c19d6aac78d06c658e4f8140c79"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log__thread_8h.html#a6b1c9c19d6aac78d06c658e4f8140c79">MPE_LOG_THREADSTM_SET</a></td></tr>
+<tr class="separator:a6b1c9c19d6aac78d06c658e4f8140c79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad94e64d38b04d51955a572c675fcfa04" id="r_ad94e64d38b04d51955a572c675fcfa04"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log__thread_8h.html#ad94e64d38b04d51955a572c675fcfa04">MPE_LOG_THREADSTM_GET</a></td></tr>
+<tr class="separator:ad94e64d38b04d51955a572c675fcfa04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac68e45a38ea7904d7dd46cb6d5ef4577" id="r_ac68e45a38ea7904d7dd46cb6d5ef4577"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log__thread_8h.html#ac68e45a38ea7904d7dd46cb6d5ef4577">MPE_LOG_THREAD_INIT</a>&#160;&#160;&#160;<a class="el" href="include_2mpe__log__thread_8h.html#ac8c1ac1a52886670c6e3e088afcfbd4e">MPE_Log_thread_init</a>();</td></tr>
+<tr class="separator:ac68e45a38ea7904d7dd46cb6d5ef4577"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0783ee209206c20429725bdab0301213" id="r_a0783ee209206c20429725bdab0301213"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log__thread_8h.html#a0783ee209206c20429725bdab0301213">MPE_LOG_THREAD_FINALIZE</a>&#160;&#160;&#160;<a class="el" href="include_2mpe__log_8h.html#a338d50ea2482c28c6924e530ea0c3ffb">MPE_Log_thread_sync</a>( <a class="el" href="include_2mpe__log__thread_8h.html#a3be54dfc4e9535bffb083b399e69b05c">MPE_Thread_count</a> );</td></tr>
+<tr class="separator:a0783ee209206c20429725bdab0301213"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8bcf6a0ab7a3716cb113777bf3859c9d" id="r_a8bcf6a0ab7a3716cb113777bf3859c9d"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log__thread_8h.html#a8bcf6a0ab7a3716cb113777bf3859c9d">THREADID</a>&#160;&#160;&#160;<a class="el" href="structvector.html">thdstm</a>-&gt;thdID</td></tr>
+<tr class="separator:a8bcf6a0ab7a3716cb113777bf3859c9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a418afb9985be6e74eec80eb00c80a345" id="r_a418afb9985be6e74eec80eb00c80a345"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log__thread_8h.html#a418afb9985be6e74eec80eb00c80a345">IS_MPELOG_ON</a>&#160;&#160;&#160;<a class="el" href="structvector.html">thdstm</a>-&gt;is_log_on</td></tr>
+<tr class="separator:a418afb9985be6e74eec80eb00c80a345"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Функции</h2></td></tr>
+<tr class="memitem:ac8c1ac1a52886670c6e3e088afcfbd4e" id="r_ac8c1ac1a52886670c6e3e088afcfbd4e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log__thread_8h.html#ac8c1ac1a52886670c6e3e088afcfbd4e">MPE_Log_thread_init</a> (<a class="el" href="structvector.html">void</a>)</td></tr>
+<tr class="separator:ac8c1ac1a52886670c6e3e088afcfbd4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Переменные</h2></td></tr>
+<tr class="memitem:a31d57b44ba93c124d596afbed75127cd" id="r_a31d57b44ba93c124d596afbed75127cd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">pthread_mutex_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log__thread_8h.html#a31d57b44ba93c124d596afbed75127cd">MPE_Thread_mutex</a></td></tr>
+<tr class="separator:a31d57b44ba93c124d596afbed75127cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae25aba84422aacf86b0e2abea165567" id="r_aae25aba84422aacf86b0e2abea165567"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">pthread_key_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log__thread_8h.html#aae25aba84422aacf86b0e2abea165567">MPE_ThreadStm_key</a></td></tr>
+<tr class="separator:aae25aba84422aacf86b0e2abea165567"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3be54dfc4e9535bffb083b399e69b05c" id="r_a3be54dfc4e9535bffb083b399e69b05c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="include_2mpe__log__thread_8h.html#aa8de75531d46ec9d17c6879509eb4a80">MPE_ThreadID_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log__thread_8h.html#a3be54dfc4e9535bffb083b399e69b05c">MPE_Thread_count</a></td></tr>
+<tr class="separator:a3be54dfc4e9535bffb083b399e69b05c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Макросы</h2>
+<a id="a30e9272b363c62b3505aff2615832ed1" name="a30e9272b363c62b3505aff2615832ed1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a30e9272b363c62b3505aff2615832ed1">&#9670;&#160;</a></span>HAVE_PTHREAD_IN_MPI</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> HAVE_PTHREAD_IN_MPI&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__log__thread_8h_source.html">include/mpe_log_thread.h</a> строка <a class="el" href="include_2mpe__log__thread_8h_source.html#l00006">6</a></p>
+
+</div>
+</div>
+<a id="a418afb9985be6e74eec80eb00c80a345" name="a418afb9985be6e74eec80eb00c80a345"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a418afb9985be6e74eec80eb00c80a345">&#9670;&#160;</a></span>IS_MPELOG_ON</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> IS_MPELOG_ON&#160;&#160;&#160;<a class="el" href="structvector.html">thdstm</a>-&gt;is_log_on</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__log__thread_8h_source.html">include/mpe_log_thread.h</a> строка <a class="el" href="include_2mpe__log__thread_8h_source.html#l00075">75</a></p>
+
+</div>
+</div>
+<a id="a0783ee209206c20429725bdab0301213" name="a0783ee209206c20429725bdab0301213"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0783ee209206c20429725bdab0301213">&#9670;&#160;</a></span>MPE_LOG_THREAD_FINALIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_LOG_THREAD_FINALIZE&#160;&#160;&#160;<a class="el" href="include_2mpe__log_8h.html#a338d50ea2482c28c6924e530ea0c3ffb">MPE_Log_thread_sync</a>( <a class="el" href="include_2mpe__log__thread_8h.html#a3be54dfc4e9535bffb083b399e69b05c">MPE_Thread_count</a> );</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__log__thread_8h_source.html">include/mpe_log_thread.h</a> строка <a class="el" href="include_2mpe__log__thread_8h_source.html#l00070">70</a></p>
+
+</div>
+</div>
+<a id="ac68e45a38ea7904d7dd46cb6d5ef4577" name="ac68e45a38ea7904d7dd46cb6d5ef4577"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac68e45a38ea7904d7dd46cb6d5ef4577">&#9670;&#160;</a></span>MPE_LOG_THREAD_INIT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_LOG_THREAD_INIT&#160;&#160;&#160;<a class="el" href="include_2mpe__log__thread_8h.html#ac8c1ac1a52886670c6e3e088afcfbd4e">MPE_Log_thread_init</a>();</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__log__thread_8h_source.html">include/mpe_log_thread.h</a> строка <a class="el" href="include_2mpe__log__thread_8h_source.html#l00069">69</a></p>
+
+</div>
+</div>
+<a id="a747357e144f57edd32c014d12ed7663f" name="a747357e144f57edd32c014d12ed7663f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a747357e144f57edd32c014d12ed7663f">&#9670;&#160;</a></span>MPE_LOG_THREAD_LOCK</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_LOG_THREAD_LOCK</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Макроопределение:</b><div class="fragment"><div class="line">    <span class="keywordflow">if</span> ( <a class="code hl_struct" href="structvector.html">pthread_mutex_lock</a>( &amp;<a class="code hl_variable" href="include_2mpe__log__thread_8h.html#a31d57b44ba93c124d596afbed75127cd">MPE_Thread_mutex</a> ) != 0 ) { <a class="code hl_struct" href="structvector.html">\</a></div>
+<div class="line"><a class="code hl_struct" href="structvector.html">        perror</a>( <span class="stringliteral">&quot;MPE_LOG_THREAD: pthread_mutex_lock() fails!\n&quot;</span> ); <a class="code hl_struct" href="structvector.html">\</a></div>
+<div class="line"><a class="code hl_struct" href="structvector.html">        MPE_LOG_THREAD_PRINTSTACK</a>(); <a class="code hl_struct" href="structvector.html">\</a></div>
+<div class="line"><a class="code hl_struct" href="structvector.html">        pthread_exit</a>( <a class="code hl_struct" href="structvector.html">NULL</a> ); \</div>
+<div class="line">    }</div>
+<div class="ttc" id="ainclude_2mpe__log__thread_8h_html_a31d57b44ba93c124d596afbed75127cd"><div class="ttname"><a href="include_2mpe__log__thread_8h.html#a31d57b44ba93c124d596afbed75127cd">MPE_Thread_mutex</a></div><div class="ttdeci">pthread_mutex_t MPE_Thread_mutex</div></div>
+<div class="ttc" id="astructvector_html"><div class="ttname"><a href="structvector.html">vector</a></div><div class="ttdef"><b>Definition</b> <a href="point_8h_source.html#l00012">point.h:12</a></div></div>
+</div><!-- fragment -->
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__log__thread_8h_source.html">include/mpe_log_thread.h</a> строка <a class="el" href="include_2mpe__log__thread_8h_source.html#l00035">35</a></p>
+
+</div>
+</div>
+<a id="adfa9fbfe38d5bee779ca2b9f6cb9ce1b" name="adfa9fbfe38d5bee779ca2b9f6cb9ce1b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adfa9fbfe38d5bee779ca2b9f6cb9ce1b">&#9670;&#160;</a></span>MPE_LOG_THREAD_PRINTSTACK</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_LOG_THREAD_PRINTSTACK</td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Макроопределение:</b><div class="fragment"><div class="line">        <span class="keywordflow">do</span> { \</div>
+<div class="line">            <a class="code hl_struct" href="structMPE__CallStack.html">MPE_CallStack_t</a>  <a class="code hl_struct" href="structvector.html">cstk</a>; <a class="code hl_struct" href="structvector.html">\</a></div>
+<div class="line"><a class="code hl_struct" href="structvector.html">            MPE_CallStack_init</a>( &amp;<a class="code hl_struct" href="structvector.html">cstk</a> ); <a class="code hl_struct" href="structvector.html">\</a></div>
+<div class="line"><a class="code hl_struct" href="structvector.html">            MPE_CallStack_fancyprint</a>( &amp;<a class="code hl_struct" href="structvector.html">cstk</a>, 2, \</div>
+<div class="line">                                      <span class="stringliteral">&quot;\t&quot;</span>, 1, <a class="code hl_define" href="include_2mpe__callstack_8h.html#a4ac0da49f5682b68df2abed022edb449">MPE_CALLSTACK_UNLIMITED</a> ); \</div>
+<div class="line">        } <span class="keywordflow">while</span> (0)</div>
+<div class="ttc" id="ainclude_2mpe__callstack_8h_html_a4ac0da49f5682b68df2abed022edb449"><div class="ttname"><a href="include_2mpe__callstack_8h.html#a4ac0da49f5682b68df2abed022edb449">MPE_CALLSTACK_UNLIMITED</a></div><div class="ttdeci">#define MPE_CALLSTACK_UNLIMITED</div><div class="ttdef"><b>Definition</b> <a href="include_2mpe__callstack_8h_source.html#l00011">include/mpe_callstack.h:11</a></div></div>
+<div class="ttc" id="astructMPE__CallStack_html"><div class="ttname"><a href="structMPE__CallStack.html">MPE_CallStack</a></div><div class="ttdef"><b>Definition</b> <a href="include_2mpe__callstack_8h_source.html#l00020">include/mpe_callstack.h:20</a></div></div>
+</div><!-- fragment -->
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__log__thread_8h_source.html">include/mpe_log_thread.h</a> строка <a class="el" href="include_2mpe__log__thread_8h_source.html#l00019">19</a></p>
+
+</div>
+</div>
+<a id="ae62b41b80f2d31c648459593a82e1ee9" name="ae62b41b80f2d31c648459593a82e1ee9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae62b41b80f2d31c648459593a82e1ee9">&#9670;&#160;</a></span>MPE_LOG_THREAD_UNLOCK</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_LOG_THREAD_UNLOCK</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Макроопределение:</b><div class="fragment"><div class="line">    <span class="keywordflow">if</span> ( <a class="code hl_struct" href="structvector.html">pthread_mutex_unlock</a>( &amp;<a class="code hl_variable" href="include_2mpe__log__thread_8h.html#a31d57b44ba93c124d596afbed75127cd">MPE_Thread_mutex</a> ) != 0 ) { <a class="code hl_struct" href="structvector.html">\</a></div>
+<div class="line"><a class="code hl_struct" href="structvector.html">        perror</a>( <span class="stringliteral">&quot;MPE_LOG_THREAD: pthread_mutex_unlock() fails!\n&quot;</span> ); <a class="code hl_struct" href="structvector.html">\</a></div>
+<div class="line"><a class="code hl_struct" href="structvector.html">        MPE_LOG_THREAD_PRINTSTACK</a>(); <a class="code hl_struct" href="structvector.html">\</a></div>
+<div class="line"><a class="code hl_struct" href="structvector.html">        pthread_exit</a>( <a class="code hl_struct" href="structvector.html">NULL</a> ); \</div>
+<div class="line">    }</div>
+</div><!-- fragment -->
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__log__thread_8h_source.html">include/mpe_log_thread.h</a> строка <a class="el" href="include_2mpe__log__thread_8h_source.html#l00042">42</a></p>
+
+</div>
+</div>
+<a id="aeafe2f4ac2f4b31c8ba86864d65df40e" name="aeafe2f4ac2f4b31c8ba86864d65df40e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeafe2f4ac2f4b31c8ba86864d65df40e">&#9670;&#160;</a></span>MPE_LOG_THREADSTM_DECL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_LOG_THREADSTM_DECL&#160;&#160;&#160;    <a class="el" href="structMPE__ThreadStm__t.html">MPE_ThreadStm_t</a> *<a class="el" href="structvector.html">thdstm</a> = <a class="el" href="structvector.html">NULL</a>;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__log__thread_8h_source.html">include/mpe_log_thread.h</a> строка <a class="el" href="include_2mpe__log__thread_8h_source.html#l00032">32</a></p>
+
+</div>
+</div>
+<a id="ad94e64d38b04d51955a572c675fcfa04" name="ad94e64d38b04d51955a572c675fcfa04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad94e64d38b04d51955a572c675fcfa04">&#9670;&#160;</a></span>MPE_LOG_THREADSTM_GET</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_LOG_THREADSTM_GET</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Макроопределение:</b><div class="fragment"><div class="line">    <a class="code hl_struct" href="structvector.html">thdstm</a> = (<a class="code hl_struct" href="structMPE__ThreadStm__t.html">MPE_ThreadStm_t</a> *) <a class="code hl_struct" href="structvector.html">pthread_getspecific</a>( <a class="code hl_variable" href="include_2mpe__log__thread_8h.html#aae25aba84422aacf86b0e2abea165567">MPE_ThreadStm_key</a> ); <a class="code hl_struct" href="structvector.html">\</a></div>
+<div class="line"><a class="code hl_struct" href="structvector.html">    if</a> ( <a class="code hl_struct" href="structvector.html">thdstm</a> == <a class="code hl_struct" href="structvector.html">NULL</a> ) { \</div>
+<div class="line">        <a class="code hl_define" href="include_2mpe__log__thread_8h.html#a6b1c9c19d6aac78d06c658e4f8140c79">MPE_LOG_THREADSTM_SET</a> \</div>
+<div class="line">    }</div>
+<div class="ttc" id="ainclude_2mpe__log__thread_8h_html_a6b1c9c19d6aac78d06c658e4f8140c79"><div class="ttname"><a href="include_2mpe__log__thread_8h.html#a6b1c9c19d6aac78d06c658e4f8140c79">MPE_LOG_THREADSTM_SET</a></div><div class="ttdeci">#define MPE_LOG_THREADSTM_SET</div><div class="ttdef"><b>Definition</b> <a href="include_2mpe__log__thread_8h_source.html#l00050">include/mpe_log_thread.h:50</a></div></div>
+<div class="ttc" id="ainclude_2mpe__log__thread_8h_html_aae25aba84422aacf86b0e2abea165567"><div class="ttname"><a href="include_2mpe__log__thread_8h.html#aae25aba84422aacf86b0e2abea165567">MPE_ThreadStm_key</a></div><div class="ttdeci">pthread_key_t MPE_ThreadStm_key</div></div>
+<div class="ttc" id="astructMPE__ThreadStm__t_html"><div class="ttname"><a href="structMPE__ThreadStm__t.html">MPE_ThreadStm_t</a></div><div class="ttdef"><b>Definition</b> <a href="include_2mpe__log__thread_8h_source.html#l00010">include/mpe_log_thread.h:10</a></div></div>
+</div><!-- fragment -->
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__log__thread_8h_source.html">include/mpe_log_thread.h</a> строка <a class="el" href="include_2mpe__log__thread_8h_source.html#l00063">63</a></p>
+
+</div>
+</div>
+<a id="a6b1c9c19d6aac78d06c658e4f8140c79" name="a6b1c9c19d6aac78d06c658e4f8140c79"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b1c9c19d6aac78d06c658e4f8140c79">&#9670;&#160;</a></span>MPE_LOG_THREADSTM_SET</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_LOG_THREADSTM_SET</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Макроопределение:</b><div class="fragment"><div class="line">    <a class="code hl_struct" href="structvector.html">MPE_LOG_THREAD_LOCK \</a></div>
+<div class="line"><a class="code hl_struct" href="structvector.html">    thdstm</a>  = (<a class="code hl_struct" href="structMPE__ThreadStm__t.html">MPE_ThreadStm_t</a> *) <a class="code hl_function" href="protofix_8h.html#a52abbdf8792edbd1e34d4ca8d061f840">malloc</a>( <span class="keyword">sizeof</span>(<a class="code hl_struct" href="structMPE__ThreadStm__t.html">MPE_ThreadStm_t</a>) ); \</div>
+<div class="line">    <a class="code hl_struct" href="structvector.html">thdstm</a>-&gt;thdID     = <a class="code hl_variable" href="include_2mpe__log__thread_8h.html#a3be54dfc4e9535bffb083b399e69b05c">MPE_Thread_count</a> ; \</div>
+<div class="line">    <a class="code hl_struct" href="structvector.html">thdstm</a>-&gt;is_log_on = 1; <a class="code hl_struct" href="structvector.html">\</a></div>
+<div class="line"><a class="code hl_struct" href="structvector.html">    if</a> ( <a class="code hl_struct" href="structvector.html">pthread_setspecific</a>( <a class="code hl_variable" href="include_2mpe__log__thread_8h.html#aae25aba84422aacf86b0e2abea165567">MPE_ThreadStm_key</a>, <a class="code hl_struct" href="structvector.html">thdstm</a> ) != 0 ) { <a class="code hl_struct" href="structvector.html">\</a></div>
+<div class="line"><a class="code hl_struct" href="structvector.html">        perror</a>( <span class="stringliteral">&quot;MPE_LOG_THREAD: pthread_setspecific() fails!\n&quot;</span> ); <a class="code hl_struct" href="structvector.html">\</a></div>
+<div class="line"><a class="code hl_struct" href="structvector.html">        MPE_LOG_THREAD_PRINTSTACK</a>(); <a class="code hl_struct" href="structvector.html">\</a></div>
+<div class="line"><a class="code hl_struct" href="structvector.html">        pthread_exit</a>( <a class="code hl_struct" href="structvector.html">NULL</a> ); \</div>
+<div class="line">    } \</div>
+<div class="line">    <a class="code hl_variable" href="include_2mpe__log__thread_8h.html#a3be54dfc4e9535bffb083b399e69b05c">MPE_Thread_count</a>++; \</div>
+<div class="line">    <a class="code hl_define" href="include_2mpe__log__thread_8h.html#ae62b41b80f2d31c648459593a82e1ee9">MPE_LOG_THREAD_UNLOCK</a></div>
+<div class="ttc" id="ainclude_2mpe__log__thread_8h_html_a3be54dfc4e9535bffb083b399e69b05c"><div class="ttname"><a href="include_2mpe__log__thread_8h.html#a3be54dfc4e9535bffb083b399e69b05c">MPE_Thread_count</a></div><div class="ttdeci">MPE_ThreadID_t MPE_Thread_count</div></div>
+<div class="ttc" id="ainclude_2mpe__log__thread_8h_html_ae62b41b80f2d31c648459593a82e1ee9"><div class="ttname"><a href="include_2mpe__log__thread_8h.html#ae62b41b80f2d31c648459593a82e1ee9">MPE_LOG_THREAD_UNLOCK</a></div><div class="ttdeci">#define MPE_LOG_THREAD_UNLOCK</div><div class="ttdef"><b>Definition</b> <a href="include_2mpe__log__thread_8h_source.html#l00042">include/mpe_log_thread.h:42</a></div></div>
+<div class="ttc" id="aprotofix_8h_html_a52abbdf8792edbd1e34d4ca8d061f840"><div class="ttname"><a href="protofix_8h.html#a52abbdf8792edbd1e34d4ca8d061f840">malloc</a></div><div class="ttdeci">void * malloc(size_t)</div></div>
+</div><!-- fragment -->
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__log__thread_8h_source.html">include/mpe_log_thread.h</a> строка <a class="el" href="include_2mpe__log__thread_8h_source.html#l00050">50</a></p>
+
+</div>
+</div>
+<a id="aa8de75531d46ec9d17c6879509eb4a80" name="aa8de75531d46ec9d17c6879509eb4a80"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8de75531d46ec9d17c6879509eb4a80">&#9670;&#160;</a></span>MPE_ThreadID_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_ThreadID_t&#160;&#160;&#160;<a class="el" href="structvector.html">int</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__log__thread_8h_source.html">include/mpe_log_thread.h</a> строка <a class="el" href="include_2mpe__log__thread_8h_source.html#l00008">8</a></p>
+
+</div>
+</div>
+<a id="a8bcf6a0ab7a3716cb113777bf3859c9d" name="a8bcf6a0ab7a3716cb113777bf3859c9d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8bcf6a0ab7a3716cb113777bf3859c9d">&#9670;&#160;</a></span>THREADID</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> THREADID&#160;&#160;&#160;<a class="el" href="structvector.html">thdstm</a>-&gt;thdID</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__log__thread_8h_source.html">include/mpe_log_thread.h</a> строка <a class="el" href="include_2mpe__log__thread_8h_source.html#l00074">74</a></p>
+
+</div>
+</div>
+<h2 class="groupheader">Функции</h2>
+<a id="ac8c1ac1a52886670c6e3e088afcfbd4e" name="ac8c1ac1a52886670c6e3e088afcfbd4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8c1ac1a52886670c6e3e088afcfbd4e">&#9670;&#160;</a></span>MPE_Log_thread_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> MPE_Log_thread_init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Переменные</h2>
+<a id="a3be54dfc4e9535bffb083b399e69b05c" name="a3be54dfc4e9535bffb083b399e69b05c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3be54dfc4e9535bffb083b399e69b05c">&#9670;&#160;</a></span>MPE_Thread_count</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="include_2mpe__log__thread_8h.html#aa8de75531d46ec9d17c6879509eb4a80">MPE_ThreadID_t</a> MPE_Thread_count</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a31d57b44ba93c124d596afbed75127cd" name="a31d57b44ba93c124d596afbed75127cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31d57b44ba93c124d596afbed75127cd">&#9670;&#160;</a></span>MPE_Thread_mutex</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">pthread_mutex_t</a> MPE_Thread_mutex</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aae25aba84422aacf86b0e2abea165567" name="aae25aba84422aacf86b0e2abea165567"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae25aba84422aacf86b0e2abea165567">&#9670;&#160;</a></span>MPE_ThreadStm_key</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">pthread_key_t</a> MPE_ThreadStm_key</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

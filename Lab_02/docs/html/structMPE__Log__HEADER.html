@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lab_02: MPI + OpenMP Parallel Programming: Структура MPE_Log_HEADER</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Lab_02: MPI + OpenMP Parallel Programming<span id="projectnumber">&#160;2.1</span>
+   </div>
+   <div id="projectbrief">Решение 3D уравнения Пуассона методом Якоби с двумерной декомпозицией</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-attribs">Открытые атрибуты</a> &#124;
+<a href="structMPE__Log__HEADER-members.html">Полный список членов класса</a>  </div>
+  <div class="headertitle"><div class="title">Структура MPE_Log_HEADER</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="mpe__log__genproc_8h_source.html">mpe_log_genproc.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Открытые атрибуты</h2></td></tr>
+<tr class="memitem:ad4a02beb2605eaaa37acf2831fe8a300" id="r_ad4a02beb2605eaaa37acf2831fe8a300"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">short</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMPE__Log__HEADER.html#ad4a02beb2605eaaa37acf2831fe8a300">len</a></td></tr>
+<tr class="separator:ad4a02beb2605eaaa37acf2831fe8a300"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6680fe1d74c30dd3854ea2144cd8c1f3" id="r_a6680fe1d74c30dd3854ea2144cd8c1f3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">short</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMPE__Log__HEADER.html#a6680fe1d74c30dd3854ea2144cd8c1f3">event</a></td></tr>
+<tr class="separator:a6680fe1d74c30dd3854ea2144cd8c1f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa137e7a5a061e0363513f0488c337aa1" id="r_aa137e7a5a061e0363513f0488c337aa1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMPE__Log__HEADER.html#aa137e7a5a061e0363513f0488c337aa1">time</a></td></tr>
+<tr class="separator:aa137e7a5a061e0363513f0488c337aa1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock">
+<p class="definition">См. определение в файле <a class="el" href="mpe__log__genproc_8h_source.html">mpe_log_genproc.h</a> строка <a class="el" href="mpe__log__genproc_8h_source.html#l00044">44</a></p>
+</div><h2 class="groupheader">Данные класса</h2>
+<a id="a6680fe1d74c30dd3854ea2144cd8c1f3" name="a6680fe1d74c30dd3854ea2144cd8c1f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6680fe1d74c30dd3854ea2144cd8c1f3">&#9670;&#160;</a></span>event</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">short</a> MPE_Log_HEADER::event</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__log__genproc_8h_source.html">mpe_log_genproc.h</a> строка <a class="el" href="mpe__log__genproc_8h_source.html#l00046">46</a></p>
+
+</div>
+</div>
+<a id="ad4a02beb2605eaaa37acf2831fe8a300" name="ad4a02beb2605eaaa37acf2831fe8a300"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4a02beb2605eaaa37acf2831fe8a300">&#9670;&#160;</a></span>len</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">short</a> MPE_Log_HEADER::len</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__log__genproc_8h_source.html">mpe_log_genproc.h</a> строка <a class="el" href="mpe__log__genproc_8h_source.html#l00045">45</a></p>
+
+</div>
+</div>
+<a id="aa137e7a5a061e0363513f0488c337aa1" name="aa137e7a5a061e0363513f0488c337aa1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa137e7a5a061e0363513f0488c337aa1">&#9670;&#160;</a></span>time</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">double</a> MPE_Log_HEADER::time</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__log__genproc_8h_source.html">mpe_log_genproc.h</a> строка <a class="el" href="mpe__log__genproc_8h_source.html#l00047">47</a></p>
+
+</div>
+</div>
+<hr/>Объявления и описания членов структуры находятся в файле:<ul>
+<li><a class="el" href="mpe__log__genproc_8h_source.html">mpe_log_genproc.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

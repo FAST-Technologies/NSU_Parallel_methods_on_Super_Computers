@@ -1,0 +1,260 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lab_02: MPI + OpenMP Parallel Programming: Структура CLOG_Stream_t</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Lab_02: MPI + OpenMP Parallel Programming<span id="projectnumber">&#160;2.1</span>
+   </div>
+   <div id="projectbrief">Решение 3D уравнения Пуассона методом Якоби с двумерной декомпозицией</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-attribs">Открытые атрибуты</a> &#124;
+<a href="structCLOG__Stream__t-members.html">Полный список членов класса</a>  </div>
+  <div class="headertitle"><div class="title">Структура CLOG_Stream_t</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="clog_8h_source.html">clog.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Открытые атрибуты</h2></td></tr>
+<tr class="memitem:a84f1537cf2aa7a5624cf882f1cc32abb" id="r_a84f1537cf2aa7a5624cf882f1cc32abb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCLOG__Stream__t.html#a84f1537cf2aa7a5624cf882f1cc32abb">buffer</a></td></tr>
+<tr class="separator:a84f1537cf2aa7a5624cf882f1cc32abb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66adc9c01d284858d72dc9068011aec1" id="r_a66adc9c01d284858d72dc9068011aec1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structCLOG__Sync__t.html">CLOG_Sync_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCLOG__Stream__t.html#a66adc9c01d284858d72dc9068011aec1">syncer</a></td></tr>
+<tr class="separator:a66adc9c01d284858d72dc9068011aec1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2cd9d79459372ea3f6f9faf26ede025c" id="r_a2cd9d79459372ea3f6f9faf26ede025c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structCLOG__Merger__t.html">CLOG_Merger_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCLOG__Stream__t.html#a2cd9d79459372ea3f6f9faf26ede025c">merger</a></td></tr>
+<tr class="separator:a2cd9d79459372ea3f6f9faf26ede025c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8408c51f76f3f06b39cfd9157b0a6f3" id="r_ab8408c51f76f3f06b39cfd9157b0a6f3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCLOG__Stream__t.html#ab8408c51f76f3f06b39cfd9157b0a6f3">known_solo_eventID</a></td></tr>
+<tr class="separator:ab8408c51f76f3f06b39cfd9157b0a6f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c8e4984c5fa4142f6751cd4e26f57ee" id="r_a0c8e4984c5fa4142f6751cd4e26f57ee"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCLOG__Stream__t.html#a0c8e4984c5fa4142f6751cd4e26f57ee">known_eventID</a></td></tr>
+<tr class="separator:a0c8e4984c5fa4142f6751cd4e26f57ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab79c453ddfb354f94f008c3669ca5749" id="r_ab79c453ddfb354f94f008c3669ca5749"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCLOG__Stream__t.html#ab79c453ddfb354f94f008c3669ca5749">known_stateID</a></td></tr>
+<tr class="separator:ab79c453ddfb354f94f008c3669ca5749"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32febb205814a2eb704235a8133ffe9d" id="r_a32febb205814a2eb704235a8133ffe9d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCLOG__Stream__t.html#a32febb205814a2eb704235a8133ffe9d">user_eventID</a></td></tr>
+<tr class="separator:a32febb205814a2eb704235a8133ffe9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c1dc281e891a66fb7000bf70b9c2b90" id="r_a7c1dc281e891a66fb7000bf70b9c2b90"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCLOG__Stream__t.html#a7c1dc281e891a66fb7000bf70b9c2b90">user_stateID</a></td></tr>
+<tr class="separator:a7c1dc281e891a66fb7000bf70b9c2b90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64da7f2bdd0b54849b814c26a0ebfc08" id="r_a64da7f2bdd0b54849b814c26a0ebfc08"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCLOG__Stream__t.html#a64da7f2bdd0b54849b814c26a0ebfc08">user_solo_eventID</a></td></tr>
+<tr class="separator:a64da7f2bdd0b54849b814c26a0ebfc08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock">
+<p class="definition">См. определение в файле <a class="el" href="clog_8h_source.html">clog.h</a> строка <a class="el" href="clog_8h_source.html#l00073">73</a></p>
+</div><h2 class="groupheader">Данные класса</h2>
+<a id="a84f1537cf2aa7a5624cf882f1cc32abb" name="a84f1537cf2aa7a5624cf882f1cc32abb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a84f1537cf2aa7a5624cf882f1cc32abb">&#9670;&#160;</a></span>buffer</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structCLOG__Buffer__t.html">CLOG_Buffer_t</a>* CLOG_Stream_t::buffer</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="clog_8h_source.html">clog.h</a> строка <a class="el" href="clog_8h_source.html#l00074">74</a></p>
+
+</div>
+</div>
+<a id="a0c8e4984c5fa4142f6751cd4e26f57ee" name="a0c8e4984c5fa4142f6751cd4e26f57ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c8e4984c5fa4142f6751cd4e26f57ee">&#9670;&#160;</a></span>known_eventID</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> CLOG_Stream_t::known_eventID</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="clog_8h_source.html">clog.h</a> строка <a class="el" href="clog_8h_source.html#l00078">78</a></p>
+
+</div>
+</div>
+<a id="ab8408c51f76f3f06b39cfd9157b0a6f3" name="ab8408c51f76f3f06b39cfd9157b0a6f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8408c51f76f3f06b39cfd9157b0a6f3">&#9670;&#160;</a></span>known_solo_eventID</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> CLOG_Stream_t::known_solo_eventID</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="clog_8h_source.html">clog.h</a> строка <a class="el" href="clog_8h_source.html#l00077">77</a></p>
+
+</div>
+</div>
+<a id="ab79c453ddfb354f94f008c3669ca5749" name="ab79c453ddfb354f94f008c3669ca5749"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab79c453ddfb354f94f008c3669ca5749">&#9670;&#160;</a></span>known_stateID</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> CLOG_Stream_t::known_stateID</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="clog_8h_source.html">clog.h</a> строка <a class="el" href="clog_8h_source.html#l00079">79</a></p>
+
+</div>
+</div>
+<a id="a2cd9d79459372ea3f6f9faf26ede025c" name="a2cd9d79459372ea3f6f9faf26ede025c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2cd9d79459372ea3f6f9faf26ede025c">&#9670;&#160;</a></span>merger</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structCLOG__Merger__t.html">CLOG_Merger_t</a>* CLOG_Stream_t::merger</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="clog_8h_source.html">clog.h</a> строка <a class="el" href="clog_8h_source.html#l00076">76</a></p>
+
+</div>
+</div>
+<a id="a66adc9c01d284858d72dc9068011aec1" name="a66adc9c01d284858d72dc9068011aec1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66adc9c01d284858d72dc9068011aec1">&#9670;&#160;</a></span>syncer</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structCLOG__Sync__t.html">CLOG_Sync_t</a>* CLOG_Stream_t::syncer</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="clog_8h_source.html">clog.h</a> строка <a class="el" href="clog_8h_source.html#l00075">75</a></p>
+
+</div>
+</div>
+<a id="a32febb205814a2eb704235a8133ffe9d" name="a32febb205814a2eb704235a8133ffe9d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32febb205814a2eb704235a8133ffe9d">&#9670;&#160;</a></span>user_eventID</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> CLOG_Stream_t::user_eventID</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="clog_8h_source.html">clog.h</a> строка <a class="el" href="clog_8h_source.html#l00080">80</a></p>
+
+</div>
+</div>
+<a id="a64da7f2bdd0b54849b814c26a0ebfc08" name="a64da7f2bdd0b54849b814c26a0ebfc08"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64da7f2bdd0b54849b814c26a0ebfc08">&#9670;&#160;</a></span>user_solo_eventID</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> CLOG_Stream_t::user_solo_eventID</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="clog_8h_source.html">clog.h</a> строка <a class="el" href="clog_8h_source.html#l00082">82</a></p>
+
+</div>
+</div>
+<a id="a7c1dc281e891a66fb7000bf70b9c2b90" name="a7c1dc281e891a66fb7000bf70b9c2b90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c1dc281e891a66fb7000bf70b9c2b90">&#9670;&#160;</a></span>user_stateID</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> CLOG_Stream_t::user_stateID</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="clog_8h_source.html">clog.h</a> строка <a class="el" href="clog_8h_source.html#l00081">81</a></p>
+
+</div>
+</div>
+<hr/>Объявления и описания членов структуры находятся в файле:<ul>
+<li><a class="el" href="clog_8h_source.html">clog.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

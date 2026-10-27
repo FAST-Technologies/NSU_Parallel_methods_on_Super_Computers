@@ -1,0 +1,401 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lab_02: MPI + OpenMP Parallel Programming: Файл lam_f2c_dtype.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Lab_02: MPI + OpenMP Parallel Programming<span id="projectnumber">&#160;2.1</span>
+   </div>
+   <div id="projectbrief">Решение 3D уравнения Пуассона методом Якоби с двумерной декомпозицией</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_1f646cbbb0f6227d25dd06f792d51aba.html">mpe2-1.3.0</a></li><li class="navelem"><a class="el" href="dir_493399512d45eb30627376023737183a.html">src</a></li><li class="navelem"><a class="el" href="dir_a2eccd5b3f0c3c7ebe8d4b9f9baae753.html">collchk</a></li><li class="navelem"><a class="el" href="dir_a6912acc79beca46e77fc341e118635d.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#define-members">Макросы</a>  </div>
+  <div class="headertitle"><div class="title">Файл lam_f2c_dtype.h</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><a href="lam__f2c__dtype_8h_source.html">См. исходные тексты.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Макросы</h2></td></tr>
+<tr class="memitem:a85f42a33601b87ba4ec84ae97d0993e7" id="r_a85f42a33601b87ba4ec84ae97d0993e7"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lam__f2c__dtype_8h.html#a85f42a33601b87ba4ec84ae97d0993e7">MPI_INTEGER</a>&#160;&#160;&#160;((<a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>) &amp;<a class="el" href="structvector.html">lam_mpi_integer</a>)</td></tr>
+<tr class="separator:a85f42a33601b87ba4ec84ae97d0993e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabb46448e7a3ce8c7fac9606af673805" id="r_aabb46448e7a3ce8c7fac9606af673805"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lam__f2c__dtype_8h.html#aabb46448e7a3ce8c7fac9606af673805">MPI_INTEGER1</a>&#160;&#160;&#160;((<a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>) &amp;<a class="el" href="structvector.html">lam_mpi_integer1</a>)</td></tr>
+<tr class="separator:aabb46448e7a3ce8c7fac9606af673805"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abaab33a6002c2c39b70766c68bd905c3" id="r_abaab33a6002c2c39b70766c68bd905c3"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lam__f2c__dtype_8h.html#abaab33a6002c2c39b70766c68bd905c3">MPI_INTEGER2</a>&#160;&#160;&#160;((<a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>) &amp;<a class="el" href="structvector.html">lam_mpi_integer2</a>)</td></tr>
+<tr class="separator:abaab33a6002c2c39b70766c68bd905c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c4a23ac315a53c10d823d54089dd511" id="r_a8c4a23ac315a53c10d823d54089dd511"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lam__f2c__dtype_8h.html#a8c4a23ac315a53c10d823d54089dd511">MPI_INTEGER4</a>&#160;&#160;&#160;((<a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>) &amp;<a class="el" href="structvector.html">lam_mpi_integer4</a>)</td></tr>
+<tr class="separator:a8c4a23ac315a53c10d823d54089dd511"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a302242fac93fc7e37893669525619f3f" id="r_a302242fac93fc7e37893669525619f3f"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lam__f2c__dtype_8h.html#a302242fac93fc7e37893669525619f3f">MPI_INTEGER8</a>&#160;&#160;&#160;((<a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>) &amp;<a class="el" href="structvector.html">lam_mpi_integer8</a>)</td></tr>
+<tr class="separator:a302242fac93fc7e37893669525619f3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a156a427b64b04699ae72f82fa1509fae" id="r_a156a427b64b04699ae72f82fa1509fae"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lam__f2c__dtype_8h.html#a156a427b64b04699ae72f82fa1509fae">MPI_REAL</a>&#160;&#160;&#160;((<a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>) &amp;<a class="el" href="structvector.html">lam_mpi_real</a>)</td></tr>
+<tr class="separator:a156a427b64b04699ae72f82fa1509fae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a359cd55fbc04f915c1dfa6a3efc78e88" id="r_a359cd55fbc04f915c1dfa6a3efc78e88"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lam__f2c__dtype_8h.html#a359cd55fbc04f915c1dfa6a3efc78e88">MPI_REAL4</a>&#160;&#160;&#160;((<a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>) &amp;<a class="el" href="structvector.html">lam_mpi_real4</a>)</td></tr>
+<tr class="separator:a359cd55fbc04f915c1dfa6a3efc78e88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79c8249386c84bdf794b4bc2d7b36408" id="r_a79c8249386c84bdf794b4bc2d7b36408"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lam__f2c__dtype_8h.html#a79c8249386c84bdf794b4bc2d7b36408">MPI_REAL8</a>&#160;&#160;&#160;((<a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>) &amp;<a class="el" href="structvector.html">lam_mpi_real8</a>)</td></tr>
+<tr class="separator:a79c8249386c84bdf794b4bc2d7b36408"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae79427924bf15e2362903b7c2cec3a4f" id="r_ae79427924bf15e2362903b7c2cec3a4f"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lam__f2c__dtype_8h.html#ae79427924bf15e2362903b7c2cec3a4f">MPI_REAL16</a>&#160;&#160;&#160;((<a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>) &amp;<a class="el" href="structvector.html">lam_mpi_real16</a>)</td></tr>
+<tr class="separator:ae79427924bf15e2362903b7c2cec3a4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ba9b55ec1ecd4881377b68bf04ad2ee" id="r_a8ba9b55ec1ecd4881377b68bf04ad2ee"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lam__f2c__dtype_8h.html#a8ba9b55ec1ecd4881377b68bf04ad2ee">MPI_DOUBLE_PRECISION</a>&#160;&#160;&#160;((<a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>) &amp;<a class="el" href="structvector.html">lam_mpi_dblprec</a>)</td></tr>
+<tr class="separator:a8ba9b55ec1ecd4881377b68bf04ad2ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2fa60e50715c58ccf52ed76dc277ba21" id="r_a2fa60e50715c58ccf52ed76dc277ba21"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lam__f2c__dtype_8h.html#a2fa60e50715c58ccf52ed76dc277ba21">MPI_CHARACTER</a>&#160;&#160;&#160;((<a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>) &amp;<a class="el" href="structvector.html">lam_mpi_character</a>)</td></tr>
+<tr class="separator:a2fa60e50715c58ccf52ed76dc277ba21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54f2d3f56465d191544ef05527b4ba69" id="r_a54f2d3f56465d191544ef05527b4ba69"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lam__f2c__dtype_8h.html#a54f2d3f56465d191544ef05527b4ba69">MPI_LOGICAL</a>&#160;&#160;&#160;((<a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>) &amp;<a class="el" href="structvector.html">lam_mpi_logic</a>)</td></tr>
+<tr class="separator:a54f2d3f56465d191544ef05527b4ba69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97f75883105db36b63884c20abd0ccdb" id="r_a97f75883105db36b63884c20abd0ccdb"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lam__f2c__dtype_8h.html#a97f75883105db36b63884c20abd0ccdb">MPI_COMPLEX</a>&#160;&#160;&#160;((<a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>) &amp;<a class="el" href="structvector.html">lam_mpi_cplex</a>)</td></tr>
+<tr class="separator:a97f75883105db36b63884c20abd0ccdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3943e0d19db632e1ce6e2932208c9c63" id="r_a3943e0d19db632e1ce6e2932208c9c63"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lam__f2c__dtype_8h.html#a3943e0d19db632e1ce6e2932208c9c63">MPI_DOUBLE_COMPLEX</a>&#160;&#160;&#160;((<a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>) &amp;<a class="el" href="structvector.html">lam_mpi_dblcplex</a>)</td></tr>
+<tr class="separator:a3943e0d19db632e1ce6e2932208c9c63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1f5dc7849788030acb18d7124d55cbc" id="r_aa1f5dc7849788030acb18d7124d55cbc"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lam__f2c__dtype_8h.html#aa1f5dc7849788030acb18d7124d55cbc">MPI_2INTEGER</a>&#160;&#160;&#160;((<a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>) &amp;<a class="el" href="structvector.html">lam_mpi_2integer</a>)</td></tr>
+<tr class="separator:aa1f5dc7849788030acb18d7124d55cbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af69c0150d75b4fa73afcb3b327763896" id="r_af69c0150d75b4fa73afcb3b327763896"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lam__f2c__dtype_8h.html#af69c0150d75b4fa73afcb3b327763896">MPI_2REAL</a>&#160;&#160;&#160;((<a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>) &amp;<a class="el" href="structvector.html">lam_mpi_2real</a>)</td></tr>
+<tr class="separator:af69c0150d75b4fa73afcb3b327763896"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1fba7488efb6620ef63ac52d996456e" id="r_af1fba7488efb6620ef63ac52d996456e"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lam__f2c__dtype_8h.html#af1fba7488efb6620ef63ac52d996456e">MPI_2DOUBLE_PRECISION</a>&#160;&#160;&#160;((<a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>) &amp;<a class="el" href="structvector.html">lam_mpi_2dblprec</a>)</td></tr>
+<tr class="separator:af1fba7488efb6620ef63ac52d996456e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Макросы</h2>
+<a id="af1fba7488efb6620ef63ac52d996456e" name="af1fba7488efb6620ef63ac52d996456e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1fba7488efb6620ef63ac52d996456e">&#9670;&#160;</a></span>MPI_2DOUBLE_PRECISION</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPI_2DOUBLE_PRECISION&#160;&#160;&#160;((<a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>) &amp;<a class="el" href="structvector.html">lam_mpi_2dblprec</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="lam__f2c__dtype_8h_source.html">lam_f2c_dtype.h</a> строка <a class="el" href="lam__f2c__dtype_8h_source.html#l00022">22</a></p>
+
+</div>
+</div>
+<a id="aa1f5dc7849788030acb18d7124d55cbc" name="aa1f5dc7849788030acb18d7124d55cbc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1f5dc7849788030acb18d7124d55cbc">&#9670;&#160;</a></span>MPI_2INTEGER</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPI_2INTEGER&#160;&#160;&#160;((<a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>) &amp;<a class="el" href="structvector.html">lam_mpi_2integer</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="lam__f2c__dtype_8h_source.html">lam_f2c_dtype.h</a> строка <a class="el" href="lam__f2c__dtype_8h_source.html#l00020">20</a></p>
+
+</div>
+</div>
+<a id="af69c0150d75b4fa73afcb3b327763896" name="af69c0150d75b4fa73afcb3b327763896"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af69c0150d75b4fa73afcb3b327763896">&#9670;&#160;</a></span>MPI_2REAL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPI_2REAL&#160;&#160;&#160;((<a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>) &amp;<a class="el" href="structvector.html">lam_mpi_2real</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="lam__f2c__dtype_8h_source.html">lam_f2c_dtype.h</a> строка <a class="el" href="lam__f2c__dtype_8h_source.html#l00021">21</a></p>
+
+</div>
+</div>
+<a id="a2fa60e50715c58ccf52ed76dc277ba21" name="a2fa60e50715c58ccf52ed76dc277ba21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2fa60e50715c58ccf52ed76dc277ba21">&#9670;&#160;</a></span>MPI_CHARACTER</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPI_CHARACTER&#160;&#160;&#160;((<a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>) &amp;<a class="el" href="structvector.html">lam_mpi_character</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="lam__f2c__dtype_8h_source.html">lam_f2c_dtype.h</a> строка <a class="el" href="lam__f2c__dtype_8h_source.html#l00016">16</a></p>
+
+</div>
+</div>
+<a id="a97f75883105db36b63884c20abd0ccdb" name="a97f75883105db36b63884c20abd0ccdb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97f75883105db36b63884c20abd0ccdb">&#9670;&#160;</a></span>MPI_COMPLEX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPI_COMPLEX&#160;&#160;&#160;((<a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>) &amp;<a class="el" href="structvector.html">lam_mpi_cplex</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="lam__f2c__dtype_8h_source.html">lam_f2c_dtype.h</a> строка <a class="el" href="lam__f2c__dtype_8h_source.html#l00018">18</a></p>
+
+</div>
+</div>
+<a id="a3943e0d19db632e1ce6e2932208c9c63" name="a3943e0d19db632e1ce6e2932208c9c63"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3943e0d19db632e1ce6e2932208c9c63">&#9670;&#160;</a></span>MPI_DOUBLE_COMPLEX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPI_DOUBLE_COMPLEX&#160;&#160;&#160;((<a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>) &amp;<a class="el" href="structvector.html">lam_mpi_dblcplex</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="lam__f2c__dtype_8h_source.html">lam_f2c_dtype.h</a> строка <a class="el" href="lam__f2c__dtype_8h_source.html#l00019">19</a></p>
+
+</div>
+</div>
+<a id="a8ba9b55ec1ecd4881377b68bf04ad2ee" name="a8ba9b55ec1ecd4881377b68bf04ad2ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ba9b55ec1ecd4881377b68bf04ad2ee">&#9670;&#160;</a></span>MPI_DOUBLE_PRECISION</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPI_DOUBLE_PRECISION&#160;&#160;&#160;((<a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>) &amp;<a class="el" href="structvector.html">lam_mpi_dblprec</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="lam__f2c__dtype_8h_source.html">lam_f2c_dtype.h</a> строка <a class="el" href="lam__f2c__dtype_8h_source.html#l00015">15</a></p>
+
+</div>
+</div>
+<a id="a85f42a33601b87ba4ec84ae97d0993e7" name="a85f42a33601b87ba4ec84ae97d0993e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85f42a33601b87ba4ec84ae97d0993e7">&#9670;&#160;</a></span>MPI_INTEGER</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPI_INTEGER&#160;&#160;&#160;((<a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>) &amp;<a class="el" href="structvector.html">lam_mpi_integer</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="lam__f2c__dtype_8h_source.html">lam_f2c_dtype.h</a> строка <a class="el" href="lam__f2c__dtype_8h_source.html#l00006">6</a></p>
+
+</div>
+</div>
+<a id="aabb46448e7a3ce8c7fac9606af673805" name="aabb46448e7a3ce8c7fac9606af673805"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aabb46448e7a3ce8c7fac9606af673805">&#9670;&#160;</a></span>MPI_INTEGER1</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPI_INTEGER1&#160;&#160;&#160;((<a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>) &amp;<a class="el" href="structvector.html">lam_mpi_integer1</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="lam__f2c__dtype_8h_source.html">lam_f2c_dtype.h</a> строка <a class="el" href="lam__f2c__dtype_8h_source.html#l00007">7</a></p>
+
+</div>
+</div>
+<a id="abaab33a6002c2c39b70766c68bd905c3" name="abaab33a6002c2c39b70766c68bd905c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abaab33a6002c2c39b70766c68bd905c3">&#9670;&#160;</a></span>MPI_INTEGER2</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPI_INTEGER2&#160;&#160;&#160;((<a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>) &amp;<a class="el" href="structvector.html">lam_mpi_integer2</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="lam__f2c__dtype_8h_source.html">lam_f2c_dtype.h</a> строка <a class="el" href="lam__f2c__dtype_8h_source.html#l00008">8</a></p>
+
+</div>
+</div>
+<a id="a8c4a23ac315a53c10d823d54089dd511" name="a8c4a23ac315a53c10d823d54089dd511"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c4a23ac315a53c10d823d54089dd511">&#9670;&#160;</a></span>MPI_INTEGER4</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPI_INTEGER4&#160;&#160;&#160;((<a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>) &amp;<a class="el" href="structvector.html">lam_mpi_integer4</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="lam__f2c__dtype_8h_source.html">lam_f2c_dtype.h</a> строка <a class="el" href="lam__f2c__dtype_8h_source.html#l00009">9</a></p>
+
+</div>
+</div>
+<a id="a302242fac93fc7e37893669525619f3f" name="a302242fac93fc7e37893669525619f3f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a302242fac93fc7e37893669525619f3f">&#9670;&#160;</a></span>MPI_INTEGER8</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPI_INTEGER8&#160;&#160;&#160;((<a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>) &amp;<a class="el" href="structvector.html">lam_mpi_integer8</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="lam__f2c__dtype_8h_source.html">lam_f2c_dtype.h</a> строка <a class="el" href="lam__f2c__dtype_8h_source.html#l00010">10</a></p>
+
+</div>
+</div>
+<a id="a54f2d3f56465d191544ef05527b4ba69" name="a54f2d3f56465d191544ef05527b4ba69"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54f2d3f56465d191544ef05527b4ba69">&#9670;&#160;</a></span>MPI_LOGICAL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPI_LOGICAL&#160;&#160;&#160;((<a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>) &amp;<a class="el" href="structvector.html">lam_mpi_logic</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="lam__f2c__dtype_8h_source.html">lam_f2c_dtype.h</a> строка <a class="el" href="lam__f2c__dtype_8h_source.html#l00017">17</a></p>
+
+</div>
+</div>
+<a id="a156a427b64b04699ae72f82fa1509fae" name="a156a427b64b04699ae72f82fa1509fae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a156a427b64b04699ae72f82fa1509fae">&#9670;&#160;</a></span>MPI_REAL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPI_REAL&#160;&#160;&#160;((<a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>) &amp;<a class="el" href="structvector.html">lam_mpi_real</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="lam__f2c__dtype_8h_source.html">lam_f2c_dtype.h</a> строка <a class="el" href="lam__f2c__dtype_8h_source.html#l00011">11</a></p>
+
+</div>
+</div>
+<a id="ae79427924bf15e2362903b7c2cec3a4f" name="ae79427924bf15e2362903b7c2cec3a4f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae79427924bf15e2362903b7c2cec3a4f">&#9670;&#160;</a></span>MPI_REAL16</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPI_REAL16&#160;&#160;&#160;((<a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>) &amp;<a class="el" href="structvector.html">lam_mpi_real16</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="lam__f2c__dtype_8h_source.html">lam_f2c_dtype.h</a> строка <a class="el" href="lam__f2c__dtype_8h_source.html#l00014">14</a></p>
+
+</div>
+</div>
+<a id="a359cd55fbc04f915c1dfa6a3efc78e88" name="a359cd55fbc04f915c1dfa6a3efc78e88"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a359cd55fbc04f915c1dfa6a3efc78e88">&#9670;&#160;</a></span>MPI_REAL4</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPI_REAL4&#160;&#160;&#160;((<a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>) &amp;<a class="el" href="structvector.html">lam_mpi_real4</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="lam__f2c__dtype_8h_source.html">lam_f2c_dtype.h</a> строка <a class="el" href="lam__f2c__dtype_8h_source.html#l00012">12</a></p>
+
+</div>
+</div>
+<a id="a79c8249386c84bdf794b4bc2d7b36408" name="a79c8249386c84bdf794b4bc2d7b36408"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79c8249386c84bdf794b4bc2d7b36408">&#9670;&#160;</a></span>MPI_REAL8</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPI_REAL8&#160;&#160;&#160;((<a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>) &amp;<a class="el" href="structvector.html">lam_mpi_real8</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="lam__f2c__dtype_8h_source.html">lam_f2c_dtype.h</a> строка <a class="el" href="lam__f2c__dtype_8h_source.html#l00013">13</a></p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

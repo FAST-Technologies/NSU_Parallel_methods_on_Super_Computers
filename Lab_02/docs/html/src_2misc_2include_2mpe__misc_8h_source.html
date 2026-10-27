@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lab_02: MPI + OpenMP Parallel Programming: Исходный файл mpe_misc.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Lab_02: MPI + OpenMP Parallel Programming<span id="projectnumber">&#160;2.1</span>
+   </div>
+   <div id="projectbrief">Решение 3D уравнения Пуассона методом Якоби с двумерной декомпозицией</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_1f646cbbb0f6227d25dd06f792d51aba.html">mpe2-1.3.0</a></li><li class="navelem"><a class="el" href="dir_493399512d45eb30627376023737183a.html">src</a></li><li class="navelem"><a class="el" href="dir_4c40ebb1b0381ee9ce856ef0b9d6a30e.html">misc</a></li><li class="navelem"><a class="el" href="dir_2831e663119a58bd4b4b1e898dfc49dc.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">src/misc/include/mpe_misc.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="src_2misc_2include_2mpe__misc_8h.html">См. документацию.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">   (C) 2001 by Argonne National Laboratory.</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">       See COPYRIGHT in top-level directory.</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">*/</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">   MPE Miscellaneous routine headers</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">*/</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#ifndef _MPE_MISC</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#define _MPE_MISC</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#ifndef MPE_NOMPI </span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;mpi.h&quot;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#if defined(__cplusplus)</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="src_2misc_2include_2mpe__misc_8h.html#aa2d03da14493bc31de3c6e499fdd00ea">   20</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="src_2misc_2include_2mpe__misc_8h.html#aa2d03da14493bc31de3c6e499fdd00ea">MPE_Seq_begin</a> ( <a class="code hl_typedef" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>, <span class="keywordtype">int</span> );</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="src_2misc_2include_2mpe__misc_8h.html#a947cdf5405556d13bad6538e113bfd81">   21</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="src_2misc_2include_2mpe__misc_8h.html#a947cdf5405556d13bad6538e113bfd81">MPE_Seq_end</a>   ( <a class="code hl_typedef" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>, <span class="keywordtype">int</span> );</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="src_2misc_2include_2mpe__misc_8h.html#a414414dba1253b50524068b8d88ce865">   23</a></span><span class="keywordtype">int</span>  <a class="code hl_function" href="src_2misc_2include_2mpe__misc_8h.html#a414414dba1253b50524068b8d88ce865">MPE_DelTag</a>     ( <a class="code hl_typedef" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>, <span class="keywordtype">int</span>, <span class="keywordtype">void</span> *, <span class="keywordtype">void</span> * );</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="src_2misc_2include_2mpe__misc_8h.html#a30b69981780a213e14eaa2b629bde30e">   24</a></span><span class="keywordtype">int</span>  <a class="code hl_function" href="src_2misc_2include_2mpe__misc_8h.html#a30b69981780a213e14eaa2b629bde30e">MPE_GetTags</a>    ( <a class="code hl_typedef" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>, <span class="keywordtype">int</span>, <a class="code hl_typedef" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> *, <span class="keywordtype">int</span> * );</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="src_2misc_2include_2mpe__misc_8h.html#a35f6bb9e60ed74a82118282a6b3dd9c6">   25</a></span><span class="keywordtype">int</span>  <a class="code hl_function" href="src_2misc_2include_2mpe__misc_8h.html#a35f6bb9e60ed74a82118282a6b3dd9c6">MPE_ReturnTags</a> ( <a class="code hl_typedef" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>, <span class="keywordtype">int</span>, <span class="keywordtype">int</span> );</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="src_2misc_2include_2mpe__misc_8h.html#aa9932bc8aeac8ff6cfa0f16d7b1f920c">   26</a></span><span class="keywordtype">int</span>  <a class="code hl_function" href="src_2misc_2include_2mpe__misc_8h.html#aa9932bc8aeac8ff6cfa0f16d7b1f920c">MPE_TagsEnd</a>    ( <span class="keywordtype">void</span> );</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="src_2misc_2include_2mpe__misc_8h.html#ab1bc590a72cbf962914d54704333aeef">   28</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="src_2misc_2include_2mpe__misc_8h.html#ab1bc590a72cbf962914d54704333aeef">MPE_IO_Stdout_to_file</a> ( <span class="keywordtype">char</span> *, <span class="keywordtype">int</span> );</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="src_2misc_2include_2mpe__misc_8h.html#a76586d3c25c5add79732dedfa852ee38">   30</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="src_2misc_2include_2mpe__misc_8h.html#a76586d3c25c5add79732dedfa852ee38">MPE_GetHostName</a>       ( <span class="keywordtype">char</span> *, <span class="keywordtype">int</span> );</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="src_2misc_2include_2mpe__misc_8h.html#aabd328854e055ade7e2793e61be5dda6">   32</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="src_2misc_2include_2mpe__misc_8h.html#aabd328854e055ade7e2793e61be5dda6">MPE_Start_debugger</a> ( <span class="keywordtype">void</span> );</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="src_2misc_2include_2mpe__misc_8h.html#a8c9cfeeb5ba6a02b8819749cd671dc57">   33</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="src_2misc_2include_2mpe__misc_8h.html#a8c9cfeeb5ba6a02b8819749cd671dc57">MPE_Errors_call_debugger</a> ( <span class="keywordtype">char</span> *, <span class="keywordtype">char</span> *, <span class="keywordtype">char</span> ** );</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="src_2misc_2include_2mpe__misc_8h.html#af72a9bb6b3ce8f3e45d8f9a140534c3a">   34</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="src_2misc_2include_2mpe__misc_8h.html#af72a9bb6b3ce8f3e45d8f9a140534c3a">MPE_Errors_call_xdbx</a>     ( <span class="keywordtype">char</span> *, <span class="keywordtype">char</span> * );</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="src_2misc_2include_2mpe__misc_8h.html#a62b67a75fb30e70dbd597abbaf221f9a">   35</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="src_2misc_2include_2mpe__misc_8h.html#a62b67a75fb30e70dbd597abbaf221f9a">MPE_Errors_call_dbx_in_xterm</a> ( <span class="keywordtype">char</span> *, <span class="keywordtype">char</span> * );</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="src_2misc_2include_2mpe__misc_8h.html#a1156f0897c02be94fcb9b750caa20074">   36</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="src_2misc_2include_2mpe__misc_8h.html#a1156f0897c02be94fcb9b750caa20074">MPE_Signals_call_debugger</a> ( <span class="keywordtype">void</span> );</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="src_2misc_2include_2mpe__misc_8h.html#a4fa954d9e95f5f5e13648699b38b650d">   38</a></span><span class="keywordtype">int</span>  <a class="code hl_function" href="src_2misc_2include_2mpe__misc_8h.html#a4fa954d9e95f5f5e13648699b38b650d">MPE_Decomp1d</a> ( <span class="keywordtype">int</span>, <span class="keywordtype">int</span>, <span class="keywordtype">int</span>, <span class="keywordtype">int</span> *, <span class="keywordtype">int</span> * );</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="src_2misc_2include_2mpe__misc_8h.html#ae1979508ae18d30ac1bfd7fff19b26d2">   40</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="src_2misc_2include_2mpe__misc_8h.html#ae1979508ae18d30ac1bfd7fff19b26d2">MPE_Comm_global_rank</a> ( <a class="code hl_typedef" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>, <span class="keywordtype">int</span>, <span class="keywordtype">int</span> * );</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="preprocessor">#if defined(__cplusplus)</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>}</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="preprocessor">#if (defined(__STDC__) || defined(__cplusplus))</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="keywordtype">void</span> <a class="code hl_function" href="src_2misc_2include_2mpe__misc_8h.html#a0eb7c92e3a3f7b4bd36326d75aa5dedf">MPE_Errors_to_dbx</a> ( <a class="code hl_typedef" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> *, <span class="keywordtype">int</span> *, ... );</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="src_2misc_2include_2mpe__misc_8h.html#a0eb7c92e3a3f7b4bd36326d75aa5dedf">   49</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="src_2misc_2include_2mpe__misc_8h.html#a0eb7c92e3a3f7b4bd36326d75aa5dedf">MPE_Errors_to_dbx</a> ( <a class="code hl_typedef" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> *, <span class="keywordtype">int</span> *, <span class="keywordtype">char</span> *, <span class="keywordtype">char</span> *, <span class="keywordtype">int</span> * );</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="preprocessor">#if defined(__cplusplus)</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="keywordtype">void</span> <a class="code hl_function" href="src_2misc_2include_2mpe__misc_8h.html#a76586d3c25c5add79732dedfa852ee38">MPE_GetHostName</a>       ( <span class="keywordtype">char</span> *, <span class="keywordtype">int</span> );</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="preprocessor">#if defined(__cplusplus)</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>}</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="ampi__null_8h_html_a68c509d4adb3f4a1d6fe3a9b0b87c7b9"><div class="ttname"><a href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a></div><div class="ttdeci">int MPI_Comm</div><div class="ttdef"><b>Definition</b> <a href="mpi__null_8h_source.html#l00017">mpi_null.h:17</a></div></div>
+<div class="ttc" id="asrc_2misc_2include_2mpe__misc_8h_html_a0eb7c92e3a3f7b4bd36326d75aa5dedf"><div class="ttname"><a href="src_2misc_2include_2mpe__misc_8h.html#a0eb7c92e3a3f7b4bd36326d75aa5dedf">MPE_Errors_to_dbx</a></div><div class="ttdeci">void MPE_Errors_to_dbx(MPI_Comm *, int *, char *, char *, int *)</div></div>
+<div class="ttc" id="asrc_2misc_2include_2mpe__misc_8h_html_a1156f0897c02be94fcb9b750caa20074"><div class="ttname"><a href="src_2misc_2include_2mpe__misc_8h.html#a1156f0897c02be94fcb9b750caa20074">MPE_Signals_call_debugger</a></div><div class="ttdeci">void MPE_Signals_call_debugger(void)</div></div>
+<div class="ttc" id="asrc_2misc_2include_2mpe__misc_8h_html_a30b69981780a213e14eaa2b629bde30e"><div class="ttname"><a href="src_2misc_2include_2mpe__misc_8h.html#a30b69981780a213e14eaa2b629bde30e">MPE_GetTags</a></div><div class="ttdeci">int MPE_GetTags(MPI_Comm, int, MPI_Comm *, int *)</div></div>
+<div class="ttc" id="asrc_2misc_2include_2mpe__misc_8h_html_a35f6bb9e60ed74a82118282a6b3dd9c6"><div class="ttname"><a href="src_2misc_2include_2mpe__misc_8h.html#a35f6bb9e60ed74a82118282a6b3dd9c6">MPE_ReturnTags</a></div><div class="ttdeci">int MPE_ReturnTags(MPI_Comm, int, int)</div></div>
+<div class="ttc" id="asrc_2misc_2include_2mpe__misc_8h_html_a414414dba1253b50524068b8d88ce865"><div class="ttname"><a href="src_2misc_2include_2mpe__misc_8h.html#a414414dba1253b50524068b8d88ce865">MPE_DelTag</a></div><div class="ttdeci">int MPE_DelTag(MPI_Comm, int, void *, void *)</div></div>
+<div class="ttc" id="asrc_2misc_2include_2mpe__misc_8h_html_a4fa954d9e95f5f5e13648699b38b650d"><div class="ttname"><a href="src_2misc_2include_2mpe__misc_8h.html#a4fa954d9e95f5f5e13648699b38b650d">MPE_Decomp1d</a></div><div class="ttdeci">int MPE_Decomp1d(int, int, int, int *, int *)</div></div>
+<div class="ttc" id="asrc_2misc_2include_2mpe__misc_8h_html_a62b67a75fb30e70dbd597abbaf221f9a"><div class="ttname"><a href="src_2misc_2include_2mpe__misc_8h.html#a62b67a75fb30e70dbd597abbaf221f9a">MPE_Errors_call_dbx_in_xterm</a></div><div class="ttdeci">void MPE_Errors_call_dbx_in_xterm(char *, char *)</div></div>
+<div class="ttc" id="asrc_2misc_2include_2mpe__misc_8h_html_a76586d3c25c5add79732dedfa852ee38"><div class="ttname"><a href="src_2misc_2include_2mpe__misc_8h.html#a76586d3c25c5add79732dedfa852ee38">MPE_GetHostName</a></div><div class="ttdeci">void MPE_GetHostName(char *, int)</div></div>
+<div class="ttc" id="asrc_2misc_2include_2mpe__misc_8h_html_a8c9cfeeb5ba6a02b8819749cd671dc57"><div class="ttname"><a href="src_2misc_2include_2mpe__misc_8h.html#a8c9cfeeb5ba6a02b8819749cd671dc57">MPE_Errors_call_debugger</a></div><div class="ttdeci">void MPE_Errors_call_debugger(char *, char *, char **)</div></div>
+<div class="ttc" id="asrc_2misc_2include_2mpe__misc_8h_html_a947cdf5405556d13bad6538e113bfd81"><div class="ttname"><a href="src_2misc_2include_2mpe__misc_8h.html#a947cdf5405556d13bad6538e113bfd81">MPE_Seq_end</a></div><div class="ttdeci">void MPE_Seq_end(MPI_Comm, int)</div></div>
+<div class="ttc" id="asrc_2misc_2include_2mpe__misc_8h_html_aa2d03da14493bc31de3c6e499fdd00ea"><div class="ttname"><a href="src_2misc_2include_2mpe__misc_8h.html#aa2d03da14493bc31de3c6e499fdd00ea">MPE_Seq_begin</a></div><div class="ttdeci">void MPE_Seq_begin(MPI_Comm, int)</div></div>
+<div class="ttc" id="asrc_2misc_2include_2mpe__misc_8h_html_aa9932bc8aeac8ff6cfa0f16d7b1f920c"><div class="ttname"><a href="src_2misc_2include_2mpe__misc_8h.html#aa9932bc8aeac8ff6cfa0f16d7b1f920c">MPE_TagsEnd</a></div><div class="ttdeci">int MPE_TagsEnd(void)</div></div>
+<div class="ttc" id="asrc_2misc_2include_2mpe__misc_8h_html_aabd328854e055ade7e2793e61be5dda6"><div class="ttname"><a href="src_2misc_2include_2mpe__misc_8h.html#aabd328854e055ade7e2793e61be5dda6">MPE_Start_debugger</a></div><div class="ttdeci">void MPE_Start_debugger(void)</div></div>
+<div class="ttc" id="asrc_2misc_2include_2mpe__misc_8h_html_ab1bc590a72cbf962914d54704333aeef"><div class="ttname"><a href="src_2misc_2include_2mpe__misc_8h.html#ab1bc590a72cbf962914d54704333aeef">MPE_IO_Stdout_to_file</a></div><div class="ttdeci">void MPE_IO_Stdout_to_file(char *, int)</div></div>
+<div class="ttc" id="asrc_2misc_2include_2mpe__misc_8h_html_ae1979508ae18d30ac1bfd7fff19b26d2"><div class="ttname"><a href="src_2misc_2include_2mpe__misc_8h.html#ae1979508ae18d30ac1bfd7fff19b26d2">MPE_Comm_global_rank</a></div><div class="ttdeci">void MPE_Comm_global_rank(MPI_Comm, int, int *)</div></div>
+<div class="ttc" id="asrc_2misc_2include_2mpe__misc_8h_html_af72a9bb6b3ce8f3e45d8f9a140534c3a"><div class="ttname"><a href="src_2misc_2include_2mpe__misc_8h.html#af72a9bb6b3ce8f3e45d8f9a140534c3a">MPE_Errors_call_xdbx</a></div><div class="ttdeci">void MPE_Errors_call_xdbx(char *, char *)</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

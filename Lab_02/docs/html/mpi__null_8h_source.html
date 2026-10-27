@@ -1,0 +1,271 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lab_02: MPI + OpenMP Parallel Programming: Исходный файл mpi_null.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Lab_02: MPI + OpenMP Parallel Programming<span id="projectnumber">&#160;2.1</span>
+   </div>
+   <div id="projectbrief">Решение 3D уравнения Пуассона методом Якоби с двумерной декомпозицией</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_1f646cbbb0f6227d25dd06f792d51aba.html">mpe2-1.3.0</a></li><li class="navelem"><a class="el" href="dir_493399512d45eb30627376023737183a.html">src</a></li><li class="navelem"><a class="el" href="dir_4dd21a1309df0d73c93832f59c814642.html">logging</a></li><li class="navelem"><a class="el" href="dir_d1e3342e2909ab46223a280715173519.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">mpi_null.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="mpi__null_8h.html">См. документацию.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">   (C) 2007 by Argonne National Laboratory.</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">       See COPYRIGHT in top-level directory.</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">*/</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#if !defined( _MPI_NULL )</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#define _MPI_NULL</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">   A Serial MPI implementation for non-MPI program.</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">*/</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">/* Keep C++ compilers from getting confused */</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#if defined(__cplusplus)</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#if !defined( _MPI_NULL_MPI_COMM )</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#a0fbe8ff99a24dc3156038ec99babadca">   16</a></span><span class="preprocessor">#define _MPI_NULL_MPI_COMM</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">   17</a></span><span class="keyword">typedef</span> <span class="keywordtype">int</span>  <a class="code hl_typedef" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#a117133520e81a669c853602ac650d9d4">   19</a></span><span class="preprocessor">#define MPI_COMM_NULL  ((MPI_Comm)-1)</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#a2df6a15627583d5e6f5a48550644cbef">   20</a></span><span class="preprocessor">#define MPI_COMM_WORLD ((MPI_Comm)0)</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#a5dcc99c598f5bd6968077f68dea4376e">   21</a></span><span class="preprocessor">#define MPI_COMM_SELF  ((MPI_Comm)1)</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#a140317d69b8ee525dac53ba137518c16">   23</a></span><span class="keyword">typedef</span> <a class="code hl_struct" href="structvector.html">int</a> (<a class="code hl_typedef" href="mpi__null_8h.html#a140317d69b8ee525dac53ba137518c16">MPI_Comm_copy_attr_function</a>)(<a class="code hl_typedef" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>, <a class="code hl_struct" href="structvector.html">int</a>, <span class="keywordtype">void</span> *, <span class="keywordtype">void</span> *,</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>                                          <span class="keywordtype">void</span> *, <span class="keywordtype">int</span> *);</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#ab417c4c4d0cc0566dd11a9e62a73fcb5">   25</a></span><span class="preprocessor">#define MPI_COMM_NULL_COPY_FN ((MPI_Comm_copy_attr_function*)0)</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#a7ae066fe34c84f0ab11afd9cb86453f0">   27</a></span><span class="keyword">typedef</span> <a class="code hl_struct" href="structvector.html">int</a> (<a class="code hl_typedef" href="mpi__null_8h.html#a7ae066fe34c84f0ab11afd9cb86453f0">MPI_Comm_delete_attr_function</a>)(<a class="code hl_typedef" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>, <a class="code hl_struct" href="structvector.html">int</a>, <span class="keywordtype">void</span> *, <span class="keywordtype">void</span> *);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#ac7c07d0c6620cfaaf856bf2607a614e4">   28</a></span><span class="preprocessor">#define MPI_COMM_NULL_DELETE_FN ((MPI_Comm_delete_attr_function*)0)</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="comment">/* A convenient trick to account for total message size in send/recv */</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">   31</a></span><span class="keyword">typedef</span> <span class="keywordtype">int</span> <a class="code hl_typedef" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#ac521acab90e22ecd11466d7229986673">   32</a></span><span class="preprocessor">#define MPI_CHAR           ((MPI_Datatype)sizeof(char))</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#a5b3d59a5aa038a03f5fee91c426476b9">   33</a></span><span class="preprocessor">#define MPI_BYTE           ((MPI_Datatype)sizeof(char))</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#a43ed7cd86d20f84db849adc64a09415e">   34</a></span><span class="preprocessor">#define MPI_INT            ((MPI_Datatype)sizeof(int))</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#aafd1dc0086079e7904385538c54c9c8f">   35</a></span><span class="preprocessor">#define MPI_DOUBLE         ((MPI_Datatype)sizeof(double))</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="foldopen" id="foldopen00037" data-start="{" data-end="};">
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="structMPI__Status.html">   37</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="structMPI__Status.html">MPI_Status</a> {</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="structMPI__Status.html#a154d105445739f62df578e53b57e0694">   38</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structMPI__Status.html#a154d105445739f62df578e53b57e0694">count</a>;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="structMPI__Status.html#a2b2b28741eef5c194841b68de319a87c">   39</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structMPI__Status.html#a2b2b28741eef5c194841b68de319a87c">cancelled</a>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="structMPI__Status.html#a5a9ed93298f353e13b4fe54c0180a093">   40</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structMPI__Status.html#a5a9ed93298f353e13b4fe54c0180a093">MPI_SOURCE</a>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="structMPI__Status.html#a802d7747d959b9c4c74775890bfa5f5f">   41</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structMPI__Status.html#a802d7747d959b9c4c74775890bfa5f5f">MPI_TAG</a>;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="structMPI__Status.html#af47ff857f69306da38d146e018f7ea2d">   42</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structMPI__Status.html#af47ff857f69306da38d146e018f7ea2d">MPI_ERROR</a>;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#ae09feb8ce97721832de670a05b2788fe">   43</a></span>} <a class="code hl_struct" href="structMPI__Status.html">MPI_Status</a>;</div>
+</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#a240e9d13a157e03c75e42306b13cd8d8">   45</a></span><span class="keyword">typedef</span> <span class="keywordtype">int</span> <a class="code hl_typedef" href="mpi__null_8h.html#a240e9d13a157e03c75e42306b13cd8d8">MPI_Request</a>;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#a1e6360539c256e76b432da612d0ec399">   47</a></span><span class="keyword">typedef</span> <span class="keywordtype">int</span> <a class="code hl_typedef" href="mpi__null_8h.html#a1e6360539c256e76b432da612d0ec399">MPI_Op</a>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#a80d80987b473f4a13b0cc0384eddb51b">   48</a></span><span class="preprocessor">#define MPI_MAX     (MPI_Op)(0x58000001)</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#aa2fecfa16d35e8fa3894c512a527b73f">   49</a></span><span class="preprocessor">#define MPI_MIN     (MPI_Op)(0x58000002)</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#aa058ba472f0fd41ae860caeaebca0166">   50</a></span><span class="preprocessor">#define MPI_SUM     (MPI_Op)(0x58000003)</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="mpi__null_8h.html#aa99e6f32d5d7b21bb515e7076e2b4d10">MPI_WTIME_IS_GLOBAL</a>;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="comment">/* Pre-defined constants */</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#aff6b3ceb2c22396e5eab7f509b3da0dc">   54</a></span><span class="preprocessor">#define MPI_UNDEFINED      (-32766)</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#aefb24270fcb1c3bc46c8c988100c5476">   55</a></span><span class="preprocessor">#define MPI_KEYVAL_INVALID 0x24000000</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#a32c2e019a42e9bfc9db6f8d9cf6adb4e">   56</a></span><span class="preprocessor">#define MPI_MAX_PROCESSOR_NAME 128</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#a62f1a2971d72ca736c9997d98568ff73">   58</a></span><span class="preprocessor">#define MPI_PROC_NULL   (-1)</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#aad01846ca8da972658f74b9affe1d5e8">   59</a></span><span class="preprocessor">#define MPI_ANY_SOURCE  (-2)</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#a62cbfaf451bca1210033e31e37b2131c">   60</a></span><span class="preprocessor">#define MPI_ROOT        (-3)</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#a89445dffa33bb6aea4d49bab508a3d30">   61</a></span><span class="preprocessor">#define MPI_ANY_TAG     (-1)</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="comment">/* MPI&#39;s error classes */</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#a004dd3ebf764c8c42e600ae5513e4dbc">   64</a></span><span class="preprocessor">#define MPI_SUCCESS          0      </span><span class="comment">/* Successful return code */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#a1098aaeb70e1841dc783b07663800b18">   65</a></span><span class="preprocessor">#define MPI_ERR_COMM         5      </span><span class="comment">/* Invalid communicator */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#a18a3019568becd9f79fb05a093d3c56c">   66</a></span><span class="preprocessor">#define MPI_ERR_INTERN      16      </span><span class="comment">/* Internal error code    */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#ab57c1ad50678be0c518a0adbdb595671">   67</a></span><span class="preprocessor">#define MPI_ERR_NO_MEM      34</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#a52159c469e9e6061d434ff8091dee69d">   68</a></span><span class="preprocessor">#define MPI_ERR_KEYVAL      48      </span><span class="comment">/* Erroneous attribute key */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#ad51db1f8a017ca850d160a6799fc147f">   70</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="mpi__null_8h.html#ad51db1f8a017ca850d160a6799fc147f">PMPI_Init</a>( <span class="keywordtype">int</span> *<a class="code hl_struct" href="structvector.html">argc</a>, <span class="keywordtype">char</span> ***<a class="code hl_struct" href="structvector.html">argv</a> );</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#a67751aa6bfb9b8eaac1de8ef3d8b33a0">   72</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="mpi__null_8h.html#a67751aa6bfb9b8eaac1de8ef3d8b33a0">PMPI_Finalize</a>( <span class="keywordtype">void</span> );</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#ae35d2ae286ce7a9ffd5113b721794f34">   74</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="mpi__null_8h.html#ae35d2ae286ce7a9ffd5113b721794f34">PMPI_Abort</a>( <a class="code hl_typedef" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm, <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">errorcode</a> );</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#a77e8a6e8948a096f4a9c7d4f6c0684c6">   76</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="mpi__null_8h.html#a77e8a6e8948a096f4a9c7d4f6c0684c6">PMPI_Initialized</a>( <span class="keywordtype">int</span> *<a class="code hl_struct" href="structvector.html">flag</a> );</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#a09816dd0fa54b5d80c0590444ffcf0b0">   78</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="mpi__null_8h.html#a09816dd0fa54b5d80c0590444ffcf0b0">PMPI_Get_processor_name</a>( <span class="keywordtype">char</span> *name, <span class="keywordtype">int</span> *<a class="code hl_struct" href="structvector.html">resultlen</a> );</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#ad520837f304bcd350b96d8e9372b52d6">   80</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="mpi__null_8h.html#ad520837f304bcd350b96d8e9372b52d6">PMPI_Comm_size</a>( <a class="code hl_typedef" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm, <span class="keywordtype">int</span> *size );</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#ac9ab6df872273b2d974b41d12f8aeff5">   82</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="mpi__null_8h.html#ac9ab6df872273b2d974b41d12f8aeff5">PMPI_Comm_rank</a>( <a class="code hl_typedef" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm, <span class="keywordtype">int</span> *rank );</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#a671325cd18c88b4b618673120654926e">   84</a></span><span class="keywordtype">double</span> <a class="code hl_function" href="mpi__null_8h.html#a671325cd18c88b4b618673120654926e">PMPI_Wtime</a>( <span class="keywordtype">void</span> );</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#a3a2898d434439a818e5f47174f4a0404">   86</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="mpi__null_8h.html#a3a2898d434439a818e5f47174f4a0404">PMPI_Comm_create_keyval</a>( <a class="code hl_typedef" href="mpi__null_8h.html#a140317d69b8ee525dac53ba137518c16">MPI_Comm_copy_attr_function</a> *<a class="code hl_struct" href="structvector.html">comm_copy_attr_fn</a>,</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>                             <a class="code hl_typedef" href="mpi__null_8h.html#a7ae066fe34c84f0ab11afd9cb86453f0">MPI_Comm_delete_attr_function</a> *<a class="code hl_struct" href="structvector.html">comm_delete_attr_fn</a>,</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>                             <span class="keywordtype">int</span> *<a class="code hl_struct" href="structvector.html">comm_keyval</a>, <span class="keywordtype">void</span> *<a class="code hl_struct" href="structvector.html">extra_state</a> );</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#a581c1ec066b4678311ee1554ce09d2c7">   90</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="mpi__null_8h.html#a581c1ec066b4678311ee1554ce09d2c7">PMPI_Comm_free_keyval</a>( <span class="keywordtype">int</span> *<a class="code hl_struct" href="structvector.html">comm_keyval</a> );</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#a4414a75465a6666a614d4f2cc6aadd77">   92</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="mpi__null_8h.html#a4414a75465a6666a614d4f2cc6aadd77">PMPI_Comm_set_attr</a>( <a class="code hl_typedef" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm, <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">comm_keyval</a>,</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>                        <span class="keywordtype">void</span> *<a class="code hl_struct" href="structvector.html">attribute_val</a> );</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#adaceb50f8ec7f1951191045b8cc9009c">   95</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="mpi__null_8h.html#adaceb50f8ec7f1951191045b8cc9009c">PMPI_Comm_get_attr</a>( <a class="code hl_typedef" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm, <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">comm_keyval</a>,</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>                        <span class="keywordtype">void</span> *<a class="code hl_struct" href="structvector.html">attribute_val</a>, <span class="keywordtype">int</span> *<a class="code hl_struct" href="structvector.html">flag</a> );</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#a04786ed5fd569fc589f50f74bd8d8c23">   98</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="mpi__null_8h.html#a04786ed5fd569fc589f50f74bd8d8c23">PMPI_Comm_test_inter</a>( <a class="code hl_typedef" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm, <span class="keywordtype">int</span> *<a class="code hl_struct" href="structvector.html">flag</a> );</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#a614a43579a54db91c4447ad8b040c08f">  100</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="mpi__null_8h.html#a614a43579a54db91c4447ad8b040c08f">PMPI_Ssend</a>( <span class="keywordtype">void</span> *buf, <span class="keywordtype">int</span> count, <a class="code hl_struct" href="structvector.html">MPI_Datatype</a> <a class="code hl_struct" href="structvector.html">datatype</a>, <span class="keywordtype">int</span> dest,</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>                <span class="keywordtype">int</span> tag, <a class="code hl_typedef" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm );</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#abbdb434f1c6e67b292b5c0dcf7e614e4">  103</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="mpi__null_8h.html#abbdb434f1c6e67b292b5c0dcf7e614e4">PMPI_Send</a>( <span class="keywordtype">void</span> *buf, <span class="keywordtype">int</span> count, <a class="code hl_struct" href="structvector.html">MPI_Datatype</a> <a class="code hl_struct" href="structvector.html">datatype</a>, <span class="keywordtype">int</span> dest,</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>               <span class="keywordtype">int</span> tag, <a class="code hl_typedef" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm );</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#a7fa896a6bf85cad8df9b7f1cb1537c94">  106</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="mpi__null_8h.html#a7fa896a6bf85cad8df9b7f1cb1537c94">PMPI_Recv</a>( <span class="keywordtype">void</span> *buf, <span class="keywordtype">int</span> count, <a class="code hl_struct" href="structvector.html">MPI_Datatype</a> <a class="code hl_struct" href="structvector.html">datatype</a>, <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">source</a>,</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>               <span class="keywordtype">int</span> tag, <a class="code hl_typedef" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm, <a class="code hl_struct" href="structMPI__Status.html">MPI_Status</a> *status );</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#abf9edfe4317d5d39dc4dfca3d818e258">  109</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="mpi__null_8h.html#abf9edfe4317d5d39dc4dfca3d818e258">PMPI_Irecv</a>( <span class="keywordtype">void</span> *buf, <span class="keywordtype">int</span> count, <a class="code hl_struct" href="structvector.html">MPI_Datatype</a> <a class="code hl_struct" href="structvector.html">datatype</a>, <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">source</a>,</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>                <span class="keywordtype">int</span> tag, <a class="code hl_typedef" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm, <a class="code hl_struct" href="structvector.html">MPI_Request</a> *request );</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#a3306a2e5f7ef80294879684f1aa76ba5">  112</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="mpi__null_8h.html#a3306a2e5f7ef80294879684f1aa76ba5">PMPI_Wait</a>( <a class="code hl_struct" href="structvector.html">MPI_Request</a> *request, <a class="code hl_struct" href="structMPI__Status.html">MPI_Status</a> *status );</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#ab62cb3935052cfb05b7666c0e4af47d1">  114</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="mpi__null_8h.html#ab62cb3935052cfb05b7666c0e4af47d1">PMPI_Get_count</a>( <a class="code hl_struct" href="structMPI__Status.html">MPI_Status</a> *status,  <a class="code hl_struct" href="structvector.html">MPI_Datatype</a> <a class="code hl_struct" href="structvector.html">datatype</a>, <span class="keywordtype">int</span> *count );</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#ae480e4208055eb81af0d9c7e9902d3f7">  116</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="mpi__null_8h.html#ae480e4208055eb81af0d9c7e9902d3f7">PMPI_Barrier</a>( <a class="code hl_typedef" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm );</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#aabaf1799037783a2ce5799d61e809641">  118</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="mpi__null_8h.html#aabaf1799037783a2ce5799d61e809641">PMPI_Bcast</a>( <span class="keywordtype">void</span> *buffer, <span class="keywordtype">int</span> count, <a class="code hl_struct" href="structvector.html">MPI_Datatype</a> <a class="code hl_struct" href="structvector.html">datatype</a>,</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>                <span class="keywordtype">int</span> root, <a class="code hl_typedef" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm );</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#a9d463b0c88410bf7a868254fa3745417">  121</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="mpi__null_8h.html#a9d463b0c88410bf7a868254fa3745417">PMPI_Scan</a>( <span class="keywordtype">void</span> *<a class="code hl_struct" href="structvector.html">sendbuf</a>, <span class="keywordtype">void</span> *<a class="code hl_struct" href="structvector.html">recvbuf</a>, <span class="keywordtype">int</span> count, <a class="code hl_struct" href="structvector.html">MPI_Datatype</a> <a class="code hl_struct" href="structvector.html">datatype</a>,</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>               <a class="code hl_struct" href="structvector.html">MPI_Op</a> <a class="code hl_struct" href="structvector.html">op</a>, <a class="code hl_typedef" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm );</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#ab9f876e99a72891fccefa51f006bd1a9">  124</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="mpi__null_8h.html#ab9f876e99a72891fccefa51f006bd1a9">PMPI_Scatter</a>( <span class="keywordtype">void</span> *<a class="code hl_struct" href="structvector.html">sendbuf</a>, <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">sendcnt</a>, <a class="code hl_struct" href="structvector.html">MPI_Datatype</a> <a class="code hl_struct" href="structvector.html">sendtype</a>,</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>                  <span class="keywordtype">void</span> *<a class="code hl_struct" href="structvector.html">recvbuf</a>, <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">recvcnt</a>, <a class="code hl_struct" href="structvector.html">MPI_Datatype</a> <a class="code hl_struct" href="structvector.html">recvtype</a>,</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>                  <span class="keywordtype">int</span> root, <a class="code hl_typedef" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm );</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#a8615a0822815284bb03a0cda00323129">  128</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="mpi__null_8h.html#a8615a0822815284bb03a0cda00323129">PMPI_Gather</a>( <span class="keywordtype">void</span> *<a class="code hl_struct" href="structvector.html">sendbuf</a>, <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">sendcnt</a>, <a class="code hl_struct" href="structvector.html">MPI_Datatype</a> <a class="code hl_struct" href="structvector.html">sendtype</a>,</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>                 <span class="keywordtype">void</span> *<a class="code hl_struct" href="structvector.html">recvbuf</a>, <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">recvcnt</a>, <a class="code hl_struct" href="structvector.html">MPI_Datatype</a> <a class="code hl_struct" href="structvector.html">recvtype</a>,</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>                 <span class="keywordtype">int</span> root, <a class="code hl_typedef" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm );</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno"><a class="line" href="mpi__null_8h.html#abbe29ef9f63f3115f96023a92cffb218">  132</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="mpi__null_8h.html#abbe29ef9f63f3115f96023a92cffb218">PMPI_Allreduce</a>( <span class="keywordtype">void</span> *<a class="code hl_struct" href="structvector.html">sendbuf</a>, <span class="keywordtype">void</span> *<a class="code hl_struct" href="structvector.html">recvbuf</a>, <span class="keywordtype">int</span> count,</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>                    <a class="code hl_struct" href="structvector.html">MPI_Datatype</a> <a class="code hl_struct" href="structvector.html">datatype</a>, <a class="code hl_struct" href="structvector.html">MPI_Op</a> <a class="code hl_struct" href="structvector.html">op</a>, <a class="code hl_typedef" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm );</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span><span class="preprocessor">#if defined(__cplusplus)</span></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>}</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> </div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span><span class="preprocessor">#endif </span><span class="comment">/* of _MPI_NULL */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="ampi__null_8h_html_a04786ed5fd569fc589f50f74bd8d8c23"><div class="ttname"><a href="mpi__null_8h.html#a04786ed5fd569fc589f50f74bd8d8c23">PMPI_Comm_test_inter</a></div><div class="ttdeci">int PMPI_Comm_test_inter(MPI_Comm comm, int *flag)</div></div>
+<div class="ttc" id="ampi__null_8h_html_a09816dd0fa54b5d80c0590444ffcf0b0"><div class="ttname"><a href="mpi__null_8h.html#a09816dd0fa54b5d80c0590444ffcf0b0">PMPI_Get_processor_name</a></div><div class="ttdeci">int PMPI_Get_processor_name(char *name, int *resultlen)</div></div>
+<div class="ttc" id="ampi__null_8h_html_a140317d69b8ee525dac53ba137518c16"><div class="ttname"><a href="mpi__null_8h.html#a140317d69b8ee525dac53ba137518c16">MPI_Comm_copy_attr_function</a></div><div class="ttdeci">int() MPI_Comm_copy_attr_function(MPI_Comm, int, void *, void *, void *, int *)</div><div class="ttdef"><b>Definition</b> <a href="mpi__null_8h_source.html#l00023">mpi_null.h:23</a></div></div>
+<div class="ttc" id="ampi__null_8h_html_a1e6360539c256e76b432da612d0ec399"><div class="ttname"><a href="mpi__null_8h.html#a1e6360539c256e76b432da612d0ec399">MPI_Op</a></div><div class="ttdeci">int MPI_Op</div><div class="ttdef"><b>Definition</b> <a href="mpi__null_8h_source.html#l00047">mpi_null.h:47</a></div></div>
+<div class="ttc" id="ampi__null_8h_html_a240e9d13a157e03c75e42306b13cd8d8"><div class="ttname"><a href="mpi__null_8h.html#a240e9d13a157e03c75e42306b13cd8d8">MPI_Request</a></div><div class="ttdeci">int MPI_Request</div><div class="ttdef"><b>Definition</b> <a href="mpi__null_8h_source.html#l00045">mpi_null.h:45</a></div></div>
+<div class="ttc" id="ampi__null_8h_html_a3306a2e5f7ef80294879684f1aa76ba5"><div class="ttname"><a href="mpi__null_8h.html#a3306a2e5f7ef80294879684f1aa76ba5">PMPI_Wait</a></div><div class="ttdeci">int PMPI_Wait(MPI_Request *request, MPI_Status *status)</div></div>
+<div class="ttc" id="ampi__null_8h_html_a3a2898d434439a818e5f47174f4a0404"><div class="ttname"><a href="mpi__null_8h.html#a3a2898d434439a818e5f47174f4a0404">PMPI_Comm_create_keyval</a></div><div class="ttdeci">int PMPI_Comm_create_keyval(MPI_Comm_copy_attr_function *comm_copy_attr_fn, MPI_Comm_delete_attr_function *comm_delete_attr_fn, int *comm_keyval, void *extra_state)</div></div>
+<div class="ttc" id="ampi__null_8h_html_a4414a75465a6666a614d4f2cc6aadd77"><div class="ttname"><a href="mpi__null_8h.html#a4414a75465a6666a614d4f2cc6aadd77">PMPI_Comm_set_attr</a></div><div class="ttdeci">int PMPI_Comm_set_attr(MPI_Comm comm, int comm_keyval, void *attribute_val)</div></div>
+<div class="ttc" id="ampi__null_8h_html_a581c1ec066b4678311ee1554ce09d2c7"><div class="ttname"><a href="mpi__null_8h.html#a581c1ec066b4678311ee1554ce09d2c7">PMPI_Comm_free_keyval</a></div><div class="ttdeci">int PMPI_Comm_free_keyval(int *comm_keyval)</div></div>
+<div class="ttc" id="ampi__null_8h_html_a614a43579a54db91c4447ad8b040c08f"><div class="ttname"><a href="mpi__null_8h.html#a614a43579a54db91c4447ad8b040c08f">PMPI_Ssend</a></div><div class="ttdeci">int PMPI_Ssend(void *buf, int count, MPI_Datatype datatype, int dest, int tag, MPI_Comm comm)</div></div>
+<div class="ttc" id="ampi__null_8h_html_a671325cd18c88b4b618673120654926e"><div class="ttname"><a href="mpi__null_8h.html#a671325cd18c88b4b618673120654926e">PMPI_Wtime</a></div><div class="ttdeci">double PMPI_Wtime(void)</div></div>
+<div class="ttc" id="ampi__null_8h_html_a67751aa6bfb9b8eaac1de8ef3d8b33a0"><div class="ttname"><a href="mpi__null_8h.html#a67751aa6bfb9b8eaac1de8ef3d8b33a0">PMPI_Finalize</a></div><div class="ttdeci">int PMPI_Finalize(void)</div></div>
+<div class="ttc" id="ampi__null_8h_html_a68c509d4adb3f4a1d6fe3a9b0b87c7b9"><div class="ttname"><a href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a></div><div class="ttdeci">int MPI_Comm</div><div class="ttdef"><b>Definition</b> <a href="mpi__null_8h_source.html#l00017">mpi_null.h:17</a></div></div>
+<div class="ttc" id="ampi__null_8h_html_a77e8a6e8948a096f4a9c7d4f6c0684c6"><div class="ttname"><a href="mpi__null_8h.html#a77e8a6e8948a096f4a9c7d4f6c0684c6">PMPI_Initialized</a></div><div class="ttdeci">int PMPI_Initialized(int *flag)</div></div>
+<div class="ttc" id="ampi__null_8h_html_a7ae066fe34c84f0ab11afd9cb86453f0"><div class="ttname"><a href="mpi__null_8h.html#a7ae066fe34c84f0ab11afd9cb86453f0">MPI_Comm_delete_attr_function</a></div><div class="ttdeci">int() MPI_Comm_delete_attr_function(MPI_Comm, int, void *, void *)</div><div class="ttdef"><b>Definition</b> <a href="mpi__null_8h_source.html#l00027">mpi_null.h:27</a></div></div>
+<div class="ttc" id="ampi__null_8h_html_a7fa896a6bf85cad8df9b7f1cb1537c94"><div class="ttname"><a href="mpi__null_8h.html#a7fa896a6bf85cad8df9b7f1cb1537c94">PMPI_Recv</a></div><div class="ttdeci">int PMPI_Recv(void *buf, int count, MPI_Datatype datatype, int source, int tag, MPI_Comm comm, MPI_Status *status)</div></div>
+<div class="ttc" id="ampi__null_8h_html_a8615a0822815284bb03a0cda00323129"><div class="ttname"><a href="mpi__null_8h.html#a8615a0822815284bb03a0cda00323129">PMPI_Gather</a></div><div class="ttdeci">int PMPI_Gather(void *sendbuf, int sendcnt, MPI_Datatype sendtype, void *recvbuf, int recvcnt, MPI_Datatype recvtype, int root, MPI_Comm comm)</div></div>
+<div class="ttc" id="ampi__null_8h_html_a9d463b0c88410bf7a868254fa3745417"><div class="ttname"><a href="mpi__null_8h.html#a9d463b0c88410bf7a868254fa3745417">PMPI_Scan</a></div><div class="ttdeci">int PMPI_Scan(void *sendbuf, void *recvbuf, int count, MPI_Datatype datatype, MPI_Op op, MPI_Comm comm)</div></div>
+<div class="ttc" id="ampi__null_8h_html_aa99e6f32d5d7b21bb515e7076e2b4d10"><div class="ttname"><a href="mpi__null_8h.html#aa99e6f32d5d7b21bb515e7076e2b4d10">MPI_WTIME_IS_GLOBAL</a></div><div class="ttdeci">int MPI_WTIME_IS_GLOBAL</div></div>
+<div class="ttc" id="ampi__null_8h_html_aabaf1799037783a2ce5799d61e809641"><div class="ttname"><a href="mpi__null_8h.html#aabaf1799037783a2ce5799d61e809641">PMPI_Bcast</a></div><div class="ttdeci">int PMPI_Bcast(void *buffer, int count, MPI_Datatype datatype, int root, MPI_Comm comm)</div></div>
+<div class="ttc" id="ampi__null_8h_html_ab62cb3935052cfb05b7666c0e4af47d1"><div class="ttname"><a href="mpi__null_8h.html#ab62cb3935052cfb05b7666c0e4af47d1">PMPI_Get_count</a></div><div class="ttdeci">int PMPI_Get_count(MPI_Status *status, MPI_Datatype datatype, int *count)</div></div>
+<div class="ttc" id="ampi__null_8h_html_ab9f876e99a72891fccefa51f006bd1a9"><div class="ttname"><a href="mpi__null_8h.html#ab9f876e99a72891fccefa51f006bd1a9">PMPI_Scatter</a></div><div class="ttdeci">int PMPI_Scatter(void *sendbuf, int sendcnt, MPI_Datatype sendtype, void *recvbuf, int recvcnt, MPI_Datatype recvtype, int root, MPI_Comm comm)</div></div>
+<div class="ttc" id="ampi__null_8h_html_abbdb434f1c6e67b292b5c0dcf7e614e4"><div class="ttname"><a href="mpi__null_8h.html#abbdb434f1c6e67b292b5c0dcf7e614e4">PMPI_Send</a></div><div class="ttdeci">int PMPI_Send(void *buf, int count, MPI_Datatype datatype, int dest, int tag, MPI_Comm comm)</div></div>
+<div class="ttc" id="ampi__null_8h_html_abbe29ef9f63f3115f96023a92cffb218"><div class="ttname"><a href="mpi__null_8h.html#abbe29ef9f63f3115f96023a92cffb218">PMPI_Allreduce</a></div><div class="ttdeci">int PMPI_Allreduce(void *sendbuf, void *recvbuf, int count, MPI_Datatype datatype, MPI_Op op, MPI_Comm comm)</div></div>
+<div class="ttc" id="ampi__null_8h_html_abf9edfe4317d5d39dc4dfca3d818e258"><div class="ttname"><a href="mpi__null_8h.html#abf9edfe4317d5d39dc4dfca3d818e258">PMPI_Irecv</a></div><div class="ttdeci">int PMPI_Irecv(void *buf, int count, MPI_Datatype datatype, int source, int tag, MPI_Comm comm, MPI_Request *request)</div></div>
+<div class="ttc" id="ampi__null_8h_html_ac9ab6df872273b2d974b41d12f8aeff5"><div class="ttname"><a href="mpi__null_8h.html#ac9ab6df872273b2d974b41d12f8aeff5">PMPI_Comm_rank</a></div><div class="ttdeci">int PMPI_Comm_rank(MPI_Comm comm, int *rank)</div></div>
+<div class="ttc" id="ampi__null_8h_html_ad51db1f8a017ca850d160a6799fc147f"><div class="ttname"><a href="mpi__null_8h.html#ad51db1f8a017ca850d160a6799fc147f">PMPI_Init</a></div><div class="ttdeci">int PMPI_Init(int *argc, char ***argv)</div></div>
+<div class="ttc" id="ampi__null_8h_html_ad520837f304bcd350b96d8e9372b52d6"><div class="ttname"><a href="mpi__null_8h.html#ad520837f304bcd350b96d8e9372b52d6">PMPI_Comm_size</a></div><div class="ttdeci">int PMPI_Comm_size(MPI_Comm comm, int *size)</div></div>
+<div class="ttc" id="ampi__null_8h_html_adaceb50f8ec7f1951191045b8cc9009c"><div class="ttname"><a href="mpi__null_8h.html#adaceb50f8ec7f1951191045b8cc9009c">PMPI_Comm_get_attr</a></div><div class="ttdeci">int PMPI_Comm_get_attr(MPI_Comm comm, int comm_keyval, void *attribute_val, int *flag)</div></div>
+<div class="ttc" id="ampi__null_8h_html_ae35d2ae286ce7a9ffd5113b721794f34"><div class="ttname"><a href="mpi__null_8h.html#ae35d2ae286ce7a9ffd5113b721794f34">PMPI_Abort</a></div><div class="ttdeci">int PMPI_Abort(MPI_Comm comm, int errorcode)</div></div>
+<div class="ttc" id="ampi__null_8h_html_ae480e4208055eb81af0d9c7e9902d3f7"><div class="ttname"><a href="mpi__null_8h.html#ae480e4208055eb81af0d9c7e9902d3f7">PMPI_Barrier</a></div><div class="ttdeci">int PMPI_Barrier(MPI_Comm comm)</div></div>
+<div class="ttc" id="ampi__null_8h_html_affc17fe964f9f670fb06e09d6134b4ff"><div class="ttname"><a href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a></div><div class="ttdeci">int MPI_Datatype</div><div class="ttdef"><b>Definition</b> <a href="mpi__null_8h_source.html#l00031">mpi_null.h:31</a></div></div>
+<div class="ttc" id="astructMPI__Status_html"><div class="ttname"><a href="structMPI__Status.html">MPI_Status</a></div><div class="ttdef"><b>Definition</b> <a href="mpi__null_8h_source.html#l00037">mpi_null.h:37</a></div></div>
+<div class="ttc" id="astructMPI__Status_html_a154d105445739f62df578e53b57e0694"><div class="ttname"><a href="structMPI__Status.html#a154d105445739f62df578e53b57e0694">MPI_Status::count</a></div><div class="ttdeci">int count</div><div class="ttdef"><b>Definition</b> <a href="mpi__null_8h_source.html#l00038">mpi_null.h:38</a></div></div>
+<div class="ttc" id="astructMPI__Status_html_a2b2b28741eef5c194841b68de319a87c"><div class="ttname"><a href="structMPI__Status.html#a2b2b28741eef5c194841b68de319a87c">MPI_Status::cancelled</a></div><div class="ttdeci">int cancelled</div><div class="ttdef"><b>Definition</b> <a href="mpi__null_8h_source.html#l00039">mpi_null.h:39</a></div></div>
+<div class="ttc" id="astructMPI__Status_html_a5a9ed93298f353e13b4fe54c0180a093"><div class="ttname"><a href="structMPI__Status.html#a5a9ed93298f353e13b4fe54c0180a093">MPI_Status::MPI_SOURCE</a></div><div class="ttdeci">int MPI_SOURCE</div><div class="ttdef"><b>Definition</b> <a href="mpi__null_8h_source.html#l00040">mpi_null.h:40</a></div></div>
+<div class="ttc" id="astructMPI__Status_html_a802d7747d959b9c4c74775890bfa5f5f"><div class="ttname"><a href="structMPI__Status.html#a802d7747d959b9c4c74775890bfa5f5f">MPI_Status::MPI_TAG</a></div><div class="ttdeci">int MPI_TAG</div><div class="ttdef"><b>Definition</b> <a href="mpi__null_8h_source.html#l00041">mpi_null.h:41</a></div></div>
+<div class="ttc" id="astructMPI__Status_html_af47ff857f69306da38d146e018f7ea2d"><div class="ttname"><a href="structMPI__Status.html#af47ff857f69306da38d146e018f7ea2d">MPI_Status::MPI_ERROR</a></div><div class="ttdeci">int MPI_ERROR</div><div class="ttdef"><b>Definition</b> <a href="mpi__null_8h_source.html#l00042">mpi_null.h:42</a></div></div>
+<div class="ttc" id="astructvector_html"><div class="ttname"><a href="structvector.html">vector</a></div><div class="ttdef"><b>Definition</b> <a href="point_8h_source.html#l00012">point.h:12</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

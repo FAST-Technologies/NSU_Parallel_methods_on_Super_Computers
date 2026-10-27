@@ -1,0 +1,224 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lab_02: MPI + OpenMP Parallel Programming: Структура CLOG_Sync_t</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Lab_02: MPI + OpenMP Parallel Programming<span id="projectnumber">&#160;2.1</span>
+   </div>
+   <div id="projectbrief">Решение 3D уравнения Пуассона методом Якоби с двумерной декомпозицией</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-attribs">Открытые атрибуты</a> &#124;
+<a href="structCLOG__Sync__t-members.html">Полный список членов класса</a>  </div>
+  <div class="headertitle"><div class="title">Структура CLOG_Sync_t</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="clog__sync_8h_source.html">clog_sync.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Открытые атрибуты</h2></td></tr>
+<tr class="memitem:a24bfda058f285a35f3fb3d8b11201063" id="r_a24bfda058f285a35f3fb3d8b11201063"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCLOG__Sync__t.html#a24bfda058f285a35f3fb3d8b11201063">is_ok_to_sync</a></td></tr>
+<tr class="separator:a24bfda058f285a35f3fb3d8b11201063"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2cf594cd6e8a5e1965f51d93a0696bb5" id="r_a2cf594cd6e8a5e1965f51d93a0696bb5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCLOG__Sync__t.html#a2cf594cd6e8a5e1965f51d93a0696bb5">root</a></td></tr>
+<tr class="separator:a2cf594cd6e8a5e1965f51d93a0696bb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16dba4ee7ec2ac484c9d7a3878189f6c" id="r_a16dba4ee7ec2ac484c9d7a3878189f6c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCLOG__Sync__t.html#a16dba4ee7ec2ac484c9d7a3878189f6c">frequency</a></td></tr>
+<tr class="separator:a16dba4ee7ec2ac484c9d7a3878189f6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15c5bb34ed4ac585a90fe28a0e089540" id="r_a15c5bb34ed4ac585a90fe28a0e089540"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCLOG__Sync__t.html#a15c5bb34ed4ac585a90fe28a0e089540">algorithm_ID</a></td></tr>
+<tr class="separator:a15c5bb34ed4ac585a90fe28a0e089540"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aecef7dd53a77c442a73de9206a87f0d0" id="r_aecef7dd53a77c442a73de9206a87f0d0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCLOG__Sync__t.html#aecef7dd53a77c442a73de9206a87f0d0">world_size</a></td></tr>
+<tr class="separator:aecef7dd53a77c442a73de9206a87f0d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb5585561a8d437428a22e11260e0cac" id="r_acb5585561a8d437428a22e11260e0cac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCLOG__Sync__t.html#acb5585561a8d437428a22e11260e0cac">world_rank</a></td></tr>
+<tr class="separator:acb5585561a8d437428a22e11260e0cac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aadb811f958c834d18acd51987dca9720" id="r_aadb811f958c834d18acd51987dca9720"><td class="memItemLeft" align="right" valign="top"><a class="el" href="clog__timer_8h.html#abf0f7e46df13fdbacdb7a819cf12267d">CLOG_Time_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCLOG__Sync__t.html#aadb811f958c834d18acd51987dca9720">best_gpofst</a> [2]</td></tr>
+<tr class="separator:aadb811f958c834d18acd51987dca9720"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock">
+<p class="definition">См. определение в файле <a class="el" href="clog__sync_8h_source.html">clog_sync.h</a> строка <a class="el" href="clog__sync_8h_source.html#l00023">23</a></p>
+</div><h2 class="groupheader">Данные класса</h2>
+<a id="a15c5bb34ed4ac585a90fe28a0e089540" name="a15c5bb34ed4ac585a90fe28a0e089540"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15c5bb34ed4ac585a90fe28a0e089540">&#9670;&#160;</a></span>algorithm_ID</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> CLOG_Sync_t::algorithm_ID</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="clog__sync_8h_source.html">clog_sync.h</a> строка <a class="el" href="clog__sync_8h_source.html#l00027">27</a></p>
+
+</div>
+</div>
+<a id="aadb811f958c834d18acd51987dca9720" name="aadb811f958c834d18acd51987dca9720"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aadb811f958c834d18acd51987dca9720">&#9670;&#160;</a></span>best_gpofst</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="clog__timer_8h.html#abf0f7e46df13fdbacdb7a819cf12267d">CLOG_Time_t</a> CLOG_Sync_t::best_gpofst[2]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="clog__sync_8h_source.html">clog_sync.h</a> строка <a class="el" href="clog__sync_8h_source.html#l00030">30</a></p>
+
+</div>
+</div>
+<a id="a16dba4ee7ec2ac484c9d7a3878189f6c" name="a16dba4ee7ec2ac484c9d7a3878189f6c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16dba4ee7ec2ac484c9d7a3878189f6c">&#9670;&#160;</a></span>frequency</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> CLOG_Sync_t::frequency</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="clog__sync_8h_source.html">clog_sync.h</a> строка <a class="el" href="clog__sync_8h_source.html#l00026">26</a></p>
+
+</div>
+</div>
+<a id="a24bfda058f285a35f3fb3d8b11201063" name="a24bfda058f285a35f3fb3d8b11201063"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24bfda058f285a35f3fb3d8b11201063">&#9670;&#160;</a></span>is_ok_to_sync</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> CLOG_Sync_t::is_ok_to_sync</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="clog__sync_8h_source.html">clog_sync.h</a> строка <a class="el" href="clog__sync_8h_source.html#l00024">24</a></p>
+
+</div>
+</div>
+<a id="a2cf594cd6e8a5e1965f51d93a0696bb5" name="a2cf594cd6e8a5e1965f51d93a0696bb5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2cf594cd6e8a5e1965f51d93a0696bb5">&#9670;&#160;</a></span>root</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> CLOG_Sync_t::root</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="clog__sync_8h_source.html">clog_sync.h</a> строка <a class="el" href="clog__sync_8h_source.html#l00025">25</a></p>
+
+</div>
+</div>
+<a id="acb5585561a8d437428a22e11260e0cac" name="acb5585561a8d437428a22e11260e0cac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb5585561a8d437428a22e11260e0cac">&#9670;&#160;</a></span>world_rank</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> CLOG_Sync_t::world_rank</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="clog__sync_8h_source.html">clog_sync.h</a> строка <a class="el" href="clog__sync_8h_source.html#l00029">29</a></p>
+
+</div>
+</div>
+<a id="aecef7dd53a77c442a73de9206a87f0d0" name="aecef7dd53a77c442a73de9206a87f0d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aecef7dd53a77c442a73de9206a87f0d0">&#9670;&#160;</a></span>world_size</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> CLOG_Sync_t::world_size</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="clog__sync_8h_source.html">clog_sync.h</a> строка <a class="el" href="clog__sync_8h_source.html#l00028">28</a></p>
+
+</div>
+</div>
+<hr/>Объявления и описания членов структуры находятся в файле:<ul>
+<li><a class="el" href="clog__sync_8h_source.html">clog_sync.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

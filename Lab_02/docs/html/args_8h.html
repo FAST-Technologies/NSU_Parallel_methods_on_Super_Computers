@@ -1,0 +1,209 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lab_02: MPI + OpenMP Parallel Programming: Файл args.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Lab_02: MPI + OpenMP Parallel Programming<span id="projectnumber">&#160;2.1</span>
+   </div>
+   <div id="projectbrief">Решение 3D уравнения Пуассона методом Якоби с двумерной декомпозицией</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_1f646cbbb0f6227d25dd06f792d51aba.html">mpe2-1.3.0</a></li><li class="navelem"><a class="el" href="dir_493399512d45eb30627376023737183a.html">src</a></li><li class="navelem"><a class="el" href="dir_532b6e0bbac9f63fe589b390252576da.html">graphics</a></li><li class="navelem"><a class="el" href="dir_79216fb839f205e39a4f1139e127db43.html">contrib</a></li><li class="navelem"><a class="el" href="dir_36c5fa1fce864ea26b23b700a1dd37b8.html">mandel</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Функции</a>  </div>
+  <div class="headertitle"><div class="title">Файл args.h</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><a href="args_8h_source.html">См. исходные тексты.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Функции</h2></td></tr>
+<tr class="memitem:aaf4e99b40bc0808d304c5a54a4c330fd" id="r_aaf4e99b40bc0808d304c5a54a4c330fd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="args_8h.html#aaf4e99b40bc0808d304c5a54a4c330fd">GetIntArg</a> ()</td></tr>
+<tr class="separator:aaf4e99b40bc0808d304c5a54a4c330fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7d9c85fca4d59e4ddb97355e6f1cd02" id="r_ae7d9c85fca4d59e4ddb97355e6f1cd02"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="args_8h.html#ae7d9c85fca4d59e4ddb97355e6f1cd02">GetDoubleArg</a> ()</td></tr>
+<tr class="separator:ae7d9c85fca4d59e4ddb97355e6f1cd02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a541ff418a56c368b68ad1f545fecda14" id="r_a541ff418a56c368b68ad1f545fecda14"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="args_8h.html#a541ff418a56c368b68ad1f545fecda14">IsArgPresent</a> ()</td></tr>
+<tr class="separator:a541ff418a56c368b68ad1f545fecda14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac59dffa543e37ee8f6ba44bce8a3a9f7" id="r_ac59dffa543e37ee8f6ba44bce8a3a9f7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="args_8h.html#ac59dffa543e37ee8f6ba44bce8a3a9f7">GetArgAdjacentString</a> ()</td></tr>
+<tr class="separator:ac59dffa543e37ee8f6ba44bce8a3a9f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6198cd78ecbe1444bf2c9aa61131f47" id="r_af6198cd78ecbe1444bf2c9aa61131f47"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="args_8h.html#af6198cd78ecbe1444bf2c9aa61131f47">GetIntListArg</a> ()</td></tr>
+<tr class="separator:af6198cd78ecbe1444bf2c9aa61131f47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a071e57a774044060b2a29586cd4bf055" id="r_a071e57a774044060b2a29586cd4bf055"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="args_8h.html#a071e57a774044060b2a29586cd4bf055">GetStringListArg</a> ()</td></tr>
+<tr class="separator:a071e57a774044060b2a29586cd4bf055"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Функции</h2>
+<a id="ac59dffa543e37ee8f6ba44bce8a3a9f7" name="ac59dffa543e37ee8f6ba44bce8a3a9f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac59dffa543e37ee8f6ba44bce8a3a9f7">&#9670;&#160;</a></span>GetArgAdjacentString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> GetArgAdjacentString </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae7d9c85fca4d59e4ddb97355e6f1cd02" name="ae7d9c85fca4d59e4ddb97355e6f1cd02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7d9c85fca4d59e4ddb97355e6f1cd02">&#9670;&#160;</a></span>GetDoubleArg()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> GetDoubleArg </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aaf4e99b40bc0808d304c5a54a4c330fd" name="aaf4e99b40bc0808d304c5a54a4c330fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf4e99b40bc0808d304c5a54a4c330fd">&#9670;&#160;</a></span>GetIntArg()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> GetIntArg </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af6198cd78ecbe1444bf2c9aa61131f47" name="af6198cd78ecbe1444bf2c9aa61131f47"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6198cd78ecbe1444bf2c9aa61131f47">&#9670;&#160;</a></span>GetIntListArg()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> GetIntListArg </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a071e57a774044060b2a29586cd4bf055" name="a071e57a774044060b2a29586cd4bf055"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a071e57a774044060b2a29586cd4bf055">&#9670;&#160;</a></span>GetStringListArg()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> GetStringListArg </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a541ff418a56c368b68ad1f545fecda14" name="a541ff418a56c368b68ad1f545fecda14"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a541ff418a56c368b68ad1f545fecda14">&#9670;&#160;</a></span>IsArgPresent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> IsArgPresent </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

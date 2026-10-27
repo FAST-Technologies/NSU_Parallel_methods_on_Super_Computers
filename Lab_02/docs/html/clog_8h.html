@@ -1,0 +1,564 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lab_02: MPI + OpenMP Parallel Programming: Файл clog.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Lab_02: MPI + OpenMP Parallel Programming<span id="projectnumber">&#160;2.1</span>
+   </div>
+   <div id="projectbrief">Решение 3D уравнения Пуассона методом Якоби с двумерной декомпозицией</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_1f646cbbb0f6227d25dd06f792d51aba.html">mpe2-1.3.0</a></li><li class="navelem"><a class="el" href="dir_493399512d45eb30627376023737183a.html">src</a></li><li class="navelem"><a class="el" href="dir_4dd21a1309df0d73c93832f59c814642.html">logging</a></li><li class="navelem"><a class="el" href="dir_d1e3342e2909ab46223a280715173519.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Классы</a> &#124;
+<a href="#define-members">Макросы</a> &#124;
+<a href="#func-members">Функции</a>  </div>
+  <div class="headertitle"><div class="title">Файл clog.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="clog__buffer_8h_source.html">clog_buffer.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="clog__sync_8h_source.html">clog_sync.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="clog__merger_8h_source.html">clog_merger.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="clog__record_8h_source.html">clog_record.h</a>&quot;</code><br />
+</div>
+<p><a href="clog_8h_source.html">См. исходные тексты.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Классы</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCLOG__Stream__t.html">CLOG_Stream_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Макросы</h2></td></tr>
+<tr class="memitem:ab4f394a4a92bdc7e904fa2d402e4ffe6" id="r_ab4f394a4a92bdc7e904fa2d402e4ffe6"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog_8h.html#ab4f394a4a92bdc7e904fa2d402e4ffe6">CLOG_VERSION</a>&#160;&#160;&#160;&quot;CLOG-02.44&quot;</td></tr>
+<tr class="separator:ab4f394a4a92bdc7e904fa2d402e4ffe6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85ed1f0e9f0f1042a974ef1810d3b534" id="r_a85ed1f0e9f0f1042a974ef1810d3b534"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog_8h.html#a85ed1f0e9f0f1042a974ef1810d3b534">CLOG_KNOWN_SOLO_EVENTID_START</a>&#160;&#160;&#160;-10</td></tr>
+<tr class="separator:a85ed1f0e9f0f1042a974ef1810d3b534"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac031a1e802a386d111bcc93aad18f30c" id="r_ac031a1e802a386d111bcc93aad18f30c"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog_8h.html#ac031a1e802a386d111bcc93aad18f30c">CLOG_KNOWN_EVENTID_START</a>&#160;&#160;&#160;0</td></tr>
+<tr class="separator:ac031a1e802a386d111bcc93aad18f30c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc7cd2ebff49604b3aa2ddf2a1ad9cfe" id="r_acc7cd2ebff49604b3aa2ddf2a1ad9cfe"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog_8h.html#acc7cd2ebff49604b3aa2ddf2a1ad9cfe">CLOG_USER_EVENTID_START</a>&#160;&#160;&#160;600</td></tr>
+<tr class="separator:acc7cd2ebff49604b3aa2ddf2a1ad9cfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af203929f57f1545d486e241890be7525" id="r_af203929f57f1545d486e241890be7525"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog_8h.html#af203929f57f1545d486e241890be7525">CLOG_USER_SOLO_EVENTID_START</a>&#160;&#160;&#160;5000</td></tr>
+<tr class="separator:af203929f57f1545d486e241890be7525"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d6ca9a106be6b2e162a6920d6b8c61f" id="r_a9d6ca9a106be6b2e162a6920d6b8c61f"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog_8h.html#a9d6ca9a106be6b2e162a6920d6b8c61f">CLOG_KNOWN_STATEID_START</a>&#160;&#160;&#160;0</td></tr>
+<tr class="separator:a9d6ca9a106be6b2e162a6920d6b8c61f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af75f6adacad806f5a990cd40b5c86c17" id="r_af75f6adacad806f5a990cd40b5c86c17"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog_8h.html#af75f6adacad806f5a990cd40b5c86c17">CLOG_USER_STATEID_START</a>&#160;&#160;&#160;300</td></tr>
+<tr class="separator:af75f6adacad806f5a990cd40b5c86c17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75b3bcb50a5aeaa675108c6512af6d36" id="r_a75b3bcb50a5aeaa675108c6512af6d36"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog_8h.html#a75b3bcb50a5aeaa675108c6512af6d36">CLOG_COMM_NULL</a>&#160;&#160;&#160;-1</td></tr>
+<tr class="separator:a75b3bcb50a5aeaa675108c6512af6d36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Функции</h2></td></tr>
+<tr class="memitem:acb49d801300625f7d90b714e890824a1" id="r_acb49d801300625f7d90b714e890824a1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structCLOG__Stream__t.html">CLOG_Stream_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog_8h.html#acb49d801300625f7d90b714e890824a1">CLOG_Open</a> (<a class="el" href="structvector.html">void</a>)</td></tr>
+<tr class="separator:acb49d801300625f7d90b714e890824a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2da02a95486dfe44e2eff1ab73f73f8" id="r_af2da02a95486dfe44e2eff1ab73f73f8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog_8h.html#af2da02a95486dfe44e2eff1ab73f73f8">CLOG_Close</a> (<a class="el" href="structCLOG__Stream__t.html">CLOG_Stream_t</a> **<a class="el" href="structvector.html">stream</a>)</td></tr>
+<tr class="separator:af2da02a95486dfe44e2eff1ab73f73f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0d878acb735eecf8722e34faf9f3416" id="r_aa0d878acb735eecf8722e34faf9f3416"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog_8h.html#aa0d878acb735eecf8722e34faf9f3416">CLOG_Local_init</a> (<a class="el" href="structCLOG__Stream__t.html">CLOG_Stream_t</a> *<a class="el" href="structvector.html">stream</a>, <a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *<a class="el" href="structvector.html">local_tmpfile_name</a>)</td></tr>
+<tr class="separator:aa0d878acb735eecf8722e34faf9f3416"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6931acd931a722b6f24e42fb63038a9b" id="r_a6931acd931a722b6f24e42fb63038a9b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog_8h.html#a6931acd931a722b6f24e42fb63038a9b">CLOG_Local_finalize</a> (<a class="el" href="structCLOG__Stream__t.html">CLOG_Stream_t</a> *<a class="el" href="structvector.html">stream</a>)</td></tr>
+<tr class="separator:a6931acd931a722b6f24e42fb63038a9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd0f69cacb60c1ad70df1f1cd8ed79a8" id="r_afd0f69cacb60c1ad70df1f1cd8ed79a8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog_8h.html#afd0f69cacb60c1ad70df1f1cd8ed79a8">CLOG_Get_known_solo_eventID</a> (<a class="el" href="structCLOG__Stream__t.html">CLOG_Stream_t</a> *<a class="el" href="structvector.html">stream</a>)</td></tr>
+<tr class="separator:afd0f69cacb60c1ad70df1f1cd8ed79a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39853ebaeddd4ff68e7f529373bc3633" id="r_a39853ebaeddd4ff68e7f529373bc3633"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog_8h.html#a39853ebaeddd4ff68e7f529373bc3633">CLOG_Get_known_eventID</a> (<a class="el" href="structCLOG__Stream__t.html">CLOG_Stream_t</a> *<a class="el" href="structvector.html">stream</a>)</td></tr>
+<tr class="separator:a39853ebaeddd4ff68e7f529373bc3633"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae89cd999a0d3912e257719499ce79c90" id="r_ae89cd999a0d3912e257719499ce79c90"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog_8h.html#ae89cd999a0d3912e257719499ce79c90">CLOG_Get_user_eventID</a> (<a class="el" href="structCLOG__Stream__t.html">CLOG_Stream_t</a> *<a class="el" href="structvector.html">stream</a>)</td></tr>
+<tr class="separator:ae89cd999a0d3912e257719499ce79c90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93c75c8b389852fbf0ee9e1a2843263c" id="r_a93c75c8b389852fbf0ee9e1a2843263c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog_8h.html#a93c75c8b389852fbf0ee9e1a2843263c">CLOG_Get_user_solo_eventID</a> (<a class="el" href="structCLOG__Stream__t.html">CLOG_Stream_t</a> *<a class="el" href="structvector.html">stream</a>)</td></tr>
+<tr class="separator:a93c75c8b389852fbf0ee9e1a2843263c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e5c0d3559797899fb1a736fb06703f3" id="r_a7e5c0d3559797899fb1a736fb06703f3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog_8h.html#a7e5c0d3559797899fb1a736fb06703f3">CLOG_Get_known_stateID</a> (<a class="el" href="structCLOG__Stream__t.html">CLOG_Stream_t</a> *<a class="el" href="structvector.html">stream</a>)</td></tr>
+<tr class="separator:a7e5c0d3559797899fb1a736fb06703f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affaeb1767f45b68db33ef9008f15b45a" id="r_affaeb1767f45b68db33ef9008f15b45a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog_8h.html#affaeb1767f45b68db33ef9008f15b45a">CLOG_Get_user_stateID</a> (<a class="el" href="structCLOG__Stream__t.html">CLOG_Stream_t</a> *<a class="el" href="structvector.html">stream</a>)</td></tr>
+<tr class="separator:affaeb1767f45b68db33ef9008f15b45a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5426576d726575c0e8d2cdb63ac2834a" id="r_a5426576d726575c0e8d2cdb63ac2834a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog_8h.html#a5426576d726575c0e8d2cdb63ac2834a">CLOG_Check_known_stateID</a> (<a class="el" href="structCLOG__Stream__t.html">CLOG_Stream_t</a> *<a class="el" href="structvector.html">stream</a>, <a class="el" href="structvector.html">int</a> stateID)</td></tr>
+<tr class="separator:a5426576d726575c0e8d2cdb63ac2834a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f67dd431a28cf075526d7c4b612d5b3" id="r_a0f67dd431a28cf075526d7c4b612d5b3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog_8h.html#a0f67dd431a28cf075526d7c4b612d5b3">CLOG_Converge_init</a> (<a class="el" href="structCLOG__Stream__t.html">CLOG_Stream_t</a> *<a class="el" href="structvector.html">stream</a>, <a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *<a class="el" href="structvector.html">merged_file_prefix</a>)</td></tr>
+<tr class="separator:a0f67dd431a28cf075526d7c4b612d5b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6efe3c9db2f550849f67edf387bc92cc" id="r_a6efe3c9db2f550849f67edf387bc92cc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog_8h.html#a6efe3c9db2f550849f67edf387bc92cc">CLOG_Converge_finalize</a> (<a class="el" href="structCLOG__Stream__t.html">CLOG_Stream_t</a> *<a class="el" href="structvector.html">stream</a>)</td></tr>
+<tr class="separator:a6efe3c9db2f550849f67edf387bc92cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aacc6b96e604f58b545f133d030045f76" id="r_aacc6b96e604f58b545f133d030045f76"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog_8h.html#aacc6b96e604f58b545f133d030045f76">CLOG_Converge_sort</a> (<a class="el" href="structCLOG__Stream__t.html">CLOG_Stream_t</a> *<a class="el" href="structvector.html">stream</a>)</td></tr>
+<tr class="separator:aacc6b96e604f58b545f133d030045f76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Макросы</h2>
+<a id="a75b3bcb50a5aeaa675108c6512af6d36" name="a75b3bcb50a5aeaa675108c6512af6d36"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75b3bcb50a5aeaa675108c6512af6d36">&#9670;&#160;</a></span>CLOG_COMM_NULL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> CLOG_COMM_NULL&#160;&#160;&#160;-1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="clog_8h_source.html">clog.h</a> строка <a class="el" href="clog_8h_source.html#l00071">71</a></p>
+
+</div>
+</div>
+<a id="ac031a1e802a386d111bcc93aad18f30c" name="ac031a1e802a386d111bcc93aad18f30c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac031a1e802a386d111bcc93aad18f30c">&#9670;&#160;</a></span>CLOG_KNOWN_EVENTID_START</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> CLOG_KNOWN_EVENTID_START&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="clog_8h_source.html">clog.h</a> строка <a class="el" href="clog_8h_source.html#l00051">51</a></p>
+
+</div>
+</div>
+<a id="a85ed1f0e9f0f1042a974ef1810d3b534" name="a85ed1f0e9f0f1042a974ef1810d3b534"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85ed1f0e9f0f1042a974ef1810d3b534">&#9670;&#160;</a></span>CLOG_KNOWN_SOLO_EVENTID_START</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> CLOG_KNOWN_SOLO_EVENTID_START&#160;&#160;&#160;-10</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="clog_8h_source.html">clog.h</a> строка <a class="el" href="clog_8h_source.html#l00045">45</a></p>
+
+</div>
+</div>
+<a id="a9d6ca9a106be6b2e162a6920d6b8c61f" name="a9d6ca9a106be6b2e162a6920d6b8c61f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d6ca9a106be6b2e162a6920d6b8c61f">&#9670;&#160;</a></span>CLOG_KNOWN_STATEID_START</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> CLOG_KNOWN_STATEID_START&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="clog_8h_source.html">clog.h</a> строка <a class="el" href="clog_8h_source.html#l00066">66</a></p>
+
+</div>
+</div>
+<a id="acc7cd2ebff49604b3aa2ddf2a1ad9cfe" name="acc7cd2ebff49604b3aa2ddf2a1ad9cfe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc7cd2ebff49604b3aa2ddf2a1ad9cfe">&#9670;&#160;</a></span>CLOG_USER_EVENTID_START</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> CLOG_USER_EVENTID_START&#160;&#160;&#160;600</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="clog_8h_source.html">clog.h</a> строка <a class="el" href="clog_8h_source.html#l00057">57</a></p>
+
+</div>
+</div>
+<a id="af203929f57f1545d486e241890be7525" name="af203929f57f1545d486e241890be7525"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af203929f57f1545d486e241890be7525">&#9670;&#160;</a></span>CLOG_USER_SOLO_EVENTID_START</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> CLOG_USER_SOLO_EVENTID_START&#160;&#160;&#160;5000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="clog_8h_source.html">clog.h</a> строка <a class="el" href="clog_8h_source.html#l00060">60</a></p>
+
+</div>
+</div>
+<a id="af75f6adacad806f5a990cd40b5c86c17" name="af75f6adacad806f5a990cd40b5c86c17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af75f6adacad806f5a990cd40b5c86c17">&#9670;&#160;</a></span>CLOG_USER_STATEID_START</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> CLOG_USER_STATEID_START&#160;&#160;&#160;300</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="clog_8h_source.html">clog.h</a> строка <a class="el" href="clog_8h_source.html#l00069">69</a></p>
+
+</div>
+</div>
+<a id="ab4f394a4a92bdc7e904fa2d402e4ffe6" name="ab4f394a4a92bdc7e904fa2d402e4ffe6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4f394a4a92bdc7e904fa2d402e4ffe6">&#9670;&#160;</a></span>CLOG_VERSION</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> CLOG_VERSION&#160;&#160;&#160;&quot;CLOG-02.44&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="clog_8h_source.html">clog.h</a> строка <a class="el" href="clog_8h_source.html#l00035">35</a></p>
+
+</div>
+</div>
+<h2 class="groupheader">Функции</h2>
+<a id="a5426576d726575c0e8d2cdb63ac2834a" name="a5426576d726575c0e8d2cdb63ac2834a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5426576d726575c0e8d2cdb63ac2834a">&#9670;&#160;</a></span>CLOG_Check_known_stateID()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> CLOG_Check_known_stateID </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Stream__t.html">CLOG_Stream_t</a> *&#160;</td>
+          <td class="paramname"><em>stream</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>stateID</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af2da02a95486dfe44e2eff1ab73f73f8" name="af2da02a95486dfe44e2eff1ab73f73f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2da02a95486dfe44e2eff1ab73f73f8">&#9670;&#160;</a></span>CLOG_Close()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Close </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Stream__t.html">CLOG_Stream_t</a> **&#160;</td>
+          <td class="paramname"><em>stream</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6efe3c9db2f550849f67edf387bc92cc" name="a6efe3c9db2f550849f67edf387bc92cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6efe3c9db2f550849f67edf387bc92cc">&#9670;&#160;</a></span>CLOG_Converge_finalize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Converge_finalize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Stream__t.html">CLOG_Stream_t</a> *&#160;</td>
+          <td class="paramname"><em>stream</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0f67dd431a28cf075526d7c4b612d5b3" name="a0f67dd431a28cf075526d7c4b612d5b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f67dd431a28cf075526d7c4b612d5b3">&#9670;&#160;</a></span>CLOG_Converge_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Converge_init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Stream__t.html">CLOG_Stream_t</a> *&#160;</td>
+          <td class="paramname"><em>stream</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>merged_file_prefix</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aacc6b96e604f58b545f133d030045f76" name="aacc6b96e604f58b545f133d030045f76"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aacc6b96e604f58b545f133d030045f76">&#9670;&#160;</a></span>CLOG_Converge_sort()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Converge_sort </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Stream__t.html">CLOG_Stream_t</a> *&#160;</td>
+          <td class="paramname"><em>stream</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a39853ebaeddd4ff68e7f529373bc3633" name="a39853ebaeddd4ff68e7f529373bc3633"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39853ebaeddd4ff68e7f529373bc3633">&#9670;&#160;</a></span>CLOG_Get_known_eventID()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> CLOG_Get_known_eventID </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Stream__t.html">CLOG_Stream_t</a> *&#160;</td>
+          <td class="paramname"><em>stream</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afd0f69cacb60c1ad70df1f1cd8ed79a8" name="afd0f69cacb60c1ad70df1f1cd8ed79a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd0f69cacb60c1ad70df1f1cd8ed79a8">&#9670;&#160;</a></span>CLOG_Get_known_solo_eventID()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> CLOG_Get_known_solo_eventID </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Stream__t.html">CLOG_Stream_t</a> *&#160;</td>
+          <td class="paramname"><em>stream</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7e5c0d3559797899fb1a736fb06703f3" name="a7e5c0d3559797899fb1a736fb06703f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e5c0d3559797899fb1a736fb06703f3">&#9670;&#160;</a></span>CLOG_Get_known_stateID()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> CLOG_Get_known_stateID </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Stream__t.html">CLOG_Stream_t</a> *&#160;</td>
+          <td class="paramname"><em>stream</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae89cd999a0d3912e257719499ce79c90" name="ae89cd999a0d3912e257719499ce79c90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae89cd999a0d3912e257719499ce79c90">&#9670;&#160;</a></span>CLOG_Get_user_eventID()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> CLOG_Get_user_eventID </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Stream__t.html">CLOG_Stream_t</a> *&#160;</td>
+          <td class="paramname"><em>stream</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a93c75c8b389852fbf0ee9e1a2843263c" name="a93c75c8b389852fbf0ee9e1a2843263c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93c75c8b389852fbf0ee9e1a2843263c">&#9670;&#160;</a></span>CLOG_Get_user_solo_eventID()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> CLOG_Get_user_solo_eventID </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Stream__t.html">CLOG_Stream_t</a> *&#160;</td>
+          <td class="paramname"><em>stream</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="affaeb1767f45b68db33ef9008f15b45a" name="affaeb1767f45b68db33ef9008f15b45a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affaeb1767f45b68db33ef9008f15b45a">&#9670;&#160;</a></span>CLOG_Get_user_stateID()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> CLOG_Get_user_stateID </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Stream__t.html">CLOG_Stream_t</a> *&#160;</td>
+          <td class="paramname"><em>stream</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6931acd931a722b6f24e42fb63038a9b" name="a6931acd931a722b6f24e42fb63038a9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6931acd931a722b6f24e42fb63038a9b">&#9670;&#160;</a></span>CLOG_Local_finalize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Local_finalize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Stream__t.html">CLOG_Stream_t</a> *&#160;</td>
+          <td class="paramname"><em>stream</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa0d878acb735eecf8722e34faf9f3416" name="aa0d878acb735eecf8722e34faf9f3416"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0d878acb735eecf8722e34faf9f3416">&#9670;&#160;</a></span>CLOG_Local_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Local_init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Stream__t.html">CLOG_Stream_t</a> *&#160;</td>
+          <td class="paramname"><em>stream</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>local_tmpfile_name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acb49d801300625f7d90b714e890824a1" name="acb49d801300625f7d90b714e890824a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb49d801300625f7d90b714e890824a1">&#9670;&#160;</a></span>CLOG_Open()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structCLOG__Stream__t.html">CLOG_Stream_t</a> * CLOG_Open </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

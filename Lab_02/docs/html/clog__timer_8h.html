@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lab_02: MPI + OpenMP Parallel Programming: Файл clog_timer.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Lab_02: MPI + OpenMP Parallel Programming<span id="projectnumber">&#160;2.1</span>
+   </div>
+   <div id="projectbrief">Решение 3D уравнения Пуассона методом Якоби с двумерной декомпозицией</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_1f646cbbb0f6227d25dd06f792d51aba.html">mpe2-1.3.0</a></li><li class="navelem"><a class="el" href="dir_493399512d45eb30627376023737183a.html">src</a></li><li class="navelem"><a class="el" href="dir_4dd21a1309df0d73c93832f59c814642.html">logging</a></li><li class="navelem"><a class="el" href="dir_d1e3342e2909ab46223a280715173519.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#define-members">Макросы</a> &#124;
+<a href="#func-members">Функции</a>  </div>
+  <div class="headertitle"><div class="title">Файл clog_timer.h</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><a href="clog__timer_8h_source.html">См. исходные тексты.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Макросы</h2></td></tr>
+<tr class="memitem:abf0f7e46df13fdbacdb7a819cf12267d" id="r_abf0f7e46df13fdbacdb7a819cf12267d"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__timer_8h.html#abf0f7e46df13fdbacdb7a819cf12267d">CLOG_Time_t</a>&#160;&#160;&#160;<a class="el" href="structvector.html">double</a></td></tr>
+<tr class="separator:abf0f7e46df13fdbacdb7a819cf12267d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a62e943e0492983efddc232628386fc" id="r_a8a62e943e0492983efddc232628386fc"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__timer_8h.html#a8a62e943e0492983efddc232628386fc">CLOG_TIME_MPI_TYPE</a>&#160;&#160;&#160;<a class="el" href="mpi__null_8h.html#aafd1dc0086079e7904385538c54c9c8f">MPI_DOUBLE</a></td></tr>
+<tr class="separator:a8a62e943e0492983efddc232628386fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Функции</h2></td></tr>
+<tr class="memitem:a6c46afc52ff745132a3b6212066dec55" id="r_a6c46afc52ff745132a3b6212066dec55"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__timer_8h.html#a6c46afc52ff745132a3b6212066dec55">CLOG_Timer_start</a> (<a class="el" href="structvector.html">void</a>)</td></tr>
+<tr class="separator:a6c46afc52ff745132a3b6212066dec55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a661e0d5ac9344ae61f31303df0582128" id="r_a661e0d5ac9344ae61f31303df0582128"><td class="memItemLeft" align="right" valign="top"><a class="el" href="clog__timer_8h.html#abf0f7e46df13fdbacdb7a819cf12267d">CLOG_Time_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__timer_8h.html#a661e0d5ac9344ae61f31303df0582128">CLOG_Timer_get</a> (<a class="el" href="structvector.html">void</a>)</td></tr>
+<tr class="separator:a661e0d5ac9344ae61f31303df0582128"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Макросы</h2>
+<a id="a8a62e943e0492983efddc232628386fc" name="a8a62e943e0492983efddc232628386fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a62e943e0492983efddc232628386fc">&#9670;&#160;</a></span>CLOG_TIME_MPI_TYPE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> CLOG_TIME_MPI_TYPE&#160;&#160;&#160;<a class="el" href="mpi__null_8h.html#aafd1dc0086079e7904385538c54c9c8f">MPI_DOUBLE</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="clog__timer_8h_source.html">clog_timer.h</a> строка <a class="el" href="clog__timer_8h_source.html#l00009">9</a></p>
+
+</div>
+</div>
+<a id="abf0f7e46df13fdbacdb7a819cf12267d" name="abf0f7e46df13fdbacdb7a819cf12267d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf0f7e46df13fdbacdb7a819cf12267d">&#9670;&#160;</a></span>CLOG_Time_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> CLOG_Time_t&#160;&#160;&#160;<a class="el" href="structvector.html">double</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="clog__timer_8h_source.html">clog_timer.h</a> строка <a class="el" href="clog__timer_8h_source.html#l00008">8</a></p>
+
+</div>
+</div>
+<h2 class="groupheader">Функции</h2>
+<a id="a661e0d5ac9344ae61f31303df0582128" name="a661e0d5ac9344ae61f31303df0582128"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a661e0d5ac9344ae61f31303df0582128">&#9670;&#160;</a></span>CLOG_Timer_get()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="clog__timer_8h.html#abf0f7e46df13fdbacdb7a819cf12267d">CLOG_Time_t</a> CLOG_Timer_get </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6c46afc52ff745132a3b6212066dec55" name="a6c46afc52ff745132a3b6212066dec55"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c46afc52ff745132a3b6212066dec55">&#9670;&#160;</a></span>CLOG_Timer_start()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Timer_start </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

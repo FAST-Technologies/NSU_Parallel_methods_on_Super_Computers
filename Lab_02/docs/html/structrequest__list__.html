@@ -1,0 +1,261 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lab_02: MPI + OpenMP Parallel Programming: Структура request_list_</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Lab_02: MPI + OpenMP Parallel Programming<span id="projectnumber">&#160;2.1</span>
+   </div>
+   <div id="projectbrief">Решение 3D уравнения Пуассона методом Якоби с двумерной декомпозицией</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-attribs">Открытые атрибуты</a> &#124;
+<a href="structrequest__list__-members.html">Полный список членов класса</a>  </div>
+  <div class="headertitle"><div class="title">Структура request_list_</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="requests_8h_source.html">requests.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Открытые атрибуты</h2></td></tr>
+<tr class="memitem:afbd4f509b3b9821579c2e88de5990dec" id="r_afbd4f509b3b9821579c2e88de5990dec"><td class="memItemLeft" align="right" valign="top"><a class="el" href="mpi__null_8h.html#a240e9d13a157e03c75e42306b13cd8d8">MPI_Request</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrequest__list__.html#afbd4f509b3b9821579c2e88de5990dec">request</a></td></tr>
+<tr class="separator:afbd4f509b3b9821579c2e88de5990dec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0ce2f2a6694267905569dc51c630677" id="r_ae0ce2f2a6694267905569dc51c630677"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrequest__list__.html#ae0ce2f2a6694267905569dc51c630677">status</a></td></tr>
+<tr class="separator:ae0ce2f2a6694267905569dc51c630677"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a595c55a40fc409b00d9bff0876383ab4" id="r_a595c55a40fc409b00d9bff0876383ab4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrequest__list__.html#a595c55a40fc409b00d9bff0876383ab4">size</a></td></tr>
+<tr class="separator:a595c55a40fc409b00d9bff0876383ab4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9289465c19a37dbaa0f4783d8a9d159b" id="r_a9289465c19a37dbaa0f4783d8a9d159b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrequest__list__.html#a9289465c19a37dbaa0f4783d8a9d159b">tag</a></td></tr>
+<tr class="separator:a9289465c19a37dbaa0f4783d8a9d159b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4098544165da985348df13338e62459d" id="r_a4098544165da985348df13338e62459d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrequest__list__.html#a4098544165da985348df13338e62459d">otherParty</a></td></tr>
+<tr class="separator:a4098544165da985348df13338e62459d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60c7746b78c74cc0e3b430d16b9f11b8" id="r_a60c7746b78c74cc0e3b430d16b9f11b8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrequest__list__.html#a60c7746b78c74cc0e3b430d16b9f11b8">is_persistent</a></td></tr>
+<tr class="separator:a60c7746b78c74cc0e3b430d16b9f11b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf05732f9111ca461c7951e4f9c0f482" id="r_adf05732f9111ca461c7951e4f9c0f482"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">struct</a> <a class="el" href="structrequest__list__.html">request_list_</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrequest__list__.html#adf05732f9111ca461c7951e4f9c0f482">next</a></td></tr>
+<tr class="separator:adf05732f9111ca461c7951e4f9c0f482"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5b6243416098d5ebda857661e32fe44" id="r_af5b6243416098d5ebda857661e32fe44"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">const</a> <a class="el" href="include_2clog__commset_8h.html#a2a72179bb68215dd33f4147550bcaf71">CLOG_CommIDs_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrequest__list__.html#af5b6243416098d5ebda857661e32fe44">commIDs</a></td></tr>
+<tr class="separator:af5b6243416098d5ebda857661e32fe44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc8f5549ce2aed890bffeee04e7e093b" id="r_acc8f5549ce2aed890bffeee04e7e093b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrequest__list__.html#acc8f5549ce2aed890bffeee04e7e093b">mate</a></td></tr>
+<tr class="separator:acc8f5549ce2aed890bffeee04e7e093b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock">
+<p class="definition">См. определение в файле <a class="el" href="requests_8h_source.html">requests.h</a> строка <a class="el" href="requests_8h_source.html#l00008">8</a></p>
+</div><h2 class="groupheader">Данные класса</h2>
+<a id="af5b6243416098d5ebda857661e32fe44" name="af5b6243416098d5ebda857661e32fe44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5b6243416098d5ebda857661e32fe44">&#9670;&#160;</a></span>commIDs</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">const</a> <a class="el" href="include_2clog__commset_8h.html#a2a72179bb68215dd33f4147550bcaf71">CLOG_CommIDs_t</a>* request_list_::commIDs</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__requests_8h_source.html">mpe_requests.h</a> строка <a class="el" href="mpe__requests_8h_source.html#l00010">10</a></p>
+
+</div>
+</div>
+<a id="a60c7746b78c74cc0e3b430d16b9f11b8" name="a60c7746b78c74cc0e3b430d16b9f11b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60c7746b78c74cc0e3b430d16b9f11b8">&#9670;&#160;</a></span>is_persistent</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> request_list_::is_persistent</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="requests_8h_source.html">requests.h</a> строка <a class="el" href="requests_8h_source.html#l00014">14</a></p>
+
+</div>
+</div>
+<a id="acc8f5549ce2aed890bffeee04e7e093b" name="acc8f5549ce2aed890bffeee04e7e093b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc8f5549ce2aed890bffeee04e7e093b">&#9670;&#160;</a></span>mate</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> request_list_::mate</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mpe__requests_8h_source.html">mpe_requests.h</a> строка <a class="el" href="mpe__requests_8h_source.html#l00014">14</a></p>
+
+</div>
+</div>
+<a id="adf05732f9111ca461c7951e4f9c0f482" name="adf05732f9111ca461c7951e4f9c0f482"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf05732f9111ca461c7951e4f9c0f482">&#9670;&#160;</a></span>next</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">struct</a> <a class="el" href="structrequest__list__.html">request_list_</a> * request_list_::next</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="requests_8h_source.html">requests.h</a> строка <a class="el" href="requests_8h_source.html#l00015">15</a></p>
+
+</div>
+</div>
+<a id="a4098544165da985348df13338e62459d" name="a4098544165da985348df13338e62459d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4098544165da985348df13338e62459d">&#9670;&#160;</a></span>otherParty</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> request_list_::otherParty</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="requests_8h_source.html">requests.h</a> строка <a class="el" href="requests_8h_source.html#l00013">13</a></p>
+
+</div>
+</div>
+<a id="afbd4f509b3b9821579c2e88de5990dec" name="afbd4f509b3b9821579c2e88de5990dec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afbd4f509b3b9821579c2e88de5990dec">&#9670;&#160;</a></span>request</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="mpi__null_8h.html#a240e9d13a157e03c75e42306b13cd8d8">MPI_Request</a> request_list_::request</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="requests_8h_source.html">requests.h</a> строка <a class="el" href="requests_8h_source.html#l00009">9</a></p>
+
+</div>
+</div>
+<a id="a595c55a40fc409b00d9bff0876383ab4" name="a595c55a40fc409b00d9bff0876383ab4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a595c55a40fc409b00d9bff0876383ab4">&#9670;&#160;</a></span>size</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> request_list_::size</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="requests_8h_source.html">requests.h</a> строка <a class="el" href="requests_8h_source.html#l00011">11</a></p>
+
+</div>
+</div>
+<a id="ae0ce2f2a6694267905569dc51c630677" name="ae0ce2f2a6694267905569dc51c630677"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0ce2f2a6694267905569dc51c630677">&#9670;&#160;</a></span>status</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> request_list_::status</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="requests_8h_source.html">requests.h</a> строка <a class="el" href="requests_8h_source.html#l00010">10</a></p>
+
+</div>
+</div>
+<a id="a9289465c19a37dbaa0f4783d8a9d159b" name="a9289465c19a37dbaa0f4783d8a9d159b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9289465c19a37dbaa0f4783d8a9d159b">&#9670;&#160;</a></span>tag</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> request_list_::tag</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="requests_8h_source.html">requests.h</a> строка <a class="el" href="requests_8h_source.html#l00012">12</a></p>
+
+</div>
+</div>
+<hr/>Объявления и описания членов структур находятся в файлах:<ul>
+<li><a class="el" href="requests_8h_source.html">requests.h</a></li>
+<li><a class="el" href="mpe__requests_8h_source.html">mpe_requests.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

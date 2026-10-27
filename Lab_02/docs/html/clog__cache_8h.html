@@ -1,0 +1,643 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lab_02: MPI + OpenMP Parallel Programming: Файл clog_cache.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Lab_02: MPI + OpenMP Parallel Programming<span id="projectnumber">&#160;2.1</span>
+   </div>
+   <div id="projectbrief">Решение 3D уравнения Пуассона методом Якоби с двумерной декомпозицией</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_1f646cbbb0f6227d25dd06f792d51aba.html">mpe2-1.3.0</a></li><li class="navelem"><a class="el" href="dir_493399512d45eb30627376023737183a.html">src</a></li><li class="navelem"><a class="el" href="dir_4dd21a1309df0d73c93832f59c814642.html">logging</a></li><li class="navelem"><a class="el" href="dir_d1e3342e2909ab46223a280715173519.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Классы</a> &#124;
+<a href="#typedef-members">Определения типов</a> &#124;
+<a href="#func-members">Функции</a>  </div>
+  <div class="headertitle"><div class="title">Файл clog_cache.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="src_2logging_2include_2clog__const_8h_source.html">clog_const.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="clog__preamble_8h_source.html">clog_preamble.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="src_2logging_2include_2clog__commset_8h_source.html">clog_commset.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="clog__block_8h_source.html">clog_block.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="clog__record_8h_source.html">clog_record.h</a>&quot;</code><br />
+</div>
+<p><a href="clog__cache_8h_source.html">См. исходные тексты.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Классы</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCLOG__Cache__t.html">CLOG_Cache_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__CLOG__CacheLink__t.html">_CLOG_CacheLink_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Определения типов</h2></td></tr>
+<tr class="memitem:aa352d911b654cd7f9363461218183c25" id="r_aa352d911b654cd7f9363461218183c25"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">typedef</a> <a class="el" href="structvector.html">struct</a> <a class="el" href="struct__CLOG__CacheLink__t.html">_CLOG_CacheLink_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__cache_8h.html#aa352d911b654cd7f9363461218183c25">CLOG_CacheLink_t</a></td></tr>
+<tr class="separator:aa352d911b654cd7f9363461218183c25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Функции</h2></td></tr>
+<tr class="memitem:af9841686179d34c439ece9cd7d12d668" id="r_af9841686179d34c439ece9cd7d12d668"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structCLOG__Cache__t.html">CLOG_Cache_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__cache_8h.html#af9841686179d34c439ece9cd7d12d668">CLOG_Cache_create</a> (<a class="el" href="structvector.html">void</a>)</td></tr>
+<tr class="separator:af9841686179d34c439ece9cd7d12d668"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a426e7b3b9e39ab8d5d246109db3c000d" id="r_a426e7b3b9e39ab8d5d246109db3c000d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__cache_8h.html#a426e7b3b9e39ab8d5d246109db3c000d">CLOG_Cache_free</a> (<a class="el" href="structCLOG__Cache__t.html">CLOG_Cache_t</a> **<a class="el" href="structvector.html">cache_handle</a>)</td></tr>
+<tr class="separator:a426e7b3b9e39ab8d5d246109db3c000d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7068b74b989e4ad4b59151d637a2a90f" id="r_a7068b74b989e4ad4b59151d637a2a90f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__cache_8h.html#a7068b74b989e4ad4b59151d637a2a90f">CLOG_Cache_flushlastblock</a> (<a class="el" href="structCLOG__Cache__t.html">CLOG_Cache_t</a> *cache)</td></tr>
+<tr class="separator:a7068b74b989e4ad4b59151d637a2a90f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abae07d2d69cc36e773a2e1b9c401da8f" id="r_abae07d2d69cc36e773a2e1b9c401da8f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__cache_8h.html#abae07d2d69cc36e773a2e1b9c401da8f">CLOG_Cache_open4read</a> (<a class="el" href="structCLOG__Cache__t.html">CLOG_Cache_t</a> *cache, <a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *filename)</td></tr>
+<tr class="separator:abae07d2d69cc36e773a2e1b9c401da8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69afba353696062c1e021c1dbccce731" id="r_a69afba353696062c1e021c1dbccce731"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__cache_8h.html#a69afba353696062c1e021c1dbccce731">CLOG_Cache_init4read</a> (<a class="el" href="structCLOG__Cache__t.html">CLOG_Cache_t</a> *cache)</td></tr>
+<tr class="separator:a69afba353696062c1e021c1dbccce731"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50626014169bc3f90a8d0a25e73567c7" id="r_a50626014169bc3f90a8d0a25e73567c7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__cache_8h.html#a50626014169bc3f90a8d0a25e73567c7">CLOG_Cache_open4write</a> (<a class="el" href="structCLOG__Cache__t.html">CLOG_Cache_t</a> *cache, <a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *filename)</td></tr>
+<tr class="separator:a50626014169bc3f90a8d0a25e73567c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc72bb0c7aad9d253eebf80018b09f55" id="r_afc72bb0c7aad9d253eebf80018b09f55"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__cache_8h.html#afc72bb0c7aad9d253eebf80018b09f55">CLOG_Cache_init4write</a> (<a class="el" href="structCLOG__Cache__t.html">CLOG_Cache_t</a> *cache)</td></tr>
+<tr class="separator:afc72bb0c7aad9d253eebf80018b09f55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53994848e4d7d39610b9b8aab27063a8" id="r_a53994848e4d7d39610b9b8aab27063a8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__cache_8h.html#a53994848e4d7d39610b9b8aab27063a8">CLOG_Cache_open4readwrite</a> (<a class="el" href="structCLOG__Cache__t.html">CLOG_Cache_t</a> *cache, <a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *filename)</td></tr>
+<tr class="separator:a53994848e4d7d39610b9b8aab27063a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0abe2ab206efd80916f113d1378a055" id="r_ab0abe2ab206efd80916f113d1378a055"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__cache_8h.html#ab0abe2ab206efd80916f113d1378a055">CLOG_Cache_close4read</a> (<a class="el" href="structCLOG__Cache__t.html">CLOG_Cache_t</a> *cache)</td></tr>
+<tr class="separator:ab0abe2ab206efd80916f113d1378a055"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a949ca924f53e49d89eed4ee0d744d28a" id="r_a949ca924f53e49d89eed4ee0d744d28a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__cache_8h.html#a949ca924f53e49d89eed4ee0d744d28a">CLOG_Cache_close4write</a> (<a class="el" href="structCLOG__Cache__t.html">CLOG_Cache_t</a> *cache)</td></tr>
+<tr class="separator:a949ca924f53e49d89eed4ee0d744d28a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acad750a3a6272bed3f9487e5911f1f40" id="r_acad750a3a6272bed3f9487e5911f1f40"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__cache_8h.html#acad750a3a6272bed3f9487e5911f1f40">CLOG_Cache_close4readwrite</a> (<a class="el" href="structCLOG__Cache__t.html">CLOG_Cache_t</a> *cache)</td></tr>
+<tr class="separator:acad750a3a6272bed3f9487e5911f1f40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3d588a9720c32c59848fa89c3e43e24" id="r_af3d588a9720c32c59848fa89c3e43e24"><td class="memItemLeft" align="right" valign="top"><a class="el" href="include_2clog__const_8h.html#a0046a65ff3bf0ae8b87013b27ea09783">CLOG_BOOL_T</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__cache_8h.html#af3d588a9720c32c59848fa89c3e43e24">CLOG_Cache_has_rec</a> (<a class="el" href="structCLOG__Cache__t.html">CLOG_Cache_t</a> *cache)</td></tr>
+<tr class="separator:af3d588a9720c32c59848fa89c3e43e24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae22a57a89a495118bcd209c1d48baa1b" id="r_ae22a57a89a495118bcd209c1d48baa1b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structCLOG__Rec__Header__t.html">CLOG_Rec_Header_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__cache_8h.html#ae22a57a89a495118bcd209c1d48baa1b">CLOG_Cache_get_rec</a> (<a class="el" href="structCLOG__Cache__t.html">CLOG_Cache_t</a> *cache)</td></tr>
+<tr class="separator:ae22a57a89a495118bcd209c1d48baa1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31318a7be57e43ea3baef8808e0483a1" id="r_a31318a7be57e43ea3baef8808e0483a1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="clog__timer_8h.html#abf0f7e46df13fdbacdb7a819cf12267d">CLOG_Time_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__cache_8h.html#a31318a7be57e43ea3baef8808e0483a1">CLOG_Cache_get_time</a> (<a class="el" href="structvector.html">const</a> <a class="el" href="structCLOG__Cache__t.html">CLOG_Cache_t</a> *cache)</td></tr>
+<tr class="separator:a31318a7be57e43ea3baef8808e0483a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad871dcb14fa78b0a14f46d24fc05b4bd" id="r_ad871dcb14fa78b0a14f46d24fc05b4bd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__cache_8h.html#ad871dcb14fa78b0a14f46d24fc05b4bd">CLOG_Cache_put_rec</a> (<a class="el" href="structCLOG__Cache__t.html">CLOG_Cache_t</a> *cache, <a class="el" href="structvector.html">const</a> <a class="el" href="structCLOG__Rec__Header__t.html">CLOG_Rec_Header_t</a> *<a class="el" href="structvector.html">hdr</a>)</td></tr>
+<tr class="separator:ad871dcb14fa78b0a14f46d24fc05b4bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78d3910ce01ec5cb98353ad9180f6169" id="r_a78d3910ce01ec5cb98353ad9180f6169"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__cache_8h.html#a78d3910ce01ec5cb98353ad9180f6169">CLOG_Cache_flush</a> (<a class="el" href="structCLOG__Cache__t.html">CLOG_Cache_t</a> *cache)</td></tr>
+<tr class="separator:a78d3910ce01ec5cb98353ad9180f6169"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a000ab354fc014b5a7bcd2a09243ded19" id="r_a000ab354fc014b5a7bcd2a09243ded19"><td class="memItemLeft" align="right" valign="top"><a class="el" href="clog__cache_8h.html#aa352d911b654cd7f9363461218183c25">CLOG_CacheLink_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__cache_8h.html#a000ab354fc014b5a7bcd2a09243ded19">CLOG_CacheLink_create</a> (<a class="el" href="structCLOG__Cache__t.html">CLOG_Cache_t</a> *cache)</td></tr>
+<tr class="separator:a000ab354fc014b5a7bcd2a09243ded19"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab005097efaa6722c3874bf22e50d888" id="r_aab005097efaa6722c3874bf22e50d888"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__cache_8h.html#aab005097efaa6722c3874bf22e50d888">CLOG_CacheLink_free</a> (<a class="el" href="clog__cache_8h.html#aa352d911b654cd7f9363461218183c25">CLOG_CacheLink_t</a> **<a class="el" href="structvector.html">cachelink_handle</a>)</td></tr>
+<tr class="separator:aab005097efaa6722c3874bf22e50d888"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a249847203c88317f3ef4b055820493ec" id="r_a249847203c88317f3ef4b055820493ec"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__cache_8h.html#a249847203c88317f3ef4b055820493ec">CLOG_CacheLink_detach</a> (<a class="el" href="clog__cache_8h.html#aa352d911b654cd7f9363461218183c25">CLOG_CacheLink_t</a> **<a class="el" href="structvector.html">head_handle</a>, <a class="el" href="clog__cache_8h.html#aa352d911b654cd7f9363461218183c25">CLOG_CacheLink_t</a> **<a class="el" href="structvector.html">tail_handle</a>, <a class="el" href="clog__cache_8h.html#aa352d911b654cd7f9363461218183c25">CLOG_CacheLink_t</a> *<a class="el" href="structvector.html">detach</a>)</td></tr>
+<tr class="separator:a249847203c88317f3ef4b055820493ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a873ba611120b7274d06066baf6761df6" id="r_a873ba611120b7274d06066baf6761df6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__cache_8h.html#a873ba611120b7274d06066baf6761df6">CLOG_CacheLink_append</a> (<a class="el" href="clog__cache_8h.html#aa352d911b654cd7f9363461218183c25">CLOG_CacheLink_t</a> **<a class="el" href="structvector.html">head_handle</a>, <a class="el" href="clog__cache_8h.html#aa352d911b654cd7f9363461218183c25">CLOG_CacheLink_t</a> **<a class="el" href="structvector.html">tail_handle</a>, <a class="el" href="clog__cache_8h.html#aa352d911b654cd7f9363461218183c25">CLOG_CacheLink_t</a> *<a class="el" href="structvector.html">curr</a>)</td></tr>
+<tr class="separator:a873ba611120b7274d06066baf6761df6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2794e7112b6be3d30e2c4e7703fd1cbc" id="r_a2794e7112b6be3d30e2c4e7703fd1cbc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clog__cache_8h.html#a2794e7112b6be3d30e2c4e7703fd1cbc">CLOG_CacheLink_insert</a> (<a class="el" href="clog__cache_8h.html#aa352d911b654cd7f9363461218183c25">CLOG_CacheLink_t</a> **<a class="el" href="structvector.html">head_handle</a>, <a class="el" href="clog__cache_8h.html#aa352d911b654cd7f9363461218183c25">CLOG_CacheLink_t</a> **<a class="el" href="structvector.html">tail_handle</a>, <a class="el" href="clog__cache_8h.html#aa352d911b654cd7f9363461218183c25">CLOG_CacheLink_t</a> *<a class="el" href="structvector.html">location</a>, <a class="el" href="clog__cache_8h.html#aa352d911b654cd7f9363461218183c25">CLOG_CacheLink_t</a> *<a class="el" href="structvector.html">insert</a>)</td></tr>
+<tr class="separator:a2794e7112b6be3d30e2c4e7703fd1cbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Типы</h2>
+<a id="aa352d911b654cd7f9363461218183c25" name="aa352d911b654cd7f9363461218183c25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa352d911b654cd7f9363461218183c25">&#9670;&#160;</a></span>CLOG_CacheLink_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">typedef</a> <a class="el" href="structvector.html">struct</a> <a class="el" href="struct__CLOG__CacheLink__t.html">_CLOG_CacheLink_t</a> <a class="el" href="clog__cache_8h.html#aa352d911b654cd7f9363461218183c25">CLOG_CacheLink_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Функции</h2>
+<a id="ab0abe2ab206efd80916f113d1378a055" name="ab0abe2ab206efd80916f113d1378a055"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab0abe2ab206efd80916f113d1378a055">&#9670;&#160;</a></span>CLOG_Cache_close4read()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Cache_close4read </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Cache__t.html">CLOG_Cache_t</a> *&#160;</td>
+          <td class="paramname"><em>cache</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acad750a3a6272bed3f9487e5911f1f40" name="acad750a3a6272bed3f9487e5911f1f40"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acad750a3a6272bed3f9487e5911f1f40">&#9670;&#160;</a></span>CLOG_Cache_close4readwrite()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Cache_close4readwrite </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Cache__t.html">CLOG_Cache_t</a> *&#160;</td>
+          <td class="paramname"><em>cache</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a949ca924f53e49d89eed4ee0d744d28a" name="a949ca924f53e49d89eed4ee0d744d28a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a949ca924f53e49d89eed4ee0d744d28a">&#9670;&#160;</a></span>CLOG_Cache_close4write()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Cache_close4write </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Cache__t.html">CLOG_Cache_t</a> *&#160;</td>
+          <td class="paramname"><em>cache</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af9841686179d34c439ece9cd7d12d668" name="af9841686179d34c439ece9cd7d12d668"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9841686179d34c439ece9cd7d12d668">&#9670;&#160;</a></span>CLOG_Cache_create()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structCLOG__Cache__t.html">CLOG_Cache_t</a> * CLOG_Cache_create </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a78d3910ce01ec5cb98353ad9180f6169" name="a78d3910ce01ec5cb98353ad9180f6169"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78d3910ce01ec5cb98353ad9180f6169">&#9670;&#160;</a></span>CLOG_Cache_flush()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Cache_flush </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Cache__t.html">CLOG_Cache_t</a> *&#160;</td>
+          <td class="paramname"><em>cache</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7068b74b989e4ad4b59151d637a2a90f" name="a7068b74b989e4ad4b59151d637a2a90f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7068b74b989e4ad4b59151d637a2a90f">&#9670;&#160;</a></span>CLOG_Cache_flushlastblock()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Cache_flushlastblock </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Cache__t.html">CLOG_Cache_t</a> *&#160;</td>
+          <td class="paramname"><em>cache</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a426e7b3b9e39ab8d5d246109db3c000d" name="a426e7b3b9e39ab8d5d246109db3c000d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a426e7b3b9e39ab8d5d246109db3c000d">&#9670;&#160;</a></span>CLOG_Cache_free()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Cache_free </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Cache__t.html">CLOG_Cache_t</a> **&#160;</td>
+          <td class="paramname"><em>cache_handle</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae22a57a89a495118bcd209c1d48baa1b" name="ae22a57a89a495118bcd209c1d48baa1b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae22a57a89a495118bcd209c1d48baa1b">&#9670;&#160;</a></span>CLOG_Cache_get_rec()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structCLOG__Rec__Header__t.html">CLOG_Rec_Header_t</a> * CLOG_Cache_get_rec </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Cache__t.html">CLOG_Cache_t</a> *&#160;</td>
+          <td class="paramname"><em>cache</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a31318a7be57e43ea3baef8808e0483a1" name="a31318a7be57e43ea3baef8808e0483a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31318a7be57e43ea3baef8808e0483a1">&#9670;&#160;</a></span>CLOG_Cache_get_time()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="clog__timer_8h.html#abf0f7e46df13fdbacdb7a819cf12267d">CLOG_Time_t</a> CLOG_Cache_get_time </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structCLOG__Cache__t.html">CLOG_Cache_t</a> *&#160;</td>
+          <td class="paramname"><em>cache</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af3d588a9720c32c59848fa89c3e43e24" name="af3d588a9720c32c59848fa89c3e43e24"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3d588a9720c32c59848fa89c3e43e24">&#9670;&#160;</a></span>CLOG_Cache_has_rec()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="include_2clog__const_8h.html#a0046a65ff3bf0ae8b87013b27ea09783">CLOG_BOOL_T</a> CLOG_Cache_has_rec </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Cache__t.html">CLOG_Cache_t</a> *&#160;</td>
+          <td class="paramname"><em>cache</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a69afba353696062c1e021c1dbccce731" name="a69afba353696062c1e021c1dbccce731"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69afba353696062c1e021c1dbccce731">&#9670;&#160;</a></span>CLOG_Cache_init4read()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Cache_init4read </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Cache__t.html">CLOG_Cache_t</a> *&#160;</td>
+          <td class="paramname"><em>cache</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afc72bb0c7aad9d253eebf80018b09f55" name="afc72bb0c7aad9d253eebf80018b09f55"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc72bb0c7aad9d253eebf80018b09f55">&#9670;&#160;</a></span>CLOG_Cache_init4write()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Cache_init4write </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Cache__t.html">CLOG_Cache_t</a> *&#160;</td>
+          <td class="paramname"><em>cache</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abae07d2d69cc36e773a2e1b9c401da8f" name="abae07d2d69cc36e773a2e1b9c401da8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abae07d2d69cc36e773a2e1b9c401da8f">&#9670;&#160;</a></span>CLOG_Cache_open4read()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Cache_open4read </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Cache__t.html">CLOG_Cache_t</a> *&#160;</td>
+          <td class="paramname"><em>cache</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>filename</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a53994848e4d7d39610b9b8aab27063a8" name="a53994848e4d7d39610b9b8aab27063a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53994848e4d7d39610b9b8aab27063a8">&#9670;&#160;</a></span>CLOG_Cache_open4readwrite()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Cache_open4readwrite </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Cache__t.html">CLOG_Cache_t</a> *&#160;</td>
+          <td class="paramname"><em>cache</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>filename</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a50626014169bc3f90a8d0a25e73567c7" name="a50626014169bc3f90a8d0a25e73567c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a50626014169bc3f90a8d0a25e73567c7">&#9670;&#160;</a></span>CLOG_Cache_open4write()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Cache_open4write </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Cache__t.html">CLOG_Cache_t</a> *&#160;</td>
+          <td class="paramname"><em>cache</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>filename</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad871dcb14fa78b0a14f46d24fc05b4bd" name="ad871dcb14fa78b0a14f46d24fc05b4bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad871dcb14fa78b0a14f46d24fc05b4bd">&#9670;&#160;</a></span>CLOG_Cache_put_rec()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_Cache_put_rec </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Cache__t.html">CLOG_Cache_t</a> *&#160;</td>
+          <td class="paramname"><em>cache</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structCLOG__Rec__Header__t.html">CLOG_Rec_Header_t</a> *&#160;</td>
+          <td class="paramname"><em>hdr</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a873ba611120b7274d06066baf6761df6" name="a873ba611120b7274d06066baf6761df6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a873ba611120b7274d06066baf6761df6">&#9670;&#160;</a></span>CLOG_CacheLink_append()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_CacheLink_append </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="clog__cache_8h.html#aa352d911b654cd7f9363461218183c25">CLOG_CacheLink_t</a> **&#160;</td>
+          <td class="paramname"><em>head_handle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="clog__cache_8h.html#aa352d911b654cd7f9363461218183c25">CLOG_CacheLink_t</a> **&#160;</td>
+          <td class="paramname"><em>tail_handle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="clog__cache_8h.html#aa352d911b654cd7f9363461218183c25">CLOG_CacheLink_t</a> *&#160;</td>
+          <td class="paramname"><em>curr</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a000ab354fc014b5a7bcd2a09243ded19" name="a000ab354fc014b5a7bcd2a09243ded19"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a000ab354fc014b5a7bcd2a09243ded19">&#9670;&#160;</a></span>CLOG_CacheLink_create()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="clog__cache_8h.html#aa352d911b654cd7f9363461218183c25">CLOG_CacheLink_t</a> * CLOG_CacheLink_create </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCLOG__Cache__t.html">CLOG_Cache_t</a> *&#160;</td>
+          <td class="paramname"><em>cache</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a249847203c88317f3ef4b055820493ec" name="a249847203c88317f3ef4b055820493ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a249847203c88317f3ef4b055820493ec">&#9670;&#160;</a></span>CLOG_CacheLink_detach()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_CacheLink_detach </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="clog__cache_8h.html#aa352d911b654cd7f9363461218183c25">CLOG_CacheLink_t</a> **&#160;</td>
+          <td class="paramname"><em>head_handle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="clog__cache_8h.html#aa352d911b654cd7f9363461218183c25">CLOG_CacheLink_t</a> **&#160;</td>
+          <td class="paramname"><em>tail_handle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="clog__cache_8h.html#aa352d911b654cd7f9363461218183c25">CLOG_CacheLink_t</a> *&#160;</td>
+          <td class="paramname"><em>detach</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aab005097efaa6722c3874bf22e50d888" name="aab005097efaa6722c3874bf22e50d888"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab005097efaa6722c3874bf22e50d888">&#9670;&#160;</a></span>CLOG_CacheLink_free()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_CacheLink_free </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="clog__cache_8h.html#aa352d911b654cd7f9363461218183c25">CLOG_CacheLink_t</a> **&#160;</td>
+          <td class="paramname"><em>cachelink_handle</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2794e7112b6be3d30e2c4e7703fd1cbc" name="a2794e7112b6be3d30e2c4e7703fd1cbc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2794e7112b6be3d30e2c4e7703fd1cbc">&#9670;&#160;</a></span>CLOG_CacheLink_insert()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> CLOG_CacheLink_insert </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="clog__cache_8h.html#aa352d911b654cd7f9363461218183c25">CLOG_CacheLink_t</a> **&#160;</td>
+          <td class="paramname"><em>head_handle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="clog__cache_8h.html#aa352d911b654cd7f9363461218183c25">CLOG_CacheLink_t</a> **&#160;</td>
+          <td class="paramname"><em>tail_handle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="clog__cache_8h.html#aa352d911b654cd7f9363461218183c25">CLOG_CacheLink_t</a> *&#160;</td>
+          <td class="paramname"><em>location</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="clog__cache_8h.html#aa352d911b654cd7f9363461218183c25">CLOG_CacheLink_t</a> *&#160;</td>
+          <td class="paramname"><em>insert</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

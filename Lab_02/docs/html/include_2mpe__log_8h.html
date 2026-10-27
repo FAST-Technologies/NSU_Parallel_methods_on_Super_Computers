@@ -1,0 +1,1641 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lab_02: MPI + OpenMP Parallel Programming: Файл mpe_log.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Lab_02: MPI + OpenMP Parallel Programming<span id="projectnumber">&#160;2.1</span>
+   </div>
+   <div id="projectbrief">Решение 3D уравнения Пуассона методом Якоби с двумерной декомпозицией</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_1f646cbbb0f6227d25dd06f792d51aba.html">mpe2-1.3.0</a></li><li class="navelem"><a class="el" href="dir_e4f2aaf8f2e8ac04a936ef91fbeb17bc.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#define-members">Макросы</a> &#124;
+<a href="#typedef-members">Определения типов</a> &#124;
+<a href="#func-members">Функции</a>  </div>
+  <div class="headertitle"><div class="title">Файл mpe_log.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;mpi.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="include_2clog__commset_8h_source.html">clog_commset.h</a>&quot;</code><br />
+</div>
+<p><a href="include_2mpe__log_8h_source.html">См. исходные тексты.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Макросы</h2></td></tr>
+<tr class="memitem:aa98e7bec2a802e5020b557255a429fb1" id="r_aa98e7bec2a802e5020b557255a429fb1"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log_8h.html#aa98e7bec2a802e5020b557255a429fb1">MPEU_DLL_SPEC</a></td></tr>
+<tr class="separator:aa98e7bec2a802e5020b557255a429fb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3030541fa8c7669941fcc2dc669351f2" id="r_a3030541fa8c7669941fcc2dc669351f2"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log_8h.html#a3030541fa8c7669941fcc2dc669351f2">MPE_LOG_OK</a>&#160;&#160;&#160;0</td></tr>
+<tr class="separator:a3030541fa8c7669941fcc2dc669351f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44e19ba7914dfad7337188ef7f06b1c4" id="r_a44e19ba7914dfad7337188ef7f06b1c4"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log_8h.html#a44e19ba7914dfad7337188ef7f06b1c4">MPE_Log_OK</a>&#160;&#160;&#160;<a class="el" href="include_2mpe__log_8h.html#a3030541fa8c7669941fcc2dc669351f2">MPE_LOG_OK</a></td></tr>
+<tr class="separator:a44e19ba7914dfad7337188ef7f06b1c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8333abc7623389b15b3fe0bb94c2340a" id="r_a8333abc7623389b15b3fe0bb94c2340a"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log_8h.html#a8333abc7623389b15b3fe0bb94c2340a">MPE_LOG_LOCKED_OUT</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:a8333abc7623389b15b3fe0bb94c2340a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ed3c53ef2055978009f47dfceb3c91f" id="r_a5ed3c53ef2055978009f47dfceb3c91f"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log_8h.html#a5ed3c53ef2055978009f47dfceb3c91f">MPE_Log_LOCKED_OUT</a>&#160;&#160;&#160;<a class="el" href="include_2mpe__log_8h.html#a8333abc7623389b15b3fe0bb94c2340a">MPE_LOG_LOCKED_OUT</a></td></tr>
+<tr class="separator:a5ed3c53ef2055978009f47dfceb3c91f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7bdc27e9754165143a1f0adba7e47097" id="r_a7bdc27e9754165143a1f0adba7e47097"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log_8h.html#a7bdc27e9754165143a1f0adba7e47097">MPE_LOG_NO_MEMORY</a>&#160;&#160;&#160;2</td></tr>
+<tr class="separator:a7bdc27e9754165143a1f0adba7e47097"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35c81049d23ab93892b7d2c46cdfd68b" id="r_a35c81049d23ab93892b7d2c46cdfd68b"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log_8h.html#a35c81049d23ab93892b7d2c46cdfd68b">MPE_Log_NO_MEMORY</a>&#160;&#160;&#160;<a class="el" href="include_2mpe__log_8h.html#a7bdc27e9754165143a1f0adba7e47097">MPE_LOG_NO_MEMORY</a></td></tr>
+<tr class="separator:a35c81049d23ab93892b7d2c46cdfd68b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25a568572cdc2b23dafb88ab14d5d82a" id="r_a25a568572cdc2b23dafb88ab14d5d82a"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log_8h.html#a25a568572cdc2b23dafb88ab14d5d82a">MPE_LOG_FILE_PROB</a>&#160;&#160;&#160;3</td></tr>
+<tr class="separator:a25a568572cdc2b23dafb88ab14d5d82a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa87e7cf36ffe069e695666b155273691" id="r_aa87e7cf36ffe069e695666b155273691"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log_8h.html#aa87e7cf36ffe069e695666b155273691">MPE_Log_FILE_PROB</a>&#160;&#160;&#160;<a class="el" href="include_2mpe__log_8h.html#a25a568572cdc2b23dafb88ab14d5d82a">MPE_LOG_FILE_PROB</a></td></tr>
+<tr class="separator:aa87e7cf36ffe069e695666b155273691"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d14194dcb8c6fd3234f90c6bdad821a" id="r_a6d14194dcb8c6fd3234f90c6bdad821a"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log_8h.html#a6d14194dcb8c6fd3234f90c6bdad821a">MPE_LOG_NOT_INITIALIZED</a>&#160;&#160;&#160;4</td></tr>
+<tr class="separator:a6d14194dcb8c6fd3234f90c6bdad821a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a341f0b2cf3ce7b237b66f4b0883d1508" id="r_a341f0b2cf3ce7b237b66f4b0883d1508"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log_8h.html#a341f0b2cf3ce7b237b66f4b0883d1508">MPE_Log_NOT_INITIALIZED</a>&#160;&#160;&#160;<a class="el" href="include_2mpe__log_8h.html#a6d14194dcb8c6fd3234f90c6bdad821a">MPE_LOG_NOT_INITIALIZED</a></td></tr>
+<tr class="separator:a341f0b2cf3ce7b237b66f4b0883d1508"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5de39bcf49461b24d98eb21721fb591d" id="r_a5de39bcf49461b24d98eb21721fb591d"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log_8h.html#a5de39bcf49461b24d98eb21721fb591d">MPE_LOG_PACK_FAIL</a>&#160;&#160;&#160;5</td></tr>
+<tr class="separator:a5de39bcf49461b24d98eb21721fb591d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac693a7a2ea004f6818af038450e9f7b0" id="r_ac693a7a2ea004f6818af038450e9f7b0"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log_8h.html#ac693a7a2ea004f6818af038450e9f7b0">MPE_Log_PACK_FAIL</a>&#160;&#160;&#160;<a class="el" href="include_2mpe__log_8h.html#a5de39bcf49461b24d98eb21721fb591d">MPE_LOG_PACK_FAIL</a></td></tr>
+<tr class="separator:ac693a7a2ea004f6818af038450e9f7b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ad100dda44d26431a45a1e1bd8eb8f0" id="r_a4ad100dda44d26431a45a1e1bd8eb8f0"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log_8h.html#a4ad100dda44d26431a45a1e1bd8eb8f0">MPE_LOG_BYTESIZE</a>&#160;&#160;&#160;(4 * <a class="el" href="structvector.html">sizeof</a>(<a class="el" href="structvector.html">double</a>))</td></tr>
+<tr class="separator:a4ad100dda44d26431a45a1e1bd8eb8f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Определения типов</h2></td></tr>
+<tr class="memitem:acd9dcf56cf81296cbed9a33a6b816123" id="r_acd9dcf56cf81296cbed9a33a6b816123"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">typedef</a> <a class="el" href="structvector.html">char</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log_8h.html#acd9dcf56cf81296cbed9a33a6b816123">MPE_LOG_BYTES</a>[<a class="el" href="include_2mpe__log_8h.html#a4ad100dda44d26431a45a1e1bd8eb8f0">MPE_LOG_BYTESIZE</a>]</td></tr>
+<tr class="separator:acd9dcf56cf81296cbed9a33a6b816123"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Функции</h2></td></tr>
+<tr class="memitem:a98d6d284fbceee7048055e76a2220d51" id="r_a98d6d284fbceee7048055e76a2220d51"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log_8h.html#a98d6d284fbceee7048055e76a2220d51">MPE_Init_log</a> (<a class="el" href="structvector.html">void</a>)</td></tr>
+<tr class="separator:a98d6d284fbceee7048055e76a2220d51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45d7f463a855f1a4bd0b86b158eeeb0f" id="r_a45d7f463a855f1a4bd0b86b158eeeb0f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log_8h.html#a45d7f463a855f1a4bd0b86b158eeeb0f">MPE_Initialized_logging</a> (<a class="el" href="structvector.html">void</a>)</td></tr>
+<tr class="separator:a45d7f463a855f1a4bd0b86b158eeeb0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1fbc2dca40135e9d894b62b003a7b7a" id="r_ae1fbc2dca40135e9d894b62b003a7b7a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log_8h.html#ae1fbc2dca40135e9d894b62b003a7b7a">MPE_Describe_comm_state</a> (<a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">state_startID</a>, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">state_finalID</a>, <a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *name, <a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *color, <a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *format)</td></tr>
+<tr class="separator:ae1fbc2dca40135e9d894b62b003a7b7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35f4ca72dc752326960fd3aa3dfe0fa7" id="r_a35f4ca72dc752326960fd3aa3dfe0fa7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log_8h.html#a35f4ca72dc752326960fd3aa3dfe0fa7">MPE_Describe_info_state</a> (<a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">state_startID</a>, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">state_finalID</a>, <a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *name, <a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *color, <a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *format)</td></tr>
+<tr class="separator:a35f4ca72dc752326960fd3aa3dfe0fa7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09ab2adf7d01a76940e8212044d07a3b" id="r_a09ab2adf7d01a76940e8212044d07a3b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log_8h.html#a09ab2adf7d01a76940e8212044d07a3b">MPE_Describe_known_state</a> (<a class="el" href="structvector.html">const</a> <a class="el" href="include_2clog__commset_8h.html#a2a72179bb68215dd33f4147550bcaf71">CLOG_CommIDs_t</a> *commIDs, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">local_thread</a>, <a class="el" href="structvector.html">int</a> stateID, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">state_startID</a>, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">state_finalID</a>, <a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *name, <a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *color, <a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *format)</td></tr>
+<tr class="separator:a09ab2adf7d01a76940e8212044d07a3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4295262dd494f2820cd83cd3d6d8a0d3" id="r_a4295262dd494f2820cd83cd3d6d8a0d3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log_8h.html#a4295262dd494f2820cd83cd3d6d8a0d3">MPE_Describe_state</a> (<a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">state_startID</a>, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">state_finalID</a>, <a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *name, <a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *color)</td></tr>
+<tr class="separator:a4295262dd494f2820cd83cd3d6d8a0d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7cf160201c1f88b91b8b4ff0fbf7a4e0" id="r_a7cf160201c1f88b91b8b4ff0fbf7a4e0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log_8h.html#a7cf160201c1f88b91b8b4ff0fbf7a4e0">MPE_Describe_comm_event</a> (<a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">eventID</a>, <a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *name, <a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *color, <a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *format)</td></tr>
+<tr class="separator:a7cf160201c1f88b91b8b4ff0fbf7a4e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a2a42492b6074b621468ae8dd1ed94f" id="r_a5a2a42492b6074b621468ae8dd1ed94f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log_8h.html#a5a2a42492b6074b621468ae8dd1ed94f">MPE_Describe_info_event</a> (<a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">eventID</a>, <a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *name, <a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *color, <a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *format)</td></tr>
+<tr class="separator:a5a2a42492b6074b621468ae8dd1ed94f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4fde4a40d3226dee0914643e4d79038" id="r_ae4fde4a40d3226dee0914643e4d79038"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log_8h.html#ae4fde4a40d3226dee0914643e4d79038">MPE_Describe_known_event</a> (<a class="el" href="structvector.html">const</a> <a class="el" href="include_2clog__commset_8h.html#a2a72179bb68215dd33f4147550bcaf71">CLOG_CommIDs_t</a> *commIDs, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">local_thread</a>, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">eventID</a>, <a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *name, <a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *color, <a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *format)</td></tr>
+<tr class="separator:ae4fde4a40d3226dee0914643e4d79038"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68514bf4c24848b1265aebe0cd59ccd0" id="r_a68514bf4c24848b1265aebe0cd59ccd0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log_8h.html#a68514bf4c24848b1265aebe0cd59ccd0">MPE_Describe_event</a> (<a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">eventID</a>, <a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *name, <a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *color)</td></tr>
+<tr class="separator:a68514bf4c24848b1265aebe0cd59ccd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea591b1a8ad023681484394eec192c94" id="r_aea591b1a8ad023681484394eec192c94"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log_8h.html#aea591b1a8ad023681484394eec192c94">MPE_Log_get_event_number</a> (<a class="el" href="structvector.html">void</a>)</td></tr>
+<tr class="separator:aea591b1a8ad023681484394eec192c94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a670fe88d1efcd815378c6842781ab9c6" id="r_a670fe88d1efcd815378c6842781ab9c6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log_8h.html#a670fe88d1efcd815378c6842781ab9c6">MPE_Log_get_state_eventIDs</a> (<a class="el" href="structvector.html">int</a> *<a class="el" href="structvector.html">statedef_startID</a>, <a class="el" href="structvector.html">int</a> *<a class="el" href="structvector.html">statedef_finalID</a>)</td></tr>
+<tr class="separator:a670fe88d1efcd815378c6842781ab9c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79923bdb76fae0f0638cdfeb7c49886f" id="r_a79923bdb76fae0f0638cdfeb7c49886f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log_8h.html#a79923bdb76fae0f0638cdfeb7c49886f">MPE_Log_get_solo_eventID</a> (<a class="el" href="structvector.html">int</a> *<a class="el" href="structvector.html">eventdef_eventID</a>)</td></tr>
+<tr class="separator:a79923bdb76fae0f0638cdfeb7c49886f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae81bb974966867c0ff4058fd0fe8328b" id="r_ae81bb974966867c0ff4058fd0fe8328b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log_8h.html#ae81bb974966867c0ff4058fd0fe8328b">MPE_Log_get_known_eventID</a> (<a class="el" href="structvector.html">void</a>)</td></tr>
+<tr class="separator:ae81bb974966867c0ff4058fd0fe8328b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33da8addd8224af24225e3976ec87e61" id="r_a33da8addd8224af24225e3976ec87e61"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log_8h.html#a33da8addd8224af24225e3976ec87e61">MPE_Log_get_known_stateID</a> (<a class="el" href="structvector.html">void</a>)</td></tr>
+<tr class="separator:a33da8addd8224af24225e3976ec87e61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d7eabe548958bff0a3d61d90315828e" id="r_a0d7eabe548958bff0a3d61d90315828e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log_8h.html#a0d7eabe548958bff0a3d61d90315828e">MPE_Log_get_known_solo_eventID</a> (<a class="el" href="structvector.html">void</a>)</td></tr>
+<tr class="separator:a0d7eabe548958bff0a3d61d90315828e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abae5901dfc15f17f9c323205c442ec91" id="r_abae5901dfc15f17f9c323205c442ec91"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log_8h.html#abae5901dfc15f17f9c323205c442ec91">MPE_Log_commIDs_intracomm</a> (<a class="el" href="structvector.html">const</a> <a class="el" href="include_2clog__commset_8h.html#a2a72179bb68215dd33f4147550bcaf71">CLOG_CommIDs_t</a> *commIDs, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">local_thread</a>, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">comm_etype</a>, <a class="el" href="structvector.html">const</a> <a class="el" href="include_2clog__commset_8h.html#a2a72179bb68215dd33f4147550bcaf71">CLOG_CommIDs_t</a> *<a class="el" href="structvector.html">intracommIDs</a>)</td></tr>
+<tr class="separator:abae5901dfc15f17f9c323205c442ec91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aede4908dfeff7e3ae735eec88a331094" id="r_aede4908dfeff7e3ae735eec88a331094"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log_8h.html#aede4908dfeff7e3ae735eec88a331094">MPE_Log_commIDs_nullcomm</a> (<a class="el" href="structvector.html">const</a> <a class="el" href="include_2clog__commset_8h.html#a2a72179bb68215dd33f4147550bcaf71">CLOG_CommIDs_t</a> *commIDs, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">local_thread</a>, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">comm_etype</a>)</td></tr>
+<tr class="separator:aede4908dfeff7e3ae735eec88a331094"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a385710368e365aada81ee388b6f33f7f" id="r_a385710368e365aada81ee388b6f33f7f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log_8h.html#a385710368e365aada81ee388b6f33f7f">MPE_Log_commIDs_intercomm</a> (<a class="el" href="structvector.html">const</a> <a class="el" href="include_2clog__commset_8h.html#a2a72179bb68215dd33f4147550bcaf71">CLOG_CommIDs_t</a> *commIDs, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">local_thread</a>, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">comm_etype</a>, <a class="el" href="structvector.html">const</a> <a class="el" href="include_2clog__commset_8h.html#a2a72179bb68215dd33f4147550bcaf71">CLOG_CommIDs_t</a> *<a class="el" href="structvector.html">intercommIDs</a>)</td></tr>
+<tr class="separator:a385710368e365aada81ee388b6f33f7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a903ceafdbb54f85f6a53bb90e99d0817" id="r_a903ceafdbb54f85f6a53bb90e99d0817"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log_8h.html#a903ceafdbb54f85f6a53bb90e99d0817">MPE_Log_commIDs_send</a> (<a class="el" href="structvector.html">const</a> <a class="el" href="include_2clog__commset_8h.html#a2a72179bb68215dd33f4147550bcaf71">CLOG_CommIDs_t</a> *commIDs, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">local_thread</a>, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">receiver</a>, <a class="el" href="structvector.html">int</a> tag, <a class="el" href="structvector.html">int</a> size)</td></tr>
+<tr class="separator:a903ceafdbb54f85f6a53bb90e99d0817"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f31a0bf395783eab897f061ae720b3e" id="r_a1f31a0bf395783eab897f061ae720b3e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log_8h.html#a1f31a0bf395783eab897f061ae720b3e">MPE_Log_comm_send</a> (<a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">receiver</a>, <a class="el" href="structvector.html">int</a> tag, <a class="el" href="structvector.html">int</a> size)</td></tr>
+<tr class="separator:a1f31a0bf395783eab897f061ae720b3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe0b53ca205357e6ddf5e4b45b0d8fb3" id="r_afe0b53ca205357e6ddf5e4b45b0d8fb3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log_8h.html#afe0b53ca205357e6ddf5e4b45b0d8fb3">MPE_Log_send</a> (<a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">receiver</a>, <a class="el" href="structvector.html">int</a> tag, <a class="el" href="structvector.html">int</a> size)</td></tr>
+<tr class="separator:afe0b53ca205357e6ddf5e4b45b0d8fb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ab62b882393d810cb60c1f8463ae44f" id="r_a6ab62b882393d810cb60c1f8463ae44f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log_8h.html#a6ab62b882393d810cb60c1f8463ae44f">MPE_Log_commIDs_receive</a> (<a class="el" href="structvector.html">const</a> <a class="el" href="include_2clog__commset_8h.html#a2a72179bb68215dd33f4147550bcaf71">CLOG_CommIDs_t</a> *commIDs, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">local_thread</a>, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">sender</a>, <a class="el" href="structvector.html">int</a> tag, <a class="el" href="structvector.html">int</a> size)</td></tr>
+<tr class="separator:a6ab62b882393d810cb60c1f8463ae44f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a168f35fb80107c844a5c79882c4baca0" id="r_a168f35fb80107c844a5c79882c4baca0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log_8h.html#a168f35fb80107c844a5c79882c4baca0">MPE_Log_comm_receive</a> (<a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">sender</a>, <a class="el" href="structvector.html">int</a> tag, <a class="el" href="structvector.html">int</a> size)</td></tr>
+<tr class="separator:a168f35fb80107c844a5c79882c4baca0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1814c2d57d003d31d73a420f2535bc2c" id="r_a1814c2d57d003d31d73a420f2535bc2c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log_8h.html#a1814c2d57d003d31d73a420f2535bc2c">MPE_Log_receive</a> (<a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">sender</a>, <a class="el" href="structvector.html">int</a> tag, <a class="el" href="structvector.html">int</a> size)</td></tr>
+<tr class="separator:a1814c2d57d003d31d73a420f2535bc2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb7d912a1619e74a5962428ab31cf802" id="r_adb7d912a1619e74a5962428ab31cf802"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log_8h.html#adb7d912a1619e74a5962428ab31cf802">MPE_Log_pack</a> (<a class="el" href="include_2mpe__log_8h.html#acd9dcf56cf81296cbed9a33a6b816123">MPE_LOG_BYTES</a> <a class="el" href="structvector.html">bytebuf</a>, <a class="el" href="structvector.html">int</a> *<a class="el" href="structvector.html">position</a>, <a class="el" href="structvector.html">char</a> <a class="el" href="structvector.html">tokentype</a>, <a class="el" href="structvector.html">int</a> count, <a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">void</a> *data)</td></tr>
+<tr class="separator:adb7d912a1619e74a5962428ab31cf802"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08730caddfdafdfcdaa56556fec3f634" id="r_a08730caddfdafdfcdaa56556fec3f634"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log_8h.html#a08730caddfdafdfcdaa56556fec3f634">MPE_Log_commIDs_event</a> (<a class="el" href="structvector.html">const</a> <a class="el" href="include_2clog__commset_8h.html#a2a72179bb68215dd33f4147550bcaf71">CLOG_CommIDs_t</a> *commIDs, <a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">local_thread</a>, <a class="el" href="structvector.html">int</a> event, <a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *<a class="el" href="structvector.html">bytebuf</a>)</td></tr>
+<tr class="separator:a08730caddfdafdfcdaa56556fec3f634"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a817b1340929c3eb7871b279be80f7b8d" id="r_a817b1340929c3eb7871b279be80f7b8d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log_8h.html#a817b1340929c3eb7871b279be80f7b8d">MPE_Log_comm_event</a> (<a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm, <a class="el" href="structvector.html">int</a> event, <a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *<a class="el" href="structvector.html">bytebuf</a>)</td></tr>
+<tr class="separator:a817b1340929c3eb7871b279be80f7b8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3178029904235f72ada65bd758dce7ce" id="r_a3178029904235f72ada65bd758dce7ce"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log_8h.html#a3178029904235f72ada65bd758dce7ce">MPE_Log_event</a> (<a class="el" href="structvector.html">int</a> event, <a class="el" href="structvector.html">int</a> data, <a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *<a class="el" href="structvector.html">bytebuf</a>)</td></tr>
+<tr class="separator:a3178029904235f72ada65bd758dce7ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5281dd4f78385a71969b80e73045e63c" id="r_a5281dd4f78385a71969b80e73045e63c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log_8h.html#a5281dd4f78385a71969b80e73045e63c">MPE_Log_bare_event</a> (<a class="el" href="structvector.html">int</a> event)</td></tr>
+<tr class="separator:a5281dd4f78385a71969b80e73045e63c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26aea47b82aade057e783dd5fe5ed1c8" id="r_a26aea47b82aade057e783dd5fe5ed1c8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log_8h.html#a26aea47b82aade057e783dd5fe5ed1c8">MPE_Log_info_event</a> (<a class="el" href="structvector.html">int</a> event, <a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *<a class="el" href="structvector.html">bytebuf</a>)</td></tr>
+<tr class="separator:a26aea47b82aade057e783dd5fe5ed1c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06299ceb5dface3699f6cfa6a711f0e7" id="r_a06299ceb5dface3699f6cfa6a711f0e7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log_8h.html#a06299ceb5dface3699f6cfa6a711f0e7">MPE_Log_sync_clocks</a> (<a class="el" href="structvector.html">void</a>)</td></tr>
+<tr class="separator:a06299ceb5dface3699f6cfa6a711f0e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab310c17525c0963b53429c1c9a0ff2aa" id="r_ab310c17525c0963b53429c1c9a0ff2aa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log_8h.html#ab310c17525c0963b53429c1c9a0ff2aa">MPE_Start_log</a> (<a class="el" href="structvector.html">void</a>)</td></tr>
+<tr class="separator:ab310c17525c0963b53429c1c9a0ff2aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51b156b2cce5c26c69114e2b5cd19577" id="r_a51b156b2cce5c26c69114e2b5cd19577"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log_8h.html#a51b156b2cce5c26c69114e2b5cd19577">MPE_Stop_log</a> (<a class="el" href="structvector.html">void</a>)</td></tr>
+<tr class="separator:a51b156b2cce5c26c69114e2b5cd19577"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a338d50ea2482c28c6924e530ea0c3ffb" id="r_a338d50ea2482c28c6924e530ea0c3ffb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log_8h.html#a338d50ea2482c28c6924e530ea0c3ffb">MPE_Log_thread_sync</a> (<a class="el" href="structvector.html">int</a> <a class="el" href="structvector.html">local_thread_count</a>)</td></tr>
+<tr class="separator:a338d50ea2482c28c6924e530ea0c3ffb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e4fd700b78a53b7db6a264a3521317c" id="r_a4e4fd700b78a53b7db6a264a3521317c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log_8h.html#a4e4fd700b78a53b7db6a264a3521317c">MPE_Finish_log</a> (<a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *filename)</td></tr>
+<tr class="separator:a4e4fd700b78a53b7db6a264a3521317c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f89c24e4e9f6ca8d7bb891199c99844" id="r_a1f89c24e4e9f6ca8d7bb891199c99844"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2mpe__log_8h.html#a1f89c24e4e9f6ca8d7bb891199c99844">MPE_Log_merged_logfilename</a> (<a class="el" href="structvector.html">void</a>)</td></tr>
+<tr class="separator:a1f89c24e4e9f6ca8d7bb891199c99844"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Макросы</h2>
+<a id="a4ad100dda44d26431a45a1e1bd8eb8f0" name="a4ad100dda44d26431a45a1e1bd8eb8f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ad100dda44d26431a45a1e1bd8eb8f0">&#9670;&#160;</a></span>MPE_LOG_BYTESIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_LOG_BYTESIZE&#160;&#160;&#160;(4 * <a class="el" href="structvector.html">sizeof</a>(<a class="el" href="structvector.html">double</a>))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__log_8h_source.html">include/mpe_log.h</a> строка <a class="el" href="include_2mpe__log_8h_source.html#l00155">155</a></p>
+
+</div>
+</div>
+<a id="a25a568572cdc2b23dafb88ab14d5d82a" name="a25a568572cdc2b23dafb88ab14d5d82a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25a568572cdc2b23dafb88ab14d5d82a">&#9670;&#160;</a></span>MPE_LOG_FILE_PROB</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_LOG_FILE_PROB&#160;&#160;&#160;3</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__log_8h_source.html">include/mpe_log.h</a> строка <a class="el" href="include_2mpe__log_8h_source.html#l00036">36</a></p>
+
+</div>
+</div>
+<a id="aa87e7cf36ffe069e695666b155273691" name="aa87e7cf36ffe069e695666b155273691"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa87e7cf36ffe069e695666b155273691">&#9670;&#160;</a></span>MPE_Log_FILE_PROB</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_Log_FILE_PROB&#160;&#160;&#160;<a class="el" href="include_2mpe__log_8h.html#a25a568572cdc2b23dafb88ab14d5d82a">MPE_LOG_FILE_PROB</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__log_8h_source.html">include/mpe_log.h</a> строка <a class="el" href="include_2mpe__log_8h_source.html#l00037">37</a></p>
+
+</div>
+</div>
+<a id="a8333abc7623389b15b3fe0bb94c2340a" name="a8333abc7623389b15b3fe0bb94c2340a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8333abc7623389b15b3fe0bb94c2340a">&#9670;&#160;</a></span>MPE_LOG_LOCKED_OUT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_LOG_LOCKED_OUT&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__log_8h_source.html">include/mpe_log.h</a> строка <a class="el" href="include_2mpe__log_8h_source.html#l00030">30</a></p>
+
+</div>
+</div>
+<a id="a5ed3c53ef2055978009f47dfceb3c91f" name="a5ed3c53ef2055978009f47dfceb3c91f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ed3c53ef2055978009f47dfceb3c91f">&#9670;&#160;</a></span>MPE_Log_LOCKED_OUT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_Log_LOCKED_OUT&#160;&#160;&#160;<a class="el" href="include_2mpe__log_8h.html#a8333abc7623389b15b3fe0bb94c2340a">MPE_LOG_LOCKED_OUT</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__log_8h_source.html">include/mpe_log.h</a> строка <a class="el" href="include_2mpe__log_8h_source.html#l00031">31</a></p>
+
+</div>
+</div>
+<a id="a7bdc27e9754165143a1f0adba7e47097" name="a7bdc27e9754165143a1f0adba7e47097"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7bdc27e9754165143a1f0adba7e47097">&#9670;&#160;</a></span>MPE_LOG_NO_MEMORY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_LOG_NO_MEMORY&#160;&#160;&#160;2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__log_8h_source.html">include/mpe_log.h</a> строка <a class="el" href="include_2mpe__log_8h_source.html#l00033">33</a></p>
+
+</div>
+</div>
+<a id="a35c81049d23ab93892b7d2c46cdfd68b" name="a35c81049d23ab93892b7d2c46cdfd68b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35c81049d23ab93892b7d2c46cdfd68b">&#9670;&#160;</a></span>MPE_Log_NO_MEMORY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_Log_NO_MEMORY&#160;&#160;&#160;<a class="el" href="include_2mpe__log_8h.html#a7bdc27e9754165143a1f0adba7e47097">MPE_LOG_NO_MEMORY</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__log_8h_source.html">include/mpe_log.h</a> строка <a class="el" href="include_2mpe__log_8h_source.html#l00034">34</a></p>
+
+</div>
+</div>
+<a id="a6d14194dcb8c6fd3234f90c6bdad821a" name="a6d14194dcb8c6fd3234f90c6bdad821a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d14194dcb8c6fd3234f90c6bdad821a">&#9670;&#160;</a></span>MPE_LOG_NOT_INITIALIZED</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_LOG_NOT_INITIALIZED&#160;&#160;&#160;4</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__log_8h_source.html">include/mpe_log.h</a> строка <a class="el" href="include_2mpe__log_8h_source.html#l00039">39</a></p>
+
+</div>
+</div>
+<a id="a341f0b2cf3ce7b237b66f4b0883d1508" name="a341f0b2cf3ce7b237b66f4b0883d1508"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a341f0b2cf3ce7b237b66f4b0883d1508">&#9670;&#160;</a></span>MPE_Log_NOT_INITIALIZED</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_Log_NOT_INITIALIZED&#160;&#160;&#160;<a class="el" href="include_2mpe__log_8h.html#a6d14194dcb8c6fd3234f90c6bdad821a">MPE_LOG_NOT_INITIALIZED</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__log_8h_source.html">include/mpe_log.h</a> строка <a class="el" href="include_2mpe__log_8h_source.html#l00040">40</a></p>
+
+</div>
+</div>
+<a id="a3030541fa8c7669941fcc2dc669351f2" name="a3030541fa8c7669941fcc2dc669351f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3030541fa8c7669941fcc2dc669351f2">&#9670;&#160;</a></span>MPE_LOG_OK</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_LOG_OK&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__log_8h_source.html">include/mpe_log.h</a> строка <a class="el" href="include_2mpe__log_8h_source.html#l00027">27</a></p>
+
+</div>
+</div>
+<a id="a44e19ba7914dfad7337188ef7f06b1c4" name="a44e19ba7914dfad7337188ef7f06b1c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44e19ba7914dfad7337188ef7f06b1c4">&#9670;&#160;</a></span>MPE_Log_OK</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_Log_OK&#160;&#160;&#160;<a class="el" href="include_2mpe__log_8h.html#a3030541fa8c7669941fcc2dc669351f2">MPE_LOG_OK</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__log_8h_source.html">include/mpe_log.h</a> строка <a class="el" href="include_2mpe__log_8h_source.html#l00028">28</a></p>
+
+</div>
+</div>
+<a id="a5de39bcf49461b24d98eb21721fb591d" name="a5de39bcf49461b24d98eb21721fb591d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5de39bcf49461b24d98eb21721fb591d">&#9670;&#160;</a></span>MPE_LOG_PACK_FAIL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_LOG_PACK_FAIL&#160;&#160;&#160;5</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__log_8h_source.html">include/mpe_log.h</a> строка <a class="el" href="include_2mpe__log_8h_source.html#l00042">42</a></p>
+
+</div>
+</div>
+<a id="ac693a7a2ea004f6818af038450e9f7b0" name="ac693a7a2ea004f6818af038450e9f7b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac693a7a2ea004f6818af038450e9f7b0">&#9670;&#160;</a></span>MPE_Log_PACK_FAIL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPE_Log_PACK_FAIL&#160;&#160;&#160;<a class="el" href="include_2mpe__log_8h.html#a5de39bcf49461b24d98eb21721fb591d">MPE_LOG_PACK_FAIL</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__log_8h_source.html">include/mpe_log.h</a> строка <a class="el" href="include_2mpe__log_8h_source.html#l00043">43</a></p>
+
+</div>
+</div>
+<a id="aa98e7bec2a802e5020b557255a429fb1" name="aa98e7bec2a802e5020b557255a429fb1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa98e7bec2a802e5020b557255a429fb1">&#9670;&#160;</a></span>MPEU_DLL_SPEC</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> MPEU_DLL_SPEC</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__log_8h_source.html">include/mpe_log.h</a> строка <a class="el" href="include_2mpe__log_8h_source.html#l00019">19</a></p>
+
+</div>
+</div>
+<h2 class="groupheader">Типы</h2>
+<a id="acd9dcf56cf81296cbed9a33a6b816123" name="acd9dcf56cf81296cbed9a33a6b816123"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd9dcf56cf81296cbed9a33a6b816123">&#9670;&#160;</a></span>MPE_LOG_BYTES</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">typedef</a> <a class="el" href="structvector.html">char</a> MPE_LOG_BYTES[<a class="el" href="include_2mpe__log_8h.html#a4ad100dda44d26431a45a1e1bd8eb8f0">MPE_LOG_BYTESIZE</a>]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="include_2mpe__log_8h_source.html">include/mpe_log.h</a> строка <a class="el" href="include_2mpe__log_8h_source.html#l00156">156</a></p>
+
+</div>
+</div>
+<h2 class="groupheader">Функции</h2>
+<a id="a7cf160201c1f88b91b8b4ff0fbf7a4e0" name="a7cf160201c1f88b91b8b4ff0fbf7a4e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7cf160201c1f88b91b8b4ff0fbf7a4e0">&#9670;&#160;</a></span>MPE_Describe_comm_event()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Describe_comm_event </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>&#160;</td>
+          <td class="paramname"><em>comm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>eventID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>color</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>format</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae1fbc2dca40135e9d894b62b003a7b7a" name="ae1fbc2dca40135e9d894b62b003a7b7a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1fbc2dca40135e9d894b62b003a7b7a">&#9670;&#160;</a></span>MPE_Describe_comm_state()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Describe_comm_state </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>&#160;</td>
+          <td class="paramname"><em>comm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>state_startID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>state_finalID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>color</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>format</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a68514bf4c24848b1265aebe0cd59ccd0" name="a68514bf4c24848b1265aebe0cd59ccd0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a68514bf4c24848b1265aebe0cd59ccd0">&#9670;&#160;</a></span>MPE_Describe_event()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Describe_event </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>eventID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>color</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5a2a42492b6074b621468ae8dd1ed94f" name="a5a2a42492b6074b621468ae8dd1ed94f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a2a42492b6074b621468ae8dd1ed94f">&#9670;&#160;</a></span>MPE_Describe_info_event()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Describe_info_event </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>eventID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>color</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>format</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a35f4ca72dc752326960fd3aa3dfe0fa7" name="a35f4ca72dc752326960fd3aa3dfe0fa7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35f4ca72dc752326960fd3aa3dfe0fa7">&#9670;&#160;</a></span>MPE_Describe_info_state()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Describe_info_state </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>state_startID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>state_finalID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>color</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>format</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae4fde4a40d3226dee0914643e4d79038" name="ae4fde4a40d3226dee0914643e4d79038"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4fde4a40d3226dee0914643e4d79038">&#9670;&#160;</a></span>MPE_Describe_known_event()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Describe_known_event </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="include_2clog__commset_8h.html#a2a72179bb68215dd33f4147550bcaf71">CLOG_CommIDs_t</a> *&#160;</td>
+          <td class="paramname"><em>commIDs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>local_thread</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>eventID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>color</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>format</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a09ab2adf7d01a76940e8212044d07a3b" name="a09ab2adf7d01a76940e8212044d07a3b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09ab2adf7d01a76940e8212044d07a3b">&#9670;&#160;</a></span>MPE_Describe_known_state()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Describe_known_state </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="include_2clog__commset_8h.html#a2a72179bb68215dd33f4147550bcaf71">CLOG_CommIDs_t</a> *&#160;</td>
+          <td class="paramname"><em>commIDs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>local_thread</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>stateID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>state_startID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>state_finalID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>color</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>format</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4295262dd494f2820cd83cd3d6d8a0d3" name="a4295262dd494f2820cd83cd3d6d8a0d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4295262dd494f2820cd83cd3d6d8a0d3">&#9670;&#160;</a></span>MPE_Describe_state()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Describe_state </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>state_startID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>state_finalID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>color</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4e4fd700b78a53b7db6a264a3521317c" name="a4e4fd700b78a53b7db6a264a3521317c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e4fd700b78a53b7db6a264a3521317c">&#9670;&#160;</a></span>MPE_Finish_log()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Finish_log </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>filename</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a98d6d284fbceee7048055e76a2220d51" name="a98d6d284fbceee7048055e76a2220d51"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a98d6d284fbceee7048055e76a2220d51">&#9670;&#160;</a></span>MPE_Init_log()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Init_log </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a45d7f463a855f1a4bd0b86b158eeeb0f" name="a45d7f463a855f1a4bd0b86b158eeeb0f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a45d7f463a855f1a4bd0b86b158eeeb0f">&#9670;&#160;</a></span>MPE_Initialized_logging()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Initialized_logging </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5281dd4f78385a71969b80e73045e63c" name="a5281dd4f78385a71969b80e73045e63c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5281dd4f78385a71969b80e73045e63c">&#9670;&#160;</a></span>MPE_Log_bare_event()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Log_bare_event </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>event</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a817b1340929c3eb7871b279be80f7b8d" name="a817b1340929c3eb7871b279be80f7b8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a817b1340929c3eb7871b279be80f7b8d">&#9670;&#160;</a></span>MPE_Log_comm_event()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Log_comm_event </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>&#160;</td>
+          <td class="paramname"><em>comm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>event</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>bytebuf</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a168f35fb80107c844a5c79882c4baca0" name="a168f35fb80107c844a5c79882c4baca0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a168f35fb80107c844a5c79882c4baca0">&#9670;&#160;</a></span>MPE_Log_comm_receive()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Log_comm_receive </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>&#160;</td>
+          <td class="paramname"><em>comm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>sender</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>tag</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1f31a0bf395783eab897f061ae720b3e" name="a1f31a0bf395783eab897f061ae720b3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f31a0bf395783eab897f061ae720b3e">&#9670;&#160;</a></span>MPE_Log_comm_send()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Log_comm_send </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>&#160;</td>
+          <td class="paramname"><em>comm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>receiver</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>tag</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a08730caddfdafdfcdaa56556fec3f634" name="a08730caddfdafdfcdaa56556fec3f634"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08730caddfdafdfcdaa56556fec3f634">&#9670;&#160;</a></span>MPE_Log_commIDs_event()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Log_commIDs_event </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="include_2clog__commset_8h.html#a2a72179bb68215dd33f4147550bcaf71">CLOG_CommIDs_t</a> *&#160;</td>
+          <td class="paramname"><em>commIDs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>local_thread</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>event</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>bytebuf</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a385710368e365aada81ee388b6f33f7f" name="a385710368e365aada81ee388b6f33f7f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a385710368e365aada81ee388b6f33f7f">&#9670;&#160;</a></span>MPE_Log_commIDs_intercomm()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Log_commIDs_intercomm </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="include_2clog__commset_8h.html#a2a72179bb68215dd33f4147550bcaf71">CLOG_CommIDs_t</a> *&#160;</td>
+          <td class="paramname"><em>commIDs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>local_thread</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>comm_etype</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="include_2clog__commset_8h.html#a2a72179bb68215dd33f4147550bcaf71">CLOG_CommIDs_t</a> *&#160;</td>
+          <td class="paramname"><em>intercommIDs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abae5901dfc15f17f9c323205c442ec91" name="abae5901dfc15f17f9c323205c442ec91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abae5901dfc15f17f9c323205c442ec91">&#9670;&#160;</a></span>MPE_Log_commIDs_intracomm()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Log_commIDs_intracomm </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="include_2clog__commset_8h.html#a2a72179bb68215dd33f4147550bcaf71">CLOG_CommIDs_t</a> *&#160;</td>
+          <td class="paramname"><em>commIDs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>local_thread</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>comm_etype</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="include_2clog__commset_8h.html#a2a72179bb68215dd33f4147550bcaf71">CLOG_CommIDs_t</a> *&#160;</td>
+          <td class="paramname"><em>intracommIDs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aede4908dfeff7e3ae735eec88a331094" name="aede4908dfeff7e3ae735eec88a331094"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aede4908dfeff7e3ae735eec88a331094">&#9670;&#160;</a></span>MPE_Log_commIDs_nullcomm()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Log_commIDs_nullcomm </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="include_2clog__commset_8h.html#a2a72179bb68215dd33f4147550bcaf71">CLOG_CommIDs_t</a> *&#160;</td>
+          <td class="paramname"><em>commIDs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>local_thread</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>comm_etype</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6ab62b882393d810cb60c1f8463ae44f" name="a6ab62b882393d810cb60c1f8463ae44f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ab62b882393d810cb60c1f8463ae44f">&#9670;&#160;</a></span>MPE_Log_commIDs_receive()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Log_commIDs_receive </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="include_2clog__commset_8h.html#a2a72179bb68215dd33f4147550bcaf71">CLOG_CommIDs_t</a> *&#160;</td>
+          <td class="paramname"><em>commIDs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>local_thread</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>sender</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>tag</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a903ceafdbb54f85f6a53bb90e99d0817" name="a903ceafdbb54f85f6a53bb90e99d0817"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a903ceafdbb54f85f6a53bb90e99d0817">&#9670;&#160;</a></span>MPE_Log_commIDs_send()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Log_commIDs_send </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="include_2clog__commset_8h.html#a2a72179bb68215dd33f4147550bcaf71">CLOG_CommIDs_t</a> *&#160;</td>
+          <td class="paramname"><em>commIDs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>local_thread</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>receiver</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>tag</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3178029904235f72ada65bd758dce7ce" name="a3178029904235f72ada65bd758dce7ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3178029904235f72ada65bd758dce7ce">&#9670;&#160;</a></span>MPE_Log_event()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Log_event </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>event</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>bytebuf</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aea591b1a8ad023681484394eec192c94" name="aea591b1a8ad023681484394eec192c94"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea591b1a8ad023681484394eec192c94">&#9670;&#160;</a></span>MPE_Log_get_event_number()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Log_get_event_number </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae81bb974966867c0ff4058fd0fe8328b" name="ae81bb974966867c0ff4058fd0fe8328b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae81bb974966867c0ff4058fd0fe8328b">&#9670;&#160;</a></span>MPE_Log_get_known_eventID()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Log_get_known_eventID </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0d7eabe548958bff0a3d61d90315828e" name="a0d7eabe548958bff0a3d61d90315828e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d7eabe548958bff0a3d61d90315828e">&#9670;&#160;</a></span>MPE_Log_get_known_solo_eventID()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Log_get_known_solo_eventID </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a33da8addd8224af24225e3976ec87e61" name="a33da8addd8224af24225e3976ec87e61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33da8addd8224af24225e3976ec87e61">&#9670;&#160;</a></span>MPE_Log_get_known_stateID()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Log_get_known_stateID </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a79923bdb76fae0f0638cdfeb7c49886f" name="a79923bdb76fae0f0638cdfeb7c49886f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79923bdb76fae0f0638cdfeb7c49886f">&#9670;&#160;</a></span>MPE_Log_get_solo_eventID()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Log_get_solo_eventID </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname"><em>eventdef_eventID</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a670fe88d1efcd815378c6842781ab9c6" name="a670fe88d1efcd815378c6842781ab9c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a670fe88d1efcd815378c6842781ab9c6">&#9670;&#160;</a></span>MPE_Log_get_state_eventIDs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Log_get_state_eventIDs </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname"><em>statedef_startID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname"><em>statedef_finalID</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a26aea47b82aade057e783dd5fe5ed1c8" name="a26aea47b82aade057e783dd5fe5ed1c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26aea47b82aade057e783dd5fe5ed1c8">&#9670;&#160;</a></span>MPE_Log_info_event()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Log_info_event </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>event</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname"><em>bytebuf</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1f89c24e4e9f6ca8d7bb891199c99844" name="a1f89c24e4e9f6ca8d7bb891199c99844"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f89c24e4e9f6ca8d7bb891199c99844">&#9670;&#160;</a></span>MPE_Log_merged_logfilename()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">char</a> * MPE_Log_merged_logfilename </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adb7d912a1619e74a5962428ab31cf802" name="adb7d912a1619e74a5962428ab31cf802"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb7d912a1619e74a5962428ab31cf802">&#9670;&#160;</a></span>MPE_Log_pack()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Log_pack </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="include_2mpe__log_8h.html#acd9dcf56cf81296cbed9a33a6b816123">MPE_LOG_BYTES</a>&#160;</td>
+          <td class="paramname"><em>bytebuf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname"><em>position</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a>&#160;</td>
+          <td class="paramname"><em>tokentype</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>count</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">const</a> <a class="el" href="structvector.html">void</a> *&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1814c2d57d003d31d73a420f2535bc2c" name="a1814c2d57d003d31d73a420f2535bc2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1814c2d57d003d31d73a420f2535bc2c">&#9670;&#160;</a></span>MPE_Log_receive()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Log_receive </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>sender</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>tag</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afe0b53ca205357e6ddf5e4b45b0d8fb3" name="afe0b53ca205357e6ddf5e4b45b0d8fb3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe0b53ca205357e6ddf5e4b45b0d8fb3">&#9670;&#160;</a></span>MPE_Log_send()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Log_send </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>receiver</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>tag</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a06299ceb5dface3699f6cfa6a711f0e7" name="a06299ceb5dface3699f6cfa6a711f0e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06299ceb5dface3699f6cfa6a711f0e7">&#9670;&#160;</a></span>MPE_Log_sync_clocks()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Log_sync_clocks </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a338d50ea2482c28c6924e530ea0c3ffb" name="a338d50ea2482c28c6924e530ea0c3ffb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a338d50ea2482c28c6924e530ea0c3ffb">&#9670;&#160;</a></span>MPE_Log_thread_sync()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> MPE_Log_thread_sync </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname"><em>local_thread_count</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab310c17525c0963b53429c1c9a0ff2aa" name="ab310c17525c0963b53429c1c9a0ff2aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab310c17525c0963b53429c1c9a0ff2aa">&#9670;&#160;</a></span>MPE_Start_log()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Start_log </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a51b156b2cce5c26c69114e2b5cd19577" name="a51b156b2cce5c26c69114e2b5cd19577"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51b156b2cce5c26c69114e2b5cd19577">&#9670;&#160;</a></span>MPE_Stop_log()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Stop_log </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

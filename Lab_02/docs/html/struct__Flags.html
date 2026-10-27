@@ -1,0 +1,530 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lab_02: MPI + OpenMP Parallel Programming: Структура _Flags</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Lab_02: MPI + OpenMP Parallel Programming<span id="projectnumber">&#160;2.1</span>
+   </div>
+   <div id="projectbrief">Решение 3D уравнения Пуассона методом Якоби с двумерной декомпозицией</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-attribs">Открытые атрибуты</a> &#124;
+<a href="struct__Flags-members.html">Полный список членов класса</a>  </div>
+  <div class="headertitle"><div class="title">Структура _Flags</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="pmandel_8h_source.html">pmandel.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Открытые атрибуты</h2></td></tr>
+<tr class="memitem:ab1fee9677f57d5a9f98a96d1e871b4f7" id="r_ab1fee9677f57d5a9f98a96d1e871b4f7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">char</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__Flags.html#ab1fee9677f57d5a9f98a96d1e871b4f7">logfile</a></td></tr>
+<tr class="separator:ab1fee9677f57d5a9f98a96d1e871b4f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a107ac656b502c7fe6e66d05a1af1a788" id="r_a107ac656b502c7fe6e66d05a1af1a788"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">char</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__Flags.html#a107ac656b502c7fe6e66d05a1af1a788">inf</a></td></tr>
+<tr class="separator:a107ac656b502c7fe6e66d05a1af1a788"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea3cf33e156b0f6b48541510580ea8c2" id="r_aea3cf33e156b0f6b48541510580ea8c2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">char</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__Flags.html#aea3cf33e156b0f6b48541510580ea8c2">outf</a></td></tr>
+<tr class="separator:aea3cf33e156b0f6b48541510580ea8c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad99315157e27ec4e545d870839f61480" id="r_ad99315157e27ec4e545d870839f61480"><td class="memItemLeft" align="right" valign="top"><a class="el" href="pmandel_8h.html#a402fa2e4e062829750ddca43163a69fb">Winspecs</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__Flags.html#ad99315157e27ec4e545d870839f61480">winspecs</a></td></tr>
+<tr class="separator:ad99315157e27ec4e545d870839f61480"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b75ab801c3afccbd2826bf1c1db2e02" id="r_a7b75ab801c3afccbd2826bf1c1db2e02"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__Flags.html#a7b75ab801c3afccbd2826bf1c1db2e02">breakout</a></td></tr>
+<tr class="separator:a7b75ab801c3afccbd2826bf1c1db2e02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f3d7d96e8070992340727b7c3a6bf3d" id="r_a9f3d7d96e8070992340727b7c3a6bf3d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__Flags.html#a9f3d7d96e8070992340727b7c3a6bf3d">randomize</a></td></tr>
+<tr class="separator:a9f3d7d96e8070992340727b7c3a6bf3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af61c8569506befb3a817494f4f87d130" id="r_af61c8569506befb3a817494f4f87d130"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__Flags.html#af61c8569506befb3a817494f4f87d130">colReduceFactor</a></td></tr>
+<tr class="separator:af61c8569506befb3a817494f4f87d130"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6a71f485f71ebf4a6892424145d9c92" id="r_ac6a71f485f71ebf4a6892424145d9c92"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__Flags.html#ac6a71f485f71ebf4a6892424145d9c92">loop</a></td></tr>
+<tr class="separator:ac6a71f485f71ebf4a6892424145d9c92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e0151c60b9a44452fd979dfde89fe29" id="r_a0e0151c60b9a44452fd979dfde89fe29"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__Flags.html#a0e0151c60b9a44452fd979dfde89fe29">zoom</a></td></tr>
+<tr class="separator:a0e0151c60b9a44452fd979dfde89fe29"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a453057fba8f1a1ef6923f793dceb71c2" id="r_a453057fba8f1a1ef6923f793dceb71c2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__Flags.html#a453057fba8f1a1ef6923f793dceb71c2">askNeighbor</a></td></tr>
+<tr class="separator:a453057fba8f1a1ef6923f793dceb71c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94a0526337b064d9dd943911298c7eee" id="r_a94a0526337b064d9dd943911298c7eee"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__Flags.html#a94a0526337b064d9dd943911298c7eee">sendMasterComplexity</a></td></tr>
+<tr class="separator:a94a0526337b064d9dd943911298c7eee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a983302efbdbf09631f03382c0da4965e" id="r_a983302efbdbf09631f03382c0da4965e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__Flags.html#a983302efbdbf09631f03382c0da4965e">drawBlockRegion</a></td></tr>
+<tr class="separator:a983302efbdbf09631f03382c0da4965e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4a425664699b8b3b19ab3602a5ad6ce" id="r_af4a425664699b8b3b19ab3602a5ad6ce"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__Flags.html#af4a425664699b8b3b19ab3602a5ad6ce">fractal</a></td></tr>
+<tr class="separator:af4a425664699b8b3b19ab3602a5ad6ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b4c0175c7a1421da4c6cce9970a0556" id="r_a9b4c0175c7a1421da4c6cce9970a0556"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__Flags.html#a9b4c0175c7a1421da4c6cce9970a0556">maxiter</a></td></tr>
+<tr class="separator:a9b4c0175c7a1421da4c6cce9970a0556"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68ba4df0f3a169a29c539b80c6db44f3" id="r_a68ba4df0f3a169a29c539b80c6db44f3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__Flags.html#a68ba4df0f3a169a29c539b80c6db44f3">with_tracking_win</a></td></tr>
+<tr class="separator:a68ba4df0f3a169a29c539b80c6db44f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0f5e1bc05cd5416622a5a8b3a6a7aaa" id="r_ae0f5e1bc05cd5416622a5a8b3a6a7aaa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__Flags.html#ae0f5e1bc05cd5416622a5a8b3a6a7aaa">no_remote_X</a></td></tr>
+<tr class="separator:ae0f5e1bc05cd5416622a5a8b3a6a7aaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7164b29bae7f7d548ea02dd316475b3" id="r_ae7164b29bae7f7d548ea02dd316475b3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__Flags.html#ae7164b29bae7f7d548ea02dd316475b3">boundary_sq</a></td></tr>
+<tr class="separator:ae7164b29bae7f7d548ea02dd316475b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c194a2ce8fc618af7f32b91126f1c68" id="r_a3c194a2ce8fc618af7f32b91126f1c68"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__Flags.html#a3c194a2ce8fc618af7f32b91126f1c68">epsilon</a></td></tr>
+<tr class="separator:a3c194a2ce8fc618af7f32b91126f1c68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abec2ea17cac1b2e2e5f9b0f24f1d9bb8" id="r_abec2ea17cac1b2e2e5f9b0f24f1d9bb8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="fract__gen_8h.html#aaf0952059602752258dccaa015d7b54a">NUM</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__Flags.html#abec2ea17cac1b2e2e5f9b0f24f1d9bb8">rmin</a></td></tr>
+<tr class="separator:abec2ea17cac1b2e2e5f9b0f24f1d9bb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e482963f247fdbfb866f0d008e27c50" id="r_a7e482963f247fdbfb866f0d008e27c50"><td class="memItemLeft" align="right" valign="top"><a class="el" href="fract__gen_8h.html#aaf0952059602752258dccaa015d7b54a">NUM</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__Flags.html#a7e482963f247fdbfb866f0d008e27c50">rmax</a></td></tr>
+<tr class="separator:a7e482963f247fdbfb866f0d008e27c50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0fbc72b814346b4f686b7f7cf8623079" id="r_a0fbc72b814346b4f686b7f7cf8623079"><td class="memItemLeft" align="right" valign="top"><a class="el" href="fract__gen_8h.html#aaf0952059602752258dccaa015d7b54a">NUM</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__Flags.html#a0fbc72b814346b4f686b7f7cf8623079">imin</a></td></tr>
+<tr class="separator:a0fbc72b814346b4f686b7f7cf8623079"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a156d01e480c09aeacc3b8a613f43edb1" id="r_a156d01e480c09aeacc3b8a613f43edb1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="fract__gen_8h.html#aaf0952059602752258dccaa015d7b54a">NUM</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__Flags.html#a156d01e480c09aeacc3b8a613f43edb1">imax</a></td></tr>
+<tr class="separator:a156d01e480c09aeacc3b8a613f43edb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b22b7a1f79fb8c170fcb7de365825c2" id="r_a7b22b7a1f79fb8c170fcb7de365825c2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="fract__gen_8h.html#aaf0952059602752258dccaa015d7b54a">NUM</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__Flags.html#a7b22b7a1f79fb8c170fcb7de365825c2">julia_r</a></td></tr>
+<tr class="separator:a7b22b7a1f79fb8c170fcb7de365825c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec3a7214ea75146a21b783f3f8ba0557" id="r_aec3a7214ea75146a21b783f3f8ba0557"><td class="memItemLeft" align="right" valign="top"><a class="el" href="fract__gen_8h.html#aaf0952059602752258dccaa015d7b54a">NUM</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__Flags.html#aec3a7214ea75146a21b783f3f8ba0557">julia_i</a></td></tr>
+<tr class="separator:aec3a7214ea75146a21b783f3f8ba0557"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock">
+<p class="definition">См. определение в файле <a class="el" href="pmandel_8h_source.html">pmandel.h</a> строка <a class="el" href="pmandel_8h_source.html#l00038">38</a></p>
+</div><h2 class="groupheader">Данные класса</h2>
+<a id="a453057fba8f1a1ef6923f793dceb71c2" name="a453057fba8f1a1ef6923f793dceb71c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a453057fba8f1a1ef6923f793dceb71c2">&#9670;&#160;</a></span>askNeighbor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> _Flags::askNeighbor</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="pmandel_8h_source.html">pmandel.h</a> строка <a class="el" href="pmandel_8h_source.html#l00049">49</a></p>
+
+</div>
+</div>
+<a id="ae7164b29bae7f7d548ea02dd316475b3" name="ae7164b29bae7f7d548ea02dd316475b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7164b29bae7f7d548ea02dd316475b3">&#9670;&#160;</a></span>boundary_sq</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">double</a> _Flags::boundary_sq</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="pmandel_8h_source.html">pmandel.h</a> строка <a class="el" href="pmandel_8h_source.html#l00063">63</a></p>
+
+</div>
+</div>
+<a id="a7b75ab801c3afccbd2826bf1c1db2e02" name="a7b75ab801c3afccbd2826bf1c1db2e02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b75ab801c3afccbd2826bf1c1db2e02">&#9670;&#160;</a></span>breakout</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> _Flags::breakout</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="pmandel_8h_source.html">pmandel.h</a> строка <a class="el" href="pmandel_8h_source.html#l00043">43</a></p>
+
+</div>
+</div>
+<a id="af61c8569506befb3a817494f4f87d130" name="af61c8569506befb3a817494f4f87d130"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af61c8569506befb3a817494f4f87d130">&#9670;&#160;</a></span>colReduceFactor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> _Flags::colReduceFactor</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="pmandel_8h_source.html">pmandel.h</a> строка <a class="el" href="pmandel_8h_source.html#l00045">45</a></p>
+
+</div>
+</div>
+<a id="a983302efbdbf09631f03382c0da4965e" name="a983302efbdbf09631f03382c0da4965e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a983302efbdbf09631f03382c0da4965e">&#9670;&#160;</a></span>drawBlockRegion</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> _Flags::drawBlockRegion</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="pmandel_8h_source.html">pmandel.h</a> строка <a class="el" href="pmandel_8h_source.html#l00054">54</a></p>
+
+</div>
+</div>
+<a id="a3c194a2ce8fc618af7f32b91126f1c68" name="a3c194a2ce8fc618af7f32b91126f1c68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c194a2ce8fc618af7f32b91126f1c68">&#9670;&#160;</a></span>epsilon</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">double</a> _Flags::epsilon</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="pmandel_8h_source.html">pmandel.h</a> строка <a class="el" href="pmandel_8h_source.html#l00064">64</a></p>
+
+</div>
+</div>
+<a id="af4a425664699b8b3b19ab3602a5ad6ce" name="af4a425664699b8b3b19ab3602a5ad6ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4a425664699b8b3b19ab3602a5ad6ce">&#9670;&#160;</a></span>fractal</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> _Flags::fractal</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="pmandel_8h_source.html">pmandel.h</a> строка <a class="el" href="pmandel_8h_source.html#l00057">57</a></p>
+
+</div>
+</div>
+<a id="a156d01e480c09aeacc3b8a613f43edb1" name="a156d01e480c09aeacc3b8a613f43edb1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a156d01e480c09aeacc3b8a613f43edb1">&#9670;&#160;</a></span>imax</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="fract__gen_8h.html#aaf0952059602752258dccaa015d7b54a">NUM</a> _Flags::imax</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="pmandel_8h_source.html">pmandel.h</a> строка <a class="el" href="pmandel_8h_source.html#l00065">65</a></p>
+
+</div>
+</div>
+<a id="a0fbc72b814346b4f686b7f7cf8623079" name="a0fbc72b814346b4f686b7f7cf8623079"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0fbc72b814346b4f686b7f7cf8623079">&#9670;&#160;</a></span>imin</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="fract__gen_8h.html#aaf0952059602752258dccaa015d7b54a">NUM</a> _Flags::imin</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="pmandel_8h_source.html">pmandel.h</a> строка <a class="el" href="pmandel_8h_source.html#l00065">65</a></p>
+
+</div>
+</div>
+<a id="a107ac656b502c7fe6e66d05a1af1a788" name="a107ac656b502c7fe6e66d05a1af1a788"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a107ac656b502c7fe6e66d05a1af1a788">&#9670;&#160;</a></span>inf</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">char</a>* _Flags::inf</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="pmandel_8h_source.html">pmandel.h</a> строка <a class="el" href="pmandel_8h_source.html#l00040">40</a></p>
+
+</div>
+</div>
+<a id="aec3a7214ea75146a21b783f3f8ba0557" name="aec3a7214ea75146a21b783f3f8ba0557"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec3a7214ea75146a21b783f3f8ba0557">&#9670;&#160;</a></span>julia_i</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="fract__gen_8h.html#aaf0952059602752258dccaa015d7b54a">NUM</a> _Flags::julia_i</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="pmandel_8h_source.html">pmandel.h</a> строка <a class="el" href="pmandel_8h_source.html#l00066">66</a></p>
+
+</div>
+</div>
+<a id="a7b22b7a1f79fb8c170fcb7de365825c2" name="a7b22b7a1f79fb8c170fcb7de365825c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b22b7a1f79fb8c170fcb7de365825c2">&#9670;&#160;</a></span>julia_r</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="fract__gen_8h.html#aaf0952059602752258dccaa015d7b54a">NUM</a> _Flags::julia_r</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="pmandel_8h_source.html">pmandel.h</a> строка <a class="el" href="pmandel_8h_source.html#l00066">66</a></p>
+
+</div>
+</div>
+<a id="ab1fee9677f57d5a9f98a96d1e871b4f7" name="ab1fee9677f57d5a9f98a96d1e871b4f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1fee9677f57d5a9f98a96d1e871b4f7">&#9670;&#160;</a></span>logfile</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">char</a>* _Flags::logfile</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="pmandel_8h_source.html">pmandel.h</a> строка <a class="el" href="pmandel_8h_source.html#l00039">39</a></p>
+
+</div>
+</div>
+<a id="ac6a71f485f71ebf4a6892424145d9c92" name="ac6a71f485f71ebf4a6892424145d9c92"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6a71f485f71ebf4a6892424145d9c92">&#9670;&#160;</a></span>loop</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> _Flags::loop</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="pmandel_8h_source.html">pmandel.h</a> строка <a class="el" href="pmandel_8h_source.html#l00047">47</a></p>
+
+</div>
+</div>
+<a id="a9b4c0175c7a1421da4c6cce9970a0556" name="a9b4c0175c7a1421da4c6cce9970a0556"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b4c0175c7a1421da4c6cce9970a0556">&#9670;&#160;</a></span>maxiter</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> _Flags::maxiter</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="pmandel_8h_source.html">pmandel.h</a> строка <a class="el" href="pmandel_8h_source.html#l00058">58</a></p>
+
+</div>
+</div>
+<a id="ae0f5e1bc05cd5416622a5a8b3a6a7aaa" name="ae0f5e1bc05cd5416622a5a8b3a6a7aaa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0f5e1bc05cd5416622a5a8b3a6a7aaa">&#9670;&#160;</a></span>no_remote_X</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> _Flags::no_remote_X</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="pmandel_8h_source.html">pmandel.h</a> строка <a class="el" href="pmandel_8h_source.html#l00061">61</a></p>
+
+</div>
+</div>
+<a id="aea3cf33e156b0f6b48541510580ea8c2" name="aea3cf33e156b0f6b48541510580ea8c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea3cf33e156b0f6b48541510580ea8c2">&#9670;&#160;</a></span>outf</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">char</a>* _Flags::outf</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="pmandel_8h_source.html">pmandel.h</a> строка <a class="el" href="pmandel_8h_source.html#l00041">41</a></p>
+
+</div>
+</div>
+<a id="a9f3d7d96e8070992340727b7c3a6bf3d" name="a9f3d7d96e8070992340727b7c3a6bf3d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f3d7d96e8070992340727b7c3a6bf3d">&#9670;&#160;</a></span>randomize</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> _Flags::randomize</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="pmandel_8h_source.html">pmandel.h</a> строка <a class="el" href="pmandel_8h_source.html#l00044">44</a></p>
+
+</div>
+</div>
+<a id="a7e482963f247fdbfb866f0d008e27c50" name="a7e482963f247fdbfb866f0d008e27c50"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e482963f247fdbfb866f0d008e27c50">&#9670;&#160;</a></span>rmax</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="fract__gen_8h.html#aaf0952059602752258dccaa015d7b54a">NUM</a> _Flags::rmax</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="pmandel_8h_source.html">pmandel.h</a> строка <a class="el" href="pmandel_8h_source.html#l00065">65</a></p>
+
+</div>
+</div>
+<a id="abec2ea17cac1b2e2e5f9b0f24f1d9bb8" name="abec2ea17cac1b2e2e5f9b0f24f1d9bb8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abec2ea17cac1b2e2e5f9b0f24f1d9bb8">&#9670;&#160;</a></span>rmin</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="fract__gen_8h.html#aaf0952059602752258dccaa015d7b54a">NUM</a> _Flags::rmin</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="pmandel_8h_source.html">pmandel.h</a> строка <a class="el" href="pmandel_8h_source.html#l00065">65</a></p>
+
+</div>
+</div>
+<a id="a94a0526337b064d9dd943911298c7eee" name="a94a0526337b064d9dd943911298c7eee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94a0526337b064d9dd943911298c7eee">&#9670;&#160;</a></span>sendMasterComplexity</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> _Flags::sendMasterComplexity</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="pmandel_8h_source.html">pmandel.h</a> строка <a class="el" href="pmandel_8h_source.html#l00051">51</a></p>
+
+</div>
+</div>
+<a id="ad99315157e27ec4e545d870839f61480" name="ad99315157e27ec4e545d870839f61480"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad99315157e27ec4e545d870839f61480">&#9670;&#160;</a></span>winspecs</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="pmandel_8h.html#a402fa2e4e062829750ddca43163a69fb">Winspecs</a>* _Flags::winspecs</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="pmandel_8h_source.html">pmandel.h</a> строка <a class="el" href="pmandel_8h_source.html#l00042">42</a></p>
+
+</div>
+</div>
+<a id="a68ba4df0f3a169a29c539b80c6db44f3" name="a68ba4df0f3a169a29c539b80c6db44f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a68ba4df0f3a169a29c539b80c6db44f3">&#9670;&#160;</a></span>with_tracking_win</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> _Flags::with_tracking_win</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="pmandel_8h_source.html">pmandel.h</a> строка <a class="el" href="pmandel_8h_source.html#l00059">59</a></p>
+
+</div>
+</div>
+<a id="a0e0151c60b9a44452fd979dfde89fe29" name="a0e0151c60b9a44452fd979dfde89fe29"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e0151c60b9a44452fd979dfde89fe29">&#9670;&#160;</a></span>zoom</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> _Flags::zoom</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="pmandel_8h_source.html">pmandel.h</a> строка <a class="el" href="pmandel_8h_source.html#l00048">48</a></p>
+
+</div>
+</div>
+<hr/>Объявления и описания членов структуры находятся в файле:<ul>
+<li><a class="el" href="pmandel_8h_source.html">pmandel.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

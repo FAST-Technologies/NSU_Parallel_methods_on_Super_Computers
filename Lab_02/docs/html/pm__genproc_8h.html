@@ -1,0 +1,245 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lab_02: MPI + OpenMP Parallel Programming: Файл pm_genproc.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Lab_02: MPI + OpenMP Parallel Programming<span id="projectnumber">&#160;2.1</span>
+   </div>
+   <div id="projectbrief">Решение 3D уравнения Пуассона методом Якоби с двумерной декомпозицией</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_1f646cbbb0f6227d25dd06f792d51aba.html">mpe2-1.3.0</a></li><li class="navelem"><a class="el" href="dir_493399512d45eb30627376023737183a.html">src</a></li><li class="navelem"><a class="el" href="dir_532b6e0bbac9f63fe589b390252576da.html">graphics</a></li><li class="navelem"><a class="el" href="dir_79216fb839f205e39a4f1139e127db43.html">contrib</a></li><li class="navelem"><a class="el" href="dir_36c5fa1fce864ea26b23b700a1dd37b8.html">mandel</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#define-members">Макросы</a> &#124;
+<a href="#typedef-members">Определения типов</a>  </div>
+  <div class="headertitle"><div class="title">Файл pm_genproc.h</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><a href="pm__genproc_8h_source.html">См. исходные тексты.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Макросы</h2></td></tr>
+<tr class="memitem:acd3600b06590e8d364de333b18a875ad" id="r_acd3600b06590e8d364de333b18a875ad"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pm__genproc_8h.html#acd3600b06590e8d364de333b18a875ad">IS_Q_EMPTY</a>(<a class="el" href="structvector.html">q</a>)&#160;&#160;&#160;(q.head == q.tail)</td></tr>
+<tr class="separator:acd3600b06590e8d364de333b18a875ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa16a6753d12138e15ddaed3340734c27" id="r_aa16a6753d12138e15ddaed3340734c27"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pm__genproc_8h.html#aa16a6753d12138e15ddaed3340734c27">IS_SET</a>(<a class="el" href="structvector.html">z</a>)</td></tr>
+<tr class="separator:aa16a6753d12138e15ddaed3340734c27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99656daf37319af97f3297df22cf8e79" id="r_a99656daf37319af97f3297df22cf8e79"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pm__genproc_8h.html#a99656daf37319af97f3297df22cf8e79">ITER2COLOR</a>(<a class="el" href="structvector.html">iter</a>)</td></tr>
+<tr class="separator:a99656daf37319af97f3297df22cf8e79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ca4bd69737758aa9b40cf68e0a0a738" id="r_a6ca4bd69737758aa9b40cf68e0a0a738"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="structvector.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pm__genproc_8h.html#a6ca4bd69737758aa9b40cf68e0a0a738">RECT_ASSIGN</a>(<a class="el" href="structrect.html">rect</a>,  w,  x,  y,  <a class="el" href="structvector.html">z</a>)</td></tr>
+<tr class="separator:a6ca4bd69737758aa9b40cf68e0a0a738"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Определения типов</h2></td></tr>
+<tr class="memitem:a7515e158a4f2363b03427ec9b80c6a82" id="r_a7515e158a4f2363b03427ec9b80c6a82"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">typedef</a> <a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pm__genproc_8h.html#a7515e158a4f2363b03427ec9b80c6a82">Fract_FN</a>()</td></tr>
+<tr class="separator:a7515e158a4f2363b03427ec9b80c6a82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Макросы</h2>
+<a id="acd3600b06590e8d364de333b18a875ad" name="acd3600b06590e8d364de333b18a875ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd3600b06590e8d364de333b18a875ad">&#9670;&#160;</a></span>IS_Q_EMPTY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> IS_Q_EMPTY</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><a class="el" href="structvector.html">q</a></td><td>)</td>
+          <td>&#160;&#160;&#160;(q.head == q.tail)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="pm__genproc_8h_source.html">pm_genproc.h</a> строка <a class="el" href="pm__genproc_8h_source.html#l00010">10</a></p>
+
+</div>
+</div>
+<a id="aa16a6753d12138e15ddaed3340734c27" name="aa16a6753d12138e15ddaed3340734c27"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa16a6753d12138e15ddaed3340734c27">&#9670;&#160;</a></span>IS_SET</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> IS_SET</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><a class="el" href="structvector.html">z</a></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Макроопределение:</b><div class="fragment"><div class="line">  ( \</div>
+<div class="line">  (bw==<a class="code hl_struct" href="structvector.html">MAXITER_SHADE</a>) ? ((<a class="code hl_struct" href="structvector.html">z</a>)==maxiter) : \</div>
+<div class="line">  (bw==<a class="code hl_struct" href="structvector.html">EVEN_SHADE</a>)    ? ((<a class="code hl_struct" href="structvector.html">z</a>)==maxiter || !((<a class="code hl_struct" href="structvector.html">z</a>)%2)) : (<a class="code hl_struct" href="structvector.html">z</a>))</div>
+<div class="ttc" id="astructvector_html"><div class="ttname"><a href="structvector.html">vector</a></div><div class="ttdef"><b>Definition</b> <a href="point_8h_source.html#l00012">point.h:12</a></div></div>
+</div><!-- fragment -->
+<p class="definition">См. определение в файле <a class="el" href="pm__genproc_8h_source.html">pm_genproc.h</a> строка <a class="el" href="pm__genproc_8h_source.html#l00012">12</a></p>
+
+</div>
+</div>
+<a id="a99656daf37319af97f3297df22cf8e79" name="a99656daf37319af97f3297df22cf8e79"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99656daf37319af97f3297df22cf8e79">&#9670;&#160;</a></span>ITER2COLOR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> ITER2COLOR</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><a class="el" href="structvector.html">iter</a></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Макроопределение:</b><div class="fragment"><div class="line">  (  \</div>
+<div class="line">  (bw) ? ((<a class="code hl_struct" href="structvector.html">iter</a>)==maxiter || !((<a class="code hl_struct" href="structvector.html">iter</a>)%2)) : \</div>
+<div class="line">  ((<a class="code hl_struct" href="structvector.html">iter</a>)==maxiter) ? (<a class="code hl_enumvalue" href="include_2mpe__graphics_8h.html#a5fa1b05b20c35b88f5256bb39e30af3eac2f43e5d63e0910a7da26ce3cfee93c0">MPE_BLACK</a>) : ((<a class="code hl_struct" href="structvector.html">iter</a>) % (numColors-1) + 1) )</div>
+<div class="ttc" id="ainclude_2mpe__graphics_8h_html_a5fa1b05b20c35b88f5256bb39e30af3eac2f43e5d63e0910a7da26ce3cfee93c0"><div class="ttname"><a href="include_2mpe__graphics_8h.html#a5fa1b05b20c35b88f5256bb39e30af3eac2f43e5d63e0910a7da26ce3cfee93c0">MPE_BLACK</a></div><div class="ttdeci">@ MPE_BLACK</div><div class="ttdef"><b>Definition</b> <a href="include_2mpe__graphics_8h_source.html#l00024">include/mpe_graphics.h:24</a></div></div>
+</div><!-- fragment -->
+<p class="definition">См. определение в файле <a class="el" href="pm__genproc_8h_source.html">pm_genproc.h</a> строка <a class="el" href="pm__genproc_8h_source.html#l00016">16</a></p>
+
+</div>
+</div>
+<a id="a6ca4bd69737758aa9b40cf68e0a0a738" name="a6ca4bd69737758aa9b40cf68e0a0a738"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ca4bd69737758aa9b40cf68e0a0a738">&#9670;&#160;</a></span>RECT_ASSIGN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="structvector.html">define</a> RECT_ASSIGN</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><a class="el" href="structrect.html">rect</a>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">w, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">x, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">y, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><a class="el" href="structvector.html">z</a>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Макроопределение:</b><div class="fragment"><div class="line">  { \</div>
+<div class="line">  (<a class="code hl_struct" href="structrect.html">rect</a>).l = (w); (<a class="code hl_struct" href="structrect.html">rect</a>).r = (x); (<a class="code hl_struct" href="structrect.html">rect</a>).t = (y); (<a class="code hl_struct" href="structrect.html">rect</a>).b = (<a class="code hl_struct" href="structvector.html">z</a>); }</div>
+<div class="ttc" id="astructrect_html"><div class="ttname"><a href="structrect.html">rect</a></div><div class="ttdef"><b>Definition</b> <a href="pmandel_8h_source.html#l00123">pmandel.h:123</a></div></div>
+</div><!-- fragment -->
+<p class="definition">См. определение в файле <a class="el" href="pm__genproc_8h_source.html">pm_genproc.h</a> строка <a class="el" href="pm__genproc_8h_source.html#l00020">20</a></p>
+
+</div>
+</div>
+<h2 class="groupheader">Типы</h2>
+<a id="a7515e158a4f2363b03427ec9b80c6a82" name="a7515e158a4f2363b03427ec9b80c6a82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7515e158a4f2363b03427ec9b80c6a82">&#9670;&#160;</a></span>Fract_FN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">typedef</a> <a class="el" href="structvector.html">int</a> Fract_FN()</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="pm__genproc_8h_source.html">pm_genproc.h</a> строка <a class="el" href="pm__genproc_8h_source.html#l00026">26</a></p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

@@ -1,0 +1,344 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lab_02: MPI + OpenMP Parallel Programming: Файл mpeexten.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Lab_02: MPI + OpenMP Parallel Programming<span id="projectnumber">&#160;2.1</span>
+   </div>
+   <div id="projectbrief">Решение 3D уравнения Пуассона методом Якоби с двумерной декомпозицией</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_1f646cbbb0f6227d25dd06f792d51aba.html">mpe2-1.3.0</a></li><li class="navelem"><a class="el" href="dir_493399512d45eb30627376023737183a.html">src</a></li><li class="navelem"><a class="el" href="dir_4c40ebb1b0381ee9ce856ef0b9d6a30e.html">misc</a></li><li class="navelem"><a class="el" href="dir_2831e663119a58bd4b4b1e898dfc49dc.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Функции</a>  </div>
+  <div class="headertitle"><div class="title">Файл mpeexten.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
+</div>
+<p><a href="mpeexten_8h_source.html">См. исходные тексты.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Функции</h2></td></tr>
+<tr class="memitem:a3580c5d314cec66662d66a00461745ce" id="r_a3580c5d314cec66662d66a00461745ce"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpeexten_8h.html#a3580c5d314cec66662d66a00461745ce">MPE_Print_datatype_unpack_action</a> (<a class="el" href="structvector.html">FILE</a> *, <a class="el" href="structvector.html">int</a>, <a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>, <a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">int</a>)</td></tr>
+<tr class="separator:a3580c5d314cec66662d66a00461745ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ec0ace81ba06bfb29275a71a7d0a104" id="r_a3ec0ace81ba06bfb29275a71a7d0a104"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpeexten_8h.html#a3ec0ace81ba06bfb29275a71a7d0a104">MPE_Print_datatype_pack_action</a> (<a class="el" href="structvector.html">FILE</a> *, <a class="el" href="structvector.html">int</a>, <a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>, <a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">int</a>)</td></tr>
+<tr class="separator:a3ec0ace81ba06bfb29275a71a7d0a104"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1979508ae18d30ac1bfd7fff19b26d2" id="r_ae1979508ae18d30ac1bfd7fff19b26d2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpeexten_8h.html#ae1979508ae18d30ac1bfd7fff19b26d2">MPE_Comm_global_rank</a> (<a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>, <a class="el" href="structvector.html">int</a>, <a class="el" href="structvector.html">int</a> *)</td></tr>
+<tr class="separator:ae1979508ae18d30ac1bfd7fff19b26d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c9cfeeb5ba6a02b8819749cd671dc57" id="r_a8c9cfeeb5ba6a02b8819749cd671dc57"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpeexten_8h.html#a8c9cfeeb5ba6a02b8819749cd671dc57">MPE_Errors_call_debugger</a> (<a class="el" href="structvector.html">char</a> *, <a class="el" href="structvector.html">char</a> *, <a class="el" href="structvector.html">char</a> **)</td></tr>
+<tr class="separator:a8c9cfeeb5ba6a02b8819749cd671dc57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62b67a75fb30e70dbd597abbaf221f9a" id="r_a62b67a75fb30e70dbd597abbaf221f9a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpeexten_8h.html#a62b67a75fb30e70dbd597abbaf221f9a">MPE_Errors_call_dbx_in_xterm</a> (<a class="el" href="structvector.html">char</a> *, <a class="el" href="structvector.html">char</a> *)</td></tr>
+<tr class="separator:a62b67a75fb30e70dbd597abbaf221f9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acdfc87139aa9c66921d90cc854b8465a" id="r_acdfc87139aa9c66921d90cc854b8465a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpeexten_8h.html#acdfc87139aa9c66921d90cc854b8465a">MPE_Errors_call_gdb_in_xterm</a> (<a class="el" href="structvector.html">char</a> *, <a class="el" href="structvector.html">char</a> *)</td></tr>
+<tr class="separator:acdfc87139aa9c66921d90cc854b8465a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1156f0897c02be94fcb9b750caa20074" id="r_a1156f0897c02be94fcb9b750caa20074"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpeexten_8h.html#a1156f0897c02be94fcb9b750caa20074">MPE_Signals_call_debugger</a> (<a class="el" href="structvector.html">void</a>)</td></tr>
+<tr class="separator:a1156f0897c02be94fcb9b750caa20074"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Функции</h2>
+<a id="ae1979508ae18d30ac1bfd7fff19b26d2" name="ae1979508ae18d30ac1bfd7fff19b26d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1979508ae18d30ac1bfd7fff19b26d2">&#9670;&#160;</a></span>MPE_Comm_global_rank()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> MPE_Comm_global_rank </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a> *&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a62b67a75fb30e70dbd597abbaf221f9a" name="a62b67a75fb30e70dbd597abbaf221f9a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62b67a75fb30e70dbd597abbaf221f9a">&#9670;&#160;</a></span>MPE_Errors_call_dbx_in_xterm()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> MPE_Errors_call_dbx_in_xterm </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8c9cfeeb5ba6a02b8819749cd671dc57" name="a8c9cfeeb5ba6a02b8819749cd671dc57"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c9cfeeb5ba6a02b8819749cd671dc57">&#9670;&#160;</a></span>MPE_Errors_call_debugger()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> MPE_Errors_call_debugger </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> **&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acdfc87139aa9c66921d90cc854b8465a" name="acdfc87139aa9c66921d90cc854b8465a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acdfc87139aa9c66921d90cc854b8465a">&#9670;&#160;</a></span>MPE_Errors_call_gdb_in_xterm()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> MPE_Errors_call_gdb_in_xterm </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">char</a> *&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3ec0ace81ba06bfb29275a71a7d0a104" name="a3ec0ace81ba06bfb29275a71a7d0a104"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ec0ace81ba06bfb29275a71a7d0a104">&#9670;&#160;</a></span>MPE_Print_datatype_pack_action()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Print_datatype_pack_action </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">FILE</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3580c5d314cec66662d66a00461745ce" name="a3580c5d314cec66662d66a00461745ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3580c5d314cec66662d66a00461745ce">&#9670;&#160;</a></span>MPE_Print_datatype_unpack_action()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">int</a> MPE_Print_datatype_unpack_action </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">FILE</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="mpi__null_8h.html#affc17fe964f9f670fb06e09d6134b4ff">MPI_Datatype</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvector.html">int</a>&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1156f0897c02be94fcb9b750caa20074" name="a1156f0897c02be94fcb9b750caa20074"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1156f0897c02be94fcb9b750caa20074">&#9670;&#160;</a></span>MPE_Signals_call_debugger()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvector.html">void</a> MPE_Signals_call_debugger </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvector.html">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

@@ -1,0 +1,443 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lab_02: MPI + OpenMP Parallel Programming: Исходный файл mpe_log.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Lab_02: MPI + OpenMP Parallel Programming<span id="projectnumber">&#160;2.1</span>
+   </div>
+   <div id="projectbrief">Решение 3D уравнения Пуассона методом Якоби с двумерной декомпозицией</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_1f646cbbb0f6227d25dd06f792d51aba.html">mpe2-1.3.0</a></li><li class="navelem"><a class="el" href="dir_493399512d45eb30627376023737183a.html">src</a></li><li class="navelem"><a class="el" href="dir_4dd21a1309df0d73c93832f59c814642.html">logging</a></li><li class="navelem"><a class="el" href="dir_d1e3342e2909ab46223a280715173519.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">src/logging/include/mpe_log.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="src_2logging_2include_2mpe__log_8h.html">См. документацию.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">   (C) 2001 by Argonne National Laboratory.</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">       See COPYRIGHT in top-level directory.</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">*/</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#ifndef _MPE_LOG_H_</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#define _MPE_LOG_H_</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#ifdef HAVE_WINDOWS_H</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#ifdef USE_MPE_STATIC_LIBRARY</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor"># define MPEU_DLL_SPEC</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor"># ifdef MPE_EXPORTS</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#  define MPEU_DLL_SPEC __declspec(dllexport)</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor"># else</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#  define MPEU_DLL_SPEC __declspec(dllimport)</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor"># endif</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="src_2logging_2include_2mpe__log_8h.html#aa98e7bec2a802e5020b557255a429fb1">   19</a></span><span class="preprocessor"># define MPEU_DLL_SPEC</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="comment">  Constants, MPE_Log_XXX, are for backward compatibility reasons.</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="comment">  MPE is currently returning MPE_LOG_XXX status.</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="comment">*/</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="comment">/* function return values */</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="src_2logging_2include_2mpe__log_8h.html#a3030541fa8c7669941fcc2dc669351f2">   27</a></span><span class="preprocessor">#define MPE_LOG_OK                0</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="src_2logging_2include_2mpe__log_8h.html#a44e19ba7914dfad7337188ef7f06b1c4">   28</a></span><span class="preprocessor">#define MPE_Log_OK                MPE_LOG_OK</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  <span class="comment">/* no problems */</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="src_2logging_2include_2mpe__log_8h.html#a8333abc7623389b15b3fe0bb94c2340a">   30</a></span><span class="preprocessor">#define MPE_LOG_LOCKED_OUT        1</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="src_2logging_2include_2mpe__log_8h.html#a5ed3c53ef2055978009f47dfceb3c91f">   31</a></span><span class="preprocessor">#define MPE_Log_LOCKED_OUT        MPE_LOG_LOCKED_OUT</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  <span class="comment">/* logs are being worked on, cannot insert any new entries */</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="src_2logging_2include_2mpe__log_8h.html#a7bdc27e9754165143a1f0adba7e47097">   33</a></span><span class="preprocessor">#define MPE_LOG_NO_MEMORY         2</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="src_2logging_2include_2mpe__log_8h.html#a35c81049d23ab93892b7d2c46cdfd68b">   34</a></span><span class="preprocessor">#define MPE_Log_NO_MEMORY         MPE_LOG_NO_MEMORY</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  <span class="comment">/* could not allocate memory for logging data */</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="src_2logging_2include_2mpe__log_8h.html#a25a568572cdc2b23dafb88ab14d5d82a">   36</a></span><span class="preprocessor">#define MPE_LOG_FILE_PROB         3</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="src_2logging_2include_2mpe__log_8h.html#aa87e7cf36ffe069e695666b155273691">   37</a></span><span class="preprocessor">#define MPE_Log_FILE_PROB         MPE_LOG_FILE_PROB</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  <span class="comment">/* cound not open file for writing out the logged info */</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="src_2logging_2include_2mpe__log_8h.html#a6d14194dcb8c6fd3234f90c6bdad821a">   39</a></span><span class="preprocessor">#define MPE_LOG_NOT_INITIALIZED   4</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="src_2logging_2include_2mpe__log_8h.html#a341f0b2cf3ce7b237b66f4b0883d1508">   40</a></span><span class="preprocessor">#define MPE_Log_NOT_INITIALIZED   MPE_LOG_NOT_INITIALIZED</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  <span class="comment">/* logging not initialized */</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="src_2logging_2include_2mpe__log_8h.html#a5de39bcf49461b24d98eb21721fb591d">   42</a></span><span class="preprocessor">#define MPE_LOG_PACK_FAIL         5</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="src_2logging_2include_2mpe__log_8h.html#ac693a7a2ea004f6818af038450e9f7b0">   43</a></span><span class="preprocessor">#define MPE_Log_PACK_FAIL         MPE_LOG_PACK_FAIL</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="preprocessor">#if !defined( CLOG_NOMPI )</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="preprocessor">#include &quot;mpi.h&quot;</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="comment">    To avoid mpi_null.h from being exposed to the user&#39;s include_dir,</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="comment">    the definition of MPI_Comm has to match that in mpi_null.h.</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="comment">    The &quot;#if !defined( _MPI_NULL_MPI_COMM )&quot; is to avoid duplicated</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="comment">    definition of MPI_Comm when both mpi_null.h and this .h are used</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="comment">    in the same .c file.</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="comment">*/</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="preprocessor">#if !defined( _MPI_NULL_MPI_COMM )</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="preprocessor">#define _MPI_NULL_MPI_COMM</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="keyword">typedef</span> <span class="keywordtype">int</span>  <a class="code hl_typedef" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a>;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="preprocessor">#endif </span><span class="comment">/* Endof if !defined( CLOG_NOMPI ) */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="preprocessor">#include &quot;<a class="code" href="src_2logging_2include_2clog__commset_8h.html">clog_commset.h</a>&quot;</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="preprocessor">#if defined(__cplusplus)</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="comment">/* call before calling any other logging functions */</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="src_2logging_2include_2mpe__log_8h.html#a98d6d284fbceee7048055e76a2220d51">   68</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="src_2logging_2include_2mpe__log_8h.html#a98d6d284fbceee7048055e76a2220d51">MPE_Init_log</a>( <span class="keywordtype">void</span> );</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="src_2logging_2include_2mpe__log_8h.html#a45d7f463a855f1a4bd0b86b158eeeb0f">   70</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="src_2logging_2include_2mpe__log_8h.html#a45d7f463a855f1a4bd0b86b158eeeb0f">MPE_Initialized_logging</a>( <span class="keywordtype">void</span> );</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="comment">/* create state with byte info data description lines in MPI_Comm */</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="src_2logging_2include_2mpe__log_8h.html#ae1fbc2dca40135e9d894b62b003a7b7a">   73</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="src_2logging_2include_2mpe__log_8h.html#ae1fbc2dca40135e9d894b62b003a7b7a">MPE_Describe_comm_state</a>( <a class="code hl_typedef" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm,</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>                             <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">state_startID</a>, <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">state_finalID</a>,</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>                             <span class="keyword">const</span> <span class="keywordtype">char</span> *name, <span class="keyword">const</span> <span class="keywordtype">char</span> *color,</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>                             <span class="keyword">const</span> <span class="keywordtype">char</span> *format );</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="comment">/* create state with byte info data description lines in MPI_COMM_WORLD */</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="src_2logging_2include_2mpe__log_8h.html#a35f4ca72dc752326960fd3aa3dfe0fa7">   79</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="src_2logging_2include_2mpe__log_8h.html#a35f4ca72dc752326960fd3aa3dfe0fa7">MPE_Describe_info_state</a>( <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">state_startID</a>, <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">state_finalID</a>,</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>                             <span class="keyword">const</span> <span class="keywordtype">char</span> *name, <span class="keyword">const</span> <span class="keywordtype">char</span> *color,</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>                             <span class="keyword">const</span> <span class="keywordtype">char</span> *format );</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="comment">/* Internal MPE routine for MPI logging in MPI_Comm */</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="src_2logging_2include_2mpe__log_8h.html#a09ab2adf7d01a76940e8212044d07a3b">   84</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="src_2logging_2include_2mpe__log_8h.html#a09ab2adf7d01a76940e8212044d07a3b">MPE_Describe_known_state</a>( <span class="keyword">const</span> <a class="code hl_struct" href="structCLOG__CommIDs__t__.html">CLOG_CommIDs_t</a> *commIDs, <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">local_thread</a>,</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>                              <span class="keywordtype">int</span> stateID, <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">state_startID</a>, <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">state_finalID</a>,</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>                              <span class="keyword">const</span> <span class="keywordtype">char</span> *name, <span class="keyword">const</span> <span class="keywordtype">char</span> *color,</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>                              <span class="keyword">const</span> <span class="keywordtype">char</span> *format );</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="comment">/* create state description lines in MPI_COMM_WORLD */</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="src_2logging_2include_2mpe__log_8h.html#a4295262dd494f2820cd83cd3d6d8a0d3">   90</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="src_2logging_2include_2mpe__log_8h.html#a4295262dd494f2820cd83cd3d6d8a0d3">MPE_Describe_state</a>( <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">state_startID</a>, <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">state_finalID</a>,</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>                        <span class="keyword">const</span> <span class="keywordtype">char</span> *name, <span class="keyword">const</span> <span class="keywordtype">char</span> *color );</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="comment">/* create event with byte info data description lines in MPI_comm */</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="src_2logging_2include_2mpe__log_8h.html#a7cf160201c1f88b91b8b4ff0fbf7a4e0">   94</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="src_2logging_2include_2mpe__log_8h.html#a7cf160201c1f88b91b8b4ff0fbf7a4e0">MPE_Describe_comm_event</a>( <a class="code hl_typedef" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm, <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">eventID</a>,</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>                             <span class="keyword">const</span> <span class="keywordtype">char</span> *name, <span class="keyword">const</span> <span class="keywordtype">char</span> *color,</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>                             <span class="keyword">const</span> <span class="keywordtype">char</span> *format );</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span><span class="comment">/* create event with byte info data description lines in MPI_COMM_WORLD */</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="src_2logging_2include_2mpe__log_8h.html#a5a2a42492b6074b621468ae8dd1ed94f">   99</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="src_2logging_2include_2mpe__log_8h.html#a5a2a42492b6074b621468ae8dd1ed94f">MPE_Describe_info_event</a>( <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">eventID</a>,</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>                             <span class="keyword">const</span> <span class="keywordtype">char</span> *name, <span class="keyword">const</span> <span class="keywordtype">char</span> *color,</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>                             <span class="keyword">const</span> <span class="keywordtype">char</span> *format );</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span><span class="comment">/* Internal MPE routine for MPI logging in MPI_Eventm */</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="src_2logging_2include_2mpe__log_8h.html#ae4fde4a40d3226dee0914643e4d79038">  104</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="src_2logging_2include_2mpe__log_8h.html#ae4fde4a40d3226dee0914643e4d79038">MPE_Describe_known_event</a>( <span class="keyword">const</span> <a class="code hl_struct" href="structCLOG__CommIDs__t__.html">CLOG_CommIDs_t</a> *commIDs, <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">local_thread</a>,</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>                              <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">eventID</a>,</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>                              <span class="keyword">const</span> <span class="keywordtype">char</span> *name, <span class="keyword">const</span> <span class="keywordtype">char</span> *color,</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>                              <span class="keyword">const</span> <span class="keywordtype">char</span> *format );</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span><span class="comment">/* create event description lines in MPI_COMM_WORLD */</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="src_2logging_2include_2mpe__log_8h.html#a68514bf4c24848b1265aebe0cd59ccd0">  110</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="src_2logging_2include_2mpe__log_8h.html#a68514bf4c24848b1265aebe0cd59ccd0">MPE_Describe_event</a>( <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">eventID</a>,</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>                        <span class="keyword">const</span> <span class="keywordtype">char</span> *name, <span class="keyword">const</span> <span class="keywordtype">char</span> *color );</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="comment">/* fetch new user-space event number(s) */</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno"><a class="line" href="src_2logging_2include_2mpe__log_8h.html#aea591b1a8ad023681484394eec192c94">  114</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="src_2logging_2include_2mpe__log_8h.html#aea591b1a8ad023681484394eec192c94">MPE_Log_get_event_number</a>( <span class="keywordtype">void</span> );</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno"><a class="line" href="src_2logging_2include_2mpe__log_8h.html#a670fe88d1efcd815378c6842781ab9c6">  115</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="src_2logging_2include_2mpe__log_8h.html#a670fe88d1efcd815378c6842781ab9c6">MPE_Log_get_state_eventIDs</a>( <span class="keywordtype">int</span> *<a class="code hl_struct" href="structvector.html">statedef_startID</a>,</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>                                <span class="keywordtype">int</span> *<a class="code hl_struct" href="structvector.html">statedef_finalID</a> );</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno"><a class="line" href="src_2logging_2include_2mpe__log_8h.html#a79923bdb76fae0f0638cdfeb7c49886f">  117</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="src_2logging_2include_2mpe__log_8h.html#a79923bdb76fae0f0638cdfeb7c49886f">MPE_Log_get_solo_eventID</a>( <span class="keywordtype">int</span> *<a class="code hl_struct" href="structvector.html">eventdef_eventID</a> );</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span><span class="comment">/* Internal MPE routine for MPI logging */</span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span><span class="comment">/* fetch a new known event ID of state for MPE Logging system */</span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno"><a class="line" href="src_2logging_2include_2mpe__log_8h.html#ae81bb974966867c0ff4058fd0fe8328b">  122</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="src_2logging_2include_2mpe__log_8h.html#ae81bb974966867c0ff4058fd0fe8328b">MPE_Log_get_known_eventID</a>( <span class="keywordtype">void</span> );</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span><span class="comment">/* fetch a new known state ID for MPE Logging system */</span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno"><a class="line" href="src_2logging_2include_2mpe__log_8h.html#a33da8addd8224af24225e3976ec87e61">  124</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="src_2logging_2include_2mpe__log_8h.html#a33da8addd8224af24225e3976ec87e61">MPE_Log_get_known_stateID</a>( <span class="keywordtype">void</span> );</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span><span class="comment">/* fetch a new known solo event ID for MPE Logging system */</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno"><a class="line" href="src_2logging_2include_2mpe__log_8h.html#a0d7eabe548958bff0a3d61d90315828e">  126</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="src_2logging_2include_2mpe__log_8h.html#a0d7eabe548958bff0a3d61d90315828e">MPE_Log_get_known_solo_eventID</a>( <span class="keywordtype">void</span> );</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span><span class="comment">/* log a MPI_Comm creation/destruction event */</span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno"><a class="line" href="src_2logging_2include_2mpe__log_8h.html#abae5901dfc15f17f9c323205c442ec91">  129</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="src_2logging_2include_2mpe__log_8h.html#abae5901dfc15f17f9c323205c442ec91">MPE_Log_commIDs_intracomm</a>( <span class="keyword">const</span> <a class="code hl_struct" href="structCLOG__CommIDs__t__.html">CLOG_CommIDs_t</a> *commIDs, <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">local_thread</a>,</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>                               <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">comm_etype</a>,</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>                               <span class="keyword">const</span> <a class="code hl_struct" href="structCLOG__CommIDs__t__.html">CLOG_CommIDs_t</a> *<a class="code hl_struct" href="structvector.html">intracommIDs</a> );</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno"><a class="line" href="src_2logging_2include_2mpe__log_8h.html#aede4908dfeff7e3ae735eec88a331094">  132</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="src_2logging_2include_2mpe__log_8h.html#aede4908dfeff7e3ae735eec88a331094">MPE_Log_commIDs_nullcomm</a>( <span class="keyword">const</span> <a class="code hl_struct" href="structCLOG__CommIDs__t__.html">CLOG_CommIDs_t</a> *commIDs, <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">local_thread</a>,</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>                              <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">comm_etype</a> );</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno"><a class="line" href="src_2logging_2include_2mpe__log_8h.html#a385710368e365aada81ee388b6f33f7f">  134</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="src_2logging_2include_2mpe__log_8h.html#a385710368e365aada81ee388b6f33f7f">MPE_Log_commIDs_intercomm</a>( <span class="keyword">const</span> <a class="code hl_struct" href="structCLOG__CommIDs__t__.html">CLOG_CommIDs_t</a> *commIDs, <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">local_thread</a>,</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>                               <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">comm_etype</a>,</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>                               <span class="keyword">const</span> <a class="code hl_struct" href="structCLOG__CommIDs__t__.html">CLOG_CommIDs_t</a> *<a class="code hl_struct" href="structvector.html">intercommIDs</a> );</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span> </div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span><span class="comment">/* log the sending of a message in MPI_Comm */</span></div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno"><a class="line" href="src_2logging_2include_2mpe__log_8h.html#a903ceafdbb54f85f6a53bb90e99d0817">  139</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="src_2logging_2include_2mpe__log_8h.html#a903ceafdbb54f85f6a53bb90e99d0817">MPE_Log_commIDs_send</a>( <span class="keyword">const</span> <a class="code hl_struct" href="structCLOG__CommIDs__t__.html">CLOG_CommIDs_t</a> *commIDs, <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">local_thread</a>,</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>                          <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">receiver</a>, <span class="keywordtype">int</span> tag, <span class="keywordtype">int</span> size );</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno"><a class="line" href="src_2logging_2include_2mpe__log_8h.html#a1f31a0bf395783eab897f061ae720b3e">  141</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="src_2logging_2include_2mpe__log_8h.html#a1f31a0bf395783eab897f061ae720b3e">MPE_Log_comm_send</a>( <a class="code hl_typedef" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm, <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">receiver</a>, <span class="keywordtype">int</span> tag, <span class="keywordtype">int</span> size );</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span> </div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span><span class="comment">/* log the sending of a message in MPI_COMM_WORLD */</span></div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno"><a class="line" href="src_2logging_2include_2mpe__log_8h.html#afe0b53ca205357e6ddf5e4b45b0d8fb3">  144</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="src_2logging_2include_2mpe__log_8h.html#afe0b53ca205357e6ddf5e4b45b0d8fb3">MPE_Log_send</a>( <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">receiver</a>, <span class="keywordtype">int</span> tag, <span class="keywordtype">int</span> size );</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span> </div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span><span class="comment">/* log the receiving of a message in MPI_Comm */</span></div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno"><a class="line" href="src_2logging_2include_2mpe__log_8h.html#a6ab62b882393d810cb60c1f8463ae44f">  147</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="src_2logging_2include_2mpe__log_8h.html#a6ab62b882393d810cb60c1f8463ae44f">MPE_Log_commIDs_receive</a>( <span class="keyword">const</span> <a class="code hl_struct" href="structCLOG__CommIDs__t__.html">CLOG_CommIDs_t</a> *commIDs, <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">local_thread</a>,</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>                             <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">sender</a>, <span class="keywordtype">int</span> tag, <span class="keywordtype">int</span> size );</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno"><a class="line" href="src_2logging_2include_2mpe__log_8h.html#a168f35fb80107c844a5c79882c4baca0">  149</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="src_2logging_2include_2mpe__log_8h.html#a168f35fb80107c844a5c79882c4baca0">MPE_Log_comm_receive</a>( <a class="code hl_typedef" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm, <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">sender</a>, <span class="keywordtype">int</span> tag, <span class="keywordtype">int</span> size );</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span> </div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span><span class="comment">/* log the receiving of a message in MPI_COMM_WORLD */</span></div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno"><a class="line" href="src_2logging_2include_2mpe__log_8h.html#a1814c2d57d003d31d73a420f2535bc2c">  152</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="src_2logging_2include_2mpe__log_8h.html#a1814c2d57d003d31d73a420f2535bc2c">MPE_Log_receive</a>( <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">sender</a>, <span class="keywordtype">int</span> tag, <span class="keywordtype">int</span> size );</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span> </div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span><span class="comment">/* MPE_LOG_BYTESIZE is equal to sizeof(CLOG_BYTES) defined in clog.h */</span></div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno"><a class="line" href="src_2logging_2include_2mpe__log_8h.html#a4ad100dda44d26431a45a1e1bd8eb8f0">  155</a></span><span class="preprocessor">#define MPE_LOG_BYTESIZE  (4 * sizeof(double))</span></div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno"><a class="line" href="src_2logging_2include_2mpe__log_8h.html#acd9dcf56cf81296cbed9a33a6b816123">  156</a></span><span class="keyword">typedef</span> <span class="keywordtype">char</span> <a class="code hl_typedef" href="src_2logging_2include_2mpe__log_8h.html#acd9dcf56cf81296cbed9a33a6b816123">MPE_LOG_BYTES</a>[ <a class="code hl_define" href="src_2logging_2include_2mpe__log_8h.html#a4ad100dda44d26431a45a1e1bd8eb8f0">MPE_LOG_BYTESIZE</a> ];</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span> </div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno"><a class="line" href="src_2logging_2include_2mpe__log_8h.html#adb7d912a1619e74a5962428ab31cf802">  158</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="src_2logging_2include_2mpe__log_8h.html#adb7d912a1619e74a5962428ab31cf802">MPE_Log_pack</a>( <a class="code hl_typedef" href="src_2logging_2include_2mpe__log_8h.html#acd9dcf56cf81296cbed9a33a6b816123">MPE_LOG_BYTES</a> <a class="code hl_struct" href="structvector.html">bytebuf</a>, <span class="keywordtype">int</span> *<a class="code hl_struct" href="structvector.html">position</a>,</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>                  <span class="keywordtype">char</span> <a class="code hl_struct" href="structvector.html">tokentype</a>, <span class="keywordtype">int</span> count, <span class="keyword">const</span> <span class="keywordtype">void</span> *data );</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno"><a class="line" href="src_2logging_2include_2mpe__log_8h.html#a08730caddfdafdfcdaa56556fec3f634">  161</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="src_2logging_2include_2mpe__log_8h.html#a08730caddfdafdfcdaa56556fec3f634">MPE_Log_commIDs_event</a>( <span class="keyword">const</span> <a class="code hl_struct" href="structCLOG__CommIDs__t__.html">CLOG_CommIDs_t</a> *commIDs, <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">local_thread</a>,</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>                           <span class="keywordtype">int</span> event, <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code hl_struct" href="structvector.html">bytebuf</a> );</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span> </div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span><span class="comment">/* log an event in MPI_Comm */</span></div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno"><a class="line" href="src_2logging_2include_2mpe__log_8h.html#a817b1340929c3eb7871b279be80f7b8d">  165</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="src_2logging_2include_2mpe__log_8h.html#a817b1340929c3eb7871b279be80f7b8d">MPE_Log_comm_event</a>( <a class="code hl_typedef" href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a> comm, <span class="keywordtype">int</span> event, <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code hl_struct" href="structvector.html">bytebuf</a> );</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span> </div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span><span class="comment">/* log an event in MPI_COMM_WORLD */</span></div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno"><a class="line" href="src_2logging_2include_2mpe__log_8h.html#a3178029904235f72ada65bd758dce7ce">  169</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="src_2logging_2include_2mpe__log_8h.html#a3178029904235f72ada65bd758dce7ce">MPE_Log_event</a>( <span class="keywordtype">int</span> event, <span class="keywordtype">int</span> data, <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code hl_struct" href="structvector.html">bytebuf</a> );</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span> </div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span><span class="comment">/* log a bare event in MPI_COMM_WORLD */</span></div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno"><a class="line" href="src_2logging_2include_2mpe__log_8h.html#a5281dd4f78385a71969b80e73045e63c">  172</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="src_2logging_2include_2mpe__log_8h.html#a5281dd4f78385a71969b80e73045e63c">MPE_Log_bare_event</a>( <span class="keywordtype">int</span> event );</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span> </div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span><span class="comment">/* log an infomational event in MPI_COMM_WORLD */</span></div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno"><a class="line" href="src_2logging_2include_2mpe__log_8h.html#a26aea47b82aade057e783dd5fe5ed1c8">  175</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="src_2logging_2include_2mpe__log_8h.html#a26aea47b82aade057e783dd5fe5ed1c8">MPE_Log_info_event</a>( <span class="keywordtype">int</span> event, <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code hl_struct" href="structvector.html">bytebuf</a> );</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span> </div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno"><a class="line" href="src_2logging_2include_2mpe__log_8h.html#a06299ceb5dface3699f6cfa6a711f0e7">  177</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="src_2logging_2include_2mpe__log_8h.html#a06299ceb5dface3699f6cfa6a711f0e7">MPE_Log_sync_clocks</a>( <span class="keywordtype">void</span> );</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span> </div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span><span class="comment">/* start logging events */</span></div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno"><a class="line" href="src_2logging_2include_2mpe__log_8h.html#ab310c17525c0963b53429c1c9a0ff2aa">  180</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="src_2logging_2include_2mpe__log_8h.html#ab310c17525c0963b53429c1c9a0ff2aa">MPE_Start_log</a>( <span class="keywordtype">void</span> );</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span> </div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span><span class="comment">/* stop logging events */</span></div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno"><a class="line" href="src_2logging_2include_2mpe__log_8h.html#a51b156b2cce5c26c69114e2b5cd19577">  183</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="src_2logging_2include_2mpe__log_8h.html#a51b156b2cce5c26c69114e2b5cd19577">MPE_Stop_log</a>( <span class="keywordtype">void</span> );</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span> </div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span><span class="comment">/* Synchronize thread related data to all processes */</span></div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno"><a class="line" href="src_2logging_2include_2mpe__log_8h.html#a338d50ea2482c28c6924e530ea0c3ffb">  186</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="src_2logging_2include_2mpe__log_8h.html#a338d50ea2482c28c6924e530ea0c3ffb">MPE_Log_thread_sync</a>( <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">local_thread_count</a> );</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span> </div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span><span class="comment">/* write out data to a file */</span></div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno"><a class="line" href="src_2logging_2include_2mpe__log_8h.html#a4e4fd700b78a53b7db6a264a3521317c">  189</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="src_2logging_2include_2mpe__log_8h.html#a4e4fd700b78a53b7db6a264a3521317c">MPE_Finish_log</a>( <span class="keyword">const</span> <span class="keywordtype">char</span> *filename );</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span> </div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span><span class="comment">/* get the immutable merged logfile name */</span></div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno"><a class="line" href="src_2logging_2include_2mpe__log_8h.html#a1f89c24e4e9f6ca8d7bb891199c99844">  192</a></span><span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code hl_function" href="src_2logging_2include_2mpe__log_8h.html#a1f89c24e4e9f6ca8d7bb891199c99844">MPE_Log_merged_logfilename</a>( <span class="keywordtype">void</span> );</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span> </div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span><span class="preprocessor">#if defined(__cplusplus)</span></div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>}</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span> </div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span> </div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span> </div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span> </div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span><span class="comment">   The following documentation has little resemblance to current CLOG-2</span></div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span><span class="comment">   format.  They are kept here for historical reference purpose.</span></div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span><span class="comment">   2/17/2005         Anthony Chan </span></div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span><span class="comment">*/</span></div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span><span class="comment">The format:</span></div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span><span class="comment"></span> </div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span><span class="comment">Each line:</span></div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span><span class="comment">  type process task data cycle timestamp [comment]</span></div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span><span class="comment"></span> </div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span><span class="comment">    type - nonnegative integer representing a user-defined event type</span></div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span><span class="comment">    process - an integer representing the process in which the event occurred</span></div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span><span class="comment">    task - an integer representing a different notion of task.  Usually </span></div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span><span class="comment">           ignored.</span></div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span><span class="comment">    data - an integer representing user data for the event</span></div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span><span class="comment">    cycle - an integer representing a time cycle, used to distinguish</span></div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span><span class="comment">            between time returned by a timer that &quot;rolls over&quot; during</span></div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span><span class="comment">            the run</span></div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span><span class="comment">    timestamp - an integer representing (when considered in conjuction</span></div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span><span class="comment">                with the cycle number) a time for the event.  Upshot treats</span></div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span><span class="comment">                the units as microseconds</span></div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span><span class="comment">    comment - an optional character string representing user data.  Currently</span></div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span><span class="comment">              12 character maximum, will soon hopefully be any length (really!)</span></div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span><span class="comment"></span> </div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span><span class="comment">All events from -100 to -1 are reserved header information events.  When</span></div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span><span class="comment">a log is produced, all [-100,-1] events will be moved to the top of the</span></div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span><span class="comment">logfile and have their timestamps set to 0.</span></div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span><span class="comment"></span> </div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span><span class="comment">All event from -101 and below are reserved system events.  This is to</span></div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span><span class="comment">provide some standardization for the logfiles, so various interpreting</span></div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span><span class="comment">programs can glean similar data from the same logfile.  All [-101,...)</span></div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span><span class="comment">events will have valid timestamps and will be left in time-sorted</span></div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span><span class="comment">order in the logfile.</span></div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span><span class="comment"></span> </div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span><span class="comment">Formats for reserved types:</span></div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span><span class="comment"></span> </div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span><span class="comment">  -1 Creation data                *not used*</span></div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span><span class="comment">     Comment: Creator and date</span></div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span><span class="comment"></span> </div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span><span class="comment">  -2 Number of events in the logfile   *not used*</span></div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span><span class="comment">     Data: number of events</span></div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span><span class="comment"></span> </div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span><span class="comment">  -3 Number of processors in the run</span></div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span><span class="comment">     Data: number of processes</span></div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span><span class="comment"></span> </div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span><span class="comment">  -4 Number of tasks used in the run  *not used*</span></div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span><span class="comment">     Task: number of tasks</span></div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span><span class="comment"></span> </div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span><span class="comment">  -5 Number of event types used        *not used*</span></div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span><span class="comment">     Data: number event types</span></div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span><span class="comment"></span> </div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span><span class="comment">  -6 Start time of the run</span></div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span><span class="comment">     Timestamp: start time</span></div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span><span class="comment"></span> </div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span><span class="comment">  -7 End time of the run</span></div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span><span class="comment">     Timestamp: end time</span></div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span><span class="comment"></span> </div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span><span class="comment">  -8 Number of times the timer cycled</span></div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span><span class="comment">     For example, if the timer&#39;s units are in microseconds, and it has a</span></div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span><span class="comment">     range of 0 - 2^32, and a run lasts 3 hours (range=4294 seconds, 3 hours=</span></div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span><span class="comment">     10800 seconds), the timer would have cycled at least twice.</span></div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span><span class="comment">     Data: number of timer cycles</span></div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span><span class="comment"></span> </div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span><span class="comment">  -9 Decription of event types     *not used*</span></div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span><span class="comment">     Data: event type</span></div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span><span class="comment">     Comment: Description</span></div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span><span class="comment"></span> </div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span><span class="comment">  -10 printf string for event types   *not used*</span></div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span><span class="comment">      Data: event type</span></div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span><span class="comment">      Comment: printf string</span></div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span><span class="comment"></span> </div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span><span class="comment">  -11 Rollover point</span></div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span><span class="comment">      The point at which the timer values &#39;rollover&#39;</span></div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span><span class="comment">      Timestamp: rollover point</span></div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span><span class="comment"></span> </div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span><span class="comment">  -13 State definition</span></div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span><span class="comment">      Define a state based on the events that signal the beginning and end</span></div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span><span class="comment">      of the state.  Also, define what to call the state and what color/</span></div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span><span class="comment">      stipple pattern to give it in a graphical visualization tool.</span></div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span><span class="comment">      Task: start event</span></div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span><span class="comment">      Data: end event</span></div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span><span class="comment">      Comment: color:bitmap state name</span></div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span><span class="comment"></span> </div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span><span class="comment">      example:  -13 0 3 4 0 0 Green:boxes Rhode Island</span></div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span><span class="comment">      An event with type 3 will signify the entrance into a &#39;Rhode Island&#39;</span></div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span><span class="comment">      state.  An event wil type 4 will signify the exit of the &#39;Rhode Island&#39;</span></div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span><span class="comment">      state.</span></div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span><span class="comment"></span> </div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span><span class="comment">      States may be overlapped (enter a &#39;Rhode Island&#39; state while in a</span></div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span><span class="comment">      &#39;Wisconsin&#39; state while in a &#39;Nevada&#39; state), and the state name may</span></div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span><span class="comment">      have whitspace in it.</span></div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span><span class="comment">      </span></div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span><span class="comment">   -100 Synchronization event</span></div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span><span class="comment">        Sync events are used internally to sychronize timers on the various</span></div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span><span class="comment">        processes.  They do not appear in the logfiles.</span></div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span><span class="comment"></span> </div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span><span class="comment">   -101 Send message</span></div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span><span class="comment">        Represents the sending of a message</span></div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span><span class="comment">    Data: process ID of the receiving process</span></div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span><span class="comment">    Comment: &lt;message-type tag of message&gt; &lt;size of the message, in bytes&gt;</span></div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span><span class="comment"></span> </div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span><span class="comment">   -102 Receive message</span></div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span><span class="comment">        Represents the receiving of a message</span></div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span><span class="comment">    Data: process ID of the sending process</span></div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span><span class="comment">    Comment: &lt;message-type tag of message&gt; &lt;size of the message, in bytes&gt;</span></div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span><span class="comment"></span> </div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span><span class="comment">*/</span></div>
+<div class="ttc" id="ampi__null_8h_html_a68c509d4adb3f4a1d6fe3a9b0b87c7b9"><div class="ttname"><a href="mpi__null_8h.html#a68c509d4adb3f4a1d6fe3a9b0b87c7b9">MPI_Comm</a></div><div class="ttdeci">int MPI_Comm</div><div class="ttdef"><b>Definition</b> <a href="mpi__null_8h_source.html#l00017">mpi_null.h:17</a></div></div>
+<div class="ttc" id="asrc_2logging_2include_2clog__commset_8h_html"><div class="ttname"><a href="src_2logging_2include_2clog__commset_8h.html">clog_commset.h</a></div></div>
+<div class="ttc" id="asrc_2logging_2include_2mpe__log_8h_html_a06299ceb5dface3699f6cfa6a711f0e7"><div class="ttname"><a href="src_2logging_2include_2mpe__log_8h.html#a06299ceb5dface3699f6cfa6a711f0e7">MPE_Log_sync_clocks</a></div><div class="ttdeci">int MPE_Log_sync_clocks(void)</div></div>
+<div class="ttc" id="asrc_2logging_2include_2mpe__log_8h_html_a08730caddfdafdfcdaa56556fec3f634"><div class="ttname"><a href="src_2logging_2include_2mpe__log_8h.html#a08730caddfdafdfcdaa56556fec3f634">MPE_Log_commIDs_event</a></div><div class="ttdeci">int MPE_Log_commIDs_event(const CLOG_CommIDs_t *commIDs, int local_thread, int event, const char *bytebuf)</div></div>
+<div class="ttc" id="asrc_2logging_2include_2mpe__log_8h_html_a09ab2adf7d01a76940e8212044d07a3b"><div class="ttname"><a href="src_2logging_2include_2mpe__log_8h.html#a09ab2adf7d01a76940e8212044d07a3b">MPE_Describe_known_state</a></div><div class="ttdeci">int MPE_Describe_known_state(const CLOG_CommIDs_t *commIDs, int local_thread, int stateID, int state_startID, int state_finalID, const char *name, const char *color, const char *format)</div></div>
+<div class="ttc" id="asrc_2logging_2include_2mpe__log_8h_html_a0d7eabe548958bff0a3d61d90315828e"><div class="ttname"><a href="src_2logging_2include_2mpe__log_8h.html#a0d7eabe548958bff0a3d61d90315828e">MPE_Log_get_known_solo_eventID</a></div><div class="ttdeci">int MPE_Log_get_known_solo_eventID(void)</div></div>
+<div class="ttc" id="asrc_2logging_2include_2mpe__log_8h_html_a168f35fb80107c844a5c79882c4baca0"><div class="ttname"><a href="src_2logging_2include_2mpe__log_8h.html#a168f35fb80107c844a5c79882c4baca0">MPE_Log_comm_receive</a></div><div class="ttdeci">int MPE_Log_comm_receive(MPI_Comm comm, int sender, int tag, int size)</div></div>
+<div class="ttc" id="asrc_2logging_2include_2mpe__log_8h_html_a1814c2d57d003d31d73a420f2535bc2c"><div class="ttname"><a href="src_2logging_2include_2mpe__log_8h.html#a1814c2d57d003d31d73a420f2535bc2c">MPE_Log_receive</a></div><div class="ttdeci">int MPE_Log_receive(int sender, int tag, int size)</div></div>
+<div class="ttc" id="asrc_2logging_2include_2mpe__log_8h_html_a1f31a0bf395783eab897f061ae720b3e"><div class="ttname"><a href="src_2logging_2include_2mpe__log_8h.html#a1f31a0bf395783eab897f061ae720b3e">MPE_Log_comm_send</a></div><div class="ttdeci">int MPE_Log_comm_send(MPI_Comm comm, int receiver, int tag, int size)</div></div>
+<div class="ttc" id="asrc_2logging_2include_2mpe__log_8h_html_a1f89c24e4e9f6ca8d7bb891199c99844"><div class="ttname"><a href="src_2logging_2include_2mpe__log_8h.html#a1f89c24e4e9f6ca8d7bb891199c99844">MPE_Log_merged_logfilename</a></div><div class="ttdeci">const char * MPE_Log_merged_logfilename(void)</div></div>
+<div class="ttc" id="asrc_2logging_2include_2mpe__log_8h_html_a26aea47b82aade057e783dd5fe5ed1c8"><div class="ttname"><a href="src_2logging_2include_2mpe__log_8h.html#a26aea47b82aade057e783dd5fe5ed1c8">MPE_Log_info_event</a></div><div class="ttdeci">int MPE_Log_info_event(int event, const char *bytebuf)</div></div>
+<div class="ttc" id="asrc_2logging_2include_2mpe__log_8h_html_a3178029904235f72ada65bd758dce7ce"><div class="ttname"><a href="src_2logging_2include_2mpe__log_8h.html#a3178029904235f72ada65bd758dce7ce">MPE_Log_event</a></div><div class="ttdeci">int MPE_Log_event(int event, int data, const char *bytebuf)</div></div>
+<div class="ttc" id="asrc_2logging_2include_2mpe__log_8h_html_a338d50ea2482c28c6924e530ea0c3ffb"><div class="ttname"><a href="src_2logging_2include_2mpe__log_8h.html#a338d50ea2482c28c6924e530ea0c3ffb">MPE_Log_thread_sync</a></div><div class="ttdeci">void MPE_Log_thread_sync(int local_thread_count)</div></div>
+<div class="ttc" id="asrc_2logging_2include_2mpe__log_8h_html_a33da8addd8224af24225e3976ec87e61"><div class="ttname"><a href="src_2logging_2include_2mpe__log_8h.html#a33da8addd8224af24225e3976ec87e61">MPE_Log_get_known_stateID</a></div><div class="ttdeci">int MPE_Log_get_known_stateID(void)</div></div>
+<div class="ttc" id="asrc_2logging_2include_2mpe__log_8h_html_a35f4ca72dc752326960fd3aa3dfe0fa7"><div class="ttname"><a href="src_2logging_2include_2mpe__log_8h.html#a35f4ca72dc752326960fd3aa3dfe0fa7">MPE_Describe_info_state</a></div><div class="ttdeci">int MPE_Describe_info_state(int state_startID, int state_finalID, const char *name, const char *color, const char *format)</div></div>
+<div class="ttc" id="asrc_2logging_2include_2mpe__log_8h_html_a385710368e365aada81ee388b6f33f7f"><div class="ttname"><a href="src_2logging_2include_2mpe__log_8h.html#a385710368e365aada81ee388b6f33f7f">MPE_Log_commIDs_intercomm</a></div><div class="ttdeci">int MPE_Log_commIDs_intercomm(const CLOG_CommIDs_t *commIDs, int local_thread, int comm_etype, const CLOG_CommIDs_t *intercommIDs)</div></div>
+<div class="ttc" id="asrc_2logging_2include_2mpe__log_8h_html_a4295262dd494f2820cd83cd3d6d8a0d3"><div class="ttname"><a href="src_2logging_2include_2mpe__log_8h.html#a4295262dd494f2820cd83cd3d6d8a0d3">MPE_Describe_state</a></div><div class="ttdeci">int MPE_Describe_state(int state_startID, int state_finalID, const char *name, const char *color)</div></div>
+<div class="ttc" id="asrc_2logging_2include_2mpe__log_8h_html_a45d7f463a855f1a4bd0b86b158eeeb0f"><div class="ttname"><a href="src_2logging_2include_2mpe__log_8h.html#a45d7f463a855f1a4bd0b86b158eeeb0f">MPE_Initialized_logging</a></div><div class="ttdeci">int MPE_Initialized_logging(void)</div></div>
+<div class="ttc" id="asrc_2logging_2include_2mpe__log_8h_html_a4ad100dda44d26431a45a1e1bd8eb8f0"><div class="ttname"><a href="src_2logging_2include_2mpe__log_8h.html#a4ad100dda44d26431a45a1e1bd8eb8f0">MPE_LOG_BYTESIZE</a></div><div class="ttdeci">#define MPE_LOG_BYTESIZE</div><div class="ttdef"><b>Definition</b> <a href="src_2logging_2include_2mpe__log_8h_source.html#l00155">src/logging/include/mpe_log.h:155</a></div></div>
+<div class="ttc" id="asrc_2logging_2include_2mpe__log_8h_html_a4e4fd700b78a53b7db6a264a3521317c"><div class="ttname"><a href="src_2logging_2include_2mpe__log_8h.html#a4e4fd700b78a53b7db6a264a3521317c">MPE_Finish_log</a></div><div class="ttdeci">int MPE_Finish_log(const char *filename)</div></div>
+<div class="ttc" id="asrc_2logging_2include_2mpe__log_8h_html_a51b156b2cce5c26c69114e2b5cd19577"><div class="ttname"><a href="src_2logging_2include_2mpe__log_8h.html#a51b156b2cce5c26c69114e2b5cd19577">MPE_Stop_log</a></div><div class="ttdeci">int MPE_Stop_log(void)</div></div>
+<div class="ttc" id="asrc_2logging_2include_2mpe__log_8h_html_a5281dd4f78385a71969b80e73045e63c"><div class="ttname"><a href="src_2logging_2include_2mpe__log_8h.html#a5281dd4f78385a71969b80e73045e63c">MPE_Log_bare_event</a></div><div class="ttdeci">int MPE_Log_bare_event(int event)</div></div>
+<div class="ttc" id="asrc_2logging_2include_2mpe__log_8h_html_a5a2a42492b6074b621468ae8dd1ed94f"><div class="ttname"><a href="src_2logging_2include_2mpe__log_8h.html#a5a2a42492b6074b621468ae8dd1ed94f">MPE_Describe_info_event</a></div><div class="ttdeci">int MPE_Describe_info_event(int eventID, const char *name, const char *color, const char *format)</div></div>
+<div class="ttc" id="asrc_2logging_2include_2mpe__log_8h_html_a670fe88d1efcd815378c6842781ab9c6"><div class="ttname"><a href="src_2logging_2include_2mpe__log_8h.html#a670fe88d1efcd815378c6842781ab9c6">MPE_Log_get_state_eventIDs</a></div><div class="ttdeci">int MPE_Log_get_state_eventIDs(int *statedef_startID, int *statedef_finalID)</div></div>
+<div class="ttc" id="asrc_2logging_2include_2mpe__log_8h_html_a68514bf4c24848b1265aebe0cd59ccd0"><div class="ttname"><a href="src_2logging_2include_2mpe__log_8h.html#a68514bf4c24848b1265aebe0cd59ccd0">MPE_Describe_event</a></div><div class="ttdeci">int MPE_Describe_event(int eventID, const char *name, const char *color)</div></div>
+<div class="ttc" id="asrc_2logging_2include_2mpe__log_8h_html_a6ab62b882393d810cb60c1f8463ae44f"><div class="ttname"><a href="src_2logging_2include_2mpe__log_8h.html#a6ab62b882393d810cb60c1f8463ae44f">MPE_Log_commIDs_receive</a></div><div class="ttdeci">int MPE_Log_commIDs_receive(const CLOG_CommIDs_t *commIDs, int local_thread, int sender, int tag, int size)</div></div>
+<div class="ttc" id="asrc_2logging_2include_2mpe__log_8h_html_a79923bdb76fae0f0638cdfeb7c49886f"><div class="ttname"><a href="src_2logging_2include_2mpe__log_8h.html#a79923bdb76fae0f0638cdfeb7c49886f">MPE_Log_get_solo_eventID</a></div><div class="ttdeci">int MPE_Log_get_solo_eventID(int *eventdef_eventID)</div></div>
+<div class="ttc" id="asrc_2logging_2include_2mpe__log_8h_html_a7cf160201c1f88b91b8b4ff0fbf7a4e0"><div class="ttname"><a href="src_2logging_2include_2mpe__log_8h.html#a7cf160201c1f88b91b8b4ff0fbf7a4e0">MPE_Describe_comm_event</a></div><div class="ttdeci">int MPE_Describe_comm_event(MPI_Comm comm, int eventID, const char *name, const char *color, const char *format)</div></div>
+<div class="ttc" id="asrc_2logging_2include_2mpe__log_8h_html_a817b1340929c3eb7871b279be80f7b8d"><div class="ttname"><a href="src_2logging_2include_2mpe__log_8h.html#a817b1340929c3eb7871b279be80f7b8d">MPE_Log_comm_event</a></div><div class="ttdeci">int MPE_Log_comm_event(MPI_Comm comm, int event, const char *bytebuf)</div></div>
+<div class="ttc" id="asrc_2logging_2include_2mpe__log_8h_html_a903ceafdbb54f85f6a53bb90e99d0817"><div class="ttname"><a href="src_2logging_2include_2mpe__log_8h.html#a903ceafdbb54f85f6a53bb90e99d0817">MPE_Log_commIDs_send</a></div><div class="ttdeci">int MPE_Log_commIDs_send(const CLOG_CommIDs_t *commIDs, int local_thread, int receiver, int tag, int size)</div></div>
+<div class="ttc" id="asrc_2logging_2include_2mpe__log_8h_html_a98d6d284fbceee7048055e76a2220d51"><div class="ttname"><a href="src_2logging_2include_2mpe__log_8h.html#a98d6d284fbceee7048055e76a2220d51">MPE_Init_log</a></div><div class="ttdeci">int MPE_Init_log(void)</div></div>
+<div class="ttc" id="asrc_2logging_2include_2mpe__log_8h_html_ab310c17525c0963b53429c1c9a0ff2aa"><div class="ttname"><a href="src_2logging_2include_2mpe__log_8h.html#ab310c17525c0963b53429c1c9a0ff2aa">MPE_Start_log</a></div><div class="ttdeci">int MPE_Start_log(void)</div></div>
+<div class="ttc" id="asrc_2logging_2include_2mpe__log_8h_html_abae5901dfc15f17f9c323205c442ec91"><div class="ttname"><a href="src_2logging_2include_2mpe__log_8h.html#abae5901dfc15f17f9c323205c442ec91">MPE_Log_commIDs_intracomm</a></div><div class="ttdeci">int MPE_Log_commIDs_intracomm(const CLOG_CommIDs_t *commIDs, int local_thread, int comm_etype, const CLOG_CommIDs_t *intracommIDs)</div></div>
+<div class="ttc" id="asrc_2logging_2include_2mpe__log_8h_html_acd9dcf56cf81296cbed9a33a6b816123"><div class="ttname"><a href="src_2logging_2include_2mpe__log_8h.html#acd9dcf56cf81296cbed9a33a6b816123">MPE_LOG_BYTES</a></div><div class="ttdeci">char MPE_LOG_BYTES[MPE_LOG_BYTESIZE]</div><div class="ttdef"><b>Definition</b> <a href="src_2logging_2include_2mpe__log_8h_source.html#l00156">src/logging/include/mpe_log.h:156</a></div></div>
+<div class="ttc" id="asrc_2logging_2include_2mpe__log_8h_html_adb7d912a1619e74a5962428ab31cf802"><div class="ttname"><a href="src_2logging_2include_2mpe__log_8h.html#adb7d912a1619e74a5962428ab31cf802">MPE_Log_pack</a></div><div class="ttdeci">int MPE_Log_pack(MPE_LOG_BYTES bytebuf, int *position, char tokentype, int count, const void *data)</div></div>
+<div class="ttc" id="asrc_2logging_2include_2mpe__log_8h_html_ae1fbc2dca40135e9d894b62b003a7b7a"><div class="ttname"><a href="src_2logging_2include_2mpe__log_8h.html#ae1fbc2dca40135e9d894b62b003a7b7a">MPE_Describe_comm_state</a></div><div class="ttdeci">int MPE_Describe_comm_state(MPI_Comm comm, int state_startID, int state_finalID, const char *name, const char *color, const char *format)</div></div>
+<div class="ttc" id="asrc_2logging_2include_2mpe__log_8h_html_ae4fde4a40d3226dee0914643e4d79038"><div class="ttname"><a href="src_2logging_2include_2mpe__log_8h.html#ae4fde4a40d3226dee0914643e4d79038">MPE_Describe_known_event</a></div><div class="ttdeci">int MPE_Describe_known_event(const CLOG_CommIDs_t *commIDs, int local_thread, int eventID, const char *name, const char *color, const char *format)</div></div>
+<div class="ttc" id="asrc_2logging_2include_2mpe__log_8h_html_ae81bb974966867c0ff4058fd0fe8328b"><div class="ttname"><a href="src_2logging_2include_2mpe__log_8h.html#ae81bb974966867c0ff4058fd0fe8328b">MPE_Log_get_known_eventID</a></div><div class="ttdeci">int MPE_Log_get_known_eventID(void)</div></div>
+<div class="ttc" id="asrc_2logging_2include_2mpe__log_8h_html_aea591b1a8ad023681484394eec192c94"><div class="ttname"><a href="src_2logging_2include_2mpe__log_8h.html#aea591b1a8ad023681484394eec192c94">MPE_Log_get_event_number</a></div><div class="ttdeci">int MPE_Log_get_event_number(void)</div></div>
+<div class="ttc" id="asrc_2logging_2include_2mpe__log_8h_html_aede4908dfeff7e3ae735eec88a331094"><div class="ttname"><a href="src_2logging_2include_2mpe__log_8h.html#aede4908dfeff7e3ae735eec88a331094">MPE_Log_commIDs_nullcomm</a></div><div class="ttdeci">int MPE_Log_commIDs_nullcomm(const CLOG_CommIDs_t *commIDs, int local_thread, int comm_etype)</div></div>
+<div class="ttc" id="asrc_2logging_2include_2mpe__log_8h_html_afe0b53ca205357e6ddf5e4b45b0d8fb3"><div class="ttname"><a href="src_2logging_2include_2mpe__log_8h.html#afe0b53ca205357e6ddf5e4b45b0d8fb3">MPE_Log_send</a></div><div class="ttdeci">int MPE_Log_send(int receiver, int tag, int size)</div></div>
+<div class="ttc" id="astructCLOG__CommIDs__t___html"><div class="ttname"><a href="structCLOG__CommIDs__t__.html">CLOG_CommIDs_t_</a></div><div class="ttdef"><b>Definition</b> <a href="include_2clog__commset_8h_source.html#l00060">include/clog_commset.h:60</a></div></div>
+<div class="ttc" id="astructvector_html"><div class="ttname"><a href="structvector.html">vector</a></div><div class="ttdef"><b>Definition</b> <a href="point_8h_source.html#l00012">point.h:12</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

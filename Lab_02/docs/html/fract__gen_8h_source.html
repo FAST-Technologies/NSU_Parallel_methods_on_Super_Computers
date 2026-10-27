@@ -1,0 +1,246 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lab_02: MPI + OpenMP Parallel Programming: Исходный файл fract_gen.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Lab_02: MPI + OpenMP Parallel Programming<span id="projectnumber">&#160;2.1</span>
+   </div>
+   <div id="projectbrief">Решение 3D уравнения Пуассона методом Якоби с двумерной декомпозицией</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_1f646cbbb0f6227d25dd06f792d51aba.html">mpe2-1.3.0</a></li><li class="navelem"><a class="el" href="dir_493399512d45eb30627376023737183a.html">src</a></li><li class="navelem"><a class="el" href="dir_532b6e0bbac9f63fe589b390252576da.html">graphics</a></li><li class="navelem"><a class="el" href="dir_79216fb839f205e39a4f1139e127db43.html">contrib</a></li><li class="navelem"><a class="el" href="dir_36c5fa1fce864ea26b23b700a1dd37b8.html">mandel</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">fract_gen.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="fract__gen_8h.html">См. документацию.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> *  (C) 2001 by Argonne National Laboratory.</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *      See COPYRIGHT in top-level directory.</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">/* basic stuff for fractal engine */</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#ifndef _FRACT_GEN_H_</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#define _FRACT_GEN_H_</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="fract__gen_8h.html#a20c12f9ca78eab74dbc6757a1dc59071">   15</a></span><span class="keyword">typedef</span> <span class="keyword">enum</span> <a class="code hl_enumeration" href="fract__gen_8h.html#a20c12f9ca78eab74dbc6757a1dc59071">_Fractal_type</a> {<a class="code hl_enumvalue" href="fract__gen_8h.html#a20c12f9ca78eab74dbc6757a1dc59071a6acf3c30030eea67674190347caff27b">MBROT</a>, <a class="code hl_enumvalue" href="fract__gen_8h.html#a20c12f9ca78eab74dbc6757a1dc59071a6f8f3219a598fcd6038302ab91897d41">JULIA</a>, <a class="code hl_enumvalue" href="fract__gen_8h.html#a20c12f9ca78eab74dbc6757a1dc59071acb672e33270b2496f98d3d6995d503f2">NEWTON</a>} <a class="code hl_typedef" href="fract__gen_8h.html#a0affc787d755a8408d3866bf90876520">Fractal_type</a>;</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="fract__gen_8h.html#aaf0952059602752258dccaa015d7b54a">   17</a></span><span class="preprocessor">#define NUM double</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="fract__gen_8h.html#a956c7ba9724b1cac73a3c2c3ea0d9715">   19</a></span><span class="preprocessor">#define NUM_ASSIGN(a,b)     {(a)=(b);}</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="fract__gen_8h.html#a44808b896cef4cfa1d00ad88786464ed">   20</a></span><span class="preprocessor">#define NUM_PTR_ASSIGN(a,b) {*(a)=(b);}</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="fract__gen_8h.html#af613f8f9be8e802020d9f3bcbb0fd4cf">   21</a></span><span class="preprocessor">#define NUM_ADD(a,b)        ((a)+(b))</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="fract__gen_8h.html#a341b18e15abe98249443e0b7cf340a3e">   22</a></span><span class="preprocessor">#define NUM_SUB(a,b)        ((a)-(b))</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="fract__gen_8h.html#a093dbe0203f03a8cb815a3894402260e">   23</a></span><span class="preprocessor">#define NUM_MULT(a,b)       ((a)*(b))</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="fract__gen_8h.html#aab2e3c9128c9ab69490f847c495cefb3">   24</a></span><span class="preprocessor">#define NUM_DIV(a,b)        ((a)/(b))</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="fract__gen_8h.html#aea470838fad32fbb7372454192d671a9">   25</a></span><span class="preprocessor">#define INT2NUM(a)          ((NUM)(a))</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="fract__gen_8h.html#a9ece25d3ab00b0b6a9ffb910f955b4c9">   26</a></span><span class="preprocessor">#define NUM2INT(a)          ((int)(a))</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="fract__gen_8h.html#ad05a2abfc3431434a0accfc0f073484b">   27</a></span><span class="preprocessor">#define DBL2NUM(a)          (a)</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="fract__gen_8h.html#a92a45782303372eccb5a18985a91ca86">   28</a></span><span class="preprocessor">#define NUM2DBL(a)          (a)</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="comment">/* yea, I know the macros are a bit ugly, but I want to abstract out</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="comment">   as much math as possible so if we change to an variable precision</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="comment">   set of math routines, things will be easier */</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="foldopen" id="foldopen00034" data-start="" data-end="">
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="fract__gen_8h.html#aa8b5351350b9de193bb8efc155c877af">   34</a></span><span class="preprocessor">#define COMPLEX_SQUARE(r,i,temp) { \</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">    NUM_ASSIGN( (temp), NUM_MULT((r),(i))); \</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">    NUM_ASSIGN( (r), NUM_SUB( NUM_MULT((r),(r)), NUM_MULT((i),(i)) ) ); \</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">    NUM_ASSIGN( (i), NUM_ADD((temp),(temp)) ); \</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">}</span></div>
+</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="foldopen" id="foldopen00040" data-start="" data-end="">
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="fract__gen_8h.html#a8e1da0957d79c311bee6672fb790a236">   40</a></span><span class="preprocessor">#define COMPLEX_ADD(ar,ai,br,bi) { \</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="preprocessor">  NUM_ASSIGN( (ar), NUM_ADD( (ar), (br)) ); \</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="preprocessor">  NUM_ASSIGN( (ai), NUM_ADD( (ai), (bi)) ); \</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="preprocessor">}</span></div>
+</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="comment">/* square and add */</span></div>
+<div class="foldopen" id="foldopen00046" data-start="" data-end="">
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="fract__gen_8h.html#a562718e1e97112228ec30fea010d47a7">   46</a></span><span class="preprocessor">#define COMPLEX_SQ_ADD(ar,ai,br,bi,temp) { \</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="preprocessor">    NUM_ASSIGN( (temp), NUM_MULT((ar),(ai))); \</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="preprocessor">    NUM_ASSIGN( (ar), NUM_ADD( NUM_SUB( NUM_MULT((ar),(ar)), \</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="preprocessor">                     NUM_MULT((ai),(ai)) ), \</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="preprocessor">                 (ar) ) ); \</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="preprocessor">    NUM_ASSIGN( (ai), NUM_ADD( NUM_ADD((temp),(temp)), (bi) ) ); \</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="preprocessor">}</span></div>
+</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  <span class="comment">/* complex magnitude squared */</span></div>
+<div class="foldopen" id="foldopen00055" data-start="" data-end="">
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="fract__gen_8h.html#ac857d11c4c13c5b26da865ef71f0e2cf">   55</a></span><span class="preprocessor">#define COMPLEX_MAGNITUDE_SQ(ar,ai) \</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="preprocessor">  NUM_ADD( NUM_MULT( (ar), (ar)), NUM_MULT( (ai), (ai) ) )</span></div>
+</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="foldopen" id="foldopen00058" data-start="" data-end="">
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="fract__gen_8h.html#af4100bb0aee111b97b19cb2d7fc6d6db">   58</a></span><span class="preprocessor">#define CHECK_ORDER(a,b) { \</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="preprocessor">  int temp; \</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="preprocessor">  if ((a)&gt;(b)) {(temp)=(a); (a)=(b); (b)=(temp);} \</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="preprocessor">}</span></div>
+</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="comment">/* convert a screen (integer) coordinate to a complex (NUM) value */</span></div>
+<div class="foldopen" id="foldopen00064" data-start="" data-end="">
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="fract__gen_8h.html#a915b1aab750b776d52c15cb2307aae0c">   64</a></span><span class="preprocessor">#define COORD2CMPLX(cmin, cmax, xmin, xmax, x) \</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="preprocessor">  NUM_ADD( NUM_MULT( INT2NUM( (x) - (xmin) ), NUM_DIV( \</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="preprocessor">    NUM_SUB( (cmax), (cmin) ), INT2NUM( (xmax)-(xmin) ) ) ), (cmin) )</span></div>
+</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="fract__gen_8h.html#a05aa09ea707953d584d005937d5767fa">   68</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="fract__gen_8h.html#a05aa09ea707953d584d005937d5767fa">Mbrot_Settings</a> (<span class="keywordtype">double</span> <a class="code hl_struct" href="structvector.html">boundary</a>, <span class="keywordtype">int</span> maxiter);</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="fract__gen_8h.html#a565ab48c187ffce7248969cc73cd56cf">   69</a></span><span class="keywordtype">int</span>  <a class="code hl_function" href="fract__gen_8h.html#a565ab48c187ffce7248969cc73cd56cf">MbrotCalcIter</a> (<a class="code hl_define" href="fract__gen_8h.html#aaf0952059602752258dccaa015d7b54a">NUM</a> <a class="code hl_struct" href="structvector.html">re</a>, <a class="code hl_define" href="fract__gen_8h.html#aaf0952059602752258dccaa015d7b54a">NUM</a> <a class="code hl_struct" href="structvector.html">im</a>);</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="fract__gen_8h.html#a62571f819cf6eeaa1c04b8441570458e">   70</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="fract__gen_8h.html#a62571f819cf6eeaa1c04b8441570458e">Julia_Settings</a> (<span class="keywordtype">double</span> <a class="code hl_struct" href="structvector.html">boundary</a>, <span class="keywordtype">int</span> maxiter, <a class="code hl_define" href="fract__gen_8h.html#aaf0952059602752258dccaa015d7b54a">NUM</a> <a class="code hl_struct" href="structvector.html">real</a>, <a class="code hl_define" href="fract__gen_8h.html#aaf0952059602752258dccaa015d7b54a">NUM</a> <a class="code hl_struct" href="structvector.html">imag</a>);</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="fract__gen_8h.html#a2b1483fda5b7a0f24d006690c1bab82f">   71</a></span><span class="keywordtype">int</span>  <a class="code hl_function" href="fract__gen_8h.html#a2b1483fda5b7a0f24d006690c1bab82f">JuliaCalcIter</a> (<a class="code hl_define" href="fract__gen_8h.html#aaf0952059602752258dccaa015d7b54a">NUM</a> <a class="code hl_struct" href="structvector.html">re</a>, <a class="code hl_define" href="fract__gen_8h.html#aaf0952059602752258dccaa015d7b54a">NUM</a> <a class="code hl_struct" href="structvector.html">im</a>);</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="fract__gen_8h.html#a2d5f2c068047a3f64764f02218822c4d">   72</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="fract__gen_8h.html#a2d5f2c068047a3f64764f02218822c4d">Mbrotrep_Settings</a> (<span class="keywordtype">double</span> <a class="code hl_struct" href="structvector.html">boundary</a>, <span class="keywordtype">int</span> maxiter, <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">miniter</a>,</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>               <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">longestCycle</a>, <span class="keywordtype">double</span> <a class="code hl_struct" href="structvector.html">fudgeFactor</a>);</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="fract__gen_8h.html#aa308d4e527c3c5306384b07cf51664e3">   74</a></span><span class="keywordtype">int</span>  <a class="code hl_function" href="fract__gen_8h.html#aa308d4e527c3c5306384b07cf51664e3">MbrotrepCalcIter</a> (<a class="code hl_define" href="fract__gen_8h.html#aaf0952059602752258dccaa015d7b54a">NUM</a> <a class="code hl_struct" href="structvector.html">re</a>, <a class="code hl_define" href="fract__gen_8h.html#aaf0952059602752258dccaa015d7b54a">NUM</a> <a class="code hl_struct" href="structvector.html">im</a>);</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="fract__gen_8h.html#a4e5da505755c97a9d66958ac79662b27">   76</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="fract__gen_8h.html#a4e5da505755c97a9d66958ac79662b27">CalcField</a> ( <a class="code hl_struct" href="structvector.html">Fractal_type</a>, <span class="keywordtype">int</span> *<a class="code hl_struct" href="structvector.html">iterField</a>,</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">xstart</a>, <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">xend</a>, <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">ystart</a>, <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">yend</a>);</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="fract__gen_8h.html#ab06e0286b0fd504bdc0419b5ab7096e5">   79</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="fract__gen_8h.html#ab06e0286b0fd504bdc0419b5ab7096e5">Copysub2DArray</a> (<span class="keywordtype">int</span> *<a class="code hl_struct" href="structvector.html">mainArray</a>, <span class="keywordtype">int</span> *<a class="code hl_struct" href="structvector.html">subArray</a>, <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">mainWidth</a>,</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>             <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">mainHeight</a>, <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">subWidth</a>, <span class="keywordtype">int</span> <a class="code hl_struct" href="structvector.html">subHeight</a>,</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>             <span class="keywordtype">int</span> xpos, <span class="keywordtype">int</span> ypos);</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="foldopen" id="foldopen00083" data-start="{" data-end="};">
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="structMbrot__settings__.html">   83</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="structMbrot__settings__.html">Mbrot_settings_</a> {</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="structMbrot__settings__.html#aedc2e40cd089d050b08d350736ea0c80">   84</a></span>  <span class="keywordtype">double</span> <a class="code hl_variable" href="structMbrot__settings__.html#aedc2e40cd089d050b08d350736ea0c80">boundary_sq</a>;       <span class="comment">/* maximum allowable distance from origin,</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span><span class="comment">                   squared */</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="structMbrot__settings__.html#ae1ce55f6f18713def4132573b1dce5f3">   86</a></span>  <span class="keywordtype">int</span> <a class="code hl_variable" href="structMbrot__settings__.html#ae1ce55f6f18713def4132573b1dce5f3">maxiter</a>;          <span class="comment">/* maximum number of iterations */</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="fract__gen_8h.html#a9c6bdc10601fed214f84740a8eb13890">   87</a></span>} <a class="code hl_typedef" href="fract__gen_8h.html#a9c6bdc10601fed214f84740a8eb13890">Mbrot_settings</a>;</div>
+</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="foldopen" id="foldopen00089" data-start="{" data-end="};">
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="structJulia__settings__.html">   89</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="structJulia__settings__.html">Julia_settings_</a> {</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="structJulia__settings__.html#a09d2e3a7e6472bd7310925f906b0be9b">   90</a></span>  <span class="keywordtype">double</span> <a class="code hl_variable" href="structJulia__settings__.html#a09d2e3a7e6472bd7310925f906b0be9b">boundary_sq</a>;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="structJulia__settings__.html#aaccdfea7992258500e0996ee2020a17a">   91</a></span>  <span class="keywordtype">int</span> <a class="code hl_variable" href="structJulia__settings__.html#aaccdfea7992258500e0996ee2020a17a">maxiter</a>;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="structJulia__settings__.html#a4668212199a208c4a6d42160ffe905ed">   92</a></span>  <a class="code hl_define" href="fract__gen_8h.html#aaf0952059602752258dccaa015d7b54a">NUM</a> <a class="code hl_variable" href="structJulia__settings__.html#ab4001ead801f1b2b624882daae27f01c">r</a>, <a class="code hl_variable" href="structJulia__settings__.html#a4668212199a208c4a6d42160ffe905ed">i</a>;         <span class="comment">/* the point specifying this julia set */</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="fract__gen_8h.html#ac7df3d55aa642de4ae02a38770e0462d">   93</a></span>} <a class="code hl_typedef" href="fract__gen_8h.html#ac7df3d55aa642de4ae02a38770e0462d">Julia_settings</a>;</div>
+</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="foldopen" id="foldopen00095" data-start="{" data-end="};">
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="structNewton__settings__.html">   95</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="structNewton__settings__.html">Newton_settings_</a> {</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="structNewton__settings__.html#a25b6f780496b29e2a702631e52149e32">   96</a></span>  <span class="keywordtype">double</span> <a class="code hl_variable" href="structNewton__settings__.html#a25b6f780496b29e2a702631e52149e32">epsilon</a>;       <span class="comment">/* stop computing when</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span><span class="comment">                   epsilon &gt; Z(n-1) &gt; Z(n) &gt; 0 */</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="structNewton__settings__.html#acd94e68f29a9a6cfa005219bfbb4632c">   98</a></span>  <span class="keywordtype">int</span> *<a class="code hl_variable" href="structNewton__settings__.html#acd94e68f29a9a6cfa005219bfbb4632c">coeff</a>;           <span class="comment">/* coefficents of each term */</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="structNewton__settings__.html#a11f1e52010b9a61b4fb1b70c2e0c30a4">   99</a></span>  <span class="keywordtype">int</span> <a class="code hl_variable" href="structNewton__settings__.html#a11f1e52010b9a61b4fb1b70c2e0c30a4">nterms</a>;           <span class="comment">/* number of terms */</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno"><a class="line" href="structNewton__settings__.html#a30766255921d97d1077df78c80549ab7">  100</a></span>  <span class="keywordtype">int</span> <a class="code hl_variable" href="structNewton__settings__.html#a30766255921d97d1077df78c80549ab7">maxiter</a>;          <span class="comment">/* when to give up */</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <span class="comment">/* for example: nterms=4, coeff={-1,0,0,1}  == x^3 - 1 */</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="fract__gen_8h.html#a2ba0341d0a3af70959e7a3b559ea8226">  102</a></span>} <a class="code hl_typedef" href="fract__gen_8h.html#a2ba0341d0a3af70959e7a3b559ea8226">Newton_settings</a>;</div>
+</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="comment">/* _FRACT_GEN_H_ */</span></div>
+<div class="ttc" id="afract__gen_8h_html_a05aa09ea707953d584d005937d5767fa"><div class="ttname"><a href="fract__gen_8h.html#a05aa09ea707953d584d005937d5767fa">Mbrot_Settings</a></div><div class="ttdeci">void Mbrot_Settings(double boundary, int maxiter)</div></div>
+<div class="ttc" id="afract__gen_8h_html_a0affc787d755a8408d3866bf90876520"><div class="ttname"><a href="fract__gen_8h.html#a0affc787d755a8408d3866bf90876520">Fractal_type</a></div><div class="ttdeci">enum _Fractal_type Fractal_type</div></div>
+<div class="ttc" id="afract__gen_8h_html_a20c12f9ca78eab74dbc6757a1dc59071"><div class="ttname"><a href="fract__gen_8h.html#a20c12f9ca78eab74dbc6757a1dc59071">_Fractal_type</a></div><div class="ttdeci">_Fractal_type</div><div class="ttdef"><b>Definition</b> <a href="fract__gen_8h_source.html#l00015">fract_gen.h:15</a></div></div>
+<div class="ttc" id="afract__gen_8h_html_a20c12f9ca78eab74dbc6757a1dc59071a6acf3c30030eea67674190347caff27b"><div class="ttname"><a href="fract__gen_8h.html#a20c12f9ca78eab74dbc6757a1dc59071a6acf3c30030eea67674190347caff27b">MBROT</a></div><div class="ttdeci">@ MBROT</div><div class="ttdef"><b>Definition</b> <a href="fract__gen_8h_source.html#l00015">fract_gen.h:15</a></div></div>
+<div class="ttc" id="afract__gen_8h_html_a20c12f9ca78eab74dbc6757a1dc59071a6f8f3219a598fcd6038302ab91897d41"><div class="ttname"><a href="fract__gen_8h.html#a20c12f9ca78eab74dbc6757a1dc59071a6f8f3219a598fcd6038302ab91897d41">JULIA</a></div><div class="ttdeci">@ JULIA</div><div class="ttdef"><b>Definition</b> <a href="fract__gen_8h_source.html#l00015">fract_gen.h:15</a></div></div>
+<div class="ttc" id="afract__gen_8h_html_a20c12f9ca78eab74dbc6757a1dc59071acb672e33270b2496f98d3d6995d503f2"><div class="ttname"><a href="fract__gen_8h.html#a20c12f9ca78eab74dbc6757a1dc59071acb672e33270b2496f98d3d6995d503f2">NEWTON</a></div><div class="ttdeci">@ NEWTON</div><div class="ttdef"><b>Definition</b> <a href="fract__gen_8h_source.html#l00015">fract_gen.h:15</a></div></div>
+<div class="ttc" id="afract__gen_8h_html_a2b1483fda5b7a0f24d006690c1bab82f"><div class="ttname"><a href="fract__gen_8h.html#a2b1483fda5b7a0f24d006690c1bab82f">JuliaCalcIter</a></div><div class="ttdeci">int JuliaCalcIter(NUM re, NUM im)</div></div>
+<div class="ttc" id="afract__gen_8h_html_a2ba0341d0a3af70959e7a3b559ea8226"><div class="ttname"><a href="fract__gen_8h.html#a2ba0341d0a3af70959e7a3b559ea8226">Newton_settings</a></div><div class="ttdeci">struct Newton_settings_ Newton_settings</div></div>
+<div class="ttc" id="afract__gen_8h_html_a2d5f2c068047a3f64764f02218822c4d"><div class="ttname"><a href="fract__gen_8h.html#a2d5f2c068047a3f64764f02218822c4d">Mbrotrep_Settings</a></div><div class="ttdeci">void Mbrotrep_Settings(double boundary, int maxiter, int miniter, int longestCycle, double fudgeFactor)</div></div>
+<div class="ttc" id="afract__gen_8h_html_a4e5da505755c97a9d66958ac79662b27"><div class="ttname"><a href="fract__gen_8h.html#a4e5da505755c97a9d66958ac79662b27">CalcField</a></div><div class="ttdeci">void CalcField(Fractal_type, int *iterField, int xstart, int xend, int ystart, int yend)</div></div>
+<div class="ttc" id="afract__gen_8h_html_a565ab48c187ffce7248969cc73cd56cf"><div class="ttname"><a href="fract__gen_8h.html#a565ab48c187ffce7248969cc73cd56cf">MbrotCalcIter</a></div><div class="ttdeci">int MbrotCalcIter(NUM re, NUM im)</div></div>
+<div class="ttc" id="afract__gen_8h_html_a62571f819cf6eeaa1c04b8441570458e"><div class="ttname"><a href="fract__gen_8h.html#a62571f819cf6eeaa1c04b8441570458e">Julia_Settings</a></div><div class="ttdeci">void Julia_Settings(double boundary, int maxiter, NUM real, NUM imag)</div></div>
+<div class="ttc" id="afract__gen_8h_html_a9c6bdc10601fed214f84740a8eb13890"><div class="ttname"><a href="fract__gen_8h.html#a9c6bdc10601fed214f84740a8eb13890">Mbrot_settings</a></div><div class="ttdeci">struct Mbrot_settings_ Mbrot_settings</div></div>
+<div class="ttc" id="afract__gen_8h_html_aa308d4e527c3c5306384b07cf51664e3"><div class="ttname"><a href="fract__gen_8h.html#aa308d4e527c3c5306384b07cf51664e3">MbrotrepCalcIter</a></div><div class="ttdeci">int MbrotrepCalcIter(NUM re, NUM im)</div></div>
+<div class="ttc" id="afract__gen_8h_html_aaf0952059602752258dccaa015d7b54a"><div class="ttname"><a href="fract__gen_8h.html#aaf0952059602752258dccaa015d7b54a">NUM</a></div><div class="ttdeci">#define NUM</div><div class="ttdef"><b>Definition</b> <a href="fract__gen_8h_source.html#l00017">fract_gen.h:17</a></div></div>
+<div class="ttc" id="afract__gen_8h_html_ab06e0286b0fd504bdc0419b5ab7096e5"><div class="ttname"><a href="fract__gen_8h.html#ab06e0286b0fd504bdc0419b5ab7096e5">Copysub2DArray</a></div><div class="ttdeci">void Copysub2DArray(int *mainArray, int *subArray, int mainWidth, int mainHeight, int subWidth, int subHeight, int xpos, int ypos)</div></div>
+<div class="ttc" id="afract__gen_8h_html_ac7df3d55aa642de4ae02a38770e0462d"><div class="ttname"><a href="fract__gen_8h.html#ac7df3d55aa642de4ae02a38770e0462d">Julia_settings</a></div><div class="ttdeci">struct Julia_settings_ Julia_settings</div></div>
+<div class="ttc" id="astructJulia__settings___html"><div class="ttname"><a href="structJulia__settings__.html">Julia_settings_</a></div><div class="ttdef"><b>Definition</b> <a href="fract__gen_8h_source.html#l00089">fract_gen.h:89</a></div></div>
+<div class="ttc" id="astructJulia__settings___html_a09d2e3a7e6472bd7310925f906b0be9b"><div class="ttname"><a href="structJulia__settings__.html#a09d2e3a7e6472bd7310925f906b0be9b">Julia_settings_::boundary_sq</a></div><div class="ttdeci">double boundary_sq</div><div class="ttdef"><b>Definition</b> <a href="fract__gen_8h_source.html#l00090">fract_gen.h:90</a></div></div>
+<div class="ttc" id="astructJulia__settings___html_a4668212199a208c4a6d42160ffe905ed"><div class="ttname"><a href="structJulia__settings__.html#a4668212199a208c4a6d42160ffe905ed">Julia_settings_::i</a></div><div class="ttdeci">NUM i</div><div class="ttdef"><b>Definition</b> <a href="fract__gen_8h_source.html#l00092">fract_gen.h:92</a></div></div>
+<div class="ttc" id="astructJulia__settings___html_aaccdfea7992258500e0996ee2020a17a"><div class="ttname"><a href="structJulia__settings__.html#aaccdfea7992258500e0996ee2020a17a">Julia_settings_::maxiter</a></div><div class="ttdeci">int maxiter</div><div class="ttdef"><b>Definition</b> <a href="fract__gen_8h_source.html#l00091">fract_gen.h:91</a></div></div>
+<div class="ttc" id="astructJulia__settings___html_ab4001ead801f1b2b624882daae27f01c"><div class="ttname"><a href="structJulia__settings__.html#ab4001ead801f1b2b624882daae27f01c">Julia_settings_::r</a></div><div class="ttdeci">NUM r</div><div class="ttdef"><b>Definition</b> <a href="fract__gen_8h_source.html#l00092">fract_gen.h:92</a></div></div>
+<div class="ttc" id="astructMbrot__settings___html"><div class="ttname"><a href="structMbrot__settings__.html">Mbrot_settings_</a></div><div class="ttdef"><b>Definition</b> <a href="fract__gen_8h_source.html#l00083">fract_gen.h:83</a></div></div>
+<div class="ttc" id="astructMbrot__settings___html_ae1ce55f6f18713def4132573b1dce5f3"><div class="ttname"><a href="structMbrot__settings__.html#ae1ce55f6f18713def4132573b1dce5f3">Mbrot_settings_::maxiter</a></div><div class="ttdeci">int maxiter</div><div class="ttdef"><b>Definition</b> <a href="fract__gen_8h_source.html#l00086">fract_gen.h:86</a></div></div>
+<div class="ttc" id="astructMbrot__settings___html_aedc2e40cd089d050b08d350736ea0c80"><div class="ttname"><a href="structMbrot__settings__.html#aedc2e40cd089d050b08d350736ea0c80">Mbrot_settings_::boundary_sq</a></div><div class="ttdeci">double boundary_sq</div><div class="ttdef"><b>Definition</b> <a href="fract__gen_8h_source.html#l00084">fract_gen.h:84</a></div></div>
+<div class="ttc" id="astructNewton__settings___html"><div class="ttname"><a href="structNewton__settings__.html">Newton_settings_</a></div><div class="ttdef"><b>Definition</b> <a href="fract__gen_8h_source.html#l00095">fract_gen.h:95</a></div></div>
+<div class="ttc" id="astructNewton__settings___html_a11f1e52010b9a61b4fb1b70c2e0c30a4"><div class="ttname"><a href="structNewton__settings__.html#a11f1e52010b9a61b4fb1b70c2e0c30a4">Newton_settings_::nterms</a></div><div class="ttdeci">int nterms</div><div class="ttdef"><b>Definition</b> <a href="fract__gen_8h_source.html#l00099">fract_gen.h:99</a></div></div>
+<div class="ttc" id="astructNewton__settings___html_a25b6f780496b29e2a702631e52149e32"><div class="ttname"><a href="structNewton__settings__.html#a25b6f780496b29e2a702631e52149e32">Newton_settings_::epsilon</a></div><div class="ttdeci">double epsilon</div><div class="ttdef"><b>Definition</b> <a href="fract__gen_8h_source.html#l00096">fract_gen.h:96</a></div></div>
+<div class="ttc" id="astructNewton__settings___html_a30766255921d97d1077df78c80549ab7"><div class="ttname"><a href="structNewton__settings__.html#a30766255921d97d1077df78c80549ab7">Newton_settings_::maxiter</a></div><div class="ttdeci">int maxiter</div><div class="ttdef"><b>Definition</b> <a href="fract__gen_8h_source.html#l00100">fract_gen.h:100</a></div></div>
+<div class="ttc" id="astructNewton__settings___html_acd94e68f29a9a6cfa005219bfbb4632c"><div class="ttname"><a href="structNewton__settings__.html#acd94e68f29a9a6cfa005219bfbb4632c">Newton_settings_::coeff</a></div><div class="ttdeci">int * coeff</div><div class="ttdef"><b>Definition</b> <a href="fract__gen_8h_source.html#l00098">fract_gen.h:98</a></div></div>
+<div class="ttc" id="astructvector_html"><div class="ttname"><a href="structvector.html">vector</a></div><div class="ttdef"><b>Definition</b> <a href="point_8h_source.html#l00012">point.h:12</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>
