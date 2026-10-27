@@ -14,9 +14,10 @@ OUTPUT_LANGUAGE        = Russian
 # ------------------------------------------------------------------------------
 # Входные файлы
 # ------------------------------------------------------------------------------
-INPUT                  = @CMAKE_CURRENT_SOURCE_DIR@/main.cpp
-RECURSIVE              = NO
+INPUT                  = @CMAKE_CURRENT_SOURCE_DIR@
+RECURSIVE              = YES
 FILE_PATTERNS          = *.cpp *.h *.hpp
+EXCLUDE_PATTERNS       = */build/* */cmake-build-* */.git/*
 EXTRACT_ALL            = YES
 EXTRACT_PRIVATE        = YES
 EXTRACT_STATIC         = YES

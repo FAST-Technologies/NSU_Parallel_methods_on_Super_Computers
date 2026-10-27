@@ -19,7 +19,9 @@ endif()
 find_package(MPI REQUIRED)
 find_package(OpenMP REQUIRED)
 
-set(SOURCE_FILES main.cpp)
+set(SOURCE_FILES main.cpp
+        poisson_solver.hpp
+        poisson_solver.hpp)
 add_executable(Lab_02 ${SOURCE_FILES})
 
 if(MSVC)
