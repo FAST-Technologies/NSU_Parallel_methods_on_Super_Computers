@@ -1,55 +1,47 @@
-from typing import List, Dict, Tuple, Set
+from typing import Dict
 import os
 import matplotlib.pyplot as plt
 
-plt.rcParams['font.sans-serif'] = ['DejaVu Sans', 'Arial']
-plt.rcParams['axes.unicode_minus'] = False
-plt.rcParams['figure.dpi'] = 150
-plt.rcParams['savefig.dpi'] = 300
-plt.rcParams['axes.grid'] = True
-plt.rcParams['grid.alpha'] = 0.3
-plt.rcParams['grid.linestyle'] = '--'
+plt.rcParams["font.sans-serif"] = ["DejaVu Sans", "Arial"]
+plt.rcParams["axes.unicode_minus"] = False
+plt.rcParams["figure.dpi"] = 150
+plt.rcParams["savefig.dpi"] = 300
+plt.rcParams["axes.grid"] = True
+plt.rcParams["grid.alpha"] = 0.3
+plt.rcParams["grid.linestyle"] = "--"
+OUT = "visualisations"
+os.makedirs(OUT, exist_ok=True)
+BASE_TIME = 317.679
 
-DIRECTORY = "visualisations"
-os.makedirs(DIRECTORY, exist_ok=True)
+# Актуальные измерения, сетка 700 x 700 x 700.
+mpi_times: Dict[int, float] = {
+    1: 317.679, 2: 179.244, 4: 117.313, 5: 101.279,
+    6: 90.2635, 8: 112.668, 10: 113.691,
+}
+hybrid_times: Dict[str, float] = {
+    "1x1": 317.679, "4x1": 117.313, "2x2": 105.580,
+    "1x4": 182.647, "2x4": 115.697, "4x2": 99.9782,
+    "1x8": 199.593, "8x1": 112.668, "4x4": 112.872,
+    "2x8": 105.558, "8x2": 86.8708, "1x16": 191.861,
+    "9x2": 80.8495, "2x9": 119.733, "2x10": 156.838, "10x2": 90.986,
+    "10x3": 117.312, "10x4": 108.226, "10x5": 114.849,
+    "10x10": 135.400, "10x20": 180.174,
+}
 
-# Таблица 2: Pure MPI
-mpi_procs: List[int] = [1, 2, 4, 6, 8, 10]
-mpi_time: List[float]  = [0.9970, 0.5314, 0.3062, 0.2517, 0.3359, 0.3264]
-mpi_speedup: List[float] = [1.00, 1.88, 3.26, 3.96, 2.97, 3.053]
-mpi_efficiency: List[float] = [100.00, 93.81, 81.40, 66.02, 34.72, 30.55]
+def threads(config: str) -> int:
+    m, t = config.split("x")
+    return int(m) * int(t)
 
-# Таблица 3: Hybrid (MPI x OpenMP)
-# Данные отсортированы по возрастанию времени для наглядности на графике времени
-hybrid_configs: List[str] = [
-    "10×20", "10×10", "10×5", "10×4", "10×3",
-    "1×8", "1×4", "2×10", "2×9", "2×8", "4×2", "2×4", "8×1",
-    "4×1", "2×2", "8×2", "10×2", "9×2", "1×1"
-]
-hybrid_threads: List[int] = [
-    200, 100, 50, 40, 30,
-    8, 4, 20, 18, 16, 8, 8, 8,
-    4, 4, 16, 20, 18, 1
-]
-hybrid_time: List[float] = [
-    13.236, 5.9080, 2.54809, 1.8232, 1.0502,
-    0.5527, 0.5723, 0.3381, 0.3524, 0.3358, 0.3363, 0.3320, 0.3544,
-    0.3060, 0.3225, 0.2354, 0.2364, 0.2199, 0.9875
-]
-hybrid_speedup: List[float] = [
-    0.07, 0.17, 0.39, 0.54, 0.94,
-    1.79, 1.73, 2.92, 2.80, 2.94, 2.94, 2.97, 2.79,
-    3.23, 3.06, 4.19, 4.18, 4.49, 1.00
-]
-hybrid_efficiency: List[float] = [
-    0.04, 0.17, 0.78, 1.35, 3.13,
-    22.33, 43.14, 14.60, 15.57, 18.38, 36.70, 37.18, 34.83,
-    80.68, 76.55, 26.22, 20.89, 24.95, 100.0
-]
+mpi_procs = list(mpi_times)
+mpi_time = list(mpi_times.values())
+mpi_speedup = [BASE_TIME / t for t in mpi_time]
+mpi_efficiency = [s / p * 100 for s, p in zip(mpi_speedup, mpi_procs)]
+hybrid_configs = list(hybrid_times)
+hybrid_threads = [threads(c) for c in hybrid_configs]
+hybrid_time = list(hybrid_times.values())
+hybrid_speedup = [BASE_TIME / t for t in hybrid_time]
+hybrid_efficiency = [s / p * 100 for s, p in zip(hybrid_speedup, hybrid_threads)]
 
-# ==============================================================================
-# ФУНКЦИИ ПОСТРОЕНИЯ ГРАФИКОВ
-# ==============================================================================
 def plot_pure_mpi() -> None:
     """Графики для чистого MPI (Таблица 2)"""
     fig, axes = plt.subplots(1, 3, figsize=(18, 5))
@@ -82,84 +74,62 @@ def plot_pure_mpi() -> None:
     axes[2].legend()
 
     plt.tight_layout()
-    filename: str = f"{DIRECTORY}/pure_mpi_metrics.png"
+    filename: str = f"{OUT}/pure_mpi_metrics.png"
     plt.savefig(filename, bbox_inches='tight')
     plt.close()
     print(f"✓ Сохранен: {filename}")
-
 
 def plot_hybrid_time() -> None:
     """График времени для гибридного режима (отсортированный по времени)"""
-    fig, ax = plt.subplots(figsize=(12, 6))
-
-    # Строим столбчатую диаграмму или линию с маркерами. Линия лучше показывает тренд.
-    ax.plot(hybrid_configs, hybrid_time, marker='o', color='#C73E1D', linewidth=2, markersize=7)
-
+    items = sorted(hybrid_times.items(), key=lambda item: item[1])
+    configs = [x[0] for x in items]
+    times = [x[1] for x in items]
+    fig, ax = plt.subplots(figsize=(14, 7))
+    bars = ax.bar(configs, times)
+    best = min(range(len(times)), key=times.__getitem__)
+    bars[best].set_color("#C73E1D")
+    ax.annotate(f"Лучшее: {times[best]:.4f} с ({configs[best]})",
+                xy=(best, times[best]), xytext=(best, times[best] * 1.12),
+                ha="center", arrowprops={"arrowstyle": "->", "color": "#C73E1D"})
     ax.set_title('Время выполнения для различных гибридных конфигураций (MPI × OpenMP)', fontsize=14, fontweight='bold')
     ax.set_xlabel('Конфигурация (MPI-процессы × OpenMP-потоки)', fontsize=12)
     ax.set_ylabel('Время выполнения (сек)', fontsize=12)
-    plt.xticks(rotation=45, ha='right')
-    best_idx: int = hybrid_time.index(min(hybrid_time))
-    ax.plot(hybrid_configs[best_idx], hybrid_time[best_idx], 'go', markersize=12, markeredgecolor='black', label=f'Оптимум: {hybrid_configs[best_idx]} ({hybrid_time[best_idx]} сек)')
+    ax.tick_params(axis="x", rotation=45)
     ax.legend()
-
     plt.tight_layout()
-    filename: str = f"{DIRECTORY}/hybrid_time_sorted.png"
+    filename: str = f"{OUT}/hybrid_time_sorted.png"
     plt.savefig(filename, bbox_inches='tight')
     plt.close()
     print(f"✓ Сохранен: {filename}")
-
 
 def plot_hybrid_speedup_efficiency() -> None:
     """Графики ускорения и эффективности гибридного режима с аннотациями"""
-    fig, axes = plt.subplots(1, 2, figsize=(16, 6))
+    fig, ax = plt.subplots(1, 2, figsize=(16, 6))
     fig.suptitle('Ускорение и эффективность гибридной модели (MPI + OpenMP)', fontsize=14, fontweight='bold')
-
-    # 1. Ускорение
-    axes[0].scatter(hybrid_threads, hybrid_speedup, color='#2E86AB', s=60, zorder=3)
-    axes[0].plot(hybrid_threads, hybrid_threads, 'k--', linewidth=1.5, alpha=0.5, label='Идеальное (S=P)')
-    axes[0].set_title('Ускорение ($S_p$)')
-    axes[0].set_xlabel('Общее число вычислительных потоков (P × T)')
-    axes[0].set_ylabel('Ускорение (раз)')
-    axes[0].set_ylim(0, 5.5)
-
-    # Аннотации для ускорения
-    for i, txt in enumerate(hybrid_configs):
-        axes[0].annotate(txt, (hybrid_threads[i], hybrid_speedup[i]),
-                         textcoords="offset points", xytext=(5, 5), fontsize=8, alpha=0.7)
-
-    # 2. Эффективность
-    axes[1].scatter(hybrid_threads, hybrid_efficiency, color='#A23B72', s=60, zorder=3)
-    axes[1].axhline(100, color='k', linestyle='--', linewidth=1.5, alpha=0.5, label='Идеальная (100%)')
-    axes[1].set_title('Эффективность ($E_p$)')
-    axes[1].set_xlabel('Общее число вычислительных потоков (P × T)')
-    axes[1].set_ylabel('Эффективность (%)')
-    axes[1].set_ylim(0, 110)
-
-    # Аннотации для эффективности
-    for i, txt in enumerate(hybrid_configs):
-        axes[1].annotate(txt, (hybrid_threads[i], hybrid_efficiency[i]),
-                         textcoords="offset points", xytext=(5, 5), fontsize=8, alpha=0.7)
-
-    for ax in axes:
+    for i, config in enumerate(hybrid_configs):
+        ax[0].scatter(hybrid_threads[i], hybrid_speedup[i], color='#2E86AB', s=60, zorder=3)
+        ax[0].annotate(config, (hybrid_threads[i], hybrid_speedup[i]),
+                       textcoords="offset points", xytext=(5, 5), fontsize=8, alpha=0.7)
+        ax[1].scatter(hybrid_threads[i], hybrid_efficiency[i], color='#A23B72', s=60, zorder=3)
+        ax[1].annotate(config, (hybrid_threads[i], hybrid_efficiency[i]),
+                       textcoords="offset points", xytext=(5, 5), fontsize=8, alpha=0.7)
+    ideal_x = sorted(set(hybrid_threads))
+    ax[0].plot(ideal_x, ideal_x, 'k--', linewidth=1.5, alpha=0.5, label='Идеальное (S=P)')
+    ax[0].set(title="Ускорение ($S_P$)", xlabel="Общее число потоков (P × T)", ylabel="Ускорение", ylim=(0, 5.5))
+    ax[1].axhline(100, color='k', linestyle='--', linewidth=1.5, alpha=0.5, label='Идеальная (100%)')
+    ax[1].set(title="Эффективность ($E_P$)", xlabel="Общее число вычислительных потоков (P × T)",
+              ylabel="Эффективность (%)", ylim=(0, 110))
+    for ax in ax:
         ax.legend()
         ax.grid(True, linestyle='--', alpha=0.5)
-
     plt.tight_layout()
-    filename: str = f"{DIRECTORY}/hybrid_speedup_efficiency.png"
+    filename: str = f"{OUT}/hybrid_speedup_efficiency.png"
     plt.savefig(filename, bbox_inches='tight')
     plt.close()
     print(f"✓ Сохранен: {filename}")
 
-
-def main():
-    print("Генерация графиков для Лабораторной работы №2...")
-    print("=" * 60)
+if __name__ == "__main__":
+    print(f"Базовое время: {BASE_TIME:.3f} с.")
     plot_pure_mpi()
     plot_hybrid_time()
     plot_hybrid_speedup_efficiency()
-    print("=" * 60)
-    print("✓ Все графики успешно созданы в папке 'visualisations'!")
-
-if __name__ == "__main__":
-    main()

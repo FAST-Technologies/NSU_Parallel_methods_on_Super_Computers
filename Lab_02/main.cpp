@@ -136,7 +136,7 @@ void jacobi_step(
 #pragma omp parallel for collapse(3) reduction(max:max_diff)
     for (int i = 2; i < info.local_nx; ++i) {
         for (int j = 2; j < info.local_ny; ++j) {
-            for (int k = 1; k < info.local_nz + 1; ++k) {
+            for (int k = 2; k < info.local_nz + 1; ++k) {
                 int idx = i * stride_x + j * stride_y + k;
                 int gi = info.coords[0] * info.local_nx + (i - 1);
                 int gj = info.coords[1] * info.local_ny + (j - 1);
@@ -176,15 +176,23 @@ void jacobi_step(
 #pragma omp parallel for collapse(2)
     for (int j = 0; j < info.local_ny; ++j) {
         for (int k = 0; k < info.local_nz; ++k) {
-            phi[0 * stride_x + (j + 1) * stride_y + (k + 1)] = recv_left[j * info.local_nz + k];
-            phi[(info.local_nx + 1) * stride_x + (j + 1) * stride_y + (k + 1)] = recv_right[j * info.local_nz + k];
+            if (info.left != MPI_PROC_NULL) {
+                phi[0 * stride_x + (j + 1) * stride_y + (k + 1)] = recv_left[j * info.local_nz + k];
+            }
+            if (info.right != MPI_PROC_NULL) {
+                phi[(info.local_nx + 1) * stride_x + (j + 1) * stride_y + (k + 1)] = recv_right[j * info.local_nz + k];
+            }
         }
     }
 #pragma omp parallel for collapse(2)
     for (int i = 0; i < info.local_nx; ++i) {
         for (int k = 0; k < info.local_nz; ++k) {
-            phi[(i + 1) * stride_x + 0 * stride_y + (k + 1)] = recv_bottom[i * info.local_nz + k];
-            phi[(i + 1) * stride_x + (info.local_ny + 1) * stride_y + (k + 1)] = recv_top[i * info.local_nz + k];
+            if (info.bottom != MPI_PROC_NULL) {
+                phi[(i + 1) * stride_x + 0 * stride_y + (k + 1)] = recv_bottom[i * info.local_nz + k];
+            }
+            if (info.top != MPI_PROC_NULL) {
+                phi[(i + 1) * stride_x + (info.local_ny + 1) * stride_y + (k + 1)] = recv_top[i * info.local_nz + k];
+            }
         }
     }
 
@@ -417,7 +425,13 @@ int main(int argc, char** argv) {
         }
 
         std::cout << "\n";
-        std::cout << "Конвергенция достигнута за " << stats.iterations << " итераций." << std::endl;
+        if (max_diff <= EPSILON) {
+            std::cout << "\nКритерий сходимости достигнут за "
+                      << stats.iterations << " итераций.\n";
+        } else {
+            std::cout << "\nВНИМАНИЕ: достигнут предел итераций (MAX_ITER).\n";
+            std::cout << "Итерационный процесс не достиг заданной точности.\n";
+        }
         std::cout << "Максимальная невязка: " << max_diff << std::endl;
         std::cout << "Максимальное отклонение от точного решения (Δ): " << global_max_error << "\n";
         std::cout << "Общее время счета (MPI TIME): " << elapsed_mpi_time << " sec." << std::endl;
