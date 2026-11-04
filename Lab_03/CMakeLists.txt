@@ -41,7 +41,7 @@ find_package(CUDAToolkit REQUIRED)
 # ==============================================================================
 # Цели сборки (Targets)
 # ==============================================================================
-set(SOURCE_FILES matrix_kernels.cu)
+set(SOURCE_FILES matrix_kernels.cu main.cu)
 add_executable(Lab_03 ${SOURCE_FILES})
 
 # Подключаем библиотеки CUDA Runtime и cuBLAS
