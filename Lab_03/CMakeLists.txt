@@ -15,6 +15,12 @@ if(NOT CMAKE_BUILD_TYPE)
 endif()
 
 # ==============================================================================
+# Настройка архитектуры GPU
+# ==============================================================================
+# Blackwell (RTX 50xx) = 120, Ada (RTX 40xx) = 89, Ampere = 86, Turing = 75
+set(CMAKE_CUDA_ARCHITECTURES 75 86 89 120)
+
+# ==============================================================================
 # Поиск зависимостей CUDA Toolkit (включает cudart и cublas)
 # ==============================================================================
 find_package(CUDAToolkit REQUIRED)
@@ -72,6 +78,7 @@ endif()
 message(STATUS "✓ CUDA Toolkit Found: ${CUDAToolkit_VERSION}")
 message(STATUS "✓ CUDA Compiler: ${CMAKE_CUDA_COMPILER}")
 message(STATUS "✓ Build Type: ${CMAKE_BUILD_TYPE}")
+message(STATUS "CUDA Architectures: ${CMAKE_CUDA_ARCHITECTURES}")
 
 option(BUILD_DOC "Build Doxygen documentation" ON)
 
