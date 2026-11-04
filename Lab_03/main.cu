@@ -14,8 +14,14 @@
 #include <vector>
 #include <iomanip>
 #include <string>
+#ifdef _WIN32
+#include <windows.h>
+#endif
 
 int main(int argc, char** argv) {
+#ifdef _WIN32
+    SetConsoleOutputCP(CP_UTF8);
+#endif
     bool isBenchmark = (argc == 1);
 
     // Параметры по умолчанию

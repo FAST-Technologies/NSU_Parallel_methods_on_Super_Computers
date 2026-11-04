@@ -37,10 +37,6 @@ target_link_libraries(Lab_03 PRIVATE
         CUDA::cublas
 )
 
-if(MSVC)
-    target_compile_options(Lab_03 PRIVATE /openmp:llvm)
-endif()
-
 target_include_directories(Lab_03 PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
 # ==============================================================================
@@ -69,10 +65,6 @@ if(CMAKE_BUILD_TYPE STREQUAL "Release")
             $<$<COMPILE_LANGUAGE:CUDA>:--use_fast_math -O3>
         )
     endif()
-endif()
-
-if(MSVC)
-    target_compile_options(Lab_03 PRIVATE /openmp:llvm)
 endif()
 
 message(STATUS "✓ CUDA Toolkit Found: ${CUDAToolkit_VERSION}")

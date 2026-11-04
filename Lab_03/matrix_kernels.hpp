@@ -70,9 +70,38 @@ __global__ void matrixMultNaive(const BASE_TYPE *A, const BASE_TYPE *B, BASE_TYP
  * @param C Указатель на результирующую матрицу C в глобальной памяти.
  * @param N Размерность квадратных матриц.
  */
+// =========================================================
+// 2. Блочный алгоритм: СТАТИЧЕСКАЯ разделяемая память
+// =========================================================
 template <int TILE_SIZE>
-__global__ void matrixMultTiledStaticTpl(const BASE_TYPE *A, const BASE_TYPE *B, BASE_TYPE *C, int N);
+__global__ void matrixMultTiledStaticTpl(const BASE_TYPE *A, const BASE_TYPE *B, BASE_TYPE *C, int N) {
+    __shared__ BASE_TYPE shared_A[TILE_SIZE][TILE_SIZE];
+    __shared__ BASE_TYPE shared_B[TILE_SIZE][TILE_SIZE];
 
+    int row = blockIdx.y * TILE_SIZE + threadIdx.y;
+    int col = blockIdx.x * TILE_SIZE + threadIdx.x;
+    BASE_TYPE sum = 0.0f;
+
+    for (int tile = 0; tile < (N + TILE_SIZE - 1) / TILE_SIZE; tile++) {
+        int a_col = tile * TILE_SIZE + threadIdx.x;
+        int b_row = tile * TILE_SIZE + threadIdx.y;
+
+        shared_A[threadIdx.y][threadIdx.x] = (row < N && a_col < N) ? A[row * N + a_col] : 0.0f;
+        shared_B[threadIdx.y][threadIdx.x] = (b_row < N && col < N) ? B[b_row * N + col] : 0.0f;
+
+        __syncthreads();
+
+        for (int k = 0; k < TILE_SIZE; k++) {
+            sum += shared_A[threadIdx.y][k] * shared_B[k][threadIdx.x];
+        }
+
+        __syncthreads();
+    }
+
+    if (row < N && col < N) {
+        C[row * N + col] = sum;
+    }
+}
 
 /**
  * @brief Блочный (Tiled) алгоритм умножения матриц с использованием ДИНАМИЧЕСКОЙ разделяемой памяти.
