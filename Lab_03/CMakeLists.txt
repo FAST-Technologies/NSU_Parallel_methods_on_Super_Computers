@@ -14,25 +14,6 @@ if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE "Release" CACHE STRING "Build type" FORCE)
 endif()
 
-# Оптимизация для Release
-if(CMAKE_BUILD_TYPE STREQUAL "Release")
-    # GCC / Clang (Linux, macOS, MinGW)
-    if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
-        add_compile_options(-O3 -march=native -pedantic -Wall -Wextra -Werror)
-    elseif(MSVC)
-        add_compile_options($<$<COMPILE_LANGUAGE:CXX>:/O2 /Ob2 /W4>)
-        add_compile_definitions(NOMINMAX)
-    endif()
-
-    # Специфичные флаги для NVCC (CUDA компилятор)
-    if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
-        # -O3 для device кода, -Xcompiler передает флаги хост-компилятору
-        set(CMAKE_CUDA_FLAGS_RELEASE "${CMAKE_CUDA_FLAGS_RELEASE} -O3 -Xcompiler -march=native")
-    elseif(MSVC)
-        set(CMAKE_CUDA_FLAGS_RELEASE "${CMAKE_CUDA_FLAGS_RELEASE} -O3 -Xcompiler \"/O2 /Ob2\"")
-    endif()
-endif()
-
 # ==============================================================================
 # Поиск зависимостей CUDA Toolkit (включает cudart и cublas)
 # ==============================================================================
@@ -55,6 +36,38 @@ if(MSVC)
 endif()
 
 target_include_directories(Lab_03 PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+
+# ==============================================================================
+# Оптимизация для Release (используем target_compile_options)
+# ==============================================================================
+if(CMAKE_BUILD_TYPE STREQUAL "Release")
+    # Флаги для C++ (GCC / Clang)
+    if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+        target_compile_options(Lab_03 PRIVATE
+            $<$<COMPILE_LANGUAGE:CXX>:-O3 -march=native -Wall -Wextra -Werror>
+        )
+    elseif(MSVC)
+        target_compile_options(Lab_03 PRIVATE
+            $<$<COMPILE_LANGUAGE:CXX>:/O2 /Ob2 /W4>
+        )
+        target_compile_definitions(Lab_03 PRIVATE NOMINMAX)
+    endif()
+
+    # Флаги для CUDA (nvcc)
+    if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+        target_compile_options(Lab_03 PRIVATE
+            $<$<COMPILE_LANGUAGE:CUDA>:--use_fast_math -O3>
+        )
+    elseif(MSVC)
+        target_compile_options(Lab_03 PRIVATE
+            $<$<COMPILE_LANGUAGE:CUDA>:--use_fast_math -O3>
+        )
+    endif()
+endif()
+
+if(MSVC)
+    target_compile_options(Lab_03 PRIVATE /openmp:llvm)
+endif()
 
 message(STATUS "✓ CUDA Toolkit Found: ${CUDAToolkit_VERSION}")
 message(STATUS "✓ CUDA Compiler: ${CMAKE_CUDA_COMPILER}")

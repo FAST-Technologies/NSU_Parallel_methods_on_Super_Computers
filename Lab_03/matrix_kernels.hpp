@@ -18,17 +18,18 @@
 #include <vector>
 #include <cmath>
 #include <iostream>
+#include <cstdlib>
 
 /**
  * @brief Размер блока (тайла) для оптимизированного алгоритма.
  * @note Можно изменять на 16 или 32 для проведения экспериментов.
  */
-#define BLOCK_SIZE 32
+#define BLOCK_SIZE 16
 
 /**
  * @brief Базовый тип данных для элементов матрицы.
  */
-#define BASE_TYPE float
+using BASE_TYPE = float;
 
 /**
  * @brief Макрос для проверки кодов возврата функций CUDA.
@@ -60,7 +61,7 @@
 __global__ void matrixMultNaive(const BASE_TYPE *A, const BASE_TYPE *B, BASE_TYPE *C, int N);
 
 /**
- * @brief Блочный (Tiled) алгоритм умножения матриц с использованием разделяемой памяти.
+ * @brief Блочный (Tiled) алгоритм умножения матриц с использованием СТАТИЧЕСКОЙ разделяемой памяти.
  * @details Матрицы разбиваются на блоки размером BLOCK_SIZE x BLOCK_SIZE.
  *          Потоки кооперативно загружают фрагменты в быструю разделяемую память (Shared Memory),
  *          синхронизируются и выполняют вычисления, многократно используя загруженные данные.
@@ -69,7 +70,42 @@ __global__ void matrixMultNaive(const BASE_TYPE *A, const BASE_TYPE *B, BASE_TYP
  * @param C Указатель на результирующую матрицу C в глобальной памяти.
  * @param N Размерность квадратных матриц.
  */
-__global__ void matrixMultTiled(const BASE_TYPE *A, const BASE_TYPE *B, BASE_TYPE *C, int N);
+template <int TILE_SIZE>
+__global__ void matrixMultTiledStaticTpl(const BASE_TYPE *A, const BASE_TYPE *B, BASE_TYPE *C, int N);
+
+
+/**
+ * @brief Блочный (Tiled) алгоритм умножения матриц с использованием ДИНАМИЧЕСКОЙ разделяемой памяти.
+ * @details Матрицы разбиваются на блоки размером BLOCK_SIZE x BLOCK_SIZE.
+ *          Потоки кооперативно загружают фрагменты в быструю разделяемую память (Shared Memory),
+ *          синхронизируются и выполняют вычисления, многократно используя загруженные данные.
+ * @param A Указатель на матрицу A в глобальной памяти.
+ * @param B Указатель на матрицу B в глобальной памяти.
+ * @param C Указатель на результирующую матрицу C в глобальной памяти.
+ * @param N Размерность квадратных матриц.
+ */
+__global__ void matrixMultTiledDynamic(const BASE_TYPE *A, const BASE_TYPE *B, BASE_TYPE *C, int N);
+
+/**
+ * @brief Измерение времени выполнения между двумя CUDA-событиями.
+ * @details Вычисляет прошедшее время (elapsed time) в миллисекундах между 
+ *          событиями start и stop. 
+ * @warning Функция предполагает, что события уже были синхронизированы 
+ *          (например, через cudaEventSynchronize(stop)) перед её вызовом, 
+ *          иначе результат может быть некорректным (равным 0).
+ * @param start Событие, отмечающее начало измеряемого интервала.
+ * @param stop  Событие, отмечающее конец измеряемого интервала.
+ * @return Время выполнения в миллисекундах (float).
+ */
+inline float measureTime(cudaEvent_t start, cudaEvent_t stop) {
+    float ms = 0.0f;
+    cudaError_t err = cudaEventElapsedTime(&ms, start, stop);
+    if (err != cudaSuccess) {
+        std::cerr << "CUDA Event Error: " << cudaGetErrorString(err) 
+                  << " при измерении времени." << std::endl;
+    }
+    return ms;
+}
 
 #endif // __CUDACC__
 

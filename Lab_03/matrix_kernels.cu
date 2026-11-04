@@ -26,30 +26,73 @@ __global__ void matrixMultNaive(const BASE_TYPE *A, const BASE_TYPE *B, BASE_TYP
 }
 
 // =========================================================
-// 2. Блочный алгоритм (Shared Memory / Tiled)
+// 2. Блочный алгоритм: СТАТИЧЕСКАЯ разделяемая память
 // =========================================================
-__global__ void matrixMultTiled(const BASE_TYPE *A, const BASE_TYPE *B, BASE_TYPE *C, int N) {
-    __shared__ BASE_TYPE shared_A[BLOCK_SIZE][BLOCK_SIZE];
-    __shared__ BASE_TYPE shared_B[BLOCK_SIZE][BLOCK_SIZE];
+template <int TILE_SIZE>
+__global__ void matrixMultTiledStaticTpl(const BASE_TYPE *A, const BASE_TYPE *B, BASE_TYPE *C, int N) {
+    __shared__ BASE_TYPE shared_A[TILE_SIZE][TILE_SIZE];
+    __shared__ BASE_TYPE shared_B[TILE_SIZE][TILE_SIZE];
 
-    int row = blockIdx.y * blockDim.y + threadIdx.y;
-    int col = blockIdx.x * blockDim.x + threadIdx.x;
+    int row = blockIdx.y * TILE_SIZE + threadIdx.y;
+    int col = blockIdx.x * TILE_SIZE + threadIdx.x;
     BASE_TYPE sum = 0.0f;
 
-    for (int tile = 0; tile < (N + BLOCK_SIZE - 1) / BLOCK_SIZE; tile++) {
-        int a_col = tile * BLOCK_SIZE + threadIdx.x;
-        int b_row = tile * BLOCK_SIZE + threadIdx.y;
+    for (int tile = 0; tile < (N + TILE_SIZE - 1) / TILE_SIZE; tile++) {
+        int a_col = tile * TILE_SIZE + threadIdx.x;
+        int b_row = tile * TILE_SIZE + threadIdx.y;
 
-        // Загрузка в разделяемую память с проверкой границ
         shared_A[threadIdx.y][threadIdx.x] = (row < N && a_col < N) ? A[row * N + a_col] : 0.0f;
         shared_B[threadIdx.y][threadIdx.x] = (b_row < N && col < N) ? B[b_row * N + col] : 0.0f;
+
+        __syncthreads();
+
+        for (int k = 0; k < TILE_SIZE; k++) {
+            sum += shared_A[threadIdx.y][k] * shared_B[k][threadIdx.x];
+        }
+
+        __syncthreads();
+    }
+
+    if (row < N && col < N) {
+        C[row * N + col] = sum;
+    }
+}
+
+template __global__ void matrixMultTiledStaticTpl<2>(const BASE_TYPE *A, const BASE_TYPE *B, BASE_TYPE *C, int N);
+template __global__ void matrixMultTiledStaticTpl<4>(const BASE_TYPE *A, const BASE_TYPE *B, BASE_TYPE *C, int N);
+template __global__ void matrixMultTiledStaticTpl<8>(const BASE_TYPE *A, const BASE_TYPE *B, BASE_TYPE *C, int N);
+template __global__ void matrixMultTiledStaticTpl<16>(const BASE_TYPE *A, const BASE_TYPE *B, BASE_TYPE *C, int N);
+template __global__ void matrixMultTiledStaticTpl<32>(const BASE_TYPE *A, const BASE_TYPE *B, BASE_TYPE *C, int N);
+template __global__ void matrixMultTiledStaticTpl<64>(const BASE_TYPE *A, const BASE_TYPE *B, BASE_TYPE *C, int N);
+
+// =========================================================
+// 2. Блочный алгоритм (Shared Memory / Tiled)
+// =========================================================
+__global__ void matrixMultTiledDynamic(const BASE_TYPE *A, const BASE_TYPE *B, BASE_TYPE *C, int N) {
+    // Динамическая разделяемая память (размер задается при запуске ядра)
+    extern __shared__ BASE_TYPE sharedMem[];
+    
+    int blockSize = blockDim.x;
+    BASE_TYPE *shared_A = sharedMem;
+    BASE_TYPE *shared_B = &sharedMem[blockSize * blockSize];
+
+    int row = blockIdx.y * blockSize + threadIdx.y;
+    int col = blockIdx.x * blockSize + threadIdx.x;
+    BASE_TYPE sum = 0.0f;
+
+    for (int tile = 0; tile < (N + blockSize - 1) / blockSize; tile++) {
+        int a_col = tile * blockSize + threadIdx.x;
+        int b_row = tile * blockSize + threadIdx.y;
+
+        // Загрузка в разделяемую память с проверкой границ
+        shared_A[threadIdx.y * blockSize + threadIdx.x] = (row < N && a_col < N) ? A[row * N + a_col] : 0.0f;
+        shared_B[threadIdx.y * blockSize + threadIdx.x] = (b_row < N && col < N) ? B[b_row * N + col] : 0.0f;
 
         // Синхронизация блока
         __syncthreads();
 
-        // Вычисление частичной суммы
-        for (int k = 0; k < BLOCK_SIZE; k++) {
-            sum += shared_A[threadIdx.y][k] * shared_B[k][threadIdx.x];
+        for (int k = 0; k < blockSize; k++) {
+            sum += shared_A[threadIdx.y * blockSize + k] * shared_B[k * blockSize + threadIdx.x];
         }
 
         // Синхронизация перед загрузкой следующего тайла
@@ -66,12 +109,14 @@ __global__ void matrixMultTiled(const BASE_TYPE *A, const BASE_TYPE *B, BASE_TYP
 // =========================================================
 void initMatrix(std::vector<BASE_TYPE>& mat, int N) {
     for (int i = 0; i < N * N; i++) {
-        mat[i] = static_cast<BASE_TYPE>(rand()) / RAND_MAX;
+        // mat[i] = static_cast<BASE_TYPE>(rand()) / RAND_MAX;
+        // mat[i] = static_cast<BASE_TYPE>(rand() % 100) / 10.0f;
+        mat[i] = static_cast<BASE_TYPE>(rand()) / (RAND_MAX / 10.0f) - 5.0f;
     }
 }
 
 bool verifyResult(const std::vector<BASE_TYPE>& C_gpu, const std::vector<BASE_TYPE>& C_cpu, int N) {
-    const float epsilon = 1e-2f;
+    const float epsilon = 1e-3f;
     for (int i = 0; i < N * N; i++) {
         if (std::abs(C_gpu[i] - C_cpu[i]) > epsilon) {
             std::cerr << "Ошибка верификации на индексе " << i
