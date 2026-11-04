@@ -1,0 +1,77 @@
+# ==============================================================================
+# Doxyfile для проекта Lab_03 (CUDA + cuBLAS)
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# Основные настройки проекта
+# ------------------------------------------------------------------------------
+PROJECT_NAME           = "Lab_03: cuBLAS Parallel Programming"
+PROJECT_NUMBER         = "3.0"
+PROJECT_BRIEF          = "Реализация умножения матриц методами Naive, Tiled, cuBLAS и исследование влияния размеров блоков и решёток на производительность"
+OUTPUT_DIRECTORY       = @CMAKE_CURRENT_BINARY_DIR@/docs
+OUTPUT_LANGUAGE        = Russian
+
+# ------------------------------------------------------------------------------
+# Входные файлы
+# ------------------------------------------------------------------------------
+INPUT                  = @CMAKE_CURRENT_SOURCE_DIR@
+RECURSIVE              = YES
+FILE_PATTERNS          = *.cpp *.h *.hpp *.cu
+EXCLUDE_PATTERNS       = */build/* */cmake-build-* */.git/*
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
+
+# ------------------------------------------------------------------------------
+# Специфичные настройки для CUDA
+# ------------------------------------------------------------------------------
+# Заставляем Doxygen парсить .cu файлы как C++, чтобы он понимал __global__ и т.д.
+EXTENSION_MAPPING      = cu=C++
+MACRO_EXPANSION        = YES
+EXPAND_ONLY_PREDEF     = YES
+
+# ------------------------------------------------------------------------------
+# Формат вывода
+# ------------------------------------------------------------------------------
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO
+GENERATE_XML           = NO
+HTML_OUTPUT            = html
+HTML_COLORSTYLE        = AUTO_LIGHT
+
+# ------------------------------------------------------------------------------
+# Графы и диаграммы (требуют установленный Graphviz)
+# ------------------------------------------------------------------------------
+# РЕКОМЕНДАЦИЯ: Установите Graphviz (sudo apt install graphviz или winget install graphviz)
+# и измените HAVE_DOT на YES. Это добавит красивые графы вызовов функций, что очень ценится в отчетах.
+HAVE_DOT               = NO
+# HAVE_DOT             = YES
+# CALL_GRAPH           = YES
+# CALLER_GRAPH         = YES
+# UML_LOOK             = YES
+
+# ------------------------------------------------------------------------------
+# Исходный код в документации
+# ------------------------------------------------------------------------------
+SOURCE_BROWSER         = YES
+INLINE_SOURCES         = NO
+REFERENCED_BY_RELATION = YES
+REFERENCES_RELATION    = YES
+
+# ------------------------------------------------------------------------------
+# Прочее
+# ------------------------------------------------------------------------------
+QUIET                  = NO
+WARNINGS               = YES
+WARN_IF_UNDOCUMENTED   = YES
+WARN_IF_DOC_ERROR      = YES
+ALWAYS_DETAILED_SEC    = YES
+INLINE_INHERITED_MEMB  = NO
+FULL_PATH_NAMES        = NO
+OPTIMIZE_OUTPUT_FOR_C  = NO
+OPTIMIZE_OUTPUT_JAVA   = NO
+BUILTIN_STL_SUPPORT    = YES
+CPP_CLI_SUPPORT        = NO
+DISTRIBUTE_GROUP_DOC   = YES
+TAB_SIZE               = 4
+ALIASES                = "sideeffect=\xrefitem sideeffects \"Side Effects\" \"Side Effects\""
