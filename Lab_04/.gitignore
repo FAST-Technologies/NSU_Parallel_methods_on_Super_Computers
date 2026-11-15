@@ -1,0 +1,21 @@
+# Каталоги сборки
+/build/
+/cmake-build-*/
+
+# Артефакты компиляции
+*.o
+*.a
+*.so
+*.out
+dwsp
+
+# Сгенерированная документация
+/docs/
+
+# IDE и ОС
+.idea/
+.vscode/
+*.swp
+*~
+.DS_Store
+Thumbs.db
