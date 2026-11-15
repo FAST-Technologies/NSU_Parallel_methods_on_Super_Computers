@@ -1,5 +1,5 @@
 /**
- * @file main.cpp
+ * @file dwsp.cpp
  * @brief Основная реализация протокола динамического распределения задач DWSP.
  * @details
  * Проект DWSP (Dynamic Work Stealing Protocol) реализует гибридную
@@ -14,7 +14,7 @@
  *
  * @author F.A.S.T. DEVELOPMENT aka Ямщиков Владимир, группа 26162.
  * @date 15.11.2026.
- * @version 2.0 (Dual-mode execution, Hybrid Optimized)
+ * @version 2.0
  */
 
 #include "dwsp.hpp"
