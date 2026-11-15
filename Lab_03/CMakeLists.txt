@@ -25,10 +25,19 @@ set(CMAKE_CUDA_ARCHITECTURES 75 86 89 120)
 # ==============================================================================
 find_package(CUDAToolkit REQUIRED)
 
+# Precision configuration
+option(MATRIX_USE_DOUBLE "Use double precision instead of float" OFF)
+
+# Optional fast math; disabled by default to preserve numerical accuracy
+option(MATRIX_USE_FAST_MATH "Enable CUDA fast math" OFF)
+
+# Documentation
+option(BUILD_DOC "Build Doxygen documentation" ON)
+
 # ==============================================================================
 # Цели сборки (Targets)
 # ==============================================================================
-set(SOURCE_FILES matrix_kernels.cu main.cu)
+set(SOURCE_FILES matrix_kernels.cu benchmark.cu main.cu)
 add_executable(Lab_03 ${SOURCE_FILES})
 
 # Подключаем библиотеки CUDA Runtime и cuBLAS
@@ -39,40 +48,53 @@ target_link_libraries(Lab_03 PRIVATE
 
 target_include_directories(Lab_03 PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
+# Apply precision setting consistently to all translation units
+if(MATRIX_USE_DOUBLE)
+    target_compile_definitions(Lab_03 PRIVATE MATRIX_USE_DOUBLE=1)
+else()
+    target_compile_definitions(Lab_03 PRIVATE MATRIX_USE_DOUBLE=0)
+endif()
+
 # ==============================================================================
 # Оптимизация для Release (используем target_compile_options)
 # ==============================================================================
-if(CMAKE_BUILD_TYPE STREQUAL "Release")
-    # Флаги для C++ (GCC / Clang)
-    if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
-        target_compile_options(Lab_03 PRIVATE
-            $<$<COMPILE_LANGUAGE:CXX>:-O3 -march=native -Wall -Wextra -Werror>
-        )
-    elseif(MSVC)
-        target_compile_options(Lab_03 PRIVATE
-            $<$<COMPILE_LANGUAGE:CXX>:/O2 /Ob2 /W4>
-        )
-        target_compile_definitions(Lab_03 PRIVATE NOMINMAX)
-    endif()
+if(MSVC)
+    target_compile_definitions(Lab_03 PRIVATE NOMINMAX)
 
-    # Флаги для CUDA (nvcc)
-    if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
-        target_compile_options(Lab_03 PRIVATE
-            $<$<COMPILE_LANGUAGE:CUDA>:--use_fast_math -O3>
-        )
-    elseif(MSVC)
-        target_compile_options(Lab_03 PRIVATE
-            $<$<COMPILE_LANGUAGE:CUDA>:--use_fast_math -O3>
-        )
-    endif()
+    target_compile_options(Lab_03 PRIVATE
+        $<$<AND:$<CONFIG:Release>,$<COMPILE_LANGUAGE:CXX>>:/O2>
+        $<$<AND:$<CONFIG:Release>,$<COMPILE_LANGUAGE:CXX>>:/Ob2>
+        $<$<COMPILE_LANGUAGE:CXX>:/W4>
+
+        $<$<AND:$<CONFIG:Release>,$<COMPILE_LANGUAGE:CUDA>>:-O3>
+    )
+else()
+    target_compile_options(Lab_03 PRIVATE
+        $<$<AND:$<CONFIG:Release>,$<COMPILE_LANGUAGE:CXX>>:-O3>
+        $<$<AND:$<CONFIG:Release>,$<COMPILE_LANGUAGE:CXX>>:-march=native>
+        $<$<COMPILE_LANGUAGE:CXX>:-Wall>
+        $<$<COMPILE_LANGUAGE:CXX>:-Wextra>
+
+        $<$<AND:$<CONFIG:Release>,$<COMPILE_LANGUAGE:CUDA>>:-O3>
+    )
 endif()
 
-message(STATUS "✓ CUDA Toolkit Found: ${CUDAToolkit_VERSION}")
-message(STATUS "✓ CUDA Compiler: ${CMAKE_CUDA_COMPILER}")
-message(STATUS "✓ Build Type: ${CMAKE_BUILD_TYPE}")
-message(STATUS "CUDA Architectures: ${CMAKE_CUDA_ARCHITECTURES}")
+if(MATRIX_USE_FAST_MATH)
+    target_compile_options(Lab_03 PRIVATE
+        $<$<COMPILE_LANGUAGE:CUDA>:--use_fast_math>
+    )
+endif()
 
-option(BUILD_DOC "Build Doxygen documentation" ON)
+message(STATUS "CUDA Toolkit: ${CUDAToolkit_VERSION}")
+message(STATUS "CUDA Compiler: ${CMAKE_CUDA_COMPILER}")
+message(STATUS "Build Type: ${CMAKE_BUILD_TYPE}")
+message(STATUS "CUDA Architectures: ${CMAKE_CUDA_ARCHITECTURES}")
+if(MATRIX_USE_DOUBLE)
+    message(STATUS "Matrix precision: double")
+else()
+    message(STATUS "Matrix precision: float")
+endif()
+message(STATUS "Fast math: ${MATRIX_USE_FAST_MATH}")
 
 if(BUILD_DOC)
     find_package(Doxygen QUIET)
