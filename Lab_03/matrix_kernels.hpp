@@ -37,6 +37,9 @@ using BASE_TYPE = float;
  *          с именем файла и номером строки, после чего завершает программу.
  * @param call Вызываемая функция CUDA.
  */
+#ifdef __CUDACC__
+
+#ifndef CUDA_CHECK
 #define CUDA_CHECK(call) \
     do { \
         cudaError_t err = call; \
@@ -46,8 +49,7 @@ using BASE_TYPE = float;
             exit(EXIT_FAILURE); \
         } \
     } while (0)
-
-#ifdef __CUDACC__
+#endif
 
 /**
  * @brief Наивный алгоритм умножения матриц (использует только глобальную память).
@@ -58,7 +60,14 @@ using BASE_TYPE = float;
  * @param C Указатель на результирующую матрицу C в глобальной памяти.
  * @param N Размерность квадратных матриц.
  */
-__global__ void matrixMultNaive(const BASE_TYPE *A, const BASE_TYPE *B, BASE_TYPE *C, int N);
+__global__ void matrixMultNaive(
+        const BASE_TYPE *A,
+        const BASE_TYPE *B,
+        BASE_TYPE *C,
+        int N,
+        int rowOffset,
+        int rows
+);
 
 /**
  * @brief Блочный (Tiled) алгоритм умножения матриц с использованием СТАТИЧЕСКОЙ разделяемой памяти.
@@ -74,32 +83,62 @@ __global__ void matrixMultNaive(const BASE_TYPE *A, const BASE_TYPE *B, BASE_TYP
 // 2. Блочный алгоритм: СТАТИЧЕСКАЯ разделяемая память
 // =========================================================
 template <int TILE_SIZE>
-__global__ void matrixMultTiledStaticTpl(const BASE_TYPE *A, const BASE_TYPE *B, BASE_TYPE *C, int N) {
+__global__ void matrixMultTiledStaticTpl(
+        const BASE_TYPE *A,
+        const BASE_TYPE *B,
+        BASE_TYPE *C,
+        int N,
+    int rowOffset,
+    int rows
+) {
     __shared__ BASE_TYPE shared_A[TILE_SIZE][TILE_SIZE];
     __shared__ BASE_TYPE shared_B[TILE_SIZE][TILE_SIZE];
 
-    int row = blockIdx.y * TILE_SIZE + threadIdx.y;
-    int col = blockIdx.x * TILE_SIZE + threadIdx.x;
+    const int tx = threadIdx.x;
+    const int ty = threadIdx.y;
+
+    const int col = blockIdx.x * TILE_SIZE + tx;
+    const int localRow = blockIdx.y * TILE_SIZE + ty;
+    const int globalRow = rowOffset + localRow;
+
     BASE_TYPE sum = 0.0f;
 
-    for (int tile = 0; tile < (N + TILE_SIZE - 1) / TILE_SIZE; tile++) {
-        int a_col = tile * TILE_SIZE + threadIdx.x;
-        int b_row = tile * TILE_SIZE + threadIdx.y;
+    const int numTiles = (N + TILE_SIZE - 1) / TILE_SIZE;
 
-        shared_A[threadIdx.y][threadIdx.x] = (row < N && a_col < N) ? A[row * N + a_col] : 0.0f;
-        shared_B[threadIdx.y][threadIdx.x] = (b_row < N && col < N) ? B[b_row * N + col] : 0.0f;
+    for (int tile = 0; tile < numTiles; ++tile) {
+
+        const int aCol = tile * TILE_SIZE + tx;
+        const int bRow = tile * TILE_SIZE + ty;
+
+        // Load A tile.
+        if (localRow < rows && aCol < N) {
+            shared_A[ty][tx] = A[localRow * N + aCol];
+        }
+        else {
+            shared_A[ty][tx] = 0.0f;
+        }
+
+        // Load B tile.
+        if (bRow < N && col < N) {
+            shared_B[ty][tx] = B[bRow * N + col];
+        }
+        else {
+            shared_B[ty][tx] = 0.0f;
+        }
 
         __syncthreads();
 
-        for (int k = 0; k < TILE_SIZE; k++) {
-            sum += shared_A[threadIdx.y][k] * shared_B[k][threadIdx.x];
+        // Multiply the loaded tiles.
+        #pragma unroll
+        for (int k = 0; k < TILE_SIZE; ++k) {
+            sum += shared_A[ty][k] * shared_B[k][tx];
         }
 
         __syncthreads();
     }
 
-    if (row < N && col < N) {
-        C[row * N + col] = sum;
+    if (localRow < rows && col < N) {
+        C[localRow * N + col] = sum;
     }
 }
 
@@ -113,7 +152,14 @@ __global__ void matrixMultTiledStaticTpl(const BASE_TYPE *A, const BASE_TYPE *B,
  * @param C Указатель на результирующую матрицу C в глобальной памяти.
  * @param N Размерность квадратных матриц.
  */
-__global__ void matrixMultTiledDynamic(const BASE_TYPE *A, const BASE_TYPE *B, BASE_TYPE *C, int N);
+__global__ void matrixMultTiledDynamic(
+        const BASE_TYPE *A,
+        const BASE_TYPE *B,
+        BASE_TYPE *C,
+        int N,
+        int rowOffset,
+    int rows
+);
 
 /**
  * @brief Измерение времени выполнения между двумя CUDA-событиями.
@@ -132,6 +178,7 @@ inline float measureTime(cudaEvent_t start, cudaEvent_t stop) {
     if (err != cudaSuccess) {
         std::cerr << "CUDA Event Error: " << cudaGetErrorString(err) 
                   << " при измерении времени." << std::endl;
+        return -1.0f;
     }
     return ms;
 }
@@ -152,7 +199,10 @@ void initMatrix(std::vector<BASE_TYPE>& mat, int N);
  * @param N Размерность матриц.
  * @return true, если максимальная поэлементная разница меньше допуска (1e-2), иначе false.
  */
-bool verifyResult(const std::vector<BASE_TYPE>& C_gpu, const std::vector<BASE_TYPE>& C_cpu, int N);
+bool verifyResult(
+        const std::vector<BASE_TYPE>& C_gpu,
+        const std::vector<BASE_TYPE>& C_cpu,
+        int N);
 
 /**
  * @brief Последовательное (CPU) умножение матриц для верификации.
@@ -161,4 +211,8 @@ bool verifyResult(const std::vector<BASE_TYPE>& C_gpu, const std::vector<BASE_TY
  * @param C Выходная матрица C (размер N x N).
  * @param N Размерность матриц.
  */
-void computeCPU(const std::vector<BASE_TYPE>& A, const std::vector<BASE_TYPE>& B, std::vector<BASE_TYPE>& C, int N);
+void computeCPU(
+        const std::vector<BASE_TYPE>& A,
+        const std::vector<BASE_TYPE>& B,
+        std::vector<BASE_TYPE>& C,
+        int N);

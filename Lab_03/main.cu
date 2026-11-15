@@ -12,297 +12,1232 @@
 #include "matrix_kernels.hpp"
 #include <iostream>
 #include <vector>
-#include <iomanip>
 #include <string>
+#include <fstream>
+#include <iomanip>
+#include <algorithm>
+#include <numeric>
+#include <chrono>
+#include <cmath>
+#include <cstdlib>
+#include <memory>
+
+#include <cuda_runtime.h>
+#include <cublas_v2.h>
+
 #ifdef _WIN32
 #include <windows.h>
 #endif
 
-int main(int argc, char** argv) {
-#ifdef _WIN32
-    SetConsoleOutputCP(CP_UTF8);
-#endif
-    bool isBenchmark = (argc == 1);
 
-    // Параметры по умолчанию
-    int N = 1024;
-    int custom_block_size = 16;
+// ============================================================
+// Configuration
+// ============================================================
 
-    // Наборы для режима бенчмаркинга
-    const std::vector<int> benchmarkMatrixSizes = {256, 512, 1024, 2048, 4096, 8192};
-    const std::vector<int> benchmarkBlockSizes = {2, 4, 8, 16, 32};
+constexpr int TILE_SIZE = 16;
+constexpr int NUM_STREAMS = 4;
+constexpr int NUM_REPEATS = 5;
+constexpr int NUM_WARMUP = 1;
 
-    // Парсинг аргументов для одиночного запуска: ./Lab_03 <N> [BLOCK_SIZE]
-    if (!isBenchmark) {
-        N = std::atoi(argv[1]);
-        if (argc > 2) {
-            custom_block_size = std::atoi(argv[2]);
-        }
-        
-        // Валидация входных данных
-        if (N <= 0 || custom_block_size <= 0) {
-            std::cerr << "Ошибка: Неверные аргументы." << std::endl;
-            std::cerr << "Использование: " << argv[0] << " [N] [BLOCK_SIZE]" << std::endl;
-            std::cerr << "Пример: " << argv[0] << " 2048 32" << std::endl;
-            return EXIT_FAILURE;
-        }
+const std::vector<int> MATRIX_SIZES = {
+        256, 512, 1024, 2048, 4096
+};
+
+
+// ============================================================
+// Error checking
+// ============================================================
+
+#define CUBLAS_CHECK(call)                                      \
+    do {                                                        \
+        cublasStatus_t status = (call);                         \
+        if (status != CUBLAS_STATUS_SUCCESS) {                  \
+            std::cerr << "cuBLAS error at "                     \
+                      << __FILE__ << ":" << __LINE__            \
+                      << ", status = " << status << '\n';       \
+            std::exit(EXIT_FAILURE);                            \
+        }                                                       \
+    } while (0)
+
+
+// ============================================================
+// Enumerations
+// ============================================================
+
+enum class Algorithm {
+    Naive,
+    StaticTiled,
+    DynamicTiled,
+    cuBLAS
+};
+
+enum class MemoryStrategy {
+    Pageable,
+    Pinned,
+    PageableStreams,
+    PinnedStreams,
+    UnifiedPrefetch
+};
+
+
+const char* algorithmName(Algorithm algorithm) {
+    switch (algorithm) {
+        case Algorithm::Naive:
+            return "Naive";
+
+        case Algorithm::StaticTiled:
+            return "Static_Tiled";
+
+        case Algorithm::DynamicTiled:
+            return "Dynamic_Tiled";
+
+        case Algorithm::cuBLAS:
+            return "cuBLAS";
     }
 
-    // Инициализация cuBLAS и CUDA Events
-    cublasHandle_t handle;
-    cublasCreate(&handle);
-    cudaEvent_t start, stop;
-    cudaEventCreate(&start);
-    cudaEventCreate(&stop);
+    return "Unknown";
+}
 
-    std::cout << std::fixed << std::setprecision(3);
 
-    // =========================================================
-    // СЦЕНАРИЙ 1: Бенчмаркинг (без аргументов)
-    // =========================================================
-    if (isBenchmark) {
-        std::cout << "\n[РЕЖИМ БЕНЧМАРКИНГА]" << std::endl;
-        
-        for (int current_N : benchmarkMatrixSizes) {
-            std::cout << "\n==================================================" << std::endl;
-            std::cout << "Размер матрицы: " << current_N << " x " << current_N << std::endl;
-            std::cout << "==================================================" << std::endl;
+const char* strategyName(MemoryStrategy strategy) {
+    switch (strategy) {
+        case MemoryStrategy::Pageable:
+            return "Pageable";
 
-            size_t bytes = current_N * current_N * sizeof(BASE_TYPE);
-            std::vector<BASE_TYPE> h_A(current_N * current_N), h_B(current_N * current_N);
-            std::vector<BASE_TYPE> h_C_ref(current_N * current_N), h_C_gpu(current_N * current_N);
+        case MemoryStrategy::Pinned:
+            return "Pinned";
 
-            initMatrix(h_A, current_N);
-            initMatrix(h_B, current_N);
+        case MemoryStrategy::PageableStreams:
+            return "Pageable_Streams";
 
-            BASE_TYPE *d_A, *d_B, *d_C;
-            CUDA_CHECK(cudaMalloc(&d_A, bytes));
-            CUDA_CHECK(cudaMalloc(&d_B, bytes));
-            CUDA_CHECK(cudaMalloc(&d_C, bytes));
+        case MemoryStrategy::PinnedStreams:
+            return "Pinned_Streams";
 
-            CUDA_CHECK(cudaMemcpy(d_A, h_A.data(), bytes, cudaMemcpyHostToDevice));
-            CUDA_CHECK(cudaMemcpy(d_B, h_B.data(), bytes, cudaMemcpyHostToDevice));
+        case MemoryStrategy::UnifiedPrefetch:
+            return "Unified_Prefetch";
+    }
 
-            // 1. Naive (эталон для GPU-верификации, блок 16x16)
-            dim3 blockNaive(16, 16);
-            dim3 gridNaive((current_N + 15) / 16, (current_N + 15) / 16);
-            
-            CUDA_CHECK(cudaEventRecord(start));
-            matrixMultNaive<<<gridNaive, blockNaive>>>(d_A, d_B, d_C, current_N);
-            CUDA_CHECK(cudaEventRecord(stop));
-            CUDA_CHECK(cudaEventSynchronize(stop));
-            
-            float time_naive = measureTime(start, stop);
-            CUDA_CHECK(cudaMemcpy(h_C_ref.data(), d_C, bytes, cudaMemcpyDeviceToHost));
-            std::cout << "Naive (16x16):     " << time_naive << " ms" << std::endl;
+    return "Unknown";
+}
 
-            // 2. Tiled STATIC
-            float best_static_time = 1e9f;
-            int best_static_bs = -1;
-            for (int bs : benchmarkBlockSizes) {
-                dim3 blockTiled(bs, bs);
-                dim3 gridTiled((current_N + bs - 1) / bs, (current_N + bs - 1) / bs);
-                
-                CUDA_CHECK(cudaEventRecord(start));
-                if (bs == 2) {
-                    matrixMultTiledStaticTpl<2><<<gridTiled, blockTiled>>>(d_A, d_B, d_C, current_N);
-                } else if (bs == 4) {
-                    matrixMultTiledStaticTpl<4><<<gridTiled, blockTiled>>>(d_A, d_B, d_C, current_N);
-                } else if (bs == 8) {
-                    matrixMultTiledStaticTpl<8><<<gridTiled, blockTiled>>>(d_A, d_B, d_C, current_N);
-                } else if (bs == 16) {
-                    matrixMultTiledStaticTpl<16><<<gridTiled, blockTiled>>>(d_A, d_B, d_C, current_N);
-                } else if (bs == 32) {
-                    matrixMultTiledStaticTpl<32><<<gridTiled, blockTiled>>>(d_A, d_B, d_C, current_N);
-                }
-                CUDA_CHECK(cudaGetLastError());
-                CUDA_CHECK(cudaEventRecord(stop));
-                CUDA_CHECK(cudaEventSynchronize(stop));
-                float time_tiled_static = measureTime(start, stop);
-                CUDA_CHECK(cudaMemcpy(h_C_gpu.data(), d_C, bytes, cudaMemcpyDeviceToHost));
-                bool passed_static = verifyResult(h_C_gpu, h_C_ref, current_N);
-                std::cout << "Tiled_Static (" << std::setw(2) << bs << "x" << std::setw(2) << bs << "): " 
-                          << time_tiled_static << " ms  [" << (passed_static ? "PASS" : "FAIL") << "]" << std::endl;
-                
-                if (passed_static && time_tiled_static < best_static_time) {
-                    best_static_time = time_tiled_static;
-                    best_static_bs = bs;
-                }
-            }
-            std::cout << "Tiled Static (Best): " << best_static_time << " ms (Block: " << best_static_bs << "x" << best_static_bs << ")\n";
 
-            // 3. Tiled DYNAMIC
-            float best_dynamic_time = 1e9f;
-            int best_dynamic_bs = -1;
+// ============================================================
+// Timing structures
+// ============================================================
 
-            for (int bs : benchmarkBlockSizes) {
-                dim3 blockTiled(bs, bs);
-                dim3 gridTiled((current_N + bs - 1) / bs, (current_N + bs - 1) / bs);
-                size_t sharedMemSize = 2 * bs * bs * sizeof(BASE_TYPE);
+struct Timing {
+    double h2d = 0.0;
+    double kernel = 0.0;
+    double d2h = 0.0;
+    double total = 0.0;
+};
 
-                CUDA_CHECK(cudaEventRecord(start)); // 1. Старт таймера в потоке GPU
-                matrixMultTiledDynamic<<<gridTiled, blockTiled, sharedMemSize>>>(d_A, d_B, d_C, current_N);
-                CUDA_CHECK(cudaGetLastError());     // 2. Ловим ошибки конфигурации запуска
-                CUDA_CHECK(cudaEventRecord(stop));  // 3. Фиксируем время окончания в потоке GPU
-                CUDA_CHECK(cudaEventSynchronize(stop)); // 4. Ждем на CPU, пока GPU дойдет до метки 'stop'
-                
-                float time_tiled_dynamic = measureTime(start, stop);
-                CUDA_CHECK(cudaMemcpy(h_C_gpu.data(), d_C, bytes, cudaMemcpyDeviceToHost));
-                
-                bool passed_dynamic = verifyResult(h_C_gpu, h_C_ref, current_N);
-                std::cout << "Tiled_Dynamic (" << std::setw(2) << bs << "x" << std::setw(2) << bs << "): " 
-                          << time_tiled_dynamic << " ms  [" << (passed_dynamic ? "PASS" : "FAIL") << "]" << std::endl;
 
-                if (passed_dynamic && time_tiled_dynamic < best_dynamic_time) {
-                    best_dynamic_time = time_tiled_dynamic;
-                    best_dynamic_bs = bs;
-                }
-            }
-            std::cout << "Tiled Dynamic (Best):" << best_dynamic_time << " ms (Block: " << best_dynamic_bs << "x" << best_dynamic_bs << ")\n";
+struct BenchmarkResult {
+    int N = 0;
 
-            // 3. cuBLAS (с прогревом и правильным row-major трюком)
-            const BASE_TYPE alpha = 1.0f, beta = 0.0f;
-            // Warm-up (прогрев для исключения накладных расходов на инициализацию)
-            cublasSgemm(handle, CUBLAS_OP_N, CUBLAS_OP_N, current_N, current_N, current_N, 
-                        &alpha, d_B, current_N, d_A, current_N, &beta, d_C, current_N);
-            CUDA_CHECK(cudaDeviceSynchronize());
-            
-            CUDA_CHECK(cudaEventRecord(start));
-            cublasSgemm(handle, CUBLAS_OP_N, CUBLAS_OP_N, current_N, current_N, current_N, 
-                        &alpha, d_B, current_N, d_A, current_N, &beta, d_C, current_N);
-            CUDA_CHECK(cudaEventRecord(stop));
-            CUDA_CHECK(cudaEventSynchronize(stop));
-            
-            float time_cublas = measureTime(start, stop);
-            std::cout << "cuBLAS (Warm):     " << time_cublas << " ms" << std::endl;
+    std::string strategy;
+    std::string algorithm;
 
-            // 4. CPU Верификация (только для малых N)
-            if (current_N <= 1024) {
-                std::vector<BASE_TYPE> h_C_cpu(current_N * current_N);
-                computeCPU(h_A, h_B, h_C_cpu, current_N);
-                if (verifyResult(h_C_gpu, h_C_cpu, current_N)) {
-                    std::cout << "CPU Verification:  PASSED" << std::endl;
-                } else {
-                    std::cout << "CPU Verification:  FAILED" << std::endl;
-                }
-            } else {
-                std::cout << "CPU Verification:  SKIPPED (N > 1024)" << std::endl;
-            }
+    double h2dMedian = 0.0;
+    double kernelMedian = 0.0;
+    double d2hMedian = 0.0;
+    double totalMedian = 0.0;
 
-            std::cout << ">> Лучший Tiled Static:  " << best_static_time << " ms (Block: " << best_static_bs << "x" << best_static_bs << ")\n";
-            std::cout << ">> Лучший Tiled Dynamic: " << best_dynamic_time << " ms (Block: " << best_dynamic_bs << "x" << best_dynamic_bs << ")\n";
+    double totalMin = 0.0;
 
-            // Очистка ресурсов итерации
-            CUDA_CHECK(cudaFree(d_A));
-            CUDA_CHECK(cudaFree(d_B));
-            CUDA_CHECK(cudaFree(d_C));
+    bool verified = false;
+};
+
+
+// ============================================================
+// Helpers
+// ============================================================
+
+using Clock = std::chrono::high_resolution_clock;
+
+
+double elapsedMilliseconds(
+        const Clock::time_point& start,
+        const Clock::time_point& stop
+) {
+    return std::chrono::duration<double, std::milli>(
+            stop - start
+    ).count();
+}
+
+
+double median(std::vector<double> values) {
+    if (values.empty()) {
+        return 0.0;
+    }
+
+    std::sort(values.begin(), values.end());
+
+    const size_t middle = values.size() / 2;
+
+    if (values.size() % 2 == 0) {
+        return (values[middle - 1] + values[middle]) / 2.0;
+    }
+
+    return values[middle];
+}
+
+
+double minimum(const std::vector<double>& values) {
+    if (values.empty()) {
+        return 0.0;
+    }
+
+    return *std::min_element(values.begin(), values.end());
+}
+
+
+// ============================================================
+// CUDA event timing
+// ============================================================
+
+float eventElapsed(
+        cudaEvent_t start,
+        cudaEvent_t stop
+) {
+    float milliseconds = 0.0f;
+
+    CUDA_CHECK(cudaEventElapsedTime(
+            &milliseconds,
+            start,
+            stop
+    ));
+
+    return milliseconds;
+}
+
+
+// ============================================================
+// Kernel launcher
+// ============================================================
+
+void launchAlgorithm(
+        Algorithm algorithm,
+        const BASE_TYPE* d_A,
+        const BASE_TYPE* d_B,
+        BASE_TYPE* d_C,
+        int N,
+        int rows,
+        cublasHandle_t handle,
+        cudaStream_t stream
+) {
+    const dim3 block(TILE_SIZE, TILE_SIZE);
+
+    const dim3 grid(
+            (N + TILE_SIZE - 1) / TILE_SIZE,
+            (rows + TILE_SIZE - 1) / TILE_SIZE
+    );
+
+    switch (algorithm) {
+
+        case Algorithm::Naive: {
+
+            matrixMultNaive<<<grid, block, 0, stream>>>(
+                    d_A,
+                    d_B,
+                    d_C,
+                    N,
+                    0,
+                    rows
+            );
+
+            CUDA_CHECK(cudaGetLastError());
+
+            break;
         }
-    } 
-    // =========================================================
-    // СЦЕНАРИЙ 2: Одиночный запуск (с аргументами командной строки)
-    // =========================================================
+
+        case Algorithm::StaticTiled: {
+
+            matrixMultTiledStaticTpl<TILE_SIZE>
+            <<<grid, block, 0, stream>>>(
+                    d_A,
+                            d_B,
+                            d_C,
+                            N,
+                            0,
+                            rows
+            );
+
+            CUDA_CHECK(cudaGetLastError());
+
+            break;
+        }
+
+        case Algorithm::DynamicTiled: {
+
+            const size_t sharedBytes =
+                    2 * TILE_SIZE * TILE_SIZE * sizeof(BASE_TYPE);
+
+            matrixMultTiledDynamic<<<
+            grid,
+            block,
+            sharedBytes,
+            stream
+            >>>(
+                    d_A,
+                    d_B,
+                    d_C,
+                    N,
+                    0,
+                    rows
+            );
+
+            CUDA_CHECK(cudaGetLastError());
+
+            break;
+        }
+
+        case Algorithm::cuBLAS: {
+
+            // Row-major matrices are interpreted through
+            // the corresponding transposed column-major form.
+
+            // C^T = B^T * A^T
+
+            CUBLAS_CHECK(cublasSetStream(handle, stream));
+
+            const BASE_TYPE alpha = 1.0f;
+            const BASE_TYPE beta = 0.0f;
+
+            CUBLAS_CHECK(cublasSgemm(
+                    handle,
+                    CUBLAS_OP_N,
+                    CUBLAS_OP_N,
+                    N,
+                    rows,
+                    N,
+                    &alpha,
+                    d_B,
+                    N,
+                    d_A,
+                    N,
+                    &beta,
+                    d_C,
+                    N
+            ));
+
+            break;
+        }
+    }
+}
+
+
+// ============================================================
+// CPU verification
+// ============================================================
+
+bool verifyAgainstReference(
+        const std::vector<BASE_TYPE>& result,
+        const std::vector<BASE_TYPE>& reference,
+        int N
+) {
+    return verifyResult(result, reference, N);
+}
+
+
+// ============================================================
+// Full-matrix benchmark
+// Pageable / Pinned / Unified
+// ============================================================
+
+Timing runFullMatrix(
+        Algorithm algorithm,
+        MemoryStrategy strategy,
+        const std::vector<BASE_TYPE>& A,
+        const std::vector<BASE_TYPE>& B,
+        std::vector<BASE_TYPE>& C,
+        int N
+) {
+    Timing timing;
+
+    const size_t bytes =
+            static_cast<size_t>(N) * N * sizeof(BASE_TYPE);
+
+    BASE_TYPE* hostA = nullptr;
+    BASE_TYPE* hostB = nullptr;
+    BASE_TYPE* hostC = nullptr;
+
+    BASE_TYPE* d_A = nullptr;
+    BASE_TYPE* d_B = nullptr;
+    BASE_TYPE* d_C = nullptr;
+
+    bool pinnedAllocated = false;
+    bool unifiedAllocated = false;
+
+    // --------------------------------------------------------
+    // Host memory allocation
+    // --------------------------------------------------------
+
+    if (strategy == MemoryStrategy::Pinned) {
+
+        CUDA_CHECK(cudaHostAlloc(
+                &hostA,
+                bytes,
+                cudaHostAllocDefault
+        ));
+
+        CUDA_CHECK(cudaHostAlloc(
+                &hostB,
+                bytes,
+                cudaHostAllocDefault
+        ));
+
+        CUDA_CHECK(cudaHostAlloc(
+                &hostC,
+                bytes,
+                cudaHostAllocDefault
+        ));
+
+        std::copy(A.begin(), A.end(), hostA);
+        std::copy(B.begin(), B.end(), hostB);
+
+        pinnedAllocated = true;
+    }
     else {
-        std::cout << "\n[РЕЖИМ ОДИНОЧНОГО ЗАПУСКА]" << std::endl;
-        std::cout << "==================================================" << std::endl;
-        std::cout << "Размер матрицы: " << N << " x " << N << std::endl;
-        std::cout << "Размер блока:   " << custom_block_size << " x " << custom_block_size << std::endl;
-        std::cout << "==================================================" << std::endl;
+        hostA = const_cast<BASE_TYPE*>(A.data());
+        hostB = const_cast<BASE_TYPE*>(B.data());
+        hostC = C.data();
+    }
 
-        size_t bytes = N * N * sizeof(BASE_TYPE);
-        std::vector<BASE_TYPE> h_A(N * N), h_B(N * N), h_C_cpu(N * N), h_C_gpu(N * N), h_C_ref(N * N);
+    // --------------------------------------------------------
+    // Device / Unified allocation
+    // --------------------------------------------------------
 
-        initMatrix(h_A, N);
-        initMatrix(h_B, N);
+    if (strategy == MemoryStrategy::UnifiedPrefetch) {
 
-        BASE_TYPE *d_A, *d_B, *d_C;
+        CUDA_CHECK(cudaMallocManaged(&d_A, bytes));
+        CUDA_CHECK(cudaMallocManaged(&d_B, bytes));
+        CUDA_CHECK(cudaMallocManaged(&d_C, bytes));
+
+        std::copy(A.begin(), A.end(), d_A);
+        std::copy(B.begin(), B.end(), d_B);
+
+        unifiedAllocated = true;
+    }
+    else {
+
         CUDA_CHECK(cudaMalloc(&d_A, bytes));
         CUDA_CHECK(cudaMalloc(&d_B, bytes));
         CUDA_CHECK(cudaMalloc(&d_C, bytes));
+    }
 
-        CUDA_CHECK(cudaMemcpy(d_A, h_A.data(), bytes, cudaMemcpyHostToDevice));
-        CUDA_CHECK(cudaMemcpy(d_B, h_B.data(), bytes, cudaMemcpyHostToDevice));
+    cudaEvent_t start, stop;
 
-        dim3 block(custom_block_size, custom_block_size);
-        dim3 grid((N + custom_block_size - 1) / custom_block_size, 
-                  (N + custom_block_size - 1) / custom_block_size);
-        size_t sharedMemSize = 2 * custom_block_size * custom_block_size * sizeof(BASE_TYPE);
+    CUDA_CHECK(cudaEventCreate(&start));
+    CUDA_CHECK(cudaEventCreate(&stop));
 
-        // 1. Naive
-        CUDA_CHECK(cudaEventRecord(start));
-        matrixMultNaive<<<grid, block>>>(d_A, d_B, d_C, N);
-        CUDA_CHECK(cudaEventRecord(stop));
-        CUDA_CHECK(cudaEventSynchronize(stop));
-        float time_naive = measureTime(start, stop);
-        CUDA_CHECK(cudaMemcpy(h_C_ref.data(), d_C, bytes, cudaMemcpyDeviceToHost));
+    cublasHandle_t handle;
+    CUBLAS_CHECK(cublasCreate(&handle));
 
-        // 2.1 Tiled Static
-        CUDA_CHECK(cudaEventRecord(start));
-        if (custom_block_size == 2) {
-            matrixMultTiledStaticTpl<2><<<grid, block>>>(d_A, d_B, d_C, N);
-        } else if (custom_block_size == 4) {
-            matrixMultTiledStaticTpl<4><<<grid, block>>>(d_A, d_B, d_C, N);
-        } else if (custom_block_size == 8) {
-            matrixMultTiledStaticTpl<8><<<grid, block>>>(d_A, d_B, d_C, N);
-        } else if (custom_block_size == 16) {
-            matrixMultTiledStaticTpl<16><<<grid, block>>>(d_A, d_B, d_C, N);
-        } else if (custom_block_size == 32) {
-            matrixMultTiledStaticTpl<32><<<grid, block>>>(d_A, d_B, d_C, N);
-        } else {
-            std::cerr << "Ошибка: Неподдерживаемый размер блока для Static: " << custom_block_size << std::endl;
-        }
-        CUDA_CHECK(cudaGetLastError());
-        CUDA_CHECK(cudaEventRecord(stop)); 
-        CUDA_CHECK(cudaEventSynchronize(stop));
-        float time_tiled_static = measureTime(start, stop);
-        CUDA_CHECK(cudaMemcpy(h_C_gpu.data(), d_C, bytes, cudaMemcpyDeviceToHost));
-        bool tiled_static_passed = verifyResult(h_C_gpu, h_C_ref, N);
-        
-        // 2.2 Tiled Dynamic
-        CUDA_CHECK(cudaEventRecord(start));
-        matrixMultTiledDynamic<<<grid, block, sharedMemSize>>>(d_A, d_B, d_C, N);
-        CUDA_CHECK(cudaGetLastError());
-        CUDA_CHECK(cudaEventRecord(stop)); 
-        CUDA_CHECK(cudaEventSynchronize(stop));
-        float time_tiled_dynamic = measureTime(start, stop);
-        CUDA_CHECK(cudaMemcpy(h_C_gpu.data(), d_C, bytes, cudaMemcpyDeviceToHost));
-        bool tiled_dynamic_passed = verifyResult(h_C_gpu, h_C_ref, N);
+    // --------------------------------------------------------
+    // Warm-up
+    // --------------------------------------------------------
 
-        // 3. cuBLAS
-        const BASE_TYPE alpha = 1.0f, beta = 0.0f;
-        cublasSgemm(handle, CUBLAS_OP_N, CUBLAS_OP_N, N, N, N, &alpha, d_B, N, d_A, N, &beta, d_C, N); // Warm-up
-        
-        CUDA_CHECK(cudaEventRecord(start));
-        cublasSgemm(handle, CUBLAS_OP_N, CUBLAS_OP_N, N, N, N, &alpha, d_B, N, d_A, N, &beta, d_C, N);
-        CUDA_CHECK(cudaEventRecord(stop));
-        CUDA_CHECK(cudaEventSynchronize(stop));
-        float time_cublas = measureTime(start, stop);
+    if (strategy == MemoryStrategy::UnifiedPrefetch) {
 
-        std::cout << "\nРезультаты:" << std::endl;
-        std::cout << "Naive (Global):  " << time_naive << " ms" << std::endl;
-        std::cout << "Tiled (Static):      " << time_tiled_static << " ms [" << (tiled_static_passed ? "PASS" : "FAIL") << "]" << std::endl;
-        std::cout << "Tiled (Dynamic):     " << time_tiled_dynamic << " ms [" << (tiled_dynamic_passed ? "PASS" : "FAIL") << "]" << std::endl;
-        std::cout << "cuBLAS (Warm):   " << time_cublas << " ms" << std::endl;
+        int device = 0;
+        CUDA_CHECK(cudaGetDevice(&device));
 
-        if (N <= 1024) {
-            computeCPU(h_A, h_B, h_C_cpu, N);
-            if (verifyResult(h_C_gpu, h_C_cpu, N)) {
-                std::cout << "CPU Verification:  PASSED" << std::endl;
-            } else {
-                std::cout << "CPU Verification:  FAILED" << std::endl;
-            }
-        } else {
-            std::cout << "CPU Verification:  SKIPPED (N > 1024)" << std::endl;
-        }
+        CUDA_CHECK(cudaMemPrefetchAsync(
+                d_A, bytes, device
+        ));
+
+        CUDA_CHECK(cudaMemPrefetchAsync(
+                d_B, bytes, device
+        ));
+
+        CUDA_CHECK(cudaDeviceSynchronize());
+    }
+    else {
+
+        CUDA_CHECK(cudaMemcpy(
+                d_A, hostA, bytes, cudaMemcpyHostToDevice
+        ));
+
+        CUDA_CHECK(cudaMemcpy(
+                d_B, hostB, bytes, cudaMemcpyHostToDevice
+        ));
+    }
+
+    launchAlgorithm(
+            algorithm,
+            d_A,
+            d_B,
+            d_C,
+            N,
+            N,
+            handle,
+            nullptr
+    );
+
+    CUDA_CHECK(cudaDeviceSynchronize());
+
+    // --------------------------------------------------------
+    // H2D
+    // --------------------------------------------------------
+
+    auto totalStart = Clock::now();
+
+    auto h2dStart = Clock::now();
+
+    if (strategy == MemoryStrategy::UnifiedPrefetch) {
+
+        int device = 0;
+        CUDA_CHECK(cudaGetDevice(&device));
+
+        CUDA_CHECK(cudaMemPrefetchAsync(
+                d_A, bytes, device
+        ));
+
+        CUDA_CHECK(cudaMemPrefetchAsync(
+                d_B, bytes, device
+        ));
+
+        CUDA_CHECK(cudaDeviceSynchronize());
+    }
+    else {
+
+        CUDA_CHECK(cudaMemcpy(
+                d_A, hostA, bytes, cudaMemcpyHostToDevice
+        ));
+
+        CUDA_CHECK(cudaMemcpy(
+                d_B, hostB, bytes, cudaMemcpyHostToDevice
+        ));
+    }
+
+    auto h2dStop = Clock::now();
+
+    timing.h2d = elapsedMilliseconds(
+            h2dStart,
+            h2dStop
+    );
+
+    // --------------------------------------------------------
+    // Kernel
+    // --------------------------------------------------------
+
+    CUDA_CHECK(cudaEventRecord(start));
+
+    launchAlgorithm(
+            algorithm,
+            d_A,
+            d_B,
+            d_C,
+            N,
+            N,
+            handle,
+            nullptr
+    );
+
+    CUDA_CHECK(cudaEventRecord(stop));
+    CUDA_CHECK(cudaEventSynchronize(stop));
+
+    timing.kernel = eventElapsed(start, stop);
+
+    // --------------------------------------------------------
+    // D2H
+    // --------------------------------------------------------
+
+    auto d2hStart = Clock::now();
+
+    if (strategy == MemoryStrategy::UnifiedPrefetch) {
+
+        CUDA_CHECK(cudaMemPrefetchAsync(
+                d_C,
+                bytes,
+                cudaCpuDeviceId
+        ));
+
+        CUDA_CHECK(cudaDeviceSynchronize());
+
+        std::copy(d_C, d_C + N * N, C.begin());
+    }
+    else {
+
+        CUDA_CHECK(cudaMemcpy(
+                hostC,
+                d_C,
+                bytes,
+                cudaMemcpyDeviceToHost
+        ));
+    }
+
+    auto d2hStop = Clock::now();
+
+    timing.d2h = elapsedMilliseconds(
+            d2hStart,
+            d2hStop
+    );
+
+    auto totalStop = Clock::now();
+
+    timing.total = elapsedMilliseconds(
+            totalStart,
+            totalStop
+    );
+
+    // --------------------------------------------------------
+    // Cleanup
+    // --------------------------------------------------------
+
+    CUBLAS_CHECK(cublasDestroy(handle));
+
+    CUDA_CHECK(cudaEventDestroy(start));
+    CUDA_CHECK(cudaEventDestroy(stop));
+
+    if (unifiedAllocated) {
+
+        CUDA_CHECK(cudaFree(d_A));
+        CUDA_CHECK(cudaFree(d_B));
+        CUDA_CHECK(cudaFree(d_C));
+    }
+    else {
 
         CUDA_CHECK(cudaFree(d_A));
         CUDA_CHECK(cudaFree(d_B));
         CUDA_CHECK(cudaFree(d_C));
     }
 
-    cublasDestroy(handle);
-    cudaEventDestroy(start);
-    cudaEventDestroy(stop);
+    if (pinnedAllocated) {
 
-    std::cout << "\nЛабораторная работа успешно завершена." << std::endl;
+        CUDA_CHECK(cudaFreeHost(hostA));
+        CUDA_CHECK(cudaFreeHost(hostB));
+        CUDA_CHECK(cudaFreeHost(hostC));
+    }
+
+    return timing;
+}
+
+
+// ============================================================
+// Streaming benchmark
+// Pageable + Streams / Pinned + Streams
+// ============================================================
+
+Timing runStreaming(
+        Algorithm algorithm,
+        MemoryStrategy strategy,
+        const std::vector<BASE_TYPE>& A,
+        const std::vector<BASE_TYPE>& B,
+        std::vector<BASE_TYPE>& C,
+        int N
+) {
+    Timing timing;
+
+    const int streamsCount = std::min(NUM_STREAMS, N);
+
+    const int rowsPerStream =
+            (N + streamsCount - 1) / streamsCount;
+
+    const size_t fullBytes =
+            static_cast<size_t>(N) * N * sizeof(BASE_TYPE);
+
+    const size_t BBytes = fullBytes;
+
+    const bool usePinned =
+            strategy == MemoryStrategy::PinnedStreams;
+
+    BASE_TYPE* hostA = const_cast<BASE_TYPE*>(A.data());
+    BASE_TYPE* hostB = const_cast<BASE_TYPE*>(B.data());
+    BASE_TYPE* hostC = C.data();
+
+    if (usePinned) {
+
+        CUDA_CHECK(cudaHostAlloc(
+                &hostA,
+                fullBytes,
+                cudaHostAllocDefault
+        ));
+
+        CUDA_CHECK(cudaHostAlloc(
+                &hostB,
+                fullBytes,
+                cudaHostAllocDefault
+        ));
+
+        CUDA_CHECK(cudaHostAlloc(
+                &hostC,
+                fullBytes,
+                cudaHostAllocDefault
+        ));
+
+        std::copy(A.begin(), A.end(), hostA);
+        std::copy(B.begin(), B.end(), hostB);
+    }
+
+    BASE_TYPE* d_B = nullptr;
+
+    CUDA_CHECK(cudaMalloc(
+            &d_B,
+            BBytes
+    ));
+
+    std::vector<cudaStream_t> streams(streamsCount);
+    std::vector<cublasHandle_t> handles(streamsCount);
+
+    std::vector<BASE_TYPE*> d_A(streamsCount);
+    std::vector<BASE_TYPE*> d_C(streamsCount);
+
+    std::vector<cudaEvent_t> h2dStart(streamsCount);
+    std::vector<cudaEvent_t> h2dStop(streamsCount);
+
+    std::vector<cudaEvent_t> kernelStart(streamsCount);
+    std::vector<cudaEvent_t> kernelStop(streamsCount);
+
+    std::vector<cudaEvent_t> d2hStart(streamsCount);
+    std::vector<cudaEvent_t> d2hStop(streamsCount);
+
+    std::vector<int> chunkRows(streamsCount);
+
+    // --------------------------------------------------------
+    // Allocate stream resources
+    // --------------------------------------------------------
+
+    for (int s = 0; s < streamsCount; ++s) {
+
+        const int firstRow = s * rowsPerStream;
+
+        const int rows = std::max(
+                0,
+                std::min(rowsPerStream, N - firstRow)
+        );
+
+        chunkRows[s] = rows;
+
+        CUDA_CHECK(cudaStreamCreate(&streams[s]));
+
+        CUBLAS_CHECK(cublasCreate(&handles[s]));
+
+        CUBLAS_CHECK(cublasSetStream(
+                handles[s],
+                streams[s]
+        ));
+
+        const size_t chunkBytes =
+                static_cast<size_t>(rows) * N * sizeof(BASE_TYPE);
+
+        CUDA_CHECK(cudaMalloc(
+                &d_A[s],
+                chunkBytes
+        ));
+
+        CUDA_CHECK(cudaMalloc(
+                &d_C[s],
+                chunkBytes
+        ));
+
+        CUDA_CHECK(cudaEventCreate(&h2dStart[s]));
+        CUDA_CHECK(cudaEventCreate(&h2dStop[s]));
+
+        CUDA_CHECK(cudaEventCreate(&kernelStart[s]));
+        CUDA_CHECK(cudaEventCreate(&kernelStop[s]));
+
+        CUDA_CHECK(cudaEventCreate(&d2hStart[s]));
+        CUDA_CHECK(cudaEventCreate(&d2hStop[s]));
+    }
+
+    // --------------------------------------------------------
+    // Warm-up: upload B once
+    // --------------------------------------------------------
+
+    CUDA_CHECK(cudaMemcpy(
+            d_B,
+            hostB,
+            BBytes,
+            cudaMemcpyHostToDevice
+    ));
+
+    CUDA_CHECK(cudaDeviceSynchronize());
+
+    // --------------------------------------------------------
+    // Pipeline
+    // --------------------------------------------------------
+
+    auto totalStart = Clock::now();
+
+    auto bUploadStart = Clock::now();
+
+    CUDA_CHECK(cudaMemcpy(
+            d_B,
+            hostB,
+            BBytes,
+            cudaMemcpyHostToDevice
+    ));
+
+    auto bUploadStop = Clock::now();
+
+    const double bUploadTime =
+            elapsedMilliseconds(bUploadStart, bUploadStop);
+
+    for (int s = 0; s < streamsCount; ++s) {
+
+        const int firstRow = s * rowsPerStream;
+        const int rows = chunkRows[s];
+
+        if (rows == 0) {
+            continue;
+        }
+
+        const size_t chunkBytes =
+                static_cast<size_t>(rows) * N * sizeof(BASE_TYPE);
+
+        const BASE_TYPE* sourceA =
+                hostA + static_cast<size_t>(firstRow) * N;
+
+        BASE_TYPE* destinationC =
+                hostC + static_cast<size_t>(firstRow) * N;
+
+        // H2D: copy A fragment.
+
+        CUDA_CHECK(cudaEventRecord(
+                h2dStart[s],
+                streams[s]
+        ));
+
+        CUDA_CHECK(cudaMemcpyAsync(
+                d_A[s],
+                sourceA,
+                chunkBytes,
+                cudaMemcpyHostToDevice,
+                streams[s]
+        ));
+
+        CUDA_CHECK(cudaEventRecord(
+                h2dStop[s],
+                streams[s]
+        ));
+
+        // Kernel.
+
+        CUDA_CHECK(cudaEventRecord(
+                kernelStart[s],
+                streams[s]
+        ));
+
+        launchAlgorithm(
+                algorithm,
+                d_A[s],
+                d_B,
+                d_C[s],
+                N,
+                rows,
+                handles[s],
+                streams[s]
+        );
+
+        CUDA_CHECK(cudaEventRecord(
+                kernelStop[s],
+                streams[s]
+        ));
+
+        // D2H: copy C fragment.
+
+        CUDA_CHECK(cudaEventRecord(
+                d2hStart[s],
+                streams[s]
+        ));
+
+        CUDA_CHECK(cudaMemcpyAsync(
+                destinationC,
+                d_C[s],
+                chunkBytes,
+                cudaMemcpyDeviceToHost,
+                streams[s]
+        ));
+
+        CUDA_CHECK(cudaEventRecord(
+                d2hStop[s],
+                streams[s]
+        ));
+    }
+
+    // Wait for all streams.
+
+    for (int s = 0; s < streamsCount; ++s) {
+        CUDA_CHECK(cudaStreamSynchronize(streams[s]));
+    }
+
+    auto totalStop = Clock::now();
+
+    timing.total = elapsedMilliseconds(
+            totalStart,
+            totalStop
+    );
+
+    // --------------------------------------------------------
+    // Per-stream timings
+    //
+    // The maximum duration is used because streams overlap.
+    // Summing stream times would overestimate wall-clock time.
+    // --------------------------------------------------------
+
+    float maxH2D = 0.0f;
+    float maxKernel = 0.0f;
+    float maxD2H = 0.0f;
+
+    for (int s = 0; s < streamsCount; ++s) {
+
+        if (chunkRows[s] == 0) {
+            continue;
+        }
+
+        maxH2D = std::max(
+                maxH2D,
+                eventElapsed(h2dStart[s], h2dStop[s])
+        );
+
+        maxKernel = std::max(
+                maxKernel,
+                eventElapsed(kernelStart[s], kernelStop[s])
+        );
+
+        maxD2H = std::max(
+                maxD2H,
+                eventElapsed(d2hStart[s], d2hStop[s])
+        );
+    }
+
+    timing.h2d = bUploadTime + maxH2D;
+    timing.kernel = maxKernel;
+    timing.d2h = maxD2H;
+
+    // --------------------------------------------------------
+    // Cleanup
+    // --------------------------------------------------------
+
+    for (int s = 0; s < streamsCount; ++s) {
+
+        CUBLAS_CHECK(cublasDestroy(handles[s]));
+
+        CUDA_CHECK(cudaFree(d_A[s]));
+        CUDA_CHECK(cudaFree(d_C[s]));
+
+        CUDA_CHECK(cudaEventDestroy(h2dStart[s]));
+        CUDA_CHECK(cudaEventDestroy(h2dStop[s]));
+
+        CUDA_CHECK(cudaEventDestroy(kernelStart[s]));
+        CUDA_CHECK(cudaEventDestroy(kernelStop[s]));
+
+        CUDA_CHECK(cudaEventDestroy(d2hStart[s]));
+        CUDA_CHECK(cudaEventDestroy(d2hStop[s]));
+
+        CUDA_CHECK(cudaStreamDestroy(streams[s]));
+    }
+
+    CUDA_CHECK(cudaFree(d_B));
+
+    if (usePinned) {
+
+        CUDA_CHECK(cudaFreeHost(hostA));
+        CUDA_CHECK(cudaFreeHost(hostB));
+        CUDA_CHECK(cudaFreeHost(hostC));
+    }
+
+    return timing;
+}
+
+
+// ============================================================
+// One benchmark case
+// ============================================================
+
+Timing runOneCase(
+        Algorithm algorithm,
+        MemoryStrategy strategy,
+        const std::vector<BASE_TYPE>& A,
+        const std::vector<BASE_TYPE>& B,
+        std::vector<BASE_TYPE>& C,
+        int N
+) {
+    if (strategy == MemoryStrategy::PageableStreams ||
+        strategy == MemoryStrategy::PinnedStreams) {
+
+        return runStreaming(
+                algorithm,
+                strategy,
+                A,
+                B,
+                C,
+                N
+        );
+    }
+
+    return runFullMatrix(
+            algorithm,
+            strategy,
+            A,
+            B,
+            C,
+            N
+    );
+}
+
+
+// ============================================================
+// CSV
+// ============================================================
+
+void writeCSVHeader(std::ofstream& file) {
+
+    file
+            << "N,"
+            << "MemoryStrategy,"
+            << "Algorithm,"
+            << "H2D_ms,"
+            << "Kernel_ms,"
+            << "D2H_ms,"
+            << "TotalMedian_ms,"
+            << "TotalMin_ms,"
+            << "Verified\n";
+}
+
+
+void writeCSVRow(
+        std::ofstream& file,
+        const BenchmarkResult& result
+) {
+    file
+            << result.N << ','
+            << result.strategy << ','
+            << result.algorithm << ','
+            << std::fixed << std::setprecision(6)
+            << result.h2dMedian << ','
+            << result.kernelMedian << ','
+            << result.d2hMedian << ','
+            << result.totalMedian << ','
+            << result.totalMin << ','
+            << (result.verified ? "true" : "false")
+            << '\n';
+}
+
+
+// ============================================================
+// GPU information
+// ============================================================
+
+void printGPUInfo() {
+
+    int device = 0;
+
+    CUDA_CHECK(cudaGetDevice(&device));
+
+    cudaDeviceProp properties;
+
+    CUDA_CHECK(cudaGetDeviceProperties(
+            &properties,
+            device
+    ));
+
+    std::cout << "\n====================================\n";
+    std::cout << "GPU INFORMATION\n";
+    std::cout << "====================================\n";
+
+    std::cout << "Device: "
+              << properties.name << '\n';
+
+    std::cout << "Compute capability: "
+              << properties.major << '.'
+              << properties.minor << '\n';
+
+    std::cout << "Global memory: "
+              << properties.totalGlobalMem / (1024 * 1024)
+              << " MB\n";
+
+    std::cout << "Multiprocessors: "
+              << properties.multiProcessorCount << '\n';
+
+    std::cout << "Max threads per block: "
+              << properties.maxThreadsPerBlock << '\n';
+
+    std::cout << "====================================\n\n";
+}
+
+
+// ============================================================
+// Main benchmark
+// ============================================================
+int main() {
+#ifdef _WIN32
+    SetConsoleOutputCP(CP_UTF8);
+#endif
+    std::srand(42);
+
+    printGPUInfo();
+
+    const std::vector<Algorithm> algorithms = {
+            Algorithm::Naive,
+            Algorithm::StaticTiled,
+            Algorithm::DynamicTiled,
+            Algorithm::cuBLAS
+    };
+
+    const std::vector<MemoryStrategy> strategies = {
+            MemoryStrategy::Pageable,
+            MemoryStrategy::Pinned,
+            MemoryStrategy::PageableStreams,
+            MemoryStrategy::PinnedStreams,
+            MemoryStrategy::UnifiedPrefetch
+    };
+
+    std::ofstream csv("cuda_lab3_results.csv");
+
+    if (!csv.is_open()) {
+        std::cerr << "Cannot open CSV file.\n";
+        return EXIT_FAILURE;
+    }
+
+    writeCSVHeader(csv);
+
+    for (int N : MATRIX_SIZES) {
+
+        std::cout << "\n====================================\n";
+        std::cout << "MATRIX SIZE: " << N << " x " << N << '\n';
+        std::cout << "====================================\n";
+
+        const size_t matrixElements =
+                static_cast<size_t>(N) * N;
+
+        std::vector<BASE_TYPE> A(matrixElements);
+        std::vector<BASE_TYPE> B(matrixElements);
+
+        std::vector<BASE_TYPE> C(matrixElements);
+        std::vector<BASE_TYPE> C_reference(matrixElements);
+
+        initMatrix(A, N);
+        initMatrix(B, N);
+
+        // CPU reference is computed once for this N.
+        // For larger matrices, use Naive GPU output as the
+        // reference to avoid an excessively long CPU run.
+
+        const bool useCPUReference = (N <= 1024);
+
+        if (useCPUReference) {
+
+            std::cout << "Computing CPU reference...\n";
+
+            computeCPU(
+                    A,
+                    B,
+                    C_reference,
+                    N
+            );
+        }
+
+        std::vector<BASE_TYPE> gpuReference;
+
+        for (MemoryStrategy strategy : strategies) {
+
+            std::cout << "\nMemory strategy: "
+                      << strategyName(strategy)
+                      << '\n';
+
+            for (Algorithm algorithm : algorithms) {
+
+                std::cout << "  Algorithm: "
+                          << algorithmName(algorithm)
+                          << " ... "
+                          << std::flush;
+
+                std::vector<double> h2dTimes;
+                std::vector<double> kernelTimes;
+                std::vector<double> d2hTimes;
+                std::vector<double> totalTimes;
+
+                bool verified = true;
+
+                for (int repeat = 0;
+                     repeat < NUM_WARMUP + NUM_REPEATS;
+                     ++repeat) {
+
+                    std::fill(C.begin(), C.end(), 0.0f);
+
+                    Timing current = runOneCase(
+                            algorithm,
+                            strategy,
+                            A,
+                            B,
+                            C,
+                            N
+                    );
+
+                    if (repeat < NUM_WARMUP) {
+                        continue;
+                    }
+
+                    h2dTimes.push_back(current.h2d);
+                    kernelTimes.push_back(current.kernel);
+                    d2hTimes.push_back(current.d2h);
+                    totalTimes.push_back(current.total);
+
+                    // ------------------------------------------------
+                    // Verification
+                    // ------------------------------------------------
+
+                    if (useCPUReference) {
+
+                        verified = verifyAgainstReference(
+                                C,
+                                C_reference,
+                                N
+                        );
+                    }
+                    else if (algorithm == Algorithm::Naive) {
+
+                        gpuReference = C;
+                    }
+                    else if (!gpuReference.empty()) {
+
+                        verified = verifyAgainstReference(
+                                C,
+                                gpuReference,
+                                N
+                        );
+                    }
+                }
+
+                BenchmarkResult result;
+
+                result.N = N;
+
+                result.strategy = strategyName(strategy);
+                result.algorithm = algorithmName(algorithm);
+
+                result.h2dMedian = median(h2dTimes);
+                result.kernelMedian = median(kernelTimes);
+                result.d2hMedian = median(d2hTimes);
+                result.totalMedian = median(totalTimes);
+
+                result.totalMin = minimum(totalTimes);
+                result.verified = verified;
+
+                writeCSVRow(csv, result);
+                csv.flush();
+
+                std::cout
+                        << (verified ? "OK" : "FAILED")
+                        << " | H2D: " << result.h2dMedian
+                        << " ms | Kernel: " << result.kernelMedian
+                        << " ms | D2H: " << result.d2hMedian
+                        << " ms | Total: " << result.totalMedian
+                        << " ms\n";
+            }
+        }
+    }
+
+    csv.close();
+
+    std::cout << "\n====================================\n";
+    std::cout << "BENCHMARK FINISHED\n";
+    std::cout << "Results saved to cuda_lab3_results.csv\n";
+    std::cout << "====================================\n";
+
     return EXIT_SUCCESS;
 }
