@@ -34,7 +34,7 @@
 namespace {
 
 /** Максимальный размер матрицы в режиме одиночного запуска. */
-constexpr int MAX_SINGLE_MATRIX_SIZE = 8192;
+constexpr int MAX_SINGLE_MATRIX_SIZE = 16384;
 
 /**
  * @brief Преобразует строку в положительное целое число.
