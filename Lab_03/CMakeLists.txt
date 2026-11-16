@@ -18,7 +18,47 @@ endif()
 # Настройка архитектуры GPU
 # ==============================================================================
 # Blackwell (RTX 50xx) = 120, Ada (RTX 40xx) = 89, Ampere = 86, Turing = 75
-set(CMAKE_CUDA_ARCHITECTURES 75 86 89 120)
+# ==============================================================================
+# Настройка архитектур GPU
+# ==============================================================================
+set(CUDA_ARCH_CANDIDATES 50 52 53 60 61 62 70 72 75 80 86 87 89 90 120)
+
+# Получаем список архитектур, поддерживаемых установленным NVCC
+execute_process(
+    COMMAND ${CMAKE_CUDA_COMPILER} --list-gpu-arch
+    OUTPUT_VARIABLE CUDA_SUPPORTED_ARCHS
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+    ERROR_VARIABLE CUDA_ARCH_ERROR
+    RESULT_VARIABLE CUDA_ARCH_RESULT
+)
+
+if(NOT CUDA_ARCH_RESULT EQUAL 0)
+    message(FATAL_ERROR
+        "Unable to determine supported CUDA architectures:\n${CUDA_ARCH_ERROR}"
+    )
+endif()
+
+set(CUDA_ARCH_LIST "")
+
+foreach(ARCH IN LISTS CUDA_ARCH_CANDIDATES)
+    if(CUDA_SUPPORTED_ARCHS MATCHES "compute_${ARCH}([^0-9]|$)")
+        list(APPEND CUDA_ARCH_LIST ${ARCH})
+    else()
+        message(STATUS
+            "CUDA architecture ${ARCH} is not supported by current NVCC. Skipping."
+        )
+    endif()
+endforeach()
+
+if(NOT CUDA_ARCH_LIST)
+    message(FATAL_ERROR
+        "No supported CUDA architectures found!"
+    )
+endif()
+
+set(CMAKE_CUDA_ARCHITECTURES ${CUDA_ARCH_LIST})
+
+message(STATUS "Selected CUDA architectures: ${CMAKE_CUDA_ARCHITECTURES}")
 
 # ==============================================================================
 # Поиск зависимостей CUDA Toolkit (включает cudart и cublas)

@@ -41,7 +41,7 @@ using BASE_TYPE = float;
  * @note Для проведения экспериментов можно использовать значения 16 или 32,
  *       если они поддерживаются выбранной реализацией CUDA-ядер.
  */
-inline constexpr int TILE_SIZE = 16;
+inline constexpr int TILE_SIZE = 2;
 
 /**
  * @brief Количество CUDA streams в потоковом бенчмарке.

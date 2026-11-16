@@ -317,20 +317,19 @@ Timing runFullMatrix(
             int device = 0;
             CUDA_CHECK(cudaGetDevice(&device));
 
-            cudaMemLocation gpuLocation{};
-            gpuLocation.type = cudaMemLocationTypeDevice;
-            gpuLocation.id = device;
+            int gpuDevice = 0;
+            CUDA_CHECK(cudaGetDevice(&gpuDevice));
 
             CUDA_CHECK(cudaMemPrefetchAsync(
-                d_A, matrixBytes, gpuLocation, 0, nullptr
+                d_A, matrixBytes, gpuDevice, nullptr
             ));
 
             CUDA_CHECK(cudaMemPrefetchAsync(
-                d_B, matrixBytes, gpuLocation, 0, nullptr
+                d_B, matrixBytes, gpuDevice, nullptr
             ));
 
             CUDA_CHECK(cudaMemPrefetchAsync(
-                d_C, matrixBytes, gpuLocation, 0, nullptr
+                d_C, matrixBytes, gpuDevice, nullptr
             ));
 
             CUDA_CHECK(cudaDeviceSynchronize());
@@ -386,11 +385,8 @@ Timing runFullMatrix(
     const auto downloadStart = Clock::now();
 
     if (strategy == MemoryStrategy::UnifiedPrefetch) {
-        cudaMemLocation cpuLocation{};
-        cpuLocation.type = cudaMemLocationTypeHost;
-
         CUDA_CHECK(cudaMemPrefetchAsync(
-            d_C, matrixBytes, cpuLocation, 0, nullptr
+            d_C, matrixBytes, cudaCpuDeviceId, nullptr
         ));
 
         CUDA_CHECK(cudaDeviceSynchronize());
