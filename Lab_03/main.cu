@@ -73,24 +73,22 @@ bool parsePositiveInt(std::string_view text, int& value) {
  */
 void printUsage(const char* executable) {
     std::cout
-        << "\nCUDA Matrix Multiplication Benchmark\n\n"
-        << "Usage:\n"
-        << "  " << executable << "\n"
-        << "      Run the full benchmark using MATRIX_SIZES.\n\n"
-        << "  " << executable << " N\n"
-        << "      Run the benchmark for one matrix size N.\n\n"
-        << "  " << executable << " N BLOCK_SIZE\n"
-        << "      Run with an explicitly specified block size.\n"
-        << "      Currently supported BLOCK_SIZE: " << TILE_SIZE << ".\n\n"
-        << "  " << executable << " --help\n"
-        << "      Show this help message.\n\n"
-        << "Constraints:\n"
-        << "  1 <= N <= " << MAX_SINGLE_MATRIX_SIZE << "\n"
-        << "  BLOCK_SIZE must equal TILE_SIZE (" << TILE_SIZE << ").\n\n"
-        << "Examples:\n"
-        << "  " << executable << "\n"
-        << "  " << executable << " 2048\n"
-        << "  " << executable << " 2048 " << TILE_SIZE << "\n";
+    << "\nCUDA Matrix Multiplication Benchmark\n\n"
+    << "Usage:\n"
+    << " " << executable << "\n"
+    << " Full benchmark over MATRIX_SIZES, default block size (" << TILE_SIZE << ").\n\n"
+    << " " << executable << " N [BLOCK_SIZE]\n"
+    << " Single run for matrix size N.\n\n"
+    << " " << executable << " all [BLOCK_SIZE]\n"
+    << " Full benchmark over MATRIX_SIZES.\n\n"
+    << " " << executable << " --help\n"
+    << " Show this help message.\n\n"
+    << "Constraints:\n"
+    << " 1 <= N <= " << MAX_SINGLE_MATRIX_SIZE << "\n"
+    << " BLOCK_SIZE in {2, 4, 8, 16, 32}, default " << TILE_SIZE << ".\n\n"
+    << "Examples:\n"
+    << " " << executable << " 2048 16\n"
+    << " " << executable << " all 32\n";
 }
 
 /**
@@ -106,67 +104,63 @@ bool parseArguments(
     int argc,
     char** argv,
     std::vector<int>& matrixSizes,
-    bool& singleRun
+    bool& singleRun,
+    int& blockSize
 ) {
+    singleRun = false;
+    blockSize = TILE_SIZE;
+    matrixSizes.assign(
+        std::begin(MATRIX_SIZES),
+        std::end(MATRIX_SIZES)
+    );
+
     if (argc == 1) {
-        singleRun = false;
-
-        matrixSizes.assign(
-            std::begin(MATRIX_SIZES),
-            std::end(MATRIX_SIZES)
-        );
-
         return true;
     }
 
-    if (argc == 2 &&
-        (std::string_view(argv[1]) == "--help" ||
-         std::string_view(argv[1]) == "-h")) {
+    const std::string_view first = argv[1];
+
+    if (argc == 2 && (first == "--help" || first == "-h")) {
         printUsage(argv[0]);
         return false;
     }
 
-    if (argc < 2 || argc > 3) {
+    if (argc > 3) {
         std::cerr << "Error: invalid number of arguments.\n";
         printUsage(argv[0]);
         return false;
     }
 
-    int N = 0;
+    if (first != "all") {
+        int N = 0;
 
-    if (!parsePositiveInt(argv[1], N)) {
-        std::cerr << "Error: N must be a positive integer.\n";
-        printUsage(argv[0]);
-        return false;
-    }
+        if (!parsePositiveInt(first, N)) {
+            std::cerr << "Error: N must be a positive integer or 'all'.\n";
+            printUsage(argv[0]);
+            return false;
+        }
 
-    if (N > MAX_SINGLE_MATRIX_SIZE) {
-        std::cerr
-            << "Error: N must not exceed "
-            << MAX_SINGLE_MATRIX_SIZE << ".\n";
-        return false;
+        if (N > MAX_SINGLE_MATRIX_SIZE) {
+            std::cerr << "Error: N must not exceed "
+                    << MAX_SINGLE_MATRIX_SIZE << ".\n";
+            return false;
+        }
+
+        singleRun = true;
+        matrixSizes.assign(1, N);
     }
 
     if (argc == 3) {
-        int blockSize = 0;
+        int requested = 0;
 
-        if (!parsePositiveInt(argv[2], blockSize)) {
-            std::cerr << "Error: BLOCK_SIZE must be a positive integer.\n";
+        if (!parsePositiveInt(argv[2], requested) ||
+            !isSupportedBlockSize(requested)) {
+            std::cerr << "Error: BLOCK_SIZE must be one of 2, 4, 8, 16, 32.\n";
             return false;
         }
 
-        if (blockSize != TILE_SIZE) {
-            std::cerr
-                << "Error: this version supports only BLOCK_SIZE = "
-                << TILE_SIZE << ".\n"
-                << "The CUDA kernels currently use the compile-time "
-                << "TILE_SIZE configuration.\n";
-            return false;
-        }
+        blockSize = requested;
     }
-
-    singleRun = true;
-    matrixSizes.push_back(N);
 
     return true;
 }
@@ -203,8 +197,9 @@ int main(int argc, char** argv) {
 
     std::vector<int> matrixSizes;
     bool singleRun = false;
+    int blockSize = TILE_SIZE;
 
-    if (!parseArguments(argc, argv, matrixSizes, singleRun)) {
+    if (!parseArguments(argc, argv, matrixSizes, singleRun, blockSize)) {
         // --help также завершает работу через этот путь.
         return (argc == 2 &&
                 (std::string_view(argv[1]) == "--help" ||
@@ -212,6 +207,7 @@ int main(int argc, char** argv) {
             ? EXIT_SUCCESS
             : EXIT_FAILURE;
     }
+    setBlockSize(blockSize);
 
     std::srand(42);
 
@@ -224,6 +220,8 @@ int main(int argc, char** argv) {
     }
 
     printGPUInfo();
+    std::cout << "Block size: " << blockSize << " x " << blockSize << '\n';
+    std::cout << "Using block size: " << getBlockSize() << '\n';
 
     // Алгоритмы умножения матриц, участвующие в сравнении.
     const std::vector<Algorithm> algorithms = {
@@ -250,14 +248,23 @@ int main(int argc, char** argv) {
             << "Skipping Unified Prefetch: "
             << "GPU does not support concurrent managed access.\n";
     }
+    strategies.push_back(MemoryStrategy::UnifiedManaged);
 #elif defined(_WIN32)
     strategies.push_back(MemoryStrategy::UnifiedManaged);
+
+    std::cout
+        << "Note: Windows Unified Memory has limited support "
+        << "(concurrentManagedAccess = 0). "
+        << "Performance may be significantly lower.\n";
 #endif
 
     // Раздельные файлы для полного и одиночного режимов.
-    const char* csvFileName = singleRun
-        ? "cuda_lab3_single_results.csv"
-        : "cuda_lab3_results.csv";
+    const std::string csvFileName =
+        std::string(singleRun ? "cuda_lab3_single" : "cuda_lab3") +
+        (std::is_same_v<BASE_TYPE, float> ? "_f32" : "_f64") +
+        "_b" + std::to_string(getBlockSize()) +
+        (singleRun ? "_N" + std::to_string(matrixSizes.front()) : "") +
+        ".csv";
 
     std::ofstream csv(csvFileName);
 
@@ -280,7 +287,7 @@ int main(int argc, char** argv) {
         std::vector<BASE_TYPE> A(matrixElements);
         std::vector<BASE_TYPE> B(matrixElements);
         std::vector<BASE_TYPE> C(matrixElements);
-        std::vector<BASE_TYPE> C_reference(matrixElements);
+        std::vector<BASE_TYPE> C_reference;
 
         initMatrix(A, N);
         initMatrix(B, N);
@@ -290,17 +297,12 @@ int main(int argc, char** argv) {
 
         if (useCPUReference) {
             std::cout << "Computing CPU reference...\n";
-
             computeCPU(A, B, C_reference, N);
         } else {
             std::cout
-                << "CPU reference skipped (N > 1024).\n"
-                << "Naive CUDA result will be used for GPU comparison.\n";
+                << "CPU full reference skipped (N > 1024).\n"
+                << "Independent sampled CPU verification will be used.\n";
         }
-
-        // Эталон GPU обновляется при запуске Naive
-        // для каждой стратегии памяти.
-        std::vector<BASE_TYPE> gpuReference;
 
         for (MemoryStrategy strategy : strategies) {
             std::cout << "\nMemory strategy: "
@@ -357,22 +359,19 @@ int main(int argc, char** argv) {
                         C_reference,
                         N
                     );
-                } else if (algorithm == Algorithm::Naive) {
-                    gpuReference = C;
-                    verified = true;
-                } else if (!gpuReference.empty()) {
-                    verified = verifyResult(
+                } else {
+                    verified = verifySampled(
                         C,
-                        gpuReference,
+                        A,
+                        B,
                         N
                     );
-                } else {
-                    verified = false;
                 }
 
                 BenchmarkResult result;
 
                 result.N = N;
+                result.blockSize = getBlockSize();
                 result.strategy = strategyName(strategy);
                 result.algorithm = algorithmName(algorithm);
 

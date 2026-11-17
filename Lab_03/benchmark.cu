@@ -31,9 +31,8 @@
 #include <vector>
 
 // ============================================================
-// cuBLAS error handling — локально для benchmark.cu
+// cuBLAS error handling
 // ============================================================
-
 namespace {
 
 /**
@@ -170,6 +169,22 @@ double eventElapsed(cudaEvent_t start, cudaEvent_t stop)
     return static_cast<double>(milliseconds);
 }
 
+// Текущий размер блока; по умолчанию берётся из config.hpp. 
+int g_blockSize = TILE_SIZE; 
+
+template <int Tile> void launchStaticTiled( 
+    dim3 grid, 
+    cudaStream_t stream, 
+    const BASE_TYPE* d_A, 
+    const BASE_TYPE* d_B, 
+    BASE_TYPE* d_C, 
+    int N, 
+    int rows
+) 
+{ 
+    matrixMultTiledStaticTpl<Tile><<<grid, dim3(Tile, Tile), 0, stream>>>( d_A, d_B, d_C, N, rows ); 
+}
+
 /**
  * @brief Выполняет умножение матриц выбранным алгоритмом.
  *
@@ -192,10 +207,11 @@ void launchAlgorithm(
     cudaStream_t stream,
     cublasHandle_t handle = nullptr)
 {
-    const dim3 block(TILE_SIZE, TILE_SIZE);
+    const int bs = g_blockSize;
+    const dim3 block(bs, bs);
     const dim3 grid(
-        (N + TILE_SIZE - 1) / TILE_SIZE,
-        (rows + TILE_SIZE - 1) / TILE_SIZE
+        (N + bs - 1) / bs,
+        (rows + bs - 1) / bs
     );
 
     switch (algorithm) {
@@ -205,17 +221,24 @@ void launchAlgorithm(
             );
             break;
 
-        case Algorithm::StaticTiled:
-            matrixMultTiledStaticTpl<TILE_SIZE><<<grid, block, 0, stream>>>(
-                d_A, d_B, d_C, N, rows
-            );
-            break;
+        case Algorithm::StaticTiled: 
+            switch (bs) { 
+                case 2: launchStaticTiled<2>(grid, stream, d_A, d_B, d_C, N, rows); break; 
+                case 4: launchStaticTiled<4>(grid, stream, d_A, d_B, d_C, N, rows); break; 
+                case 8: launchStaticTiled<8>(grid, stream, d_A, d_B, d_C, N, rows); break; 
+                case 16: launchStaticTiled<16>(grid, stream, d_A, d_B, d_C, N, rows); break; 
+                case 32: launchStaticTiled<32>(grid, stream, d_A, d_B, d_C, N, rows); break; 
+                default: 
+                    std::cerr << "Unsupported block size: " << bs << '\n'; 
+                    std::exit(EXIT_FAILURE); 
+                } 
+                break;
 
         case Algorithm::DynamicTiled:
             matrixMultTiledDynamic<<<
                 grid,
                 block,
-                2 * TILE_SIZE * TILE_SIZE * sizeof(BASE_TYPE),
+                2 * bs * bs * sizeof(BASE_TYPE),
                 stream
             >>>(d_A, d_B, d_C, N, rows);
             break;
@@ -266,6 +289,13 @@ Timing runFullMatrix(
 {
     Timing timing{};
 
+    cublasHandle_t handle = nullptr;
+    if (algorithm == Algorithm::cuBLAS) {
+        CUBLAS_CHECK(cublasCreate(&handle));
+    }
+
+    const auto totalStart = Clock::now();
+
     const std::size_t matrixElements =
         static_cast<std::size_t>(N) * static_cast<std::size_t>(N);
     const std::size_t matrixBytes = matrixElements * sizeof(BASE_TYPE);
@@ -300,25 +330,23 @@ Timing runFullMatrix(
         h_C = pinned_C;
     }
 
-    const auto totalStart = Clock::now();
-
     if (useManaged) {
         CUDA_CHECK(cudaMallocManaged(&d_A, matrixBytes));
         CUDA_CHECK(cudaMallocManaged(&d_B, matrixBytes));
         CUDA_CHECK(cudaMallocManaged(&d_C, matrixBytes));
 
+        const auto fillStart = Clock::now();
         std::copy(A.begin(), A.end(), d_A);
         std::copy(B.begin(), B.end(), d_B);
-        timing.h2d = 0.0;
+        timing.h2d = elapsedMilliseconds(fillStart, Clock::now());
 
         if (strategy == MemoryStrategy::UnifiedPrefetch) {
             const auto transferStart = Clock::now();
 
-            int device = 0;
-            CUDA_CHECK(cudaGetDevice(&device));
-
             int gpuDevice = 0;
             CUDA_CHECK(cudaGetDevice(&gpuDevice));
+
+            #ifdef __linux__
 
             CUDA_CHECK(cudaMemPrefetchAsync(
                 d_A, matrixBytes, gpuDevice, nullptr
@@ -331,6 +359,23 @@ Timing runFullMatrix(
             CUDA_CHECK(cudaMemPrefetchAsync(
                 d_C, matrixBytes, gpuDevice, nullptr
             ));
+            #elif defined(_WIN32)
+                cudaMemLocation gpuLocation{};
+                gpuLocation.type = cudaMemLocationTypeDevice;
+                gpuLocation.id = gpuDevice;
+
+                CUDA_CHECK(cudaMemPrefetchAsync(
+                    d_A, matrixBytes, gpuLocation, 0, nullptr
+                ));
+
+                CUDA_CHECK(cudaMemPrefetchAsync(
+                    d_B, matrixBytes, gpuLocation, 0, nullptr
+                ));
+
+                CUDA_CHECK(cudaMemPrefetchAsync(
+                    d_C, matrixBytes, gpuLocation, 0, nullptr
+                ));
+            #endif
 
             CUDA_CHECK(cudaDeviceSynchronize());
 
@@ -358,11 +403,6 @@ Timing runFullMatrix(
         );
     }
 
-    cublasHandle_t handle = nullptr;
-    if (algorithm == Algorithm::cuBLAS) {
-        CUBLAS_CHECK(cublasCreate(&handle));
-    }
-
     cudaEvent_t kernelStart{}, kernelStop{};
     CUDA_CHECK(cudaEventCreate(&kernelStart));
     CUDA_CHECK(cudaEventCreate(&kernelStop));
@@ -385,13 +425,27 @@ Timing runFullMatrix(
     const auto downloadStart = Clock::now();
 
     if (strategy == MemoryStrategy::UnifiedPrefetch) {
+        #ifdef __linux__
         CUDA_CHECK(cudaMemPrefetchAsync(
             d_C, matrixBytes, cudaCpuDeviceId, nullptr
         ));
+        #elif defined(_WIN32)
+            cudaMemLocation cpuLocation{};
+            cpuLocation.type = cudaMemLocationTypeHost;
+
+            CUDA_CHECK(cudaMemPrefetchAsync(
+                d_C, matrixBytes, cpuLocation, 0, nullptr
+            ));
+        #endif
 
         CUDA_CHECK(cudaDeviceSynchronize());
 
-        std::copy(d_C, d_C + matrixElements, C.begin());
+        CUDA_CHECK(cudaMemcpy(
+            C.data(),
+            d_C,
+            matrixBytes,
+            cudaMemcpyDeviceToHost
+        ));
         timing.d2h = elapsedMilliseconds(
             downloadStart, Clock::now()
         );
@@ -420,10 +474,6 @@ Timing runFullMatrix(
     CUDA_CHECK(cudaEventDestroy(kernelStart));
     CUDA_CHECK(cudaEventDestroy(kernelStop));
 
-    if (handle != nullptr) {
-        CUBLAS_CHECK(cublasDestroy(handle));
-    }
-
     CUDA_CHECK(cudaFree(d_A));
     CUDA_CHECK(cudaFree(d_B));
     CUDA_CHECK(cudaFree(d_C));
@@ -435,6 +485,9 @@ Timing runFullMatrix(
     }
 
     timing.total = elapsedMilliseconds(totalStart, Clock::now());
+    if (handle != nullptr) {
+        CUBLAS_CHECK(cublasDestroy(handle));
+    }
     return timing;
 }
 
@@ -474,6 +527,7 @@ Timing runStreaming(
     int N)
 {
     Timing timing{};
+    const auto totalStart = Clock::now();
 
     const bool usePinned =
         strategy == MemoryStrategy::PinnedStreams;
@@ -487,15 +541,7 @@ Timing runStreaming(
     BASE_TYPE* d_B = nullptr;
     BASE_TYPE* pinned_B = nullptr;
 
-    CUDA_CHECK(cudaMalloc(&d_B, matrixBytes));
-
     const BASE_TYPE* hostB = B.data();
-
-    if (usePinned) {
-        CUDA_CHECK(cudaMallocHost(&pinned_B, matrixBytes));
-        std::copy(B.begin(), B.end(), pinned_B);
-        hostB = pinned_B;
-    }
 
     std::vector<cudaStream_t> streams(streamCount);
     std::vector<cublasHandle_t> handles(streamCount, nullptr);
@@ -516,7 +562,11 @@ Timing runStreaming(
     std::vector<int> rowCounts(streamCount);
     std::vector<int> rowOffsets(streamCount);
 
-    const auto totalStart = Clock::now();
+    if (usePinned) {
+        CUDA_CHECK(cudaMallocHost(&pinned_B, matrixBytes));
+        std::copy(B.begin(), B.end(), pinned_B);
+        hostB = pinned_B;
+    }
 
     // Создание streams, буферов и событий.
     for (int i = 0; i < streamCount; ++i) {
@@ -526,7 +576,7 @@ Timing runStreaming(
         rowOffsets[i] = rowOffset;
         rowCounts[i] = rows;
 
-        CUDA_CHECK(cudaStreamCreate(&streams[i]));
+        CUDA_CHECK(cudaStreamCreateWithFlags(&streams[i], cudaStreamNonBlocking));
 
         CUDA_CHECK(cudaEventCreate(&h2dStart[i]));
         CUDA_CHECK(cudaEventCreate(&h2dStop[i]));
@@ -539,34 +589,30 @@ Timing runStreaming(
             continue;
         }
 
-        const std::size_t chunkBytes =
-            static_cast<std::size_t>(rows) * N * sizeof(BASE_TYPE);
-
-        CUDA_CHECK(cudaMalloc(&d_A[i], chunkBytes));
-        CUDA_CHECK(cudaMalloc(&d_C[i], chunkBytes));
-
+        const std::size_t elems = static_cast<std::size_t>(rows) * N;
         if (usePinned) {
-            CUDA_CHECK(cudaMallocHost(&pinned_A[i], chunkBytes));
-            CUDA_CHECK(cudaMallocHost(&pinned_C[i], chunkBytes));
-
-            const BASE_TYPE* source =
-                A.data() + static_cast<std::size_t>(rowOffset) * N;
-
-            std::copy(
-                source,
-                source + static_cast<std::size_t>(rows) * N,
-                pinned_A[i]
-            );
+            CUDA_CHECK(cudaMallocHost(&pinned_A[i], elems * sizeof(BASE_TYPE)));
+            CUDA_CHECK(cudaMallocHost(&pinned_C[i], elems * sizeof(BASE_TYPE)));
+            const BASE_TYPE* src = A.data() + static_cast<std::size_t>(rowOffset) * N;
+            std::copy(src, src + elems, pinned_A[i]);
         }
-
         if (algorithm == Algorithm::cuBLAS) {
             CUBLAS_CHECK(cublasCreate(&handles[i]));
             CUBLAS_CHECK(cublasSetStream(handles[i], streams[i]));
         }
     }
+    CUDA_CHECK(cudaDeviceSynchronize());
 
-    // Матрица B загружается один раз.
     const auto bUploadStart = Clock::now();
+
+    CUDA_CHECK(cudaMalloc(&d_B, matrixBytes));
+    for (int i = 0; i < streamCount; ++i) {
+        if (rowCounts[i] == 0) continue;
+        const std::size_t chunkBytes =
+            static_cast<std::size_t>(rowCounts[i]) * N * sizeof(BASE_TYPE);
+        CUDA_CHECK(cudaMalloc(&d_A[i], chunkBytes));
+        CUDA_CHECK(cudaMalloc(&d_C[i], chunkBytes));
+    }
 
     CUDA_CHECK(cudaMemcpyAsync(
         d_B,
@@ -929,7 +975,7 @@ double minimum(const std::vector<double>& values)
  */
 void writeCSVHeader(std::ofstream& file)
 {
-    file << "N,Strategy,Algorithm,"
+    file << "N,Block,Strategy,Algorithm,"
          << "H2D_ms,Kernel_ms,D2H_ms,"
          << "TotalMedian_ms,TotalMin_ms,Verified\n";
 }
@@ -945,6 +991,7 @@ void writeCSVRow(
 {
     file << std::fixed << std::setprecision(6)
      << result.N << ','
+     << result.blockSize << ','
      << result.strategy << ','
      << result.algorithm << ','
      << result.h2dMedian << ','
@@ -954,4 +1001,24 @@ void writeCSVRow(
      << result.totalMin << ','
      << (result.verified ? "true" : "false")
      << '\n';
+}
+
+bool isSupportedBlockSize(int blockSize)
+{
+    return blockSize == 2 || blockSize == 4 || blockSize == 8 ||
+    blockSize == 16 || blockSize == 32;
+}
+
+void setBlockSize(int blockSize)
+{
+    if (!isSupportedBlockSize(blockSize)) {
+        std::cerr << "Unsupported block size: " << blockSize << '\n';
+        std::exit(EXIT_FAILURE);
+    }
+    g_blockSize = blockSize;
+}
+
+int getBlockSize()
+{
+    return g_blockSize;
 }

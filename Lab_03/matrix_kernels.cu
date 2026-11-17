@@ -16,6 +16,8 @@
 #include <limits>
 #include <stdexcept>
 #include <type_traits>
+#include <algorithm>
+#include <cstdint>
 
 // ============================================================
 // 1. Наивный алгоритм (Global Memory)
@@ -198,6 +200,25 @@ void initMatrix(std::vector<BASE_TYPE>& mat, int N) {
 // ============================================================
 // 4. Проверка результатов
 // ============================================================
+namespace {
+
+constexpr double kMachineEpsilon =
+    std::is_same_v<BASE_TYPE, float>
+        ? 1.1920928955078125e-7
+        : 2.2204460492503131e-16;
+
+constexpr double kToleranceSafetyFactor = 8.0;
+
+double verificationTolerance(double referenceRms, int N)
+{
+    return kToleranceSafetyFactor
+         * kMachineEpsilon
+         * std::sqrt(static_cast<double>(N))
+         * std::max(referenceRms, 1.0);
+}
+
+} // namespace
+
 
 /**
  * @brief Проверяет корректность результата умножения матриц.
@@ -232,17 +253,11 @@ bool verifyResult(
 
     if (result.size() != expectedSize ||
         reference.size() != expectedSize) {
-
         std::cerr << "Verification failed: matrix size mismatch\n";
         return false;
     }
 
-    // Допуски зависят от выбранной точности.
-    constexpr double epsilon_abs =
-        std::is_same_v<BASE_TYPE, float> ? 1e-3 : 1e-10;
-
-    constexpr double epsilon_rel =
-        std::is_same_v<BASE_TYPE, float> ? 3e-5 : 1e-10;
+    double referenceSumSq = 0.0;
 
     for (std::size_t i = 0; i < expectedSize; ++i) {
         const double gpuValue =
@@ -253,24 +268,171 @@ bool verifyResult(
 
         if (!std::isfinite(gpuValue) ||
             !std::isfinite(referenceValue)) {
-
             std::cerr
                 << "Verification failed: non-finite value at index "
                 << i << '\n';
-
             return false;
         }
+
+        referenceSumSq += referenceValue * referenceValue;
+    }
+
+    const double referenceRms =
+        std::sqrt(referenceSumSq / static_cast<double>(expectedSize));
+
+    const double tolerance =
+        verificationTolerance(referenceRms, N);
+
+    for (std::size_t i = 0; i < expectedSize; ++i) {
+        const double gpuValue =
+            static_cast<double>(result[i]);
+
+        const double referenceValue =
+            static_cast<double>(reference[i]);
 
         const double difference =
             std::fabs(gpuValue - referenceValue);
 
-        const double tolerance =
-            epsilon_abs +
-            epsilon_rel * std::fabs(referenceValue);
-
         if (difference > tolerance) {
             std::cerr
                 << "Verification failed at index " << i
+                << ": result = " << gpuValue
+                << ", reference = " << referenceValue
+                << ", difference = " << difference
+                << ", tolerance = " << tolerance
+                << '\n';
+
+            return false;
+        }
+    }
+
+    return true;
+}
+
+bool verifySampled(
+    const std::vector<BASE_TYPE>& result,
+    const std::vector<BASE_TYPE>& A,
+    const std::vector<BASE_TYPE>& B,
+    int N,
+    int samples
+) {
+    if (N <= 0) {
+        std::cerr << "Verification failed: invalid matrix dimension\n";
+        return false;
+    }
+
+    const std::size_t expectedSize =
+        static_cast<std::size_t>(N) * N;
+
+    if (result.size() != expectedSize ||
+        A.size() != expectedSize ||
+        B.size() != expectedSize) {
+        std::cerr << "Verification failed: matrix size mismatch\n";
+        return false;
+    }
+
+    for (std::size_t i = 0; i < expectedSize; ++i) {
+        if (!std::isfinite(static_cast<double>(result[i]))) {
+            std::cerr
+                << "Verification failed: non-finite result at index "
+                << i << '\n';
+            return false;
+        }
+    }
+
+    struct Point {
+        int row;
+        int col;
+    };
+
+    std::vector<Point> points;
+    points.reserve(static_cast<std::size_t>(std::max(samples, 0)) + 4);
+
+    points.push_back({0, 0});
+    points.push_back({0, N - 1});
+    points.push_back({N - 1, 0});
+    points.push_back({N - 1, N - 1});
+
+    // Детерминированная псевдослучайная выборка.
+    std::uint64_t state = 123456789ULL;
+
+    const auto nextIndex = [&state, N]() -> int {
+        state = state * 6364136223846793005ULL
+                      + 1442695040888963407ULL;
+
+        return static_cast<int>(
+            state % static_cast<std::uint64_t>(N)
+        );
+    };
+
+    for (int s = 0; s < std::max(samples, 0); ++s) {
+        const int row = nextIndex();
+        const int col = nextIndex();
+
+        points.push_back({row, col});
+    }
+
+    std::vector<double> referenceValues(points.size());
+    double referenceSumSq = 0.0;
+
+    // Независимый CPU-эталон
+    for (std::size_t p = 0; p < points.size(); ++p) {
+        const int row = points[p].row;
+        const int col = points[p].col;
+
+        double sum = 0.0;
+
+        for (int k = 0; k < N; ++k) {
+            const double a =
+                static_cast<double>(
+                    A[static_cast<std::size_t>(row) * N + k]
+                );
+
+            const double b =
+                static_cast<double>(
+                    B[static_cast<std::size_t>(k) * N + col]
+                );
+
+            sum += a * b;
+        }
+
+        if (!std::isfinite(sum)) {
+            std::cerr
+                << "Verification failed: non-finite CPU reference at ("
+                << row << ", " << col << ")\n";
+            return false;
+        }
+
+        referenceValues[p] = sum;
+        referenceSumSq += sum * sum;
+    }
+
+    const double referenceRms =
+        std::sqrt(
+            referenceSumSq / static_cast<double>(points.size())
+        );
+
+    const double tolerance =
+        verificationTolerance(referenceRms, N);
+
+    for (std::size_t p = 0; p < points.size(); ++p) {
+        const int row = points[p].row;
+        const int col = points[p].col;
+
+        const std::size_t index =
+            static_cast<std::size_t>(row) * N + col;
+
+        const double gpuValue =
+            static_cast<double>(result[index]);
+
+        const double referenceValue = referenceValues[p];
+
+        const double difference =
+            std::fabs(gpuValue - referenceValue);
+
+        if (difference > tolerance) {
+            std::cerr
+                << "Verification failed at (" << row << ", " << col << ")"
                 << ": result = " << gpuValue
                 << ", reference = " << referenceValue
                 << ", difference = " << difference

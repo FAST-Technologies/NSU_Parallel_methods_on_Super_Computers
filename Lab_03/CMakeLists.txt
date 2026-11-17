@@ -17,9 +17,8 @@ endif()
 # ==============================================================================
 # Настройка архитектуры GPU
 # ==============================================================================
-# Blackwell (RTX 50xx) = 120, Ada (RTX 40xx) = 89, Ampere = 86, Turing = 75
-# ==============================================================================
-# Настройка архитектур GPU
+# Compute Capability:
+# Turing = 7.5, Ampere = 8.6, Ada = 8.9, Blackwell = 12.0
 # ==============================================================================
 set(CUDA_ARCH_CANDIDATES 50 52 53 60 61 62 70 72 75 80 86 87 89 90 120)
 
@@ -53,6 +52,13 @@ endforeach()
 if(NOT CUDA_ARCH_LIST)
     message(FATAL_ERROR
         "No supported CUDA architectures found!"
+    )
+endif()
+
+if(NOT CUDA_SUPPORTED_ARCHS MATCHES "compute_[0-9]+")
+    message(FATAL_ERROR
+        "NVCC returned an unexpected architecture list:\n"
+        "${CUDA_SUPPORTED_ARCHS}"
     )
 endif()
 
@@ -94,6 +100,21 @@ if(MATRIX_USE_DOUBLE)
 else()
     target_compile_definitions(Lab_03 PRIVATE MATRIX_USE_DOUBLE=0)
 endif()
+
+set(MATRIX_TILE_SIZE 32 CACHE STRING "CUDA tile/block dimension")
+set_property(CACHE MATRIX_TILE_SIZE PROPERTY STRINGS 2 4 8 16 32)
+
+if (NOT MATRIX_TILE_SIZE MATCHES "^(2|4|8|16|32)$")
+    message(FATAL_ERROR
+        "Unsupported MATRIX_TILE_SIZE=${MATRIX_TILE_SIZE}. "
+        "Allowed values: 2, 4, 8, 16, 32."
+    )
+endif()
+
+target_compile_definitions(
+    Lab_03 PRIVATE
+    MATRIX_TILE_SIZE=${MATRIX_TILE_SIZE}
+)
 
 # ==============================================================================
 # Оптимизация для Release (используем target_compile_options)

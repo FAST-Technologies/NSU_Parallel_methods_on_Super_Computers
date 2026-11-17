@@ -32,6 +32,10 @@ using BASE_TYPE = double;
 using BASE_TYPE = float;
 #endif
 
+#ifndef MATRIX_TILE_SIZE
+#define MATRIX_TILE_SIZE 32
+#endif
+
 /**
  * @brief Размер стороны тайла CUDA-блока.
  *
@@ -41,7 +45,12 @@ using BASE_TYPE = float;
  * @note Для проведения экспериментов можно использовать значения 16 или 32,
  *       если они поддерживаются выбранной реализацией CUDA-ядер.
  */
-inline constexpr int TILE_SIZE = 2;
+inline constexpr int TILE_SIZE = MATRIX_TILE_SIZE;
+
+static_assert(
+    TILE_SIZE > 0 && TILE_SIZE * TILE_SIZE <= 1024,
+    "Invalid TILE_SIZE: CUDA block must contain 1..1024 threads"
+);
 
 /**
  * @brief Количество CUDA streams в потоковом бенчмарке.
@@ -68,7 +77,7 @@ inline constexpr int NUM_WARMUP = 1;
  *          A(N x N), B(N x N), C(N x N).
  */
 inline constexpr int MATRIX_SIZES[] = {
-    256, 512, 1024, 2048, 4096
+    256, 512, 1024, 2048, 4096, 8192
 };
 
 /**
