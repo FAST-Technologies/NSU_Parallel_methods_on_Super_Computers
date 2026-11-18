@@ -76,6 +76,20 @@ struct Timing {
 };
 
 /**
+ * @brief Характеристики CUDA-устройства.
+ *
+ * Пиковые FP32/FP64 значения задаются только при наличии
+ * достоверных характеристик конкретного GPU.
+ */
+struct GPUInfo {
+    std::string name;
+    std::string cudaVersion;
+
+    double peakFP32TFLOPS = 0.0;
+    double peakFP64TFLOPS = 0.0;
+};
+
+/**
  * @brief Итоговые статистические данные одного эксперимента.
  *
  * @details Содержит размер матриц, названия использованного алгоритма
@@ -83,24 +97,73 @@ struct Timing {
  *          минимальное полное время и результат проверки корректности.
  */
 struct BenchmarkResult {
-    int N = 0;                  ///< Размер квадратных матриц N x N.
-    int blockSize = 0;           ///< Размер стороны CUDA-блока (тайла).
+    // int N = 0;                  ///< Размер квадратных матриц N x N.
+    // int blockSize = 0;           ///< Размер стороны CUDA-блока (тайла).
+    // int threadsPerBlock = 0;
 
-    std::string strategy;       ///< Название стратегии управления памятью.
-    std::string algorithm;      ///< Название вычислительного алгоритма.
+    // std::string strategy;       ///< Название стратегии управления памятью.
+    // std::string algorithm;      ///< Название вычислительного алгоритма.
 
-    std::string precision;      ///< "f32" или "f64".
-    double gflopsKernel = 0.0;  ///< 2*N^3 / медианное время ядра, GFLOPS.
-    double gflopsTotal = 0.0;   ///< 2*N^3 / медианное полное время, GFLOPS.
+    // std::string precision;      ///< "f32" или "f64".
+    // double gflopsKernel = 0.0;  ///< 2*N^3 / медианное время ядра, GFLOPS.
+    // double gflopsTotal = 0.0;   ///< 2*N^3 / медианное полное время, GFLOPS.
 
-    double h2dMedian = 0.0;     ///< Медианное время передачи H2D, мс.
-    double kernelMedian = 0.0;  ///< Медианное время выполнения ядра, мс.
-    double d2hMedian = 0.0;     ///< Медианное время передачи D2H, мс.
-    double totalMedian = 0.0;   ///< Медианное полное время выполнения, мс.
+    // double h2dMedian = 0.0;     ///< Медианное время передачи H2D, мс.
+    // double kernelMedian = 0.0;  ///< Медианное время выполнения ядра, мс.
+    // double d2hMedian = 0.0;     ///< Медианное время передачи D2H, мс.
+    // double totalMedian = 0.0;   ///< Медианное полное время выполнения, мс.
 
-    double totalMin = 0.0;      ///< Минимальное полное время выполнения, мс.
+    // double totalMin = 0.0;      ///< Минимальное полное время выполнения, мс.
 
-    bool verified = false;      ///< Результат проверки корректности вычислений.
+    // bool verified = false;      ///< Результат проверки корректности вычислений.
+
+     int N = 0;
+    int blockSize = 0;
+    int threadsPerBlock = 0;
+
+    std::string precision;
+    std::string strategy;
+    std::string algorithm;
+
+    bool verified = false;
+
+    std::string gpuName;
+    std::string cudaVersion;
+
+    // CPU baseline.
+    double cpuMs = 0.0;
+
+    // Исходные времена GPU.
+    double h2dMedian = 0.0;
+    double kernelMedian = 0.0;
+    double d2hMedian = 0.0;
+    double totalMedian = 0.0;
+    double totalMin = 0.0;
+
+    // Speedup относительно Naive.
+    double speedupNaiveKernel = 0.0;
+    double speedupNaiveTotal = 0.0;
+
+    // Speedup относительно CPU.
+    double speedupCPUKernel = 0.0;
+    double speedupCPUTotal = 0.0;
+
+    // Относительная эффективность по числу потоков в блоке.
+    double efficiencyKernelPct = 0.0;
+    double efficiencyTotalPct = 0.0;
+
+    // Производительность.
+    double equivalentGflopsH2D = 0.0;
+    double gflopsKernel = 0.0;
+    double equivalentGflopsD2H = 0.0;
+    double gflopsTotal = 0.0;
+
+    double tflopsKernel = 0.0;
+    double tflopsTotal = 0.0;
+
+    // Опциональная загрузка паспортного пика GPU.
+    double peakUtilizationKernelPct = 0.0;
+    double peakUtilizationTotalPct = 0.0;
 };
 
 /**
@@ -125,6 +188,11 @@ const char* strategyName(MemoryStrategy strategy);
  *          потоков в блоке и характеристики поддержки Unified Memory.
  */
 void printGPUInfo();
+
+/**
+ * @brief Получает основные характеристики текущего GPU.
+ */
+GPUInfo getGPUInfo();
 
 /**
  * @brief Проверяет поддержку Unified Memory prefetch текущим GPU.
@@ -162,6 +230,30 @@ Timing runOneCase(
 );
 
 /**
+ * @brief Измеряет время последовательного CPU-умножения.
+ *
+ * Вычисления выполняются с типом BASE_TYPE.
+ * Возвращает медианное время измерительных запусков.
+ */
+double benchmarkCPU(
+    const std::vector<BASE_TYPE>& A,
+    const std::vector<BASE_TYPE>& B,
+    std::vector<BASE_TYPE>& C,
+    int N
+);
+
+/**
+ * @brief Рассчитывает производные метрики для результатов эксперимента.
+ *
+ * Сопоставляет алгоритмы с Naive в пределах одинаковых
+ * N, Block, Precision и Strategy.
+ */
+void calculateBenchmarkMetrics(
+    std::vector<BenchmarkResult>& results,
+    const GPUInfo& gpuInfo
+);
+
+/**
  * @brief Записывает заголовок CSV-файла с результатами экспериментов.
  * @param file Открытый поток выходного CSV-файла.
  */
@@ -196,11 +288,47 @@ double median(std::vector<double> values);
  */
 double minimum(const std::vector<double>& values);
 
-/** @brief Проверяет, что размер блока поддерживается (2, 4, 8, 16, 32). */
-bool isSupportedBlockSize(int blockSize); 
+/**
+ * @brief Проверяет допустимость размера CUDA-блока.
+ */
+bool isSupportedBlockSize(int blockSize);
 
-/** @brief Задаёт размер блока для всех последующих запусков.  */
-void setBlockSize(int blockSize); 
+/**
+ * @brief Задаёт размер CUDA-блока.
+ */
+void setBlockSize(int blockSize);
 
-/** @brief Возвращает текущий размер блока. */
+/**
+ * @brief Возвращает текущий размер CUDA-блока.
+ */
 int getBlockSize();
+
+/**
+ * @brief Записывает строку CSV с экранированием специальных символов.
+ */
+void writeCSVString(std::ofstream& file, const std::string& value);
+
+/**
+ * @brief Записывает числовое поле CSV.
+ *
+ * Нулевые, отрицательные и некорректные значения
+ * выводятся пустым полем.
+ */
+void writeCSVNumber(std::ofstream& file, double value);
+
+/**
+ * @brief Рассчитывает производные метрики всех алгоритмов.
+ *
+ * Сравнение выполняется только внутри одинаковой конфигурации:
+ * N, Block, Precision и Strategy.
+ *
+ * Для SpeedupNaive используется соответствующая строка Naive.
+ * Недостоверные результаты не участвуют в сравнении.
+ *
+ * @param results Результаты всех алгоритмов одной конфигурации.
+ * @param gpuInfo Характеристики GPU.
+ */
+void calculateBenchmarkMetrics(
+    std::vector<BenchmarkResult>& results,
+    const GPUInfo& gpuInfo
+);

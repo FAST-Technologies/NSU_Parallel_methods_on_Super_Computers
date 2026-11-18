@@ -24,9 +24,12 @@
 #include <cmath>
 #include <cstdlib>
 #include <iostream>
+#include <iomanip>
 #include <limits>
 #include <numeric>
 #include <iomanip>
+#include <sstream>
+#include <string>
 #include <type_traits>
 #include <vector>
 
@@ -855,7 +858,9 @@ void printGPUInfo()
     CUDA_CHECK(cudaGetDevice(&device));
     CUDA_CHECK(cudaGetDeviceProperties(&properties, device));
 
-    bool result = properties.kernelExecTimeoutEnabled ? "true" : "false";
+    const char* result = properties.kernelExecTimeoutEnabled
+    ? "true"
+    : "false";
 
     std::cout << "\n========== GPU INFORMATION ==========\n";
     std::cout << "Device: " << properties.name << '\n';
@@ -1003,10 +1008,36 @@ double minimum(const std::vector<double>& values)
  */
 void writeCSVHeader(std::ofstream& file)
 {
-    file << "N,Block,Precision,Strategy,Algorithm,"
-         << "H2D_ms,Kernel_ms,D2H_ms,"
-         << "TotalMedian_ms,TotalMin_ms,"
-         << "GFLOPS_Kernel,GFLOPS_Total,Verified\n";
+    file
+        << "N,"
+        << "Block,"
+        << "ThreadsPerBlock,"
+        << "Precision,"
+        << "Strategy,"
+        << "Algorithm,"
+        << "Verified,"
+        << "GPU_Name,"
+        << "CUDA_Version,"
+        << "CPU_ms,"
+        << "H2D_ms,"
+        << "Kernel_ms,"
+        << "D2H_ms,"
+        << "TotalMedian_ms,"
+        << "TotalMin_ms,"
+        << "SpeedupNaiveKernel,"
+        << "SpeedupNaiveTotal,"
+        << "SpeedupCPUKernel,"
+        << "SpeedupCPUTotal,"
+        << "EfficiencyKernel_pct,"
+        << "EfficiencyTotal_pct,"
+        << "Equivalent_GFLOPS_H2D,"
+        << "GFLOPS_Kernel,"
+        << "Equivalent_GFLOPS_D2H,"
+        << "GFLOPS_Total,"
+        << "TFLOPS_Kernel,"
+        << "TFLOPS_Total,"
+        << "PeakUtilizationKernel_pct,"
+        << "PeakUtilizationTotal_pct\n";
 }
 
 /**
@@ -1016,23 +1047,92 @@ void writeCSVHeader(std::ofstream& file)
  */
 void writeCSVRow(
     std::ofstream& file,
-    const BenchmarkResult& result)
-{
-    file << std::fixed << std::setprecision(6)
-         << result.N << ','
-         << result.blockSize << ','
-         << result.precision << ','
-         << result.strategy << ','
-         << result.algorithm << ','
-         << result.h2dMedian << ','
-         << result.kernelMedian << ','
-         << result.d2hMedian << ','
-         << result.totalMedian << ','
-         << result.totalMin << ','
-         << result.gflopsKernel << ','
-         << result.gflopsTotal << ','
-         << (result.verified ? "true" : "false")
-         << '\n';
+    const BenchmarkResult& result
+) {
+    file << std::fixed << std::setprecision(6);
+
+    file
+        << result.N << ','
+        << result.blockSize << ','
+        << result.threadsPerBlock << ',';
+
+    writeCSVString(file, result.precision);
+    file << ',';
+
+    writeCSVString(file, result.strategy);
+    file << ',';
+
+    writeCSVString(file, result.algorithm);
+    file << ',';
+
+    file << (result.verified ? "true" : "false") << ',';
+
+    writeCSVString(file, result.gpuName);
+    file << ',';
+
+    writeCSVString(file, result.cudaVersion);
+    file << ',';
+
+    writeCSVNumber(file, result.cpuMs);
+    file << ',';
+
+    writeCSVNumber(file, result.h2dMedian);
+    file << ',';
+
+    writeCSVNumber(file, result.kernelMedian);
+    file << ',';
+
+    writeCSVNumber(file, result.d2hMedian);
+    file << ',';
+
+    writeCSVNumber(file, result.totalMedian);
+    file << ',';
+
+    writeCSVNumber(file, result.totalMin);
+    file << ',';
+
+    writeCSVNumber(file, result.speedupNaiveKernel);
+    file << ',';
+
+    writeCSVNumber(file, result.speedupNaiveTotal);
+    file << ',';
+
+    writeCSVNumber(file, result.speedupCPUKernel);
+    file << ',';
+
+    writeCSVNumber(file, result.speedupCPUTotal);
+    file << ',';
+
+    writeCSVNumber(file, result.efficiencyKernelPct);
+    file << ',';
+
+    writeCSVNumber(file, result.efficiencyTotalPct);
+    file << ',';
+
+    writeCSVNumber(file, result.equivalentGflopsH2D);
+    file << ',';
+
+    writeCSVNumber(file, result.gflopsKernel);
+    file << ',';
+
+    writeCSVNumber(file, result.equivalentGflopsD2H);
+    file << ',';
+
+    writeCSVNumber(file, result.gflopsTotal);
+    file << ',';
+
+    writeCSVNumber(file, result.tflopsKernel);
+    file << ',';
+
+    writeCSVNumber(file, result.tflopsTotal);
+    file << ',';
+
+    writeCSVNumber(file, result.peakUtilizationKernelPct);
+    file << ',';
+
+    writeCSVNumber(file, result.peakUtilizationTotalPct);
+
+    file << '\n';
 }
 
 bool isSupportedBlockSize(int blockSize)
@@ -1054,3 +1154,378 @@ int getBlockSize()
 {
     return g_blockSize;
 }
+
+
+double benchmarkCPU(
+    const std::vector<BASE_TYPE>& A,
+    const std::vector<BASE_TYPE>& B,
+    std::vector<BASE_TYPE>& C,
+    int N
+) {
+    if (N <= 0) {
+        return 0.0;
+    }
+
+    const size_t matrixSize =
+        static_cast<size_t>(N) * static_cast<size_t>(N);
+
+    if (A.size() < matrixSize || B.size() < matrixSize) {
+        std::cerr << "CPU benchmark error: invalid input matrix size\n";
+        return 0.0;
+    }
+
+    // Выделение памяти выполняется вне измеряемого участка.
+    C.resize(matrixSize);
+
+    auto multiplyCPU = [&]() {
+        for (int i = 0; i < N; ++i) {
+            for (int j = 0; j < N; ++j) {
+                BASE_TYPE sum = static_cast<BASE_TYPE>(0);
+
+                for (int k = 0; k < N; ++k) {
+                    sum += A[
+                        static_cast<size_t>(i) * N + k
+                    ] * B[
+                        static_cast<size_t>(k) * N + j
+                    ];
+                }
+
+                C[
+                    static_cast<size_t>(i) * N + j
+                ] = sum;
+            }
+        }
+    };
+
+    // Прогрев CPU.
+    for (int i = 0; i < NUM_WARMUP; ++i) {
+        multiplyCPU();
+    }
+
+    std::vector<double> measurements;
+    measurements.reserve(NUM_REPEATS);
+
+    // Измерительные запуски.
+    for (int i = 0; i < NUM_REPEATS; ++i) {
+        const auto start = std::chrono::steady_clock::now();
+
+        multiplyCPU();
+
+        const auto stop = std::chrono::steady_clock::now();
+
+        const double elapsedMs =
+            std::chrono::duration<double, std::milli>(
+                stop - start
+            ).count();
+
+        measurements.push_back(elapsedMs);
+    }
+
+    return median(measurements);
+}
+
+GPUInfo getGPUInfo() {
+    GPUInfo info;
+
+    int device = 0;
+
+    cudaError_t error = cudaGetDevice(&device);
+
+    if (error != cudaSuccess) {
+        std::cerr
+            << "Warning: cudaGetDevice failed: "
+            << cudaGetErrorString(error)
+            << '\n';
+
+        return info;
+    }
+
+    cudaDeviceProp properties{};
+
+    error = cudaGetDeviceProperties(&properties, device);
+
+    if (error != cudaSuccess) {
+        std::cerr
+            << "Warning: cudaGetDeviceProperties failed: "
+            << cudaGetErrorString(error)
+            << '\n';
+
+        return info;
+    }
+
+    info.name = properties.name;
+
+    int runtimeVersion = 0;
+
+    error = cudaRuntimeGetVersion(&runtimeVersion);
+
+    if (error == cudaSuccess) {
+        const int major = runtimeVersion / 1000;
+        const int minor = (runtimeVersion % 1000) / 10;
+
+        std::ostringstream version;
+
+        version << major << "." << minor;
+
+        info.cudaVersion = version.str();
+    }
+
+    // Пиковая производительность намеренно не вычисляется здесь.
+    // Для неё нужны достоверные архитектурные характеристики GPU.
+    info.peakFP32TFLOPS = 0.0;
+    info.peakFP64TFLOPS = 0.0;
+
+    return info;
+}
+
+
+/**
+ * @brief Проверяет, является ли время допустимым для расчётов.
+ */
+bool isValidTime(double value)
+{
+    return std::isfinite(value) && value > 0.0;
+}
+
+/**
+ * @brief Вычисляет GFLOPS для операции умножения N x N.
+ *
+ * Число операций принято равным 2 * N^3.
+ */
+double calculateGflops(int N, double timeMs)
+{
+    if (N <= 0 || !isValidTime(timeMs)) {
+        return 0.0;
+    }
+
+    const double n = static_cast<double>(N);
+    const double operations = 2.0 * n * n * n;
+
+    return operations / (timeMs * 1.0e6);
+}
+
+/**
+ * @brief Вычисляет TFLOPS для операции умножения N x N.
+ */
+double calculateTflops(int N, double timeMs)
+{
+    if (N <= 0 || !isValidTime(timeMs)) {
+        return 0.0;
+    }
+
+    const double n = static_cast<double>(N);
+    const double operations = 2.0 * n * n * n;
+
+    return operations / (timeMs * 1.0e9);
+}
+
+/**
+ * @brief Проверяет, относится ли точность к FP64.
+ */
+bool isDoublePrecision(const std::string& precision)
+{
+    return precision == "double" ||
+           precision == "Double" ||
+           precision == "f64" ||
+           precision == "FP64";
+}
+
+/**
+ * @brief Записывает строку CSV с экранированием специальных символов.
+ */
+void writeCSVString(std::ofstream& file, const std::string& value)
+{
+    file << '"';
+
+    for (char ch : value) {
+        if (ch == '"') {
+            file << "\"\"";
+        }
+        else {
+            file << ch;
+        }
+    }
+
+    file << '"';
+}
+
+/**
+ * @brief Записывает числовое поле CSV.
+ *
+ * Нулевые, отрицательные и некорректные значения
+ * выводятся пустым полем.
+ */
+void writeCSVNumber(std::ofstream& file, double value)
+{
+    if (isValidTime(value)) {
+        file << value;
+    }
+}
+
+
+/**
+ * @brief Рассчитывает производные метрики всех алгоритмов.
+ *
+ * Сравнение выполняется только внутри одинаковой конфигурации:
+ * N, Block, Precision и Strategy.
+ *
+ * Для SpeedupNaive используется соответствующая строка Naive.
+ * Недостоверные результаты не участвуют в сравнении.
+ *
+ * @param results Результаты всех алгоритмов одной конфигурации.
+ * @param gpuInfo Характеристики GPU.
+ */
+void calculateBenchmarkMetrics(
+    std::vector<BenchmarkResult>& results,
+    const GPUInfo& gpuInfo
+) {
+    // Сначала заполняем общие характеристики
+    // и сбрасываем производные метрики.
+    for (auto& result : results) {
+        result.threadsPerBlock =
+            result.blockSize * result.blockSize;
+
+        result.gpuName = gpuInfo.name;
+        result.cudaVersion = gpuInfo.cudaVersion;
+
+        result.speedupNaiveKernel = 0.0;
+        result.speedupNaiveTotal = 0.0;
+
+        result.speedupCPUKernel = 0.0;
+        result.speedupCPUTotal = 0.0;
+
+        result.efficiencyKernelPct = 0.0;
+        result.efficiencyTotalPct = 0.0;
+
+        result.equivalentGflopsH2D = 0.0;
+        result.gflopsKernel = 0.0;
+        result.equivalentGflopsD2H = 0.0;
+        result.gflopsTotal = 0.0;
+
+        result.tflopsKernel = 0.0;
+        result.tflopsTotal = 0.0;
+
+        result.peakUtilizationKernelPct = 0.0;
+        result.peakUtilizationTotalPct = 0.0;
+
+        // Недостоверные результаты сохраняем,
+        // но не используем для сравнительных метрик.
+        if (!result.verified) {
+            continue;
+        }
+
+        // Производительность по стадиям.
+        result.equivalentGflopsH2D =
+            calculateGflops(result.N, result.h2dMedian);
+
+        result.gflopsKernel =
+            calculateGflops(result.N, result.kernelMedian);
+
+        result.equivalentGflopsD2H =
+            calculateGflops(result.N, result.d2hMedian);
+
+        result.gflopsTotal =
+            calculateGflops(result.N, result.totalMedian);
+
+        result.tflopsKernel =
+            calculateTflops(result.N, result.kernelMedian);
+
+        result.tflopsTotal =
+            calculateTflops(result.N, result.totalMedian);
+
+        // Speedup относительно CPU.
+        if (isValidTime(result.cpuMs)) {
+            if (isValidTime(result.kernelMedian)) {
+                result.speedupCPUKernel =
+                    result.cpuMs / result.kernelMedian;
+            }
+
+            if (isValidTime(result.totalMedian)) {
+                result.speedupCPUTotal =
+                    result.cpuMs / result.totalMedian;
+            }
+        }
+
+        // Паспортный пик зависит от точности вычислений.
+        const double peakTflops =
+            isDoublePrecision(result.precision)
+                ? gpuInfo.peakFP64TFLOPS
+                : gpuInfo.peakFP32TFLOPS;
+
+        if (isValidTime(peakTflops)) {
+            if (isValidTime(result.tflopsKernel)) {
+                result.peakUtilizationKernelPct =
+                    result.tflopsKernel / peakTflops * 100.0;
+            }
+
+            if (isValidTime(result.tflopsTotal)) {
+                result.peakUtilizationTotalPct =
+                    result.tflopsTotal / peakTflops * 100.0;
+            }
+        }
+    }
+
+    // Для каждого алгоритма находим соответствующий Naive.
+    for (auto& result : results) {
+        if (!result.verified) {
+            continue;
+        }
+
+        const BenchmarkResult* naive = nullptr;
+
+        for (const auto& candidate : results) {
+            const bool sameConfiguration =
+                candidate.N == result.N &&
+                candidate.blockSize == result.blockSize &&
+                candidate.precision == result.precision &&
+                candidate.strategy == result.strategy;
+
+            if (sameConfiguration &&
+                candidate.algorithm == "Naive" &&
+                candidate.verified) {
+                naive = &candidate;
+                break;
+            }
+        }
+
+        // Без корректного Naive нельзя рассчитать
+        // относительное ускорение алгоритма.
+        if (naive == nullptr) {
+            continue;
+        }
+
+        // Speedup относительно Naive по времени Kernel.
+        if (isValidTime(naive->kernelMedian) &&
+            isValidTime(result.kernelMedian)) {
+
+            result.speedupNaiveKernel =
+                naive->kernelMedian / result.kernelMedian;
+        }
+
+        // Speedup относительно Naive по полному времени.
+        if (isValidTime(naive->totalMedian) &&
+            isValidTime(result.totalMedian)) {
+
+            result.speedupNaiveTotal =
+                naive->totalMedian / result.totalMedian;
+        }
+
+        // Относительная эффективность по числу потоков.
+        const double threads =
+            static_cast<double>(result.threadsPerBlock);
+
+        if (threads > 0.0) {
+            if (result.speedupNaiveKernel > 0.0) {
+                result.efficiencyKernelPct =
+                    result.speedupNaiveKernel / threads * 100.0;
+            }
+
+            if (result.speedupNaiveTotal > 0.0) {
+                result.efficiencyTotalPct =
+                    result.speedupNaiveTotal / threads * 100.0;
+            }
+        }
+    }
+}
+
+

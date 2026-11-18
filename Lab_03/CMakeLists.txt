@@ -20,12 +20,18 @@ endif()
 # Compute Capability:
 # Turing = 7.5, Ampere = 8.6, Ada = 8.9, Blackwell = 12.0
 # ==============================================================================
+
+# ==============================================================================
+# Настройка архитектуры GPU
+# ==============================================================================
 set(LAB_CUDA_ARCHS "" CACHE STRING
-    "CUDA architectures, e.g. 89 or '80;89'. Empty = auto-detect all supported")
-option(MATRIX_NATIVE_CPU "Use -march=native for host code (disable if building on login node)" ON)
+    "CUDA architectures, e.g. 89 or '80;89'. Empty = auto-detect")
+
+option(MATRIX_NATIVE_CPU
+    "Use -march=native for host code (disable if building on login node)" ON)
+
 set(CUDA_ARCH_CANDIDATES 50 52 53 60 61 62 70 72 75 80 86 87 89 90 120)
 
-# Получаем список архитектур, поддерживаемых установленным NVCC
 execute_process(
     COMMAND ${CMAKE_CUDA_COMPILER} --list-gpu-arch
     OUTPUT_VARIABLE CUDA_SUPPORTED_ARCHS
@@ -40,11 +46,25 @@ if(NOT CUDA_ARCH_RESULT EQUAL 0)
     )
 endif()
 
-set(CUDA_ARCH_LIST "")
+if(NOT CUDA_SUPPORTED_ARCHS MATCHES "compute_[0-9]+")
+    message(FATAL_ERROR
+        "NVCC returned an unexpected architecture list:\n${CUDA_SUPPORTED_ARCHS}"
+    )
+endif()
 
 if(LAB_CUDA_ARCHS)
     set(CMAKE_CUDA_ARCHITECTURES ${LAB_CUDA_ARCHS})
+
+    foreach(ARCH IN LISTS CMAKE_CUDA_ARCHITECTURES)
+        if(NOT CUDA_SUPPORTED_ARCHS MATCHES "compute_${ARCH}([^0-9]|$)")
+            message(FATAL_ERROR
+                "CUDA architecture ${ARCH} is not supported by current NVCC."
+            )
+        endif()
+    endforeach()
 else()
+    set(CUDA_ARCH_LIST "")
+
     foreach(ARCH IN LISTS CUDA_ARCH_CANDIDATES)
         if(CUDA_SUPPORTED_ARCHS MATCHES "compute_${ARCH}([^0-9]|$)")
             list(APPEND CUDA_ARCH_LIST ${ARCH})
@@ -54,22 +74,13 @@ else()
             )
         endif()
     endforeach()
-endif()
 
-if(NOT CUDA_ARCH_LIST)
-    message(FATAL_ERROR
-        "No supported CUDA architectures found!"
-    )
-endif()
+    if(NOT CUDA_ARCH_LIST)
+        message(FATAL_ERROR "No supported CUDA architectures found!")
+    endif()
 
-if(NOT CUDA_SUPPORTED_ARCHS MATCHES "compute_[0-9]+")
-    message(FATAL_ERROR
-        "NVCC returned an unexpected architecture list:\n"
-        "${CUDA_SUPPORTED_ARCHS}"
-    )
+    set(CMAKE_CUDA_ARCHITECTURES ${CUDA_ARCH_LIST})
 endif()
-
-set(CMAKE_CUDA_ARCHITECTURES ${CUDA_ARCH_LIST})
 
 message(STATUS "Selected CUDA architectures: ${CMAKE_CUDA_ARCHITECTURES}")
 

@@ -206,7 +206,6 @@ int main(int argc, char** argv) {
     int blockSize = TILE_SIZE;
 
     if (!parseArguments(argc, argv, matrixSizes, singleRun, blockSize)) {
-        // --help также завершает работу через этот путь.
         return (argc == 2 &&
                 (std::string_view(argv[1]) == "--help" ||
                  std::string_view(argv[1]) == "-h"))
@@ -214,7 +213,6 @@ int main(int argc, char** argv) {
             : EXIT_FAILURE;
     }
     setBlockSize(blockSize);
-
     std::srand(42);
 
     std::cout << std::fixed << std::setprecision(6);
@@ -226,6 +224,8 @@ int main(int argc, char** argv) {
     }
 
     printGPUInfo();
+    const GPUInfo gpuInfo = getGPUInfo();
+
     std::cout << "Block size: " << blockSize << " x " << blockSize << '\n';
     std::cout << "Using block size: " << getBlockSize() << '\n';
 
@@ -272,7 +272,7 @@ int main(int argc, char** argv) {
         (singleRun ? "_N" + std::to_string(matrixSizes.front()) : "") +
         ".csv";
 
-    std::ofstream csv(csvFileName);
+    std::ofstream csv(csvFileName, std::ios::out | std::ios::trunc);
 
     if (!csv.is_open()) {
         std::cerr << "Cannot open CSV file: "
@@ -281,6 +281,14 @@ int main(int argc, char** argv) {
     }
 
     writeCSVHeader(csv);
+
+    const auto printMetric = [](double value) {
+        if (value > 0.0) {
+            std::cout << value;
+        } else {
+            std::cout << "N/A";
+        }
+    };
 
     for (int N : matrixSizes) {
         std::cout << "\n====================================\n";
@@ -310,10 +318,23 @@ int main(int argc, char** argv) {
                 << "Independent sampled CPU verification will be used.\n";
         }
 
+        std::vector<BASE_TYPE> C_cpu;
+
+        std::cout << "\nBenchmarking CPU baseline...\n";
+
+        const double cpuBaselineMs =
+            benchmarkCPU(A, B, C_cpu, N);
+
+        std::cout << "CPU baseline: "
+                  << cpuBaselineMs << " ms\n";
+
         for (MemoryStrategy strategy : strategies) {
             std::cout << "\nMemory strategy: "
                       << strategyName(strategy)
                       << '\n';
+
+            std::vector<BenchmarkResult> strategyResults;
+            strategyResults.reserve(algorithms.size());
 
             for (Algorithm algorithm : algorithms) {
                 std::cout << "  Algorithm: "
@@ -326,7 +347,10 @@ int main(int argc, char** argv) {
                 std::vector<double> d2hTimes;
                 std::vector<double> totalTimes;
 
-                bool verified = true;
+                h2dTimes.reserve(NUM_REPEATS);
+                kernelTimes.reserve(NUM_REPEATS);
+                d2hTimes.reserve(NUM_REPEATS);
+                totalTimes.reserve(NUM_REPEATS);
 
                 // Прогревочные запуски не включаются в статистику.
                 for (int repeat = 0;
@@ -358,6 +382,7 @@ int main(int argc, char** argv) {
                     totalTimes.push_back(current.total);
                 }
 
+                bool verified = false;
                 // Проверка результата после последнего измерительного запуска.
                 if (useCPUReference) {
                     verified = verifyResult(
@@ -378,9 +403,12 @@ int main(int argc, char** argv) {
 
                 result.N = N;
                 result.blockSize = getBlockSize();
+                result.precision = kPrecisionName;
                 result.strategy = strategyName(strategy);
                 result.algorithm = algorithmName(algorithm);
-                result.precision = kPrecisionName;
+
+                result.verified = verified;
+                result.cpuMs = cpuBaselineMs;
 
                 result.h2dMedian = median(h2dTimes);
                 result.kernelMedian = median(kernelTimes);
@@ -388,24 +416,103 @@ int main(int argc, char** argv) {
                 result.totalMedian = median(totalTimes);
 
                 result.totalMin = minimum(totalTimes);
-                result.verified = verified;
-
-                const double flops = 2.0 * N * N * N;
-                result.gflopsKernel = result.kernelMedian > 0.0
-                    ? flops / (result.kernelMedian * 1.0e6) : 0.0;
-                result.gflopsTotal = result.totalMedian > 0.0
-                    ? flops / (result.totalMedian * 1.0e6) : 0.0;
-
-                writeCSVRow(csv, result);
-                csv.flush();
+                strategyResults.push_back(result);
 
                 std::cout
                     << (verified ? "OK" : "FAILED")
                     << " | H2D: " << result.h2dMedian
                     << " ms | Kernel: " << result.kernelMedian
-                    << " ms (" << result.gflopsKernel << " GFLOPS)" << " | D2H: " << result.d2hMedian
+                    << " ms | D2H: " << result.d2hMedian
                     << " ms | Total: " << result.totalMedian
                     << " ms\n";
+            }
+            // -----------------------------------------------------
+            // 4. Расчёт производных метрик.
+            // -----------------------------------------------------
+
+            calculateBenchmarkMetrics(
+                strategyResults,
+                gpuInfo
+            );
+
+            // -----------------------------------------------------
+            // 5. Запись CSV и расширенный вывод.
+            // -----------------------------------------------------
+
+            for (const BenchmarkResult& result : strategyResults) {
+                writeCSVRow(csv, result);
+                csv.flush();
+
+                std::cout
+                    << "\n  [" << result.algorithm << "] "
+                    << (result.verified ? "VERIFIED" : "NOT VERIFIED")
+                    << '\n';
+
+                std::cout
+                    << "    H2D: "
+                    << result.h2dMedian << " ms"
+                    << " | Equivalent: "
+                    << result.equivalentGflopsH2D
+                    << " GFLOPS\n";
+
+                std::cout
+                    << "    Kernel: "
+                    << result.kernelMedian << " ms"
+                    << " | GFLOPS: "
+                    << result.gflopsKernel
+                    << " | TFLOPS: "
+                    << result.tflopsKernel
+                    << '\n';
+
+                std::cout
+                    << "    D2H: "
+                    << result.d2hMedian << " ms"
+                    << " | Equivalent: "
+                    << result.equivalentGflopsD2H
+                    << " GFLOPS\n";
+
+                std::cout
+                    << "    Total: "
+                    << result.totalMedian << " ms"
+                    << " | Min: "
+                    << result.totalMin << " ms"
+                    << " | GFLOPS: "
+                    << result.gflopsTotal
+                    << " | TFLOPS: "
+                    << result.tflopsTotal
+                    << '\n';
+
+                std::cout
+                    << "    CPU baseline: "
+                    << result.cpuMs << " ms\n";
+
+                std::cout << "    CPU speedup (Kernel): ";
+                printMetric(result.speedupCPUKernel);
+                std::cout << "x | CPU speedup (Total): ";
+                printMetric(result.speedupCPUTotal);
+                std::cout << "x\n";
+
+                std::cout << "    Naive speedup (Kernel): ";
+                printMetric(result.speedupNaiveKernel);
+                std::cout << "x | Naive speedup (Total): ";
+                printMetric(result.speedupNaiveTotal);
+                std::cout << "x\n";
+
+                std::cout << "    Relative efficiency (Kernel): ";
+                printMetric(result.efficiencyKernelPct);
+                std::cout << "% | Relative efficiency (Total): ";
+                printMetric(result.efficiencyTotalPct);
+                std::cout << "%\n";
+
+                if (result.peakUtilizationKernelPct > 0.0 ||
+                    result.peakUtilizationTotalPct > 0.0) {
+
+                    std::cout << "    Peak utilization (Kernel): ";
+                    printMetric(result.peakUtilizationKernelPct);
+                    std::cout << "% | Peak utilization (Total): ";
+                    printMetric(result.peakUtilizationTotalPct);
+                    std::cout << "%\n";
+                }
             }
         }
     }

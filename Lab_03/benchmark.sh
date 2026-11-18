@@ -6,52 +6,73 @@ SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 RESULTS_DIR="$SCRIPT_DIR/results"
 
 BUILDS=(
-    "float:build-float"
-    "double:build-double"
+    "float:build-float:f32"
+    "double:build-double:f64"
 )
+
+BLOCK_SIZES=(2 4 8 16 32)
 
 mkdir -p "$RESULTS_DIR"
 
 echo "========================================================"
 echo "  CUDA Matrix Multiplication Benchmark"
 echo "  Precision: float + double"
-echo "  Matrix sizes are taken from config.hpp (MATRIX_SIZES)"
-echo "  Repeats and warmup are handled by the C++ program"
+echo "  Block sizes: ${BLOCK_SIZES[*]}"
+echo "  Matrix sizes: config.hpp (MATRIX_SIZES)"
+echo "  Warmup and repeats: handled by the C++ program"
 echo "========================================================"
 
 for BUILD in "${BUILDS[@]}"; do
-    PRECISION="${BUILD%%:*}"
-    BUILD_DIR_NAME="${BUILD#*:}"
+    IFS=':' read -r PRECISION BUILD_DIR_NAME PRECISION_TAG <<< "$BUILD"
 
     BUILD_DIR="$SCRIPT_DIR/$BUILD_DIR_NAME"
     EXECUTABLE="$BUILD_DIR/Lab_03"
-    CSV_SOURCE="$BUILD_DIR/cuda_lab3_results.csv"
-    CSV_DESTINATION="$RESULTS_DIR/cuda_lab3_${PRECISION}_results.csv"
 
     echo
-    echo "--------------------------------------------------------"
+    echo "========================================================"
     echo "Running $PRECISION benchmark"
-    echo "Executable: $EXECUTABLE"
-    echo "--------------------------------------------------------"
+    echo "Build directory: $BUILD_DIR"
+    echo "========================================================"
 
     if [[ ! -x "$EXECUTABLE" ]]; then
-        echo "Error: executable not found or not executable: $EXECUTABLE" >&2
-        echo "Build the $PRECISION configuration first." >&2
+        echo "Error: executable not found: $EXECUTABLE" >&2
         exit 1
     fi
 
-    (
-        cd "$BUILD_DIR"
-        ./Lab_03
-    )
+    PRECISION_RESULTS="$RESULTS_DIR/$PRECISION"
+    mkdir -p "$PRECISION_RESULTS"
 
-    if [[ ! -s "$CSV_SOURCE" ]]; then
-        echo "Error: results CSV was not created or is empty: $CSV_SOURCE" >&2
-        exit 1
-    fi
+    for BLOCK in "${BLOCK_SIZES[@]}"; do
 
-    cp -f "$CSV_SOURCE" "$CSV_DESTINATION"
-    echo "Saved: $CSV_DESTINATION"
+        CSV_NAME="cuda_lab3_${PRECISION_TAG}_b${BLOCK}.csv"
+        CSV_SOURCE="$BUILD_DIR/$CSV_NAME"
+        CSV_DESTINATION="$PRECISION_RESULTS/$CSV_NAME"
+
+        echo
+        echo "--------------------------------------------------------"
+        echo "Precision: $PRECISION"
+        echo "Block size: $BLOCK x $BLOCK"
+        echo "Command: ./Lab_03 all $BLOCK"
+        echo "--------------------------------------------------------"
+
+        # Remove only the previous result for this configuration.
+        rm -f "$CSV_SOURCE"
+
+        (
+            cd "$BUILD_DIR"
+            ./Lab_03 all "$BLOCK"
+        )
+
+        if [[ ! -s "$CSV_SOURCE" ]]; then
+            echo "Error: expected CSV was not created or is empty:" >&2
+            echo "$CSV_SOURCE" >&2
+            exit 1
+        fi
+
+        cp -f "$CSV_SOURCE" "$CSV_DESTINATION"
+
+        echo "Saved: $CSV_DESTINATION"
+    done
 done
 
 echo
