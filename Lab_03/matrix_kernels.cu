@@ -217,6 +217,71 @@ double verificationTolerance(double referenceRms, int N)
          * std::max(referenceRms, 1.0);
 }
 
+/**
+ * @brief Проверяет полные строки результата: первую, среднюю, последнюю
+ *        и границы чанков потоковых стратегий.
+ *
+ * @details Эталон строки считается в double по схеме строка A × B с проходом
+ *          по строкам B (последовательный доступ), O(N^2) на строку.
+ */
+bool verifyRows(
+    const std::vector<BASE_TYPE>& result,
+    const std::vector<BASE_TYPE>& A,
+    const std::vector<BASE_TYPE>& B,
+    int N)
+{
+    std::vector<int> rows = {0, N / 2, N - 1};
+    const int chunk = (N + NUM_STREAMS - 1) / NUM_STREAMS;
+    for (int c = 0; c < NUM_STREAMS; ++c) {
+        const int first = c * chunk;
+        if (first >= N) break;
+        rows.push_back(first);
+        rows.push_back(std::min(N, first + chunk) - 1);
+    }
+    std::sort(rows.begin(), rows.end());
+    rows.erase(std::unique(rows.begin(), rows.end()), rows.end());
+
+    const std::size_t n = static_cast<std::size_t>(N);
+    std::vector<std::vector<double>> reference;
+    reference.reserve(rows.size());
+    double sumSq = 0.0;
+
+    for (int row : rows) {
+        std::vector<double> acc(n, 0.0);
+        for (std::size_t k = 0; k < n; ++k) {
+            const double a = static_cast<double>(
+                A[static_cast<std::size_t>(row) * n + k]);
+            const BASE_TYPE* bRow = B.data() + k * n;
+            for (std::size_t col = 0; col < n; ++col) {
+                acc[col] += a * static_cast<double>(bRow[col]);
+            }
+        }
+        for (double v : acc) sumSq += v * v;
+        reference.push_back(std::move(acc));
+    }
+
+    const double rms = std::sqrt(
+        sumSq / (static_cast<double>(rows.size()) * static_cast<double>(n)));
+    const double tolerance = verificationTolerance(rms, N);
+
+    for (std::size_t r = 0; r < rows.size(); ++r) {
+        for (std::size_t col = 0; col < n; ++col) {
+            const double gpu = static_cast<double>(
+                result[static_cast<std::size_t>(rows[r]) * n + col]);
+            const double diff = std::fabs(gpu - reference[r][col]);
+            if (!(diff <= tolerance)) {
+                std::cerr << "Row verification failed at (" << rows[r] << ", "
+                          << col << "): result = " << gpu
+                          << ", reference = " << reference[r][col]
+                          << ", difference = " << diff
+                          << ", tolerance = " << tolerance << '\n';
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
 } // namespace
 
 
@@ -224,8 +289,8 @@ double verificationTolerance(double referenceRms, int N)
  * @brief Проверяет корректность результата умножения матриц.
  *
  * Сравнивает вычисленную матрицу с эталонной.
- * Для сравнения используется комбинированный абсолютный
- * и относительный допуск, значения которых зависят от BASE_TYPE.
+ * Для сравнения используется единый абсолютный допуск, масштабируемый по RMS эталона и √N, 
+ * значения которых зависят от BASE_TYPE.
  *
  * Дополнительно проверяются размеры матриц и наличие
  * конечных числовых значений. При обнаружении ошибки
@@ -443,7 +508,7 @@ bool verifySampled(
         }
     }
 
-    return true;
+    return verifyRows(result, A, B, N);
 }
 
 // ============================================================

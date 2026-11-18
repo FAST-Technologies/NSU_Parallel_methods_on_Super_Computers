@@ -169,6 +169,57 @@ double eventElapsed(cudaEvent_t start, cudaEvent_t stop)
     return static_cast<double>(milliseconds);
 }
 
+/**
+ * @brief Разделяемый cuBLAS-handle: создаётся один раз, чтобы cublasCreate
+ *        и ленивая инициализация не попадали в каждое измерение.
+ */
+cublasHandle_t sharedHandle()
+{
+    struct Holder {
+        cublasHandle_t h = nullptr;
+        Holder() { CUBLAS_CHECK(cublasCreate(&h)); }
+        ~Holder() { if (h != nullptr) { cublasDestroy(h); } }
+    };
+    static Holder holder;
+    return holder.h;
+}
+
+/** @brief Пул handle'ов, по одному на CUDA stream (создаётся один раз). */
+std::vector<cublasHandle_t>& streamHandlePool(int count)
+{
+    struct Pool {
+        std::vector<cublasHandle_t> h;
+        ~Pool() { for (auto x : h) { if (x != nullptr) { cublasDestroy(x); } } }
+    };
+    static Pool pool;
+    while (static_cast<int>(pool.h.size()) < count) {
+        cublasHandle_t handle = nullptr;
+        CUBLAS_CHECK(cublasCreate(&handle));
+        pool.h.push_back(handle);
+    }
+    return pool.h;
+}
+
+/**
+ * @brief Prefetch managed-памяти на GPU (toCpu=false) или на CPU (toCpu=true).
+ *
+ * @details Сигнатура cudaMemPrefetchAsync зависит от версии CUDA, а не от ОС:
+ *          в CUDA 13 принимается cudaMemLocation + flags.
+ */
+cudaError_t prefetchManaged(const void* ptr, std::size_t bytes, bool toCpu)
+{
+    int device = 0;
+    CUDA_CHECK(cudaGetDevice(&device));
+#if defined(CUDART_VERSION) && CUDART_VERSION >= 13000
+    cudaMemLocation location{};
+    location.type = toCpu ? cudaMemLocationTypeHost : cudaMemLocationTypeDevice;
+    location.id   = toCpu ? 0 : device;
+    return cudaMemPrefetchAsync(ptr, bytes, location, 0, nullptr);
+#else
+    return cudaMemPrefetchAsync(ptr, bytes, toCpu ? cudaCpuDeviceId : device, nullptr);
+#endif
+}
+
 // Текущий размер блока; по умолчанию берётся из config.hpp. 
 int g_blockSize = TILE_SIZE; 
 
@@ -267,9 +318,8 @@ void launchAlgorithm(
  *
  * Измеряются время передачи входных данных на GPU (H2D),
  * время выполнения алгоритма и время получения результата (D2H).
- * Полное время включает выделение и освобождение ресурсов GPU,
- * но не включает предварительное выделение pinned-буферов
- * и копирование исходных данных в них.
+ * Полное время включает выделение pinned-буферов и копирование данных в них и 
+ * обратно (для Pinned), выделение и освобождение ресурсов GPU. Создание cuBLAS-handle не входит.
  *
  * @param algorithm Алгоритм умножения матриц.
  * @param strategy Стратегия управления памятью.
@@ -291,7 +341,7 @@ Timing runFullMatrix(
 
     cublasHandle_t handle = nullptr;
     if (algorithm == Algorithm::cuBLAS) {
-        CUBLAS_CHECK(cublasCreate(&handle));
+        handle = sharedHandle();
     }
 
     const auto totalStart = Clock::now();
@@ -341,47 +391,15 @@ Timing runFullMatrix(
         timing.h2d = elapsedMilliseconds(fillStart, Clock::now());
 
         if (strategy == MemoryStrategy::UnifiedPrefetch) {
-            const auto transferStart = Clock::now();
+            const auto prefetchStart = Clock::now();
 
-            int gpuDevice = 0;
-            CUDA_CHECK(cudaGetDevice(&gpuDevice));
-
-            #ifdef __linux__
-
-            CUDA_CHECK(cudaMemPrefetchAsync(
-                d_A, matrixBytes, gpuDevice, nullptr
-            ));
-
-            CUDA_CHECK(cudaMemPrefetchAsync(
-                d_B, matrixBytes, gpuDevice, nullptr
-            ));
-
-            CUDA_CHECK(cudaMemPrefetchAsync(
-                d_C, matrixBytes, gpuDevice, nullptr
-            ));
-            #elif defined(_WIN32)
-                cudaMemLocation gpuLocation{};
-                gpuLocation.type = cudaMemLocationTypeDevice;
-                gpuLocation.id = gpuDevice;
-
-                CUDA_CHECK(cudaMemPrefetchAsync(
-                    d_A, matrixBytes, gpuLocation, 0, nullptr
-                ));
-
-                CUDA_CHECK(cudaMemPrefetchAsync(
-                    d_B, matrixBytes, gpuLocation, 0, nullptr
-                ));
-
-                CUDA_CHECK(cudaMemPrefetchAsync(
-                    d_C, matrixBytes, gpuLocation, 0, nullptr
-                ));
-            #endif
+            CUDA_CHECK(prefetchManaged(d_A, matrixBytes, false));
+            CUDA_CHECK(prefetchManaged(d_B, matrixBytes, false));
+            CUDA_CHECK(prefetchManaged(d_C, matrixBytes, false));
 
             CUDA_CHECK(cudaDeviceSynchronize());
 
-            timing.h2d = elapsedMilliseconds(
-                transferStart, Clock::now()
-            );
+            timing.h2d += elapsedMilliseconds(prefetchStart, Clock::now());
         }
     }
     else {
@@ -425,27 +443,9 @@ Timing runFullMatrix(
     const auto downloadStart = Clock::now();
 
     if (strategy == MemoryStrategy::UnifiedPrefetch) {
-        #ifdef __linux__
-        CUDA_CHECK(cudaMemPrefetchAsync(
-            d_C, matrixBytes, cudaCpuDeviceId, nullptr
-        ));
-        #elif defined(_WIN32)
-            cudaMemLocation cpuLocation{};
-            cpuLocation.type = cudaMemLocationTypeHost;
-
-            CUDA_CHECK(cudaMemPrefetchAsync(
-                d_C, matrixBytes, cpuLocation, 0, nullptr
-            ));
-        #endif
-
+        CUDA_CHECK(prefetchManaged(d_C, matrixBytes, true));
         CUDA_CHECK(cudaDeviceSynchronize());
-
-        CUDA_CHECK(cudaMemcpy(
-            C.data(),
-            d_C,
-            matrixBytes,
-            cudaMemcpyDeviceToHost
-        ));
+        std::copy(d_C, d_C + matrixElements, C.begin());
         timing.d2h = elapsedMilliseconds(
             downloadStart, Clock::now()
         );
@@ -485,9 +485,6 @@ Timing runFullMatrix(
     }
 
     timing.total = elapsedMilliseconds(totalStart, Clock::now());
-    if (handle != nullptr) {
-        CUBLAS_CHECK(cublasDestroy(handle));
-    }
     return timing;
 }
 
@@ -507,8 +504,7 @@ Timing runFullMatrix(
  *
  * Полное время измеряется отдельно и включает создание streams,
  * выделение буферов, передачу B, обработку частей и освобождение
- * ресурсов. Выделение и заполнение pinned-буфера B выполняются
- * до начала измерения полного времени.
+ * ресурсов. 
  *
  * @param algorithm Алгоритм умножения матриц.
  * @param strategy Стратегия потоковой передачи данных.
@@ -545,6 +541,12 @@ Timing runStreaming(
 
     std::vector<cudaStream_t> streams(streamCount);
     std::vector<cublasHandle_t> handles(streamCount, nullptr);
+    if (algorithm == Algorithm::cuBLAS) {
+        auto& pool = streamHandlePool(streamCount);
+        for (int i = 0; i < streamCount; ++i) {
+            handles[i] = pool[i];
+        }
+    }
 
     std::vector<BASE_TYPE*> d_A(streamCount, nullptr);
     std::vector<BASE_TYPE*> d_C(streamCount, nullptr);
@@ -597,13 +599,10 @@ Timing runStreaming(
             std::copy(src, src + elems, pinned_A[i]);
         }
         if (algorithm == Algorithm::cuBLAS) {
-            CUBLAS_CHECK(cublasCreate(&handles[i]));
             CUBLAS_CHECK(cublasSetStream(handles[i], streams[i]));
         }
     }
     CUDA_CHECK(cudaDeviceSynchronize());
-
-    const auto bUploadStart = Clock::now();
 
     CUDA_CHECK(cudaMalloc(&d_B, matrixBytes));
     for (int i = 0; i < streamCount; ++i) {
@@ -613,6 +612,9 @@ Timing runStreaming(
         CUDA_CHECK(cudaMalloc(&d_A[i], chunkBytes));
         CUDA_CHECK(cudaMalloc(&d_C[i], chunkBytes));
     }
+    CUDA_CHECK(cudaDeviceSynchronize());
+
+    const auto bUploadStart = Clock::now();
 
     CUDA_CHECK(cudaMemcpyAsync(
         d_B,
@@ -737,7 +739,7 @@ Timing runStreaming(
     // Освобождение ресурсов.
     for (int i = 0; i < streamCount; ++i) {
         if (handles[i] != nullptr) {
-            CUBLAS_CHECK(cublasDestroy(handles[i]));
+            CUBLAS_CHECK(cublasSetStream(handles[i], nullptr));
         }
 
         if (d_A[i] != nullptr) {
@@ -853,6 +855,8 @@ void printGPUInfo()
     CUDA_CHECK(cudaGetDevice(&device));
     CUDA_CHECK(cudaGetDeviceProperties(&properties, device));
 
+    bool result = properties.kernelExecTimeoutEnabled ? "true" : "false";
+
     std::cout << "\n========== GPU INFORMATION ==========\n";
     std::cout << "Device: " << properties.name << '\n';
     std::cout << "Compute Capability: "
@@ -860,6 +864,14 @@ void printGPUInfo()
     std::cout << "Global Memory: "
               << properties.totalGlobalMem / (1024.0 * 1024.0)
               << " MB\n";
+    std::cout << "Shared memory per block: "
+              << properties.sharedMemPerBlock << '\n';
+    std::cout << "Registers per block: "
+              << properties.regsPerBlock << '\n';
+    std::cout << "Warp size: "
+              << properties.warpSize << '\n';
+    std::cout << "Memory pitch: "
+              << properties.memPitch << '\n';
     std::cout << "Multiprocessors: "
               << properties.multiProcessorCount << '\n';
     std::cout << "Max Threads per Block: "
@@ -868,6 +880,22 @@ void printGPUInfo()
               << properties.concurrentManagedAccess << '\n';
     std::cout << "Pageable Memory Access: "
               << properties.pageableMemoryAccess << '\n';
+    std::cout << "Max threads dimensions: "
+              << properties.maxThreadsDim[0] << ' ' << properties.maxThreadsDim[1] << ' ' << properties.maxThreadsDim[2] <<'\n';
+    std::cout << "Max grid size: "
+              << properties.maxGridSize[0] << ' ' << properties.maxGridSize[1] << ' ' << properties.maxGridSize[2] <<'\n';
+    std::cout << "Clock rate: "
+              << properties.clockRate << '\n'; 
+    std::cout << "Total constant memory: "
+              << properties.totalConstMem << '\n';          
+    std::cout << "Texture alignment: "
+              << properties.textureAlignment << '\n';
+    std::cout << "Device overlap: "
+              << properties.deviceOverlap << '\n';
+    std::cout << "Multiprocessor count: "
+              << properties.multiProcessorCount << '\n';
+    std::cout << "Kernel execution timeout enabled: "
+              << result << '\n';
     std::cout << "=====================================\n\n";
 }
 
@@ -975,9 +1003,10 @@ double minimum(const std::vector<double>& values)
  */
 void writeCSVHeader(std::ofstream& file)
 {
-    file << "N,Block,Strategy,Algorithm,"
+    file << "N,Block,Precision,Strategy,Algorithm,"
          << "H2D_ms,Kernel_ms,D2H_ms,"
-         << "TotalMedian_ms,TotalMin_ms,Verified\n";
+         << "TotalMedian_ms,TotalMin_ms,"
+         << "GFLOPS_Kernel,GFLOPS_Total,Verified\n";
 }
 
 /**
@@ -990,17 +1019,20 @@ void writeCSVRow(
     const BenchmarkResult& result)
 {
     file << std::fixed << std::setprecision(6)
-     << result.N << ','
-     << result.blockSize << ','
-     << result.strategy << ','
-     << result.algorithm << ','
-     << result.h2dMedian << ','
-     << result.kernelMedian << ','
-     << result.d2hMedian << ','
-     << result.totalMedian << ','
-     << result.totalMin << ','
-     << (result.verified ? "true" : "false")
-     << '\n';
+         << result.N << ','
+         << result.blockSize << ','
+         << result.precision << ','
+         << result.strategy << ','
+         << result.algorithm << ','
+         << result.h2dMedian << ','
+         << result.kernelMedian << ','
+         << result.d2hMedian << ','
+         << result.totalMedian << ','
+         << result.totalMin << ','
+         << result.gflopsKernel << ','
+         << result.gflopsTotal << ','
+         << (result.verified ? "true" : "false")
+         << '\n';
 }
 
 bool isSupportedBlockSize(int blockSize)

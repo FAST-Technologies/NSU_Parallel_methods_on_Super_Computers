@@ -1,0 +1,709 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lab_03: cuBLAS Parallel Programming: Файл benchmark.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Lab_03: cuBLAS Parallel Programming<span id="projectnumber">&#160;3.0</span>
+   </div>
+   <div id="projectbrief">Реализация умножения матриц методами Naive, Tiled, cuBLAS и исследование влияния размеров блоков и решёток на производительность</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Классы</a> &#124;
+<a href="#enum-members">Перечисления</a> &#124;
+<a href="#func-members">Функции</a>  </div>
+  <div class="headertitle"><div class="title">Файл benchmark.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Интерфейс подсистемы бенчмаркинга CUDA.  
+<a href="#details">Подробнее...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="config_8hpp_source.html">config.hpp</a>&quot;</code><br />
+<code>#include &lt;fstream&gt;</code><br />
+<code>#include &lt;string&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
+</div>
+<p><a href="benchmark_8hpp_source.html">См. исходные тексты.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Классы</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTiming.html">Timing</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Временные характеристики одного запуска бенчмарка.  <a href="structTiming.html#details">Подробнее...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structBenchmarkResult.html">BenchmarkResult</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Итоговые статистические данные одного эксперимента.  <a href="structBenchmarkResult.html#details">Подробнее...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+Перечисления</h2></td></tr>
+<tr class="memitem:a5e41188f16a381c8915a17a22228e691" id="r_a5e41188f16a381c8915a17a22228e691"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="benchmark_8hpp.html#a5e41188f16a381c8915a17a22228e691">Algorithm</a> { <a class="el" href="benchmark_8hpp.html#a5e41188f16a381c8915a17a22228e691a512d6102506da4ae0c35312fafcf7376">Naive</a>
+, <a class="el" href="benchmark_8hpp.html#a5e41188f16a381c8915a17a22228e691af44f2804e0a70720b9c3bb9a9e9a1f3a">StaticTiled</a>
+, <a class="el" href="benchmark_8hpp.html#a5e41188f16a381c8915a17a22228e691a2272f7d3ad5af33ea67a00761e7712fe">DynamicTiled</a>
+, <a class="el" href="benchmark_8hpp.html#a5e41188f16a381c8915a17a22228e691ad92ef06e9564a9db573d075b4220057e">cuBLAS</a>
+ }</td></tr>
+<tr class="memdesc:a5e41188f16a381c8915a17a22228e691"><td class="mdescLeft">&#160;</td><td class="mdescRight">Вычислительный алгоритм умножения матриц.  <a href="benchmark_8hpp.html#a5e41188f16a381c8915a17a22228e691">Подробнее...</a><br /></td></tr>
+<tr class="separator:a5e41188f16a381c8915a17a22228e691"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e80cefbbba81052a3a99c7f3829d809" id="r_a2e80cefbbba81052a3a99c7f3829d809"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="benchmark_8hpp.html#a2e80cefbbba81052a3a99c7f3829d809">MemoryStrategy</a> { <br />
+&#160;&#160;<a class="el" href="benchmark_8hpp.html#a2e80cefbbba81052a3a99c7f3829d809aa0acb7df2039d4c9948b5d752f5b3001">Pageable</a>
+, <a class="el" href="benchmark_8hpp.html#a2e80cefbbba81052a3a99c7f3829d809a3c5e891bff07947cbae2fda89162df9f">Pinned</a>
+, <a class="el" href="benchmark_8hpp.html#a2e80cefbbba81052a3a99c7f3829d809a48d3dc9f097bed90d1f6658a36a85eef">PageableStreams</a>
+, <a class="el" href="benchmark_8hpp.html#a2e80cefbbba81052a3a99c7f3829d809ad99be4eaa4ce9dcdf8f414e09870c7db">PinnedStreams</a>
+, <br />
+&#160;&#160;<a class="el" href="benchmark_8hpp.html#a2e80cefbbba81052a3a99c7f3829d809a499411ce32a9abced5a07808a9814bee">UnifiedPrefetch</a>
+, <a class="el" href="benchmark_8hpp.html#a2e80cefbbba81052a3a99c7f3829d809a76747ee5c157cde82f93ce422bc07412">UnifiedManaged</a>
+<br />
+ }</td></tr>
+<tr class="memdesc:a2e80cefbbba81052a3a99c7f3829d809"><td class="mdescLeft">&#160;</td><td class="mdescRight">Стратегия размещения и передачи данных между CPU и GPU.  <a href="benchmark_8hpp.html#a2e80cefbbba81052a3a99c7f3829d809">Подробнее...</a><br /></td></tr>
+<tr class="separator:a2e80cefbbba81052a3a99c7f3829d809"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Функции</h2></td></tr>
+<tr class="memitem:af073a429645b8a1d8f947227a8efe6fe" id="r_af073a429645b8a1d8f947227a8efe6fe"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="benchmark_8hpp.html#af073a429645b8a1d8f947227a8efe6fe">algorithmName</a> (<a class="el" href="benchmark_8hpp.html#a5e41188f16a381c8915a17a22228e691">Algorithm</a> algorithm)</td></tr>
+<tr class="memdesc:af073a429645b8a1d8f947227a8efe6fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Возвращает текстовое имя вычислительного алгоритма.  <br /></td></tr>
+<tr class="separator:af073a429645b8a1d8f947227a8efe6fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb0bd7b260762376722c49a9e5e7a1b9" id="r_abb0bd7b260762376722c49a9e5e7a1b9"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="benchmark_8hpp.html#abb0bd7b260762376722c49a9e5e7a1b9">strategyName</a> (<a class="el" href="benchmark_8hpp.html#a2e80cefbbba81052a3a99c7f3829d809">MemoryStrategy</a> strategy)</td></tr>
+<tr class="memdesc:abb0bd7b260762376722c49a9e5e7a1b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Возвращает текстовое имя стратегии управления памятью.  <br /></td></tr>
+<tr class="separator:abb0bd7b260762376722c49a9e5e7a1b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c837d9fe92384cc90c1c34f4215cd71" id="r_a2c837d9fe92384cc90c1c34f4215cd71"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="benchmark_8hpp.html#a2c837d9fe92384cc90c1c34f4215cd71">printGPUInfo</a> ()</td></tr>
+<tr class="memdesc:a2c837d9fe92384cc90c1c34f4215cd71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Выводит информацию о текущем CUDA-устройстве.  <br /></td></tr>
+<tr class="separator:a2c837d9fe92384cc90c1c34f4215cd71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4bf014d2cf730d47b64c898441bf73be" id="r_a4bf014d2cf730d47b64c898441bf73be"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="benchmark_8hpp.html#a4bf014d2cf730d47b64c898441bf73be">isUnifiedPrefetchSupported</a> ()</td></tr>
+<tr class="memdesc:a4bf014d2cf730d47b64c898441bf73be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Проверяет поддержку Unified Memory prefetch текущим GPU.  <br /></td></tr>
+<tr class="separator:a4bf014d2cf730d47b64c898441bf73be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa590c644bb50d9cf7b53d7ce28119150" id="r_aa590c644bb50d9cf7b53d7ce28119150"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structTiming.html">Timing</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="benchmark_8hpp.html#aa590c644bb50d9cf7b53d7ce28119150">runOneCase</a> (<a class="el" href="benchmark_8hpp.html#a5e41188f16a381c8915a17a22228e691">Algorithm</a> algorithm, <a class="el" href="benchmark_8hpp.html#a2e80cefbbba81052a3a99c7f3829d809">MemoryStrategy</a> strategy, const std::vector&lt; <a class="el" href="config_8hpp.html#a1bcb5d803355eb62fbc2a80ffdda84c6">BASE_TYPE</a> &gt; &amp;A, const std::vector&lt; <a class="el" href="config_8hpp.html#a1bcb5d803355eb62fbc2a80ffdda84c6">BASE_TYPE</a> &gt; &amp;B, std::vector&lt; <a class="el" href="config_8hpp.html#a1bcb5d803355eb62fbc2a80ffdda84c6">BASE_TYPE</a> &gt; &amp;C, int N)</td></tr>
+<tr class="memdesc:aa590c644bb50d9cf7b53d7ce28119150"><td class="mdescLeft">&#160;</td><td class="mdescRight">Выполняет один эксперимент с выбранным алгоритмом и стратегией памяти.  <br /></td></tr>
+<tr class="separator:aa590c644bb50d9cf7b53d7ce28119150"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac53f324b7787b53efd4112e6f3220fad" id="r_ac53f324b7787b53efd4112e6f3220fad"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="benchmark_8hpp.html#ac53f324b7787b53efd4112e6f3220fad">writeCSVHeader</a> (std::ofstream &amp;file)</td></tr>
+<tr class="memdesc:ac53f324b7787b53efd4112e6f3220fad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Записывает заголовок CSV-файла с результатами экспериментов.  <br /></td></tr>
+<tr class="separator:ac53f324b7787b53efd4112e6f3220fad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77561e84b3994347081134dea514f85d" id="r_a77561e84b3994347081134dea514f85d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="benchmark_8hpp.html#a77561e84b3994347081134dea514f85d">writeCSVRow</a> (std::ofstream &amp;file, const <a class="el" href="structBenchmarkResult.html">BenchmarkResult</a> &amp;result)</td></tr>
+<tr class="memdesc:a77561e84b3994347081134dea514f85d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Записывает результаты одного эксперимента в CSV-файл.  <br /></td></tr>
+<tr class="separator:a77561e84b3994347081134dea514f85d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b262a05d5a7c374aa5032dd75181b76" id="r_a6b262a05d5a7c374aa5032dd75181b76"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="benchmark_8hpp.html#a6b262a05d5a7c374aa5032dd75181b76">median</a> (std::vector&lt; double &gt; values)</td></tr>
+<tr class="memdesc:a6b262a05d5a7c374aa5032dd75181b76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Вычисляет медиану набора измерений.  <br /></td></tr>
+<tr class="separator:a6b262a05d5a7c374aa5032dd75181b76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a693d66a5039293e133aaf8d8eeffb25c" id="r_a693d66a5039293e133aaf8d8eeffb25c"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="benchmark_8hpp.html#a693d66a5039293e133aaf8d8eeffb25c">minimum</a> (const std::vector&lt; double &gt; &amp;values)</td></tr>
+<tr class="memdesc:a693d66a5039293e133aaf8d8eeffb25c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Возвращает минимальное значение набора измерений.  <br /></td></tr>
+<tr class="separator:a693d66a5039293e133aaf8d8eeffb25c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7cdff9cee6d77dc23361827e0ce73a76" id="r_a7cdff9cee6d77dc23361827e0ce73a76"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="benchmark_8hpp.html#a7cdff9cee6d77dc23361827e0ce73a76">isSupportedBlockSize</a> (int blockSize)</td></tr>
+<tr class="memdesc:a7cdff9cee6d77dc23361827e0ce73a76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Проверяет, что размер блока поддерживается (2, 4, 8, 16, 32).  <br /></td></tr>
+<tr class="separator:a7cdff9cee6d77dc23361827e0ce73a76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2398b9286ce8c2f1d613577f1bc8e0ce" id="r_a2398b9286ce8c2f1d613577f1bc8e0ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="benchmark_8hpp.html#a2398b9286ce8c2f1d613577f1bc8e0ce">setBlockSize</a> (int blockSize)</td></tr>
+<tr class="memdesc:a2398b9286ce8c2f1d613577f1bc8e0ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Задаёт размер блока для всех последующих запусков. <br  />
+  <br /></td></tr>
+<tr class="separator:a2398b9286ce8c2f1d613577f1bc8e0ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abab7d820e3eedff695bfccb91b38457c" id="r_abab7d820e3eedff695bfccb91b38457c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="benchmark_8hpp.html#abab7d820e3eedff695bfccb91b38457c">getBlockSize</a> ()</td></tr>
+<tr class="memdesc:abab7d820e3eedff695bfccb91b38457c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Возвращает текущий размер блока.  <br /></td></tr>
+<tr class="separator:abab7d820e3eedff695bfccb91b38457c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>Интерфейс подсистемы бенчмаркинга CUDA. </p>
+<p>Содержит перечисления алгоритмов и стратегий памяти, структуры результатов измерений, а также объявления функций для запуска экспериментов, обработки статистики и сохранения результатов в CSV-файл. </p><dl class="section author"><dt>Автор</dt><dd>F.A.S.T. DEVELOPMENT aka Ямщиков Владимир, группа 26162. </dd></dl>
+<dl class="section date"><dt>Дата</dt><dd>15.11.2026. </dd></dl>
+<dl class="section version"><dt>Версия</dt><dd>2.0. </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="benchmark_8hpp_source.html">benchmark.hpp</a></p>
+</div><h2 class="groupheader">Перечисления</h2>
+<a id="a5e41188f16a381c8915a17a22228e691" name="a5e41188f16a381c8915a17a22228e691"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e41188f16a381c8915a17a22228e691">&#9670;&#160;</a></span>Algorithm</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="benchmark_8hpp.html#a5e41188f16a381c8915a17a22228e691">Algorithm</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Вычислительный алгоритм умножения матриц. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Элементы перечислений</th></tr><tr><td class="fieldname"><a id="a5e41188f16a381c8915a17a22228e691a512d6102506da4ae0c35312fafcf7376" name="a5e41188f16a381c8915a17a22228e691a512d6102506da4ae0c35312fafcf7376"></a>Naive&#160;</td><td class="fielddoc"><p>Наивное умножение с использованием глобальной памяти. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a5e41188f16a381c8915a17a22228e691af44f2804e0a70720b9c3bb9a9e9a1f3a" name="a5e41188f16a381c8915a17a22228e691af44f2804e0a70720b9c3bb9a9e9a1f3a"></a>StaticTiled&#160;</td><td class="fielddoc"><p>Блочное умножение со статической shared memory. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a5e41188f16a381c8915a17a22228e691a2272f7d3ad5af33ea67a00761e7712fe" name="a5e41188f16a381c8915a17a22228e691a2272f7d3ad5af33ea67a00761e7712fe"></a>DynamicTiled&#160;</td><td class="fielddoc"><p>Блочное умножение с динамической shared memory. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a5e41188f16a381c8915a17a22228e691ad92ef06e9564a9db573d075b4220057e" name="a5e41188f16a381c8915a17a22228e691ad92ef06e9564a9db573d075b4220057e"></a>cuBLAS&#160;</td><td class="fielddoc"><p>Умножение с использованием библиотеки NVIDIA cuBLAS. </p>
+</td></tr>
+</table>
+
+<p class="definition">См. определение в файле <a class="el" href="benchmark_8hpp_source.html">benchmark.hpp</a> строка <a class="el" href="benchmark_8hpp_source.html#l00026">26</a></p>
+
+</div>
+</div>
+<a id="a2e80cefbbba81052a3a99c7f3829d809" name="a2e80cefbbba81052a3a99c7f3829d809"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e80cefbbba81052a3a99c7f3829d809">&#9670;&#160;</a></span>MemoryStrategy</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="benchmark_8hpp.html#a2e80cefbbba81052a3a99c7f3829d809">MemoryStrategy</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Стратегия размещения и передачи данных между CPU и GPU. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Элементы перечислений</th></tr><tr><td class="fieldname"><a id="a2e80cefbbba81052a3a99c7f3829d809aa0acb7df2039d4c9948b5d752f5b3001" name="a2e80cefbbba81052a3a99c7f3829d809aa0acb7df2039d4c9948b5d752f5b3001"></a>Pageable&#160;</td><td class="fielddoc"><p>Обычная страничная память CPU и полная передача матриц. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a2e80cefbbba81052a3a99c7f3829d809a3c5e891bff07947cbae2fda89162df9f" name="a2e80cefbbba81052a3a99c7f3829d809a3c5e891bff07947cbae2fda89162df9f"></a>Pinned&#160;</td><td class="fielddoc"><p>Закреплённая страничная память CPU и полная передача матриц. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a2e80cefbbba81052a3a99c7f3829d809a48d3dc9f097bed90d1f6658a36a85eef" name="a2e80cefbbba81052a3a99c7f3829d809a48d3dc9f097bed90d1f6658a36a85eef"></a>PageableStreams&#160;</td><td class="fielddoc"><p>Обычная память CPU и передача частей матриц через CUDA streams. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a2e80cefbbba81052a3a99c7f3829d809ad99be4eaa4ce9dcdf8f414e09870c7db" name="a2e80cefbbba81052a3a99c7f3829d809ad99be4eaa4ce9dcdf8f414e09870c7db"></a>PinnedStreams&#160;</td><td class="fielddoc"><p>Закреплённая память CPU и передача частей матриц через CUDA streams. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a2e80cefbbba81052a3a99c7f3829d809a499411ce32a9abced5a07808a9814bee" name="a2e80cefbbba81052a3a99c7f3829d809a499411ce32a9abced5a07808a9814bee"></a>UnifiedPrefetch&#160;</td><td class="fielddoc"><p>Unified Memory с явным предварительным перемещением данных. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a2e80cefbbba81052a3a99c7f3829d809a76747ee5c157cde82f93ce422bc07412" name="a2e80cefbbba81052a3a99c7f3829d809a76747ee5c157cde82f93ce422bc07412"></a>UnifiedManaged&#160;</td><td class="fielddoc"><p>Unified Memory с автоматической миграцией страниц. </p>
+</td></tr>
+</table>
+
+<p class="definition">См. определение в файле <a class="el" href="benchmark_8hpp_source.html">benchmark.hpp</a> строка <a class="el" href="benchmark_8hpp_source.html#l00036">36</a></p>
+
+</div>
+</div>
+<h2 class="groupheader">Функции</h2>
+<a id="af073a429645b8a1d8f947227a8efe6fe" name="af073a429645b8a1d8f947227a8efe6fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af073a429645b8a1d8f947227a8efe6fe">&#9670;&#160;</a></span>algorithmName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char * algorithmName </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="benchmark_8hpp.html#a5e41188f16a381c8915a17a22228e691">Algorithm</a>&#160;</td>
+          <td class="paramname"><em>algorithm</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Возвращает текстовое имя вычислительного алгоритма. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">algorithm</td><td>Выбранный алгоритм. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Строковое представление алгоритма.</dd></dl>
+<p>Возвращает текстовое имя вычислительного алгоритма.</p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">algorithm</td><td>Идентификатор алгоритма. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Строковое название алгоритма. </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="benchmark_8cu_source.html">benchmark.cu</a> строка <a class="el" href="benchmark_8cu_source.html#l00790">790</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="benchmark_8hpp.html#a5e41188f16a381c8915a17a22228e691ad92ef06e9564a9db573d075b4220057e">cuBLAS</a>, <a class="el" href="benchmark_8hpp.html#a5e41188f16a381c8915a17a22228e691a2272f7d3ad5af33ea67a00761e7712fe">DynamicTiled</a>, <a class="el" href="benchmark_8hpp.html#a5e41188f16a381c8915a17a22228e691a512d6102506da4ae0c35312fafcf7376">Naive</a> и <a class="el" href="benchmark_8hpp.html#a5e41188f16a381c8915a17a22228e691af44f2804e0a70720b9c3bb9a9e9a1f3a">StaticTiled</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="main_8cu_source.html#l00199">main()</a>.</p>
+
+</div>
+</div>
+<a id="abab7d820e3eedff695bfccb91b38457c" name="abab7d820e3eedff695bfccb91b38457c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abab7d820e3eedff695bfccb91b38457c">&#9670;&#160;</a></span>getBlockSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int getBlockSize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Возвращает текущий размер блока. </p>
+
+<p class="definition">См. определение в файле <a class="el" href="benchmark_8cu_source.html">benchmark.cu</a> строка <a class="el" href="benchmark_8cu_source.html#l01053">1053</a></p>
+
+<p class="reference">Используется в <a class="el" href="main_8cu_source.html#l00199">main()</a>.</p>
+
+</div>
+</div>
+<a id="a7cdff9cee6d77dc23361827e0ce73a76" name="a7cdff9cee6d77dc23361827e0ce73a76"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7cdff9cee6d77dc23361827e0ce73a76">&#9670;&#160;</a></span>isSupportedBlockSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool isSupportedBlockSize </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>blockSize</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Проверяет, что размер блока поддерживается (2, 4, 8, 16, 32). </p>
+
+<p class="definition">См. определение в файле <a class="el" href="benchmark_8cu_source.html">benchmark.cu</a> строка <a class="el" href="benchmark_8cu_source.html#l01038">1038</a></p>
+
+<p class="reference">Используется в <a class="el" href="benchmark_8cu_source.html#l01044">setBlockSize()</a>.</p>
+
+</div>
+</div>
+<a id="a4bf014d2cf730d47b64c898441bf73be" name="a4bf014d2cf730d47b64c898441bf73be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4bf014d2cf730d47b64c898441bf73be">&#9670;&#160;</a></span>isUnifiedPrefetchSupported()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool isUnifiedPrefetchSupported </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Проверяет поддержку Unified Memory prefetch текущим GPU. </p>
+<p>Проверка выполняется по свойству concurrentManagedAccess текущего CUDA-устройства.</p>
+<dl class="section return"><dt>Возвращает</dt><dd>true, если устройство поддерживает concurrent managed access; false в противном случае или при ошибке получения свойств.</dd></dl>
+<p>Проверяет поддержку Unified Memory prefetch текущим GPU.</p>
+<p>Свойство используется для определения возможности включения стратегии UnifiedPrefetch в набор экспериментов.</p>
+<dl class="section return"><dt>Возвращает</dt><dd>true, если concurrentManagedAccess ненулевой; false, если свойство отсутствует или сведения об устройстве получить не удалось. </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="benchmark_8cu_source.html">benchmark.cu</a> строка <a class="el" href="benchmark_8cu_source.html#l00829">829</a></p>
+
+<p class="reference">Используется в <a class="el" href="main_8cu_source.html#l00199">main()</a>.</p>
+
+</div>
+</div>
+<a id="a6b262a05d5a7c374aa5032dd75181b76" name="a6b262a05d5a7c374aa5032dd75181b76"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b262a05d5a7c374aa5032dd75181b76">&#9670;&#160;</a></span>median()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double median </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; double &gt;&#160;</td>
+          <td class="paramname"><em>values</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Вычисляет медиану набора измерений. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">values</td><td>Набор значений для обработки. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Медиана отсортированного набора; 0.0, если набор пуст.</dd></dl>
+<dl class="section note"><dt>Заметки</dt><dd>Для чётного количества элементов возвращается среднее арифметическое двух центральных значений.</dd></dl>
+<p>Для чётного количества значений возвращает среднее двух центральных элементов отсортированного набора. Для пустого набора возвращает 0.</p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">values</td><td>Набор измеренных значений. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Медиана в миллисекундах либо 0.0 для пустого набора. </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="benchmark_8cu_source.html">benchmark.cu</a> строка <a class="el" href="benchmark_8cu_source.html#l00966">966</a></p>
+
+<p class="reference">Используется в <a class="el" href="main_8cu_source.html#l00199">main()</a>.</p>
+
+</div>
+</div>
+<a id="a693d66a5039293e133aaf8d8eeffb25c" name="a693d66a5039293e133aaf8d8eeffb25c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a693d66a5039293e133aaf8d8eeffb25c">&#9670;&#160;</a></span>minimum()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double minimum </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; double &gt; &amp;&#160;</td>
+          <td class="paramname"><em>values</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Возвращает минимальное значение набора измерений. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">values</td><td>Набор значений для обработки. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Минимальное значение; 0.0, если набор пуст.</dd></dl>
+<p>Для пустого набора возвращает 0.0.</p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">values</td><td>Набор измеренных значений. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Минимальное значение либо 0.0 для пустого набора. </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="benchmark_8cu_source.html">benchmark.cu</a> строка <a class="el" href="benchmark_8cu_source.html#l00991">991</a></p>
+
+<p class="reference">Используется в <a class="el" href="main_8cu_source.html#l00199">main()</a>.</p>
+
+</div>
+</div>
+<a id="a2c837d9fe92384cc90c1c34f4215cd71" name="a2c837d9fe92384cc90c1c34f4215cd71"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c837d9fe92384cc90c1c34f4215cd71">&#9670;&#160;</a></span>printGPUInfo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void printGPUInfo </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Выводит информацию о текущем CUDA-устройстве. </p>
+<p>Выводит название GPU, Compute Capability, объём глобальной памяти, количество мультипроцессоров, максимальное число потоков в блоке и характеристики поддержки Unified Memory. </p>
+
+<p class="definition">См. определение в файле <a class="el" href="benchmark_8cu_source.html">benchmark.cu</a> строка <a class="el" href="benchmark_8cu_source.html#l00850">850</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="cuda__utils_8hpp_source.html#l00035">CUDA_CHECK</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="main_8cu_source.html#l00199">main()</a>.</p>
+
+</div>
+</div>
+<a id="aa590c644bb50d9cf7b53d7ce28119150" name="aa590c644bb50d9cf7b53d7ce28119150"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa590c644bb50d9cf7b53d7ce28119150">&#9670;&#160;</a></span>runOneCase()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structTiming.html">Timing</a> runOneCase </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="benchmark_8hpp.html#a5e41188f16a381c8915a17a22228e691">Algorithm</a>&#160;</td>
+          <td class="paramname"><em>algorithm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="benchmark_8hpp.html#a2e80cefbbba81052a3a99c7f3829d809">MemoryStrategy</a>&#160;</td>
+          <td class="paramname"><em>strategy</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="config_8hpp.html#a1bcb5d803355eb62fbc2a80ffdda84c6">BASE_TYPE</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>A</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="config_8hpp.html#a1bcb5d803355eb62fbc2a80ffdda84c6">BASE_TYPE</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>B</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="config_8hpp.html#a1bcb5d803355eb62fbc2a80ffdda84c6">BASE_TYPE</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>C</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>N</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Выполняет один эксперимент с выбранным алгоритмом и стратегией памяти. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir"></td><td class="paramname">algorithm</td><td>Вычислительный алгоритм умножения матриц. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">strategy</td><td>Стратегия размещения и передачи данных. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">A</td><td>Входная матрица A размером N x N. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">B</td><td>Входная матрица B размером N x N. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">C</td><td>Вектор для записи результирующей матрицы C размером N x N. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">N</td><td>Размер стороны квадратных матриц.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Структура <a class="el" href="structTiming.html" title="Временные характеристики одного запуска бенчмарка.">Timing</a> с измеренными временными характеристиками.</dd></dl>
+<dl class="section note"><dt>Заметки</dt><dd>Для потоковых стратегий матрица B передаётся на GPU один раз, а вычисление выполняется над частями матриц A и C.</dd></dl>
+<p>Выполняет один эксперимент с выбранным алгоритмом и стратегией памяти.</p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">algorithm</td><td>Алгоритм умножения матриц. </td></tr>
+    <tr><td class="paramname">strategy</td><td>Стратегия размещения и передачи данных. </td></tr>
+    <tr><td class="paramname">A</td><td>Входная матрица A размера N x N. </td></tr>
+    <tr><td class="paramname">B</td><td>Входная матрица B размера N x N. </td></tr>
+    <tr><td class="paramname">C</td><td>Выходная матрица C размера N x N. </td></tr>
+    <tr><td class="paramname">N</td><td>Размер матриц. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Времена передачи данных, вычисления и полного выполнения. </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="benchmark_8cu_source.html">benchmark.cu</a> строка <a class="el" href="benchmark_8cu_source.html#l00913">913</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="benchmark_8hpp.html#a2e80cefbbba81052a3a99c7f3829d809aa0acb7df2039d4c9948b5d752f5b3001">Pageable</a>, <a class="el" href="benchmark_8hpp.html#a2e80cefbbba81052a3a99c7f3829d809a48d3dc9f097bed90d1f6658a36a85eef">PageableStreams</a>, <a class="el" href="benchmark_8hpp.html#a2e80cefbbba81052a3a99c7f3829d809a3c5e891bff07947cbae2fda89162df9f">Pinned</a>, <a class="el" href="benchmark_8hpp.html#a2e80cefbbba81052a3a99c7f3829d809ad99be4eaa4ce9dcdf8f414e09870c7db">PinnedStreams</a>, <a class="el" href="benchmark_8hpp.html#a2e80cefbbba81052a3a99c7f3829d809a76747ee5c157cde82f93ce422bc07412">UnifiedManaged</a> и <a class="el" href="benchmark_8hpp.html#a2e80cefbbba81052a3a99c7f3829d809a499411ce32a9abced5a07808a9814bee">UnifiedPrefetch</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="main_8cu_source.html#l00199">main()</a>.</p>
+
+</div>
+</div>
+<a id="a2398b9286ce8c2f1d613577f1bc8e0ce" name="a2398b9286ce8c2f1d613577f1bc8e0ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2398b9286ce8c2f1d613577f1bc8e0ce">&#9670;&#160;</a></span>setBlockSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setBlockSize </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>blockSize</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Задаёт размер блока для всех последующих запусков. <br  />
+ </p>
+
+<p class="definition">См. определение в файле <a class="el" href="benchmark_8cu_source.html">benchmark.cu</a> строка <a class="el" href="benchmark_8cu_source.html#l01044">1044</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="benchmark_8cu_source.html#l01038">isSupportedBlockSize()</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="main_8cu_source.html#l00199">main()</a>.</p>
+
+</div>
+</div>
+<a id="abb0bd7b260762376722c49a9e5e7a1b9" name="abb0bd7b260762376722c49a9e5e7a1b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb0bd7b260762376722c49a9e5e7a1b9">&#9670;&#160;</a></span>strategyName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char * strategyName </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="benchmark_8hpp.html#a2e80cefbbba81052a3a99c7f3829d809">MemoryStrategy</a>&#160;</td>
+          <td class="paramname"><em>strategy</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Возвращает текстовое имя стратегии управления памятью. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">strategy</td><td>Выбранная стратегия памяти. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Строковое представление стратегии.</dd></dl>
+<p>Возвращает текстовое имя стратегии управления памятью.</p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">strategy</td><td>Идентификатор стратегии памяти. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Строковое название стратегии. </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="benchmark_8cu_source.html">benchmark.cu</a> строка <a class="el" href="benchmark_8cu_source.html#l00806">806</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="benchmark_8hpp.html#a2e80cefbbba81052a3a99c7f3829d809aa0acb7df2039d4c9948b5d752f5b3001">Pageable</a>, <a class="el" href="benchmark_8hpp.html#a2e80cefbbba81052a3a99c7f3829d809a48d3dc9f097bed90d1f6658a36a85eef">PageableStreams</a>, <a class="el" href="benchmark_8hpp.html#a2e80cefbbba81052a3a99c7f3829d809a3c5e891bff07947cbae2fda89162df9f">Pinned</a>, <a class="el" href="benchmark_8hpp.html#a2e80cefbbba81052a3a99c7f3829d809ad99be4eaa4ce9dcdf8f414e09870c7db">PinnedStreams</a>, <a class="el" href="benchmark_8hpp.html#a2e80cefbbba81052a3a99c7f3829d809a76747ee5c157cde82f93ce422bc07412">UnifiedManaged</a> и <a class="el" href="benchmark_8hpp.html#a2e80cefbbba81052a3a99c7f3829d809a499411ce32a9abced5a07808a9814bee">UnifiedPrefetch</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="main_8cu_source.html#l00199">main()</a>.</p>
+
+</div>
+</div>
+<a id="ac53f324b7787b53efd4112e6f3220fad" name="ac53f324b7787b53efd4112e6f3220fad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac53f324b7787b53efd4112e6f3220fad">&#9670;&#160;</a></span>writeCSVHeader()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void writeCSVHeader </td>
+          <td>(</td>
+          <td class="paramtype">std::ofstream &amp;&#160;</td>
+          <td class="paramname"><em>file</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Записывает заголовок CSV-файла с результатами экспериментов. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">file</td><td>Открытый поток выходного CSV-файла.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Записывает заголовок CSV-файла с результатами экспериментов.</p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">file</td><td>Открытый поток выходного CSV-файла. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">См. определение в файле <a class="el" href="benchmark_8cu_source.html">benchmark.cu</a> строка <a class="el" href="benchmark_8cu_source.html#l01004">1004</a></p>
+
+<p class="reference">Используется в <a class="el" href="main_8cu_source.html#l00199">main()</a>.</p>
+
+</div>
+</div>
+<a id="a77561e84b3994347081134dea514f85d" name="a77561e84b3994347081134dea514f85d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77561e84b3994347081134dea514f85d">&#9670;&#160;</a></span>writeCSVRow()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void writeCSVRow </td>
+          <td>(</td>
+          <td class="paramtype">std::ofstream &amp;&#160;</td>
+          <td class="paramname"><em>file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structBenchmarkResult.html">BenchmarkResult</a> &amp;&#160;</td>
+          <td class="paramname"><em>result</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Записывает результаты одного эксперимента в CSV-файл. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">file</td><td>Открытый поток выходного CSV-файла. </td></tr>
+    <tr><td class="paramname">result</td><td>Структура с результатами эксперимента.</td></tr>
+    <tr><td class="paramname">file</td><td>Открытый поток выходного CSV-файла. </td></tr>
+    <tr><td class="paramname">result</td><td>Структура с параметрами и результатами эксперимента. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">См. определение в файле <a class="el" href="benchmark_8cu_source.html">benchmark.cu</a> строка <a class="el" href="benchmark_8cu_source.html#l01017">1017</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="benchmark_8hpp_source.html#l00090">BenchmarkResult::algorithm</a>, <a class="el" href="benchmark_8hpp_source.html#l00087">BenchmarkResult::blockSize</a>, <a class="el" href="benchmark_8hpp_source.html#l00098">BenchmarkResult::d2hMedian</a>, <a class="el" href="benchmark_8hpp_source.html#l00093">BenchmarkResult::gflopsKernel</a>, <a class="el" href="benchmark_8hpp_source.html#l00094">BenchmarkResult::gflopsTotal</a>, <a class="el" href="benchmark_8hpp_source.html#l00096">BenchmarkResult::h2dMedian</a>, <a class="el" href="benchmark_8hpp_source.html#l00097">BenchmarkResult::kernelMedian</a>, <a class="el" href="benchmark_8hpp_source.html#l00086">BenchmarkResult::N</a>, <a class="el" href="benchmark_8hpp_source.html#l00092">BenchmarkResult::precision</a>, <a class="el" href="benchmark_8hpp_source.html#l00089">BenchmarkResult::strategy</a>, <a class="el" href="benchmark_8hpp_source.html#l00099">BenchmarkResult::totalMedian</a>, <a class="el" href="benchmark_8hpp_source.html#l00101">BenchmarkResult::totalMin</a> и <a class="el" href="benchmark_8hpp_source.html#l00103">BenchmarkResult::verified</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="main_8cu_source.html#l00199">main()</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

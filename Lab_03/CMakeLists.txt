@@ -20,6 +20,9 @@ endif()
 # Compute Capability:
 # Turing = 7.5, Ampere = 8.6, Ada = 8.9, Blackwell = 12.0
 # ==============================================================================
+set(LAB_CUDA_ARCHS "" CACHE STRING
+    "CUDA architectures, e.g. 89 or '80;89'. Empty = auto-detect all supported")
+option(MATRIX_NATIVE_CPU "Use -march=native for host code (disable if building on login node)" ON)
 set(CUDA_ARCH_CANDIDATES 50 52 53 60 61 62 70 72 75 80 86 87 89 90 120)
 
 # Получаем список архитектур, поддерживаемых установленным NVCC
@@ -39,15 +42,19 @@ endif()
 
 set(CUDA_ARCH_LIST "")
 
-foreach(ARCH IN LISTS CUDA_ARCH_CANDIDATES)
-    if(CUDA_SUPPORTED_ARCHS MATCHES "compute_${ARCH}([^0-9]|$)")
-        list(APPEND CUDA_ARCH_LIST ${ARCH})
-    else()
-        message(STATUS
-            "CUDA architecture ${ARCH} is not supported by current NVCC. Skipping."
-        )
-    endif()
-endforeach()
+if(LAB_CUDA_ARCHS)
+    set(CMAKE_CUDA_ARCHITECTURES ${LAB_CUDA_ARCHS})
+else()
+    foreach(ARCH IN LISTS CUDA_ARCH_CANDIDATES)
+        if(CUDA_SUPPORTED_ARCHS MATCHES "compute_${ARCH}([^0-9]|$)")
+            list(APPEND CUDA_ARCH_LIST ${ARCH})
+        else()
+            message(STATUS
+                "CUDA architecture ${ARCH} is not supported by current NVCC. Skipping."
+            )
+        endif()
+    endforeach()
+endif()
 
 if(NOT CUDA_ARCH_LIST)
     message(FATAL_ERROR
@@ -132,7 +139,7 @@ if(MSVC)
 else()
     target_compile_options(Lab_03 PRIVATE
         $<$<AND:$<CONFIG:Release>,$<COMPILE_LANGUAGE:CXX>>:-O3>
-        $<$<AND:$<CONFIG:Release>,$<COMPILE_LANGUAGE:CXX>>:-march=native>
+         $<$<AND:$<BOOL:${MATRIX_NATIVE_CPU}>,$<CONFIG:Release>,$<COMPILE_LANGUAGE:CXX>>:-march=native>
         $<$<COMPILE_LANGUAGE:CXX>:-Wall>
         $<$<COMPILE_LANGUAGE:CXX>:-Wextra>
 

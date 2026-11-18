@@ -23,8 +23,10 @@
 #include <iomanip>
 #include <iostream>
 #include <iterator>
+#include <string>
 #include <string_view>
 #include <system_error>
+#include <type_traits>
 #include <vector>
 
 #ifdef _WIN32
@@ -35,6 +37,10 @@ namespace {
 
 /** Максимальный размер матрицы в режиме одиночного запуска. */
 constexpr int MAX_SINGLE_MATRIX_SIZE = 16384;
+
+/** Название точности для CSV. */
+constexpr const char* kPrecisionName =
+    std::is_same_v<BASE_TYPE, float> ? "f32" : "f64";
 
 /**
  * @brief Преобразует строку в положительное целое число.
@@ -184,8 +190,8 @@ bool parseArguments(
  * 5. Вычисляет медианное и минимальное время выполнения.
  * 6. Сохраняет результаты экспериментов в CSV-файл.
  *
- * Для больших матриц результат наивного CUDA-алгоритма
- * используется как эталон для сравнения остальных GPU-алгоритмов.
+ * Для N > 1024 полный CPU-эталон не вычисляется: используется verifySampled
+ * (выборочные элементы и полные строки на границах чанков стримов).
  *
  * @return EXIT_SUCCESS при успешном завершении;
  *         EXIT_FAILURE при ошибке аргументов или CSV-файла.
@@ -374,6 +380,7 @@ int main(int argc, char** argv) {
                 result.blockSize = getBlockSize();
                 result.strategy = strategyName(strategy);
                 result.algorithm = algorithmName(algorithm);
+                result.precision = kPrecisionName;
 
                 result.h2dMedian = median(h2dTimes);
                 result.kernelMedian = median(kernelTimes);
@@ -383,6 +390,12 @@ int main(int argc, char** argv) {
                 result.totalMin = minimum(totalTimes);
                 result.verified = verified;
 
+                const double flops = 2.0 * N * N * N;
+                result.gflopsKernel = result.kernelMedian > 0.0
+                    ? flops / (result.kernelMedian * 1.0e6) : 0.0;
+                result.gflopsTotal = result.totalMedian > 0.0
+                    ? flops / (result.totalMedian * 1.0e6) : 0.0;
+
                 writeCSVRow(csv, result);
                 csv.flush();
 
@@ -390,7 +403,7 @@ int main(int argc, char** argv) {
                     << (verified ? "OK" : "FAILED")
                     << " | H2D: " << result.h2dMedian
                     << " ms | Kernel: " << result.kernelMedian
-                    << " ms | D2H: " << result.d2hMedian
+                    << " ms (" << result.gflopsKernel << " GFLOPS)" << " | D2H: " << result.d2hMedian
                     << " ms | Total: " << result.totalMedian
                     << " ms\n";
             }

@@ -1,0 +1,487 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lab_03: cuBLAS Parallel Programming: Файл matrix_kernels.cu</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Lab_03: cuBLAS Parallel Programming<span id="projectnumber">&#160;3.0</span>
+   </div>
+   <div id="projectbrief">Реализация умножения матриц методами Naive, Tiled, cuBLAS и исследование влияния размеров блоков и решёток на производительность</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Функции</a>  </div>
+  <div class="headertitle"><div class="title">Файл matrix_kernels.cu</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Реализация CUDA-ядер и вспомогательных функций для умножения матриц.  
+<a href="#details">Подробнее...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="matrix__kernels_8hpp_source.html">matrix_kernels.hpp</a>&quot;</code><br />
+<code>#include &lt;cmath&gt;</code><br />
+<code>#include &lt;cstdlib&gt;</code><br />
+<code>#include &lt;iostream&gt;</code><br />
+<code>#include &lt;limits&gt;</code><br />
+<code>#include &lt;stdexcept&gt;</code><br />
+<code>#include &lt;type_traits&gt;</code><br />
+<code>#include &lt;algorithm&gt;</code><br />
+<code>#include &lt;cstdint&gt;</code><br />
+</div>
+<p><a href="matrix__kernels_8cu_source.html">См. исходные тексты.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Функции</h2></td></tr>
+<tr class="memitem:a17b165c8a6fe57e0ba195104c9a27b9b" id="r_a17b165c8a6fe57e0ba195104c9a27b9b"><td class="memItemLeft" align="right" valign="top">__global__ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix__kernels_8cu.html#a17b165c8a6fe57e0ba195104c9a27b9b">matrixMultNaive</a> (const <a class="el" href="config_8hpp.html#a1bcb5d803355eb62fbc2a80ffdda84c6">BASE_TYPE</a> *A, const <a class="el" href="config_8hpp.html#a1bcb5d803355eb62fbc2a80ffdda84c6">BASE_TYPE</a> *B, <a class="el" href="config_8hpp.html#a1bcb5d803355eb62fbc2a80ffdda84c6">BASE_TYPE</a> *C, int N, int rows)</td></tr>
+<tr class="memdesc:a17b165c8a6fe57e0ba195104c9a27b9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Выполняет наивное умножение матриц с использованием глобальной памяти GPU.  <br /></td></tr>
+<tr class="separator:a17b165c8a6fe57e0ba195104c9a27b9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abef36d703e9680f7402c5cf9222f266e" id="r_abef36d703e9680f7402c5cf9222f266e"><td class="memItemLeft" align="right" valign="top">__global__ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix__kernels_8cu.html#abef36d703e9680f7402c5cf9222f266e">matrixMultTiledDynamic</a> (const <a class="el" href="config_8hpp.html#a1bcb5d803355eb62fbc2a80ffdda84c6">BASE_TYPE</a> *A, const <a class="el" href="config_8hpp.html#a1bcb5d803355eb62fbc2a80ffdda84c6">BASE_TYPE</a> *B, <a class="el" href="config_8hpp.html#a1bcb5d803355eb62fbc2a80ffdda84c6">BASE_TYPE</a> *C, int N, int rows)</td></tr>
+<tr class="memdesc:abef36d703e9680f7402c5cf9222f266e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Выполняет блочное умножение матриц с динамической shared memory.  <br /></td></tr>
+<tr class="separator:abef36d703e9680f7402c5cf9222f266e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9c3528da73510b69125c2b51c15692a" id="r_af9c3528da73510b69125c2b51c15692a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix__kernels_8cu.html#af9c3528da73510b69125c2b51c15692a">initMatrix</a> (std::vector&lt; <a class="el" href="config_8hpp.html#a1bcb5d803355eb62fbc2a80ffdda84c6">BASE_TYPE</a> &gt; &amp;mat, int N)</td></tr>
+<tr class="memdesc:af9c3528da73510b69125c2b51c15692a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Заполняет матрицу псевдослучайными значениями.  <br /></td></tr>
+<tr class="separator:af9c3528da73510b69125c2b51c15692a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0440d742f500bc1c4a329ec33492d734" id="r_a0440d742f500bc1c4a329ec33492d734"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix__kernels_8cu.html#a0440d742f500bc1c4a329ec33492d734">verifyResult</a> (const std::vector&lt; <a class="el" href="config_8hpp.html#a1bcb5d803355eb62fbc2a80ffdda84c6">BASE_TYPE</a> &gt; &amp;result, const std::vector&lt; <a class="el" href="config_8hpp.html#a1bcb5d803355eb62fbc2a80ffdda84c6">BASE_TYPE</a> &gt; &amp;reference, int N)</td></tr>
+<tr class="memdesc:a0440d742f500bc1c4a329ec33492d734"><td class="mdescLeft">&#160;</td><td class="mdescRight">Проверяет корректность результата умножения матриц.  <br /></td></tr>
+<tr class="separator:a0440d742f500bc1c4a329ec33492d734"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a111850717b1f7f98b18bc5e77f7984a0" id="r_a111850717b1f7f98b18bc5e77f7984a0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix__kernels_8cu.html#a111850717b1f7f98b18bc5e77f7984a0">verifySampled</a> (const std::vector&lt; <a class="el" href="config_8hpp.html#a1bcb5d803355eb62fbc2a80ffdda84c6">BASE_TYPE</a> &gt; &amp;result, const std::vector&lt; <a class="el" href="config_8hpp.html#a1bcb5d803355eb62fbc2a80ffdda84c6">BASE_TYPE</a> &gt; &amp;A, const std::vector&lt; <a class="el" href="config_8hpp.html#a1bcb5d803355eb62fbc2a80ffdda84c6">BASE_TYPE</a> &gt; &amp;B, int N, int samples)</td></tr>
+<tr class="memdesc:a111850717b1f7f98b18bc5e77f7984a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Проверяет результат по выборке элементов с независимым CPU-эталоном.  <br /></td></tr>
+<tr class="separator:a111850717b1f7f98b18bc5e77f7984a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07725a437139a8dc352a763c963e7254" id="r_a07725a437139a8dc352a763c963e7254"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix__kernels_8cu.html#a07725a437139a8dc352a763c963e7254">computeCPU</a> (const std::vector&lt; <a class="el" href="config_8hpp.html#a1bcb5d803355eb62fbc2a80ffdda84c6">BASE_TYPE</a> &gt; &amp;A, const std::vector&lt; <a class="el" href="config_8hpp.html#a1bcb5d803355eb62fbc2a80ffdda84c6">BASE_TYPE</a> &gt; &amp;B, std::vector&lt; <a class="el" href="config_8hpp.html#a1bcb5d803355eb62fbc2a80ffdda84c6">BASE_TYPE</a> &gt; &amp;C, int N)</td></tr>
+<tr class="memdesc:a07725a437139a8dc352a763c963e7254"><td class="mdescLeft">&#160;</td><td class="mdescRight">Вычисляет произведение двух матриц последовательным алгоритмом на CPU.  <br /></td></tr>
+<tr class="separator:a07725a437139a8dc352a763c963e7254"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>Реализация CUDA-ядер и вспомогательных функций для умножения матриц. </p>
+<dl class="section author"><dt>Автор</dt><dd>F.A.S.T. DEVELOPMENT aka Ямщиков Владимир, группа 26162. </dd></dl>
+<dl class="section date"><dt>Дата</dt><dd>15.11.2026. </dd></dl>
+<dl class="section version"><dt>Версия</dt><dd>2.0. </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="matrix__kernels_8cu_source.html">matrix_kernels.cu</a></p>
+</div><h2 class="groupheader">Функции</h2>
+<a id="a07725a437139a8dc352a763c963e7254" name="a07725a437139a8dc352a763c963e7254"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07725a437139a8dc352a763c963e7254">&#9670;&#160;</a></span>computeCPU()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void computeCPU </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="config_8hpp.html#a1bcb5d803355eb62fbc2a80ffdda84c6">BASE_TYPE</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>A</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="config_8hpp.html#a1bcb5d803355eb62fbc2a80ffdda84c6">BASE_TYPE</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>B</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="config_8hpp.html#a1bcb5d803355eb62fbc2a80ffdda84c6">BASE_TYPE</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>C</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>N</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Вычисляет произведение двух матриц последовательным алгоритмом на CPU. </p>
+<p>Выполняет последовательное умножение матриц на CPU.</p>
+<p>Используется классический алгоритм тройного вложенного цикла. Для накопления суммы произведений применяется тип double, после чего результат преобразуется к BASE_TYPE.</p>
+<p>Функция предназначена для получения эталонной матрицы при проверке результатов CUDA-вычислений.</p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">A</td><td>Первая входная матрица размера N x N. </td></tr>
+    <tr><td class="paramname">B</td><td>Вторая входная матрица размера N x N. </td></tr>
+    <tr><td class="paramname">C</td><td>Выходной вектор для матрицы результата. </td></tr>
+    <tr><td class="paramname">N</td><td>Размерность квадратных матриц.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Исключения</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::invalid_argument</td><td>Если N некорректен или размеры входных матриц не соответствуют N * N. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">См. определение в файле <a class="el" href="matrix__kernels_8cu_source.html">matrix_kernels.cu</a> строка <a class="el" href="matrix__kernels_8cu_source.html#l00536">536</a></p>
+
+<p class="reference">Используется в <a class="el" href="main_8cu_source.html#l00199">main()</a>.</p>
+
+</div>
+</div>
+<a id="af9c3528da73510b69125c2b51c15692a" name="af9c3528da73510b69125c2b51c15692a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9c3528da73510b69125c2b51c15692a">&#9670;&#160;</a></span>initMatrix()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void initMatrix </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="config_8hpp.html#a1bcb5d803355eb62fbc2a80ffdda84c6">BASE_TYPE</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>mat</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>N</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Заполняет матрицу псевдослучайными значениями. </p>
+<p>Инициализирует матрицу случайными значениями.</p>
+<p>Элементы генерируются в диапазоне [-5, 5]. Если размер переданного вектора не соответствует N * N, его размер изменяется до требуемого.</p>
+<p>Генератор случайных чисел использует стандартную функцию rand(). Начальное состояние генератора задаётся вызывающей стороной.</p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mat</td><td>Вектор, в котором хранится матрица. </td></tr>
+    <tr><td class="paramname">N</td><td>Размерность квадратной матрицы.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Исключения</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::invalid_argument</td><td>Если N не является положительным числом. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">См. определение в файле <a class="el" href="matrix__kernels_8cu_source.html">matrix_kernels.cu</a> строка <a class="el" href="matrix__kernels_8cu_source.html#l00175">175</a></p>
+
+<p class="reference">Используется в <a class="el" href="main_8cu_source.html#l00199">main()</a>.</p>
+
+</div>
+</div>
+<a id="a17b165c8a6fe57e0ba195104c9a27b9b" name="a17b165c8a6fe57e0ba195104c9a27b9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17b165c8a6fe57e0ba195104c9a27b9b">&#9670;&#160;</a></span>matrixMultNaive()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__global__ void matrixMultNaive </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="config_8hpp.html#a1bcb5d803355eb62fbc2a80ffdda84c6">BASE_TYPE</a> *&#160;</td>
+          <td class="paramname"><em>A</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="config_8hpp.html#a1bcb5d803355eb62fbc2a80ffdda84c6">BASE_TYPE</a> *&#160;</td>
+          <td class="paramname"><em>B</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="config_8hpp.html#a1bcb5d803355eb62fbc2a80ffdda84c6">BASE_TYPE</a> *&#160;</td>
+          <td class="paramname"><em>C</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>N</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>rows</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Выполняет наивное умножение матриц с использованием глобальной памяти GPU. </p>
+<p>Каждый CUDA-поток вычисляет один элемент выходной матрицы C. Для вычисления скалярного произведения строки A и столбца B поток последовательно читает элементы из глобальной памяти.</p>
+<p>Матрицы хранятся в row-major формате:</p><ul>
+<li>A имеет размер rows x N;</li>
+<li>B имеет размер N x N;</li>
+<li>C имеет размер rows x N.</li>
+</ul>
+<p>Параметр rows позволяет обрабатывать как целую матрицу, так и отдельный блок строк при потоковом выполнении.</p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">A</td><td>Указатель на входную матрицу A в памяти GPU. </td></tr>
+    <tr><td class="paramname">B</td><td>Указатель на входную матрицу B в памяти GPU. </td></tr>
+    <tr><td class="paramname">C</td><td>Указатель на выходную матрицу C в памяти GPU. </td></tr>
+    <tr><td class="paramname">N</td><td>Размерность квадратной матрицы B и число столбцов A. </td></tr>
+    <tr><td class="paramname">rows</td><td>Количество строк матриц A и C, обрабатываемых за один запуск. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">См. определение в файле <a class="el" href="matrix__kernels_8cu_source.html">matrix_kernels.cu</a> строка <a class="el" href="matrix__kernels_8cu_source.html#l00047">47</a></p>
+
+</div>
+</div>
+<a id="abef36d703e9680f7402c5cf9222f266e" name="abef36d703e9680f7402c5cf9222f266e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abef36d703e9680f7402c5cf9222f266e">&#9670;&#160;</a></span>matrixMultTiledDynamic()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__global__ void matrixMultTiledDynamic </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="config_8hpp.html#a1bcb5d803355eb62fbc2a80ffdda84c6">BASE_TYPE</a> *&#160;</td>
+          <td class="paramname"><em>A</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="config_8hpp.html#a1bcb5d803355eb62fbc2a80ffdda84c6">BASE_TYPE</a> *&#160;</td>
+          <td class="paramname"><em>B</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="config_8hpp.html#a1bcb5d803355eb62fbc2a80ffdda84c6">BASE_TYPE</a> *&#160;</td>
+          <td class="paramname"><em>C</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>N</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>rows</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Выполняет блочное умножение матриц с динамической shared memory. </p>
+<p>Каждый CUDA-блок вычисляет тайл выходной матрицы. Тайлы входных матриц A и B поочерёдно загружаются из глобальной памяти в динамическую разделяемую память.</p>
+<p>После синхронизации потоков блока выполняется вычисление частичных скалярных произведений. Граничные элементы, выходящие за пределы матриц, заполняются нулями.</p>
+<p>Размер динамической shared memory задаётся при запуске ядра и должен быть равен двум тайлам размера TILE_SIZE x TILE_SIZE, умноженным на sizeof(BASE_TYPE).</p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">A</td><td>Указатель на входную матрицу A в памяти GPU. </td></tr>
+    <tr><td class="paramname">B</td><td>Указатель на входную матрицу B в памяти GPU. </td></tr>
+    <tr><td class="paramname">C</td><td>Указатель на выходную матрицу C в памяти GPU. </td></tr>
+    <tr><td class="paramname">N</td><td>Размерность квадратной матрицы B и число столбцов A. </td></tr>
+    <tr><td class="paramname">rows</td><td>Количество обрабатываемых строк матриц A и C. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">См. определение в файле <a class="el" href="matrix__kernels_8cu_source.html">matrix_kernels.cu</a> строка <a class="el" href="matrix__kernels_8cu_source.html#l00095">95</a></p>
+
+</div>
+</div>
+<a id="a0440d742f500bc1c4a329ec33492d734" name="a0440d742f500bc1c4a329ec33492d734"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0440d742f500bc1c4a329ec33492d734">&#9670;&#160;</a></span>verifyResult()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool verifyResult </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="config_8hpp.html#a1bcb5d803355eb62fbc2a80ffdda84c6">BASE_TYPE</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>result</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="config_8hpp.html#a1bcb5d803355eb62fbc2a80ffdda84c6">BASE_TYPE</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>reference</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>N</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Проверяет корректность результата умножения матриц. </p>
+<p>Сравнивает вычисленную матрицу с эталонной. Для сравнения используется единый абсолютный допуск, масштабируемый по RMS эталона и √N, значения которых зависят от BASE_TYPE.</p>
+<p>Дополнительно проверяются размеры матриц и наличие конечных числовых значений. При обнаружении ошибки в консоль выводится информация о первом несовпадающем элементе.</p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">result</td><td>Проверяемая матрица. </td></tr>
+    <tr><td class="paramname">reference</td><td>Эталонная матрица. </td></tr>
+    <tr><td class="paramname">N</td><td>Размерность квадратной матрицы.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>true, если все элементы удовлетворяют заданному допуску; false в противном случае. </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="matrix__kernels_8cu_source.html">matrix_kernels.cu</a> строка <a class="el" href="matrix__kernels_8cu_source.html#l00306">306</a></p>
+
+<p class="reference">Используется в <a class="el" href="main_8cu_source.html#l00199">main()</a>.</p>
+
+</div>
+</div>
+<a id="a111850717b1f7f98b18bc5e77f7984a0" name="a111850717b1f7f98b18bc5e77f7984a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a111850717b1f7f98b18bc5e77f7984a0">&#9670;&#160;</a></span>verifySampled()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool verifySampled </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="config_8hpp.html#a1bcb5d803355eb62fbc2a80ffdda84c6">BASE_TYPE</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>result</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="config_8hpp.html#a1bcb5d803355eb62fbc2a80ffdda84c6">BASE_TYPE</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>A</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="config_8hpp.html#a1bcb5d803355eb62fbc2a80ffdda84c6">BASE_TYPE</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>B</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>N</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>samples</em> = <code>512</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Проверяет результат по выборке элементов с независимым CPU-эталоном. </p>
+<p>Эталонные значения выбранных элементов вычисляются на CPU с накоплением в double. Дополнительно проверяется отсутствие NaN и Inf во всём результирующем массиве. Дополнительно проверяются полные строки на границах чанков.</p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">result</td><td>Результат GPU-умножения. </td></tr>
+    <tr><td class="paramname">A</td><td>Исходная матрица A. </td></tr>
+    <tr><td class="paramname">B</td><td>Исходная матрица B. </td></tr>
+    <tr><td class="paramname">N</td><td>Размер стороны матриц. </td></tr>
+    <tr><td class="paramname">samples</td><td>Количество дополнительных проверяемых элементов. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>true, если проверка пройдена. </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="matrix__kernels_8cu_source.html">matrix_kernels.cu</a> строка <a class="el" href="matrix__kernels_8cu_source.html#l00377">377</a></p>
+
+<p class="reference">Используется в <a class="el" href="main_8cu_source.html#l00199">main()</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

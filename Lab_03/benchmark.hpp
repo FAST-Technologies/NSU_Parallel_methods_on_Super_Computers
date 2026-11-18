@@ -58,6 +58,15 @@ enum class MemoryStrategy {
  *
  *          Для Unified Managed автоматическая миграция страниц может
  *          учитываться во времени Kernel и Total
+ * Определения стадий:
+ *  - H2D: всё, что переносит входные данные на GPU, без cudaMalloc.
+ *    Unified Managed: заполнение managed-буферов на CPU (миграция страниц
+ *    происходит внутри ядра и попадает в Kernel).
+ *    Unified Prefetch: заполнение + явный prefetch на GPU.
+ *  - Total: от начала подготовки host-буферов (в т.ч. pinned) до освобождения
+ *    GPU-ресурсов. cuBLAS-handle создаётся один раз и в Total не входит.
+ *  - GFLOPS_Kernel для потоковых стратегий приближённый: Kernel там это максимум
+ *    по streams, а чанки выполняются перекрываясь.
  */
 struct Timing {
     double h2d = 0.0;     ///< Время передачи данных с CPU на GPU.
@@ -79,6 +88,10 @@ struct BenchmarkResult {
 
     std::string strategy;       ///< Название стратегии управления памятью.
     std::string algorithm;      ///< Название вычислительного алгоритма.
+
+    std::string precision;      ///< "f32" или "f64".
+    double gflopsKernel = 0.0;  ///< 2*N^3 / медианное время ядра, GFLOPS.
+    double gflopsTotal = 0.0;   ///< 2*N^3 / медианное полное время, GFLOPS.
 
     double h2dMedian = 0.0;     ///< Медианное время передачи H2D, мс.
     double kernelMedian = 0.0;  ///< Медианное время выполнения ядра, мс.

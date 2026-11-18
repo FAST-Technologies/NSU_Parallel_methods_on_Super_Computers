@@ -1,0 +1,347 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lab_03: cuBLAS Parallel Programming: Файл config.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Lab_03: cuBLAS Parallel Programming<span id="projectnumber">&#160;3.0</span>
+   </div>
+   <div id="projectbrief">Реализация умножения матриц методами Naive, Tiled, cuBLAS и исследование влияния размеров блоков и решёток на производительность</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#define-members">Макросы</a> &#124;
+<a href="#typedef-members">Определения типов</a> &#124;
+<a href="#var-members">Переменные</a>  </div>
+  <div class="headertitle"><div class="title">Файл config.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Общая конфигурация лабораторной работы №3.  
+<a href="#details">Подробнее...</a></p>
+<div class="textblock"><code>#include &lt;cstddef&gt;</code><br />
+</div>
+<p><a href="config_8hpp_source.html">См. исходные тексты.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Макросы</h2></td></tr>
+<tr class="memitem:ad31f0ffced5e81b1a43c4d03cc2ba310" id="r_ad31f0ffced5e81b1a43c4d03cc2ba310"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="config_8hpp.html#ad31f0ffced5e81b1a43c4d03cc2ba310">MATRIX_TILE_SIZE</a>&#160;&#160;&#160;32</td></tr>
+<tr class="separator:ad31f0ffced5e81b1a43c4d03cc2ba310"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Определения типов</h2></td></tr>
+<tr class="memitem:a1bcb5d803355eb62fbc2a80ffdda84c6" id="r_a1bcb5d803355eb62fbc2a80ffdda84c6"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="config_8hpp.html#a1bcb5d803355eb62fbc2a80ffdda84c6">BASE_TYPE</a> = float</td></tr>
+<tr class="memdesc:a1bcb5d803355eb62fbc2a80ffdda84c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Базовый тип элементов матриц.  <br /></td></tr>
+<tr class="separator:a1bcb5d803355eb62fbc2a80ffdda84c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Переменные</h2></td></tr>
+<tr class="memitem:a82862e4ec6bc53ff56d37a0a59ae98f0" id="r_a82862e4ec6bc53ff56d37a0a59ae98f0"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="config_8hpp.html#a82862e4ec6bc53ff56d37a0a59ae98f0">TILE_SIZE</a> = <a class="el" href="config_8hpp.html#ad31f0ffced5e81b1a43c4d03cc2ba310">MATRIX_TILE_SIZE</a></td></tr>
+<tr class="memdesc:a82862e4ec6bc53ff56d37a0a59ae98f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Размер стороны тайла CUDA-блока.  <br /></td></tr>
+<tr class="separator:a82862e4ec6bc53ff56d37a0a59ae98f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb070177427895998ee33c3bd9a10be0" id="r_acb070177427895998ee33c3bd9a10be0"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="config_8hpp.html#acb070177427895998ee33c3bd9a10be0">NUM_STREAMS</a> = 4</td></tr>
+<tr class="memdesc:acb070177427895998ee33c3bd9a10be0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Количество CUDA streams в потоковом бенчмарке.  <br /></td></tr>
+<tr class="separator:acb070177427895998ee33c3bd9a10be0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d9369fa07eec72ce4674da3bc49cc6c" id="r_a8d9369fa07eec72ce4674da3bc49cc6c"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="config_8hpp.html#a8d9369fa07eec72ce4674da3bc49cc6c">NUM_REPEATS</a> = 5</td></tr>
+<tr class="memdesc:a8d9369fa07eec72ce4674da3bc49cc6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Количество повторных измерений каждого тестового случая.  <br /></td></tr>
+<tr class="separator:a8d9369fa07eec72ce4674da3bc49cc6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85d4356a6f20d451821cc9113ce7c697" id="r_a85d4356a6f20d451821cc9113ce7c697"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="config_8hpp.html#a85d4356a6f20d451821cc9113ce7c697">NUM_WARMUP</a> = 1</td></tr>
+<tr class="memdesc:a85d4356a6f20d451821cc9113ce7c697"><td class="mdescLeft">&#160;</td><td class="mdescRight">Количество предварительных запусков для прогрева GPU.  <br /></td></tr>
+<tr class="separator:a85d4356a6f20d451821cc9113ce7c697"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5d9c9361655df3f1a9a40e616b6f59c" id="r_ac5d9c9361655df3f1a9a40e616b6f59c"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="config_8hpp.html#ac5d9c9361655df3f1a9a40e616b6f59c">MATRIX_SIZES</a> []</td></tr>
+<tr class="memdesc:ac5d9c9361655df3f1a9a40e616b6f59c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Набор размеров квадратных матриц для бенчмаркинга.  <br /></td></tr>
+<tr class="separator:ac5d9c9361655df3f1a9a40e616b6f59c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa688ec51df1023a73f4e23d92310e28a" id="r_aa688ec51df1023a73f4e23d92310e28a"><td class="memItemLeft" align="right" valign="top">constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="config_8hpp.html#aa688ec51df1023a73f4e23d92310e28a">NUM_MATRIX_SIZES</a></td></tr>
+<tr class="memdesc:aa688ec51df1023a73f4e23d92310e28a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Количество размеров матриц в MATRIX_SIZES.  <br /></td></tr>
+<tr class="separator:aa688ec51df1023a73f4e23d92310e28a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>Общая конфигурация лабораторной работы №3. </p>
+<p>Содержит настройки точности вычислений, размеров CUDA-блоков и параметров проведения бенчмаркинга.</p>
+<dl class="section author"><dt>Автор</dt><dd>F.A.S.T. DEVELOPMENT aka Ямщиков Владимир, группа 26162. </dd></dl>
+<dl class="section date"><dt>Дата</dt><dd>15.11.2026. </dd></dl>
+<dl class="section version"><dt>Версия</dt><dd>2.0. </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="config_8hpp_source.html">config.hpp</a></p>
+</div><h2 class="groupheader">Макросы</h2>
+<a id="ad31f0ffced5e81b1a43c4d03cc2ba310" name="ad31f0ffced5e81b1a43c4d03cc2ba310"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad31f0ffced5e81b1a43c4d03cc2ba310">&#9670;&#160;</a></span>MATRIX_TILE_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MATRIX_TILE_SIZE&#160;&#160;&#160;32</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="config_8hpp_source.html">config.hpp</a> строка <a class="el" href="config_8hpp_source.html#l00036">36</a></p>
+
+</div>
+</div>
+<h2 class="groupheader">Типы</h2>
+<a id="a1bcb5d803355eb62fbc2a80ffdda84c6" name="a1bcb5d803355eb62fbc2a80ffdda84c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1bcb5d803355eb62fbc2a80ffdda84c6">&#9670;&#160;</a></span>BASE_TYPE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="config_8hpp.html#a1bcb5d803355eb62fbc2a80ffdda84c6">BASE_TYPE</a> =  float</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Базовый тип элементов матриц. </p>
+<p>Тип определяется параметром MATRIX_USE_DOUBLE, передаваемым при конфигурации проекта через CMake:</p><ul>
+<li>MATRIX_USE_DOUBLE=0 — float;</li>
+<li>MATRIX_USE_DOUBLE=1 — double.</li>
+</ul>
+<p>Один и тот же тип используется CPU- и GPU-реализациями умножения матриц. </p>
+
+<p class="definition">См. определение в файле <a class="el" href="config_8hpp_source.html">config.hpp</a> строка <a class="el" href="config_8hpp_source.html#l00032">32</a></p>
+
+</div>
+</div>
+<h2 class="groupheader">Переменные</h2>
+<a id="ac5d9c9361655df3f1a9a40e616b6f59c" name="ac5d9c9361655df3f1a9a40e616b6f59c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5d9c9361655df3f1a9a40e616b6f59c">&#9670;&#160;</a></span>MATRIX_SIZES</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr int MATRIX_SIZES[]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Инициализатор</b><div class="fragment"><div class="line">= {</div>
+<div class="line">    256, 512, 1024, 2048, 4096, 8192</div>
+<div class="line">}</div>
+</div><!-- fragment -->
+<p>Набор размеров квадратных матриц для бенчмаркинга. </p>
+<p>Каждый элемент задаёт размер матриц A, B и C: A(N x N), B(N x N), C(N x N). </p>
+
+<p class="definition">См. определение в файле <a class="el" href="config_8hpp_source.html">config.hpp</a> строка <a class="el" href="config_8hpp_source.html#l00079">79</a></p>
+
+</div>
+</div>
+<a id="aa688ec51df1023a73f4e23d92310e28a" name="aa688ec51df1023a73f4e23d92310e28a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa688ec51df1023a73f4e23d92310e28a">&#9670;&#160;</a></span>NUM_MATRIX_SIZES</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr std::size_t NUM_MATRIX_SIZES</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Инициализатор</b><div class="fragment"><div class="line">=</div>
+<div class="line">    <span class="keyword">sizeof</span>(<a class="code hl_variable" href="config_8hpp.html#ac5d9c9361655df3f1a9a40e616b6f59c">MATRIX_SIZES</a>) / <span class="keyword">sizeof</span>(<a class="code hl_variable" href="config_8hpp.html#ac5d9c9361655df3f1a9a40e616b6f59c">MATRIX_SIZES</a>[0])</div>
+<div class="ttc" id="aconfig_8hpp_html_ac5d9c9361655df3f1a9a40e616b6f59c"><div class="ttname"><a href="config_8hpp.html#ac5d9c9361655df3f1a9a40e616b6f59c">MATRIX_SIZES</a></div><div class="ttdeci">constexpr int MATRIX_SIZES[]</div><div class="ttdoc">Набор размеров квадратных матриц для бенчмаркинга.</div><div class="ttdef"><b>Definition</b> <a href="config_8hpp_source.html#l00079">config.hpp:79</a></div></div>
+</div><!-- fragment -->
+<p>Количество размеров матриц в MATRIX_SIZES. </p>
+
+<p class="definition">См. определение в файле <a class="el" href="config_8hpp_source.html">config.hpp</a> строка <a class="el" href="config_8hpp_source.html#l00086">86</a></p>
+
+</div>
+</div>
+<a id="a8d9369fa07eec72ce4674da3bc49cc6c" name="a8d9369fa07eec72ce4674da3bc49cc6c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d9369fa07eec72ce4674da3bc49cc6c">&#9670;&#160;</a></span>NUM_REPEATS</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr int NUM_REPEATS = 5</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Количество повторных измерений каждого тестового случая. </p>
+
+<p class="definition">См. определение в файле <a class="el" href="config_8hpp_source.html">config.hpp</a> строка <a class="el" href="config_8hpp_source.html#l00063">63</a></p>
+
+<p class="reference">Используется в <a class="el" href="main_8cu_source.html#l00199">main()</a>.</p>
+
+</div>
+</div>
+<a id="acb070177427895998ee33c3bd9a10be0" name="acb070177427895998ee33c3bd9a10be0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb070177427895998ee33c3bd9a10be0">&#9670;&#160;</a></span>NUM_STREAMS</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr int NUM_STREAMS = 4</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Количество CUDA streams в потоковом бенчмарке. </p>
+
+<p class="definition">См. определение в файле <a class="el" href="config_8hpp_source.html">config.hpp</a> строка <a class="el" href="config_8hpp_source.html#l00058">58</a></p>
+
+</div>
+</div>
+<a id="a85d4356a6f20d451821cc9113ce7c697" name="a85d4356a6f20d451821cc9113ce7c697"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85d4356a6f20d451821cc9113ce7c697">&#9670;&#160;</a></span>NUM_WARMUP</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr int NUM_WARMUP = 1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Количество предварительных запусков для прогрева GPU. </p>
+<p>Прогрев выполняется перед серией измерений для уменьшения влияния первоначальных накладных расходов запуска. </p>
+
+<p class="definition">См. определение в файле <a class="el" href="config_8hpp_source.html">config.hpp</a> строка <a class="el" href="config_8hpp_source.html#l00071">71</a></p>
+
+<p class="reference">Используется в <a class="el" href="main_8cu_source.html#l00199">main()</a>.</p>
+
+</div>
+</div>
+<a id="a82862e4ec6bc53ff56d37a0a59ae98f0" name="a82862e4ec6bc53ff56d37a0a59ae98f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a82862e4ec6bc53ff56d37a0a59ae98f0">&#9670;&#160;</a></span>TILE_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr int TILE_SIZE = <a class="el" href="config_8hpp.html#ad31f0ffced5e81b1a43c4d03cc2ba310">MATRIX_TILE_SIZE</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Размер стороны тайла CUDA-блока. </p>
+<p>Определяет размеры двумерного блока потоков TILE_SIZE x TILE_SIZE и соответствующих тайлов shared memory.</p>
+<dl class="section note"><dt>Заметки</dt><dd>Для проведения экспериментов можно использовать значения 16 или 32, если они поддерживаются выбранной реализацией CUDA-ядер. </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="config_8hpp_source.html">config.hpp</a> строка <a class="el" href="config_8hpp_source.html#l00048">48</a></p>
+
+<p class="reference">Используется в <a class="el" href="main_8cu_source.html#l00199">main()</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>
