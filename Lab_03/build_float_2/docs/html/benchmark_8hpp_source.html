@@ -1,0 +1,219 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lab_03: cuBLAS Parallel Programming: Исходный файл benchmark.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Lab_03: cuBLAS Parallel Programming<span id="projectnumber">&#160;3.0</span>
+   </div>
+   <div id="projectbrief">Реализация умножения матриц методами Naive, Tiled, cuBLAS и исследование влияния размеров блоков и решёток на производительность</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">benchmark.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="benchmark_8hpp.html">См. документацию.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &quot;<a class="code" href="config_8hpp.html">config.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;fstream&gt;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="foldopen" id="foldopen00026" data-start="{" data-end="};">
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="benchmark_8hpp.html#a5e41188f16a381c8915a17a22228e691">   26</a></span><span class="keyword">enum class</span> <a class="code hl_enumeration" href="benchmark_8hpp.html#a5e41188f16a381c8915a17a22228e691">Algorithm</a> {</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <a class="code hl_enumvalue" href="benchmark_8hpp.html#a5e41188f16a381c8915a17a22228e691a512d6102506da4ae0c35312fafcf7376">Naive</a>,         </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <a class="code hl_enumvalue" href="benchmark_8hpp.html#a5e41188f16a381c8915a17a22228e691af44f2804e0a70720b9c3bb9a9e9a1f3a">StaticTiled</a>,   </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <a class="code hl_enumvalue" href="benchmark_8hpp.html#a5e41188f16a381c8915a17a22228e691a2272f7d3ad5af33ea67a00761e7712fe">DynamicTiled</a>,  </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <a class="code hl_enumvalue" href="benchmark_8hpp.html#a5e41188f16a381c8915a17a22228e691ad92ef06e9564a9db573d075b4220057e">cuBLAS</a>         </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>};</div>
+</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="foldopen" id="foldopen00036" data-start="{" data-end="};">
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="benchmark_8hpp.html#a2e80cefbbba81052a3a99c7f3829d809">   36</a></span><span class="keyword">enum class</span> <a class="code hl_enumeration" href="benchmark_8hpp.html#a2e80cefbbba81052a3a99c7f3829d809">MemoryStrategy</a> {</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <a class="code hl_enumvalue" href="benchmark_8hpp.html#a2e80cefbbba81052a3a99c7f3829d809aa0acb7df2039d4c9948b5d752f5b3001">Pageable</a>,         </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <a class="code hl_enumvalue" href="benchmark_8hpp.html#a2e80cefbbba81052a3a99c7f3829d809a3c5e891bff07947cbae2fda89162df9f">Pinned</a>,           </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <a class="code hl_enumvalue" href="benchmark_8hpp.html#a2e80cefbbba81052a3a99c7f3829d809a48d3dc9f097bed90d1f6658a36a85eef">PageableStreams</a>,  </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <a class="code hl_enumvalue" href="benchmark_8hpp.html#a2e80cefbbba81052a3a99c7f3829d809ad99be4eaa4ce9dcdf8f414e09870c7db">PinnedStreams</a>,    </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <a class="code hl_enumvalue" href="benchmark_8hpp.html#a2e80cefbbba81052a3a99c7f3829d809a499411ce32a9abced5a07808a9814bee">UnifiedPrefetch</a>,  </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <a class="code hl_enumvalue" href="benchmark_8hpp.html#a2e80cefbbba81052a3a99c7f3829d809a76747ee5c157cde82f93ce422bc07412">UnifiedManaged</a>    </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>};</div>
+</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="foldopen" id="foldopen00062" data-start="{" data-end="};">
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="structTiming.html">   62</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structTiming.html">Timing</a> {</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="structTiming.html#ada1081441c79d8852db559dd7cf7426d">   63</a></span>    <span class="keywordtype">double</span> <a class="code hl_variable" href="structTiming.html#ada1081441c79d8852db559dd7cf7426d">h2d</a> = 0.0;     </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="structTiming.html#aa071e50eccfaba64fd087dbabe3fc1b0">   64</a></span>    <span class="keywordtype">double</span> <a class="code hl_variable" href="structTiming.html#aa071e50eccfaba64fd087dbabe3fc1b0">kernel</a> = 0.0;  </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="structTiming.html#ab8e33e408e58adf9a50433b50b9c50c3">   65</a></span>    <span class="keywordtype">double</span> <a class="code hl_variable" href="structTiming.html#ab8e33e408e58adf9a50433b50b9c50c3">d2h</a> = 0.0;     </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="structTiming.html#a59a2f7433a9c361780341ab04a6f1cd6">   66</a></span>    <span class="keywordtype">double</span> <a class="code hl_variable" href="structTiming.html#a59a2f7433a9c361780341ab04a6f1cd6">total</a> = 0.0;   </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>};</div>
+</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="foldopen" id="foldopen00076" data-start="{" data-end="};">
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="structBenchmarkResult.html">   76</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structBenchmarkResult.html">BenchmarkResult</a> {</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="structBenchmarkResult.html#a0b4fe223d345fc1d558b4c4d4ede4492">   77</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structBenchmarkResult.html#a0b4fe223d345fc1d558b4c4d4ede4492">N</a> = 0;                  </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="structBenchmarkResult.html#a71db1b7db11a41981cb030c1d2929185">   78</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structBenchmarkResult.html#a71db1b7db11a41981cb030c1d2929185">blockSize</a> = 0;           </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="structBenchmarkResult.html#aea35255fcf4f37b05d50f2c7dc6c724b">   80</a></span>    std::string <a class="code hl_variable" href="structBenchmarkResult.html#aea35255fcf4f37b05d50f2c7dc6c724b">strategy</a>;       </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="structBenchmarkResult.html#a2fe51d0580e691cfe5a26b258fef8862">   81</a></span>    std::string <a class="code hl_variable" href="structBenchmarkResult.html#a2fe51d0580e691cfe5a26b258fef8862">algorithm</a>;      </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="structBenchmarkResult.html#a7b5a03ed4b4cc4fd2e608c673245ddce">   83</a></span>    <span class="keywordtype">double</span> <a class="code hl_variable" href="structBenchmarkResult.html#a7b5a03ed4b4cc4fd2e608c673245ddce">h2dMedian</a> = 0.0;     </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="structBenchmarkResult.html#af82bf159c08fa5d1410c9bddf304ce29">   84</a></span>    <span class="keywordtype">double</span> <a class="code hl_variable" href="structBenchmarkResult.html#af82bf159c08fa5d1410c9bddf304ce29">kernelMedian</a> = 0.0;  </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="structBenchmarkResult.html#a28ab4132981b196db0995c0135bce75a">   85</a></span>    <span class="keywordtype">double</span> <a class="code hl_variable" href="structBenchmarkResult.html#a28ab4132981b196db0995c0135bce75a">d2hMedian</a> = 0.0;     </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="structBenchmarkResult.html#a002afcb990c28683f1f561292681bf36">   86</a></span>    <span class="keywordtype">double</span> <a class="code hl_variable" href="structBenchmarkResult.html#a002afcb990c28683f1f561292681bf36">totalMedian</a> = 0.0;   </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="structBenchmarkResult.html#a72a8af1ca5f99606cdafcd34649093be">   88</a></span>    <span class="keywordtype">double</span> <a class="code hl_variable" href="structBenchmarkResult.html#a72a8af1ca5f99606cdafcd34649093be">totalMin</a> = 0.0;      </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="structBenchmarkResult.html#a0e7523850d6da5b30142a88e9c80525c">   90</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structBenchmarkResult.html#a0e7523850d6da5b30142a88e9c80525c">verified</a> = <span class="keyword">false</span>;      </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>};</div>
+</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span><span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code hl_function" href="benchmark_8hpp.html#af073a429645b8a1d8f947227a8efe6fe">algorithmName</a>(<a class="code hl_enumeration" href="benchmark_8hpp.html#a5e41188f16a381c8915a17a22228e691">Algorithm</a> algorithm);</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code hl_function" href="benchmark_8hpp.html#abb0bd7b260762376722c49a9e5e7a1b9">strategyName</a>(<a class="code hl_enumeration" href="benchmark_8hpp.html#a2e80cefbbba81052a3a99c7f3829d809">MemoryStrategy</a> strategy);</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="keywordtype">void</span> <a class="code hl_function" href="benchmark_8hpp.html#a2c837d9fe92384cc90c1c34f4215cd71">printGPUInfo</a>();</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span><span class="keywordtype">bool</span> <a class="code hl_function" href="benchmark_8hpp.html#a4bf014d2cf730d47b64c898441bf73be">isUnifiedPrefetchSupported</a>();</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span><a class="code hl_struct" href="structTiming.html">Timing</a> <a class="code hl_function" href="benchmark_8hpp.html#aa590c644bb50d9cf7b53d7ce28119150">runOneCase</a>(</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    <a class="code hl_enumeration" href="benchmark_8hpp.html#a5e41188f16a381c8915a17a22228e691">Algorithm</a> algorithm,</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    <a class="code hl_enumeration" href="benchmark_8hpp.html#a2e80cefbbba81052a3a99c7f3829d809">MemoryStrategy</a> strategy,</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    <span class="keyword">const</span> std::vector&lt;BASE_TYPE&gt;&amp; <a class="code hl_function" href="matrix__kernels_8cu.html#a17b165c8a6fe57e0ba195104c9a27b9b">A</a>,</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    <span class="keyword">const</span> std::vector&lt;BASE_TYPE&gt;&amp; <a class="code hl_function" href="matrix__kernels_8cu.html#a17b165c8a6fe57e0ba195104c9a27b9b">B</a>,</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    std::vector&lt;BASE_TYPE&gt;&amp; <a class="code hl_function" href="matrix__kernels_8cu.html#a17b165c8a6fe57e0ba195104c9a27b9b">C</a>,</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    <span class="keywordtype">int</span> N</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>);</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span> </div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span><span class="keywordtype">void</span> <a class="code hl_function" href="benchmark_8hpp.html#ac53f324b7787b53efd4112e6f3220fad">writeCSVHeader</a>(std::ofstream&amp; <a class="code hl_function" href="matrix__kernels_8cu.html#a17b165c8a6fe57e0ba195104c9a27b9b">file</a>);</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span><span class="keywordtype">void</span> <a class="code hl_function" href="benchmark_8hpp.html#a77561e84b3994347081134dea514f85d">writeCSVRow</a>(</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    std::ofstream&amp; <a class="code hl_function" href="matrix__kernels_8cu.html#a17b165c8a6fe57e0ba195104c9a27b9b">file</a>,</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    <span class="keyword">const</span> <a class="code hl_struct" href="structBenchmarkResult.html">BenchmarkResult</a>&amp; <a class="code hl_function" href="matrix__kernels_8cu.html#a17b165c8a6fe57e0ba195104c9a27b9b">result</a></div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>);</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span><span class="keywordtype">double</span> <a class="code hl_function" href="benchmark_8hpp.html#a6b262a05d5a7c374aa5032dd75181b76">median</a>(std::vector&lt;double&gt; <a class="code hl_function" href="matrix__kernels_8cu.html#a17b165c8a6fe57e0ba195104c9a27b9b">values</a>);</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span> </div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span><span class="keywordtype">double</span> <a class="code hl_function" href="benchmark_8hpp.html#a693d66a5039293e133aaf8d8eeffb25c">minimum</a>(<span class="keyword">const</span> std::vector&lt;double&gt;&amp; <a class="code hl_function" href="matrix__kernels_8cu.html#a17b165c8a6fe57e0ba195104c9a27b9b">values</a>);</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span> </div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span><span class="keywordtype">bool</span> <a class="code hl_function" href="benchmark_8hpp.html#a7cdff9cee6d77dc23361827e0ce73a76">isSupportedBlockSize</a>(<span class="keywordtype">int</span> blockSize); </div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span> </div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span><span class="keywordtype">void</span> <a class="code hl_function" href="benchmark_8hpp.html#a2398b9286ce8c2f1d613577f1bc8e0ce">setBlockSize</a>(<span class="keywordtype">int</span> blockSize); </div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span> </div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span><span class="keywordtype">int</span> <a class="code hl_function" href="benchmark_8hpp.html#abab7d820e3eedff695bfccb91b38457c">getBlockSize</a>();</div>
+<div class="ttc" id="abenchmark_8hpp_html_a2398b9286ce8c2f1d613577f1bc8e0ce"><div class="ttname"><a href="benchmark_8hpp.html#a2398b9286ce8c2f1d613577f1bc8e0ce">setBlockSize</a></div><div class="ttdeci">void setBlockSize(int blockSize)</div><div class="ttdoc">Задаёт размер блока для всех последующих запусков.</div><div class="ttdef"><b>Definition</b> <a href="benchmark_8cu_source.html#l01012">benchmark.cu:1012</a></div></div>
+<div class="ttc" id="abenchmark_8hpp_html_a2c837d9fe92384cc90c1c34f4215cd71"><div class="ttname"><a href="benchmark_8hpp.html#a2c837d9fe92384cc90c1c34f4215cd71">printGPUInfo</a></div><div class="ttdeci">void printGPUInfo()</div><div class="ttdoc">Выводит информацию о текущем CUDA-устройстве.</div><div class="ttdef"><b>Definition</b> <a href="benchmark_8cu_source.html#l00848">benchmark.cu:848</a></div></div>
+<div class="ttc" id="abenchmark_8hpp_html_a2e80cefbbba81052a3a99c7f3829d809"><div class="ttname"><a href="benchmark_8hpp.html#a2e80cefbbba81052a3a99c7f3829d809">MemoryStrategy</a></div><div class="ttdeci">MemoryStrategy</div><div class="ttdoc">Стратегия размещения и передачи данных между CPU и GPU.</div><div class="ttdef"><b>Definition</b> <a href="benchmark_8hpp_source.html#l00036">benchmark.hpp:36</a></div></div>
+<div class="ttc" id="abenchmark_8hpp_html_a2e80cefbbba81052a3a99c7f3829d809a3c5e891bff07947cbae2fda89162df9f"><div class="ttname"><a href="benchmark_8hpp.html#a2e80cefbbba81052a3a99c7f3829d809a3c5e891bff07947cbae2fda89162df9f">MemoryStrategy::Pinned</a></div><div class="ttdeci">@ Pinned</div><div class="ttdoc">Закреплённая страничная память CPU и полная передача матриц.</div></div>
+<div class="ttc" id="abenchmark_8hpp_html_a2e80cefbbba81052a3a99c7f3829d809a48d3dc9f097bed90d1f6658a36a85eef"><div class="ttname"><a href="benchmark_8hpp.html#a2e80cefbbba81052a3a99c7f3829d809a48d3dc9f097bed90d1f6658a36a85eef">MemoryStrategy::PageableStreams</a></div><div class="ttdeci">@ PageableStreams</div><div class="ttdoc">Обычная память CPU и передача частей матриц через CUDA streams.</div></div>
+<div class="ttc" id="abenchmark_8hpp_html_a2e80cefbbba81052a3a99c7f3829d809a499411ce32a9abced5a07808a9814bee"><div class="ttname"><a href="benchmark_8hpp.html#a2e80cefbbba81052a3a99c7f3829d809a499411ce32a9abced5a07808a9814bee">MemoryStrategy::UnifiedPrefetch</a></div><div class="ttdeci">@ UnifiedPrefetch</div><div class="ttdoc">Unified Memory с явным предварительным перемещением данных.</div></div>
+<div class="ttc" id="abenchmark_8hpp_html_a2e80cefbbba81052a3a99c7f3829d809a76747ee5c157cde82f93ce422bc07412"><div class="ttname"><a href="benchmark_8hpp.html#a2e80cefbbba81052a3a99c7f3829d809a76747ee5c157cde82f93ce422bc07412">MemoryStrategy::UnifiedManaged</a></div><div class="ttdeci">@ UnifiedManaged</div><div class="ttdoc">Unified Memory с автоматической миграцией страниц.</div></div>
+<div class="ttc" id="abenchmark_8hpp_html_a2e80cefbbba81052a3a99c7f3829d809aa0acb7df2039d4c9948b5d752f5b3001"><div class="ttname"><a href="benchmark_8hpp.html#a2e80cefbbba81052a3a99c7f3829d809aa0acb7df2039d4c9948b5d752f5b3001">MemoryStrategy::Pageable</a></div><div class="ttdeci">@ Pageable</div><div class="ttdoc">Обычная страничная память CPU и полная передача матриц.</div></div>
+<div class="ttc" id="abenchmark_8hpp_html_a2e80cefbbba81052a3a99c7f3829d809ad99be4eaa4ce9dcdf8f414e09870c7db"><div class="ttname"><a href="benchmark_8hpp.html#a2e80cefbbba81052a3a99c7f3829d809ad99be4eaa4ce9dcdf8f414e09870c7db">MemoryStrategy::PinnedStreams</a></div><div class="ttdeci">@ PinnedStreams</div><div class="ttdoc">Закреплённая память CPU и передача частей матриц через CUDA streams.</div></div>
+<div class="ttc" id="abenchmark_8hpp_html_a4bf014d2cf730d47b64c898441bf73be"><div class="ttname"><a href="benchmark_8hpp.html#a4bf014d2cf730d47b64c898441bf73be">isUnifiedPrefetchSupported</a></div><div class="ttdeci">bool isUnifiedPrefetchSupported()</div><div class="ttdoc">Проверяет поддержку Unified Memory prefetch текущим GPU.</div><div class="ttdef"><b>Definition</b> <a href="benchmark_8cu_source.html#l00827">benchmark.cu:827</a></div></div>
+<div class="ttc" id="abenchmark_8hpp_html_a5e41188f16a381c8915a17a22228e691"><div class="ttname"><a href="benchmark_8hpp.html#a5e41188f16a381c8915a17a22228e691">Algorithm</a></div><div class="ttdeci">Algorithm</div><div class="ttdoc">Вычислительный алгоритм умножения матриц.</div><div class="ttdef"><b>Definition</b> <a href="benchmark_8hpp_source.html#l00026">benchmark.hpp:26</a></div></div>
+<div class="ttc" id="abenchmark_8hpp_html_a5e41188f16a381c8915a17a22228e691a2272f7d3ad5af33ea67a00761e7712fe"><div class="ttname"><a href="benchmark_8hpp.html#a5e41188f16a381c8915a17a22228e691a2272f7d3ad5af33ea67a00761e7712fe">Algorithm::DynamicTiled</a></div><div class="ttdeci">@ DynamicTiled</div><div class="ttdoc">Блочное умножение с динамической shared memory.</div></div>
+<div class="ttc" id="abenchmark_8hpp_html_a5e41188f16a381c8915a17a22228e691a512d6102506da4ae0c35312fafcf7376"><div class="ttname"><a href="benchmark_8hpp.html#a5e41188f16a381c8915a17a22228e691a512d6102506da4ae0c35312fafcf7376">Algorithm::Naive</a></div><div class="ttdeci">@ Naive</div><div class="ttdoc">Наивное умножение с использованием глобальной памяти.</div></div>
+<div class="ttc" id="abenchmark_8hpp_html_a5e41188f16a381c8915a17a22228e691ad92ef06e9564a9db573d075b4220057e"><div class="ttname"><a href="benchmark_8hpp.html#a5e41188f16a381c8915a17a22228e691ad92ef06e9564a9db573d075b4220057e">Algorithm::cuBLAS</a></div><div class="ttdeci">@ cuBLAS</div><div class="ttdoc">Умножение с использованием библиотеки NVIDIA cuBLAS.</div></div>
+<div class="ttc" id="abenchmark_8hpp_html_a5e41188f16a381c8915a17a22228e691af44f2804e0a70720b9c3bb9a9e9a1f3a"><div class="ttname"><a href="benchmark_8hpp.html#a5e41188f16a381c8915a17a22228e691af44f2804e0a70720b9c3bb9a9e9a1f3a">Algorithm::StaticTiled</a></div><div class="ttdeci">@ StaticTiled</div><div class="ttdoc">Блочное умножение со статической shared memory.</div></div>
+<div class="ttc" id="abenchmark_8hpp_html_a693d66a5039293e133aaf8d8eeffb25c"><div class="ttname"><a href="benchmark_8hpp.html#a693d66a5039293e133aaf8d8eeffb25c">minimum</a></div><div class="ttdeci">double minimum(const std::vector&lt; double &gt; &amp;values)</div><div class="ttdoc">Возвращает минимальное значение набора измерений.</div><div class="ttdef"><b>Definition</b> <a href="benchmark_8cu_source.html#l00963">benchmark.cu:963</a></div></div>
+<div class="ttc" id="abenchmark_8hpp_html_a6b262a05d5a7c374aa5032dd75181b76"><div class="ttname"><a href="benchmark_8hpp.html#a6b262a05d5a7c374aa5032dd75181b76">median</a></div><div class="ttdeci">double median(std::vector&lt; double &gt; values)</div><div class="ttdoc">Вычисляет медиану набора измерений.</div><div class="ttdef"><b>Definition</b> <a href="benchmark_8cu_source.html#l00938">benchmark.cu:938</a></div></div>
+<div class="ttc" id="abenchmark_8hpp_html_a77561e84b3994347081134dea514f85d"><div class="ttname"><a href="benchmark_8hpp.html#a77561e84b3994347081134dea514f85d">writeCSVRow</a></div><div class="ttdeci">void writeCSVRow(std::ofstream &amp;file, const BenchmarkResult &amp;result)</div><div class="ttdoc">Записывает результаты одного эксперимента в CSV-файл.</div><div class="ttdef"><b>Definition</b> <a href="benchmark_8cu_source.html#l00988">benchmark.cu:988</a></div></div>
+<div class="ttc" id="abenchmark_8hpp_html_a7cdff9cee6d77dc23361827e0ce73a76"><div class="ttname"><a href="benchmark_8hpp.html#a7cdff9cee6d77dc23361827e0ce73a76">isSupportedBlockSize</a></div><div class="ttdeci">bool isSupportedBlockSize(int blockSize)</div><div class="ttdoc">Проверяет, что размер блока поддерживается (2, 4, 8, 16, 32).</div><div class="ttdef"><b>Definition</b> <a href="benchmark_8cu_source.html#l01006">benchmark.cu:1006</a></div></div>
+<div class="ttc" id="abenchmark_8hpp_html_aa590c644bb50d9cf7b53d7ce28119150"><div class="ttname"><a href="benchmark_8hpp.html#aa590c644bb50d9cf7b53d7ce28119150">runOneCase</a></div><div class="ttdeci">Timing runOneCase(Algorithm algorithm, MemoryStrategy strategy, const std::vector&lt; BASE_TYPE &gt; &amp;A, const std::vector&lt; BASE_TYPE &gt; &amp;B, std::vector&lt; BASE_TYPE &gt; &amp;C, int N)</div><div class="ttdoc">Выполняет один эксперимент с выбранным алгоритмом и стратегией памяти.</div><div class="ttdef"><b>Definition</b> <a href="benchmark_8cu_source.html#l00885">benchmark.cu:885</a></div></div>
+<div class="ttc" id="abenchmark_8hpp_html_abab7d820e3eedff695bfccb91b38457c"><div class="ttname"><a href="benchmark_8hpp.html#abab7d820e3eedff695bfccb91b38457c">getBlockSize</a></div><div class="ttdeci">int getBlockSize()</div><div class="ttdoc">Возвращает текущий размер блока.</div><div class="ttdef"><b>Definition</b> <a href="benchmark_8cu_source.html#l01021">benchmark.cu:1021</a></div></div>
+<div class="ttc" id="abenchmark_8hpp_html_abb0bd7b260762376722c49a9e5e7a1b9"><div class="ttname"><a href="benchmark_8hpp.html#abb0bd7b260762376722c49a9e5e7a1b9">strategyName</a></div><div class="ttdeci">const char * strategyName(MemoryStrategy strategy)</div><div class="ttdoc">Возвращает текстовое имя стратегии управления памятью.</div><div class="ttdef"><b>Definition</b> <a href="benchmark_8cu_source.html#l00804">benchmark.cu:804</a></div></div>
+<div class="ttc" id="abenchmark_8hpp_html_ac53f324b7787b53efd4112e6f3220fad"><div class="ttname"><a href="benchmark_8hpp.html#ac53f324b7787b53efd4112e6f3220fad">writeCSVHeader</a></div><div class="ttdeci">void writeCSVHeader(std::ofstream &amp;file)</div><div class="ttdoc">Записывает заголовок CSV-файла с результатами экспериментов.</div><div class="ttdef"><b>Definition</b> <a href="benchmark_8cu_source.html#l00976">benchmark.cu:976</a></div></div>
+<div class="ttc" id="abenchmark_8hpp_html_af073a429645b8a1d8f947227a8efe6fe"><div class="ttname"><a href="benchmark_8hpp.html#af073a429645b8a1d8f947227a8efe6fe">algorithmName</a></div><div class="ttdeci">const char * algorithmName(Algorithm algorithm)</div><div class="ttdoc">Возвращает текстовое имя вычислительного алгоритма.</div><div class="ttdef"><b>Definition</b> <a href="benchmark_8cu_source.html#l00788">benchmark.cu:788</a></div></div>
+<div class="ttc" id="aconfig_8hpp_html"><div class="ttname"><a href="config_8hpp.html">config.hpp</a></div><div class="ttdoc">Общая конфигурация лабораторной работы №3.</div></div>
+<div class="ttc" id="amatrix__kernels_8cu_html_a17b165c8a6fe57e0ba195104c9a27b9b"><div class="ttname"><a href="matrix__kernels_8cu.html#a17b165c8a6fe57e0ba195104c9a27b9b">matrixMultNaive</a></div><div class="ttdeci">__global__ void matrixMultNaive(const BASE_TYPE *A, const BASE_TYPE *B, BASE_TYPE *C, int N, int rows)</div><div class="ttdoc">Выполняет наивное умножение матриц с использованием глобальной памяти GPU.</div><div class="ttdef"><b>Definition</b> <a href="matrix__kernels_8cu_source.html#l00047">matrix_kernels.cu:47</a></div></div>
+<div class="ttc" id="astructBenchmarkResult_html"><div class="ttname"><a href="structBenchmarkResult.html">BenchmarkResult</a></div><div class="ttdoc">Итоговые статистические данные одного эксперимента.</div><div class="ttdef"><b>Definition</b> <a href="benchmark_8hpp_source.html#l00076">benchmark.hpp:76</a></div></div>
+<div class="ttc" id="astructBenchmarkResult_html_a002afcb990c28683f1f561292681bf36"><div class="ttname"><a href="structBenchmarkResult.html#a002afcb990c28683f1f561292681bf36">BenchmarkResult::totalMedian</a></div><div class="ttdeci">double totalMedian</div><div class="ttdoc">Медианное полное время выполнения, мс.</div><div class="ttdef"><b>Definition</b> <a href="benchmark_8hpp_source.html#l00086">benchmark.hpp:86</a></div></div>
+<div class="ttc" id="astructBenchmarkResult_html_a0b4fe223d345fc1d558b4c4d4ede4492"><div class="ttname"><a href="structBenchmarkResult.html#a0b4fe223d345fc1d558b4c4d4ede4492">BenchmarkResult::N</a></div><div class="ttdeci">int N</div><div class="ttdoc">Размер квадратных матриц N x N.</div><div class="ttdef"><b>Definition</b> <a href="benchmark_8hpp_source.html#l00077">benchmark.hpp:77</a></div></div>
+<div class="ttc" id="astructBenchmarkResult_html_a0e7523850d6da5b30142a88e9c80525c"><div class="ttname"><a href="structBenchmarkResult.html#a0e7523850d6da5b30142a88e9c80525c">BenchmarkResult::verified</a></div><div class="ttdeci">bool verified</div><div class="ttdoc">Результат проверки корректности вычислений.</div><div class="ttdef"><b>Definition</b> <a href="benchmark_8hpp_source.html#l00090">benchmark.hpp:90</a></div></div>
+<div class="ttc" id="astructBenchmarkResult_html_a28ab4132981b196db0995c0135bce75a"><div class="ttname"><a href="structBenchmarkResult.html#a28ab4132981b196db0995c0135bce75a">BenchmarkResult::d2hMedian</a></div><div class="ttdeci">double d2hMedian</div><div class="ttdoc">Медианное время передачи D2H, мс.</div><div class="ttdef"><b>Definition</b> <a href="benchmark_8hpp_source.html#l00085">benchmark.hpp:85</a></div></div>
+<div class="ttc" id="astructBenchmarkResult_html_a2fe51d0580e691cfe5a26b258fef8862"><div class="ttname"><a href="structBenchmarkResult.html#a2fe51d0580e691cfe5a26b258fef8862">BenchmarkResult::algorithm</a></div><div class="ttdeci">std::string algorithm</div><div class="ttdoc">Название вычислительного алгоритма.</div><div class="ttdef"><b>Definition</b> <a href="benchmark_8hpp_source.html#l00081">benchmark.hpp:81</a></div></div>
+<div class="ttc" id="astructBenchmarkResult_html_a71db1b7db11a41981cb030c1d2929185"><div class="ttname"><a href="structBenchmarkResult.html#a71db1b7db11a41981cb030c1d2929185">BenchmarkResult::blockSize</a></div><div class="ttdeci">int blockSize</div><div class="ttdoc">Размер стороны CUDA-блока (тайла).</div><div class="ttdef"><b>Definition</b> <a href="benchmark_8hpp_source.html#l00078">benchmark.hpp:78</a></div></div>
+<div class="ttc" id="astructBenchmarkResult_html_a72a8af1ca5f99606cdafcd34649093be"><div class="ttname"><a href="structBenchmarkResult.html#a72a8af1ca5f99606cdafcd34649093be">BenchmarkResult::totalMin</a></div><div class="ttdeci">double totalMin</div><div class="ttdoc">Минимальное полное время выполнения, мс.</div><div class="ttdef"><b>Definition</b> <a href="benchmark_8hpp_source.html#l00088">benchmark.hpp:88</a></div></div>
+<div class="ttc" id="astructBenchmarkResult_html_a7b5a03ed4b4cc4fd2e608c673245ddce"><div class="ttname"><a href="structBenchmarkResult.html#a7b5a03ed4b4cc4fd2e608c673245ddce">BenchmarkResult::h2dMedian</a></div><div class="ttdeci">double h2dMedian</div><div class="ttdoc">Медианное время передачи H2D, мс.</div><div class="ttdef"><b>Definition</b> <a href="benchmark_8hpp_source.html#l00083">benchmark.hpp:83</a></div></div>
+<div class="ttc" id="astructBenchmarkResult_html_aea35255fcf4f37b05d50f2c7dc6c724b"><div class="ttname"><a href="structBenchmarkResult.html#aea35255fcf4f37b05d50f2c7dc6c724b">BenchmarkResult::strategy</a></div><div class="ttdeci">std::string strategy</div><div class="ttdoc">Название стратегии управления памятью.</div><div class="ttdef"><b>Definition</b> <a href="benchmark_8hpp_source.html#l00080">benchmark.hpp:80</a></div></div>
+<div class="ttc" id="astructBenchmarkResult_html_af82bf159c08fa5d1410c9bddf304ce29"><div class="ttname"><a href="structBenchmarkResult.html#af82bf159c08fa5d1410c9bddf304ce29">BenchmarkResult::kernelMedian</a></div><div class="ttdeci">double kernelMedian</div><div class="ttdoc">Медианное время выполнения ядра, мс.</div><div class="ttdef"><b>Definition</b> <a href="benchmark_8hpp_source.html#l00084">benchmark.hpp:84</a></div></div>
+<div class="ttc" id="astructTiming_html"><div class="ttname"><a href="structTiming.html">Timing</a></div><div class="ttdoc">Временные характеристики одного запуска бенчмарка.</div><div class="ttdef"><b>Definition</b> <a href="benchmark_8hpp_source.html#l00062">benchmark.hpp:62</a></div></div>
+<div class="ttc" id="astructTiming_html_a59a2f7433a9c361780341ab04a6f1cd6"><div class="ttname"><a href="structTiming.html#a59a2f7433a9c361780341ab04a6f1cd6">Timing::total</a></div><div class="ttdeci">double total</div><div class="ttdoc">Полное измеренное время одного запуска.</div><div class="ttdef"><b>Definition</b> <a href="benchmark_8hpp_source.html#l00066">benchmark.hpp:66</a></div></div>
+<div class="ttc" id="astructTiming_html_aa071e50eccfaba64fd087dbabe3fc1b0"><div class="ttname"><a href="structTiming.html#aa071e50eccfaba64fd087dbabe3fc1b0">Timing::kernel</a></div><div class="ttdeci">double kernel</div><div class="ttdoc">Время выполнения вычислений на GPU.</div><div class="ttdef"><b>Definition</b> <a href="benchmark_8hpp_source.html#l00064">benchmark.hpp:64</a></div></div>
+<div class="ttc" id="astructTiming_html_ab8e33e408e58adf9a50433b50b9c50c3"><div class="ttname"><a href="structTiming.html#ab8e33e408e58adf9a50433b50b9c50c3">Timing::d2h</a></div><div class="ttdeci">double d2h</div><div class="ttdoc">Время получения результата с GPU на CPU.</div><div class="ttdef"><b>Definition</b> <a href="benchmark_8hpp_source.html#l00065">benchmark.hpp:65</a></div></div>
+<div class="ttc" id="astructTiming_html_ada1081441c79d8852db559dd7cf7426d"><div class="ttname"><a href="structTiming.html#ada1081441c79d8852db559dd7cf7426d">Timing::h2d</a></div><div class="ttdeci">double h2d</div><div class="ttdoc">Время передачи данных с CPU на GPU.</div><div class="ttdef"><b>Definition</b> <a href="benchmark_8hpp_source.html#l00063">benchmark.hpp:63</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

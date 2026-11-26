@@ -14,10 +14,17 @@ OUTPUT_LANGUAGE        = Russian
 # ------------------------------------------------------------------------------
 # Входные файлы
 # ------------------------------------------------------------------------------
-INPUT                  = @CMAKE_CURRENT_SOURCE_DIR@
-RECURSIVE              = YES
+INPUT                  = \
+    @CMAKE_CURRENT_SOURCE_DIR@/config.hpp \
+    @CMAKE_CURRENT_SOURCE_DIR@/cuda_utils.hpp \
+    @CMAKE_CURRENT_SOURCE_DIR@/matrix_kernels.hpp \
+    @CMAKE_CURRENT_SOURCE_DIR@/matrix_kernels.cu \
+    @CMAKE_CURRENT_SOURCE_DIR@/benchmark.hpp \
+    @CMAKE_CURRENT_SOURCE_DIR@/benchmark.cu \
+    @CMAKE_CURRENT_SOURCE_DIR@/main.cu
+RECURSIVE              = NO
 FILE_PATTERNS          = *.cpp *.h *.hpp *.cu
-EXCLUDE_PATTERNS       = */build/* */cmake-build-* */.git/*
+EXCLUDE_PATTERNS       = */build/* */build-*/* */cmake-build-*/* */.git/*
 EXTRACT_ALL            = YES
 EXTRACT_PRIVATE        = YES
 EXTRACT_STATIC         = YES

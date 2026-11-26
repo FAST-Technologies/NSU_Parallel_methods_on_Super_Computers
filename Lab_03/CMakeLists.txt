@@ -17,18 +17,91 @@ endif()
 # ==============================================================================
 # Настройка архитектуры GPU
 # ==============================================================================
-# Blackwell (RTX 50xx) = 120, Ada (RTX 40xx) = 89, Ampere = 86, Turing = 75
-set(CMAKE_CUDA_ARCHITECTURES 75 86 89 120)
+# Compute Capability:
+# Turing = 7.5, Ampere = 8.6, Ada = 8.9, Blackwell = 12.0
+# ==============================================================================
+
+# ==============================================================================
+# Настройка архитектуры GPU
+# ==============================================================================
+set(LAB_CUDA_ARCHS "" CACHE STRING
+    "CUDA architectures, e.g. 89 or '80;89'. Empty = auto-detect")
+
+option(MATRIX_NATIVE_CPU
+    "Use -march=native for host code (disable if building on login node)" ON)
+
+set(CUDA_ARCH_CANDIDATES 50 52 53 60 61 62 70 72 75 80 86 87 89 90 120)
+
+execute_process(
+    COMMAND ${CMAKE_CUDA_COMPILER} --list-gpu-arch
+    OUTPUT_VARIABLE CUDA_SUPPORTED_ARCHS
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+    ERROR_VARIABLE CUDA_ARCH_ERROR
+    RESULT_VARIABLE CUDA_ARCH_RESULT
+)
+
+if(NOT CUDA_ARCH_RESULT EQUAL 0)
+    message(FATAL_ERROR
+        "Unable to determine supported CUDA architectures:\n${CUDA_ARCH_ERROR}"
+    )
+endif()
+
+if(NOT CUDA_SUPPORTED_ARCHS MATCHES "compute_[0-9]+")
+    message(FATAL_ERROR
+        "NVCC returned an unexpected architecture list:\n${CUDA_SUPPORTED_ARCHS}"
+    )
+endif()
+
+if(LAB_CUDA_ARCHS)
+    set(CMAKE_CUDA_ARCHITECTURES ${LAB_CUDA_ARCHS})
+
+    foreach(ARCH IN LISTS CMAKE_CUDA_ARCHITECTURES)
+        if(NOT CUDA_SUPPORTED_ARCHS MATCHES "compute_${ARCH}([^0-9]|$)")
+            message(FATAL_ERROR
+                "CUDA architecture ${ARCH} is not supported by current NVCC."
+            )
+        endif()
+    endforeach()
+else()
+    set(CUDA_ARCH_LIST "")
+
+    foreach(ARCH IN LISTS CUDA_ARCH_CANDIDATES)
+        if(CUDA_SUPPORTED_ARCHS MATCHES "compute_${ARCH}([^0-9]|$)")
+            list(APPEND CUDA_ARCH_LIST ${ARCH})
+        else()
+            message(STATUS
+                "CUDA architecture ${ARCH} is not supported by current NVCC. Skipping."
+            )
+        endif()
+    endforeach()
+
+    if(NOT CUDA_ARCH_LIST)
+        message(FATAL_ERROR "No supported CUDA architectures found!")
+    endif()
+
+    set(CMAKE_CUDA_ARCHITECTURES ${CUDA_ARCH_LIST})
+endif()
+
+message(STATUS "Selected CUDA architectures: ${CMAKE_CUDA_ARCHITECTURES}")
 
 # ==============================================================================
 # Поиск зависимостей CUDA Toolkit (включает cudart и cublas)
 # ==============================================================================
 find_package(CUDAToolkit REQUIRED)
 
+# Precision configuration
+option(MATRIX_USE_DOUBLE "Use double precision instead of float" OFF)
+
+# Optional fast math; disabled by default to preserve numerical accuracy
+option(MATRIX_USE_FAST_MATH "Enable CUDA fast math" OFF)
+
+# Documentation
+option(BUILD_DOC "Build Doxygen documentation" ON)
+
 # ==============================================================================
 # Цели сборки (Targets)
 # ==============================================================================
-set(SOURCE_FILES matrix_kernels.cu main.cu)
+set(SOURCE_FILES matrix_kernels.cu benchmark.cu main.cu)
 add_executable(Lab_03 ${SOURCE_FILES})
 
 # Подключаем библиотеки CUDA Runtime и cuBLAS
@@ -39,40 +112,68 @@ target_link_libraries(Lab_03 PRIVATE
 
 target_include_directories(Lab_03 PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
+# Apply precision setting consistently to all translation units
+if(MATRIX_USE_DOUBLE)
+    target_compile_definitions(Lab_03 PRIVATE MATRIX_USE_DOUBLE=1)
+else()
+    target_compile_definitions(Lab_03 PRIVATE MATRIX_USE_DOUBLE=0)
+endif()
+
+set(MATRIX_TILE_SIZE 32 CACHE STRING "CUDA tile/block dimension")
+set_property(CACHE MATRIX_TILE_SIZE PROPERTY STRINGS 2 4 8 16 32)
+
+if (NOT MATRIX_TILE_SIZE MATCHES "^(2|4|8|16|32)$")
+    message(FATAL_ERROR
+        "Unsupported MATRIX_TILE_SIZE=${MATRIX_TILE_SIZE}. "
+        "Allowed values: 2, 4, 8, 16, 32."
+    )
+endif()
+
+target_compile_definitions(
+    Lab_03 PRIVATE
+    MATRIX_TILE_SIZE=${MATRIX_TILE_SIZE}
+)
+
 # ==============================================================================
 # Оптимизация для Release (используем target_compile_options)
 # ==============================================================================
-if(CMAKE_BUILD_TYPE STREQUAL "Release")
-    # Флаги для C++ (GCC / Clang)
-    if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
-        target_compile_options(Lab_03 PRIVATE
-            $<$<COMPILE_LANGUAGE:CXX>:-O3 -march=native -Wall -Wextra -Werror>
-        )
-    elseif(MSVC)
-        target_compile_options(Lab_03 PRIVATE
-            $<$<COMPILE_LANGUAGE:CXX>:/O2 /Ob2 /W4>
-        )
-        target_compile_definitions(Lab_03 PRIVATE NOMINMAX)
-    endif()
+if(MSVC)
+    target_compile_definitions(Lab_03 PRIVATE NOMINMAX)
 
-    # Флаги для CUDA (nvcc)
-    if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
-        target_compile_options(Lab_03 PRIVATE
-            $<$<COMPILE_LANGUAGE:CUDA>:--use_fast_math -O3>
-        )
-    elseif(MSVC)
-        target_compile_options(Lab_03 PRIVATE
-            $<$<COMPILE_LANGUAGE:CUDA>:--use_fast_math -O3>
-        )
-    endif()
+    target_compile_options(Lab_03 PRIVATE
+        $<$<AND:$<CONFIG:Release>,$<COMPILE_LANGUAGE:CXX>>:/O2>
+        $<$<AND:$<CONFIG:Release>,$<COMPILE_LANGUAGE:CXX>>:/Ob2>
+        $<$<COMPILE_LANGUAGE:CXX>:/W4>
+
+        $<$<AND:$<CONFIG:Release>,$<COMPILE_LANGUAGE:CUDA>>:-O3>
+    )
+else()
+    target_compile_options(Lab_03 PRIVATE
+        $<$<AND:$<CONFIG:Release>,$<COMPILE_LANGUAGE:CXX>>:-O3>
+         $<$<AND:$<BOOL:${MATRIX_NATIVE_CPU}>,$<CONFIG:Release>,$<COMPILE_LANGUAGE:CXX>>:-march=native>
+        $<$<COMPILE_LANGUAGE:CXX>:-Wall>
+        $<$<COMPILE_LANGUAGE:CXX>:-Wextra>
+
+        $<$<AND:$<CONFIG:Release>,$<COMPILE_LANGUAGE:CUDA>>:-O3>
+    )
 endif()
 
-message(STATUS "✓ CUDA Toolkit Found: ${CUDAToolkit_VERSION}")
-message(STATUS "✓ CUDA Compiler: ${CMAKE_CUDA_COMPILER}")
-message(STATUS "✓ Build Type: ${CMAKE_BUILD_TYPE}")
-message(STATUS "CUDA Architectures: ${CMAKE_CUDA_ARCHITECTURES}")
+if(MATRIX_USE_FAST_MATH)
+    target_compile_options(Lab_03 PRIVATE
+        $<$<COMPILE_LANGUAGE:CUDA>:--use_fast_math>
+    )
+endif()
 
-option(BUILD_DOC "Build Doxygen documentation" ON)
+message(STATUS "CUDA Toolkit: ${CUDAToolkit_VERSION}")
+message(STATUS "CUDA Compiler: ${CMAKE_CUDA_COMPILER}")
+message(STATUS "Build Type: ${CMAKE_BUILD_TYPE}")
+message(STATUS "CUDA Architectures: ${CMAKE_CUDA_ARCHITECTURES}")
+if(MATRIX_USE_DOUBLE)
+    message(STATUS "Matrix precision: double")
+else()
+    message(STATUS "Matrix precision: float")
+endif()
+message(STATUS "Fast math: ${MATRIX_USE_FAST_MATH}")
 
 if(BUILD_DOC)
     find_package(Doxygen QUIET)

@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lab_03: cuBLAS Parallel Programming: Файл cuda_utils.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Lab_03: cuBLAS Parallel Programming<span id="projectnumber">&#160;3.0</span>
+   </div>
+   <div id="projectbrief">Реализация умножения матриц методами Naive, Tiled, cuBLAS и исследование влияния размеров блоков и решёток на производительность</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#define-members">Макросы</a>  </div>
+  <div class="headertitle"><div class="title">Файл cuda_utils.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Вспомогательные средства обработки ошибок CUDA.  
+<a href="#details">Подробнее...</a></p>
+<div class="textblock"><code>#include &lt;cuda_runtime.h&gt;</code><br />
+<code>#include &lt;cstdlib&gt;</code><br />
+<code>#include &lt;iostream&gt;</code><br />
+</div>
+<p><a href="cuda__utils_8hpp_source.html">См. исходные тексты.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Макросы</h2></td></tr>
+<tr class="memitem:aeaf2b8792be9f99ad11147059ef5079d" id="r_aeaf2b8792be9f99ad11147059ef5079d"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="matrix__kernels_8cu.html#a17b165c8a6fe57e0ba195104c9a27b9b">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cuda__utils_8hpp.html#aeaf2b8792be9f99ad11147059ef5079d">CUDA_CHECK</a>(<a class="el" href="matrix__kernels_8cu.html#a17b165c8a6fe57e0ba195104c9a27b9b">call</a>)</td></tr>
+<tr class="memdesc:aeaf2b8792be9f99ad11147059ef5079d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Макрос для проверки кода возврата функции CUDA Runtime API.  <br /></td></tr>
+<tr class="separator:aeaf2b8792be9f99ad11147059ef5079d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>Вспомогательные средства обработки ошибок CUDA. </p>
+<p>Предоставляет макрос CUDA_CHECK для проверки результатов вызова функций CUDA Runtime API.</p>
+<dl class="section author"><dt>Автор</dt><dd>F.A.S.T. DEVELOPMENT aka Ямщиков Владимир, группа 26162. </dd></dl>
+<dl class="section date"><dt>Дата</dt><dd>15.11.2026. </dd></dl>
+<dl class="section version"><dt>Версия</dt><dd>2.0. </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="cuda__utils_8hpp_source.html">cuda_utils.hpp</a></p>
+</div><h2 class="groupheader">Макросы</h2>
+<a id="aeaf2b8792be9f99ad11147059ef5079d" name="aeaf2b8792be9f99ad11147059ef5079d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeaf2b8792be9f99ad11147059ef5079d">&#9670;&#160;</a></span>CUDA_CHECK</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="matrix__kernels_8cu.html#a17b165c8a6fe57e0ba195104c9a27b9b">define</a> CUDA_CHECK</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><a class="el" href="matrix__kernels_8cu.html#a17b165c8a6fe57e0ba195104c9a27b9b">call</a></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Макроопределение:</b><div class="fragment"><div class="line">    <span class="keywordflow">do</span> {                                                      \</div>
+<div class="line">        <span class="keyword">const</span> <a class="code hl_function" href="matrix__kernels_8cu.html#a17b165c8a6fe57e0ba195104c9a27b9b">cudaError_t</a> <a class="code hl_function" href="matrix__kernels_8cu.html#a17b165c8a6fe57e0ba195104c9a27b9b">err</a> = (<a class="code hl_function" href="matrix__kernels_8cu.html#a17b165c8a6fe57e0ba195104c9a27b9b">call</a>);                       <a class="code hl_function" href="matrix__kernels_8cu.html#a17b165c8a6fe57e0ba195104c9a27b9b">\</a></div>
+<div class="line"><a class="code hl_function" href="matrix__kernels_8cu.html#a17b165c8a6fe57e0ba195104c9a27b9b">        if</a> (<a class="code hl_function" href="matrix__kernels_8cu.html#a17b165c8a6fe57e0ba195104c9a27b9b">err</a> != <a class="code hl_function" href="matrix__kernels_8cu.html#a17b165c8a6fe57e0ba195104c9a27b9b">cudaSuccess</a>) {                             \</div>
+<div class="line">            std::cerr                                        \</div>
+<div class="line">                &lt;&lt; <span class="stringliteral">&quot;CUDA Error: &quot;</span>                            \</div>
+<div class="line">                &lt;&lt; <a class="code hl_function" href="matrix__kernels_8cu.html#a17b165c8a6fe57e0ba195104c9a27b9b">cudaGetErrorString</a>(<a class="code hl_function" href="matrix__kernels_8cu.html#a17b165c8a6fe57e0ba195104c9a27b9b">err</a>)                   \</div>
+<div class="line">                &lt;&lt; <span class="stringliteral">&quot; at &quot;</span> &lt;&lt; <a class="code hl_function" href="matrix__kernels_8cu.html#a17b165c8a6fe57e0ba195104c9a27b9b">__FILE__</a> &lt;&lt; <span class="stringliteral">&quot;:&quot;</span> &lt;&lt; <a class="code hl_function" href="matrix__kernels_8cu.html#a17b165c8a6fe57e0ba195104c9a27b9b">__LINE__</a>     \</div>
+<div class="line">                &lt;&lt; std::endl;                                 \</div>
+<div class="line">            std::exit(<a class="code hl_function" href="matrix__kernels_8cu.html#a17b165c8a6fe57e0ba195104c9a27b9b">EXIT_FAILURE</a>);                          \</div>
+<div class="line">        }                                                     \</div>
+<div class="line">    } <span class="keywordflow">while</span> (0)</div>
+<div class="ttc" id="amatrix__kernels_8cu_html_a17b165c8a6fe57e0ba195104c9a27b9b"><div class="ttname"><a href="matrix__kernels_8cu.html#a17b165c8a6fe57e0ba195104c9a27b9b">matrixMultNaive</a></div><div class="ttdeci">__global__ void matrixMultNaive(const BASE_TYPE *A, const BASE_TYPE *B, BASE_TYPE *C, int N, int rows)</div><div class="ttdoc">Выполняет наивное умножение матриц с использованием глобальной памяти GPU.</div><div class="ttdef"><b>Definition</b> <a href="matrix__kernels_8cu_source.html#l00047">matrix_kernels.cu:47</a></div></div>
+</div><!-- fragment -->
+<p>Макрос для проверки кода возврата функции CUDA Runtime API. </p>
+<p>Выполняет переданный вызов CUDA-функции и проверяет полученный код ошибки. При возникновении ошибки выводит её описание, имя исходного файла и номер строки, после чего завершает выполнение программы.</p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">call</td><td>Вызов функции CUDA Runtime API, возвращающей cudaError_t.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Заметки</dt><dd>Макрос предназначен для проверки синхронных кодов возврата. Для обнаружения ошибок асинхронного выполнения необходимо дополнительно использовать синхронизацию CUDA. </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="cuda__utils_8hpp_source.html">cuda_utils.hpp</a> строка <a class="el" href="cuda__utils_8hpp_source.html#l00035">35</a></p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

@@ -1,0 +1,5 @@
+var searchData=
+[
+  ['verifyresult_0',['verifyresult',['../matrix__kernels_8hpp.html#a0440d742f500bc1c4a329ec33492d734',1,'verifyResult(const std::vector&lt; BASE_TYPE &gt; &amp;result, const std::vector&lt; BASE_TYPE &gt; &amp;reference, int N):&#160;matrix_kernels.cu'],['../matrix__kernels_8cu.html#a0440d742f500bc1c4a329ec33492d734',1,'verifyResult(const std::vector&lt; BASE_TYPE &gt; &amp;result, const std::vector&lt; BASE_TYPE &gt; &amp;reference, int N):&#160;matrix_kernels.cu']]],
+  ['verifysampled_1',['verifysampled',['../matrix__kernels_8hpp.html#a523a4f3036bf678cf1ad62dd123c448e',1,'verifySampled(const std::vector&lt; BASE_TYPE &gt; &amp;result, const std::vector&lt; BASE_TYPE &gt; &amp;A, const std::vector&lt; BASE_TYPE &gt; &amp;B, int N, int samples=512):&#160;matrix_kernels.cu'],['../matrix__kernels_8cu.html#a111850717b1f7f98b18bc5e77f7984a0',1,'verifySampled(const std::vector&lt; BASE_TYPE &gt; &amp;result, const std::vector&lt; BASE_TYPE &gt; &amp;A, const std::vector&lt; BASE_TYPE &gt; &amp;B, int N, int samples):&#160;matrix_kernels.cu']]]
+];

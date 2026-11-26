@@ -1,139 +1,141 @@
+
 /**
- * @file matrix_kernels.hpp.
- * @brief Лабораторная работа №3: cuBLAS Parallel Programming.
- * @details Заголовочный файл с объявлениями CUDA-ядер и вспомогательных функций
- *        для умножения матриц.
- * @author F.A.S.T. DEVELOPMENT aka Ямщиков Владимир, группа 26162.
- * @date 04.11.2026.
- * @version 1.0.
+ * @file matrix_kernels.hpp
+ * @brief Объявления CUDA-ядер и функций работы с матрицами.
  */
 
 #pragma once
 
-#ifdef __CUDACC__
-#include <cuda_runtime.h>
-#include <cublas_v2.h>
-#endif
+#include "config.hpp"
 
 #include <vector>
-#include <cmath>
-#include <iostream>
-#include <cstdlib>
 
-/**
- * @brief Размер блока (тайла) для оптимизированного алгоритма.
- * @note Можно изменять на 16 или 32 для проведения экспериментов.
- */
-#define BLOCK_SIZE 16
-
-/**
- * @brief Базовый тип данных для элементов матрицы.
- */
-using BASE_TYPE = float;
-
-/**
- * @brief Макрос для проверки кодов возврата функций CUDA.
- * @details Если функция возвращает ошибку, макрос выводит сообщение
- *          с именем файла и номером строки, после чего завершает программу.
- * @param call Вызываемая функция CUDA.
- */
 #ifdef __CUDACC__
-
-#ifndef CUDA_CHECK
-#define CUDA_CHECK(call) \
-    do { \
-        cudaError_t err = call; \
-        if (err != cudaSuccess) { \
-            std::cerr << "CUDA Error: " << cudaGetErrorString(err) \
-                      << " at " << __FILE__ << ":" << __LINE__ << std::endl; \
-            exit(EXIT_FAILURE); \
-        } \
-    } while (0)
-#endif
+#include <cuda_runtime.h>
 
 /**
- * @brief Наивный алгоритм умножения матриц (использует только глобальную память).
- * @details Каждый поток вычисляет один элемент результирующей матрицы C,
- *          считывая данные напрямую из глобальной памяти видеокарты.
- * @param A Указатель на матрицу A в глобальной памяти (размер N x N).
- * @param B Указатель на матрицу B в глобальной памяти (размер N x N).
- * @param C Указатель на результирующую матрицу C в глобальной памяти.
- * @param N Размерность квадратных матриц.
+ * @brief Наивное умножение матриц с использованием глобальной памяти GPU.
+ *
+ * @details Каждый CUDA-поток вычисляет один элемент результирующей матрицы.
+ *          Для вычисления элемента выполняется последовательное суммирование
+ *          произведений соответствующих элементов строки A и столбца B.
+ *
+ * @param A Указатель на матрицу A размером rows x N в глобальной памяти GPU.
+ * @param B Указатель на матрицу B размером N x N в глобальной памяти GPU.
+ * @param C Указатель на результирующую матрицу C размером rows x N.
+ * @param N Размер стороны квадратной матрицы B и количество столбцов A.
+ * @param rows Количество строк матрицы A, обрабатываемых текущим запуском.
+ *
+ * @note При потоковом выполнении A и C могут представлять отдельные
+ *       фрагменты исходных матриц.
  */
 __global__ void matrixMultNaive(
-        const BASE_TYPE *A,
-        const BASE_TYPE *B,
-        BASE_TYPE *C,
-        int N,
-        int rowOffset,
-        int rows
+    const BASE_TYPE* A,
+    const BASE_TYPE* B,
+    BASE_TYPE* C,
+    int N,
+    int rows
 );
 
 /**
- * @brief Блочный (Tiled) алгоритм умножения матриц с использованием СТАТИЧЕСКОЙ разделяемой памяти.
- * @details Матрицы разбиваются на блоки размером BLOCK_SIZE x BLOCK_SIZE.
- *          Потоки кооперативно загружают фрагменты в быструю разделяемую память (Shared Memory),
- *          синхронизируются и выполняют вычисления, многократно используя загруженные данные.
- * @param A Указатель на матрицу A в глобальной памяти.
- * @param B Указатель на матрицу B в глобальной памяти.
- * @param C Указатель на результирующую матрицу C в глобальной памяти.
- * @param N Размерность квадратных матриц.
+ * @brief Блочное умножение матриц с использованием динамической shared memory.
+ *
+ * @details Матрицы разбиваются на тайлы размером BLOCK_SIZE x BLOCK_SIZE.
+ *          Потоки блока кооперативно загружают фрагменты матриц A и B
+ *          в разделяемую память, синхронизируются и выполняют вычисления
+ *          с повторным использованием загруженных данных.
+ *
+ *          Размер динамической разделяемой памяти задаётся при запуске ядра.
+ *
+ * @param A Указатель на матрицу A размером rows x N в глобальной памяти GPU.
+ * @param B Указатель на матрицу B размером N x N в глобальной памяти GPU.
+ * @param C Указатель на результирующую матрицу C размером rows x N.
+ * @param N Размер стороны квадратной матрицы B.
+ * @param rows Количество обрабатываемых строк матрицы A.
+ *
+ * @note Размер выделяемой shared memory должен соответствовать
+ *       конфигурации блока и типу BASE_TYPE.
  */
-// =========================================================
-// 2. Блочный алгоритм: СТАТИЧЕСКАЯ разделяемая память
-// =========================================================
-template <int TILE_SIZE>
+__global__ void matrixMultTiledDynamic(
+    const BASE_TYPE* A,
+    const BASE_TYPE* B,
+    BASE_TYPE* C,
+    int N,
+    int rows
+);
+
+/**
+ * @brief Блочное умножение матриц с использованием статической shared memory.
+ *
+ * @details Каждый CUDA-блок вычисляет тайл результирующей матрицы.
+ *          Потоки совместно загружают соответствующие фрагменты матриц A и B
+ *          в статически выделенную разделяемую память.
+ *
+ *          После синхронизации потоков выполняется вычисление частичных сумм.
+ *          Для обработки матриц, размеры которых не кратны размеру тайла,
+ *          используются проверки границ и заполнение недопустимых элементов
+ *          нулевыми значениями.
+ *
+ * @tparam Tile Размер стороны тайла и соответствующего двумерного блока.
+ *
+ * @param A Указатель на матрицу A размером rows x N в глобальной памяти GPU.
+ * @param B Указатель на матрицу B размером N x N в глобальной памяти GPU.
+ * @param C Указатель на результирующую матрицу C размером rows x N.
+ * @param N Размер стороны квадратной матрицы B.
+ * @param rows Количество обрабатываемых строк матрицы A.
+ *
+ * @note Размер CUDA-блока при запуске должен соответствовать Tile x Tile.
+ */
+template <int Tile>
 __global__ void matrixMultTiledStaticTpl(
-        const BASE_TYPE *A,
-        const BASE_TYPE *B,
-        BASE_TYPE *C,
-        int N,
-    int rowOffset,
+    const BASE_TYPE* A,
+    const BASE_TYPE* B,
+    BASE_TYPE* C,
+    int N,
     int rows
 ) {
-    __shared__ BASE_TYPE shared_A[TILE_SIZE][TILE_SIZE];
-    __shared__ BASE_TYPE shared_B[TILE_SIZE][TILE_SIZE];
+    static_assert(Tile > 0, "Tile must be positive");
+
+    __shared__ BASE_TYPE shared_A[Tile][Tile];
+    __shared__ BASE_TYPE shared_B[Tile][Tile];
 
     const int tx = threadIdx.x;
     const int ty = threadIdx.y;
 
-    const int col = blockIdx.x * TILE_SIZE + tx;
-    const int localRow = blockIdx.y * TILE_SIZE + ty;
-    const int globalRow = rowOffset + localRow;
+    const int col = blockIdx.x * Tile + tx;
+    const int localRow = blockIdx.y * Tile + ty;
 
-    BASE_TYPE sum = 0.0f;
+    BASE_TYPE sum = BASE_TYPE{0};
 
-    const int numTiles = (N + TILE_SIZE - 1) / TILE_SIZE;
+    const int numTiles = (N + Tile - 1) / Tile;
 
     for (int tile = 0; tile < numTiles; ++tile) {
+        const int aCol = tile * Tile + tx;
+        const int bRow = tile * Tile + ty;
 
-        const int aCol = tile * TILE_SIZE + tx;
-        const int bRow = tile * TILE_SIZE + ty;
-
-        // Load A tile.
+        // Загрузка тайла матрицы A.
         if (localRow < rows && aCol < N) {
             shared_A[ty][tx] = A[localRow * N + aCol];
-        }
-        else {
-            shared_A[ty][tx] = 0.0f;
+        } else {
+            shared_A[ty][tx] = BASE_TYPE{0};
         }
 
-        // Load B tile.
+        // Загрузка тайла матрицы B.
         if (bRow < N && col < N) {
             shared_B[ty][tx] = B[bRow * N + col];
-        }
-        else {
-            shared_B[ty][tx] = 0.0f;
+        } else {
+            shared_B[ty][tx] = BASE_TYPE{0};
         }
 
         __syncthreads();
 
-        // Multiply the loaded tiles.
+        // Вычисление частичной суммы.
         #pragma unroll
-        for (int k = 0; k < TILE_SIZE; ++k) {
+        for (int k = 0; k < Tile; ++k) {
             sum += shared_A[ty][k] * shared_B[k][tx];
         }
 
+        // Все потоки должны закончить чтение до перезаписи тайла.
         __syncthreads();
     }
 
@@ -142,77 +144,73 @@ __global__ void matrixMultTiledStaticTpl(
     }
 }
 
-/**
- * @brief Блочный (Tiled) алгоритм умножения матриц с использованием ДИНАМИЧЕСКОЙ разделяемой памяти.
- * @details Матрицы разбиваются на блоки размером BLOCK_SIZE x BLOCK_SIZE.
- *          Потоки кооперативно загружают фрагменты в быструю разделяемую память (Shared Memory),
- *          синхронизируются и выполняют вычисления, многократно используя загруженные данные.
- * @param A Указатель на матрицу A в глобальной памяти.
- * @param B Указатель на матрицу B в глобальной памяти.
- * @param C Указатель на результирующую матрицу C в глобальной памяти.
- * @param N Размерность квадратных матриц.
- */
-__global__ void matrixMultTiledDynamic(
-        const BASE_TYPE *A,
-        const BASE_TYPE *B,
-        BASE_TYPE *C,
-        int N,
-        int rowOffset,
-    int rows
-);
-
-/**
- * @brief Измерение времени выполнения между двумя CUDA-событиями.
- * @details Вычисляет прошедшее время (elapsed time) в миллисекундах между 
- *          событиями start и stop. 
- * @warning Функция предполагает, что события уже были синхронизированы 
- *          (например, через cudaEventSynchronize(stop)) перед её вызовом, 
- *          иначе результат может быть некорректным (равным 0).
- * @param start Событие, отмечающее начало измеряемого интервала.
- * @param stop  Событие, отмечающее конец измеряемого интервала.
- * @return Время выполнения в миллисекундах (float).
- */
-inline float measureTime(cudaEvent_t start, cudaEvent_t stop) {
-    float ms = 0.0f;
-    cudaError_t err = cudaEventElapsedTime(&ms, start, stop);
-    if (err != cudaSuccess) {
-        std::cerr << "CUDA Event Error: " << cudaGetErrorString(err) 
-                  << " при измерении времени." << std::endl;
-        return -1.0f;
-    }
-    return ms;
-}
-
 #endif // __CUDACC__
 
 /**
- * @brief Инициализация матрицы случайными значениями.
- * @param[out] mat Ссылка на вектор, представляющий матрицу (размер N x N).
- * @param N Размерность матрицы.
+ * @brief Инициализирует матрицу случайными значениями.
+ *
+ * @param[out] mat Вектор, представляющий матрицу размером N x N.
+ * @param N Размер стороны квадратной матрицы.
+ *
+ * @note После выполнения функция должна содержать N * N элементов.
  */
 void initMatrix(std::vector<BASE_TYPE>& mat, int N);
 
 /**
- * @brief Проверка корректности результатов умножения матриц.
- * @param C_gpu Результаты, полученные на GPU.
- * @param C_cpu Эталонные результаты, полученные на CPU.
- * @param N Размерность матриц.
- * @return true, если максимальная поэлементная разница меньше допуска (1e-2), иначе false.
+ * @brief Проверяет корректность результата умножения матриц.
+ *
+ * @details Сравнивает вычисленную матрицу с эталонной и проверяет,
+ *          укладываются ли различия элементов в заданные допуски.
+ *
+ * @param result Результирующая матрица, полученная GPU-алгоритмом.
+ * @param reference Эталонная матрица для сравнения.
+ * @param N Размер стороны квадратных матриц.
+ *
+ * @return true, если проверка всех элементов пройдена;
+ *         false, если обнаружено отклонение за пределами допуска.
  */
 bool verifyResult(
-        const std::vector<BASE_TYPE>& C_gpu,
-        const std::vector<BASE_TYPE>& C_cpu,
-        int N);
+    const std::vector<BASE_TYPE>& result,
+    const std::vector<BASE_TYPE>& reference,
+    int N
+);
 
 /**
- * @brief Последовательное (CPU) умножение матриц для верификации.
- * @param A Исходная матрица A (размер N x N).
- * @param B Исходная матрица B (размер N x N).
- * @param C Выходная матрица C (размер N x N).
- * @param N Размерность матриц.
+ * @brief Проверяет результат по выборке элементов с независимым CPU-эталоном.
+ *
+ * Эталонные значения выбранных элементов вычисляются на CPU
+ * с накоплением в double. Дополнительно проверяется отсутствие
+ * NaN и Inf во всём результирующем массиве. Дополнительно проверяются полные строки на границах чанков.
+ *
+ * @param result Результат GPU-умножения.
+ * @param A Исходная матрица A.
+ * @param B Исходная матрица B.
+ * @param N Размер стороны матриц.
+ * @param samples Количество дополнительных проверяемых элементов.
+ * @return true, если проверка пройдена.
+ */
+bool verifySampled(
+    const std::vector<BASE_TYPE>& result,
+    const std::vector<BASE_TYPE>& A,
+    const std::vector<BASE_TYPE>& B,
+    int N,
+    int samples = 512
+);
+
+/**
+ * @brief Выполняет последовательное умножение матриц на CPU.
+ *
+ * @details Используется для получения эталонного результата,
+ *          с которым сравниваются результаты GPU-вычислений.
+ *
+ * @param A Исходная матрица A размером N x N.
+ * @param B Исходная матрица B размером N x N.
+ * @param[out] C Вектор для записи результата умножения размером N x N.
+ * @param N Размер стороны квадратных матриц.
  */
 void computeCPU(
-        const std::vector<BASE_TYPE>& A,
-        const std::vector<BASE_TYPE>& B,
-        std::vector<BASE_TYPE>& C,
-        int N);
+    const std::vector<BASE_TYPE>& A,
+    const std::vector<BASE_TYPE>& B,
+    std::vector<BASE_TYPE>& C,
+    int N
+);
